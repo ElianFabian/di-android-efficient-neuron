@@ -34,8 +34,8 @@ class FunctionsFragment : Fragment(), View.OnClickListener
     {
         when (v?.id)
         {
-            R.id.ib_addition     -> navigateTo(R.id.action_functionsFragment_to_aboutUsFragment)
-            R.id.ib_substraction -> navigateTo(R.id.action_functionsFragment_to_gameConfigFragment)
+            R.id.ib_addition   -> navigateTo(R.id.action_functionsFragment_to_aboutUsFragment)
+            R.id.ibSubtraction -> navigateTo(R.id.action_functionsFragment_to_gameConfigFragment)
         }
     }
 
