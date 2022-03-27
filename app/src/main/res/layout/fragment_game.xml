@@ -9,12 +9,12 @@
 
     <!--region Operación-->
     <TextView
-        android:id="@+id/tv_operation"
+        android:id="@+id/tvOperation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/white"
         android:textSize="@dimen/tv_operation__textSize"
-        app:layout_constraintBottom_toTopOf="@+id/tableLayout"
+        app:layout_constraintBottom_toTopOf="@+id/tlNumericKeyboard"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
@@ -22,9 +22,9 @@
         tools:text="2 + 2" />
     <!--endregion-->
 
-    <!--region Teclado numérico-->
+    <!--region Numeric keyboard-->
     <TableLayout
-        android:id="@+id/tableLayout"
+        android:id="@+id/tlNumericKeyboard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
