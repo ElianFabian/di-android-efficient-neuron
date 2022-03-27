@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blue_6"
+    tools:context=".ui.game.GameFragment">
+
+    <!--region Operación-->
+    <TextView
+        android:id="@+id/tv_operation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:textSize="@dimen/tv_operation__textSize"
+        app:layout_constraintBottom_toTopOf="@+id/tableLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="2 + 2" />
+    <!--endregion-->
+
+    <!--region Teclado numérico-->
+    <TableLayout
+        android:id="@+id/tableLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.72">
+
+        <!--region 7 8 9-->
+        <TableRow android:id="@+id/tr_1">
+
+            <!--7-->
+            <ImageButton
+                android:id="@+id/ib_7"
+                style="@style/ib_NumericButtons"
+                android:src="@drawable/ic_btn_7"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+            <!--8-->
+            <ImageButton
+                android:id="@+id/ib_8"
+                style="@style/ib_NumericButtons"
+                android:src="@drawable/ic_btn_8"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+            <!--9-->
+            <ImageButton
+                android:id="@+id/ib_9"
+                style="@style/ib_NumericButtons"
+                android:src="@drawable/ic_btn_9"
+                tools:ignore="SpeakableTextPresentCheck" />
+        </TableRow>
+        <!--endregion-->
+
+        <!--region 4 5 6-->
+        <TableRow android:id="@+id/tr_2">
+            <!--region 4-->
+            <ImageButton
+                android:id="@+id/ib_4"
+                style="@style/ib_NumericButtons"
+                android:layout_width="63dp"
+                android:src="@drawable/ic_btn_4"
+                tools:ignore="SpeakableTextPresentCheck" />
+            <!--endregion-->
+
+            <!--region 5-->
+            <ImageButton
+                android:id="@+id/ib_5"
+                style="@style/ib_NumericButtons"
+                android:src="@drawable/ic_btn_5"
+                tools:ignore="SpeakableTextPresentCheck" />
+            <!--endregion-->
+
+            <!--region 6-->
+            <ImageButton
+                android:id="@+id/ib_6"
+                style="@style/ib_NumericButtons"
+                android:src="@drawable/ic_btn_6"
+                tools:ignore="SpeakableTextPresentCheck" />
+            <!--endregion-->
+        </TableRow>
+        <!--endregion-->
+
+        <!--region 1 2 3-->
+        <TableRow android:id="@+id/tr_3">
+            <!--region 1-->
+            <ImageButton
+                android:id="@+id/ib_1"
+                style="@style/ib_NumericButtons"
+                android:src="@drawable/ic_btn_1"
+                tools:ignore="SpeakableTextPresentCheck" />
+            <!--endregion-->
+
+            <!--region 2-->
+            <ImageButton
+                android:id="@+id/ib_2"
+                style="@style/ib_NumericButtons"
+                android:src="@drawable/ic_btn_2"
+                tools:ignore="SpeakableTextPresentCheck" />
+            <!--endregion-->
+
+            <!--region 3-->
+            <ImageButton
+                android:id="@+id/ib_3"
+                style="@style/ib_NumericButtons"
+                android:src="@drawable/ic_btn_3"
+                tools:ignore="SpeakableTextPresentCheck" />
+            <!--endregion-->
+        </TableRow>
+        <!--endregion-->
+
+        <!--region 0-->
+        <TableRow android:id="@+id/tr_4">
+
+            <ImageButton
+                android:id="@+id/ib_0"
+                style="@style/ib_NumericButtons"
+                android:layout_span="2"
+                android:src="@drawable/ic_btn_0"
+                tools:ignore="SpeakableTextPresentCheck" />
+        </TableRow>
+        <!--endregion-->
+
+    </TableLayout>
+    <!--endregion-->
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/frameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/blue_1"
+        tools:context=".ui.gameconfig.GameConfigFragment">
+
+    <!--region Icono de operación-->
+    <TextView
+            android:id="@+id/tv_icon_corner"
+            android:layout_width="29dp"
+            android:layout_height="38dp"
+            android:layout_marginEnd="4dp"
+
+            android:fontFamily="@font/comfortaa_bold"
+            android:includeFontPadding="false"
+
+            android:text="+"
+            android:textAlignment="center"
+            android:textColor="@color/blue_4"
+            android:textSize="50dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    <!--endregion-->
+
+    <!--region Título de Configuración de Juego-->
+    <TextView
+            android:id="@+id/tv_gameConfigTitle"
+            style="@style/Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+
+            android:text="@string/tv_gameConfigTitle__text"
+            android:textSize="@dimen/tv_gameConfigTitle__textSize"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.08" />
+    <!--endregion-->
+
+    <!--region Título Dígitos-->
+    <TextView
+            android:id="@+id/tv_digits"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/comfortaa"
+            android:text="@string/tv_digits__text"
+            android:textColor="@color/blue_4"
+
+            android:textSize="40dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.14"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_gameConfigTitle"
+            app:layout_constraintVertical_bias="0.08" />
+    <!--endregion-->
+
+    <!--region 1er dígito-->
+    <EditText
+            android:id="@+id/et_digito_1"
+            android:layout_width="82dp"
+            android:layout_height="48dp"
+            android:ems="10"
+            android:gravity="center"
+            android:inputType="number"
+            android:minHeight="48dp"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/tv_digits"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.398"
+            tools:ignore="SpeakableTextPresentCheck"
+            tools:text="12" />
+    <!--endregion-->
+
+    <!--region Símbolo-->
+    <TextView
+            android:id="@+id/tv_simbol_X"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/comfortaa_bold"
+            android:text="X"
+            android:textColor="@color/green_light"
+            android:textSize="20dp"
+            app:layout_constraintBottom_toBottomOf="@+id/et_digito_1"
+            app:layout_constraintEnd_toStartOf="@+id/et_digito_2"
+            app:layout_constraintStart_toEndOf="@+id/et_digito_1"
+            app:layout_constraintTop_toTopOf="@+id/et_digito_1" />
+    <!--endregion-->
+
+    <!--region 2do dígito-->
+    <EditText
+            android:id="@+id/et_digito_2"
+            android:layout_width="82dp"
+            android:layout_height="48dp"
+            android:ems="10"
+            android:gravity="center"
+            android:inputType="number"
+            android:minHeight="48dp"
+
+            app:layout_constraintBottom_toBottomOf="@+id/et_digito_1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/et_digito_1"
+            app:layout_constraintTop_toTopOf="@+id/et_digito_1"
+            tools:ignore="SpeakableTextPresentCheck"
+            tools:text="2" />
+    <!--endregion-->
+
+    <!--region Título Modo-->
+    <TextView
+            android:id="@+id/tv_mode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/comfortaa"
+            android:text="@string/tv_mode__text"
+            android:textColor="@color/blue_4"
+            android:textSize="40dp"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toStartOf="@+id/tv_digits"
+            app:layout_constraintTop_toBottomOf="@+id/tv_digits"
+            app:layout_constraintVertical_bias="0.3" />
+    <!--endregion-->
+
+    <!--region Partidas/Tiempo-->
+    <EditText
+            android:id="@+id/et_gamesTime"
+            android:layout_width="82dp"
+            android:layout_height="48dp"
+            android:ems="10"
+            android:gravity="center"
+            android:inputType="number"
+            android:minHeight="48dp"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.668"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.688"
+            tools:ignore="SpeakableTextPresentCheck"
+            tools:text="5" />
+    <!--endregion-->
+
+    <!--region texto tipo partida-->
+    <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tv_gamesTime__games"
+            android:textSize="18dp"
+
+            app:layout_constraintBottom_toBottomOf="@+id/et_gamesTime"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/et_gamesTime"
+            app:layout_constraintTop_toTopOf="@+id/et_gamesTime" />
+    <!--endregion-->
+
+    <!--region Spinner-->
+    <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/et_gamesTime"
+            app:layout_constraintEnd_toStartOf="@+id/et_gamesTime"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_mode"
+            app:layout_constraintVertical_bias="1.0"
+            android:entries="@array/spr_modes"/>
+    <!--endregion-->
+
+    <!--region Botón Jugar-->
+    <Button
+            android:id="@+id/btn_play"
+            style="@style/Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_play__text"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_mode"
+            app:layout_constraintVertical_bias="0.8" />
+    <!--endregion-->
+
+</androidx.constraintlayout.widget.ConstraintLayout>

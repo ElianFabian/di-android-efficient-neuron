@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Title">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">@font/comfortaa_bold</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:textSize">@dimen/tv_Title__textSize</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="TextInputLayout">
+        <item name="strokeColor">@color/black</item>
+        <item name="hintTextColor">@color/gray_0</item>
+        <item name="boxBackgroundColor">@color/transparent</item>
+        <item name="boxBackgroundMode">filled</item>
+    </style>
+
+    <style name="Button">
+        <item name="cornerRadius">@dimen/btn_login__cornerRadius</item>
+        <item name="fontFamily">@font/comfortaa_bold</item>
+        <item name="android:textSize">25dp</item>
+
+        <!--paddingHorizontal y paddingVertical sólo está soportado a partir de la versión 26-->
+        <item name="android:paddingRight">@dimen/Button__paddingHorizontal</item>
+        <item name="android:paddingLeft">@dimen/Button__paddingHorizontal</item>
+        <item name="android:paddingTop">@dimen/Button__paddingVertical</item>
+        <item name="android:paddingBottom">@dimen/Button__paddingVertical</item>
+    </style>
+
+    <style name="ib_Functions">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_margin">30dp</item>
+        <item name="android:layout_weight">0.5</item>
+        <item name="android:background">@color/transparent</item>
+        <item name="android:scaleType">fitCenter</item>
+        <item name="android:layout_height">100dp</item>
+    </style>
+
+    <style name="ib_NumericButtons">
+        <item name="android:layout_height">90dp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:background">@color/transparent</item>
+        <item name="android:scaleType">fitCenter</item>
+    </style>
+
+
+</resources>

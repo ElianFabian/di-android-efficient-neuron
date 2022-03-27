@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="Button__paddingHorizontal">25dp</dimen>
+    <dimen name="Button__paddingVertical">10dp</dimen>
+
+    <dimen name="til__layout_width">300dp</dimen>
+    <dimen name="til__layout_marginTop">32dp</dimen>
+
+    <dimen name="tv_Title__textSize">50dp</dimen>
+    <dimen name="tv_signUpTitle__marginTop">20dp</dimen>
+    <dimen name="tv_gameConfigTitle__textSize">35dp</dimen>
+    <dimen name="tv_operation__textSize">90dp</dimen>
+
+    <dimen name="btn_login__cornerRadius">50dp</dimen>
+    <dimen name="btn_signUp__marginTop">80dp</dimen>
+
+</resources>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blue_1"
+    android:gravity="center"
+    tools:context=".ui.functions.FunctionsFragment">
+
+    <!--TODO: Implementar menú lateral-->
+
+    <!--Título de Inicio de sesión-->
+    <!--  <TextView
+          android:id="@+id/textView"
+          style="@style/Title"
+          android:text="@string/tv_functionsTitle__text"
+          app:layout_constraintBottom_toBottomOf="parent"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toTopOf="parent"
+          app:layout_constraintVertical_bias="0.04" />-->
+
+    <!--region Suma y Resta-->
+    <TableRow
+        android:id="@+id/tableRow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <!--region Suma-->
+        <ImageButton
+            android:id="@+id/ib_addition"
+            style="@style/ib_Functions"
+            android:src="@drawable/ic_addition"
+            tools:ignore="SpeakableTextPresentCheck" />
+        <!--endregion-->
+
+        <!--region Resta-->
+        <ImageButton
+            android:id="@+id/ib_substraction"
+            style="@style/ib_Functions"
+            android:src="@drawable/ic_substraction"
+            tools:ignore="SpeakableTextPresentCheck" />
+        <!--endregion-->
+
+    </TableRow>
+    <!--endregion-->
+
+    <!--region Multiplicación y División-->
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!--region Multiplicación-->
+        <ImageButton
+            android:id="@+id/ib_multiplication"
+            style="@style/ib_Functions"
+            android:src="@drawable/ic_multiplication"
+            tools:ignore="SpeakableTextPresentCheck" />
+        <!--endregion-->
+
+        <!--region División-->
+        <ImageButton
+            android:id="@+id/ib_division"
+            style="@style/ib_Functions"
+            android:src="@drawable/ic_division"
+            tools:ignore="SpeakableTextPresentCheck" />
+        <!--endregion-->
+
+    </TableRow>
+    <!--endregion-->
+
+</TableLayout>

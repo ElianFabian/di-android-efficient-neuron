@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/functionsFragment">
+
+    <fragment
+        android:id="@+id/functionsFragment"
+        android:name="com.elian.efficientneuron.ui.functions.FunctionsFragment"
+        android:label="fragment_functions"
+        tools:layout="@layout/fragment_functions" >
+        <action
+            android:id="@+id/action_functionsFragment_to_gameConfigFragment"
+            app:destination="@id/gameConfigFragment" />
+        <action
+            android:id="@+id/action_functionsFragment_to_aboutUsFragment"
+            app:destination="@id/aboutUsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/gameConfigFragment"
+        android:name="com.elian.efficientneuron.ui.gameconfig.GameConfigFragment"
+        android:label="fragment_game_config"
+        tools:layout="@layout/fragment_game_config" >
+        <action
+            android:id="@+id/action_gameConfigFragment_to_gameFragment"
+            app:destination="@id/gameFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/gameFragment"
+        android:name="com.elian.efficientneuron.ui.game.GameFragment"
+        android:label="fragment_game"
+        tools:layout="@layout/fragment_game" />
+    <fragment
+        android:id="@+id/aboutUsFragment"
+        android:name="com.elian.efficientneuron.ui.aboutus.AboutUsFragment"
+        android:label="AboutUsFragment" />
+</navigation>
