@@ -48,7 +48,7 @@
 
     <!--region Contraseña-->
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/til_password_1"
+        android:id="@+id/tilPassword"
         style="@style/TextInputLayout"
         android:layout_gravity="center"
         android:layout_width="@dimen/til__layout_width"
@@ -88,7 +88,7 @@
 
     <!--region Botón Registro-->
     <Button
-        android:id="@+id/btn_signUp"
+        android:id="@+id/btnSignUp"
         style="@style/Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
