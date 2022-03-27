@@ -29,7 +29,7 @@
 
     <!--region Tittle Login-->
     <TextView
-            android:id="@+id/tv_loginTitle"
+            android:id="@+id/tvLoginTitle"
             style="@style/Title"
             android:text="@string/tv_loginTitle__text"
 
@@ -50,7 +50,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/glEnd"
             app:layout_constraintStart_toStartOf="@+id/glStart"
-            app:layout_constraintTop_toBottomOf="@+id/tv_loginTitle"
+            app:layout_constraintTop_toBottomOf="@+id/tvLoginTitle"
             app:layout_constraintVertical_bias="0.1">
 
         <com.google.android.material.textfield.TextInputEditText
