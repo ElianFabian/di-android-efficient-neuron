@@ -7,7 +7,7 @@
     android:background="@color/blue_1"
     tools:context=".ui.login.LoginActivity">
 
-    <!--region Líneas de guía-->
+    <!--region Guide Lines -->
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/glStart"
         android:layout_width="wrap_content"
@@ -27,7 +27,7 @@
         app:layout_constraintStart_toEndOf="parent" />
     <!--endregion-->
 
-    <!--region Título de Inicio de sesión-->
+    <!--region Tittle Login-->
     <TextView
         android:id="@+id/tv_loginTitle"
         style="@style/Title"
@@ -40,7 +40,7 @@
         app:layout_constraintVertical_bias="0.04" />
     <!--endregion-->
 
-    <!--region Usuario-->
+    <!--region User-->
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/til_user"
         style="@style/TextInputLayout"
@@ -60,7 +60,7 @@
     </com.google.android.material.textfield.TextInputLayout>
     <!--endregion-->
 
-    <!--region Contraseña-->
+    <!--region Password-->
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/til_password_1"
         style="@style/TextInputLayout"
@@ -80,7 +80,7 @@
     </com.google.android.material.textfield.TextInputLayout>
     <!--endregion-->
 
-    <!--region Botón Registro-->
+    <!--region Button Signup-->
     <Button
         android:id="@+id/btn_signUp"
         style="@style/Widget.AppCompat.Button.Borderless"
@@ -99,7 +99,7 @@
         app:layout_constraintVertical_bias="0.10" />
     <!--endregion-->
 
-    <!--region Botón Inicio de sesión-->
+    <!--region Button login-->
     <Button
         android:id="@+id/btn_login"
         style="@style/Button"
