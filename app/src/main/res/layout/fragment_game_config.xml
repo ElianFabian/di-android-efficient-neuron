@@ -63,7 +63,7 @@
 
     <!--region 1er dígito-->
     <EditText
-            android:id="@+id/et_digito_1"
+            android:id="@+id/et_digit_1"
             android:layout_width="82dp"
             android:layout_height="48dp"
             android:ems="10"
@@ -90,15 +90,15 @@
             android:text="X"
             android:textColor="@color/green_light"
             android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="@+id/et_digito_1"
-            app:layout_constraintEnd_toStartOf="@+id/et_digito_2"
-            app:layout_constraintStart_toEndOf="@+id/et_digito_1"
-            app:layout_constraintTop_toTopOf="@+id/et_digito_1" />
+            app:layout_constraintBottom_toBottomOf="@+id/et_digit_1"
+            app:layout_constraintEnd_toStartOf="@+id/et_digit_2"
+            app:layout_constraintStart_toEndOf="@+id/et_digit_1"
+            app:layout_constraintTop_toTopOf="@+id/et_digit_1" />
     <!--endregion-->
 
     <!--region 2do dígito-->
     <EditText
-            android:id="@+id/et_digito_2"
+            android:id="@+id/et_digit_2"
             android:layout_width="82dp"
             android:layout_height="48dp"
             android:ems="10"
@@ -106,10 +106,10 @@
             android:inputType="number"
             android:minHeight="48dp"
 
-            app:layout_constraintBottom_toBottomOf="@+id/et_digito_1"
+            app:layout_constraintBottom_toBottomOf="@+id/et_digit_1"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/et_digito_1"
-            app:layout_constraintTop_toTopOf="@+id/et_digito_1"
+            app:layout_constraintStart_toEndOf="@+id/et_digit_1"
+            app:layout_constraintTop_toTopOf="@+id/et_digit_1"
             tools:ignore="SpeakableTextPresentCheck"
             tools:text="2" />
     <!--endregion-->
