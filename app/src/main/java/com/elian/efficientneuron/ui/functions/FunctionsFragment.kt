@@ -12,12 +12,14 @@ import com.elian.efficientneuron.databinding.FragmentFunctionsBinding
 
 class FunctionsFragment : Fragment(), View.OnClickListener
 {
-    lateinit var binding: FragmentFunctionsBinding
+    private lateinit var binding: FragmentFunctionsBinding
+
+    //region Fragment Methods
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
-    ): View?
+    ): View
     {
         // Inflate the layout for this fragment
         binding = FragmentFunctionsBinding.inflate(inflater, container, false)
@@ -37,12 +39,14 @@ class FunctionsFragment : Fragment(), View.OnClickListener
         }
     }
 
+    //endregion
+    
     //region Methods
 
-    private fun navigateTo(fragmentId: Int)
+    private fun navigateTo(action: Int)
     {
-        NavHostFragment.findNavController(this).navigate(fragmentId)
+        NavHostFragment.findNavController(this).navigate(action)
     }
-    
+
     //endregion
 }
