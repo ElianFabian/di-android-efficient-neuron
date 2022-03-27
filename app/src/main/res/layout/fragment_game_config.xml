@@ -43,7 +43,7 @@
             app:layout_constraintVertical_bias="0.08" />
     <!--endregion-->
 
-    <!--region Title Digits -->
+    <!--region Title Digits-->
     <TextView
             android:id="@+id/tvDigits"
             android:layout_width="wrap_content"
@@ -61,7 +61,7 @@
             app:layout_constraintVertical_bias="0.08" />
     <!--endregion-->
 
-    <!--region First digit -->
+    <!--region First digit-->
     <EditText
             android:id="@+id/etDigit1"
             android:layout_width="82dp"
@@ -96,7 +96,7 @@
             app:layout_constraintTop_toTopOf="@+id/etDigit1" />
     <!--endregion-->
 
-    <!--region 2do dígito-->
+    <!--region Second digit-->
     <EditText
             android:id="@+id/etDigit2"
             android:layout_width="82dp"
@@ -114,7 +114,7 @@
             tools:text="2" />
     <!--endregion-->
 
-    <!--region Título Modo-->
+    <!--region Title Mode-->
     <TextView
             android:id="@+id/tvMode"
             android:layout_width="wrap_content"
@@ -132,7 +132,7 @@
             app:layout_constraintVertical_bias="0.3" />
     <!--endregion-->
 
-    <!--region Partidas/Tiempo-->
+    <!--region Games/Time-->
     <EditText
             android:id="@+id/etGamesOrTime"
             android:layout_width="82dp"
@@ -152,7 +152,7 @@
             tools:text="5" />
     <!--endregion-->
 
-    <!--region texto tipo partida-->
+    <!--region Text Type of Game-->
     <TextView
             android:id="@+id/tvModes"
             android:layout_width="wrap_content"
@@ -166,7 +166,7 @@
             app:layout_constraintTop_toTopOf="@+id/etGamesOrTime" />
     <!--endregion-->
 
-    <!--region Spinner-->
+    <!--region Spinner Modes-->
     <Spinner
             android:id="@+id/spModes"
             android:layout_width="150dp"
@@ -181,7 +181,7 @@
             android:minHeight="48dp" />
     <!--endregion-->
 
-    <!--region Botón Jugar-->
+    <!--region Button play-->
     <Button
             android:id="@+id/btnPlay"
             style="@style/Button"
