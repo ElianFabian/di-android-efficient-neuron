@@ -40,7 +40,7 @@ class GameConfigFragment : Fragment(), View.OnClickListener
     {
         when (v?.id)
         {
-            R.id.btn_play -> showGame()
+            R.id.btnPlay -> showGame()
         }
     }
 
