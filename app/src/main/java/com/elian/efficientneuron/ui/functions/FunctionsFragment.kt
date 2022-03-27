@@ -16,7 +16,7 @@ class FunctionsFragment : Fragment(), View.OnClickListener
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View?
     {
         // Inflate the layout for this fragment
@@ -32,19 +32,17 @@ class FunctionsFragment : Fragment(), View.OnClickListener
     {
         when (v?.id)
         {
-            R.id.ib_addition     -> showGameConfig()
-            R.id.ib_substraction -> showAboutUs()
+            R.id.ib_addition     -> navigateTo(R.id.action_functionsFragment_to_aboutUsFragment)
+            R.id.ib_substraction -> navigateTo(R.id.action_functionsFragment_to_gameConfigFragment)
         }
     }
 
-    private fun showAboutUs()
+    //region Methods
+
+    private fun navigateTo(fragmentId: Int)
     {
-        NavHostFragment.findNavController(this)
-            .navigate(R.id.action_functionsFragment_to_aboutUsFragment)
+        NavHostFragment.findNavController(this).navigate(fragmentId)
     }
-
-
-    private fun showGameConfig() = NavHostFragment.findNavController(this)
-        .navigate(R.id.action_functionsFragment_to_gameConfigFragment)
-
+    
+    //endregion
 }
