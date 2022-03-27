@@ -27,7 +27,7 @@
             app:layout_constraintStart_toEndOf="parent" />
     <!--endregion-->
 
-    <!--region Tittle Login-->
+    <!--region Title Login-->
     <TextView
             android:id="@+id/tvLoginTitle"
             style="@style/Title"
