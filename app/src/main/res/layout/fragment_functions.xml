@@ -29,7 +29,7 @@
 
         <!--region Sum-->
         <ImageButton
-            android:id="@+id/ib_addition"
+            android:id="@+id/ibAddition"
             style="@style/ibFunctions"
             android:src="@drawable/ic_addition"
             tools:ignore="SpeakableTextPresentCheck" />

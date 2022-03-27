@@ -25,7 +25,7 @@ class FunctionsFragment : Fragment(), View.OnClickListener
         binding = FragmentFunctionsBinding.inflate(inflater, container, false)
 
         binding.ibAddition.setOnClickListener(this)
-        binding.ibSubstraction.setOnClickListener(this)
+        binding.ibSubtraction.setOnClickListener(this)
 
         return binding.root
     }
@@ -34,7 +34,7 @@ class FunctionsFragment : Fragment(), View.OnClickListener
     {
         when (v?.id)
         {
-            R.id.ib_addition   -> navigateTo(R.id.action_functionsFragment_to_aboutUsFragment)
+            R.id.ibAddition    -> navigateTo(R.id.action_functionsFragment_to_aboutUsFragment)
             R.id.ibSubtraction -> navigateTo(R.id.action_functionsFragment_to_gameConfigFragment)
         }
     }
