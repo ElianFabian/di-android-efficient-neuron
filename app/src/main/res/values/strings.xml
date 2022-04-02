@@ -6,8 +6,8 @@
     <string name="tv_singUpTitle__text">SIGN UP</string>
     <string name="tv_functionsTitle__text">FUNCTIONS</string>
     <string name="frgGameConfiguration__tvGameConfigTitle_text">GAME CONFIGURATION</string>
-    <string name="tv_digits__text">Digits:</string>
-    <string name="tv_mode__text">Mode:</string>
+    <string name="frgGameConfiguration__tvDigits_text">Digits:</string>
+    <string name="frgGameConfiguration__tvMode_text">Mode:</string>
     <string name="tv_gamesTime__games">games</string>
     <string name="tv_gamesTime__seconds">seconds</string>
 
@@ -17,7 +17,7 @@
 
     <string name="actLogin__btnSignup_text">SIGN UP</string>
     <string name="actLogin__btnLogin_text">LOGIN</string>
-    <string name="btn_play__text">PLAY</string>
+    <string name="frgGameConfiguration__btnPlay_text">PLAY</string>
 
     <string-array name="spr_modes">
         <item>Games</item>
