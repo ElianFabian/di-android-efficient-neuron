@@ -10,7 +10,7 @@
     <dimen name="tv_Title__textSize">50dp</dimen>
     <dimen name="tv_signUpTitle__marginTop">20dp</dimen>
     <dimen name="tv_gameConfigTitle__textSize">35sp</dimen>
-    <dimen name="tv_operation__textSize">90sp</dimen>
+    <dimen name="frgGame__tvOperation_textSize">90sp</dimen>
 
     <dimen name="btn_login__cornerRadius">50dp</dimen>
     <dimen name="btn_signUp__marginTop">80dp</dimen>
