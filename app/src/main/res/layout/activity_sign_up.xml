@@ -13,7 +13,7 @@
     <TextView
         android:id="@+id/tvSignupTitle"
         style="@style/Title"
-        android:text="@string/tv_singUpTitle__text"
+        android:text="@string/actSignup__tvSignupTitle_text"
         android:layout_gravity="center"
 
         android:layout_marginTop="@dimen/tv_signUpTitle__marginTop"
@@ -42,7 +42,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/actLogin__tieUser_hint" />
+            android:hint="@string/base__tieUser_hint" />
     </com.google.android.material.textfield.TextInputLayout>
     <!--endregion-->
 
@@ -54,7 +54,7 @@
         android:layout_width="@dimen/base_til_layout_width"
         android:layout_height="wrap_content"
 
-        android:layout_marginTop="@dimen/til__layout_marginTop"
+        android:layout_marginTop="@dimen/base_til_layout_marginTop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tilUser">
@@ -62,7 +62,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/actLogin__tiePassword1__hint" />
+            android:hint="@string/base__tiePassword1__hint" />
     </com.google.android.material.textfield.TextInputLayout>
     <!--endregion-->
 
@@ -74,7 +74,7 @@
         android:layout_width="@dimen/base_til_layout_width"
         android:layout_height="wrap_content"
 
-        android:layout_marginTop="@dimen/til__layout_marginTop"
+        android:layout_marginTop="@dimen/base_til_layout_marginTop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tilUser">
@@ -82,7 +82,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/tiet_password_2__hint" />
+            android:hint="@string/base_tiePassword2__hint" />
     </com.google.android.material.textfield.TextInputLayout>
     <!--endregion-->
 
@@ -92,7 +92,7 @@
         style="@style/Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/actLogin__btnSignup_text"
+        android:text="@string/base__btnSignup_text"
         android:layout_gravity="center"
         android:layout_marginTop="@dimen/btn_signUp__marginTop"
 

@@ -57,7 +57,7 @@
                 android:id="@+id/tieUser"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/actLogin__tieUser_hint" />
+                android:hint="@string/base__tieUser_hint" />
     </com.google.android.material.textfield.TextInputLayout>
     <!--endregion-->
 
@@ -68,7 +68,7 @@
             android:layout_width="@dimen/base_til_layout_width"
             android:layout_height="wrap_content"
 
-            android:layout_marginTop="@dimen/til__layout_marginTop"
+            android:layout_marginTop="@dimen/base_til_layout_marginTop"
             app:layout_constraintEnd_toStartOf="@+id/glEnd"
             app:layout_constraintStart_toStartOf="@+id/glStart"
             app:layout_constraintTop_toBottomOf="@+id/tilUser">
@@ -77,7 +77,7 @@
                 android:id="@+id/tiePassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/actLogin__tiePassword1__hint"
+                android:hint="@string/base__tiePassword1__hint"
                 android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
     <!--endregion-->
@@ -89,7 +89,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
-            android:text="@string/actLogin__btnSignup_text"
+            android:text="@string/base__btnSignup_text"
             android:textAllCaps="true"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="@color/black"
