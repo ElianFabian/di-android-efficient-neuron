@@ -6,7 +6,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/blue_1"
-        tools:context=".ui.gameconfig.GameConfigFragment">
+        tools:context=".ui.gameconfig.GameConfigurationFragment">
 
     <!--region Icon operation-->
     <TextView
@@ -34,7 +34,7 @@
             android:layout_height="wrap_content"
 
 
-            android:text="@string/tv_gameConfigTitle__text"
+            android:text="@string/frgGameConfiguration__tvGameConfigTitle_text"
             android:textSize="@dimen/tv_gameConfigTitle__textSize"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

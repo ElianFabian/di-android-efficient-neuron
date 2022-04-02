@@ -9,7 +9,7 @@ import androidx.navigation.fragment.NavHostFragment
 import com.elian.efficientneuron.R
 import com.elian.efficientneuron.databinding.FragmentGameConfigBinding
 
-class GameConfigFragment : Fragment(), View.OnClickListener
+class GameConfigurationFragment : Fragment(), View.OnClickListener
 {
     lateinit var binding: FragmentGameConfigBinding
 

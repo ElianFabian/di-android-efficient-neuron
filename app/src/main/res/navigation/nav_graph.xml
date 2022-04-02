@@ -19,9 +19,9 @@
     </fragment>
     <fragment
         android:id="@+id/gameConfigFragment"
-        android:name="com.elian.efficientneuron.ui.gameconfig.GameConfigFragment"
+        android:name="com.elian.efficientneuron.ui.gameconfig.GameConfigurationFragment"
         android:label="fragment_game_config"
-        tools:layout="@layout/fragment_game_config" >
+        tools:layout="@layout/fragment_game_configuration" >
         <action
             android:id="@+id/action_gameConfigFragment_to_gameFragment"
             app:destination="@id/gameFragment" />
