@@ -4,7 +4,7 @@
     <dimen name="Button__paddingHorizontal">25dp</dimen>
     <dimen name="Button__paddingVertical">10dp</dimen>
 
-    <dimen name="til__layout_width">300dp</dimen>
+    <dimen name="base_til_layout_width">300dp</dimen>
     <dimen name="til__layout_marginTop">32dp</dimen>
 
     <dimen name="tv_Title__textSize">50dp</dimen>

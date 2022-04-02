@@ -2,7 +2,7 @@
 
     <string name="app_name">EfficientNeuron</string>
 
-    <string name="tv_loginTitle__text">LOGIN</string>
+    <string name="actLogin__tvLoginTitle_text">LOGIN</string>
     <string name="tv_singUpTitle__text">SIGN UP</string>
     <string name="tv_functionsTitle__text">FUNCTIONS</string>
     <string name="tv_gameConfigTitle__text">GAME CONFIGURATION</string>
@@ -11,12 +11,12 @@
     <string name="tv_gamesTime__games">games</string>
     <string name="tv_gamesTime__seconds">seconds</string>
 
-    <string name="tiet_user__hint">User</string>
-    <string name="tiet_password_1__hint">Password</string>
+    <string name="actLogin__tieUser_hint">User</string>
+    <string name="actLogin__tiePassword1__hint">Password</string>
     <string name="tiet_password_2__hint">Confirm password</string>
 
-    <string name="btn_signUp__text">SIGN UP</string>
-    <string name="btn_login__text">LOGIN</string>
+    <string name="actLogin__btnSignup_text">SIGN UP</string>
+    <string name="actLogin__btnLogin_text">LOGIN</string>
     <string name="btn_play__text">PLAY</string>
 
     <string-array name="spr_modes">
