@@ -20,7 +20,7 @@
     <style name="Button">
         <item name="cornerRadius">@dimen/btn_login__cornerRadius</item>
         <item name="fontFamily">@font/comfortaa_bold</item>
-        <item name="android:textSize">25dp</item>
+        <item name="android:textSize">25sp</item>
 
         <!--paddingHorizontal y paddingVertical sólo está soportado a partir de la versión 26-->
         <item name="android:paddingRight">@dimen/Button__paddingHorizontal</item>
