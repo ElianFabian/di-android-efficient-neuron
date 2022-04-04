@@ -13,7 +13,7 @@
     <TextView
         android:id="@+id/tvSignupTitle"
         style="@style/Title"
-        android:text="@string/actSignup__tvSignupTitle_text"
+        android:text="@string/text_SIGNUP"
         android:layout_gravity="center"
 
         android:layout_marginTop="@dimen/tv_signUpTitle__marginTop"
