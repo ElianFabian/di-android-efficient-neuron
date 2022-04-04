@@ -31,7 +31,7 @@
     <TextView
             android:id="@+id/tvLoginTitle"
             style="@style/Title"
-            android:text="@string/actLogin__tvLoginTitle_text"
+            android:text="@string/text_LOGIN"
 
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
