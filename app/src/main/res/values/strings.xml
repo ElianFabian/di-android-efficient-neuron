@@ -1,6 +1,6 @@
 <resources>
 
-    <string name="app_name">EfficientNeuron</string>
+    <string name="app_name" translatable="false">EfficientNeuron</string>
 
     <string name="actLogin__tvLoginTitle_text">LOGIN</string>
     <string name="actSignup__tvSignupTitle_text">SIGN UP</string>
@@ -15,8 +15,8 @@
     <string name="base__tiePassword1__hint">Password</string>
     <string name="base_tiePassword2__hint">Confirm password</string>
 
-    <string name="base__btnSignup_text">SIGN UP</string>
-    <string name="actLogin__btnLogin_text">LOGIN</string>
+    <string name="text_SIGNUP">SIGN UP</string>
+    <string name="text_LOGIN">LOGIN</string>
     <string name="frgGameConfiguration__btnPlay_text">PLAY</string>
 
     <string-array name="spr_modes">

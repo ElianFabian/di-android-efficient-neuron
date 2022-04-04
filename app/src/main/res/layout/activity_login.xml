@@ -89,7 +89,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
-            android:text="@string/base__btnSignup_text"
+            android:text="@string/text_SIGNUP"
             android:textAllCaps="true"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="@color/black"
@@ -107,7 +107,7 @@
             style="@style/Button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/actLogin__btnLogin_text"
+            android:text="@string/text_LOGIN"
 
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

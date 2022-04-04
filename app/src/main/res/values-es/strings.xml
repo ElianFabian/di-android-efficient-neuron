@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="frgGameConfiguration__btnPlay_text">JUGAR</string>
+    <string name="text_LOGIN">INICIAR SESIÓN</string>
+    <string name="text_SIGNUP">REGISTRARSE</string>
+    <string name="base_tiePassword2__hint">Confirmar contraseña</string>
+    <string name="base__tiePassword1__hint">Contraseña</string>
+    <string name="base__tieUser_hint">Usuario</string>
+    <string name="tv_gamesTime__seconds">segundos</string>
+    <string name="tv_gamesTime__games">juegos</string>
+    <string name="frgGameConfiguration__tvMode_text">Modo:</string>
+    <string name="frgGameConfiguration__tvDigits_text">Dígitos:</string>
+    <string name="frgGameConfiguration__tvGameConfigTitle_text">CONFIGURACIÓN DE JUEGO</string>
+    <string name="tv_functionsTitle__text">FUNCIONES</string>
+    <string name="actSignup__tvSignupTitle_text">REGISTRARSE</string>
+    <string name="actLogin__tvLoginTitle_text">INICIAR SESIÓN</string>
+</resources>
