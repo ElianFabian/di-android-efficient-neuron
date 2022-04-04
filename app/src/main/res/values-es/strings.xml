@@ -12,6 +12,4 @@
     <string name="frgGameConfiguration__tvDigits_text">Dígitos:</string>
     <string name="frgGameConfiguration__tvGameConfigTitle_text">CONFIGURACIÓN DE JUEGO</string>
     <string name="tv_functionsTitle__text">FUNCIONES</string>
-    <string name="actSignup__tvSignupTitle_text">REGISTRARSE</string>
-    <string name="actLogin__tvLoginTitle_text">INICIAR SESIÓN</string>
 </resources>

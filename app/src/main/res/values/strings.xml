@@ -2,8 +2,6 @@
 
     <string name="app_name" translatable="false">EfficientNeuron</string>
 
-    <string name="actLogin__tvLoginTitle_text">LOGIN</string>
-    <string name="actSignup__tvSignupTitle_text">SIGN UP</string>
     <string name="tv_functionsTitle__text">FUNCTIONS</string>
     <string name="frgGameConfiguration__tvGameConfigTitle_text">GAME CONFIGURATION</string>
     <string name="frgGameConfiguration__tvDigits_text">Digits:</string>
