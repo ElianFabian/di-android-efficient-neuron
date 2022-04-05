@@ -5,7 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.elian.efficientneuron.MainActivity
 import com.elian.efficientneuron.databinding.ActivityLoginBinding
-import com.elian.efficientneuron.ui.signup.SignUpActivity
+import com.elian.efficientneuron.ui.signup.SignupActivity
 
 class LoginActivity : AppCompatActivity()
 {
@@ -24,7 +24,7 @@ class LoginActivity : AppCompatActivity()
             onDestroy()
         }
         binding.btnSignUp.setOnClickListener {
-            val intent = Intent(this, SignUpActivity::class.java)
+            val intent = Intent(this, SignupActivity::class.java)
             startActivity(intent)
             onDestroy()
         }

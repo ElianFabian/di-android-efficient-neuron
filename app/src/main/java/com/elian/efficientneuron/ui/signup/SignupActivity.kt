@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.elian.efficientneuron.databinding.ActivitySignUpBinding
 import com.elian.efficientneuron.ui.login.LoginActivity
 
-class SignUpActivity : AppCompatActivity()
+class SignupActivity : AppCompatActivity()
 {
     private lateinit var binding: ActivitySignUpBinding
 

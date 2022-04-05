@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.EfficientNeuron">
         <activity
-            android:name=".ui.signup.SignUpActivity"
+            android:name=".ui.signup.SignupActivity"
             android:exported="false" />
 
         <activity

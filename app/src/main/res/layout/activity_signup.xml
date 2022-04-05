@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/blue_1"
-    tools:context=".ui.signup.SignUpActivity">
+    tools:context=".ui.signup.SignupActivity">
 
     <!--region Title Signup-->
     <TextView
