@@ -25,28 +25,20 @@ class AboutUsFragment : Fragment()
     ): View?
     {
         simulateDayNight( /* DAY */0)
-        val adsElement = Element()
-        adsElement.setTitle("Advertise with us")
+//        val adsElement = Element()
+//        adsElement.setTitle("Advertise with us")
         val aboutPage = AboutPage(context)
             .isRTL(false)
             .addItem(Element().setTitle("Version 6.2"))
-            .addItem(adsElement)
+            //.addItem(adsElement)
             .addGroup("Connect with us")
-            .addEmail("elmehdi.sakout@gmail.com")
-            .addWebsite("http://medyo.github.io/")
-            .addFacebook("the.medy")
-            .addTwitter("medyo80")
-            .addYoutube("UCdPQtdWIsg7_pi4mrRu46vA")
-            .addPlayStore("com.ideashower.readitlater.pro")
-            .addInstagram("medyo80")
-            .addGitHub("medyo")
-            .addItem(copyRightsElement)
+            .addEmail("elian.fabian.el.belaizi@gmail.com")
+            .addGitHub("ElianFabian")
+            //.addItem(copyRightsElement)
             .create()
 
         return aboutPage
     }
-
-
 
     val copyRightsElement: Element
         get()
