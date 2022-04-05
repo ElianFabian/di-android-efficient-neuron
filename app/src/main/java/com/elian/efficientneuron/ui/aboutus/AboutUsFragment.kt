@@ -44,7 +44,7 @@ class AboutUsFragment : Fragment()
         {
             val copyRightsElement = Element()
 
-            copyRightsElement.setIconTint(R.color.about_item_icon_color)
+            copyRightsElement.iconTint = R.color.about_item_icon_color
             copyRightsElement.iconNightTint = android.R.color.white
             copyRightsElement.gravity = Gravity.CENTER
             copyRightsElement.onClickListener = View.OnClickListener {
