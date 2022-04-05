@@ -24,7 +24,7 @@ class AboutUsFragment : Fragment()
         savedInstanceState: Bundle?
     ): View?
     {
-        simulateDayNight( /* DAY */0)
+        simulateDayNight( /* DAY */1)
 //        val adsElement = Element()
 //        adsElement.setTitle("Advertise with us")
         val aboutPage = AboutPage(context)
