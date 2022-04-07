@@ -3,22 +3,22 @@
 
     <group android:checkableBehavior="single">
         <item
-                android:id="navProfile"
+                android:id="@+id/navProfile"
                 android:title="@string/navigation_menu__navProfile_title"
                 android:icon="@drawable/ic_account" />
 
         <item
-                android:id="navTips"
+                android:id="@+id/navTips"
                 android:title="@string/navigation_menu__navTips_title"
                 android:icon="@drawable/ic_tips" />
 
         <item
-                android:id="navStatistics"
+                android:id="@+id/navStatistics"
                 android:title="@string/navigation_menu__navStatistics_title"
                 android:icon="@drawable/ic_statistics" />
 
         <item
-                android:id="navSettings"
+                android:id="@+id/navSettings"
                 android:title="@string/navigation_menu__navSettings_title"
                 android:icon="@drawable/ic_settings" />
     </group>

@@ -23,7 +23,7 @@ class LoginActivity : AppCompatActivity()
             startActivity(intent)
             onDestroy()
         }
-        binding.btnSignUp.setOnClickListener {
+        binding.btnSignup.setOnClickListener {
             val intent = Intent(this, SignupActivity::class.java)
             startActivity(intent)
             onDestroy()

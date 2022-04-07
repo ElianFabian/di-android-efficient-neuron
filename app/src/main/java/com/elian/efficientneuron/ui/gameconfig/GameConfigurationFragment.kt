@@ -7,33 +7,23 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.NavHostFragment
 import com.elian.efficientneuron.R
-import com.elian.efficientneuron.databinding.FragmentGameConfigBinding
+import com.elian.efficientneuron.databinding.FragmentGameConfigurationBinding
 
 class GameConfigurationFragment : Fragment(), View.OnClickListener
 {
-    lateinit var binding: FragmentGameConfigBinding
+    private lateinit var binding: FragmentGameConfigurationBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View?
+    ): View
     {
         // Inflate the layout for this fragment
-        binding = FragmentGameConfigBinding.inflate(inflater, container, false)
+        binding = FragmentGameConfigurationBinding.inflate(inflater, container, false)
 
         binding.btnPlay.setOnClickListener(this)
-
-        //fillSpinner()
-
+        
         return binding.root
-    }
-
-    // TODO: Implementar rellenar Spinner
-    private fun fillSpinner()
-    {
-        val modes = resources.getStringArray(R.array.spr_modes)
-        val adapter = null
-        binding.spinner.adapter = adapter
     }
 
     override fun onClick(v: View?)
