@@ -4,7 +4,8 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".MainActivity">
+        tools:context=".MainActivity"
+        tools:openDrawer="start">
 
     <com.google.android.material.navigation.NavigationView
             android:id="@+id/navigationView"
@@ -14,7 +15,7 @@
             
             app:menu="@menu/navigation_menu"/>
 
-    <androidx.fragment.app.FragmentContainerView
+    <fragment
             android:id="@+id/nav_host_fragment"
             android:name="androidx.navigation.fragment.NavHostFragment"
             android:layout_width="0dp"
