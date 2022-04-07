@@ -38,6 +38,9 @@ android {
 
 dependencies {
 
+    // Google-Material-NavigationView
+    implementation fileTree(dir: "libs", includes: ["*.jar"])
+
     // https://camposha.info/android-examples/android-about-us-page-libraries
     implementation 'com.github.medyo:android-about-page:1.2.1'
 
