@@ -16,6 +16,10 @@
     <string name="text_SIGNUP">SIGN UP</string>
     <string name="text_LOGIN">LOGIN</string>
     <string name="frgGameConfiguration__btnPlay_text">PLAY</string>
+    <string name="navigation_menu__navProfile_title">Profile</string>
+    <string name="navigation_menu__navTips_title">Tips</string>
+    <string name="navigation_menu__navStatistics_title">Statistics</string>
+    <string name="navigation_menu__navSettings_title">Settings</string>
 
     <string-array name="spr_modes">
         <item>Games</item>
