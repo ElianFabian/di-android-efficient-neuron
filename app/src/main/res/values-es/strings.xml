@@ -3,9 +3,9 @@
     <string name="frgGameConfiguration__btnPlay_text">JUGAR</string>
     <string name="const_LOGIN">INICIAR SESIÓN</string>
     <string name="const_SIGNUP">REGISTRARSE</string>
-    <string name="base__tiePassword2_hint">Confirmar contraseña</string>
-    <string name="base__tiePassword1_hint">Contraseña</string>
-    <string name="base__tieUser_hint">Usuario</string>
+    <string name="const_CONFIRM_PASSWORD">Confirmar contraseña</string>
+    <string name="const_PASSWORD">Contraseña</string>
+    <string name="const_USER">Usuario</string>
     <string name="tv_gamesTime__seconds">segundos</string>
     <string name="tv_gamesTime__games">juegos</string>
     <string name="frgGameConfiguration__tvMode_text">Modo:</string>

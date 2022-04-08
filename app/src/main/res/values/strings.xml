@@ -2,12 +2,13 @@
 
     <string name="app_name" translatable="false">EfficientNeuron</string>
 
+    <!--region Constants-->
     <string name="const_SIGNUP">SIGN UP</string>
     <string name="const_LOGIN">LOGIN</string>
-
-    <string name="base__tieUser_hint">User</string>
-    <string name="base__tiePassword1_hint">Password</string>
-    <string name="base__tiePassword2_hint">Confirm password</string>
+    <string name="const_USER">User</string>
+    <string name="const_PASSWORD">Password</string>
+    <string name="const_CONFIRM_PASSWORD">Confirm password</string>
+    <!--endregion-->
 
     <string name="tv_gamesTime__games">games</string>
     <string name="tv_gamesTime__seconds">seconds</string>
@@ -36,6 +37,8 @@
     <string name="frgGameConfiguration__tvMode_text">Mode:</string>
     <string name="frgGameConfiguration__btnPlay_text">PLAY</string>
     <string name="frgGameConfiguration__tvSymbolX" translatable="false">X</string>
+
+    <string name="frgProfile__tvPassword_text" translatable="false">@string/const_PASSWORD</string>
     <!--endregion-->
 
 </resources>

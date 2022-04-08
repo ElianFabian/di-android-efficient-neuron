@@ -102,7 +102,7 @@
             android:id="@+id/tvPassword"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Password"
+            android:text="@string/frgProfile__tvPassword_text"
             android:textSize="40sp"
 
             app:layout_constraintBottom_toBottomOf="parent"

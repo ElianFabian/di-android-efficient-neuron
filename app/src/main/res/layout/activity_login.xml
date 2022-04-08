@@ -57,7 +57,7 @@
                 android:id="@+id/tieUser"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/base__tieUser_hint" />
+                android:hint="@string/const_USER" />
     </com.google.android.material.textfield.TextInputLayout>
     <!--endregion-->
 
