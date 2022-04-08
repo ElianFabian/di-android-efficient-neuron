@@ -13,6 +13,10 @@
     <dimen name="frgGame__tvOperation_textSize">90sp</dimen>
 
     <dimen name="btn_login__cornerRadius">50dp</dimen>
-    <dimen name="btn_signUp__marginTop">80dp</dimen>
+    <dimen name="actSignup__btnSignup_marginTop">80dp</dimen>
+    <dimen name="actSignup__tilUser_layout_width">@dimen/base__til_layout_width</dimen>
+    <dimen name="actSignup__tilPassword_layout_width">@dimen/base__til_layout_width</dimen>
+    <dimen name="actSignup__tilPassword_marginTop">@dimen/base__til_layout_marginTop</dimen>
+    <dimen name="actSignup__tilConfirmPassword_layout_width">@dimen/base__til_layout_width</dimen>
 
 </resources>

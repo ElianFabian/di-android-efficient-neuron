@@ -1,106 +1,114 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/blue_1"
-    tools:context=".ui.signup.SignupActivity">
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/blue_1"
+        tools:context=".ui.signup.SignupActivity">
 
     <!--region Title Signup-->
     <TextView
-        android:id="@+id/tvTitle"
-        style="@style/Title"
-        android:text="@string/const_SIGNUP"
-        android:layout_gravity="center"
+            android:id="@+id/tvTitle"
+            android:text="@string/const_SIGNUP"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/actSignup__tvTitle_layout_marginTop"
 
-        android:layout_marginTop="@dimen/actSignup__tvTitle_layout_marginTop"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+            style="@style/Title"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     <!--endregion-->
 
     <!--region User-->
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tilUser"
-        style="@style/TextInputLayout"
-        android:layout_gravity="center"
-        android:layout_width="@dimen/base__til_layout_width"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
+            android:id="@+id/tilUser"
+            android:layout_gravity="center"
+            android:layout_width="@dimen/actSignup__tilUser_layout_width"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="80dp"
 
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvTitle"
-        app:layout_constraintVertical_bias="0.1">
+            style="@style/TextInputLayout"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvTitle"
+            app:layout_constraintVertical_bias="0.1">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/base__tieUser_hint" />
+                android:id="@+id/tieUser"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/actSignup__tieUser_hint" />
     </com.google.android.material.textfield.TextInputLayout>
     <!--endregion-->
 
     <!--region Password-->
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tilPassword"
-        style="@style/TextInputLayout"
-        android:layout_gravity="center"
-        android:layout_width="@dimen/base__til_layout_width"
-        android:layout_height="wrap_content"
+            android:id="@+id/tilPassword"
+            android:layout_gravity="center"
+            android:layout_width="@dimen/actSignup__tilPassword_layout_width"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/actSignup__tilPassword_marginTop"
 
-        android:layout_marginTop="@dimen/base__til_layout_marginTop"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tilUser">
+            style="@style/TextInputLayout"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tilUser">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/base__tiePassword1_hint" />
+                android:id="@+id/tiePassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/actSignup__tilPassword_hint" />
     </com.google.android.material.textfield.TextInputLayout>
     <!--endregion-->
 
     <!--region Repeat Password-->
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tilPassword2"
-        style="@style/TextInputLayout"
-        android:layout_gravity="center"
-        android:layout_width="@dimen/base__til_layout_width"
-        android:layout_height="wrap_content"
+            android:id="@+id/tilConfirmPassword"
+            android:layout_gravity="center"
+            android:layout_width="@dimen/actSignup__tilConfirmPassword_layout_width"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/base__til_layout_marginTop"
 
-        android:layout_marginTop="@dimen/base__til_layout_marginTop"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tilUser">
+            style="@style/TextInputLayout"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tilUser">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/base__tiePassword2_hint" />
+                android:id="@+id/tieConfirmPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/actSignup__tieConfirmPassword_hint" />
     </com.google.android.material.textfield.TextInputLayout>
     <!--endregion-->
 
     <!--region Button Signup-->
     <Button
-        android:id="@+id/btnSignup"
-        style="@style/Button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/const_SIGNUP"
-        android:layout_gravity="center"
-        android:layout_marginTop="@dimen/btn_signUp__marginTop"
+            android:id="@+id/btnSignup"
+            style="@style/Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/actSignup__btnSignup_text"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/actSignup__btnSignup_marginTop"
 
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tilPassword2"
-        app:layout_constraintVertical_bias="0.3" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tilConfirmPassword"
+            app:layout_constraintVertical_bias="0.3" />
     <!--endregion-->
 
 </LinearLayout>
