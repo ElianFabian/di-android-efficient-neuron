@@ -33,7 +33,9 @@
     <!--region Title Login-->
     <TextView
             android:id="@+id/tvTitle"
+
             style="@style/Title"
+
             android:text="@string/actLogin__tvTitle_text"
 
             app:layout_constraintBottom_toBottomOf="parent"
