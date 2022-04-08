@@ -31,9 +31,9 @@
     <string name="navigation_menu__navTips_title">Tips</string>
     <string name="navigation_menu__navStatistics_title">Statistics</string>
     <string name="navigation_menu__navSettings_title">Settings</string>
-    <string name="actSignup__tieUser_hint">\@string/base__tieUser_hint</string>
-    <string name="actSignup__tilPassword_hint">\@string/base__tiePassword1_hint</string>
-    <string name="actSignup__tieConfirmPassword_hint">\@string/base__tiePassword2_hint</string>
-    <string name="actSignup__btnSignup_text">\@string/const_SIGNUP</string>
+    <string name="actSignup__tieUser_hint" translatable="false">\@string/base__tieUser_hint</string>
+    <string name="actSignup__tilPassword_hint" translatable="false">\@string/base__tiePassword1_hint</string>
+    <string name="actSignup__tieConfirmPassword_hint" translatable="false">\@string/base__tiePassword2_hint</string>
+    <string name="actSignup__btnSignup_text" translatable="false">\@string/const_SIGNUP</string>
 
 </resources>
