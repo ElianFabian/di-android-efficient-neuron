@@ -9,21 +9,27 @@
     <string name="base__tiePassword1_hint">Password</string>
     <string name="base__tiePassword2_hint">Confirm password</string>
 
-    <string name="frgFunctions__tvFunctionsTitle__text">FUNCTIONS</string>
     <string name="tv_gamesTime__games">games</string>
     <string name="tv_gamesTime__seconds">seconds</string>
+
+    <!--region Activities-->
+    <string name="actLogin__tvTitle_text" translatable="false">@string/const_LOGIN</string>
+    <string name="actLogin__tiePassword_hint" translatable="false">\@string/base__tiePassword1_hint</string>
+    <string name="actLogin__btnLogin_text" translatable="false">\@string/const_LOGIN</string>
+    <!--endregion-->
+    
+    <!--region Fragments-->
+    <string name="frgFunctions__tvFunctionsTitle__text">FUNCTIONS</string>
 
     <string name="frgGameConfiguration__tvGameConfigTitle_text">GAME CONFIGURATION</string>
     <string name="frgGameConfiguration__tvDigits_text">Digits:</string>
     <string name="frgGameConfiguration__tvMode_text">Mode:</string>
     <string name="frgGameConfiguration__btnPlay_text">PLAY</string>
+    <!--endregion-->
     
     <string name="navigation_menu__navProfile_title">Profile</string>
     <string name="navigation_menu__navTips_title">Tips</string>
     <string name="navigation_menu__navStatistics_title">Statistics</string>
     <string name="navigation_menu__navSettings_title">Settings</string>
-    <string name="actLogin__tvTitle_text" translatable="false">@string/const_LOGIN</string>
-    <string name="actLogin__tiePassword_hint">\@string/base__tiePassword1_hint</string>
-    <string name="actLogin__btnLogin_text">\@string/const_LOGIN</string>
 
 </resources>
