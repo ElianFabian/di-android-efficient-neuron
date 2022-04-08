@@ -9,15 +9,15 @@
     <string name="base__tiePassword1__hint">Password</string>
     <string name="base__tiePassword2__hint">Confirm password</string>
 
-    <string name="frgGameConfiguration__tvGameConfigTitle_text">GAME CONFIGURATION</string>
-    <string name="frgGameConfiguration__tvDigits_text">Digits:</string>
-    <string name="frgGameConfiguration__tvMode_text">Mode:</string>
-    <string name="frgGameConfiguration__btnPlay_text">PLAY</string>
-
     <string name="tv_functionsTitle__text">FUNCTIONS</string>
     <string name="tv_gamesTime__games">games</string>
     <string name="tv_gamesTime__seconds">seconds</string>
 
+    <string name="frgGameConfiguration__tvGameConfigTitle_text">GAME CONFIGURATION</string>
+    <string name="frgGameConfiguration__tvDigits_text">Digits:</string>
+    <string name="frgGameConfiguration__tvMode_text">Mode:</string>
+    <string name="frgGameConfiguration__btnPlay_text">PLAY</string>
+    
     <string name="navigation_menu__navProfile_title">Profile</string>
     <string name="navigation_menu__navTips_title">Tips</string>
     <string name="navigation_menu__navStatistics_title">Statistics</string>
