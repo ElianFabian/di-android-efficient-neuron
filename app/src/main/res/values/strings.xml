@@ -9,7 +9,7 @@
     <string name="base__tiePassword1_hint">Password</string>
     <string name="base__tiePassword2_hint">Confirm password</string>
 
-    <string name="tv_functionsTitle__text">FUNCTIONS</string>
+    <string name="frgFunctions__tvFunctionsTitle__text">FUNCTIONS</string>
     <string name="tv_gamesTime__games">games</string>
     <string name="tv_gamesTime__seconds">seconds</string>
 

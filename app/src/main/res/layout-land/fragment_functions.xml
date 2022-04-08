@@ -10,9 +10,9 @@
 
     <!--region Title-->
     <TextView
-            android:id="@+id/tvSignupTitle"
+            android:id="@+id/tvFunctionsTitle"
             style="@style/Title"
-            android:text="@string/tv_functionsTitle__text"
+            android:text="@string/frgFunctions__tvFunctionsTitle__text"
             android:layout_gravity="center"
 
             android:layout_marginTop="@dimen/tv_signUpTitle__marginTop"
