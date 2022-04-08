@@ -45,7 +45,7 @@
 
     <!--region User-->
     <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tilUser"
+            android:id="@+id/tilEmail"
             style="@style/TextInputLayout"
             android:layout_width="@dimen/base__til_layout_width"
             android:layout_height="wrap_content"
@@ -57,7 +57,7 @@
             app:layout_constraintVertical_bias="0.1">
 
         <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/tieUser"
+                android:id="@+id/tieEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/const_USER" />
@@ -74,7 +74,7 @@
             android:layout_marginTop="@dimen/base__til_layout_marginTop"
             app:layout_constraintEnd_toStartOf="@+id/glEnd"
             app:layout_constraintStart_toStartOf="@+id/glStart"
-            app:layout_constraintTop_toBottomOf="@+id/tilUser">
+            app:layout_constraintTop_toBottomOf="@+id/tilEmail">
 
         <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/tiePassword"
