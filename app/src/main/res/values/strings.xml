@@ -2,26 +2,29 @@
 
     <string name="app_name" translatable="false">EfficientNeuron</string>
 
-    <string name="tv_functionsTitle__text">FUNCTIONS</string>
+    <string name="text_SIGNUP">SIGN UP</string>
+    <string name="text_LOGIN">LOGIN</string>
+    
     <string name="frgGameConfiguration__tvGameConfigTitle_text">GAME CONFIGURATION</string>
     <string name="frgGameConfiguration__tvDigits_text">Digits:</string>
     <string name="frgGameConfiguration__tvMode_text">Mode:</string>
+
+    <string name="tv_functionsTitle__text">FUNCTIONS</string>
     <string name="tv_gamesTime__games">games</string>
     <string name="tv_gamesTime__seconds">seconds</string>
 
     <string name="base__tieUser_hint">User</string>
     <string name="base__tiePassword1__hint">Password</string>
     <string name="base_tiePassword2__hint">Confirm password</string>
-
-    <string name="text_SIGNUP">SIGN UP</string>
-    <string name="text_LOGIN">LOGIN</string>
+    
     <string name="frgGameConfiguration__btnPlay_text">PLAY</string>
+    
     <string name="navigation_menu__navProfile_title">Profile</string>
     <string name="navigation_menu__navTips_title">Tips</string>
     <string name="navigation_menu__navStatistics_title">Statistics</string>
     <string name="navigation_menu__navSettings_title">Settings</string>
 
-    <string-array name="spr_modes">
+    <string-array name="frgGameConfiguration__spr_modes">
         <item>Games</item>
         <item>Time</item>
     </string-array>
