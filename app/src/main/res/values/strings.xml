@@ -12,6 +12,11 @@
     <string name="tv_gamesTime__games">games</string>
     <string name="tv_gamesTime__seconds">seconds</string>
 
+    <string name="navigation_menu__navProfile_title">Profile</string>
+    <string name="navigation_menu__navTips_title">Tips</string>
+    <string name="navigation_menu__navStatistics_title">Statistics</string>
+    <string name="navigation_menu__navSettings_title">Settings</string>
+
     <!--region Activities-->
     <string name="actLogin__tvTitle_text" translatable="false">@string/const_LOGIN</string>
     <string name="actLogin__tiePassword_hint" translatable="false">\@string/base__tiePassword1_hint</string>
@@ -22,7 +27,7 @@
     <string name="actSignup__tieConfirmPassword_hint" translatable="false">\@string/base__tiePassword2_hint</string>
     <string name="actSignup__btnSignup_text" translatable="false">\@string/const_SIGNUP</string>
     <!--endregion-->
-    
+
     <!--region Fragments-->
     <string name="frgFunctions__tvFunctionsTitle__text">FUNCTIONS</string>
 
@@ -32,10 +37,5 @@
     <string name="frgGameConfiguration__btnPlay_text">PLAY</string>
     <string name="frgGameConfiguration__tvSymbolX" translatable="false">X</string>
     <!--endregion-->
-    
-    <string name="navigation_menu__navProfile_title">Profile</string>
-    <string name="navigation_menu__navTips_title">Tips</string>
-    <string name="navigation_menu__navStatistics_title">Statistics</string>
-    <string name="navigation_menu__navSettings_title">Settings</string>
 
 </resources>
