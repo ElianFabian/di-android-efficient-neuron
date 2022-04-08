@@ -11,8 +11,8 @@
     <string name="const_CONFIRM_PASSWORD">Confirm password</string>
     <!--endregion-->
 
-    <string name="tv_gamesTime__games">games</string>
-    <string name="tv_gamesTime__seconds">seconds</string>
+    <string name="const_GAMES">games</string>
+    <string name="const_SECONDS">seconds</string>
 
     <string name="navigation_menu__navProfile_title">Profile</string>
     <string name="navigation_menu__navTips_title">Tips</string>

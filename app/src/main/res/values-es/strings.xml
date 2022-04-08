@@ -6,8 +6,8 @@
     <string name="const_CONFIRM_PASSWORD">Confirmar contraseña</string>
     <string name="const_PASSWORD">Contraseña</string>
     <string name="const_USER">Usuario</string>
-    <string name="tv_gamesTime__seconds">segundos</string>
-    <string name="tv_gamesTime__games">juegos</string>
+    <string name="const_SECONDS">segundos</string>
+    <string name="const_GAMES">juegos</string>
     <string name="frgGameConfiguration__tvMode_text">Modo:</string>
     <string name="frgGameConfiguration__tvDigits_text">Dígitos:</string>
     <string name="frgGameConfiguration__tvTitle_text">CONFIGURACIÓN DE JUEGO</string>

@@ -173,7 +173,7 @@
             app:layout_constraintStart_toEndOf="@+id/etGamesOrTime"
             app:layout_constraintTop_toTopOf="@+id/etGamesOrTime"
 
-            tools:text="@string/tv_gamesTime__games" />
+            tools:text="@string/const_GAMES" />
     <!--endregion-->
 
     <!--region Spinner Modes-->
