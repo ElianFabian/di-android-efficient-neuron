@@ -30,12 +30,12 @@
 
     <!--region Title Game Configuration-->
     <TextView
-            android:id="@+id/tvGameConfigurationTitle"
+            android:id="@+id/tvTitle"
             style="@style/Title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/frgGameConfiguration__tvGameConfigTitle_text"
-            android:textSize="@dimen/tv_gameConfigTitle__textSize"
+            android:textSize="@dimen/frgGameConfiguration__tvTitle__textSize"
 
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -58,7 +58,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.14"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvGameConfigurationTitle"
+            app:layout_constraintTop_toBottomOf="@+id/tvTitle"
             app:layout_constraintVertical_bias="0.08" />
     <!--endregion-->
 
