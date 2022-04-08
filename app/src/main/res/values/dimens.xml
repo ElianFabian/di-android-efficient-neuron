@@ -8,7 +8,7 @@
     <dimen name="base_til_layout_marginTop">32dp</dimen>
 
     <dimen name="tv_Title__textSize">50dp</dimen>
-    <dimen name="tv_signUpTitle__marginTop">20dp</dimen>
+    <dimen name="actSignup__tvTitle_layout_marginTop">20dp</dimen>
     <dimen name="tv_gameConfigTitle__textSize">35sp</dimen>
     <dimen name="frgGame__tvOperation_textSize">90sp</dimen>
 

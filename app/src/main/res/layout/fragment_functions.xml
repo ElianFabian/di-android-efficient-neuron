@@ -10,12 +10,12 @@
 
     <!--region Title-->
     <TextView
-            android:id="@+id/tvSignupTitle"
+            android:id="@+id/tvTitle"
             style="@style/Title"
             android:text="@string/frgFunctions__tvFunctionsTitle__text"
             android:layout_gravity="center"
 
-            android:layout_marginTop="@dimen/tv_signUpTitle__marginTop"
+            android:layout_marginTop="@dimen/actSignup__tvTitle_layout_marginTop"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
