@@ -13,7 +13,7 @@
     <TextView
         android:id="@+id/tvSignupTitle"
         style="@style/Title"
-        android:text="@string/text_SIGNUP"
+        android:text="@string/const_SIGNUP"
         android:layout_gravity="center"
 
         android:layout_marginTop="@dimen/tv_signUpTitle__marginTop"
@@ -62,7 +62,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/base__tiePassword1__hint" />
+            android:hint="@string/base__tiePassword1_hint" />
     </com.google.android.material.textfield.TextInputLayout>
     <!--endregion-->
 
@@ -82,7 +82,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/base__tiePassword2__hint" />
+            android:hint="@string/base__tiePassword2_hint" />
     </com.google.android.material.textfield.TextInputLayout>
     <!--endregion-->
 
@@ -92,7 +92,7 @@
         style="@style/Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/text_SIGNUP"
+        android:text="@string/const_SIGNUP"
         android:layout_gravity="center"
         android:layout_marginTop="@dimen/btn_signUp__marginTop"
 

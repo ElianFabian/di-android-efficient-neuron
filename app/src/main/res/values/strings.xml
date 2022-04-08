@@ -2,12 +2,12 @@
 
     <string name="app_name" translatable="false">EfficientNeuron</string>
 
-    <string name="text_SIGNUP">SIGN UP</string>
-    <string name="text_LOGIN">LOGIN</string>
+    <string name="const_SIGNUP">SIGN UP</string>
+    <string name="const_LOGIN">LOGIN</string>
 
     <string name="base__tieUser_hint">User</string>
-    <string name="base__tiePassword1__hint">Password</string>
-    <string name="base__tiePassword2__hint">Confirm password</string>
+    <string name="base__tiePassword1_hint">Password</string>
+    <string name="base__tiePassword2_hint">Confirm password</string>
 
     <string name="tv_functionsTitle__text">FUNCTIONS</string>
     <string name="tv_gamesTime__games">games</string>
