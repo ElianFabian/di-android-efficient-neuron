@@ -1,10 +1,12 @@
 package com.elian.efficientneuron
 
+import android.content.res.Configuration
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import com.elian.efficientneuron.databinding.ActivityMainBinding
 import com.elian.efficientneuron.ui.profile.ProfileFragment
@@ -23,7 +25,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        
+
         initUI()
     }
 
@@ -41,6 +43,20 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         return super.onOptionsItemSelected(item)
     }
 
+    override fun onPostCreate(savedInstanceState: Bundle?)
+    {
+        super.onPostCreate(savedInstanceState)
+
+        toggle.syncState()
+    }
+
+    override fun onConfigurationChanged(newConfig: Configuration)
+    {
+        super.onConfigurationChanged(newConfig)
+
+        toggle.onConfigurationChanged(newConfig)
+    }
+
     //endregion
 
     //region Methods
@@ -55,9 +71,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         )
 
         binding.drawerLayout.addDrawerListener(toggle)
-        
+
         //toggle.syncState()
-        
+
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setHomeButtonEnabled(true)
 
@@ -90,13 +106,16 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean
     {
-        Toast.makeText(this, "uwu", Toast.LENGTH_SHORT).show()
         when (item.itemId)
         {
-            R.id.navProfile -> goToFragment(ProfileFragment())
+            R.id.navProfile -> Toast.makeText(this, "uwu", Toast.LENGTH_SHORT).show()
         }
+
+        binding.drawerLayout.closeDrawer(GravityCompat.START)
+
         return true
     }
+
+    //endregion
 }
 
-//endregion
