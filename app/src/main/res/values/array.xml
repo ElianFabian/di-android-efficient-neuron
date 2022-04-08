@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    
+    <string-array name="frgGameConfiguration__spr_modes">
+        <item>Games</item>
+        <item>Time</item>
+    </string-array>
 </resources>
