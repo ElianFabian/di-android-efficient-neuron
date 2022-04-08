@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
-import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import com.elian.efficientneuron.databinding.ActivityMainBinding
 import com.elian.efficientneuron.ui.profile.ProfileFragment
@@ -51,16 +50,20 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         toggle = ActionBarDrawerToggle(
             this,
             binding.drawerLayout,
-            R.string.open_drawer,
-            R.string.close_drawer
+            R.string.navigation_drawer_open,
+            R.string.navigation_drawer_close
         )
 
         binding.drawerLayout.addDrawerListener(toggle)
-        toggle.syncState()
+        
+        //toggle.syncState()
+        
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setHomeButtonEnabled(true)
 
-        binding.navigationView.setNavigationItemSelectedListener(::setNavigation)
+        binding.navigationView.setNavigationItemSelectedListener(this)
 
-        binding.drawerLayout.closeDrawer(GravityCompat.START)
+        //binding.drawerLayout.closeDrawer(GravityCompat.START)
     }
 
     private fun setNavigation(item: MenuItem): Boolean
