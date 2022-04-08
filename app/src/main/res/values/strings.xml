@@ -5,6 +5,7 @@
     <!--region Constants-->
     <string name="const_SIGNUP">SIGN UP</string>
     <string name="const_LOGIN">LOGIN</string>
+    <string name="const_EMAIL">Email</string>
     <string name="const_USER">User</string>
     <string name="const_PASSWORD">Password</string>
     <string name="const_CONFIRM_PASSWORD">Confirm password</string>
@@ -20,13 +21,13 @@
 
     <!--region Activities-->
     <string name="actLogin__tvTitle_text" translatable="false">@string/const_LOGIN</string>
-    <string name="actLogin__tiePassword_hint" translatable="false">\@string/base__tiePassword1_hint</string>
-    <string name="actLogin__btnLogin_text" translatable="false">\@string/const_LOGIN</string>
+    <string name="actLogin__tiePassword_hint" translatable="false">@string/base__tiePassword1_hint</string>
+    <string name="actLogin__btnLogin_text" translatable="false">@string/const_LOGIN</string>
 
-    <string name="actSignup__tieUser_hint" translatable="false">\@string/base__tieUser_hint</string>
-    <string name="actSignup__tilPassword_hint" translatable="false">\@string/base__tiePassword1_hint</string>
-    <string name="actSignup__tieConfirmPassword_hint" translatable="false">\@string/base__tiePassword2_hint</string>
-    <string name="actSignup__btnSignup_text" translatable="false">\@string/const_SIGNUP</string>
+    <string name="actSignup__tieUser_hint" translatable="false">@string/base__tieUser_hint</string>
+    <string name="actSignup__tilPassword_hint" translatable="false">@string/base__tiePassword1_hint</string>
+    <string name="actSignup__tieConfirmPassword_hint" translatable="false">@string/base__tiePassword2_hint</string>
+    <string name="actSignup__btnSignup_text" translatable="false">@string/const_SIGNUP</string>
     <!--endregion-->
 
     <!--region Fragments-->
