@@ -2,8 +2,8 @@
     <!-- Base application theme. -->
     <style name="Theme.EfficientNeuron" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/blue_3</item>
-        <item name="colorPrimaryVariant">@color/blue_4</item>
+        <item name="colorPrimary">@color/blue_curious</item>
+        <item name="colorPrimaryVariant">@color/blue_free_speech</item>
         <item name="colorOnPrimary">@color/black</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
