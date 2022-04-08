@@ -46,4 +46,10 @@
         <item name="android:scaleType">fitCenter</item>
     </style>
 
+    <style name="LabelFor_TextInputLayout">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">40sp</item>
+    </style>
+
 </resources>
