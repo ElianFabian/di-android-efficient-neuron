@@ -9,8 +9,9 @@ import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import com.elian.efficientneuron.databinding.ActivityMainBinding
 import com.elian.efficientneuron.ui.profile.ProfileFragment
+import com.google.android.material.navigation.NavigationView
 
-class MainActivity : AppCompatActivity()//, NavigationView.OnNavigationItemSelectedListener
+class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener
 {
     private lateinit var binding: ActivityMainBinding
     private lateinit var toggle: ActionBarDrawerToggle
@@ -23,6 +24,8 @@ class MainActivity : AppCompatActivity()//, NavigationView.OnNavigationItemSelec
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        
+        initUI()
     }
 
     override fun onStart()
@@ -80,14 +83,17 @@ class MainActivity : AppCompatActivity()//, NavigationView.OnNavigationItemSelec
 
     //endregion
 
+    //region NavigationView.OnNavigationItemSelectedListener
 
-    // TODO: implement navigation with navigation view
-
-//    override fun onNavigationItemSelected(item: MenuItem): Boolean
-//    {
-//        when(item.itemId)
-//        {
-//            
-//        }
-//    }
+    override fun onNavigationItemSelected(item: MenuItem): Boolean
+    {
+        Toast.makeText(this, "uwu", Toast.LENGTH_SHORT).show()
+        when (item.itemId)
+        {
+            R.id.navProfile -> goToFragment(ProfileFragment())
+        }
+        return true
+    }
 }
+
+//endregion
