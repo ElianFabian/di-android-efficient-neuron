@@ -26,29 +26,30 @@
             app:layout_constraintTop_toTopOf="parent" />
     <!--endregion-->
 
-    <!--region User-->
-    <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tilUser"
-            android:layout_gravity="center"
-            android:layout_width="@dimen/actSignup__tilUser_layout_width"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="80dp"
+    <!-- To simplify things we're gonna get rid of the user field-->
+<!--    &lt;!&ndash;region User&ndash;&gt;-->
+<!--    <com.google.android.material.textfield.TextInputLayout-->
+<!--            android:id="@+id/tilUser"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:layout_width="@dimen/actSignup__tilUser_layout_width"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="80dp"-->
 
-            style="@style/TextInputLayout"
+<!--            style="@style/TextInputLayout"-->
 
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvTitle"
-            app:layout_constraintVertical_bias="0.1">
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/tvTitle"-->
+<!--            app:layout_constraintVertical_bias="0.1">-->
 
-        <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/tieUser"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/actSignup__tieUser_hint" />
-    </com.google.android.material.textfield.TextInputLayout>
-    <!--endregion-->
+<!--        <com.google.android.material.textfield.TextInputEditText-->
+<!--                android:id="@+id/tieUser"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:hint="@string/actSignup__tieUser_hint" />-->
+<!--    </com.google.android.material.textfield.TextInputLayout>-->
+<!--    &lt;!&ndash;endregion&ndash;&gt;-->
 
     <!--region Password-->
     <com.google.android.material.textfield.TextInputLayout
