@@ -29,7 +29,7 @@
         android:id="@+id/tilUser"
         style="@style/TextInputLayout"
         android:layout_gravity="center"
-        android:layout_width="@dimen/base_til_layout_width"
+        android:layout_width="@dimen/base__til_layout_width"
         android:layout_height="wrap_content"
         android:layout_marginTop="80dp"
 
@@ -51,7 +51,7 @@
         android:id="@+id/tilPassword"
         style="@style/TextInputLayout"
         android:layout_gravity="center"
-        android:layout_width="@dimen/base_til_layout_width"
+        android:layout_width="@dimen/base__til_layout_width"
         android:layout_height="wrap_content"
 
         android:layout_marginTop="@dimen/base_til_layout_marginTop"
@@ -71,7 +71,7 @@
         android:id="@+id/tilPassword2"
         style="@style/TextInputLayout"
         android:layout_gravity="center"
-        android:layout_width="@dimen/base_til_layout_width"
+        android:layout_width="@dimen/base__til_layout_width"
         android:layout_height="wrap_content"
 
         android:layout_marginTop="@dimen/base_til_layout_marginTop"

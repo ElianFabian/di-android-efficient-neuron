@@ -44,7 +44,7 @@
     <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tilUser"
             style="@style/TextInputLayout"
-            android:layout_width="@dimen/base_til_layout_width"
+            android:layout_width="@dimen/base__til_layout_width"
             android:layout_height="wrap_content"
 
             app:layout_constraintBottom_toBottomOf="parent"
@@ -65,7 +65,7 @@
     <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tilPassword"
             style="@style/TextInputLayout"
-            android:layout_width="@dimen/base_til_layout_width"
+            android:layout_width="@dimen/base__til_layout_width"
             android:layout_height="wrap_content"
 
             android:layout_marginTop="@dimen/base_til_layout_marginTop"
