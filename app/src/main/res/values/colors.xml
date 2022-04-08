@@ -15,24 +15,23 @@ http://www.color-blindness.com/color-name-hue/
 
     <color name="transparent">#00F44336</color>
 
-
     <!--Color Palette-->
-    <color name="green_light">#33C171</color>
-    <color name="green_dark">#245744</color>
+    <color name="green_medium_sea">#33C171</color>
+    <color name="green_evening_sea">#245744</color>
 
-    <color name="red_light">#C13333</color>
-    <color name="red_dark">#572424</color>
+    <color name="red_mahogany">#C13333</color>
+    <color name="red_lone_star">#572424</color>
 
-    <color name="blue_0">#AAAEDB</color>
-    <color name="blue_1">#B8DCFF</color>
-    <color name="blue_2">#53AFFF</color>
-    <color name="blue_3">#427BBC</color>
-    <color name="blue_4">#425EB8</color>
-    <color name="blue_5">#00165E</color>
-    <color name="blue_6">#1B2631</color>
-
-    <color name="gray_0">#99AAB5</color>
-    <color name="gray_1">#707070</color>
-    <color name="gray_2">#23272A</color>
+    <color name="blue_light_steel">#AAAEDB</color>
+    <color name="blue_columbia">#B8DCFF</color>
+    <color name="blue_maya">#53AFFF</color>
+    <color name="blue_curious">#427BBC</color>
+    <color name="blue_free_speech">#425EB8</color>
+    <color name="blue_prussian">#00165E</color>
+    <color name="blue_botticelli">#99AAB5</color>
+    <color name="blue_midnight">#1B2631</color>
+    <color name="blue_charcoal">#23272A</color>
+    
+    <color name="gray_dim">#707070</color>
 
 </resources>
