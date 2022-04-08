@@ -12,4 +12,8 @@
     <string name="frgGameConfiguration__tvDigits_text">Dígitos:</string>
     <string name="frgGameConfiguration__tvGameConfigTitle_text">CONFIGURACIÓN DE JUEGO</string>
     <string name="tv_functionsTitle__text">FUNCIONES</string>
+    <string name="navigation_menu__navProfile_title">Perfil</string>
+    <string name="navigation_menu__navTips_title">Consejos</string>
+    <string name="navigation_menu__navStatistics_title">Estadísticas</string>
+    <string name="navigation_menu__navSettings_title">Configuración</string>
 </resources>
