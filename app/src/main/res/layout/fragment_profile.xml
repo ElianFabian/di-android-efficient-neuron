@@ -81,9 +81,8 @@
 
     <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tilEmail"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+
+            style="@style/TextInputLayout_Profile"
 
             app:layout_constraintStart_toStartOf="@+id/glStart"
             app:layout_constraintEnd_toEndOf="@id/glEnd"
@@ -93,11 +92,10 @@
 
         <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/tieEmail"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/transparent"
-                android:textSize="25sp"
                 android:inputType="textEmailAddress"
+
+                style="@style/TextInputEditText_Profile"
+
                 tools:text="user@gmail.com" />
     </com.google.android.material.textfield.TextInputLayout>
     <!--endregion-->
@@ -116,9 +114,8 @@
 
     <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tilPassword"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+
+            style="@style/TextInputLayout_Profile"
 
             app:layout_constraintStart_toStartOf="@+id/glStart"
             app:layout_constraintEnd_toEndOf="@id/glEnd"
@@ -128,11 +125,10 @@
 
         <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/tiePassword"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/transparent"
-                android:textSize="25sp"
                 android:inputType="textPassword"
+
+                style="@style/TextInputEditText_Profile"
+
                 tools:text="password" />
     </com.google.android.material.textfield.TextInputLayout>
     <!--endregion-->
