@@ -36,7 +36,7 @@
             style="@style/Title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/frgGameConfiguration__tvGameConfigTitle_text"
+            android:text="@string/frgGameConfiguration__tvTitle_text"
             android:textSize="@dimen/frgGameConfiguration__tvTitle_textSize"
 
             app:layout_constraintBottom_toBottomOf="parent"

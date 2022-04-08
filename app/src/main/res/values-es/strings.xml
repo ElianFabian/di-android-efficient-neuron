@@ -10,7 +10,7 @@
     <string name="tv_gamesTime__games">juegos</string>
     <string name="frgGameConfiguration__tvMode_text">Modo:</string>
     <string name="frgGameConfiguration__tvDigits_text">Dígitos:</string>
-    <string name="frgGameConfiguration__tvGameConfigTitle_text">CONFIGURACIÓN DE JUEGO</string>
+    <string name="frgGameConfiguration__tvTitle_text">CONFIGURACIÓN DE JUEGO</string>
     <string name="frgFunctions__tvFunctionsTitle__text">FUNCIONES</string>
     <string name="navigation_menu__navProfile_title">Perfil</string>
     <string name="navigation_menu__navTips_title">Consejos</string>

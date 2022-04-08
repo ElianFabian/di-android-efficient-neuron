@@ -33,7 +33,7 @@
     <!--region Fragments-->
     <string name="frgFunctions__tvFunctionsTitle__text">FUNCTIONS</string>
 
-    <string name="frgGameConfiguration__tvGameConfigTitle_text">GAME CONFIGURATION</string>
+    <string name="frgGameConfiguration__tvTitle_text">GAME CONFIGURATION</string>
     <string name="frgGameConfiguration__tvDigits_text">Digits:</string>
     <string name="frgGameConfiguration__tvMode_text">Mode:</string>
     <string name="frgGameConfiguration__btnPlay_text">PLAY</string>
