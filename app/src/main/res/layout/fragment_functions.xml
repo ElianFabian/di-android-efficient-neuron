@@ -1,72 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/blue_1"
-    android:gravity="center"
-    tools:context=".ui.functions.FunctionsFragment">
-
-    <!--TODO: Implementar menú lateral-->
-
-    <!--Título de Inicio de sesión-->
-    <!--  <TextView
-          android:id="@+id/textView"
-          style="@style/Title"
-          android:text="@string/tv_functionsTitle__text"
-          app:layout_constraintBottom_toBottomOf="parent"
-          app:layout_constraintEnd_toEndOf="parent"
-          app:layout_constraintStart_toStartOf="parent"
-          app:layout_constraintTop_toTopOf="parent"
-          app:layout_constraintVertical_bias="0.04" />
-
-    <!--region Sum and Subtraction-->
-    <TableRow
-        android:id="@+id/tableRow"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
-        <!--region Sum-->
-        <ImageButton
-            android:id="@+id/ibAddition"
-            style="@style/ibFunctions"
-            android:src="@drawable/ic_addition"
-            tools:ignore="SpeakableTextPresentCheck" />
-        <!--endregion-->
-
-        <!--region Subtraction-->
-        <ImageButton
-            android:id="@+id/ibSubtraction"
-            style="@style/ibFunctions"
-            android:src="@drawable/ic_subtraction"
-            tools:ignore="SpeakableTextPresentCheck" />
-        <!--endregion-->
-
-    </TableRow>
-    <!--endregion-->
-
-    <!--region Multiplication y Division-->
-    <TableRow
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/blue_1">
 
-        <!--region Multiplication-->
-        <ImageButton
-            android:id="@+id/ibMultiplication"
-            style="@style/ibFunctions"
-            android:src="@drawable/ic_multiplication"
-            tools:ignore="SpeakableTextPresentCheck" />
-        <!--endregion-->
+    <!--region Title-->
+    <TextView
+            android:id="@+id/tvSignupTitle"
+            style="@style/Title"
+            android:text="@string/tv_functionsTitle__text"
+            android:layout_gravity="center"
 
-        <!--region Division-->
-        <ImageButton
-            android:id="@+id/ibDivision"
-            style="@style/ibFunctions"
-            android:src="@drawable/ic_division"
-            tools:ignore="SpeakableTextPresentCheck" />
-        <!--endregion-->
-
-    </TableRow>
+            android:layout_marginTop="@dimen/tv_signUpTitle__marginTop"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     <!--endregion-->
 
-</TableLayout>
+    <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            tools:context=".ui.functions.FunctionsFragment">
+
+        <!--region Sum and Subtraction-->
+        <TableRow
+                android:id="@+id/tableRow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+            <!--region Sum-->
+            <ImageButton
+                    android:id="@+id/ibAddition"
+                    style="@style/ibFunctions"
+                    android:src="@drawable/ic_addition"
+                    tools:ignore="SpeakableTextPresentCheck" />
+            <!--endregion-->
+
+            <!--region Subtraction-->
+            <ImageButton
+                    android:id="@+id/ibSubtraction"
+                    style="@style/ibFunctions"
+                    android:src="@drawable/ic_subtraction"
+                    tools:ignore="SpeakableTextPresentCheck" />
+            <!--endregion-->
+
+        </TableRow>
+        <!--endregion-->
+
+        <!--region Multiplication y Division-->
+        <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            <!--region Multiplication-->
+            <ImageButton
+                    android:id="@+id/ibMultiplication"
+                    style="@style/ibFunctions"
+                    android:src="@drawable/ic_multiplication"
+                    tools:ignore="SpeakableTextPresentCheck" />
+            <!--endregion-->
+
+            <!--region Division-->
+            <ImageButton
+                    android:id="@+id/ibDivision"
+                    style="@style/ibFunctions"
+                    android:src="@drawable/ic_division"
+                    tools:ignore="SpeakableTextPresentCheck" />
+            <!--endregion-->
+
+        </TableRow>
+        <!--endregion-->
+
+    </TableLayout>
+</LinearLayout>
