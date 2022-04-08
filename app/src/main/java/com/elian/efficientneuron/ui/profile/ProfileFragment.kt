@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import com.elian.efficientneuron.R
 
 
-class ProfileFragment : Fragment()
+class ProfileFragment : Fragment(R.layout.fragment_profile)
 {
     override fun onCreate(savedInstanceState: Bundle?)
     {
