@@ -40,6 +40,7 @@
     <string name="frgGameConfiguration__tvSymbolX">X</string>
 
     <string name="frgProfile__tvPassword_text">@string/const_PASSWORD</string>
+    <string name="frgProfile__tvEmail_text" />
     <!--endregion-->
 
 </resources>
