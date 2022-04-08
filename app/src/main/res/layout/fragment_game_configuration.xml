@@ -89,7 +89,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/comfortaa_bold"
-            android:text="X"
+            android:text="@string/frgGameConfiguration__tvSymbolX"
             android:textColor="@color/green_light"
             android:textSize="20sp"
 
