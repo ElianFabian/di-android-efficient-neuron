@@ -37,6 +37,10 @@ android {
 
 dependencies {
 
+    // Navigation Drawer
+    implementation "androidx.drawerlayout:drawerlayout:1.1.1"
+    implementation "androidx.coordinatorlayout:coordinatorlayout:1.2.0"
+    
     // Google-Material-NavigationView
     implementation fileTree(dir: "libs", includes: ["*.jar"])
 
