@@ -13,7 +13,7 @@
     <TextView
             android:id="@+id/tvTitle"
             style="@style/Title"
-            android:text="@string/frgFunctions__tvFunctionsTitle__text"
+            android:text="@string/frgFunctions__tvFunctionsTitle_text"
             android:layout_gravity="center"
 
             android:layout_marginTop="@dimen/actSignup__tvTitle_layout_marginTop"
