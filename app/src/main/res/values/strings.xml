@@ -23,6 +23,7 @@
     <string name="actLogin__tiePassword_hint">@string/const_PASSWORD</string>
     <string name="actLogin__btnLogin_text">@string/const_LOGIN</string>
 
+    <string name="actSignup__tvTitle_text">@string/const_SIGNUP</string>
     <string name="actSignup__tieEmail_hint">@string/const_EMAIL</string>
     <string name="actSignup__tilPassword_hint">@string/const_PASSWORD</string>
     <string name="actSignup__tieConfirmPassword_hint">@string/const_CONFIRM_PASSWORD</string>
@@ -40,7 +41,6 @@
 
     <string name="frgProfile__tvPassword_text">@string/const_PASSWORD</string>
     <string name="frgProfile__tvEmail_text">@string/const_EMAIL</string>
-    <string name="actSignup__tvTitle_text">\@string/const_SIGNUP</string>
     <!--endregion-->
 
 </resources>
