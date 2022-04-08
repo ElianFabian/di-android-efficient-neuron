@@ -33,7 +33,9 @@
     <!--region Title Game Configuration-->
     <TextView
             android:id="@+id/tvTitle"
+
             style="@style/Title"
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/frgGameConfiguration__tvTitle_text"
