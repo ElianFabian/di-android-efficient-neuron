@@ -24,9 +24,4 @@
     <string name="navigation_menu__navStatistics_title">Statistics</string>
     <string name="navigation_menu__navSettings_title">Settings</string>
 
-    <string-array name="frgGameConfiguration__spr_modes">
-        <item>Games</item>
-        <item>Time</item>
-    </string-array>
-
 </resources>
