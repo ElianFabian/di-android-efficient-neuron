@@ -20,14 +20,14 @@
     <string name="navigation_menu__navSettings_title">Settings</string>
 
     <!--region Activities-->
-    <string name="actLogin__tvTitle_text" translatable="false">@string/const_LOGIN</string>
-    <string name="actLogin__tiePassword_hint" translatable="false">@string/base__tiePassword1_hint</string>
-    <string name="actLogin__btnLogin_text" translatable="false">@string/const_LOGIN</string>
+    <string name="actLogin__tvTitle_text">@string/const_LOGIN</string>
+    <string name="actLogin__tiePassword_hint">@string/base__tiePassword1_hint</string>
+    <string name="actLogin__btnLogin_text">@string/const_LOGIN</string>
 
-    <string name="actSignup__tieUser_hint" translatable="false">@string/base__tieUser_hint</string>
-    <string name="actSignup__tilPassword_hint" translatable="false">@string/base__tiePassword1_hint</string>
-    <string name="actSignup__tieConfirmPassword_hint" translatable="false">@string/base__tiePassword2_hint</string>
-    <string name="actSignup__btnSignup_text" translatable="false">@string/const_SIGNUP</string>
+    <string name="actSignup__tieUser_hint">@string/base__tieUser_hint</string>
+    <string name="actSignup__tilPassword_hint">@string/base__tiePassword1_hint</string>
+    <string name="actSignup__tieConfirmPassword_hint">@string/base__tiePassword2_hint</string>
+    <string name="actSignup__btnSignup_text">@string/const_SIGNUP</string>
     <!--endregion-->
 
     <!--region Fragments-->
@@ -37,9 +37,9 @@
     <string name="frgGameConfiguration__tvDigits_text">Digits:</string>
     <string name="frgGameConfiguration__tvMode_text">Mode:</string>
     <string name="frgGameConfiguration__btnPlay_text">PLAY</string>
-    <string name="frgGameConfiguration__tvSymbolX" translatable="false">X</string>
+    <string name="frgGameConfiguration__tvSymbolX">X</string>
 
-    <string name="frgProfile__tvPassword_text" translatable="false">@string/const_PASSWORD</string>
+    <string name="frgProfile__tvPassword_text">@string/const_PASSWORD</string>
     <!--endregion-->
 
 </resources>
