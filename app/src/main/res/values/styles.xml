@@ -22,7 +22,7 @@
         <item name="fontFamily">@font/comfortaa_bold</item>
         <item name="android:textSize">25sp</item>
 
-        <!--paddingHorizontal y paddingVertical sólo está soportado a partir de la versión 26-->
+        <!--paddingHorizontal y paddingVertical are only available on 26 version-->
         <item name="android:paddingRight">@dimen/Button__paddingHorizontal</item>
         <item name="android:paddingLeft">@dimen/Button__paddingHorizontal</item>
         <item name="android:paddingTop">@dimen/Button__paddingVertical</item>
