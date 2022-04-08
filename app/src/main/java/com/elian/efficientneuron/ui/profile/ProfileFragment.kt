@@ -10,11 +10,6 @@ import com.elian.efficientneuron.R
 
 class ProfileFragment : Fragment(R.layout.fragment_profile)
 {
-    override fun onCreate(savedInstanceState: Bundle?)
-    {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,

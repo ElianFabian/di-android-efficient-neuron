@@ -4,10 +4,12 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Gravity
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import com.elian.efficientneuron.databinding.ActivityMainBinding
+import com.elian.efficientneuron.ui.profile.ProfileFragment
 import com.google.android.material.navigation.NavigationView
 
 class MainActivity : AppCompatActivity()//, NavigationView.OnNavigationItemSelectedListener
@@ -62,9 +64,10 @@ class MainActivity : AppCompatActivity()//, NavigationView.OnNavigationItemSelec
 
     private fun setNavigation(item: MenuItem): Boolean
     {
+        Toast.makeText(this, "uwu", Toast.LENGTH_SHORT).show()
         when (item.itemId)
         {
-            //R.id.navProfile -> goToFragment()
+            R.id.navProfile -> goToFragment(ProfileFragment())
         }
         return true
     }
