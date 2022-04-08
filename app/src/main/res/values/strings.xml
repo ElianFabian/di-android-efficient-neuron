@@ -12,6 +12,9 @@
     <string name="const_GAMES">games</string>
     <string name="const_SECONDS">seconds</string>
     <!--endregion-->
+    
+    <string name="open_drawer">open</string>
+    <string name="close_drawer">close</string>
 
     <string name="navigation_menu__navProfile_title">Profile</string>
     <string name="navigation_menu__navTips_title">Tips</string>
