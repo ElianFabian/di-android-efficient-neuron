@@ -9,10 +9,9 @@
     <string name="const_USER">User</string>
     <string name="const_PASSWORD">Password</string>
     <string name="const_CONFIRM_PASSWORD">Confirm password</string>
-    <!--endregion-->
-
     <string name="const_GAMES">games</string>
     <string name="const_SECONDS">seconds</string>
+    <!--endregion-->
 
     <string name="navigation_menu__navProfile_title">Profile</string>
     <string name="navigation_menu__navTips_title">Tips</string>
