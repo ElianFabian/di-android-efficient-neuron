@@ -26,7 +26,7 @@
             android:textSize="@dimen/frgGame__tvOperation_textSize"
             android:textStyle="bold"
             android:layout_gravity="center|top"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="20dp"
             tools:text="2 + 2" />
     <!--endregion-->
 
