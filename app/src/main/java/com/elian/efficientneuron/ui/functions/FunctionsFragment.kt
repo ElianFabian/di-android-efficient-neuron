@@ -10,7 +10,7 @@ import com.elian.efficientneuron.R
 import com.elian.efficientneuron.databinding.FragmentFunctionsBinding
 
 
-class FunctionsFragment : Fragment(), View.OnClickListener
+class FunctionsFragment : Fragment(R.layout.fragment_functions), View.OnClickListener
 {
     private lateinit var binding: FragmentFunctionsBinding
 
