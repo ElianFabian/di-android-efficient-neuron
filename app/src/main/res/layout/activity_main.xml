@@ -3,7 +3,7 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
-        
+
         android:id="@+id/drawerLayout"
 
         android:layout_width="match_parent"
@@ -34,7 +34,5 @@
 
             app:headerLayout="@layout/navigation_view_header"
             app:menu="@menu/navigation_menu" />
-
-    
 
 </androidx.drawerlayout.widget.DrawerLayout>
