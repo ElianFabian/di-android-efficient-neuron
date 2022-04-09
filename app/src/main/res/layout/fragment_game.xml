@@ -43,6 +43,8 @@
             android:text="4" />
     <!--endregion-->
 
+    <!-- TODO: to fix: for some reason in the executed app the view seems cut on the bottom of the keyboard. -->
+     
     <!--region Numeric keyboard-->
     <LinearLayout
             android:layout_width="match_parent"
