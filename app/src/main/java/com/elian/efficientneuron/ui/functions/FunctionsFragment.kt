@@ -34,7 +34,7 @@ class FunctionsFragment : Fragment(R.layout.fragment_functions), View.OnClickLis
     {
         when (v?.id)
         {
-            R.id.ibSubtraction -> navigateTo(R.id.action_functionsFragment_to_gameConfigFragment)
+            R.id.ibAddition -> navigateTo(R.id.action_functionsFragment_to_gameConfigFragment)
         }
     }
 
