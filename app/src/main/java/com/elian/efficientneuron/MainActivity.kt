@@ -92,7 +92,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.navTips       -> toast("No yet implemented.")
             R.id.navStatistics -> toast("No yet implemented.")
             R.id.navSettings   -> toast("No yet implemented.")
-            R.id.navAboutUs -> goToFragment(AboutUsFragment())
+            R.id.navAboutUs    -> goToFragment(AboutUsFragment())
         }
 
         binding.drawerLayout.closeDrawer(GravityCompat.START)
