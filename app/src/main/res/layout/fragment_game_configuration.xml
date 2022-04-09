@@ -178,6 +178,7 @@
             android:entries="@array/frgGameConfiguration__spr_modes"
             android:minHeight="48dp"
             android:foreground="@drawable/shape_round_stroke"
+            android:spinnerMode="dialog"
 
             app:layout_constraintBottom_toBottomOf="@+id/etGamesOrTime"
             app:layout_constraintEnd_toStartOf="@+id/etGamesOrTime"
