@@ -40,21 +40,21 @@
 
             <!--7-->
             <ImageButton
-                android:id="@+id/ib_7"
+                android:id="@+id/ib7"
                 style="@style/ibNumericButtons"
                 android:src="@drawable/ic_btn_7"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <!--8-->
             <ImageButton
-                android:id="@+id/ib_8"
+                android:id="@+id/ib8"
                 style="@style/ibNumericButtons"
                 android:src="@drawable/ic_btn_8"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <!--9-->
             <ImageButton
-                android:id="@+id/ib_9"
+                android:id="@+id/ib9"
                 style="@style/ibNumericButtons"
                 android:src="@drawable/ic_btn_9"
                 tools:ignore="SpeakableTextPresentCheck" />
@@ -65,7 +65,7 @@
         <TableRow>
             <!--region 4-->
             <ImageButton
-                android:id="@+id/ib_4"
+                android:id="@+id/ib4"
                 style="@style/ibNumericButtons"
                 android:layout_width="63dp"
                 android:src="@drawable/ic_btn_4"
@@ -74,7 +74,7 @@
 
             <!--region 5-->
             <ImageButton
-                android:id="@+id/ib_5"
+                android:id="@+id/ib5"
                 style="@style/ibNumericButtons"
                 android:src="@drawable/ic_btn_5"
                 tools:ignore="SpeakableTextPresentCheck" />
@@ -82,7 +82,7 @@
 
             <!--region 6-->
             <ImageButton
-                android:id="@+id/ib_6"
+                android:id="@+id/ib6"
                 style="@style/ibNumericButtons"
                 android:src="@drawable/ic_btn_6"
                 tools:ignore="SpeakableTextPresentCheck" />
@@ -94,7 +94,7 @@
         <TableRow>
             <!--region 1-->
             <ImageButton
-                android:id="@+id/ib_1"
+                android:id="@+id/ib1"
                 style="@style/ibNumericButtons"
                 android:src="@drawable/ic_btn_1"
                 tools:ignore="SpeakableTextPresentCheck" />
@@ -102,7 +102,7 @@
 
             <!--region 2-->
             <ImageButton
-                android:id="@+id/ib_2"
+                android:id="@+id/ib2"
                 style="@style/ibNumericButtons"
                 android:src="@drawable/ic_btn_2"
                 tools:ignore="SpeakableTextPresentCheck" />
@@ -110,7 +110,7 @@
 
             <!--region 3-->
             <ImageButton
-                android:id="@+id/ib_3"
+                android:id="@+id/ib3"
                 style="@style/ibNumericButtons"
                 android:src="@drawable/ic_btn_3"
                 tools:ignore="SpeakableTextPresentCheck" />
@@ -122,7 +122,7 @@
         <TableRow>
 
             <ImageButton
-                android:id="@+id/ib_0"
+                android:id="@+id/ib0"
                 style="@style/ibNumericButtons"
                 android:layout_span="2"
                 android:src="@drawable/ic_btn_0"
