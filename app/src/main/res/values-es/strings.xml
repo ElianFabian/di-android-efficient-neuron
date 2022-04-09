@@ -18,5 +18,5 @@
     <string name="navigation_menu__navSettings_title">Configuración</string>
     <string name="const_EMAIL">Email</string>
     <string name="navigation_menu__navHome_title">Inicio</string>
-    <string name="frgAboutUs__description">Esta aplicación es un proyecto para aprender a cómo crear aplicaciones en Android.</string>
+    <string name="frgAboutUs__description">Esta aplicación es un proyecto para aprender a cómo crear aplicaciones en Android. Es un ejercicio del módulo de Android de IES Portada Alta.</string>
 </resources>
