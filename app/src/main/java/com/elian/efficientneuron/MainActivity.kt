@@ -1,11 +1,10 @@
 package com.elian.efficientneuron
 
 import android.content.res.Configuration
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
-import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import com.elian.efficientneuron.databinding.ActivityMainBinding
@@ -15,10 +14,13 @@ import com.elian.efficientneuron.ui.functions.FunctionsFragment
 import com.elian.efficientneuron.ui.profile.ProfileFragment
 import com.google.android.material.navigation.NavigationView
 
+
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener
 {
     private lateinit var binding: ActivityMainBinding
     private lateinit var toggle: ActionBarDrawerToggle
+
+    private lateinit var currentFragment: Fragment
 
     //region Activity Methods
 
@@ -53,6 +55,16 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         toggle.onConfigurationChanged(newConfig)
     }
 
+    override fun onBackPressed()
+    {
+        // Goes to Home Fragment unless we're in Home Fragment, other wise exits the app
+        if (currentFragment is FunctionsFragment)
+        {
+            super.onBackPressed()
+        }
+        else goToFragment(FunctionsFragment())
+    }
+
     //endregion
 
     //region Methods
@@ -72,6 +84,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     private fun goToFragment(fragment: Fragment)
     {
+        currentFragment = fragment
         supportFragmentManager.beginTransaction().apply {
             replace(R.id.nav_host_fragment, fragment)
             commit()
