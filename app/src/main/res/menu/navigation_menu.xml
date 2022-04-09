@@ -25,9 +25,10 @@
                 android:id="@+id/navSettings"
                 android:title="@string/navigation_menu__navSettings_title"
                 android:icon="@drawable/ic_settings" />
-    <item
-            android:id="@+id/navAboutUs"
-            android:title="@string/navigation_menu__navAboutUs_title"
-            android:icon="@drawable/ic_about_us" />
+        <item
+                android:id="@+id/navAboutUs"
+                android:title="@string/navigation_menu__navAboutUs_title"
+                android:icon="@drawable/ic_about_us" />
+    </group>
 
 </menu>
