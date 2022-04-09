@@ -9,6 +9,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import com.elian.efficientneuron.databinding.ActivityMainBinding
+import com.elian.efficientneuron.extension.toast
 import com.elian.efficientneuron.ui.profile.ProfileFragment
 import com.google.android.material.navigation.NavigationView
 
@@ -102,20 +103,14 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         when (item.itemId)
         {
             R.id.navProfile    -> goToFragment(ProfileFragment())
-            R.id.navTips       -> Toast.makeText(this,
-                "No yet implemented.",
-                Toast.LENGTH_SHORT).show()
-            R.id.navStatistics -> Toast.makeText(this,
-                "No yet implemented.",
-                Toast.LENGTH_SHORT).show()
-            R.id.navSettings   -> Toast.makeText(this,
-                "No yet implemented.",
-                Toast.LENGTH_SHORT).show()
+            R.id.navTips       -> toast("No yet implemented.")
+            R.id.navStatistics -> toast("No yet implemented.")
+            R.id.navSettings   -> toast("No yet implemented.")
         }
 
         binding.drawerLayout.closeDrawer(GravityCompat.START)
 
-        return true
+        return true 
     }
 
     //endregion
