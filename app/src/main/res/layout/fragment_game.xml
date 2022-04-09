@@ -10,12 +10,12 @@
 
     <ImageButton
             android:id="@+id/ibClose"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="@dimen/frgGame__ibClose__size"
+            android:layout_height="@dimen/frgGame__ibClose__size"
             android:src="@drawable/ic_close"
             android:scaleType="fitCenter"
             android:background="@color/transparent"
-            android:layout_gravity="end"/>
+            android:layout_gravity="end" />
 
     <!--region Operation-->
     <TextView
@@ -26,7 +26,7 @@
             android:textSize="@dimen/frgGame__tvOperation_textSize"
             android:textStyle="bold"
             android:layout_gravity="center|top"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="50dp"
             tools:text="2 + 2" />
     <!--endregion-->
 
