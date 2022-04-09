@@ -70,16 +70,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         binding.navigationView.setNavigationItemSelectedListener(this)
     }
 
-    private fun setNavigation(item: MenuItem): Boolean
-    {
-        Toast.makeText(this, "uwu", Toast.LENGTH_SHORT).show()
-        when (item.itemId)
-        {
-            R.id.navProfile -> goToFragment(ProfileFragment())
-        }
-        return true
-    }
-
     private fun goToFragment(fragment: Fragment)
     {
         supportFragmentManager.beginTransaction().apply {
