@@ -20,7 +20,7 @@
             app:defaultNavHost="true"
             app:navGraph="@navigation/nav_graph" />
 
-    <!-- It's immportant that the NavigationView is below the fragment in order to work -->
+    <!-- It's important that the NavigationView is below the fragment in order to work -->
     <com.google.android.material.navigation.NavigationView
             android:id="@+id/navigationView"
             android:layout_width="wrap_content"
