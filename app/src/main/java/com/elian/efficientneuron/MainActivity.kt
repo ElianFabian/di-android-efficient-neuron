@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private lateinit var binding: ActivityMainBinding
     private lateinit var toggle: ActionBarDrawerToggle
 
-    private lateinit var currentFragment: Fragment
+    private lateinit var currentFragmentItem: Fragment
 
     //region Activity Methods
 
@@ -58,7 +58,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onBackPressed()
     {
         // Goes to Home Fragment unless we're in Home Fragment, other wise exits the app
-        if (currentFragment is FunctionsFragment)
+        if (currentFragmentItem is FunctionsFragment)
         {
             super.onBackPressed()
         }
@@ -84,7 +84,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     private fun goToFragment(fragment: Fragment)
     {
-        currentFragment = fragment
+        currentFragmentItem = fragment
         supportFragmentManager.beginTransaction().apply {
             replace(R.id.nav_host_fragment, fragment)
             commit()
