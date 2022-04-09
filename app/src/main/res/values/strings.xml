@@ -45,6 +45,7 @@
 
     <string name="frgProfile__tvPassword_text">@string/const_PASSWORD</string>
     <string name="frgProfile__tvEmail_text">@string/const_EMAIL</string>
+    <string name="navigation_menu__navAboutUs_title">About Us</string>
     <!--endregion-->
 
 </resources>
