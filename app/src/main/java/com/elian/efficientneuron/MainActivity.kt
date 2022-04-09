@@ -101,7 +101,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     {
         when (item.itemId)
         {
-            R.id.navProfile -> Toast.makeText(this, "uwu", Toast.LENGTH_SHORT).show()
+            R.id.navProfile -> goToFragment(ProfileFragment())
             R.id.navTips -> Toast.makeText(this, "uwu", Toast.LENGTH_SHORT).show()
             R.id.navStatistics -> Toast.makeText(this, "uwu", Toast.LENGTH_SHORT).show()
             R.id.navSettings -> Toast.makeText(this, "uwu", Toast.LENGTH_SHORT).show()
