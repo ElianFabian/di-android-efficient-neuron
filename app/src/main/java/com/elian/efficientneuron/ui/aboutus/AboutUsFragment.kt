@@ -14,10 +14,9 @@ import mehdi.sakout.aboutpage.AboutPage
 import mehdi.sakout.aboutpage.Element
 import mehdi.sakout.aboutpage.R
 
-
+// https://camposha.info/android-examples/android-about-us-page-libraries
 class AboutUsFragment : Fragment()
 {
-    // https://camposha.info/android-examples/android-about-us-page-libraries
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
