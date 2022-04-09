@@ -62,7 +62,7 @@
         <!--endregion-->
 
         <!--region 4 5 6-->
-        <TableRow android:id="@+id/tr_2">
+        <TableRow>
             <!--region 4-->
             <ImageButton
                 android:id="@+id/ib_4"
