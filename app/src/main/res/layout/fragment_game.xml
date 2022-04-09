@@ -36,7 +36,7 @@
         app:layout_constraintVertical_bias="0.85">
 
         <!--region 7 8 9-->
-        <TableRow android:id="@+id/tr_1">
+        <TableRow>
 
             <!--7-->
             <ImageButton
@@ -91,7 +91,7 @@
         <!--endregion-->
 
         <!--region 1 2 3-->
-        <TableRow android:id="@+id/tr_3">
+        <TableRow>
             <!--region 1-->
             <ImageButton
                 android:id="@+id/ib_1"
@@ -119,7 +119,7 @@
         <!--endregion-->
 
         <!--region 0-->
-        <TableRow android:id="@+id/tr_4">
+        <TableRow>
 
             <ImageButton
                 android:id="@+id/ib_0"
