@@ -26,9 +26,18 @@
             android:textSize="@dimen/frgGame__tvOperation_textSize"
             android:textStyle="bold"
             android:layout_gravity="center|top"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             tools:text="2 + 2" />
     <!--endregion-->
+    
+    <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="@color/white"
+            android:textSize="40sp"
+            android:backgroundTint="@color/teal_200"
+            android:text="4"/>
 
     <!--region Numeric keyboard-->
     <LinearLayout
@@ -39,10 +48,10 @@
 
         <GridLayout
                 android:id="@+id/tlNumericKeyboard"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
                 android:rowCount="5"
                 android:columnCount="3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginBottom="30dp">
 
@@ -119,7 +128,8 @@
                     android:id="@+id/ib0"
                     style="@style/ibNumericButtons"
                     android:src="@drawable/ic_btn_0"
-                    android:layout_width="200dp"
+                    android:layout_height="80dp"
+                    android:layout_width="180dp"
                     android:layout_columnSpan="2" />
             <!--endregion-->
 
@@ -127,6 +137,7 @@
             <ImageButton
                     android:id="@+id/ibClear"
                     style="@style/ibNumericButtons"
+                    android:layout_height="80dp"
                     android:src="@drawable/ic_btn_clear" />
             <!--endregion-->
 
