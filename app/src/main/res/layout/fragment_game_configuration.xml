@@ -51,12 +51,9 @@
     <!--region Title Digits-->
     <TextView
             android:id="@+id/tvDigits"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/comfortaa"
             android:text="@string/frgGameConfiguration__tvDigits_text"
-            android:textColor="@color/blue_free_speech"
-            android:textSize="40sp"
+
+            style="@style/frgGameConfiguration_TextView"
 
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -125,12 +122,9 @@
     <!--region Title Mode-->
     <TextView
             android:id="@+id/tvMode"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/comfortaa"
             android:text="@string/frgGameConfiguration__tvMode_text"
-            android:textColor="@color/blue_free_speech"
-            android:textSize="40sp"
+
+            style="@style/frgGameConfiguration_TextView"
 
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
