@@ -39,12 +39,21 @@
 
         <GridLayout
                 android:id="@+id/tlNumericKeyboard"
-                android:rowCount="4"
+                android:rowCount="5"
                 android:columnCount="3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginBottom="30dp">
+
+            <!--region Button next-->
+            <ImageButton
+                    android:id="@+id/ibNext"
+                    style="@style/ibNumericButtons"
+                    android:src="@drawable/ic_btn_next"
+                    android:layout_width="300dp"
+                    android:layout_columnSpan="3"/>
+            <!--endregion-->
 
             <!--7-->
             <ImageButton
