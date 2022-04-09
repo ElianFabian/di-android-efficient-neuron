@@ -10,6 +10,7 @@ import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import com.elian.efficientneuron.databinding.ActivityMainBinding
 import com.elian.efficientneuron.extension.toast
+import com.elian.efficientneuron.ui.functions.FunctionsFragment
 import com.elian.efficientneuron.ui.profile.ProfileFragment
 import com.google.android.material.navigation.NavigationView
 
@@ -95,6 +96,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     {
         when (item.itemId)
         {
+            R.id.navHome       -> goToFragment(FunctionsFragment())
             R.id.navProfile    -> goToFragment(ProfileFragment())
             R.id.navTips       -> toast("No yet implemented.")
             R.id.navStatistics -> toast("No yet implemented.")
@@ -103,7 +105,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         binding.drawerLayout.closeDrawer(GravityCompat.START)
 
-        return true 
+        return true
     }
 
     //endregion
