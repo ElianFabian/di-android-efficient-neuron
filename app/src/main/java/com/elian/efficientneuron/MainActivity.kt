@@ -67,7 +67,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         )
 
         binding.drawerLayout.addDrawerListener(toggle)
-
         binding.navigationView.setNavigationItemSelectedListener(this)
     }
 
