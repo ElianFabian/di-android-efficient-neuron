@@ -29,13 +29,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         initUI()
     }
 
-    override fun onStart()
-    {
-        super.onStart()
-
-        initUI()
-    }
-
     override fun onOptionsItemSelected(item: MenuItem): Boolean
     {
         if (toggle.onOptionsItemSelected(item)) return true
@@ -109,9 +102,14 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         when (item.itemId)
         {
             R.id.navProfile -> Toast.makeText(this, "uwu", Toast.LENGTH_SHORT).show()
+            R.id.navTips -> Toast.makeText(this, "uwu", Toast.LENGTH_SHORT).show()
+            R.id.navStatistics -> Toast.makeText(this, "uwu", Toast.LENGTH_SHORT).show()
+            R.id.navSettings -> Toast.makeText(this, "uwu", Toast.LENGTH_SHORT).show()
         }
 
         binding.drawerLayout.closeDrawer(GravityCompat.START)
+
+        Toast.makeText(this, "cerrado", Toast.LENGTH_SHORT).show()
 
         return true
     }
