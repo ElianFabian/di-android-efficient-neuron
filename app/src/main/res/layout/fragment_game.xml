@@ -64,29 +64,33 @@
                     android:layout_columnSpan="3"/>
             <!--endregion-->
 
-            <!--7-->
+            <!--region 7-->
             <ImageButton
                     android:id="@+id/ib7"
                     style="@style/ibNumericButtons"
                     android:src="@drawable/ic_btn_7" />
+            <!--endregion-->
 
-            <!--8-->
+            <!--region 8-->
             <ImageButton
                     android:id="@+id/ib8"
                     style="@style/ibNumericButtons"
                     android:src="@drawable/ic_btn_8" />
+            <!--endregion-->
 
-            <!--9-->
+            <!--region 9-->
             <ImageButton
                     android:id="@+id/ib9"
                     style="@style/ibNumericButtons"
                     android:src="@drawable/ic_btn_9" />
+            <!--endregion-->
 
             <!--region 4-->
             <ImageButton
                     android:id="@+id/ib4"
                     style="@style/ibNumericButtons"
                     android:src="@drawable/ic_btn_4" />
+            <!--endregion-->
 
             <!--region 5-->
             <ImageButton
