@@ -13,9 +13,6 @@
         <action
             android:id="@+id/action_functionsFragment_to_gameConfigFragment"
             app:destination="@id/gameConfigFragment" />
-        <action
-            android:id="@+id/action_functionsFragment_to_aboutUsFragment"
-            app:destination="@id/aboutUsFragment" />
     </fragment>
     <fragment
         android:id="@+id/gameConfigFragment"
@@ -31,8 +28,4 @@
         android:name="com.elian.efficientneuron.ui.game.GameFragment"
         android:label="fragment_game"
         tools:layout="@layout/fragment_game" />
-    <fragment
-        android:id="@+id/aboutUsFragment"
-        android:name="com.elian.efficientneuron.ui.aboutus.AboutUsFragment"
-        android:label="AboutUsFragment" />
 </navigation>
