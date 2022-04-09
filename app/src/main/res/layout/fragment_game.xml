@@ -8,6 +8,7 @@
         android:orientation="vertical"
         tools:context=".ui.game.GameFragment">
 
+    <!--region Button Close-->
     <ImageButton
             android:id="@+id/ibClose"
             android:layout_width="@dimen/frgGame__ibClose__size"
@@ -16,6 +17,7 @@
             android:scaleType="fitCenter"
             android:background="@color/transparent"
             android:layout_gravity="end" />
+    <!--endregion-->
 
     <!--region Operation-->
     <TextView
@@ -29,7 +31,8 @@
             android:layout_marginTop="10dp"
             tools:text="2 + 2" />
     <!--endregion-->
-    
+
+    <!--region EditText Result-->
     <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -37,7 +40,8 @@
             android:textColor="@color/white"
             android:textSize="40sp"
             android:backgroundTint="@color/teal_200"
-            android:text="4"/>
+            android:text="4" />
+    <!--endregion-->
 
     <!--region Numeric keyboard-->
     <LinearLayout
@@ -61,7 +65,7 @@
                     style="@style/ibNumericButtons"
                     android:src="@drawable/ic_btn_next"
                     android:layout_width="305dp"
-                    android:layout_columnSpan="3"/>
+                    android:layout_columnSpan="3" />
             <!--endregion-->
 
             <!--region 7-->
