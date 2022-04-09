@@ -8,6 +8,14 @@
         android:orientation="vertical"
         tools:context=".ui.game.GameFragment">
 
+    <ImageButton
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_close"
+            android:scaleType="fitCenter"
+            android:background="@color/transparent"
+            android:layout_gravity="end"/>
+
     <!--region Operation-->
     <TextView
             android:id="@+id/tvOperation"
