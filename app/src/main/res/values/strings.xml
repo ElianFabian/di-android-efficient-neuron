@@ -21,6 +21,7 @@
     <string name="navigation_menu__navTips_title">Tips</string>
     <string name="navigation_menu__navStatistics_title">Statistics</string>
     <string name="navigation_menu__navSettings_title">Settings</string>
+    <string name="navigation_menu__navAboutUs_title">About Us</string>
 
     <!--region Activities-->
     <string name="actLogin__tvTitle_text">@string/const_LOGIN</string>
@@ -45,7 +46,6 @@
 
     <string name="frgProfile__tvPassword_text">@string/const_PASSWORD</string>
     <string name="frgProfile__tvEmail_text">@string/const_EMAIL</string>
-    <string name="navigation_menu__navAboutUs_title">About Us</string>
     <!--endregion-->
 
 </resources>
