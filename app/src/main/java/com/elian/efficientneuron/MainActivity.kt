@@ -101,15 +101,19 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     {
         when (item.itemId)
         {
-            R.id.navProfile -> goToFragment(ProfileFragment())
-            R.id.navTips -> Toast.makeText(this, "No yet implemented.", Toast.LENGTH_SHORT).show()
-            R.id.navStatistics -> Toast.makeText(this, "No yet implemented.", Toast.LENGTH_SHORT).show()
-            R.id.navSettings -> Toast.makeText(this, "No yet implemented.", Toast.LENGTH_SHORT).show()
+            R.id.navProfile    -> goToFragment(ProfileFragment())
+            R.id.navTips       -> Toast.makeText(this,
+                "No yet implemented.",
+                Toast.LENGTH_SHORT).show()
+            R.id.navStatistics -> Toast.makeText(this,
+                "No yet implemented.",
+                Toast.LENGTH_SHORT).show()
+            R.id.navSettings   -> Toast.makeText(this,
+                "No yet implemented.",
+                Toast.LENGTH_SHORT).show()
         }
 
         binding.drawerLayout.closeDrawer(GravityCompat.START)
-
-        Toast.makeText(this, "cerrado", Toast.LENGTH_SHORT).show()
 
         return true
     }
