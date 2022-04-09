@@ -66,14 +66,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         binding.drawerLayout.addDrawerListener(toggle)
 
-        //toggle.syncState()
-
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.setHomeButtonEnabled(true)
-
         binding.navigationView.setNavigationItemSelectedListener(this)
-
-        //binding.drawerLayout.closeDrawer(GravityCompat.START)
     }
 
     private fun setNavigation(item: MenuItem): Boolean
