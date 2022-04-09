@@ -15,6 +15,7 @@
             android:layout_height="wrap_content"
             android:textColor="@color/white"
             android:textSize="@dimen/frgGame__tvOperation_textSize"
+            android:textStyle="bold"
             android:layout_gravity="center|top"
             android:layout_marginTop="60dp"
             tools:text="2 + 2" />
