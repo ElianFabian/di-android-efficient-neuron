@@ -10,10 +10,12 @@
 
     <TextView
             android:text="@string/frgEndGame__labelFor_tvTotalTime_text"
+            android:layout_marginTop="40dp"
             style="@style/EndGame_LabelFor_TextView" />
 
     <TextView
             android:id="@+id/tvTotalTime"
+            android:layout_marginBottom="30dp"
             android:text="35s"
             style="@style/EndGame_TextView_Time" />
 
