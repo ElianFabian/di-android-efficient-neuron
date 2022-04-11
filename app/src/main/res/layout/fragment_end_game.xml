@@ -16,7 +16,7 @@
     <TextView
             android:id="@+id/tvTotalTime"
             android:layout_marginBottom="30dp"
-            android:text="35s"
+            tools:text="35s"
             style="@style/EndGame_TextView_Time" />
 
     <TextView
@@ -25,7 +25,7 @@
 
     <TextView
             android:id="@+id/TimePerGame"
-            android:text="2s"
+            tools:text="2s"
             style="@style/EndGame_TextView_Time" />
 
 </LinearLayout>
