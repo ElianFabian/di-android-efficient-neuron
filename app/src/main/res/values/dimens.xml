@@ -17,6 +17,7 @@
     <dimen name="actSignup__tilPassword_marginTop">@dimen/base__til_layout_marginTop</dimen>
     <dimen name="actSignup__tilConfirmPassword_layout_width">@dimen/base__til_layout_width</dimen>
     <dimen name="actSignup__tvTitle_layout_marginTop">20dp</dimen>
+    <dimen name="actSignup__tvTitle_Landscape_layout_marginTop">10dp</dimen>
     <!--endregion-->
 
     <!--region Fragments-->
@@ -24,8 +25,6 @@
 
     <dimen name="frgGameConfiguration__tvTitle_textSize">35sp</dimen>
     <dimen name="frgGame__ibClose__size">50dp</dimen>
-    <dimen name="actSignup__tvTitle_Landscape_layout_marginTop">10dp</dimen>
-    <fraction name="bias">0.1</fraction>
     <!--endregion-->
 
 </resources>
