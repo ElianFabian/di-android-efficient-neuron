@@ -9,9 +9,10 @@
         tools:context=".ui.endgame.EndGameFragment">
 
     <TextView
-            android:text="@string/frgEndGame__tvTotalTime_text"
+            android:text="@string/frgEndGame__labelFor_tvTotalTime_text"
             style="@style/EndGame_LabelFor_TextView" />
     <TextView
+            android:id="@+id/tvTotalTime"
             android:text="35s"
             style="@style/EndGame_TextView_Time" />
 

@@ -49,7 +49,7 @@
 
     <string name="frgAboutUs__description">This application is a project to learn how to create applications on android. It\'s an exercise from the Android module in IES Portada Alta.</string>
 
-    <string name="frgEndGame__tvTotalTime_text">Total Time</string>
+    <string name="frgEndGame__labelFor_tvTotalTime_text">Total Time</string>
     <string name="frgEndGame__tvTimePerGame_text">Time per game</string>
     <!--endregion-->
 
