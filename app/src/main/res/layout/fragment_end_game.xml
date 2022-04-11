@@ -13,6 +13,6 @@
             android:text="@string/frgEndGame__tvTotalTime_text"
             android:textSize="40sp"
             android:fontFamily="@font/comfortaa_bold"
-            android:textColor="@color/blue_botticelli" />
+            android:textColor="@color/gray_very_light" />
 
 </LinearLayout>
