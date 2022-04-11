@@ -28,4 +28,20 @@
             style="@style/EndGame_TextView_Time"
             tools:text="2s" />
 
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center|bottom">
+
+        <Button
+                android:id="@+id/btnContinue"
+
+                style="@style/Button"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/frgEndGame__btnContinue_text"
+                android:layout_marginBottom="20dp"/>
+    </LinearLayout>
+
 </LinearLayout>
