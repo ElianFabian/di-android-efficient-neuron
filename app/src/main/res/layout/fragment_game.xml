@@ -60,7 +60,8 @@
                 android:rowCount="5"
                 android:columnCount="3"
                 android:layout_gravity="center"
-                android:layout_marginBottom="20dp">
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp">
 
             <!--region Button next-->
             <ImageButton
