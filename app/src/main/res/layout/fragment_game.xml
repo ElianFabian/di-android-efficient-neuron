@@ -42,7 +42,8 @@
             android:textSize="40sp"
             android:textAlignment="center"
             android:backgroundTint="@color/teal_200"
-            android:focusable="false" />
+            android:focusable="false"
+            android:editable="false"/>
     <!--endregion-->
 
     <!--region Numeric keyboard-->
