@@ -14,8 +14,9 @@
             android:id="@+id/tvTitle"
             style="@style/Title"
             android:text="@string/frgFunctions__tvFunctionsTitle_text"
+            android:textSize="35sp"
             android:layout_gravity="center"
-            android:layout_marginTop="@dimen/actSignup__tvTitle_layout_marginTop"
+            android:layout_marginTop="@dimen/actSignup__tvTitle_Landscape_layout_marginTop"
 
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -41,7 +42,7 @@
             <!--region Sum-->
             <ImageButton
                     android:id="@+id/ibAddition"
-                    style="@style/ibFunctions"
+                    style="@style/ibFunctions_Landscape"
                     android:src="@drawable/ic_addition"
                     android:tag="+"
                     tools:ignore="SpeakableTextPresentCheck" />
@@ -50,7 +51,7 @@
             <!--region Subtraction-->
             <ImageButton
                     android:id="@+id/ibSubtraction"
-                    style="@style/ibFunctions"
+                    style="@style/ibFunctions_Landscape"
                     android:src="@drawable/ic_subtraction"
                     android:tag="-"
                     tools:ignore="SpeakableTextPresentCheck" />
@@ -59,7 +60,7 @@
             <!--region Multiplication-->
             <ImageButton
                     android:id="@+id/ibMultiplication"
-                    style="@style/ibFunctions"
+                    style="@style/ibFunctions_Landscape"
                     android:src="@drawable/ic_multiplication"
                     android:tag="*"
                     tools:ignore="SpeakableTextPresentCheck" />
@@ -68,7 +69,7 @@
             <!--region Division-->
             <ImageButton
                     android:id="@+id/ibDivision"
-                    style="@style/ibFunctions"
+                    style="@style/ibFunctions_Landscape"
                     android:src="@drawable/ic_division"
                     android:tag="/"
                     tools:ignore="SpeakableTextPresentCheck" />

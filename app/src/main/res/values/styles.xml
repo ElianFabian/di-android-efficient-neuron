@@ -6,7 +6,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:fontFamily">@font/comfortaa_bold</item>
         <item name="android:gravity">center_horizontal</item>
-        <item name="android:textSize">@dimen/tv_Title__textSize</item>
+        <item name="android:textSize">@dimen/tvTitle__textSize</item>
         <item name="android:textColor">@color/black</item>
     </style>
 
@@ -33,6 +33,14 @@
         <item name="android:layout_width">100dp</item>
         <item name="android:layout_height">100dp</item>
         <item name="android:layout_margin">30dp</item>
+        <item name="android:background">@color/transparent</item>
+        <item name="android:scaleType">fitCenter</item>
+    </style>
+
+    <style name="ibFunctions_Landscape">
+        <item name="android:layout_width">90dp</item>
+        <item name="android:layout_height">90dp</item>
+        <item name="android:layout_margin">20dp</item>
         <item name="android:background">@color/transparent</item>
         <item name="android:scaleType">fitCenter</item>
     </style>
