@@ -8,7 +8,7 @@
     <dimen name="base__til_layout_marginTop">32dp</dimen>
     <dimen name="tvTitle__textSize">50sp</dimen>
 
-    <dimen name="btn_login__cornerRadius">50dp</dimen>
+    <dimen name="btn_cornerRadius">50dp</dimen>
 
     <!--region Activities-->
     <dimen name="actSignup__btnSignup_marginTop">80dp</dimen>
