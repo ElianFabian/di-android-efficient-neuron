@@ -10,7 +10,7 @@
 
     <!--region Button Close-->
     <ImageButton
-            android:id="@+id/ibClose"
+            android:id="@+id/ibExit"
             android:layout_width="@dimen/frgGame__ibClose__size"
             android:layout_height="@dimen/frgGame__ibClose__size"
             android:src="@drawable/ic_close"
