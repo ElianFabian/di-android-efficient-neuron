@@ -86,4 +86,13 @@
         <item name="android:layout_marginStart">20dp</item>
     </style>
 
+    <style name="EndGame_TextView_Time">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">35sp</item>
+        <item name="android:fontFamily">@font/comfortaa_bold</item>
+        <item name="android:textColor">@color/blue_columbia</item>
+        <item name="android:layout_marginStart">20dp</item>
+    </style>
+
 </resources>

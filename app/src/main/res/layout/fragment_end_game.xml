@@ -11,6 +11,9 @@
     <TextView
             android:text="@string/frgEndGame__tvTotalTime_text"
             style="@style/EndGame_LabelFor_TextView" />
+    <TextView
+            android:text="35s"
+            style="@style/EndGame_TextView_Time" />
 
     <TextView
             android:text="@string/frgEndGame__tvTimePerGame_text"
