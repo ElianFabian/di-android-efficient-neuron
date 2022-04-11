@@ -15,8 +15,8 @@
             style="@style/Title"
             android:text="@string/frgFunctions__tvFunctionsTitle_text"
             android:layout_gravity="center"
-
             android:layout_marginTop="@dimen/actSignup__tvTitle_layout_marginTop"
+
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -24,17 +24,19 @@
             app:layout_constraintTop_toTopOf="parent" />
     <!--endregion-->
 
-    <TableLayout
+    <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center"
-            tools:context=".ui.functions.FunctionsFragment">
+            android:gravity="center">
 
-        <!--region Sum and Subtraction-->
-        <TableRow
-                android:id="@+id/tableRow"
+        <GridLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:columnCount="2"
+                android:rowCount="2"
+                tools:context=".ui.functions.FunctionsFragment">
+
 
             <!--region Sum-->
             <ImageButton
@@ -54,14 +56,6 @@
                     tools:ignore="SpeakableTextPresentCheck" />
             <!--endregion-->
 
-        </TableRow>
-        <!--endregion-->
-
-        <!--region Multiplication y Division-->
-        <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
             <!--region Multiplication-->
             <ImageButton
                     android:id="@+id/ibMultiplication"
@@ -80,8 +74,7 @@
                     tools:ignore="SpeakableTextPresentCheck" />
             <!--endregion-->
 
-        </TableRow>
-        <!--endregion-->
+        </GridLayout>
+    </LinearLayout>
 
-    </TableLayout>
 </LinearLayout>
