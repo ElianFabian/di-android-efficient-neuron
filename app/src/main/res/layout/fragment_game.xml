@@ -35,14 +35,13 @@
     <!--region EditText Result-->
     <EditText
             android:id="@+id/etResult"
-            android:layout_width="wrap_content"
+            android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:textColor="@color/white"
             android:textSize="40sp"
             android:backgroundTint="@color/teal_200"
-            android:clickable="false"
-            android:text="4" />
+            android:focusable="false" />
     <!--endregion-->
 
     <!-- TODO: to fix: for some reason in the executed app the view seems cut on the bottom of the keyboard. -->
