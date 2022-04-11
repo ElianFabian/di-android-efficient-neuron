@@ -12,7 +12,7 @@
     <string name="const_GAMES">games</string>
     <string name="const_SECONDS">seconds</string>
     <!--endregion-->
-    
+
     <string name="navigation_drawer_open" translatable="false">Open</string>
     <string name="navigation_drawer_close" translatable="false">Close</string>
 
@@ -46,7 +46,7 @@
 
     <string name="frgProfile__tvPassword_text">@string/const_PASSWORD</string>
     <string name="frgProfile__tvEmail_text">@string/const_EMAIL</string>
-    
+
     <string name="frgAboutUs__description">This application is a project to learn how to create applications on android. It\'s an exercise from the Android module in IES Portada Alta.</string>
     <!--endregion-->
 
