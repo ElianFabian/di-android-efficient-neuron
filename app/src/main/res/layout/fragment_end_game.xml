@@ -20,4 +20,9 @@
             android:text="@string/frgEndGame__tvTimePerGame_text"
             style="@style/EndGame_LabelFor_TextView" />
 
+    <TextView
+            android:id="@+id/TimePerGame"
+            android:text="2s"
+            style="@style/EndGame_TextView_Time" />
+
 </LinearLayout>
