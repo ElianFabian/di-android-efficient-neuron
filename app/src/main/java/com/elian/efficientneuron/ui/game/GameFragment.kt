@@ -36,7 +36,6 @@ class GameFragment : Fragment()
     {
         val scaleDown = AnimationUtils.loadAnimation(context, R.anim.numeric_button_scale_down)
         val scaleUp = AnimationUtils.loadAnimation(context, R.anim.numeric_button_scale_up)
-        //val fadeIn = AnimationUtils.loadAnimation(context, R.anim.fad)
 
         with(binding)
         {
