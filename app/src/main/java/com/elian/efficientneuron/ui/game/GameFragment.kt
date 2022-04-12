@@ -24,31 +24,4 @@ class GameFragment : Fragment()
         binding = FragmentGameBinding.inflate(inflater)
         return binding.root
     }
-
-    override fun onStart()
-    {
-        super.onStart()
-
-        initUI()
-    }
-
-    private fun initUI()
-    {
-        val scaleDown = AnimationUtils.loadAnimation(context, R.anim.numeric_button_scale_down)
-        val scaleUp = AnimationUtils.loadAnimation(context, R.anim.numeric_button_scale_up)
-
-        with(binding)
-        {
-            numericButtons = listOf(ib0, ib1, ib2, ib3, ib4, ib5, ib6, ib7, ib8, ib9)
-        }
-
-        numericButtons.forEach()
-        { ib ->
-            ib.setOnClickListener()
-            {
-                it.startAnimation(scaleDown)
-                it.postOnAnimation { it.startAnimation(scaleUp) }
-            }
-        }
-    }
 }
