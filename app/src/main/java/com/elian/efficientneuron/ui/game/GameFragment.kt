@@ -39,21 +39,10 @@ class GameFragment : Fragment()
 
         with(binding)
         {
-            numericButtons = listOf(
-                ib0,
-                ib1,
-                ib2,
-                ib3,
-                ib4,
-                ib5,
-                ib6,
-                ib7,
-                ib8,
-                ib9
-            )
+            numericButtons = listOf(ib0, ib1, ib2, ib3, ib4, ib5, ib6, ib7, ib8, ib9)
         }
-        
-        numericButtons.forEach() 
+
+        numericButtons.forEach()
         { ib ->
             ib.setOnClickListener()
             {
