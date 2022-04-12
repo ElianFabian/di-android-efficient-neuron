@@ -118,12 +118,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     {
         val scaleDown = AnimationUtils.loadAnimation(this, R.anim.numeric_button_scale_down)
         val scaleUp = AnimationUtils.loadAnimation(this, R.anim.numeric_button_scale_up)
-        
-        view.setOnClickListener()
-        {
-            it.startAnimation(scaleDown)
-            it.postOnAnimation { it.startAnimation(scaleUp) }
-        }
+
+        view.startAnimation(scaleDown)
+        view.postOnAnimation { view.startAnimation(scaleUp) }
     }
 
     //endregion
