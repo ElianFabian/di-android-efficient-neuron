@@ -7,7 +7,7 @@
     <dimen name="base__til_layout_width">300dp</dimen>
     <dimen name="base__til_layout_marginTop">32dp</dimen>
     
-    <dimen name="tvTitle__textSize">50sp</dimen>
+    <dimen name="tvTitle_all_textSize">50sp</dimen>
 
     <dimen name="btn_cornerRadius">50dp</dimen>
 
