@@ -2,7 +2,7 @@
 
 <!--
 The names of the color are going to be set according to this page:
-http://www.color-blindness.com/co   lor-name-hue/
+http://www.color-blindness.com/color-name-hue/
 -->
 <resources>
     <color name="purple_200">#FFBB86FC</color>
