@@ -6,6 +6,7 @@
 
     <dimen name="base__til_layout_width">300dp</dimen>
     <dimen name="base__til_layout_marginTop">32dp</dimen>
+    
     <dimen name="tvTitle__textSize">50sp</dimen>
 
     <dimen name="btn_cornerRadius">50dp</dimen>
@@ -24,6 +25,7 @@
     <dimen name="frgGame__tvOperation_textSize">90sp</dimen>
 
     <dimen name="frgGameConfiguration__tvTitle_textSize">35sp</dimen>
+
     <dimen name="frgGame__ibClose__size">50dp</dimen>
     <!--endregion-->
 
