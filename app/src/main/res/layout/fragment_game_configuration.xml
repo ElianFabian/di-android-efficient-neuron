@@ -16,7 +16,6 @@
             android:id="@+id/tvCornerIcon"
             android:layout_width="29dp"
             android:layout_height="38dp"
-
             android:fontFamily="@font/comfortaa_bold"
             android:includeFontPadding="false"
             android:textAlignment="center"
