@@ -15,7 +15,7 @@ http://www.color-blindness.com/co   lor-name-hue/
 
     <color name="transparent">#00F44336</color>
 
-    <!--Color Palette-->
+    <!--region Color Palette-->
     <color name="green_medium_sea">#33C171</color>
     <color name="green_evening_sea">#245744</color>
 
@@ -34,5 +34,5 @@ http://www.color-blindness.com/co   lor-name-hue/
 
     <color name="gray_dim">#707070</color>
     <color name="gray_very_light">#CFCFCF</color>
-
+    <!--endregion-->
 </resources>
