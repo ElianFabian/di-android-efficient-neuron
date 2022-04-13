@@ -172,10 +172,10 @@
 
     <!--region Spinner Modes-->
     <Spinner
-            android:id="@+id/spModes"
+            android:id="@+id/spnModes"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:entries="@array/frgGameConfiguration__spr_modes"
+            android:entries="@array/frgGameConfiguration__spnModes_entries"
             android:minHeight="48dp"
             android:foreground="@drawable/shape_round_stroke"
             android:spinnerMode="dialog"

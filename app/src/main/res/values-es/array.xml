@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="frgGameConfiguration__spr_modes">
+    <string-array name="frgGameConfiguration__spnModes_entries">
         <item>Partidas</item>
         <item>Tiempo</item>
     </string-array>
