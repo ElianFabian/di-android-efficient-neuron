@@ -174,7 +174,7 @@
             android:layout_height="wrap_content"
             android:entries="@array/frgGameConfiguration__spnModes_entries"
             android:minHeight="48dp"
-            android:foreground="@drawable/shape_round_stroke"
+            android:background="@drawable/shape_round_stroke_with_background"
             android:spinnerMode="dialog"
 
             app:layout_constraintBottom_toBottomOf="@+id/etGamesOrTime"
