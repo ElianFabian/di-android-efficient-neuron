@@ -11,9 +11,9 @@ import com.elian.efficientneuron.databinding.FragmentEndGameBinding
 class EndGameFragment : Fragment()
 {
     private lateinit var binding: FragmentEndGameBinding
-    
+
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?,
     ): View
     {
         binding = FragmentEndGameBinding.inflate(inflater)

@@ -12,9 +12,9 @@ import com.elian.efficientneuron.databinding.FragmentGameBinding
 class GameFragment : Fragment()
 {
     private lateinit var binding: FragmentGameBinding
-    
+
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?,
     ): View
     {
         binding = FragmentGameBinding.inflate(inflater)
