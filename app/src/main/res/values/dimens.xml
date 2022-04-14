@@ -23,10 +23,9 @@
 
     <!--region Fragments-->
     <dimen name="frgGame__tvOperation_textSize">90sp</dimen>
+    <dimen name="frgGame__ibClose__size">50dp</dimen>
 
     <dimen name="frgGameConfiguration__tvTitle_textSize">35sp</dimen>
-
-    <dimen name="frgGame__ibClose__size">50dp</dimen>
     <!--endregion-->
 
 </resources>
