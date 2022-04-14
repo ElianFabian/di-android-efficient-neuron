@@ -16,7 +16,6 @@
     <TextView
             android:id="@+id/tvTitle"
             android:text="@string/actSignup__tvTitle_text"
-            android:layout_gravity="center"
             android:layout_marginTop="@dimen/actSignup__tvTitle_layout_marginTop"
 
             style="@style/Title"
@@ -56,7 +55,7 @@
     <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tilPassword"
             android:layout_gravity="center"
-            android:layout_marginTop="@dimen/actSignup__tilPassword_marginTop"
+            android:layout_marginTop="@dimen/base__til_layout_marginTop"
 
             style="@style/TextInputLayout"
 
