@@ -12,11 +12,11 @@
     <!--region Title-->
     <TextView
             android:id="@+id/tvTitle"
-            style="@style/Title"
             android:text="@string/frgFunctions__tvFunctionsTitle_text"
-            android:textSize="35sp"
             android:layout_gravity="center"
             android:layout_marginTop="@dimen/actSignup_Landscape__tvTitle_layout_marginTop"
+
+            style="@style/Title"
 
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
