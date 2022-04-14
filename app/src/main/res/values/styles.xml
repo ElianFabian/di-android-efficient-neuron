@@ -18,7 +18,7 @@
     </style>
 
     <style name="Button">
-        <item name="cornerRadius">@dimen/btn_cornerRadius</item>
+        <item name="cornerRadius">50dp</item>
         <item name="fontFamily">@font/comfortaa_bold</item>
         <item name="android:textSize">25sp</item>
 
