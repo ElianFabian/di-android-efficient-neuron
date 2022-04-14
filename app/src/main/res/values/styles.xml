@@ -11,6 +11,8 @@
     </style>
 
     <style name="TextInputLayout">
+        <item name="android:layout_width">300dp</item>
+        <item name="android:layout_height">wrap_content</item>
         <item name="strokeColor">@color/black</item>
         <item name="hintTextColor">@color/blue_botticelli</item>
         <item name="boxBackgroundColor">@color/transparent</item>

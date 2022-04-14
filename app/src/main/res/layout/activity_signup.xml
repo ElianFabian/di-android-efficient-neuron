@@ -33,7 +33,6 @@
     <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tilEmail"
             android:layout_gravity="center"
-            android:layout_width="@dimen/actSignup__tilEmail_layout_width"
             android:layout_height="wrap_content"
             android:layout_marginTop="80dp"
 
@@ -57,8 +56,6 @@
     <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tilPassword"
             android:layout_gravity="center"
-            android:layout_width="@dimen/actSignup__tilPassword_layout_width"
-            android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/actSignup__tilPassword_marginTop"
 
             style="@style/TextInputLayout"
@@ -79,8 +76,6 @@
     <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tilConfirmPassword"
             android:layout_gravity="center"
-            android:layout_width="@dimen/actSignup__tilConfirmPassword_layout_width"
-            android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/base__til_layout_marginTop"
 
             style="@style/TextInputLayout"
