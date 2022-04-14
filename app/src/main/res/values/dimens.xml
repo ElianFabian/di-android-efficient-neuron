@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<!-- A resource with "_ovr_" means it's overwriting an existing attribute from a style -->
+ 
 <resources>
 
     <dimen name="Button__paddingHorizontal">25dp</dimen>
@@ -19,7 +22,7 @@
     <dimen name="frgGame__tvOperation_textSize">90sp</dimen>
     <dimen name="frgGame__ibClose_size">50dp</dimen>
 
-    <dimen name="frgGameConfiguration__tvTitle_textSize">35sp</dimen>
+    <dimen name="frgGameConfiguration__ovr_tvTitle_textSize">35sp</dimen>
     <!--endregion-->
 
 </resources>
