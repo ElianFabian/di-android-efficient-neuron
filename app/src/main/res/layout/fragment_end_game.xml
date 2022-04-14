@@ -35,14 +35,10 @@
 
         <Button
                 android:id="@+id/btnContinue"
-
-                style="@style/Button"
-
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
                 android:text="@string/frgEndGame__btnContinue_text"
-                />
+
+                style="@style/Button" />
     </LinearLayout>
 
 </LinearLayout>

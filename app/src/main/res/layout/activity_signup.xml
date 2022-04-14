@@ -93,14 +93,11 @@
     <!--region Button Signup-->
     <Button
             android:id="@+id/btnSignup"
-
-            style="@style/Button"
-
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:text="@string/actSignup__btnSignup_text"
             android:layout_gravity="center"
             android:layout_marginTop="@dimen/actSignup__btnSignup_marginTop"
+
+            style="@style/Button"
 
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
