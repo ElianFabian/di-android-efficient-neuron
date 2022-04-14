@@ -16,7 +16,6 @@
     <TextView
             android:id="@+id/tvTitle"
             android:text="@string/actSignup__tvTitle_text"
-            android:layout_marginTop="@dimen/actSignup__tvTitle_layout_marginTop"
 
             style="@style/Title"
 

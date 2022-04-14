@@ -13,9 +13,6 @@
     <TextView
             android:id="@+id/tvTitle"
             style="@style/Title"
-            android:text="@string/frgFunctions__tvFunctionsTitle_text"
-            android:layout_gravity="center"
-            android:layout_marginTop="@dimen/actSignup__tvTitle_layout_marginTop"
 
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
