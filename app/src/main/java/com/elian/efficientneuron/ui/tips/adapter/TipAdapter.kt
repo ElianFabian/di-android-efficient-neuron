@@ -39,7 +39,7 @@ class TipAdapter(
 
         fun render(tip: Tip) = with(binding)
         {
-            tvTitle.text = tip.name
+            tvTitle.text = tip.title
             tvExample.text = tip.example
         }
     }
