@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.elian.efficientneuron.databinding.FragmentTipsBinding
+import com.elian.efficientneuron.model.Tip
 import com.elian.efficientneuron.ui.tips.adapter.TipAdapter
 
 class TipsFragment : Fragment()
@@ -29,7 +30,7 @@ class TipsFragment : Fragment()
     override fun onStart()
     {
         super.onStart()
-        
+
         initUI()
     }
 
@@ -44,7 +45,16 @@ class TipsFragment : Fragment()
 
     private fun initAdapter()
     {
-        adapter = TipAdapter(listOf())
+        adapter = TipAdapter(
+            listOf(
+                Tip(id = 1,
+                    title = "Squares of numbers ending in 5",
+                    example = "35² = (3·4)25 = 1125"),
+                Tip(id = 1,
+                    title = "Squares of numbers ending in 5",
+                    example = "35² = (3·4)25 = 1125")
+            )
+        )
         val layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
 
         binding.rvTips.layoutManager = layoutManager
