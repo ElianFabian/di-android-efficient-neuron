@@ -12,6 +12,7 @@ import com.elian.efficientneuron.extension.toast
 import com.elian.efficientneuron.ui.aboutus.AboutUsFragment
 import com.elian.efficientneuron.ui.functions.FunctionsFragment
 import com.elian.efficientneuron.ui.profile.ProfileFragment
+import com.elian.efficientneuron.ui.tips.TipsFragment
 import com.google.android.material.navigation.NavigationView
 
 
@@ -101,7 +102,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         {
             R.id.navHome       -> goToFragment(FunctionsFragment())
             R.id.navProfile    -> goToFragment(ProfileFragment())
-            R.id.navTips       -> toast("No yet implemented.")
+            R.id.navTips       -> goToFragment(TipsFragment())
             R.id.navStatistics -> toast("No yet implemented.")
             R.id.navSettings   -> toast("No yet implemented.")
             R.id.navAboutUs    -> goToFragment(AboutUsFragment())
