@@ -12,7 +12,7 @@ class TipAdapter(
     private val tips: List<Tip>,
 ) :
     RecyclerView.Adapter<TipAdapter.TipViewHolder>()
-{ 
+{
     //region RecyclerView.Adapter
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TipViewHolder
@@ -24,22 +24,23 @@ class TipAdapter(
 
     override fun onBindViewHolder(holder: TipViewHolder, position: Int)
     {
-       val tipItem = tips[position]
-        
+        val tipItem = tips[position]
+
         holder.render(tipItem)
     }
 
     override fun getItemCount(): Int = tips.size
-    
+
     //endregion
-    
+
     class TipViewHolder(view: View) : RecyclerView.ViewHolder(view)
     {
         private val binding = ItemTipBinding.bind(view)
-        
+
         fun render(tip: Tip) = with(binding)
         {
-             
+            tvTitle.text = tip.name
+            tvExample.text = tip.example
         }
     }
 }
