@@ -94,6 +94,15 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
     }
 
+    fun animationOnClick(view: View)
+    {
+        val scaleDown = AnimationUtils.loadAnimation(this, R.anim.numeric_button_scale_down)
+        val scaleUp = AnimationUtils.loadAnimation(this, R.anim.numeric_button_scale_up)
+
+        view.startAnimation(scaleDown)
+        view.postOnAnimation { view.startAnimation(scaleUp) }
+    }
+
     //endregion
 
     //region NavigationView.OnNavigationItemSelectedListener
@@ -113,15 +122,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         binding.drawerLayout.closeDrawer(GravityCompat.START)
 
         return true
-    }
-
-    fun animationOnClick(view: View)
-    {
-        val scaleDown = AnimationUtils.loadAnimation(this, R.anim.numeric_button_scale_down)
-        val scaleUp = AnimationUtils.loadAnimation(this, R.anim.numeric_button_scale_up)
-
-        view.startAnimation(scaleDown)
-        view.postOnAnimation { view.startAnimation(scaleUp) }
     }
 
     //endregion
