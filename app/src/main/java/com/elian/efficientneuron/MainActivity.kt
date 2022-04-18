@@ -3,6 +3,8 @@ package com.elian.efficientneuron
 import android.content.res.Configuration
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.View
+import android.view.animation.AnimationUtils
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
@@ -111,6 +113,15 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         binding.drawerLayout.closeDrawer(GravityCompat.START)
 
         return true
+    }
+
+    fun animationOnClick(view: View)
+    {
+        val scaleDown = AnimationUtils.loadAnimation(this, R.anim.numeric_button_scale_down)
+        val scaleUp = AnimationUtils.loadAnimation(this, R.anim.numeric_button_scale_up)
+
+        view.startAnimation(scaleDown)
+        view.postOnAnimation { view.startAnimation(scaleUp) }
     }
 
     //endregion
