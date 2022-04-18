@@ -52,6 +52,7 @@
     <string name="frgEndGame__labelFor_tvTotalTime_text">Total Time</string>
     <string name="frgEndGame__tvTimePerGame_text">Time per game</string>
     <string name="frgEndGame__btnContinue_text">CONTINUE</string>
+    <string name="frgTips__tvTitle_text">Tips</string>
     <!--endregion-->
 
 </resources>
