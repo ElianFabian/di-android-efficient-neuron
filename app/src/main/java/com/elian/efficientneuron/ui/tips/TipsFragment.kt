@@ -62,5 +62,4 @@ class TipsFragment : Fragment()
     }
 
     //endregion
-
 }
