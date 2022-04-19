@@ -60,7 +60,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     override fun onBackPressed()
     {
-        // Goes to Home Fragment unless we're in Home Fragment, other wise exits the app
+        // Goes to Home Fragment unless we are already, other wise exits the app
         if (currentFragmentItem is FunctionsFragment)
         {
             super.onBackPressed()
