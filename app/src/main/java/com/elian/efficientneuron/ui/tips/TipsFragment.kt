@@ -15,7 +15,7 @@ class TipsFragment : Fragment()
 {
     private lateinit var binding: FragmentTipsBinding
 
-    private lateinit var adapter: TipAdapter
+    private lateinit var tipAdapter: TipAdapter
 
     //region Fragment Methods
 
@@ -45,7 +45,7 @@ class TipsFragment : Fragment()
 
     private fun initAdapter()
     {
-        adapter = TipAdapter(
+        tipAdapter = TipAdapter(
             listOf(
                 Tip(id = 1,
                     title = "Squares of numbers ending in 5",
@@ -58,7 +58,7 @@ class TipsFragment : Fragment()
         val layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
 
         binding.rvTips.layoutManager = layoutManager
-        binding.rvTips.adapter = adapter
+        binding.rvTips.adapter = tipAdapter
     }
 
     //endregion
