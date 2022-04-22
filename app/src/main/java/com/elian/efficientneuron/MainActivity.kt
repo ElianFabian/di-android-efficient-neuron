@@ -93,6 +93,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
     }
 
+    // styles.xml/ibNumericButtons/android:onClick
     fun animationOnClick(view: View)
     {
         val scaleDown = AnimationUtils.loadAnimation(this, R.anim.numeric_button_scale_down)
