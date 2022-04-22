@@ -11,7 +11,7 @@
         android:label="fragment_functions"
         tools:layout="@layout/fragment_functions" >
         <action
-            android:id="@+id/action_functionsFragment_to_gameConfigFragment"
+            android:id="@+id/action_functionsFragment_to_gameConfigurationFragment"
             app:destination="@id/gameConfigFragment" />
     </fragment>
     <fragment
