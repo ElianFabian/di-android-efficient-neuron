@@ -48,7 +48,7 @@ class FunctionsFragment : Fragment(), View.OnClickListener
 
     private fun initUI()
     {
-        binding.glButtons.children.iterator().forEach { it.setOnClickListener(this) }
+        binding.grdlButtons.children.iterator().forEach { it.setOnClickListener(this) }
     }
 
     private fun navigateTo(action: Int)
