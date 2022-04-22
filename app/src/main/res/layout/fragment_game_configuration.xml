@@ -168,7 +168,7 @@
             android:id="@+id/spnModes"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:entries="@array/frgGameConfiguration__spnModes_entries"
+            android:entries="@array/frgGameConfiguration.spnModes.entries"
             android:minHeight="48dp"
             android:background="@drawable/shape_round_stroke_with_background"
             android:spinnerMode="dialog"
