@@ -50,7 +50,7 @@ class TipsFragment : Fragment()
                 Tip(id = 1,
                     title = "Squares of numbers ending in 5",
                     example = "35² = (3·4)25 = 1125"),
-                Tip(id = 1,
+                Tip(id = 2,
                     title = "Squares of numbers ending in 5",
                     example = "35² = (3·4)25 = 1125")
             )
