@@ -55,6 +55,7 @@ class TipsFragment : Fragment()
                     example = "35² = (3·4)25 = 1125")
             )
         )
+
         val layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
 
         binding.rvTips.layoutManager = layoutManager
