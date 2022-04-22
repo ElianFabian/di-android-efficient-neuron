@@ -22,10 +22,14 @@ class FunctionsFragment : Fragment(), View.OnClickListener
     ): View
     {
         binding = FragmentFunctionsBinding.inflate(inflater, container, false)
-
-        binding.glButtons.children.iterator().forEach { it.setOnClickListener(this) }
-
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?)
+    {
+        super.onViewCreated(view, savedInstanceState)
+        
+        initUI()
     }
 
     override fun onClick(v: View?) = when (v?.id)
@@ -41,6 +45,11 @@ class FunctionsFragment : Fragment(), View.OnClickListener
     //endregion
 
     //region Methods
+
+    private fun initUI()
+    {
+        binding.glButtons.children.iterator().forEach { it.setOnClickListener(this) }
+    }
 
     private fun navigateTo(action: Int)
     {
