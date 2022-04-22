@@ -95,7 +95,7 @@
             android:id="@+id/btnSignup"
             android:text="@string/actSignup.btnSignup.text"
             android:layout_gravity="center"
-            android:layout_marginTop="@dimen/actSignup.btnSignup.marginTop"
+            android:layout_marginTop="@dimen/actSignup.btnSignup.layout_marginTop"
 
             style="@style/Button"
 
