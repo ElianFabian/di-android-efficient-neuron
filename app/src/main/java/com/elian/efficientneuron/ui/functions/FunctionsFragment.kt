@@ -20,7 +20,6 @@ class FunctionsFragment : Fragment(), View.OnClickListener
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?,
     ): View
     {
-        // Inflate the layout for this fragment
         binding = FragmentFunctionsBinding.inflate(inflater, container, false)
 
         binding.ibAddition.setOnClickListener(this)
