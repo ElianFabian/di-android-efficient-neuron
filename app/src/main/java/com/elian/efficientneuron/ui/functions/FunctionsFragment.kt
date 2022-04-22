@@ -28,12 +28,14 @@ class FunctionsFragment : Fragment(), View.OnClickListener
         return binding.root
     }
 
-    override fun onClick(v: View?)
+    override fun onClick(v: View?) = when (v?.id)
     {
-        when (v?.id)
-        {
-            R.id.ibAddition -> navigateTo(R.id.action_functionsFragment_to_gameConfigurationFragment)
-        }
+        R.id.ibAddition       -> navigateTo(R.id.action_functionsFragment_to_gameConfigurationFragment)
+        R.id.ibSubtraction    -> navigateTo(R.id.action_functionsFragment_to_gameConfigurationFragment)
+        R.id.ibMultiplication -> navigateTo(R.id.action_functionsFragment_to_gameConfigurationFragment)
+        R.id.ibDivision       -> navigateTo(R.id.action_functionsFragment_to_gameConfigurationFragment)
+
+        else                  -> Unit
     }
 
     //endregion
