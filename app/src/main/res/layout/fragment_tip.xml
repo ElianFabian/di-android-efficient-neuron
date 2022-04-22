@@ -5,8 +5,18 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/blue_columbia"
+        android:gravity="center_horizontal"
         tools:context=".ui.tip.TipFragment">
 
-
+    <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:fontFamily="@font/comfortaa"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            tools:text="Square of numbers ending in 5" />
 
 </LinearLayout>
