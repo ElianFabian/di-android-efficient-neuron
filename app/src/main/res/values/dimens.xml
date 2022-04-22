@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
- 
-<resources>
 
-    <dimen name="Button.paddingHorizontal">25dp</dimen>
-    <dimen name="Button.paddingVertical">10dp</dimen>
+<resources>
 
     <dimen name="base.til.layout_width">300dp</dimen>
     <dimen name="base.til.layout_marginTop">32dp</dimen>
 
     <dimen name="tvTitle.textSize">50sp</dimen>
+
+    <!--region Styles-->
+    <dimen name="Button.paddingHorizontal">25dp</dimen>
+    <dimen name="Button.paddingVertical">10dp</dimen>
+    <!--endregion-->
 
     <!--region Activities-->
     <dimen name="actSignup.btnSignup.layout_marginTop">80dp</dimen>
