@@ -14,7 +14,7 @@
             android:id="@+id/tvTitle"
             android:text="@string/frgFunctions.tvFunctionsTitle.text"
             android:layout_gravity="center"
-            android:layout_marginTop="@dimen/actSignup.Landscape.tvTitle.layout_marginTop"
+            android:layout_marginTop="@dimen/frgFunctions.Landscape.overwrite.tvTitle.layout_marginTop"
 
             style="@style/Title"
 
