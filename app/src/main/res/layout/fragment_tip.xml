@@ -23,7 +23,7 @@
 
     <!--region Preview (only visible in editor)-->
     <TextView
-            android:text="Cogémos un número, 35, para elevarlo al cuadrado primero ponemos 25 a la drecha:"
+            android:text="Tomamos un número, 35, para elevarlo al cuadrado primero ponemos 25 a la drecha:"
             android:visibility="gone"
             style="@style/TipText"
             tools:visibility="visible" />
