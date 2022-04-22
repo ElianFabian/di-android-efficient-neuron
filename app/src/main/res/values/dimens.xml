@@ -12,7 +12,6 @@
 
     <!--region Activities-->
     <dimen name="actSignup.btnSignup.layout_marginTop">80dp</dimen>
-    <dimen name="actSignup.tvTitle.layout_marginTop">20dp</dimen>
     <!--endregion-->
 
     <!--region Fragments-->
