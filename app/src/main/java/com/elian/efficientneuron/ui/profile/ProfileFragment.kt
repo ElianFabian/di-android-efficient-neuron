@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import com.elian.efficientneuron.R
 
 
-class ProfileFragment : Fragment(R.layout.fragment_profile)
+class ProfileFragment : Fragment()
 {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
