@@ -15,7 +15,7 @@
     <!--region Title Signup-->
     <TextView
             android:id="@+id/tvTitle"
-            android:text="@string/actSignup__tvTitle_text"
+            android:text="@string/actSignup.tvTitle.text"
 
             style="@style/Title"
 
@@ -46,7 +46,7 @@
                 android:id="@+id/tieEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/actSignup__tieEmail_hint" />
+                android:hint="@string/actSignup.tieEmail.hint" />
     </com.google.android.material.textfield.TextInputLayout>
     <!--endregion-->
 
@@ -66,7 +66,7 @@
                 android:id="@+id/tiePassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/actSignup__tilPassword_hint" />
+                android:hint="@string/actSignup.tilPassword.hint" />
     </com.google.android.material.textfield.TextInputLayout>
     <!--endregion-->
 
@@ -86,14 +86,14 @@
                 android:id="@+id/tieConfirmPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/actSignup__tieConfirmPassword_hint" />
+                android:hint="@string/actSignup.tieConfirmPassword.hint" />
     </com.google.android.material.textfield.TextInputLayout>
     <!--endregion-->
 
     <!--region Button Signup-->
     <Button
             android:id="@+id/btnSignup"
-            android:text="@string/actSignup__btnSignup_text"
+            android:text="@string/actSignup.btnSignup.text"
             android:layout_gravity="center"
             android:layout_marginTop="@dimen/actSignup.btnSignup.marginTop"
 

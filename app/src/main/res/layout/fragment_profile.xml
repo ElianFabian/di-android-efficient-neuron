@@ -72,7 +72,7 @@
     <!--region Email-->
     <TextView
             android:id="@+id/tvEmail"
-            android:text="@string/frgProfile__tvEmail_text"
+            android:text="@string/frgProfile.tvEmail.text"
 
             style="@style/LabelFor_TextInputLayout"
 
@@ -105,7 +105,7 @@
     <!--region Password-->
     <TextView
             android:id="@+id/tvPassword"
-            android:text="@string/frgProfile__tvPassword_text"
+            android:text="@string/frgProfile.tvPassword.text"
 
             style="@style/LabelFor_TextInputLayout"
 

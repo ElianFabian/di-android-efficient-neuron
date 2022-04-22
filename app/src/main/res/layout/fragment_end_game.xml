@@ -9,7 +9,7 @@
         tools:context=".ui.endgame.EndGameFragment">
 
     <TextView
-            android:text="@string/frgEndGame__labelFor_tvTotalTime_text"
+            android:text="@string/frgEndGame.LabelFor_tvTotalTime.text"
             android:layout_marginTop="40dp"
             style="@style/EndGame_LabelFor_TextView" />
 
@@ -20,7 +20,7 @@
             tools:text="35s" />
 
     <TextView
-            android:text="@string/frgEndGame__tvTimePerGame_text"
+            android:text="@string/frgEndGame.tvTimePerGame.text"
             style="@style/EndGame_LabelFor_TextView" />
 
     <TextView
@@ -36,7 +36,7 @@
         <Button
                 android:id="@+id/btnContinue"
                 android:layout_marginBottom="20dp"
-                android:text="@string/frgEndGame__btnContinue_text"
+                android:text="@string/frgEndGame.btnContinue.text"
 
                 style="@style/Button" />
     </LinearLayout>

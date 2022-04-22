@@ -76,8 +76,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         toggle = ActionBarDrawerToggle(
             this,
             binding.drawerLayout,
-            R.string.navigation_drawer_open,
-            R.string.navigation_drawer_close
+            R.string.`navigation_drawer.open`,
+            R.string.`navigation_drawer.close`
         )
 
         binding.drawerLayout.addDrawerListener(toggle)

@@ -3,57 +3,57 @@
     <string name="app_name" translatable="false">Efficient Neuron</string>
 
     <!--region Constants-->
-    <string name="const_SIGNUP">SIGN UP</string>
-    <string name="const_LOGIN">LOGIN</string>
-    <string name="const_EMAIL">Email</string>
-    <string name="const_USER">User</string>
-    <string name="const_PASSWORD">Password</string>
-    <string name="const_CONFIRM_PASSWORD">Confirm password</string>
-    <string name="const_GAMES">games</string>
-    <string name="const_SECONDS">seconds</string>
+    <string name="const.SIGNUP">SIGN UP</string>
+    <string name="const.LOGIN">LOGIN</string>
+    <string name="const.EMAIL">Email</string>
+    <string name="const.USER">User</string>
+    <string name="const.PASSWORD">Password</string>
+    <string name="const.CONFIRM_PASSWORD">Confirm password</string>
+    <string name="const.GAMES">games</string>
+    <string name="const.SECONDS">seconds</string>
     <!--endregion-->
 
-    <string name="navigation_drawer_open" translatable="false">Open</string>
-    <string name="navigation_drawer_close" translatable="false">Close</string>
+    <string name="navigation_drawer.open" translatable="false">Open</string>
+    <string name="navigation_drawer.close" translatable="false">Close</string>
 
-    <string name="navigation_menu__navHome_title">Home</string>
-    <string name="navigation_menu__navProfile_title">Profile</string>
-    <string name="navigation_menu__navTips_title">Tips</string>
-    <string name="navigation_menu__navStatistics_title">Statistics</string>
-    <string name="navigation_menu__navSettings_title">Settings</string>
-    <string name="navigation_menu__navAboutUs_title">About Us</string>
+    <string name="navigation_menu.navHome.title">Home</string>
+    <string name="navigation_menu.navProfile.title">Profile</string>
+    <string name="navigation_menu.navTips.title">Tips</string>
+    <string name="navigation_menu.navStatistics.title">Statistics</string>
+    <string name="navigation_menu.navSettings.title">Settings</string>
+    <string name="navigation_menu.navAboutUs.title">About Us</string>
 
     <!--region Activities-->
-    <string name="actLogin__tvTitle_text">@string/const_LOGIN</string>
-    <string name="actLogin__tiePassword_hint">@string/const_PASSWORD</string>
-    <string name="actLogin__btnLogin_text">@string/const_LOGIN</string>
+    <string name="actLogin.tvTitle.text">@string/const.LOGIN</string>
+    <string name="actLogin.tiePassword.hint">@string/const.PASSWORD</string>
+    <string name="actLogin.btnLogin.text">@string/const.LOGIN</string>
 
-    <string name="actSignup__tvTitle_text">@string/const_SIGNUP</string>
-    <string name="actSignup__tieEmail_hint">@string/const_EMAIL</string>
-    <string name="actSignup__tilPassword_hint">@string/const_PASSWORD</string>
-    <string name="actSignup__tieConfirmPassword_hint">@string/const_CONFIRM_PASSWORD</string>
-    <string name="actSignup__btnSignup_text">@string/const_SIGNUP</string>
+    <string name="actSignup.tvTitle.text">@string/const.SIGNUP</string>
+    <string name="actSignup.tieEmail.hint">@string/const.EMAIL</string>
+    <string name="actSignup.tilPassword.hint">@string/const.PASSWORD</string>
+    <string name="actSignup.tieConfirmPassword.hint">@string/const.CONFIRM_PASSWORD</string>
+    <string name="actSignup.btnSignup.text">@string/const.SIGNUP</string>
     <!--endregion-->
 
     <!--region Fragments-->
-    <string name="frgFunctions__tvFunctionsTitle_text">FUNCTIONS</string>
+    <string name="frgFunctions.tvFunctionsTitle.text">FUNCTIONS</string>
 
-    <string name="frgGameConfiguration__tvTitle_text">GAME CONFIGURATION</string>
-    <string name="frgGameConfiguration__tvDigits_text">Digits:</string>
-    <string name="frgGameConfiguration__tvMode_text">Mode:</string>
-    <string name="frgGameConfiguration__btnPlay_text">PLAY</string>
-    <string name="frgGameConfiguration__tvSymbolX" translatable="false">X</string>
+    <string name="frgGameConfiguration.tvTitle.text">GAME CONFIGURATION</string>
+    <string name="frgGameConfiguration.tvDigits.text">Digits:</string>
+    <string name="frgGameConfiguration.tvMode.text">Mode:</string>
+    <string name="frgGameConfiguration.btnPlay.text">PLAY</string>
+    <string name="frgGameConfiguration.tvSymbolX.text" translatable="false">X</string>
 
-    <string name="frgProfile__tvPassword_text">@string/const_PASSWORD</string>
-    <string name="frgProfile__tvEmail_text">@string/const_EMAIL</string>
+    <string name="frgProfile.tvPassword.text">@string/const.PASSWORD</string>
+    <string name="frgProfile.tvEmail.text">@string/const.EMAIL</string>
 
-    <string name="frgAboutUs__description">This application is a project to learn how to create applications on android. It\'s an exercise from the Android module in IES Portada Alta.</string>
+    <string name="frgAboutUs.description">This application is a project to learn how to create applications on android. It\'s an exercise from the Android module in IES Portada Alta.</string>
 
-    <string name="frgEndGame__labelFor_tvTotalTime_text">Total Time</string>
-    <string name="frgEndGame__tvTimePerGame_text">Time per game</string>
-    <string name="frgEndGame__btnContinue_text">CONTINUE</string>
+    <string name="frgEndGame.LabelFor_tvTotalTime.text">Total Time</string>
+    <string name="frgEndGame.tvTimePerGame.text">Time per game</string>
+    <string name="frgEndGame.btnContinue.text">CONTINUE</string>
 
-    <string name="frgTips__tvTitle_text">Tips</string>
+    <string name="frgTips.tvTitle.text">Tips</string>
     <!--endregion-->
 
 </resources>

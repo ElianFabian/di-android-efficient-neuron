@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="frgGameConfiguration__btnPlay_text">JUGAR</string>
-    <string name="const_LOGIN">INICIAR SESIÓN</string>
-    <string name="const_SIGNUP">REGISTRARSE</string>
-    <string name="const_CONFIRM_PASSWORD">Confirmar contraseña</string>
-    <string name="const_PASSWORD">Contraseña</string>
-    <string name="const_USER">Usuario</string>
-    <string name="const_SECONDS">segundos</string>
-    <string name="const_GAMES">juegos</string>
-    <string name="frgGameConfiguration__tvMode_text">Modo:</string>
-    <string name="frgGameConfiguration__tvDigits_text">Dígitos:</string>
-    <string name="frgGameConfiguration__tvTitle_text">CONFIGURACIÓN DE JUEGO</string>
-    <string name="frgFunctions__tvFunctionsTitle_text">FUNCIONES</string>
-    <string name="navigation_menu__navProfile_title">Perfil</string>
-    <string name="navigation_menu__navTips_title">Consejos</string>
-    <string name="navigation_menu__navStatistics_title">Estadísticas</string>
-    <string name="navigation_menu__navSettings_title">Configuración</string>
-    <string name="const_EMAIL">Email</string>
-    <string name="navigation_menu__navHome_title">Inicio</string>
-    <string name="frgAboutUs__description">Esta aplicación es un proyecto para aprender a cómo crear aplicaciones en Android. Es un ejercicio del módulo de Android de IES Portada Alta.</string>
+    <string name="frgGameConfiguration.btnPlay.text">JUGAR</string>
+    <string name="const.LOGIN">INICIAR SESIÓN</string>
+    <string name="const.SIGNUP">REGISTRARSE</string>
+    <string name="const.CONFIRM_PASSWORD">Confirmar contraseña</string>
+    <string name="const.PASSWORD">Contraseña</string>
+    <string name="const.USER">Usuario</string>
+    <string name="const.SECONDS">segundos</string>
+    <string name="const.GAMES">juegos</string>
+    <string name="frgGameConfiguration.tvMode.text">Modo:</string>
+    <string name="frgGameConfiguration.tvDigits.text">Dígitos:</string>
+    <string name="frgGameConfiguration.tvTitle.text">CONFIGURACIÓN DE JUEGO</string>
+    <string name="frgFunctions.tvFunctionsTitle.text">FUNCIONES</string>
+    <string name="navigation_menu.navProfile.title">Perfil</string>
+    <string name="navigation_menu.navTips.title">Consejos</string>
+    <string name="navigation_menu.navStatistics.title">Estadísticas</string>
+    <string name="navigation_menu.navSettings.title">Configuración</string>
+    <string name="const.EMAIL">Email</string>
+    <string name="navigation_menu.navHome.title">Inicio</string>
+    <string name="frgAboutUs.description">Esta aplicación es un proyecto para aprender a cómo crear aplicaciones en Android. Es un ejercicio del módulo de Android de IES Portada Alta.</string>
 </resources>

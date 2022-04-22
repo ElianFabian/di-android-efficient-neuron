@@ -32,7 +32,7 @@
     <!--region Title Game Configuration-->
     <TextView
             android:id="@+id/tvTitle"
-            android:text="@string/frgGameConfiguration__tvTitle_text"
+            android:text="@string/frgGameConfiguration.tvTitle.text"
             android:textSize="@dimen/frgGameConfiguration.overwrite.tvTitle.textSize"
 
             style="@style/Title"
@@ -47,7 +47,7 @@
     <!--region Title Digits-->
     <TextView
             android:id="@+id/tvDigits"
-            android:text="@string/frgGameConfiguration__tvDigits_text"
+            android:text="@string/frgGameConfiguration.tvDigits.text"
 
             style="@style/frgGameConfiguration_TextView"
 
@@ -85,7 +85,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/comfortaa_bold"
-            android:text="@string/frgGameConfiguration__tvSymbolX"
+            android:text="@string/frgGameConfiguration.tvSymbolX.text"
             android:textColor="@color/green_medium_sea"
             android:textSize="20sp"
 
@@ -116,7 +116,7 @@
     <!--region Title Mode-->
     <TextView
             android:id="@+id/tvMode"
-            android:text="@string/frgGameConfiguration__tvMode_text"
+            android:text="@string/frgGameConfiguration.tvMode.text"
 
             style="@style/frgGameConfiguration_TextView"
 
@@ -160,7 +160,7 @@
             app:layout_constraintStart_toEndOf="@+id/etGamesOrTime"
             app:layout_constraintTop_toTopOf="@+id/etGamesOrTime"
 
-            tools:text="@string/const_GAMES" />
+            tools:text="@string/const.GAMES" />
     <!--endregion-->
 
     <!--region Spinner Modes-->
@@ -186,7 +186,7 @@
             android:id="@+id/btnPlay"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/frgGameConfiguration__btnPlay_text"
+            android:text="@string/frgGameConfiguration.btnPlay.text"
 
             style="@style/Button"
 

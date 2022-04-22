@@ -4,30 +4,30 @@
     <group>
         <item
                 android:id="@+id/navHome"
-                android:title="@string/navigation_menu__navHome_title"
+                android:title="@string/navigation_menu.navHome.title"
                 android:icon="@drawable/ic_home" />
         <item
                 android:id="@+id/navProfile"
-                android:title="@string/navigation_menu__navProfile_title"
+                android:title="@string/navigation_menu.navProfile.title"
                 android:icon="@drawable/ic_account" />
 
         <item
                 android:id="@+id/navTips"
-                android:title="@string/navigation_menu__navTips_title"
+                android:title="@string/navigation_menu.navTips.title"
                 android:icon="@drawable/ic_tips" />
 
         <item
                 android:id="@+id/navStatistics"
-                android:title="@string/navigation_menu__navStatistics_title"
+                android:title="@string/navigation_menu.navStatistics.title"
                 android:icon="@drawable/ic_statistics" />
 
         <item
                 android:id="@+id/navSettings"
-                android:title="@string/navigation_menu__navSettings_title"
+                android:title="@string/navigation_menu.navSettings.title"
                 android:icon="@drawable/ic_settings" />
         <item
                 android:id="@+id/navAboutUs"
-                android:title="@string/navigation_menu__navAboutUs_title"
+                android:title="@string/navigation_menu.navAboutUs.title"
                 android:icon="@drawable/ic_about_us" />
     </group>
 
