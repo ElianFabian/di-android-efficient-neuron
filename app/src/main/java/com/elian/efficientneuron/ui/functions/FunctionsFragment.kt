@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.children
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.NavHostFragment
 import com.elian.efficientneuron.R
@@ -22,8 +23,7 @@ class FunctionsFragment : Fragment(), View.OnClickListener
     {
         binding = FragmentFunctionsBinding.inflate(inflater, container, false)
 
-        binding.ibAddition.setOnClickListener(this)
-        binding.ibSubtraction.setOnClickListener(this)
+        binding.glButtons.children.iterator().forEach { it.setOnClickListener(this) }
 
         return binding.root
     }
