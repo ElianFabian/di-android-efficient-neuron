@@ -13,8 +13,8 @@
     <string name="const.SECONDS">seconds</string>
     <!--endregion-->
 
-    <string name="navigation_drawer.open" translatable="false">Open</string>
-    <string name="navigation_drawer.close" translatable="false">Close</string>
+    <string name="navigation_drawer_open" translatable="false">Open</string>
+    <string name="navigation_drawer_close" translatable="false">Close</string>
 
     <string name="navigation_menu.navHome.title">Home</string>
     <string name="navigation_menu.navProfile.title">Profile</string>
