@@ -17,8 +17,7 @@ class FunctionsFragment : Fragment(), View.OnClickListener
     //region Fragment Methods
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?,
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?,
     ): View
     {
         // Inflate the layout for this fragment
@@ -39,7 +38,7 @@ class FunctionsFragment : Fragment(), View.OnClickListener
     }
 
     //endregion
-    
+
     //region Methods
 
     private fun navigateTo(action: Int)
