@@ -1,3 +1,3 @@
 package com.elian.efficientneuron.model
 
-class Tip(val id: Int, var title: String, var example: String)
+class Tip(val id: Int, val title: String, val example: String)
