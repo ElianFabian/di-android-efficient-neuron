@@ -14,7 +14,6 @@ import com.elian.efficientneuron.ui.tips.adapter.TipAdapter
 class TipsFragment : Fragment()
 {
     private lateinit var binding: FragmentTipsBinding
-
     private lateinit var tipAdapter: TipAdapter
 
     //region Fragment Methods
