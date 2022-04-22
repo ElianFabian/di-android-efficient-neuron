@@ -22,7 +22,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 {
     private lateinit var binding: ActivityMainBinding
     private lateinit var toggle: ActionBarDrawerToggle
-
     private lateinit var currentFragmentItem: Fragment
 
     //region Activity Methods
