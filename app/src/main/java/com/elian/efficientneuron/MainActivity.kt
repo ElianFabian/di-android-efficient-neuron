@@ -96,8 +96,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     // styles.xml/ibNumericButtons/android:onClick
     fun animationOnClick(view: View)
     {
-        val scaleDown = AnimationUtils.loadAnimation(this, R.anim.numeric_button_scale_down)
-        val scaleUp = AnimationUtils.loadAnimation(this, R.anim.numeric_button_scale_up)
+        val scaleDown = AnimationUtils.loadAnimation(this, R.anim.scale_down)
+        val scaleUp = AnimationUtils.loadAnimation(this, R.anim.scale_up)
 
         view.startAnimation(scaleDown)
         view.postOnAnimation { view.startAnimation(scaleUp) }
