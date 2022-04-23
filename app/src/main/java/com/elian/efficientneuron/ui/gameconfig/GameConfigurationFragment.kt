@@ -5,9 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.NavHostFragment
 import com.elian.efficientneuron.R
 import com.elian.efficientneuron.databinding.FragmentGameConfigurationBinding
+import com.elian.efficientneuron.extension.navigate
 
 class GameConfigurationFragment : Fragment(), View.OnClickListener
 {
@@ -47,7 +47,7 @@ class GameConfigurationFragment : Fragment(), View.OnClickListener
         binding.tvCornerIcon.text = arguments?.getString("operation")
     }
 
-    private fun showGame() = NavHostFragment.findNavController(this).navigate(R.id.action_gameConfigFragment_to_gameFragment)
+    private fun showGame() = navigate(R.id.action_gameConfigFragment_to_gameFragment)
 
     //endregion
 
