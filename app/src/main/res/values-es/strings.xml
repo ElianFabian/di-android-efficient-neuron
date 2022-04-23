@@ -19,4 +19,9 @@
     <string name="const.EMAIL">Email</string>
     <string name="navigation_menu.navHome.title">Inicio</string>
     <string name="frgAboutUs_descriptions">Esta aplicación es un proyecto para aprender a cómo crear aplicaciones en Android. Es un ejercicio del módulo de Android de IES Portada Alta.</string>
+    <string name="frgEndGame.btnContinue.text">CONTINUAR</string>
+    <string name="frgTips.tvTitle.text">CONSEJOS</string>
+    <string name="frgEndGame.LabelFor_tvTotalTime.text">Tiempo Total</string>
+    <string name="frgEndGame.tvTimePerGame.text">Tiempo por partida</string>
+    <string name="navigation_menu.navAboutUs.title">Sobre Nosotros</string>
 </resources>
