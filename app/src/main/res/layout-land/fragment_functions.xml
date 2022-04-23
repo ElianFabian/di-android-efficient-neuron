@@ -12,7 +12,7 @@
     <!--region Title-->
     <TextView
             android:id="@+id/tvTitle"
-            android:text="@string/frgFunctions.tvFunctionsTitle.text"
+            android:text="@string/frgFunctions.tvTitle.text"
             android:layout_gravity="center"
             android:layout_marginTop="@dimen/frgFunctions.Landscape.overwrite.tvTitle.layout_marginTop"
 

@@ -13,7 +13,7 @@
     <TextView
             android:id="@+id/tvTitle"
             style="@style/Title"
-            android:text="@string/frgFunctions.tvFunctionsTitle.text"
+            android:text="@string/frgFunctions.tvTitle.text"
 
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
