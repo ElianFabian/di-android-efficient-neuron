@@ -53,7 +53,7 @@
     <string name="frgEndGame.tvTimePerGame.text">Time per game</string>
     <string name="frgEndGame.btnContinue.text">CONTINUE</string>
 
-    <string name="frgTips.tvTitle.text">Tips</string>
+    <string name="frgTips.tvTitle.text">TIPS</string>
     <!--endregion-->
 
 </resources>
