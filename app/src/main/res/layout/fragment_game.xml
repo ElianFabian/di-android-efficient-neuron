@@ -65,7 +65,7 @@
             <!--region Button next-->
             <ImageButton
                     android:id="@+id/ibNext"
-                    style="@style/ibNumericButtons"
+                    style="@style/frgGame_ibButtons"
                     android:src="@drawable/ic_btn_next"
                     android:layout_width="305dp"
                     android:layout_height="80dp"
@@ -75,70 +75,70 @@
             <!--region 7-->
             <ImageButton
                     android:id="@+id/ib7"
-                    style="@style/ibNumericButtons"
+                    style="@style/frgGame_ibButtons"
                     android:src="@drawable/ic_btn_7" />
             <!--endregion-->
 
             <!--region 8-->
             <ImageButton
                     android:id="@+id/ib8"
-                    style="@style/ibNumericButtons"
+                    style="@style/frgGame_ibButtons"
                     android:src="@drawable/ic_btn_8" />
             <!--endregion-->
 
             <!--region 9-->
             <ImageButton
                     android:id="@+id/ib9"
-                    style="@style/ibNumericButtons"
+                    style="@style/frgGame_ibButtons"
                     android:src="@drawable/ic_btn_9" />
             <!--endregion-->
 
             <!--region 4-->
             <ImageButton
                     android:id="@+id/ib4"
-                    style="@style/ibNumericButtons"
+                    style="@style/frgGame_ibButtons"
                     android:src="@drawable/ic_btn_4" />
             <!--endregion-->
 
             <!--region 5-->
             <ImageButton
                     android:id="@+id/ib5"
-                    style="@style/ibNumericButtons"
+                    style="@style/frgGame_ibButtons"
                     android:src="@drawable/ic_btn_5" />
             <!--endregion-->
 
             <!--region 6-->
             <ImageButton
                     android:id="@+id/ib6"
-                    style="@style/ibNumericButtons"
+                    style="@style/frgGame_ibButtons"
                     android:src="@drawable/ic_btn_6" />
             <!--endregion-->
 
             <!--region 1-->
             <ImageButton
                     android:id="@+id/ib1"
-                    style="@style/ibNumericButtons"
+                    style="@style/frgGame_ibButtons"
                     android:src="@drawable/ic_btn_1" />
             <!--endregion-->
 
             <!--region 2-->
             <ImageButton
                     android:id="@+id/ib2"
-                    style="@style/ibNumericButtons"
+                    style="@style/frgGame_ibButtons"
                     android:src="@drawable/ic_btn_2" />
             <!--endregion-->
 
             <!--region 3-->
             <ImageButton
                     android:id="@+id/ib3"
-                    style="@style/ibNumericButtons"
+                    style="@style/frgGame_ibButtons"
                     android:src="@drawable/ic_btn_3" />
             <!--endregion-->
 
             <!--region 0-->
             <ImageButton
                     android:id="@+id/ib0"
-                    style="@style/ibNumericButtons"
+                    style="@style/frgGame_ibButtons"
                     android:src="@drawable/ic_btn_0"
                     android:layout_height="80dp"
                     android:layout_width="180dp"
@@ -148,7 +148,7 @@
             <!--region Button clear-->
             <ImageButton
                     android:id="@+id/ibClear"
-                    style="@style/ibNumericButtons"
+                    style="@style/frgGame_ibButtons"
                     android:layout_height="80dp"
                     android:src="@drawable/ic_btn_clear" />
             <!--endregion-->
