@@ -60,7 +60,7 @@
                     android:id="@+id/ibMultiplication"
                     style="@style/frgOperation_ImageButton"
                     android:src="@drawable/ic_multiplication"
-                    android:tag="*"
+                    android:tag="x"
                     tools:ignore="SpeakableTextPresentCheck" />
             <!--endregion-->
 
@@ -69,7 +69,7 @@
                     android:id="@+id/ibDivision"
                     style="@style/frgOperation_ImageButton"
                     android:src="@drawable/ic_division"
-                    android:tag="/"
+                    android:tag="÷"
                     tools:ignore="SpeakableTextPresentCheck" />
             <!--endregion-->
 
