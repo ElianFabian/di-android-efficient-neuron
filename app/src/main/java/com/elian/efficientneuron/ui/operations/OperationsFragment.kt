@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.NavHostFragment
 import com.elian.efficientneuron.R
 import com.elian.efficientneuron.databinding.FragmentOperationsBinding
+import com.elian.efficientneuron.ui.gameconfig.GameConfigurationFragment
 
 
 class OperationsFragment : Fragment(), View.OnClickListener
@@ -28,16 +29,16 @@ class OperationsFragment : Fragment(), View.OnClickListener
     override fun onViewCreated(view: View, savedInstanceState: Bundle?)
     {
         super.onViewCreated(view, savedInstanceState)
-        
+
         initUI()
     }
 
     override fun onClick(v: View?) = when (v?.id)
     {
-        R.id.ibAddition       -> navigateTo(R.id.action_functionsFragment_to_gameConfigurationFragment)
-        R.id.ibSubtraction    -> navigateTo(R.id.action_functionsFragment_to_gameConfigurationFragment)
-        R.id.ibMultiplication -> navigateTo(R.id.action_functionsFragment_to_gameConfigurationFragment)
-        R.id.ibDivision       -> navigateTo(R.id.action_functionsFragment_to_gameConfigurationFragment)
+        R.id.ibAddition       -> navigateTo(R.id.action_functionsFragment_to_gameConfigurationFragment, binding.ibAddition.tag.toString())
+        R.id.ibSubtraction    -> navigateTo(R.id.action_functionsFragment_to_gameConfigurationFragment, binding.ibSubtraction.tag.toString())
+        R.id.ibMultiplication -> navigateTo(R.id.action_functionsFragment_to_gameConfigurationFragment, binding.ibMultiplication.tag.toString())
+        R.id.ibDivision       -> navigateTo(R.id.action_functionsFragment_to_gameConfigurationFragment, binding.ibDivision.tag.toString())
 
         else                  -> Unit
     }
@@ -51,9 +52,12 @@ class OperationsFragment : Fragment(), View.OnClickListener
         binding.grdlButtons.children.iterator().forEach { it.setOnClickListener(this) }
     }
 
-    private fun navigateTo(action: Int)
+    private fun navigateTo(action: Int, operation: String)
     {
-        NavHostFragment.findNavController(this).navigate(action)
+        NavHostFragment.findNavController(this).navigate(action, Bundle().apply()
+        {
+            putString("operation", operation)
+        })
     }
 
     //endregion

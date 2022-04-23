@@ -15,16 +15,18 @@ class GameConfigurationFragment : Fragment(), View.OnClickListener
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View
     {
         // Inflate the layout for this fragment
         binding = FragmentGameConfigurationBinding.inflate(inflater, container, false)
 
-        binding.btnPlay.setOnClickListener(this)
-        
+        initUI()
+
         return binding.root
     }
+
+    //region View.OnClickListener
 
     override fun onClick(v: View?)
     {
@@ -34,6 +36,19 @@ class GameConfigurationFragment : Fragment(), View.OnClickListener
         }
     }
 
-    private fun showGame() = NavHostFragment.findNavController(this)
-        .navigate(R.id.action_gameConfigFragment_to_gameFragment)
+    //endregion
+
+    //region Methods
+
+    private fun initUI()
+    {
+        binding.btnPlay.setOnClickListener(this)
+
+        binding.tvCornerIcon.text = arguments?.getString("operation")
+    }
+
+    private fun showGame() = NavHostFragment.findNavController(this).navigate(R.id.action_gameConfigFragment_to_gameFragment)
+
+    //endregion
+
 }
