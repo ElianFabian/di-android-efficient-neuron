@@ -38,23 +38,23 @@ class AboutUsFragment : Fragment()
         return aboutPage
     }
 
-    val copyRightsElement: Element
-        get()
-        {
-            val copyRightsElement = Element()
-
-            copyRightsElement.iconTint = R.color.about_item_icon_color
-            copyRightsElement.iconNightTint = android.R.color.white
-            copyRightsElement.gravity = Gravity.CENTER
-            copyRightsElement.onClickListener = View.OnClickListener {
-                Toast.makeText(
-                    context,
-                    "copyrights",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
-            return copyRightsElement
-        }
+//    val copyRightsElement: Element
+//        get()
+//        {
+//            val copyRightsElement = Element()
+//
+//            copyRightsElement.iconTint = R.color.about_item_icon_color
+//            copyRightsElement.iconNightTint = android.R.color.white
+//            copyRightsElement.gravity = Gravity.CENTER
+//            copyRightsElement.onClickListener = View.OnClickListener {
+//                Toast.makeText(
+//                    context,
+//                    "copyrights",
+//                    Toast.LENGTH_SHORT
+//                ).show()
+//            }
+//            return copyRightsElement
+//        }
 
     fun simulateDayNight(currentSetting: Int)
     {
