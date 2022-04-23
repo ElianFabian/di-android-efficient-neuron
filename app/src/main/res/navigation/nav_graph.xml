@@ -7,9 +7,9 @@
 
     <fragment
         android:id="@+id/functionsFragment"
-        android:name="com.elian.efficientneuron.ui.functions.FunctionsFragment"
+        android:name="com.elian.efficientneuron.ui.operations.OperationsFragment"
         android:label="fragment_functions"
-        tools:layout="@layout/fragment_functions" >
+        tools:layout="@layout/fragment_operations" >
         <action
             android:id="@+id/action_functionsFragment_to_gameConfigurationFragment"
             app:destination="@id/gameConfigFragment" />

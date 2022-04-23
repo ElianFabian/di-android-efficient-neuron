@@ -1,4 +1,4 @@
-package com.elian.efficientneuron.ui.functions
+package com.elian.efficientneuron.ui.operations
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,12 +8,12 @@ import androidx.core.view.children
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.NavHostFragment
 import com.elian.efficientneuron.R
-import com.elian.efficientneuron.databinding.FragmentFunctionsBinding
+import com.elian.efficientneuron.databinding.FragmentOperationsBinding
 
 
-class FunctionsFragment : Fragment(), View.OnClickListener
+class OperationsFragment : Fragment(), View.OnClickListener
 {
-    private lateinit var binding: FragmentFunctionsBinding
+    private lateinit var binding: FragmentOperationsBinding
 
     //region Fragment Methods
 
@@ -21,7 +21,7 @@ class FunctionsFragment : Fragment(), View.OnClickListener
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?,
     ): View
     {
-        binding = FragmentFunctionsBinding.inflate(inflater, container, false)
+        binding = FragmentOperationsBinding.inflate(inflater, container, false)
         return binding.root
     }
 

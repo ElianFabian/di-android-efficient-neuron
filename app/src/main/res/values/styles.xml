@@ -35,7 +35,7 @@
         <item name="android:paddingBottom">@dimen/Button.paddingVertical</item>
     </style>
 
-    <style name="ibFunctions">
+    <style name="frgOperation_ImageButton">
         <item name="android:layout_width">100dp</item>
         <item name="android:layout_height">100dp</item>
         <item name="android:layout_margin">30dp</item>
@@ -43,7 +43,7 @@
         <item name="android:scaleType">fitCenter</item>
     </style>
 
-    <style name="ibFunctions_Landscape" parent="ibFunctions">
+    <style name="frgOperation_ImageButton.Landscape">
         <item name="android:layout_width">90dp</item>
         <item name="android:layout_height">90dp</item>
         <item name="android:layout_margin">20dp</item>

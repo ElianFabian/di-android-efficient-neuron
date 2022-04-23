@@ -12,7 +12,7 @@ import androidx.fragment.app.Fragment
 import com.elian.efficientneuron.databinding.ActivityMainBinding
 import com.elian.efficientneuron.extension.toast
 import com.elian.efficientneuron.ui.aboutus.AboutUsFragment
-import com.elian.efficientneuron.ui.functions.FunctionsFragment
+import com.elian.efficientneuron.ui.operations.OperationsFragment
 import com.elian.efficientneuron.ui.profile.ProfileFragment
 import com.elian.efficientneuron.ui.tips.TipsFragment
 import com.google.android.material.navigation.NavigationView
@@ -60,11 +60,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onBackPressed()
     {
         // Goes to Home Fragment unless we are already, other wise exits the app
-        if (currentFragmentItem is FunctionsFragment)
+        if (currentFragmentItem is OperationsFragment)
         {
             super.onBackPressed()
         }
-        else goToFragment(FunctionsFragment())
+        else goToFragment(OperationsFragment())
     }
 
     //endregion
@@ -111,7 +111,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     {
         when (item.itemId)
         {
-            R.id.navHome       -> goToFragment(FunctionsFragment())
+            R.id.navHome       -> goToFragment(OperationsFragment())
             R.id.navProfile    -> goToFragment(ProfileFragment())
             R.id.navTips       -> goToFragment(TipsFragment())
             R.id.navStatistics -> toast("No yet implemented.")

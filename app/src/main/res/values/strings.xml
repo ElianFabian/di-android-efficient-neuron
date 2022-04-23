@@ -36,7 +36,7 @@
     <!--endregion-->
 
     <!--region Fragments-->
-    <string name="frgFunctions.tvTitle.text">FUNCTIONS</string>
+    <string name="frgFunctions.tvTitle.text">OPERATIONS</string>
 
     <string name="frgGameConfiguration.tvTitle.text">GAME CONFIGURATION</string>
     <string name="frgGameConfiguration.tvDigits.text">Digits:</string>
