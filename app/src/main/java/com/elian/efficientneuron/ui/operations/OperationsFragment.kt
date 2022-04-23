@@ -6,10 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.children
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.NavHostFragment
 import com.elian.efficientneuron.R
 import com.elian.efficientneuron.databinding.FragmentOperationsBinding
-import com.elian.efficientneuron.ui.gameconfig.GameConfigurationFragment
+import com.elian.efficientneuron.extension.navigate
 
 
 class OperationsFragment : Fragment(), View.OnClickListener
@@ -54,7 +53,7 @@ class OperationsFragment : Fragment(), View.OnClickListener
 
     private fun navigateTo(action: Int, operation: String)
     {
-        NavHostFragment.findNavController(this).navigate(action, Bundle().apply()
+        navigate(action, Bundle().apply()
         {
             putString("operation", operation)
         })
