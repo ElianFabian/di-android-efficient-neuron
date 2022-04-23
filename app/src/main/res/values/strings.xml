@@ -47,7 +47,7 @@
     <string name="frgProfile.tvPassword.text">@string/const.PASSWORD</string>
     <string name="frgProfile.tvEmail.text">@string/const.EMAIL</string>
 
-    <string name="frgAboutUs_descriptions">This application is a project to learn how to create applications on android. It\'s an exercise from the Android module in IES Portada Alta.</string>
+    <string name="frgAboutUs_description">This application is a project to learn how to create applications on android. It\'s an exercise from the Android module in IES Portada Alta.</string>
 
     <string name="frgEndGame.LabelFor_tvTotalTime.text">Total Time</string>
     <string name="frgEndGame.tvTimePerGame.text">Time per game</string>
