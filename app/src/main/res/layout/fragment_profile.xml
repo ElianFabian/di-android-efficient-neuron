@@ -74,7 +74,7 @@
             android:id="@+id/tvEmail"
             android:text="@string/frgProfile.tvEmail.text"
 
-            style="@style/LabelFor_TextInputLayout"
+            style="@style/frgProfile_LabelFor_TextInputLayout"
 
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@id/glStart"
@@ -84,7 +84,7 @@
     <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tilEmail"
 
-            style="@style/TextInputLayout_Profile"
+            style="@style/frgProfile_TextInputLayout"
 
             app:layout_constraintStart_toStartOf="@+id/glStart"
             app:layout_constraintEnd_toEndOf="@id/glEnd"
@@ -96,7 +96,7 @@
                 android:id="@+id/tieEmail"
                 android:inputType="textEmailAddress"
 
-                style="@style/TextInputEditText_Profile"
+                style="@style/frgProfile_TextInputEditText"
 
                 tools:text="user@gmail.com" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -107,7 +107,7 @@
             android:id="@+id/tvPassword"
             android:text="@string/frgProfile.tvPassword.text"
 
-            style="@style/LabelFor_TextInputLayout"
+            style="@style/frgProfile_LabelFor_TextInputLayout"
 
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@+id/glStart"
@@ -117,7 +117,7 @@
     <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tilPassword"
 
-            style="@style/TextInputLayout_Profile"
+            style="@style/frgProfile_TextInputLayout"
 
             app:layout_constraintStart_toStartOf="@+id/glStart"
             app:layout_constraintEnd_toEndOf="@id/glEnd"
@@ -129,7 +129,7 @@
                 android:id="@+id/tiePassword"
                 android:inputType="textPassword"
 
-                style="@style/TextInputEditText_Profile"
+                style="@style/frgProfile_TextInputEditText"
 
                 tools:text="password" />
     </com.google.android.material.textfield.TextInputLayout>

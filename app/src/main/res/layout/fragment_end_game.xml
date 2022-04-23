@@ -11,21 +11,21 @@
     <TextView
             android:text="@string/frgEndGame.LabelFor_tvTotalTime.text"
             android:layout_marginTop="40dp"
-            style="@style/EndGame_LabelFor_TextView" />
+            style="@style/frgEndGame_LabelFor_TextView" />
 
     <TextView
             android:id="@+id/tvTotalTime"
             android:layout_marginBottom="30dp"
-            style="@style/EndGame_TextView_Time"
+            style="@style/frgEndGame_TextView_Time"
             tools:text="35s" />
 
     <TextView
             android:text="@string/frgEndGame.tvTimePerGame.text"
-            style="@style/EndGame_LabelFor_TextView" />
+            style="@style/frgEndGame_LabelFor_TextView" />
 
     <TextView
             android:id="@+id/TimePerGame"
-            style="@style/EndGame_TextView_Time"
+            style="@style/frgEndGame_TextView_Time"
             tools:text="2s" />
 
     <LinearLayout

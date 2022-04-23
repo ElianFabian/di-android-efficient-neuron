@@ -30,13 +30,13 @@
         <TextView
                 android:text="Tomamos un número, 35, para elevarlo al cuadrado primero ponemos 25 a la drecha:"
                 android:visibility="gone"
-                style="@style/TipText"
+                style="@style/frgTip_Text"
                 tools:visibility="visible" />
 
         <TextView
                 android:text="__25"
                 android:visibility="gone"
-                style="@style/TipNumber"
+                style="@style/frgTip_Number"
                 tools:visibility="visible" />
         <!--endregion-->
 

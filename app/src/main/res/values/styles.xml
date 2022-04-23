@@ -59,7 +59,7 @@
         <item name="android:onClick">animationOnClick</item>
     </style>
 
-    <style name="LabelFor_TextInputLayout">
+    <style name="frgProfile_LabelFor_TextInputLayout">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">40sp</item>
@@ -67,13 +67,13 @@
         <item name="android:fontFamily">@font/comfortaa</item>
     </style>
 
-    <style name="TextInputLayout_Profile">
+    <style name="frgProfile_TextInputLayout">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginTop">10dp</item>
     </style>
 
-    <style name="TextInputEditText_Profile">
+    <style name="frgProfile_TextInputEditText">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:background">@color/transparent</item>
@@ -89,7 +89,7 @@
         <item name="android:textSize">40sp</item>
     </style>
 
-    <style name="EndGame_LabelFor_TextView">
+    <style name="frgEndGame_LabelFor_TextView">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">40sp</item>
@@ -98,7 +98,7 @@
         <item name="android:layout_marginStart">20dp</item>
     </style>
 
-    <style name="EndGame_TextView_Time">
+    <style name="frgEndGame_TextView_Time">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">35sp</item>
@@ -107,7 +107,7 @@
         <item name="android:layout_marginStart">20dp</item>
     </style>
 
-    <style name="TipText">
+    <style name="frgTip_Text">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginTop">20dp</item>
@@ -117,7 +117,7 @@
         <item name="android:textSize">22sp</item>
     </style>
 
-    <style name="TipNumber">
+    <style name="frgTip_Number">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginTop">10dp</item>
