@@ -14,8 +14,7 @@ class GameConfigurationFragment : Fragment(), View.OnClickListener
     private lateinit var binding: FragmentGameConfigurationBinding
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?,
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?,
     ): View
     {
         binding = FragmentGameConfigurationBinding.inflate(layoutInflater)
