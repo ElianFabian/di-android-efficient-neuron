@@ -38,15 +38,9 @@ class OperationsFragment : Fragment()
 
     private fun initUI() = binding.grdlButtons.children.iterator().forEach()
     {
-        navigateTo(R.id.action_functionsFragment_to_gameConfigurationFragment, it.tag.toString())
-    }
-
-
-    private fun navigateTo(action: Int, operation: String)
-    {
-        navigate(action, Bundle().apply()
+        navigate(R.id.action_functionsFragment_to_gameConfigurationFragment, Bundle().apply()
         {
-            putString("operation", operation)
+            putString("operation", it.tag.toString())
         })
     }
 
