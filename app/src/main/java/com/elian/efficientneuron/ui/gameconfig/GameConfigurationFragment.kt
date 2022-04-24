@@ -33,7 +33,7 @@ class GameConfigurationFragment : Fragment(), View.OnClickListener
     override fun onClick(v: View?) = when (v?.id)
     {
         R.id.btnPlay -> navigate(R.id.action_gameConfigFragment_to_gameFragment)
-        
+
         else         -> Unit
     }
 
