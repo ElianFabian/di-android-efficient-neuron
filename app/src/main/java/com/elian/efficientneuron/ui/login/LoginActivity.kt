@@ -18,12 +18,19 @@ class LoginActivity : AppCompatActivity()
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.btnLogin.setOnClickListener {
+        initUI()
+    }
+
+    private fun initUI()
+    {
+        binding.btnLogin.setOnClickListener()
+        {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
             onDestroy()
         }
-        binding.btnSignup.setOnClickListener {
+        binding.btnSignup.setOnClickListener()
+        {
             val intent = Intent(this, SignupActivity::class.java)
             startActivity(intent)
             onDestroy()
