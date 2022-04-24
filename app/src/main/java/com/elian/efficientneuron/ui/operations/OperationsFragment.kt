@@ -36,12 +36,15 @@ class OperationsFragment : Fragment()
 
     //region Methods
 
-    private fun initUI() = binding.grdlButtons.children.iterator().forEach()
+    private fun initUI()
     {
-        navigate(R.id.action_functionsFragment_to_gameConfigurationFragment, Bundle().apply()
+        binding.grdlButtons.children.iterator().forEach()
         {
-            putString("operation", it.tag.toString())
-        })
+            navigate(R.id.action_functionsFragment_to_gameConfigurationFragment, Bundle().apply()
+            {
+                putString("operation", it.tag.toString())
+            })
+        }
     }
 
     //endregion
