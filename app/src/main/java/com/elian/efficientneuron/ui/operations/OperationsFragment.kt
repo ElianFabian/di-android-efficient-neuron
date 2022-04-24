@@ -11,7 +11,7 @@ import com.elian.efficientneuron.databinding.FragmentOperationsBinding
 import com.elian.efficientneuron.extension.navigate
 
 
-class OperationsFragment : Fragment(), View.OnClickListener
+class OperationsFragment : Fragment()
 {
     private lateinit var binding: FragmentOperationsBinding
 
@@ -32,24 +32,15 @@ class OperationsFragment : Fragment(), View.OnClickListener
         initUI()
     }
 
-    override fun onClick(v: View?) = when (v?.id)
-    {
-        R.id.ibAddition       -> navigateTo(R.id.action_functionsFragment_to_gameConfigurationFragment, "+")
-        R.id.ibSubtraction    -> navigateTo(R.id.action_functionsFragment_to_gameConfigurationFragment, "-")
-        R.id.ibMultiplication -> navigateTo(R.id.action_functionsFragment_to_gameConfigurationFragment, "x")
-        R.id.ibDivision       -> navigateTo(R.id.action_functionsFragment_to_gameConfigurationFragment, "÷")
-
-        else                  -> Unit
-    }
-
     //endregion
 
     //region Methods
 
-    private fun initUI()
+    private fun initUI() = binding.grdlButtons.children.iterator().forEach()
     {
-        binding.grdlButtons.children.iterator().forEach { it.setOnClickListener(this) }
+        navigateTo(R.id.action_functionsFragment_to_gameConfigurationFragment, it.tag.toString())
     }
+
 
     private fun navigateTo(action: Int, operation: String)
     {

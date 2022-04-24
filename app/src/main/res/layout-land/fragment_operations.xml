@@ -12,11 +12,8 @@
     <!--region Title-->
     <TextView
             android:id="@+id/tvTitle"
-            android:text="@string/frgFunctions.tvTitle.text"
-            android:layout_gravity="center"
-            android:layout_marginTop="@dimen/frgFunctions.Landscape.overwrite.tvTitle.layout_marginTop"
-
             style="@style/Title"
+            android:text="@string/frgFunctions.tvTitle.text"
 
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -39,12 +36,12 @@
                 android:rowCount="2"
                 tools:context=".ui.operations.OperationsFragment">
 
-
             <!--region Sum-->
             <ImageButton
                     android:id="@+id/ibAddition"
                     style="@style/frgOperation_ImageButton.Landscape"
                     android:src="@drawable/ic_addition"
+                    android:tag="+"
                     tools:ignore="SpeakableTextPresentCheck" />
             <!--endregion-->
 
@@ -53,6 +50,7 @@
                     android:id="@+id/ibSubtraction"
                     style="@style/frgOperation_ImageButton.Landscape"
                     android:src="@drawable/ic_subtraction"
+                    android:tag="-"
                     tools:ignore="SpeakableTextPresentCheck" />
             <!--endregion-->
 
@@ -61,6 +59,7 @@
                     android:id="@+id/ibMultiplication"
                     style="@style/frgOperation_ImageButton.Landscape"
                     android:src="@drawable/ic_multiplication"
+                    android:tag="x"
                     tools:ignore="SpeakableTextPresentCheck" />
             <!--endregion-->
 
@@ -69,6 +68,7 @@
                     android:id="@+id/ibDivision"
                     style="@style/frgOperation_ImageButton.Landscape"
                     android:src="@drawable/ic_division"
+                    android:tag="÷"
                     tools:ignore="SpeakableTextPresentCheck" />
             <!--endregion-->
 
