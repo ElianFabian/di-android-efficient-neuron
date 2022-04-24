@@ -27,6 +27,7 @@
     <string name="actLogin.tvTitle.text">@string/const.LOGIN</string>
     <string name="actLogin.tiePassword.hint">@string/const.PASSWORD</string>
     <string name="actLogin.btnLogin.text">@string/const.LOGIN</string>
+    <string name="actLogin.btnSignup.text">@string/const.SIGNUP</string>
 
     <string name="actSignup.tvTitle.text">@string/const.SIGNUP</string>
     <string name="actSignup.tieEmail.hint">@string/const.EMAIL</string>
