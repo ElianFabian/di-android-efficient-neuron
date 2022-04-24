@@ -9,7 +9,7 @@ import com.elian.efficientneuron.R
 import com.elian.efficientneuron.databinding.FragmentGameConfigurationBinding
 import com.elian.efficientneuron.extension.navigate
 
-class GameConfigurationFragment : Fragment(), View.OnClickListener
+class GameConfigurationFragment : Fragment()
 {
     private lateinit var binding: FragmentGameConfigurationBinding
 
@@ -28,22 +28,11 @@ class GameConfigurationFragment : Fragment(), View.OnClickListener
         initUI()
     }
 
-    //region View.OnClickListener
-
-    override fun onClick(v: View?) = when (v?.id)
-    {
-        R.id.btnPlay -> navigate(R.id.action_gameConfigFragment_to_gameFragment)
-
-        else         -> Unit
-    }
-
-    //endregion
-
     //region Methods
 
     private fun initUI()
     {
-        binding.btnPlay.setOnClickListener(this)
+        binding.btnPlay.setOnClickListener { navigate(R.id.action_gameConfigFragment_to_gameFragment) }
 
         binding.tvCornerIcon.text = arguments?.getString("operation")
     }
