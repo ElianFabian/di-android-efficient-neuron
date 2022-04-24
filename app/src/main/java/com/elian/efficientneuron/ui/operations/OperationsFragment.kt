@@ -34,10 +34,10 @@ class OperationsFragment : Fragment(), View.OnClickListener
 
     override fun onClick(v: View?) = when (v?.id)
     {
-        R.id.ibAddition       -> navigateTo(R.id.action_functionsFragment_to_gameConfigurationFragment, binding.ibAddition.tag.toString())
-        R.id.ibSubtraction    -> navigateTo(R.id.action_functionsFragment_to_gameConfigurationFragment, binding.ibSubtraction.tag.toString())
-        R.id.ibMultiplication -> navigateTo(R.id.action_functionsFragment_to_gameConfigurationFragment, binding.ibMultiplication.tag.toString())
-        R.id.ibDivision       -> navigateTo(R.id.action_functionsFragment_to_gameConfigurationFragment, binding.ibDivision.tag.toString())
+        R.id.ibAddition       -> navigateTo(R.id.action_functionsFragment_to_gameConfigurationFragment, "+")
+        R.id.ibSubtraction    -> navigateTo(R.id.action_functionsFragment_to_gameConfigurationFragment, "-")
+        R.id.ibMultiplication -> navigateTo(R.id.action_functionsFragment_to_gameConfigurationFragment, "x")
+        R.id.ibDivision       -> navigateTo(R.id.action_functionsFragment_to_gameConfigurationFragment, "÷")
 
         else                  -> Unit
     }
