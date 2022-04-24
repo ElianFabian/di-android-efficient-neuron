@@ -49,5 +49,4 @@ class GameConfigurationFragment : Fragment(), View.OnClickListener
     }
 
     //endregion
-
 }
