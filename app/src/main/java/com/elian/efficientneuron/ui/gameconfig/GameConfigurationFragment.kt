@@ -30,12 +30,11 @@ class GameConfigurationFragment : Fragment(), View.OnClickListener
 
     //region View.OnClickListener
 
-    override fun onClick(v: View?)
+    override fun onClick(v: View?) = when (v?.id)
     {
-        when (v?.id)
-        {
-            R.id.btnPlay -> navigate(R.id.action_gameConfigFragment_to_gameFragment)
-        }
+        R.id.btnPlay -> navigate(R.id.action_gameConfigFragment_to_gameFragment)
+        
+        else         -> Unit
     }
 
     //endregion
