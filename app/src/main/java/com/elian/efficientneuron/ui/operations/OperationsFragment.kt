@@ -21,7 +21,7 @@ class OperationsFragment : Fragment()
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?,
     ): View
     {
-        binding = FragmentOperationsBinding.inflate(layoutInflater)
+        binding = FragmentOperationsBinding.inflate(inflater)
         return binding.root
     }
 

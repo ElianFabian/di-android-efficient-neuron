@@ -17,7 +17,7 @@ class GameConfigurationFragment : Fragment()
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?,
     ): View
     {
-        binding = FragmentGameConfigurationBinding.inflate(layoutInflater)
+        binding = FragmentGameConfigurationBinding.inflate(inflater)
         return binding.root
     }
 
