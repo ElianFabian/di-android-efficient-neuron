@@ -42,7 +42,6 @@
                     android:id="@+id/ibAddition"
                     style="@style/frgOperation_ImageButton"
                     android:src="@drawable/ic_addition"
-                    android:tag="+"
                     tools:ignore="SpeakableTextPresentCheck" />
             <!--endregion-->
 
@@ -51,7 +50,6 @@
                     android:id="@+id/ibSubtraction"
                     style="@style/frgOperation_ImageButton"
                     android:src="@drawable/ic_subtraction"
-                    android:tag="-"
                     tools:ignore="SpeakableTextPresentCheck" />
             <!--endregion-->
 
@@ -60,7 +58,6 @@
                     android:id="@+id/ibMultiplication"
                     style="@style/frgOperation_ImageButton"
                     android:src="@drawable/ic_multiplication"
-                    android:tag="x"
                     tools:ignore="SpeakableTextPresentCheck" />
             <!--endregion-->
 
@@ -69,7 +66,6 @@
                     android:id="@+id/ibDivision"
                     style="@style/frgOperation_ImageButton"
                     android:src="@drawable/ic_division"
-                    android:tag="÷"
                     tools:ignore="SpeakableTextPresentCheck" />
             <!--endregion-->
 
