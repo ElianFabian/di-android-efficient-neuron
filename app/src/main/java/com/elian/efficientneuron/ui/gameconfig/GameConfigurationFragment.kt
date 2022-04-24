@@ -18,10 +18,14 @@ class GameConfigurationFragment : Fragment(), View.OnClickListener
     ): View
     {
         binding = FragmentGameConfigurationBinding.inflate(layoutInflater)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?)
+    {
+        super.onViewCreated(view, savedInstanceState)
 
         initUI()
-
-        return binding.root
     }
 
     //region View.OnClickListener
