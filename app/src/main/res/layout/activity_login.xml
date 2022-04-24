@@ -47,6 +47,7 @@
     <!--region User-->
     <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tilEmail"
+            
             style="@style/TextInputLayout"
 
             app:layout_constraintBottom_toBottomOf="parent"
