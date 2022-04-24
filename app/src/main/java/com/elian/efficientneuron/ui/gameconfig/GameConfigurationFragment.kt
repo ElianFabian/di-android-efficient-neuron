@@ -18,8 +18,7 @@ class GameConfigurationFragment : Fragment(), View.OnClickListener
         savedInstanceState: Bundle?,
     ): View
     {
-        // Inflate the layout for this fragment
-        binding = FragmentGameConfigurationBinding.inflate(inflater, container, false)
+        binding = FragmentGameConfigurationBinding.inflate(layoutInflater)
 
         initUI()
 
@@ -32,7 +31,7 @@ class GameConfigurationFragment : Fragment(), View.OnClickListener
     {
         when (v?.id)
         {
-            R.id.btnPlay -> showGame()
+            R.id.btnPlay -> navigate(R.id.action_gameConfigFragment_to_gameFragment)
         }
     }
 
@@ -46,8 +45,6 @@ class GameConfigurationFragment : Fragment(), View.OnClickListener
 
         binding.tvCornerIcon.text = arguments?.getString("operation")
     }
-
-    private fun showGame() = navigate(R.id.action_gameConfigFragment_to_gameFragment)
 
     //endregion
 
