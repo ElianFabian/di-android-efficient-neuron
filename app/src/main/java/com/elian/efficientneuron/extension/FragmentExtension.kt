@@ -12,5 +12,5 @@ fun Fragment.navigate(action: Int)
 
 fun Fragment.navigate(action: Int, args: Bundle?)
 {
-    navigate(action, args)
+    NavHostFragment.findNavController(this).navigate(action, args)
 }
