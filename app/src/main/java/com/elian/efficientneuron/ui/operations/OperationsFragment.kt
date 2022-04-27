@@ -36,9 +36,9 @@ class OperationsFragment : Fragment()
 
     //region Methods
 
-    private fun initUI()
+    private fun initUI() = binding.grdlButtons.children.iterator().forEach()
     {
-        binding.grdlButtons.children.iterator().forEach()
+        it.setOnClickListener()
         {
             navigate(R.id.action_functionsFragment_to_gameConfigurationFragment, Bundle().apply()
             {
