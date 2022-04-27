@@ -87,7 +87,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private fun goToFragment(fragment: Fragment)
     {
         currentFragmentItem = fragment
-        supportFragmentManager.beginTransaction().apply {
+        supportFragmentManager.beginTransaction().apply()
+        {
             replace(R.id.nav_host_fragment, fragment)
             commit()
         }
