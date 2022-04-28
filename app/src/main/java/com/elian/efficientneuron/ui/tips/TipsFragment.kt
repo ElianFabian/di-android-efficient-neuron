@@ -51,8 +51,8 @@ class TipsFragment : Fragment(),
     private fun initAdapter()
     {
         tipAdapter = RecyclerViewAdapter(
-            R.layout.item_tip,
             binding.rvTips,
+            R.layout.item_tip,
             LinearLayoutManager(context, RecyclerView.VERTICAL, false)
         )
 
