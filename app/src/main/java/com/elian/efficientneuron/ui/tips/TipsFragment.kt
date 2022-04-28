@@ -68,7 +68,6 @@ class TipsFragment : Fragment(),
         tipAdapter.setOnBindViewHolderListener(this)
         tipAdapter.setOnItemClickListener(this)
         tipAdapter.setOnItemLongClickListener(this)
-
     }
 
     //endregion
