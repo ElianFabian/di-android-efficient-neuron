@@ -8,8 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlin.collections.ArrayList
 
 class RecyclerViewAdapter<T>(
-    @LayoutRes private val itemLayout: Int,
     recyclerView: RecyclerView,
+    @LayoutRes private val itemLayout: Int,
     layoutManager: RecyclerView.LayoutManager,
     private val list: ArrayList<T> = arrayListOf(),
 ) :
