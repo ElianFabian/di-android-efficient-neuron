@@ -23,7 +23,7 @@ class RecyclerViewAdapter<T>(
 
     private var onItemCLickListener = OnItemClickListener<T> { _, _, _ -> }
     private var onItemLongCLickListener = OnItemLongClickListener<T> { _, _, _ -> false }
-    private var onBindViewHolderListener = OnBindViewHolderListener<T> { _, _ -> }
+    private var onBindViewHolderListener = OnBindViewHolderListener<T> { _, _, _ -> }
 
     fun interface OnItemClickListener<T>
     {
@@ -37,7 +37,7 @@ class RecyclerViewAdapter<T>(
 
     fun interface OnBindViewHolderListener<T>
     {
-        fun onBindViewHolder(view: View, item: T)
+        fun onBindViewHolder(view: View, item: T, position: Int)
     }
 
     fun loadList(list: List<T>)
@@ -81,7 +81,7 @@ class RecyclerViewAdapter<T>(
         holder.itemView.setOnClickListener(holder)
         holder.itemView.setOnLongClickListener(holder)
 
-        onBindViewHolderListener.onBindViewHolder(holder.itemView, item)
+        onBindViewHolderListener.onBindViewHolder(holder.itemView, item, position)
     }
 
     override fun getItemCount(): Int = list.size

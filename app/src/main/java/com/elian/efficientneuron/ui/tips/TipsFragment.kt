@@ -74,7 +74,7 @@ class TipsFragment : Fragment(),
 
     //region RecyclerViewAdapter.OnBindViewHolderListener<>
 
-    override fun onBindViewHolder(view: View, item: Tip)
+    override fun onBindViewHolder(view: View, item: Tip, position: Int)
     {
         val binding = ItemTipBinding.bind(view)
 
