@@ -11,7 +11,6 @@ import com.elian.efficientneuron.R
 import com.elian.efficientneuron.databinding.FragmentTipsBinding
 import com.elian.efficientneuron.databinding.ItemTipBinding
 import com.elian.efficientneuron.model.Tip
-import com.elian.efficientneuron.ui.tips.adapter.TipAdapter
 import com.elian.efficientneuron.utils.RecyclerViewAdapter
 
 class TipsFragment : Fragment(),
