@@ -3,21 +3,34 @@ package com.elian.efficientneuron.utils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import androidx.annotation.LayoutRes
 import androidx.recyclerview.widget.RecyclerView
+import java.util.*
 
 class RecyclerViewAdapter<T>(
     @LayoutRes private val itemLayout: Int,
-    private val itemListener: RecyclerViewItemClickListener<T>,
 ) :
     RecyclerView.Adapter<RecyclerViewAdapter<T>.ViewHolder>()
 {
-	private val list = arrayListOf<T>()
+    private val list = arrayListOf<T>()
 
-    interface RecyclerViewItemClickListener<T>
+    private var onItemCLickListener = OnItemClickListener<T> { _, _, _ -> }
+    private var onItemLongCLickListener = OnItemLongClickListener<T> { _, _, _ -> false }
+    private var onBindViewHolderListener = OnBindViewHolder<T> { _, _ -> }
+
+    fun interface OnItemClickListener<T>
     {
         fun onItemClick(v: View?, selectedItem: T, position: Int)
+    }
+
+    fun interface OnItemLongClickListener<T>
+    {
         fun onItemLongClick(v: View?, selectedItem: T, position: Int): Boolean
+    }
+
+    fun interface OnBindViewHolder<T>
+    {
         fun onBindViewHolder(view: View, item: T)
     }
 
@@ -27,6 +40,21 @@ class RecyclerViewAdapter<T>(
         this.list.addAll(list)
 
         notifyDataSetChanged()
+    }
+
+    fun setOnItemClickListener(listener: OnItemClickListener<T>)
+    {
+        onItemCLickListener = listener
+    }
+
+    fun setOnItemLongClickListener(listener: OnItemLongClickListener<T>)
+    {
+        onItemLongCLickListener = listener
+    }
+
+    fun setOnBindViewHolderListener(listener: OnBindViewHolder<T>)
+    {
+        onBindViewHolderListener = listener
     }
 
     //region RecyclerView.Adapter
@@ -60,17 +88,17 @@ class RecyclerViewAdapter<T>(
             view.setOnClickListener(this@ViewHolder)
             view.setOnLongClickListener(this@ViewHolder)
 
-            itemListener.onBindViewHolder(view, item)
+            onBindViewHolderListener.onBindViewHolder(view, item)
         }
 
         override fun onClick(v: View?)
         {
-            itemListener.onItemClick(v, list[layoutPosition], layoutPosition)
+            onItemCLickListener.onItemClick(v, list[layoutPosition], layoutPosition)
         }
 
         override fun onLongClick(v: View?): Boolean
         {
-            return itemListener.onItemLongClick(v, list[layoutPosition], layoutPosition)
+            return onItemLongCLickListener.onItemLongClick(v, list[layoutPosition], layoutPosition)
         }
     }
 }

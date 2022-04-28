@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.elian.efficientneuron.R
@@ -14,7 +15,9 @@ import com.elian.efficientneuron.model.Tip
 import com.elian.efficientneuron.utils.RecyclerViewAdapter
 
 class TipsFragment : Fragment(),
-    RecyclerViewAdapter.RecyclerViewItemClickListener<Tip>
+    RecyclerViewAdapter.OnItemClickListener<Tip>,
+    RecyclerViewAdapter.OnItemLongClickListener<Tip>,
+    RecyclerViewAdapter.OnBindViewHolder<Tip>
 {
     private lateinit var binding: FragmentTipsBinding
     private lateinit var tipAdapter: RecyclerViewAdapter<Tip>
@@ -47,7 +50,7 @@ class TipsFragment : Fragment(),
 
     private fun initAdapter()
     {
-        tipAdapter = RecyclerViewAdapter(R.layout.item_tip, this)
+        tipAdapter = RecyclerViewAdapter(R.layout.item_tip)
 
         tipAdapter.load(listOf(
             Tip(id = 1,
@@ -58,6 +61,10 @@ class TipsFragment : Fragment(),
                 example = "35² = (3·4)25 = 1125")
         ))
 
+        tipAdapter.setOnItemClickListener(this)
+        tipAdapter.setOnItemLongClickListener(this)
+        tipAdapter.setOnBindViewHolderListener(this)
+
         val layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
 
         binding.rvTips.layoutManager = layoutManager
@@ -66,12 +73,14 @@ class TipsFragment : Fragment(),
 
     override fun onItemClick(v: View?, selectedItem: Tip, position: Int)
     {
-        TODO("Not yet implemented")
+        Toast.makeText(context, "You clicked a tip", Toast.LENGTH_SHORT).show()
     }
 
     override fun onItemLongClick(v: View?, selectedItem: Tip, position: Int): Boolean
     {
-        TODO("Not yet implemented")
+        Toast.makeText(context, "You long clicked a tip", Toast.LENGTH_SHORT).show()
+        
+        return true
     }
 
     override fun onBindViewHolder(view: View, item: Tip)
