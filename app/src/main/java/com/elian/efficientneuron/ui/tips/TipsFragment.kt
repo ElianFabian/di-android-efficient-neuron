@@ -56,7 +56,7 @@ class TipsFragment : Fragment(),
             LinearLayoutManager(context, RecyclerView.VERTICAL, false)
         )
 
-        tipAdapter.loadList(listOf(
+        tipAdapter.replaceList(listOf(
             Tip(id = 1,
                 title = "Squares of numbers ending in 5",
                 example = "35² = (3·4)25 = 1125"),
