@@ -15,7 +15,7 @@ import com.elian.efficientneuron.model.Tip
 import com.elian.efficientneuron.utils.RecyclerViewAdapter
 
 class TipsFragment : Fragment(),
-    RecyclerViewAdapter.OnBindViewHolder<Tip>,
+    RecyclerViewAdapter.OnBindViewHolderListener<Tip>,
     RecyclerViewAdapter.OnItemClickListener<Tip>,
     RecyclerViewAdapter.OnItemLongClickListener<Tip>
 {

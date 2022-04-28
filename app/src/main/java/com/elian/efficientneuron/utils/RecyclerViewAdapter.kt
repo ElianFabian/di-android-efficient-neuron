@@ -3,10 +3,8 @@ package com.elian.efficientneuron.utils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
 import androidx.annotation.LayoutRes
 import androidx.recyclerview.widget.RecyclerView
-import java.util.*
 import kotlin.collections.ArrayList
 
 class RecyclerViewAdapter<T>(
@@ -17,7 +15,7 @@ class RecyclerViewAdapter<T>(
 {
     private var onItemCLickListener = OnItemClickListener<T> { _, _, _ -> }
     private var onItemLongCLickListener = OnItemLongClickListener<T> { _, _, _ -> false }
-    private var onBindViewHolderListener = OnBindViewHolder<T> { _, _ -> }
+    private var onBindViewHolderListener = OnBindViewHolderListener<T> { _, _ -> }
 
     fun interface OnItemClickListener<T>
     {
@@ -29,7 +27,7 @@ class RecyclerViewAdapter<T>(
         fun onItemLongClick(v: View?, selectedItem: T, position: Int): Boolean
     }
 
-    fun interface OnBindViewHolder<T>
+    fun interface OnBindViewHolderListener<T>
     {
         fun onBindViewHolder(view: View, item: T)
     }
@@ -52,7 +50,7 @@ class RecyclerViewAdapter<T>(
         onItemLongCLickListener = listener
     }
 
-    fun setOnBindViewHolderListener(listener: OnBindViewHolder<T>)
+    fun setOnBindViewHolderListener(listener: OnBindViewHolderListener<T>)
     {
         onBindViewHolderListener = listener
     }
