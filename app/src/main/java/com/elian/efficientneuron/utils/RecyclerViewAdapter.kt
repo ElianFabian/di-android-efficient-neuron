@@ -34,7 +34,7 @@ class RecyclerViewAdapter<T>(
         fun onBindViewHolder(view: View, item: T)
     }
 
-    fun load(list: List<T>)
+    fun loadList(list: List<T>)
     {
         this.list.clear()
         this.list.addAll(list)

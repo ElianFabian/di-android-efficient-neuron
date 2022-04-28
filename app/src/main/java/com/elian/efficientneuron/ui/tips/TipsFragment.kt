@@ -52,7 +52,7 @@ class TipsFragment : Fragment(),
     {
         tipAdapter = RecyclerViewAdapter(R.layout.item_tip)
 
-        tipAdapter.load(listOf(
+        tipAdapter.loadList(listOf(
             Tip(id = 1,
                 title = "Squares of numbers ending in 5",
                 example = "35² = (3·4)25 = 1125"),
