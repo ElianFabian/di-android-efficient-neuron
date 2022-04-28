@@ -50,7 +50,11 @@ class TipsFragment : Fragment(),
 
     private fun initAdapter()
     {
-        tipAdapter = RecyclerViewAdapter(R.layout.item_tip)
+        tipAdapter = RecyclerViewAdapter(
+            R.layout.item_tip,
+            binding.rvTips,
+            LinearLayoutManager(context, RecyclerView.VERTICAL, false)
+        )
 
         tipAdapter.loadList(listOf(
             Tip(id = 1,
@@ -65,10 +69,6 @@ class TipsFragment : Fragment(),
         tipAdapter.setOnItemClickListener(this)
         tipAdapter.setOnItemLongClickListener(this)
 
-        val layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
-
-        binding.rvTips.layoutManager = layoutManager
-        binding.rvTips.adapter = tipAdapter
     }
 
     //endregion
