@@ -71,6 +71,10 @@ class TipsFragment : Fragment(),
         binding.rvTips.adapter = tipAdapter
     }
 
+    //endregion
+
+    //region RecyclerViewAdapter.OnBindViewHolderListener<>
+
     override fun onBindViewHolder(view: View, item: Tip)
     {
         val binding = ItemTipBinding.bind(view)
@@ -79,10 +83,18 @@ class TipsFragment : Fragment(),
         binding.tvExample.text = item.example
     }
 
+    //endregion
+
+    //region RecyclerViewAdapter.OnItemClickListener<>
+
     override fun onItemClick(v: View?, selectedItem: Tip, position: Int)
     {
         Toast.makeText(context, "You clicked a tip", Toast.LENGTH_SHORT).show()
     }
+
+    //endregion
+
+    //region RecyclerViewAdapter.OnItemLongClickListener<>
 
     override fun onItemLongClick(v: View?, selectedItem: Tip, position: Int): Boolean
     {
