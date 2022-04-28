@@ -15,9 +15,9 @@ import com.elian.efficientneuron.model.Tip
 import com.elian.efficientneuron.utils.RecyclerViewAdapter
 
 class TipsFragment : Fragment(),
+    RecyclerViewAdapter.OnBindViewHolder<Tip>,
     RecyclerViewAdapter.OnItemClickListener<Tip>,
-    RecyclerViewAdapter.OnItemLongClickListener<Tip>,
-    RecyclerViewAdapter.OnBindViewHolder<Tip>
+    RecyclerViewAdapter.OnItemLongClickListener<Tip>
 {
     private lateinit var binding: FragmentTipsBinding
     private lateinit var tipAdapter: RecyclerViewAdapter<Tip>
@@ -61,14 +61,22 @@ class TipsFragment : Fragment(),
                 example = "35² = (3·4)25 = 1125")
         ))
 
+        tipAdapter.setOnBindViewHolderListener(this)
         tipAdapter.setOnItemClickListener(this)
         tipAdapter.setOnItemLongClickListener(this)
-        tipAdapter.setOnBindViewHolderListener(this)
 
         val layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
 
         binding.rvTips.layoutManager = layoutManager
         binding.rvTips.adapter = tipAdapter
+    }
+
+    override fun onBindViewHolder(view: View, item: Tip)
+    {
+        val binding = ItemTipBinding.bind(view)
+
+        binding.tvTitle.text = item.title
+        binding.tvExample.text = item.example
     }
 
     override fun onItemClick(v: View?, selectedItem: Tip, position: Int)
@@ -79,16 +87,8 @@ class TipsFragment : Fragment(),
     override fun onItemLongClick(v: View?, selectedItem: Tip, position: Int): Boolean
     {
         Toast.makeText(context, "You long clicked a tip", Toast.LENGTH_SHORT).show()
-        
+
         return true
-    }
-
-    override fun onBindViewHolder(view: View, item: Tip)
-    {
-        val binding = ItemTipBinding.bind(view)
-
-        binding.tvTitle.text = item.title
-        binding.tvExample.text = item.example
     }
 
     //endregion
