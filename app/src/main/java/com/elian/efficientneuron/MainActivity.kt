@@ -96,7 +96,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     // styles.xml/frgGame_ibButtons/android:onClick
-    fun animationOnClick(view: View)
+    fun animation_onClick(view: View)
     {
         val scaleDown = AnimationUtils.loadAnimation(this, R.anim.scale_down)
         val scaleUp = AnimationUtils.loadAnimation(this, R.anim.scale_up)
