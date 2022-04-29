@@ -29,7 +29,7 @@
             tools:text="+" />
     <!--endregion-->
 
-    <!--region Title Game Configuration-->
+    <!--region Title-->
     <TextView
             android:id="@+id/tvTitle"
             android:text="@string/frgGameConfiguration.tvTitle.text"

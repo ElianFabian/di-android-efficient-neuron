@@ -12,7 +12,7 @@
 
         tools:context=".ui.signup.SignupActivity">
 
-    <!--region Title Signup-->
+    <!--region Title-->
     <TextView
             android:id="@+id/tvTitle"
             android:text="@string/actSignup.tvTitle.text"

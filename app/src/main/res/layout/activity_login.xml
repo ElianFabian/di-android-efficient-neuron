@@ -30,7 +30,7 @@
             app:layout_constraintStart_toEndOf="parent" />
     <!--endregion-->
 
-    <!--region Title Login-->
+    <!--region Title-->
     <TextView
             android:id="@+id/tvTitle"
             android:text="@string/actLogin.tvTitle.text"
