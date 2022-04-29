@@ -55,6 +55,8 @@
     <string name="frgEndGame.btnContinue.text">CONTINUE</string>
 
     <string name="frgTips.tvTitle.text">TIPS</string>
+    
+    <string name="frgStatistics.tvTitle.text">STATISTICS</string>
     <!--endregion-->
 
 </resources>
