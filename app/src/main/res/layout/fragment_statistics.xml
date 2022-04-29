@@ -7,8 +7,17 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/blue_columbia"
-        
+
         tools:context=".ui.statistics.StatisticsFragment">
+
+    <!--region Guide Lines-->
+    <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/glStart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="12dp" />
+    <!--endregion-->
 
     <!--region Title-->
     <TextView
@@ -23,5 +32,160 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.03" />
     <!--endregion-->
+
+    <TextView
+            android:id="@+id/tvTimeLabel"
+            android:text="@string/frgStatistics.tvTimeLabel.text"
+
+            style="@style/frgStatistics_LabelFor_TextView"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvTitle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/glStart"
+            app:layout_constraintVertical_bias="0.06"
+            app:layout_constraintHorizontal_bias="0" />
+
+    <TextView
+            android:id="@+id/tvTime"
+
+            style="@style/frgStatistics_TextView"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvTimeLabel"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/tvTimeLabel"
+            app:layout_constraintVertical_bias="0.02"
+            app:layout_constraintHorizontal_bias="0.0"
+
+            tools:text="44.5 h" />
+
+    <TextView
+            android:id="@+id/tvGamesLabel"
+            android:text="@string/frgStatistics.tvGamesLabel.text"
+
+            style="@style/frgStatistics_LabelFor_TextView"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvTitle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/glStart"
+            app:layout_constraintVertical_bias="0.06"
+            app:layout_constraintHorizontal_bias="0.8" />
+
+    <TextView
+            android:id="@+id/tvGames"
+
+            style="@style/frgStatistics_TextView"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvGamesLabel"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/tvGamesLabel"
+            app:layout_constraintVertical_bias="0.02"
+            app:layout_constraintHorizontal_bias="0.0"
+
+            tools:text="32040" />
+
+    <TextView
+            android:id="@+id/tvTimePerGameLabel"
+            android:text="@string/frgStatistics.tvTimePerGameLabel.text"
+
+            style="@style/frgStatistics_LabelFor_TextView"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvTitle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/glStart"
+            app:layout_constraintVertical_bias="0.32"
+            app:layout_constraintHorizontal_bias="0" />
+
+    <TextView
+            android:id="@+id/tvTimePerGame"
+
+            style="@style/frgStatistics_TextView"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvTimePerGameLabel"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/tvTimePerGameLabel"
+            app:layout_constraintVertical_bias="0.02"
+            app:layout_constraintHorizontal_bias="0.0"
+
+            tools:text="5 s" />
+
+    <TextView
+            android:id="@+id/tvErrorRateLabel"
+            android:text="@string/frgStatistics.tvErrorRateLabel.text"
+
+            style="@style/frgStatistics_LabelFor_TextView"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvTitle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/glStart"
+            app:layout_constraintVertical_bias="0.58"
+            app:layout_constraintHorizontal_bias="0" />
+
+    <TextView
+            android:id="@+id/tvErrorRate"
+
+            style="@style/frgStatistics_TextView"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvErrorRateLabel"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/tvErrorRateLabel"
+            app:layout_constraintVertical_bias="0.02"
+            app:layout_constraintHorizontal_bias="0.0"
+            tools:text="8.2%" />
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:background="@color/blue_midnight"
+            android:gravity="center_horizontal"
+
+            app:layout_constraintStart_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+        <TextView
+                android:id="@+id/tvAddition"
+                android:text="+"
+
+                style="@style/frgStatistics_TextView_Operation"
+
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+                android:id="@+id/tvSubtraction"
+                android:text="-"
+
+                style="@style/frgStatistics_TextView_Operation"
+
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+                android:id="@+id/tvMultiplication"
+                android:text="×"
+
+                style="@style/frgStatistics_TextView_Operation"
+
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+                android:id="@+id/tvDivision"
+                android:text="÷"
+
+                style="@style/frgStatistics_TextView_Operation"
+
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

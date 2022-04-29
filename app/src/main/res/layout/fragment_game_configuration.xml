@@ -14,7 +14,7 @@
     <!--region Icon operation-->
     <TextView
             android:id="@+id/tvCornerIcon"
-            android:layout_width="29dp"
+            android:layout_width="30dp"
             android:layout_height="38dp"
             android:fontFamily="@font/comfortaa_bold"
             android:includeFontPadding="false"

@@ -57,6 +57,10 @@
     <string name="frgTips.tvTitle.text">TIPS</string>
     
     <string name="frgStatistics.tvTitle.text">STATISTICS</string>
+    <string name="frgStatistics.tvTimeLabel.text">Time</string>
+    <string name="frgStatistics.tvGamesLabel.text">Games</string>
+    <string name="frgStatistics.tvTimePerGameLabel.text">Time per game</string>
+    <string name="frgStatistics.tvErrorRateLabel.text">Error rate</string>
     <!--endregion-->
 
 </resources>
