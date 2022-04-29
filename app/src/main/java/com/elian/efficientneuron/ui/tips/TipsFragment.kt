@@ -75,10 +75,11 @@ class TipsFragment : Fragment(),
 
     override fun onBindViewHolder(view: View, item: Tip, position: Int)
     {
-        val binding = ItemTipBinding.bind(view)
-
-        binding.tvTitle.text = item.title
-        binding.tvExample.text = item.example
+        ItemTipBinding.bind(view).apply()
+        {
+            tvTitle.text = item.title
+            tvExample.text = item.example
+        }
     }
 
     //endregion
