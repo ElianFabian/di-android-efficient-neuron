@@ -51,9 +51,7 @@ class TipsFragment : Fragment(),
     private fun initAdapter()
     {
         tipAdapter = RecyclerViewAdapter(
-            recyclerView = binding.rvTips,
             itemLayout = R.layout.item_tip,
-            layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false),
             list = arrayListOf(
                 Tip(id = 1,
                     title = "Squares of numbers ending in 5",
@@ -63,6 +61,9 @@ class TipsFragment : Fragment(),
                     example = "35² = (3·4)25 = 1125")
             )
         )
+
+        binding.rvTips.adapter = tipAdapter
+        binding.rvTips.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
 
         tipAdapter.setOnBindViewHolderListener(this)
         tipAdapter.setOnItemClickListener(this)
