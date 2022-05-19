@@ -10,9 +10,9 @@ import com.elian.efficientneuron.databinding.FragmentTipBinding
 class TipFragment : Fragment()
 {
     private lateinit var binding: FragmentTipBinding
-    
+
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?,
     ): View
     {
         binding = FragmentTipBinding.inflate(inflater)
