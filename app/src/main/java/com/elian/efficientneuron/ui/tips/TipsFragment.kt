@@ -13,6 +13,7 @@ import com.elian.efficientneuron.databinding.FragmentTipsBinding
 import com.elian.efficientneuron.databinding.ItemTipBinding
 import com.elian.efficientneuron.model.Tip
 import com.elian.efficientneuron.util.RecyclerViewAdapter
+import com.elian.efficientneuron.util.extension.toast
 
 class TipsFragment : Fragment(),
     RecyclerViewAdapter.OnBindViewHolderListener<Tip>,
@@ -89,7 +90,7 @@ class TipsFragment : Fragment(),
 
     override fun onItemClick(v: View?, selectedItem: Tip, position: Int)
     {
-        Toast.makeText(context, "You clicked a tip", Toast.LENGTH_SHORT).show()
+        toast("You clicked a tip", Toast.LENGTH_SHORT)
     }
 
     //endregion
