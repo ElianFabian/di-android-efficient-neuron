@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import com.elian.efficientneuron.databinding.ActivityMainBinding
-import com.elian.efficientneuron.extension.toast
+import com.elian.efficientneuron.util.extension.toast
 import com.elian.efficientneuron.ui.aboutus.AboutUsFragment
 import com.elian.efficientneuron.ui.operations.OperationsFragment
 import com.elian.efficientneuron.ui.profile.ProfileFragment

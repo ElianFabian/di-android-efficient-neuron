@@ -1,4 +1,4 @@
-package com.elian.efficientneuron.extension
+package com.elian.efficientneuron.util.extension
 
 import android.os.Bundle
 import androidx.annotation.IdRes

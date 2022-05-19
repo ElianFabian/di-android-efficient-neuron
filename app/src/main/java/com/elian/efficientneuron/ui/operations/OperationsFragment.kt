@@ -8,7 +8,7 @@ import androidx.core.view.children
 import androidx.fragment.app.Fragment
 import com.elian.efficientneuron.R
 import com.elian.efficientneuron.databinding.FragmentOperationsBinding
-import com.elian.efficientneuron.extension.navigate
+import com.elian.efficientneuron.util.extension.navigate
 
 
 class OperationsFragment : Fragment()

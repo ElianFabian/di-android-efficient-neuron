@@ -12,7 +12,7 @@ import com.elian.efficientneuron.R
 import com.elian.efficientneuron.databinding.FragmentTipsBinding
 import com.elian.efficientneuron.databinding.ItemTipBinding
 import com.elian.efficientneuron.model.Tip
-import com.elian.efficientneuron.utils.RecyclerViewAdapter
+import com.elian.efficientneuron.util.RecyclerViewAdapter
 
 class TipsFragment : Fragment(),
     RecyclerViewAdapter.OnBindViewHolderListener<Tip>,

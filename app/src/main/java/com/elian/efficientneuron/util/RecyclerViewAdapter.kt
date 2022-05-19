@@ -1,4 +1,4 @@
-package com.elian.efficientneuron.utils
+package com.elian.efficientneuron.util
 
 import android.view.LayoutInflater
 import android.view.View

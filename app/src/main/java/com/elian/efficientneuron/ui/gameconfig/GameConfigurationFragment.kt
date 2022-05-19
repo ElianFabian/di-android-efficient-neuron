@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.elian.efficientneuron.R
 import com.elian.efficientneuron.databinding.FragmentGameConfigurationBinding
-import com.elian.efficientneuron.extension.navigate
+import com.elian.efficientneuron.util.extension.navigate
 
 class GameConfigurationFragment : Fragment()
 {
