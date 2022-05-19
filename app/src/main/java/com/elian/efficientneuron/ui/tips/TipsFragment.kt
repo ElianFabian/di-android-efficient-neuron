@@ -99,7 +99,7 @@ class TipsFragment : Fragment(),
 
     override fun onItemLongClick(v: View?, selectedItem: Tip, position: Int): Boolean
     {
-        Toast.makeText(context, "You long clicked a tip", Toast.LENGTH_SHORT).show()
+        toast("You long clicked a tip", Toast.LENGTH_SHORT)
 
         return true
     }
