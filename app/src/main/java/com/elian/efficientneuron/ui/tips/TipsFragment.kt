@@ -90,7 +90,7 @@ class TipsFragment : Fragment(),
 
     override fun onItemClick(v: View?, selectedItem: Tip, position: Int)
     {
-        toast("You clicked a tip", Toast.LENGTH_SHORT)
+        toast("You clicked a tip")
     }
 
     //endregion
