@@ -5,7 +5,6 @@ import android.widget.Toast
 import androidx.annotation.IdRes
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.NavHostFragment
-import com.elian.efficientneuron.R
 
 fun Fragment.navigate(@IdRes action: Int, args: Bundle? = null)
 {
