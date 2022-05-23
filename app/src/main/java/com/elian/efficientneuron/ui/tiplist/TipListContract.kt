@@ -1,10 +1,10 @@
-package com.elian.efficientneuron.ui.tips
+package com.elian.efficientneuron.ui.tiplist
 
 import com.elian.efficientneuron.base.BasePresenter
 import com.elian.efficientneuron.data.model.Tip
 
 
-interface TipsContract
+interface TipListContract
 {
     interface View : OnRepositoryCallback
 

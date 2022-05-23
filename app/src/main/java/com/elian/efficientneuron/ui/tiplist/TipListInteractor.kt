@@ -1,15 +1,15 @@
-package com.elian.efficientneuron.ui.tips
+package com.elian.efficientneuron.ui.tiplist
 
 import com.elian.efficientneuron.data.model.Tip
 import com.elian.efficientneuron.data.repository.TipsStaticRepository
 
-class TipsInteractor(private val listener: TipsContract.OnInteractorListener) :
-    TipsContract.Interactor,
-    TipsContract.OnRepositoryCallback
+class TipListInteractor(private val listener: TipListContract.OnInteractorListener) :
+    TipListContract.Interactor,
+    TipListContract.OnRepositoryCallback
 {
-    private val repository: TipsContract.Repository = TipsStaticRepository
+    private val repository: TipListContract.Repository = TipsStaticRepository
     
-    //region TipsContract.Interactor
+    //region TipListContract.Interactor
 
     override fun getList()
     {
@@ -18,7 +18,7 @@ class TipsInteractor(private val listener: TipsContract.OnInteractorListener) :
 
     //endregion
 
-    //region TipsContract.OnRepositoryCallback
+    //region TipListContract.OnRepositoryCallback
 
     override fun onGetListSuccess(listFromRepository: List<Tip>)
     {

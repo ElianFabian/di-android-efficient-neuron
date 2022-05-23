@@ -1,12 +1,12 @@
-package com.elian.efficientneuron.ui.tips
+package com.elian.efficientneuron.ui.tiplist
 
 import com.elian.efficientneuron.data.model.Tip
 
-class TipsPresenter(private var view: TipsContract.View?) :
-    TipsContract.Presenter,
-    TipsContract.OnInteractorListener
+class TipListPresenter(private var view: TipListContract.View?) :
+    TipListContract.Presenter,
+    TipListContract.OnInteractorListener
 {
-    private var interactor: TipsContract.Interactor? = TipsInteractor(this)
+    private var interactor: TipListContract.Interactor? = TipListInteractor(this)
 
     //region TipListContract.IPresenter
 
@@ -23,7 +23,7 @@ class TipsPresenter(private var view: TipsContract.View?) :
 
     //endregion
     
-    //region TipsContract.OnRepositoryCallback
+    //region TipListContract.OnRepositoryCallback
 
     override fun onGetListSuccess(listFromRepository: List<Tip>)
     {

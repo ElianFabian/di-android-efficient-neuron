@@ -1,4 +1,4 @@
-package com.elian.efficientneuron.ui.tips
+package com.elian.efficientneuron.ui.tiplist
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,21 +9,23 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.elian.efficientneuron.R
 import com.elian.efficientneuron.base.BaseFragment
-import com.elian.efficientneuron.databinding.FragmentTipsBinding
 import com.elian.efficientneuron.databinding.ItemTipBinding
 import com.elian.efficientneuron.data.model.Tip
+import com.elian.efficientneuron.databinding.FragmentTipListBinding
+import com.elian.efficientneuron.ui.tipmanager.TipManagerFragment
 import com.elian.efficientneuron.util.RecyclerViewAdapter
+import com.elian.efficientneuron.util.extension.goToFragment
 import com.elian.efficientneuron.util.extension.toast
 
-class TipsFragment : BaseFragment(),
-    TipsContract.View,
+class TipListFragment : BaseFragment(),
+    TipListContract.View,
     RecyclerViewAdapter.OnBindViewHolderListener<Tip>,
     RecyclerViewAdapter.OnItemClickListener<Tip>,
     RecyclerViewAdapter.OnItemLongClickListener<Tip>
 {
-    private lateinit var binding: FragmentTipsBinding
+    private lateinit var binding: FragmentTipListBinding
     private val tipAdapter = RecyclerViewAdapter<Tip>(itemLayout = R.layout.item_tip)
-    override lateinit var presenter: TipsContract.Presenter
+    override lateinit var presenter: TipListContract.Presenter
 
     //region Fragment Methods
 
@@ -31,14 +33,14 @@ class TipsFragment : BaseFragment(),
     {
         super.onCreate(savedInstanceState)
         
-        presenter = TipsPresenter(this)
+        presenter = TipListPresenter(this)
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?,
     ): View
     {
-        binding = FragmentTipsBinding.inflate(inflater)
+        binding = FragmentTipListBinding.inflate(inflater)
         return binding.root
     }
 
@@ -70,6 +72,17 @@ class TipsFragment : BaseFragment(),
         tipAdapter.setOnItemLongClickListener(this)
     }
 
+    private fun sendSelectedTip_To_TaskEditFragment(tip: Tip, position: Int)
+    {
+        activity?.goToFragment(TipManagerFragment(), Bundle().apply()
+        {
+            putSerializable(getString(R.string.bundleKey_selectedTip), tip)
+            putInt(getString(R.string.bundleKey_selectedTip_position), position)
+        })
+        
+        activity?.supportFragmentManager
+    }
+
     //endregion
 
     //region RecyclerViewAdapter.OnBindViewHolderListener<>
@@ -89,7 +102,7 @@ class TipsFragment : BaseFragment(),
 
     override fun onItemClick(v: View?, selectedItem: Tip, position: Int)
     {
-        toast("You clicked a tip")
+        sendSelectedTip_To_TaskEditFragment(selectedItem, position)
     }
 
     //endregion
@@ -105,7 +118,7 @@ class TipsFragment : BaseFragment(),
 
     //endregion
 
-    //region TipsContract.View
+    //region TipListContract.View
 
     override fun onGetListSuccess(listFromRepository: List<Tip>)
     {

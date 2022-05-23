@@ -1,19 +1,13 @@
 package com.elian.efficientneuron.util.extension
 
-import android.app.Activity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.annotation.IdRes
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.NavHostFragment
+import com.elian.efficientneuron.R
 
-
-fun Fragment.navigate(@IdRes action: Int)
-{
-    NavHostFragment.findNavController(this).navigate(action)
-}
-
-fun Fragment.navigate(@IdRes action: Int, args: Bundle?)
+fun Fragment.navigate(@IdRes action: Int, args: Bundle? = null)
 {
     NavHostFragment.findNavController(this).navigate(action, args)
 }

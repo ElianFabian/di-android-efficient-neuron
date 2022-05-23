@@ -1,3 +1,5 @@
 package com.elian.efficientneuron.data.model
 
-class Tip(val id: Int, val title: String, val example: String)
+import java.io.Serializable
+
+data class Tip(var id: Int = 0, val title: String, val example: String) : Serializable

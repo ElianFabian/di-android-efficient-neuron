@@ -2,6 +2,12 @@
 
     <string name="app_name" translatable="false">Efficient Neuron</string>
 
+    <string name="bundleKey_selectedTip" translatable="false">selectedTip</string>
+    <string name="bundleKey_selectedTip_position" translatable="false">selectedTipPosition</string>
+
+    <string name="error_title_empty" translatable="false">Title can\'t be emtpy</string>
+    <string name="error_example_empty" translatable="false">Example can\'t be empty</string>
+
     <!--region Constants-->
     <string name="const.SIGNUP">SIGN UP</string>
     <string name="const.LOGIN">LOGIN</string>
@@ -55,12 +61,14 @@
     <string name="frgEndGame.btnContinue.text">CONTINUE</string>
 
     <string name="frgTips.tvTitle.text">TIPS</string>
-    
+
     <string name="frgStatistics.tvTitle.text">STATISTICS</string>
     <string name="frgStatistics.tvTimeLabel.text">Time</string>
     <string name="frgStatistics.tvGamesLabel.text">Games</string>
     <string name="frgStatistics.tvTimePerGameLabel.text">Time per game</string>
     <string name="frgStatistics.tvErrorRateLabel.text">Error rate</string>
+    <string name="frgTipManager_tieTitle_hint">Title</string>
+    <string name="frgTipManager_tieExample_hint">Example</string>
     <!--endregion-->
 
 </resources>

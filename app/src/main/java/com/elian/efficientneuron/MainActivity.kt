@@ -15,7 +15,8 @@ import com.elian.efficientneuron.ui.aboutus.AboutUsFragment
 import com.elian.efficientneuron.ui.operations.OperationsFragment
 import com.elian.efficientneuron.ui.profile.ProfileFragment
 import com.elian.efficientneuron.ui.statistics.StatisticsFragment
-import com.elian.efficientneuron.ui.tips.TipsFragment
+import com.elian.efficientneuron.ui.tiplist.TipListFragment
+import com.elian.efficientneuron.util.extension.goToFragment
 import com.google.android.material.navigation.NavigationView
 
 
@@ -85,16 +86,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         binding.navigationView.setNavigationItemSelectedListener(this)
     }
 
-    private fun goToFragment(fragment: Fragment)
-    {
-        currentFragmentItem = fragment
-        supportFragmentManager.beginTransaction().apply()
-        {
-            replace(R.id.nav_host_fragment, fragment)
-            commit()
-        }
-    }
-
     // styles.xml/frgGame_ibButtons/android:onClick
     fun animation_onClick(view: View)
     {
@@ -115,7 +106,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         {
             R.id.navHome       -> goToFragment(OperationsFragment())
             R.id.navProfile    -> goToFragment(ProfileFragment())
-            R.id.navTips       -> goToFragment(TipsFragment())
+            R.id.navTips       -> goToFragment(TipListFragment())
             R.id.navStatistics -> goToFragment(StatisticsFragment())
             R.id.navSettings   -> toast("No yet implemented.")
             R.id.navAboutUs    -> goToFragment(AboutUsFragment())

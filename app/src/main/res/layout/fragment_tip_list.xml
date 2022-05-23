@@ -6,7 +6,7 @@
         android:layout_height="match_parent"
         android:background="@color/blue_columbia"
         android:orientation="vertical"
-        tools:context=".ui.tips.TipsFragment">
+        tools:context=".ui.tiplist.TipListFragment">
 
     <TextView
             android:id="@+id/tvTitle"
