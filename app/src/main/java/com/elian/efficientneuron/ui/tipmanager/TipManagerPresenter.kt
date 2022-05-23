@@ -1,7 +1,6 @@
 package com.elian.efficientneuron.ui.tipmanager
 
 import com.elian.efficientneuron.data.model.Tip
-import com.elian.efficientneuron.util.extension.toast
 
 class TipManagerPresenter(private var view: TipManagerContract.View?) :
     TipManagerContract.Presenter,
