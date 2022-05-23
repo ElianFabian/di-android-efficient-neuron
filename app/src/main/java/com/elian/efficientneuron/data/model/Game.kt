@@ -1,4 +1,4 @@
-package com.elian.efficientneuron.model
+package com.elian.efficientneuron.data.model
 
 import java.time.LocalDate
 

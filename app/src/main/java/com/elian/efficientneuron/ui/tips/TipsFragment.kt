@@ -1,7 +1,6 @@
 package com.elian.efficientneuron.ui.tips
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,21 +8,31 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.elian.efficientneuron.R
+import com.elian.efficientneuron.base.BaseFragment
 import com.elian.efficientneuron.databinding.FragmentTipsBinding
 import com.elian.efficientneuron.databinding.ItemTipBinding
-import com.elian.efficientneuron.model.Tip
+import com.elian.efficientneuron.data.model.Tip
 import com.elian.efficientneuron.util.RecyclerViewAdapter
 import com.elian.efficientneuron.util.extension.toast
 
-class TipsFragment : Fragment(),
+class TipsFragment : BaseFragment(),
+    TipsContract.View,
     RecyclerViewAdapter.OnBindViewHolderListener<Tip>,
     RecyclerViewAdapter.OnItemClickListener<Tip>,
     RecyclerViewAdapter.OnItemLongClickListener<Tip>
 {
     private lateinit var binding: FragmentTipsBinding
-    private lateinit var tipAdapter: RecyclerViewAdapter<Tip>
+    private val tipAdapter = RecyclerViewAdapter<Tip>(itemLayout = R.layout.item_tip)
+    override lateinit var presenter: TipsContract.Presenter
 
     //region Fragment Methods
+
+    override fun onCreate(savedInstanceState: Bundle?)
+    {
+        super.onCreate(savedInstanceState)
+        
+        presenter = TipsPresenter(this)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?,
@@ -46,23 +55,13 @@ class TipsFragment : Fragment(),
 
     private fun initUI()
     {
-        initAdapter()
+        initRecyclerViewAdapter()
+        
+        presenter.getList()
     }
 
-    private fun initAdapter()
+    private fun initRecyclerViewAdapter()
     {
-        tipAdapter = RecyclerViewAdapter(
-            itemLayout = R.layout.item_tip,
-            list = arrayListOf(
-                Tip(id = 1,
-                    title = "Squares of numbers ending in 5",
-                    example = "35² = (3·4)25 = 1125"),
-                Tip(id = 2,
-                    title = "Squares of numbers ending in 5",
-                    example = "35² = (3·4)25 = 1125")
-            )
-        )
-
         binding.rvTips.adapter = tipAdapter
         binding.rvTips.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
 
@@ -102,6 +101,19 @@ class TipsFragment : Fragment(),
         toast("You long clicked a tip", Toast.LENGTH_SHORT)
 
         return true
+    }
+
+    //endregion
+
+    //region TipsContract.View
+
+    override fun onGetListSuccess(listFromRepository: List<Tip>)
+    {
+        tipAdapter.replaceList(listFromRepository)
+    }
+
+    override fun onGetListFailure()
+    {
     }
 
     //endregion
