@@ -59,6 +59,11 @@ class TipListFragment : BaseFragment(),
     {
         initRecyclerViewAdapter()
         
+        binding.fab.setOnClickListener()
+        {
+            activity?.goToFragment(TipManagerFragment())
+        }
+        
         presenter.getList()
     }
 

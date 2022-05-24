@@ -16,6 +16,7 @@ import com.elian.efficientneuron.ui.operations.OperationsFragment
 import com.elian.efficientneuron.ui.profile.ProfileFragment
 import com.elian.efficientneuron.ui.statistics.StatisticsFragment
 import com.elian.efficientneuron.ui.tiplist.TipListFragment
+import com.elian.efficientneuron.ui.tipmanager.TipManagerFragment
 import com.elian.efficientneuron.util.extension.goToFragment
 import com.google.android.material.navigation.NavigationView
 
@@ -102,14 +103,16 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean
     {
-        when (item.itemId)
+        currentFragmentItem = when (item.itemId)
         {
             R.id.navHome       -> goToFragment(OperationsFragment())
             R.id.navProfile    -> goToFragment(ProfileFragment())
             R.id.navTips       -> goToFragment(TipListFragment())
             R.id.navStatistics -> goToFragment(StatisticsFragment())
-            R.id.navSettings   -> toast("No yet implemented.")
+            //R.id.navSettings   ->  toast("No yet implemented.")
             R.id.navAboutUs    -> goToFragment(AboutUsFragment())
+
+            else               -> Fragment()
         }
 
         binding.drawerLayout.closeDrawer(GravityCompat.START)

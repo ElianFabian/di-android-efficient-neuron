@@ -6,7 +6,7 @@ import androidx.fragment.app.FragmentActivity
 import com.elian.efficientneuron.R
 
 
-fun FragmentActivity.goToFragment(fragment: Fragment, args: Bundle? = null)
+fun FragmentActivity.goToFragment(fragment: Fragment, args: Bundle? = null): Fragment
 {
     fragment.arguments = args
 
@@ -15,4 +15,6 @@ fun FragmentActivity.goToFragment(fragment: Fragment, args: Bundle? = null)
         replace(R.id.nav_host_fragment, fragment)
         commit()
     }
+
+    return fragment
 }

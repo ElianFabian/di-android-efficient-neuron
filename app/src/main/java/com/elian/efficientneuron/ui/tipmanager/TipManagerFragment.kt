@@ -101,6 +101,7 @@ class TipManagerFragment : BaseFragment(), TipManagerContract.View
 
     override fun onAddSuccess()
     {
+        activity?.goToFragment(TipListFragment())
     }
 
     override fun onAddFailure()
