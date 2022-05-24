@@ -43,7 +43,7 @@ class SignupActivity : BaseActivity(),
     {
         binding.btnSignup.setOnClickListener()
         {
-            presenter.signup(userFromFields, binding.tieRepeatPassword.text.toString())
+            presenter.signup(userFromFields, binding.tieRepeatedPassword.text.toString())
         }
     }
 
