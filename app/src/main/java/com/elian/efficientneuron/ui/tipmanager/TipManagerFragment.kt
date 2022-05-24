@@ -10,7 +10,6 @@ import com.elian.efficientneuron.data.model.Tip
 import com.elian.efficientneuron.databinding.FragmentTipManagerBinding
 import com.elian.efficientneuron.ui.tiplist.TipListFragment
 import com.elian.efficientneuron.util.extension.goToFragment
-import com.elian.efficientneuron.util.extension.toast
 
 
 class TipManagerFragment : BaseFragment(), TipManagerContract.View
