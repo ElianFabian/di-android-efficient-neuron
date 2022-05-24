@@ -3,7 +3,7 @@
     <string name="frgGameConfiguration.btnPlay.text">JUGAR</string>
     <string name="const.LOGIN">INICIAR SESIÓN</string>
     <string name="const.SIGNUP">REGISTRARSE</string>
-    <string name="const.CONFIRM_PASSWORD">Confirmar contraseña</string>
+    <string name="const.REPEAT_PASSWORD">Confirmar contraseña</string>
     <string name="const.PASSWORD">Contraseña</string>
     <string name="const.USER">Usuario</string>
     <string name="const.SECONDS">segundos</string>

@@ -5,7 +5,7 @@
     <string name="bundleKey_selectedTip" translatable="false">selectedTip</string>
     <string name="bundleKey_selectedTip_position" translatable="false">selectedTipPosition</string>
 
-    <string name="error_title_empty" translatable="false">Title can\'t be emtpy</string>
+    <string name="error_title_empty" translatable="false">Title can\'t be empty</string>
     <string name="error_example_empty" translatable="false">Example can\'t be empty</string>
 
     <!--region Constants-->
@@ -14,7 +14,7 @@
     <string name="const.EMAIL">Email</string>
     <string name="const.USER">User</string>
     <string name="const.PASSWORD">Password</string>
-    <string name="const.CONFIRM_PASSWORD">Confirm password</string>
+    <string name="const.REPEAT_PASSWORD">Repeat password</string>
     <string name="const.GAMES">games</string>
     <string name="const.SECONDS">seconds</string>
     <!--endregion-->
@@ -38,7 +38,7 @@
     <string name="actSignup.tvTitle.text">@string/const.SIGNUP</string>
     <string name="actSignup.tieEmail.hint">@string/const.EMAIL</string>
     <string name="actSignup.tilPassword.hint">@string/const.PASSWORD</string>
-    <string name="actSignup.tieConfirmPassword.hint">@string/const.CONFIRM_PASSWORD</string>
+    <string name="actSignup.tieRepeatPassword.hint">@string/const.REPEAT_PASSWORD</string>
     <string name="actSignup.btnSignup.text">@string/const.SIGNUP</string>
     <!--endregion-->
 

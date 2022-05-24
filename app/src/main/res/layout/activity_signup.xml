@@ -64,6 +64,7 @@
 
         <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/tiePassword"
+                android:inputType="textPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/actSignup.tilPassword.hint" />
@@ -83,10 +84,11 @@
             app:layout_constraintTop_toBottomOf="@+id/tilEmail">
 
         <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/tieConfirmPassword"
+                android:id="@+id/tieRepeatPassword"
+                android:inputType="textPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/actSignup.tieConfirmPassword.hint" />
+                android:hint="@string/actSignup.tieRepeatPassword.hint" />
     </com.google.android.material.textfield.TextInputLayout>
     <!--endregion-->
 
