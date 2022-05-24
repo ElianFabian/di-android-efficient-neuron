@@ -6,6 +6,7 @@ import com.elian.efficientneuron.base.BaseActivity
 import com.elian.efficientneuron.data.model.User
 import com.elian.efficientneuron.databinding.ActivitySignupBinding
 import com.elian.efficientneuron.ui.login.LoginActivity
+import com.elian.efficientneuron.util.extension.toast
 
 class SignupActivity : BaseActivity(),
     SignupContract.View
@@ -69,17 +70,17 @@ class SignupActivity : BaseActivity(),
 
     override fun setPasswordsDontMatchError()
     {
-        
+        toast("Passwords don't match")
     }
 
     override fun setEmailInvalidError()
     {
-        
+        toast("Email is invalid")
     }
 
     override fun setPasswordInvalidError()
     {
-        
+        toast("setPasswordInvalidError")
     }
 
     override fun onSignupSuccess()
@@ -89,7 +90,7 @@ class SignupActivity : BaseActivity(),
 
     override fun onSignupFailure()
     {
-
+        toast("Signup failed")
     }
 
     //endregion
