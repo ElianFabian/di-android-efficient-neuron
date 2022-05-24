@@ -4,16 +4,16 @@ import com.elian.efficientneuron.data.model.User
 import com.elian.efficientneuron.data.repository.FirebaseRepository
 import com.elian.efficientneuron.util.EmailUtils
 
-class SignupInteractor(private val listener: SignupContract.OnInteractorListener) :
-    SignupContract.Interactor,
-    SignupContract.OnRepositoryCallback
+class SignUpInteractor(private val listener: SignUpContract.OnInteractorListener) :
+    SignUpContract.Interactor,
+    SignUpContract.OnRepositoryCallback
 {
-    private val repository: SignupContract.Repository = FirebaseRepository
+    private val repository: SignUpContract.Repository = FirebaseRepository
 
-    //region SignupContract.Interactor
-    override fun signup(user: User)
+    //region SignUpContract.Interactor
+    override fun signUp(user: User)
     {
-        repository.signup(this, user)
+        repository.signUp(this, user)
     }
 
     override fun validateFields(user: User, repeatedPassword: String): Boolean = when
@@ -28,16 +28,16 @@ class SignupInteractor(private val listener: SignupContract.OnInteractorListener
 
     //endregion
 
-    //region SignupContract.OnRepositoryCallback
+    //region SignUpContract.OnRepositoryCallback
 
-    override fun onSignupSuccess()
+    override fun onSignUpSuccess()
     {
-        listener.onSignupSuccess()
+        listener.onSignUpSuccess()
     }
 
-    override fun onSignupFailure()
+    override fun onSignUpFailure()
     {
-        listener.onSignupFailure()
+        listener.onSignUpFailure()
     }
 
     //endregion

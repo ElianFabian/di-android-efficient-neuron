@@ -10,7 +10,7 @@
         android:orientation="vertical"
         android:background="@color/blue_columbia"
 
-        tools:context=".ui.signup.SignupActivity">
+        tools:context=".ui.signup.SignUpActivity">
 
     <!--region Title-->
     <TextView

@@ -5,15 +5,15 @@ import android.os.Bundle
 import com.elian.efficientneuron.base.BaseActivity
 import com.elian.efficientneuron.data.model.User
 import com.elian.efficientneuron.databinding.ActivitySignupBinding
-import com.elian.efficientneuron.ui.login.LoginActivity
+import com.elian.efficientneuron.ui.login.LogInActivity
 import com.elian.efficientneuron.util.extension.toast
 
-class SignupActivity : BaseActivity(),
-    SignupContract.View
+class SignUpActivity : BaseActivity(),
+    SignUpContract.View
 {
     private lateinit var binding: ActivitySignupBinding
 
-    override lateinit var presenter: SignupContract.Presenter
+    override lateinit var presenter: SignUpContract.Presenter
 
     private val userFromFields: User
         get() = User(
@@ -30,7 +30,7 @@ class SignupActivity : BaseActivity(),
         binding = ActivitySignupBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        presenter = SignupPresenter(this)
+        presenter = SignUpPresenter(this)
 
         initUI()
     }
@@ -43,20 +43,20 @@ class SignupActivity : BaseActivity(),
     {
         binding.btnSignup.setOnClickListener()
         {
-            presenter.signup(userFromFields, binding.tieRepeatedPassword.text.toString())
+            presenter.signUp(userFromFields, binding.tieRepeatedPassword.text.toString())
         }
     }
 
     private fun goToLoginActivity()
     {
-        val intent = Intent(this, LoginActivity::class.java)
+        val intent = Intent(this, LogInActivity::class.java)
         startActivity(intent)
         onDestroy()
     }
 
     //endregion
 
-    //region SignupContract.View
+    //region SignUpContract.View
 
     override fun showProgress()
     {
@@ -83,12 +83,12 @@ class SignupActivity : BaseActivity(),
         toast("setPasswordInvalidError")
     }
 
-    override fun onSignupSuccess()
+    override fun onSignUpSuccess()
     {
         goToLoginActivity()
     }
 
-    override fun onSignupFailure()
+    override fun onSignUpFailure()
     {
         toast("Signup failed")
     }

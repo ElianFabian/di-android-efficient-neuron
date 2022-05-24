@@ -3,7 +3,7 @@ package com.elian.efficientneuron.ui.signup
 import com.elian.efficientneuron.base.BasePresenter
 import com.elian.efficientneuron.data.model.User
 
-interface SignupContract
+interface SignUpContract
 {
     interface View : OnRepositoryCallback
     {
@@ -18,22 +18,22 @@ interface SignupContract
 
     interface Presenter : BasePresenter
     {
-        fun signup(user: User, repeatedPassword: String)
+        fun signUp(user: User, repeatedPassword: String)
     }
 
     interface Interactor
     {
-        fun signup(user: User)
+        fun signUp(user: User)
 
         /**
-         * @Returns true if there are any error.
+         * Returns true if there are any error.
          */
         fun validateFields(user: User, repeatedPassword: String): Boolean
     }
 
     interface Repository
     {
-        fun signup(callback: OnSignupCallback, user: User)
+        fun signUp(callback: OnSignUpCallback, user: User)
     }
 
 
@@ -46,11 +46,11 @@ interface SignupContract
     }
 
     interface OnRepositoryCallback :
-        OnSignupCallback
+        OnSignUpCallback
 
-    interface OnSignupCallback
+    interface OnSignUpCallback
     {
-        fun onSignupSuccess()
-        fun onSignupFailure()
+        fun onSignUpSuccess()
+        fun onSignUpFailure()
     }
 }

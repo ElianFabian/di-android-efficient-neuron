@@ -2,11 +2,11 @@ package com.elian.efficientneuron.ui.signup
 
 import com.elian.efficientneuron.data.model.User
 
-class SignupPresenter(private var view: SignupContract.View?) :
-    SignupContract.Presenter,
-    SignupContract.OnInteractorListener
+class SignUpPresenter(private var view: SignUpContract.View?) :
+    SignUpContract.Presenter,
+    SignUpContract.OnInteractorListener
 {
-    private var interactor: SignupContract.Interactor? = SignupInteractor(this)
+    private var interactor: SignUpContract.Interactor? = SignUpInteractor(this)
 
     //region SignupListContract.Presenter
 
@@ -16,11 +16,11 @@ class SignupPresenter(private var view: SignupContract.View?) :
         interactor = null
     }
 
-    override fun signup(user: User, repeatedPassword: String)
+    override fun signUp(user: User, repeatedPassword: String)
     {
         if (interactor!!.validateFields(user, repeatedPassword)) return
 
-        interactor?.signup(user)
+        interactor?.signUp(user)
     }
 
     override fun onPasswordsDontMatchError()
@@ -40,16 +40,16 @@ class SignupPresenter(private var view: SignupContract.View?) :
 
     //endregion
 
-    //region SignupContract.OnInteractorListener
+    //region SignUpContract.OnInteractorListener
 
-    override fun onSignupSuccess()
+    override fun onSignUpSuccess()
     {
-        view?.onSignupSuccess()
+        view?.onSignUpSuccess()
     }
 
-    override fun onSignupFailure()
+    override fun onSignUpFailure()
     {
-        view?.onSignupFailure()
+        view?.onSignUpFailure()
     }
 
     //endregion

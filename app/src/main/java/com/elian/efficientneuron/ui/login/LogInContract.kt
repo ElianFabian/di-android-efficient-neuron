@@ -3,7 +3,7 @@ package com.elian.efficientneuron.ui.login
 import com.elian.efficientneuron.base.BasePresenter
 import com.elian.efficientneuron.data.model.User
 
-interface LoginContract
+interface LogInContract
 {
     interface View : OnRepositoryCallback
     {
@@ -21,20 +21,20 @@ interface LoginContract
     interface Interactor : Actions
     {
         /**
-         * @Returns true if there's any error.
+         * Returns true if there's any error.
          */
         fun validateUser(user: User): Boolean
     }
 
     interface Repository
     {
-        fun login(callback: OnLoginCallback, user: User)
+        fun logIn(callback: OnLogInCallback, user: User)
     }
 
 
     interface Actions
     {
-        fun login(user: User)
+        fun logIn(user: User)
     }
 
     interface OnInteractorListener : OnRepositoryCallback
@@ -44,11 +44,11 @@ interface LoginContract
     }
 
     interface OnRepositoryCallback :
-        OnLoginCallback
+        OnLogInCallback
 
-    interface OnLoginCallback
+    interface OnLogInCallback
     {
-        fun onLoginSuccess()
-        fun onLoginFailure()
+        fun onLogInSuccess()
+        fun onLogInFailure()
     }
 }

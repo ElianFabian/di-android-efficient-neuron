@@ -2,11 +2,11 @@ package com.elian.efficientneuron.ui.login
 
 import com.elian.efficientneuron.data.model.User
 
-class LoginPresenter(private var view: LoginContract.View?) :
-    LoginContract.Presenter,
-    LoginContract.OnInteractorListener
+class LogInPresenter(private var view: LogInContract.View?) :
+    LogInContract.Presenter,
+    LogInContract.OnInteractorListener
 {
-    private var interactor: LoginContract.Interactor? = LoginInteractor(this)
+    private var interactor: LogInContract.Interactor? = LogInInteractor(this)
 
     //region LoginListContract.Presenter
 
@@ -16,16 +16,16 @@ class LoginPresenter(private var view: LoginContract.View?) :
         interactor = null
     }
 
-    override fun login(user: User)
+    override fun logIn(user: User)
     {
         if (interactor!!.validateUser(user)) return
 
-        interactor?.login(user)
+        interactor?.logIn(user)
     }
 
     //endregion
 
-    //region LoginContract.OnInteractorListener
+    //region LogInContract.OnInteractorListener
 
     override fun onEmailEmptyError()
     {
@@ -37,14 +37,14 @@ class LoginPresenter(private var view: LoginContract.View?) :
         view?.setPasswordEmptyError()
     }
 
-    override fun onLoginSuccess()
+    override fun onLogInSuccess()
     {
-        view?.onLoginSuccess()
+        view?.onLogInSuccess()
     }
 
-    override fun onLoginFailure()
+    override fun onLogInFailure()
     {
-        view?.onLoginFailure()
+        view?.onLogInFailure()
     }
 
     //endregion

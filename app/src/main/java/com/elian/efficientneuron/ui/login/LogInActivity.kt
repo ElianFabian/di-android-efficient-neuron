@@ -7,15 +7,15 @@ import com.elian.efficientneuron.R
 import com.elian.efficientneuron.base.BaseActivity
 import com.elian.efficientneuron.data.model.User
 import com.elian.efficientneuron.databinding.ActivityLoginBinding
-import com.elian.efficientneuron.ui.signup.SignupActivity
+import com.elian.efficientneuron.ui.signup.SignUpActivity
 import com.elian.efficientneuron.util.extension.toast
 
-class LoginActivity : BaseActivity(),
-    LoginContract.View
+class LogInActivity : BaseActivity(),
+    LogInContract.View
 {
     private lateinit var binding: ActivityLoginBinding
 
-    override lateinit var presenter: LoginContract.Presenter
+    override lateinit var presenter: LogInContract.Presenter
 
     private val userFromFields: User
         get() = User(
@@ -32,7 +32,7 @@ class LoginActivity : BaseActivity(),
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        presenter = LoginPresenter(this)
+        presenter = LogInPresenter(this)
 
         initUI()
     }
@@ -45,7 +45,7 @@ class LoginActivity : BaseActivity(),
     {
         binding.btnLogin.setOnClickListener()
         {
-            presenter.login(userFromFields)
+            presenter.logIn(userFromFields)
         }
         binding.btnSignup.setOnClickListener()
         {
@@ -62,14 +62,14 @@ class LoginActivity : BaseActivity(),
 
     private fun goToSignupActivity()
     {
-        val intent = Intent(this, SignupActivity::class.java)
+        val intent = Intent(this, SignUpActivity::class.java)
         startActivity(intent)
         onDestroy()
     }
 
     //endregion
 
-    //region LoginContract.View
+    //region LogInContract.View
 
     override fun showProgress()
     {
@@ -96,12 +96,12 @@ class LoginActivity : BaseActivity(),
         toast(R.string.error_invalid_credentials)
     }
 
-    override fun onLoginSuccess()
+    override fun onLogInSuccess()
     {
         goToMainActivity()
     }
 
-    override fun onLoginFailure()
+    override fun onLogInFailure()
     {
 
     }
