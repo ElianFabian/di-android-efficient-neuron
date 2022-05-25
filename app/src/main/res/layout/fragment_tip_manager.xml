@@ -47,6 +47,7 @@
 
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+
             app:layout_constraintEnd_toStartOf="@+id/glEnd"
             app:layout_constraintBottom_toTopOf="@+id/glBottom"
             app:layout_constraintTop_toBottomOf="@+id/glTop"
@@ -72,12 +73,13 @@
 
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:foreground="@drawable/shape_round_stroke"
+
             app:layout_constraintEnd_toStartOf="@+id/glEnd"
             app:layout_constraintBottom_toTopOf="@+id/glBottom"
             app:layout_constraintTop_toBottomOf="@+id/tilName"
             app:layout_constraintStart_toEndOf="@+id/glStart"
-            app:layout_constraintVertical_bias="0.08"
-            android:foreground="@drawable/shape_round_stroke">
+            app:layout_constraintVertical_bias="0.08">
 
         <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/tieExample"
@@ -95,8 +97,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
-            app:srcCompat="@drawable/ic_check"
             android:layout_margin="20dp"
+
+            app:srcCompat="@drawable/ic_check"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
     <!--endregion-->
