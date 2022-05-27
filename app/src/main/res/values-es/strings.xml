@@ -24,4 +24,17 @@
     <string name="frgEndGame.LabelFor_tvTotalTime.text">Tiempo Total</string>
     <string name="frgEndGame.tvTimePerGame.text">Tiempo por partida</string>
     <string name="navigation_menu.navAboutUs.title">Sobre Nosotros</string>
+    <string name="error_example_empty" translatable="false">Ejemplo no puede estar vacío</string>
+    <string name="error_title_empty" translatable="false">Título no puede estar vacío</string>
+    <string name="error_invalid_credentials">El email o la contraseña son erróneos</string>
+    <string name="error_password_empty">La contraseña no puede estar vacía</string>
+    <string name="error_email_empty">El email no puede estar vacío</string>
+    <string name="frgTipManager_tieExample_hint">Ejemplo</string>
+    <string name="frgTipManager_tieTitle_hint">Título</string>
+    <string name="frgStatistics.tvErrorRateLabel.text">Porcentaje de error</string>
+    <string name="frgStatistics.tvTimePerGameLabel.text">Tiempo por partida</string>
+    <string name="frgStatistics.tvGamesLabel.text">Partidas</string>
+    <string name="frgStatistics.tvTimeLabel.text">Tiempo</string>
+    <string name="frgStatistics.tvTitle.text">ESTADÍSTICAS</string>
+    <string name="actLogin_notification_contentTitle">¡Ahora estás registrado!</string>
 </resources>
