@@ -32,7 +32,7 @@ class TipListFragment : BaseFragment(),
     override fun onCreate(savedInstanceState: Bundle?)
     {
         super.onCreate(savedInstanceState)
-        
+
         presenter = TipListPresenter(this)
     }
 
@@ -58,12 +58,12 @@ class TipListFragment : BaseFragment(),
     private fun initUI()
     {
         initRecyclerViewAdapter()
-        
+
         binding.fab.setOnClickListener()
         {
             activity?.goToFragment(TipManagerFragment())
         }
-        
+
         presenter.getList()
     }
 
@@ -84,7 +84,7 @@ class TipListFragment : BaseFragment(),
             putSerializable(getString(R.string.bundleKey_selectedTip), tip)
             putInt(getString(R.string.bundleKey_selectedTip_position), position)
         })
-        
+
         activity?.supportFragmentManager
     }
 

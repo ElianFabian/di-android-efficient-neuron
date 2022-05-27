@@ -1,5 +1,6 @@
 package com.elian.efficientneuron.util.extension
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
@@ -10,11 +11,10 @@ fun FragmentActivity.goToFragment(fragment: Fragment, args: Bundle? = null): Fra
 {
     fragment.arguments = args
 
-    supportFragmentManager.beginTransaction().apply()
-    {
-        replace(R.id.nav_host_fragment, fragment)
-        commit()
-    }
+    supportFragmentManager
+        .beginTransaction()
+        .replace(R.id.nav_host_fragment, fragment)
+        .commit()
 
     return fragment
 }
