@@ -1,13 +1,16 @@
 package com.elian.efficientneuron.ui.login
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
+import androidx.core.app.NotificationCompat
 import com.elian.efficientneuron.MainActivity
 import com.elian.efficientneuron.R
 import com.elian.efficientneuron.base.BaseActivity
 import com.elian.efficientneuron.data.model.User
 import com.elian.efficientneuron.databinding.ActivityLoginBinding
 import com.elian.efficientneuron.ui.signup.SignUpActivity
+import com.elian.efficientneuron.util.extension.NotificationUtil
 import com.elian.efficientneuron.util.extension.toast
 
 class LogInActivity : BaseActivity(),
@@ -16,6 +19,8 @@ class LogInActivity : BaseActivity(),
     private lateinit var binding: ActivityLoginBinding
 
     override lateinit var presenter: LogInContract.Presenter
+
+    private val notificationUtil = NotificationUtil(this, "loginId", "loginName")
 
     private val userFromFields: User
         get() = User(
@@ -43,6 +48,19 @@ class LogInActivity : BaseActivity(),
 
     private fun initUI()
     {
+        notificationUtil.createNotification()
+        {
+            setSmallIcon(R.drawable.ic_launcher_foreground)
+            setContentTitle(getString(R.string.actLogin_notification_contentTitle))
+            priority = NotificationCompat.PRIORITY_DEFAULT
+        }
+
+        notificationUtil.createNotificationChannel()
+        {
+            enableLights(true)
+            lightColor = Color.BLUE
+        }
+
         binding.btnLogin.setOnClickListener()
         {
             presenter.logIn(userFromFields)
@@ -98,6 +116,7 @@ class LogInActivity : BaseActivity(),
 
     override fun onLogInSuccess()
     {
+        notificationUtil.showNotification()
         goToMainActivity()
     }
 
