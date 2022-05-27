@@ -37,4 +37,8 @@
     <string name="frgStatistics.tvTimeLabel.text">Tiempo</string>
     <string name="frgStatistics.tvTitle.text">ESTADÍSTICAS</string>
     <string name="actLogin_notification_contentTitle">¡Ahora estás registrado!</string>
+    <string name="frgSettings.dark_theme.title">Tema oscuro</string>
+    <string name="frgSettings.use_inverted_numeric_keyboard.title">Usar teclado numérico invertido</string>
+    <string name="frgSettings.disable_notifications.title">Desactivar notificaciones</string>
+    <string name="frgSettings.category.general">General</string>
 </resources>

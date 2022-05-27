@@ -34,7 +34,7 @@
     <string name="actLogin.tiePassword.hint">@string/const.PASSWORD</string>
     <string name="actLogin.btnLogin.text">@string/const.LOGIN</string>
     <string name="actLogin.btnSignup.text">@string/const.SIGNUP</string>
-    
+
     <string name="actLogin_notification_contentTitle">You\'re now logged in!</string>
 
     <string name="actSignup.tvTitle.text">@string/const.SIGNUP</string>
@@ -74,6 +74,11 @@
     <string name="error_email_empty">Email can\'t be empty</string>
     <string name="error_password_empty">Password can\'t be empty</string>
     <string name="error_invalid_credentials">The email or password are wrong.</string>
+    
+    <string name="frgSettings.category.general">Dark theme</string>
+    <string name="frgSettings.dark_theme.title">Dark Theme</string>
+    <string name="frgSettings.use_inverted_numeric_keyboard.title">Use inverted numeric keyboard</string>
+    <string name="frgSettings.disable_notifications.title">Disable notifications</string>
     <!--endregion-->
 
 </resources>

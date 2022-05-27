@@ -1,6 +1,5 @@
 package com.elian.efficientneuron
 
-import android.content.res.Configuration
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
@@ -10,13 +9,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import com.elian.efficientneuron.databinding.ActivityMainBinding
-import com.elian.efficientneuron.util.extension.toast
+import com.elian.efficientneuron.ui.settings.SettingsFragment
 import com.elian.efficientneuron.ui.aboutus.AboutUsFragment
 import com.elian.efficientneuron.ui.operations.OperationsFragment
 import com.elian.efficientneuron.ui.profile.ProfileFragment
 import com.elian.efficientneuron.ui.statistics.StatisticsFragment
 import com.elian.efficientneuron.ui.tiplist.TipListFragment
-import com.elian.efficientneuron.ui.tipmanager.TipManagerFragment
 import com.elian.efficientneuron.util.extension.goToFragment
 import com.google.android.material.navigation.NavigationView
 
@@ -88,7 +86,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.navProfile    -> goToFragment(ProfileFragment())
             R.id.navTips       -> goToFragment(TipListFragment())
             R.id.navStatistics -> goToFragment(StatisticsFragment())
-            //R.id.navSettings   ->  toast("No yet implemented.")
+            R.id.navSettings   -> goToFragment(SettingsFragment())
             R.id.navAboutUs    -> goToFragment(AboutUsFragment())
 
             else               -> Fragment()

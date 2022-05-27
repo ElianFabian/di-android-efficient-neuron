@@ -4,6 +4,7 @@ import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import androidx.core.app.NotificationCompat
+import androidx.preference.PreferenceManager
 import com.elian.efficientneuron.MainActivity
 import com.elian.efficientneuron.R
 import com.elian.efficientneuron.base.BaseActivity
@@ -116,7 +117,15 @@ class LogInActivity : BaseActivity(),
 
     override fun onLogInSuccess()
     {
-        notificationUtil.showNotification()
+        val sp = PreferenceManager.getDefaultSharedPreferences(this)
+        
+        val disableNotifications = sp.getBoolean("disable_notifications", false)
+        
+        if (!disableNotifications)
+        {
+            notificationUtil.showNotification()
+        }
+        
         goToMainActivity()
     }
 
