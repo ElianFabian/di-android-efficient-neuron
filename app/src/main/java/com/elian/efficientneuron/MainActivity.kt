@@ -39,27 +39,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         initUI()
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean
-    {
-        if (toggle.onOptionsItemSelected(item)) return true
-
-        return super.onOptionsItemSelected(item)
-    }
-
-    override fun onPostCreate(savedInstanceState: Bundle?)
-    {
-        super.onPostCreate(savedInstanceState)
-
-        toggle.syncState()
-    }
-
-    override fun onConfigurationChanged(newConfig: Configuration)
-    {
-        super.onConfigurationChanged(newConfig)
-
-        toggle.onConfigurationChanged(newConfig)
-    }
-
     override fun onBackPressed()
     {
         // Goes to Home Fragment unless we are already, other wise exits the app
