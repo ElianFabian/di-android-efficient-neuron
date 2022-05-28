@@ -1,13 +1,14 @@
 package com.elian.efficientneuron.ui.tipmanager
 
 import com.elian.efficientneuron.data.model.Tip
-import com.elian.efficientneuron.data.repository.TipsStaticRepository
+import com.elian.efficientneuron.data.repository.TipRoomRepository
+import com.elian.efficientneuron.data.repository.TipStaticRepository
 
 class TipManagerInteractor(private val listener: TipManagerContract.OnInteractorListener) :
     TipManagerContract.Interactor,
     TipManagerContract.OnRepositoryCallback
 {
-    private val repository: TipManagerContract.Repository = TipsStaticRepository
+    private val repository: TipManagerContract.Repository = TipRoomRepository
     
     //region TipManagerContract.Interactor
 

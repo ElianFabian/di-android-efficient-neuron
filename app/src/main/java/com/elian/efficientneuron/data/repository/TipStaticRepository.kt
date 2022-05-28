@@ -4,7 +4,7 @@ import com.elian.efficientneuron.data.model.Tip
 import com.elian.efficientneuron.ui.tipmanager.TipManagerContract
 import com.elian.efficientneuron.ui.tiplist.TipListContract
 
-object TipsStaticRepository :
+object TipStaticRepository :
     TipListContract.Repository,
     TipManagerContract.Repository
 {

@@ -1,5 +1,15 @@
 package com.elian.efficientneuron.data.model
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import java.io.Serializable
 
-data class Tip(var id: Int = 0, val title: String, val example: String) : Serializable
+@Entity(tableName = "tip_table")
+data class Tip(
+    val title: String,
+    val example: String,
+
+    @PrimaryKey(autoGenerate = true)
+    val id: Int = 0,
+) :
+    Serializable

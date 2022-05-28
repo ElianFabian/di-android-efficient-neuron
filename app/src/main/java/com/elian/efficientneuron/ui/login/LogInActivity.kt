@@ -13,6 +13,9 @@ import com.elian.efficientneuron.databinding.ActivityLoginBinding
 import com.elian.efficientneuron.ui.signup.SignUpActivity
 import com.elian.efficientneuron.util.extension.NotificationUtil
 import com.elian.efficientneuron.util.extension.toast
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 class LogInActivity : BaseActivity(),
     LogInContract.View
@@ -34,6 +37,8 @@ class LogInActivity : BaseActivity(),
     override fun onCreate(savedInstanceState: Bundle?)
     {
         super.onCreate(savedInstanceState)
+
+        logInIfUserExists()
 
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -76,14 +81,25 @@ class LogInActivity : BaseActivity(),
     {
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
-        onDestroy()
+        finish()
     }
 
     private fun goToSignupActivity()
     {
         val intent = Intent(this, SignUpActivity::class.java)
         startActivity(intent)
-        onDestroy()
+        finish()
+    }
+
+    private fun logInIfUserExists()
+    {
+        Firebase.auth.addAuthStateListener { auth ->
+
+            if (auth.currentUser != null)
+            {
+                onLogInSuccess()
+            }
+        }
     }
 
     //endregion
@@ -118,14 +134,14 @@ class LogInActivity : BaseActivity(),
     override fun onLogInSuccess()
     {
         val sp = PreferenceManager.getDefaultSharedPreferences(this)
-        
+
         val disableNotifications = sp.getBoolean("disable_notifications", false)
-        
+
         if (!disableNotifications)
         {
             notificationUtil.showNotification()
         }
-        
+
         goToMainActivity()
     }
 

@@ -39,7 +39,16 @@ android {
     namespace 'com.elian.efficientneuron'
 }
 
+apply plugin: 'kotlin-kapt'
+
 dependencies {
+
+    // Room https://developer.android.com/training/data-storage/room
+    def room_version = "2.4.2"
+
+    implementation "androidx.room:room-runtime:$room_version"
+    annotationProcessor "androidx.room:room-compiler:$room_version"
+    kapt "androidx.room:room-compiler:2.4.2"
 
     // Firestore
     implementation 'com.google.firebase:firebase-firestore-ktx'

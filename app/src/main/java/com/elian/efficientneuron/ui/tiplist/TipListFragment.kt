@@ -132,6 +132,12 @@ class TipListFragment : BaseFragment(),
 
     override fun onGetListFailure()
     {
+
+    }
+
+    override fun onNoData()
+    {
+
     }
 
     //endregion

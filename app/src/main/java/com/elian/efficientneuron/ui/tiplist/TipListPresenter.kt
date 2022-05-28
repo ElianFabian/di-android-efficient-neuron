@@ -34,6 +34,11 @@ class TipListPresenter(private var view: TipListContract.View?) :
     {
         view?.onGetListFailure()
     }
-    
+
+    override fun onNoData()
+    {
+        view?.onNoData()
+    }
+
     //endregion
 }

@@ -5,6 +5,7 @@ import com.elian.efficientneuron.ui.login.LogInContract
 import com.elian.efficientneuron.ui.signup.SignUpContract
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.ktx.options
 
 object FirebaseRepository :
     LogInContract.Repository,

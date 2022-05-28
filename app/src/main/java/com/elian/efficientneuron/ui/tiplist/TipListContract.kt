@@ -32,5 +32,6 @@ interface TipListContract
     {
         fun onGetListSuccess(listFromRepository: List<Tip>)
         fun onGetListFailure()
+        fun onNoData()
     }
 }

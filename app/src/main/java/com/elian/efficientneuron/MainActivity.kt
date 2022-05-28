@@ -8,6 +8,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
+import com.elian.efficientneuron.data.database.AppDatabase
 import com.elian.efficientneuron.databinding.ActivityMainBinding
 import com.elian.efficientneuron.ui.settings.SettingsFragment
 import com.elian.efficientneuron.ui.aboutus.AboutUsFragment
@@ -33,6 +34,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        
+        AppDatabase.create(this)
 
         initUI()
     }
