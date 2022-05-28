@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment
 import mehdi.sakout.aboutpage.AboutPage
 import mehdi.sakout.aboutpage.Element
 import mehdi.sakout.aboutpage.R
+import com.elian.efficientneuron.R as AppR
 
 // https://camposha.info/android-examples/android-about-us-page-libraries
 class AboutUsFragment : Fragment()
@@ -20,7 +21,7 @@ class AboutUsFragment : Fragment()
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View?
     {
         simulateDayNight( /* DAY */1)
@@ -30,8 +31,7 @@ class AboutUsFragment : Fragment()
             .isRTL(false)
             .setDescription(getString(com.elian.efficientneuron.R.string.frgAboutUs_description))
             //.addItem(adsElement)
-            .addEmail("elian.fabian.el.belaizi@gmail.com")
-            .addGitHub("ElianFabian")
+            .addGitHub("ElianFabian/di-android-efficient-neuron", getString(AppR.string.frgAboutUs_github_title))
             //.addItem(copyRightsElement)
             .create()
 

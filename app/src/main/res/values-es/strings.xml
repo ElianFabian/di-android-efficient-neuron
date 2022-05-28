@@ -41,4 +41,5 @@
     <string name="frgSettings.use_inverted_numeric_keyboard.title">Usar teclado numérico invertido</string>
     <string name="frgSettings.disable_notifications.title">Desactivar notificaciones</string>
     <string name="frgSettings.category.general">General</string>
+    <string name="frgAboutUs_github_title">Código fuente</string>
 </resources>
