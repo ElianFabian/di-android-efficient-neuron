@@ -10,7 +10,7 @@ android {
     compileSdk 31
 
     defaultConfig {
-        applicationId "com.elian.efficientneuron"
+        applicationId "com.elian.computeit"
         minSdk 23
         targetSdk 31
         versionCode 1
@@ -36,7 +36,7 @@ android {
     buildFeatures {
         viewBinding true
     }
-    namespace 'com.elian.efficientneuron'
+    namespace 'com.elian.computeit'
 }
 
 apply plugin: 'kotlin-kapt'
