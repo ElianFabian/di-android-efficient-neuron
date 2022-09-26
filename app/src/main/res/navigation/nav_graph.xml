@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/functionsFragment"
-        android:name="com.elian.computeit.ui.operations.OperationsFragment"
+        android:name="com.elian.computeit.ui.OperationsFragment"
         android:label="fragment_functions"
         tools:layout="@layout/fragment_operations" >
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/gameConfigFragment"
-        android:name="com.elian.computeit.ui.gameconfig.GameConfigurationFragment"
+        android:name="com.elian.computeit.ui.GameConfigurationFragment"
         android:label="fragment_game_config"
         tools:layout="@layout/fragment_game_configuration" >
         <action
@@ -25,7 +25,7 @@
     </fragment>
     <fragment
         android:id="@+id/gameFragment"
-        android:name="com.elian.computeit.ui.game.GameFragment"
+        android:name="com.elian.computeit.ui.GameFragment"
         android:label="fragment_game"
         tools:layout="@layout/fragment_game" />
 </navigation>

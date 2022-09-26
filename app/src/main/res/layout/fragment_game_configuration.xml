@@ -9,7 +9,7 @@
         android:layout_height="match_parent"
         android:background="@color/blue_columbia"
 
-        tools:context=".ui.gameconfig.GameConfigurationFragment">
+        tools:context=".ui.GameConfigurationFragment">
 
     <!--region Icon operation-->
     <TextView

@@ -4,17 +4,26 @@
 
     <string name="bundleKey_selectedTip" translatable="false">selectedTip</string>
     <string name="bundleKey_selectedTip_position" translatable="false">selectedTipPosition</string>
-
+    
+    <!--region Errors-->
     <string name="error_title_empty">Title can\'t be empty</string>
     <string name="error_example_empty">Example can\'t be empty</string>
 
+    <string name="error_email_empty">Email can\'t be empty</string>
+    <string name="error_email_invalid">Invalid email</string>
+    <string name="error_password_empty">Password can\'t be empty</string>
+    <string name="error_password_invalid">Invalid password</string>
+    <string name="error_invalid_credentials">The email or password are wrong</string>
+    <string name="error_unknown">Unknown error</string>
+    <!--endregion-->
+
     <!--region Constants-->
-    <string name="const.SIGNUP">SIGN UP</string>
+    <string name="const.SIGNUP">REGISTER</string>
     <string name="const.LOGIN">LOGIN</string>
     <string name="const.EMAIL">Email</string>
     <string name="const.USER">User</string>
     <string name="const.PASSWORD">Password</string>
-    <string name="const.REPEAT_PASSWORD">Repeat password</string>
+    <string name="const.REPEAT_PASSWORD">Confirm password</string>
     <string name="const.GAMES">games</string>
     <string name="const.SECONDS">seconds</string>
     <!--endregion-->
@@ -40,7 +49,7 @@
     <string name="actSignup.tvTitle.text">@string/const.SIGNUP</string>
     <string name="actSignup.tieEmail.hint">@string/const.EMAIL</string>
     <string name="actSignup.tilPassword.hint">@string/const.PASSWORD</string>
-    <string name="actSignup.tieRepeatPassword.hint">@string/const.REPEAT_PASSWORD</string>
+    <string name="actSignup.tieConfirmPassword.hint">@string/const.REPEAT_PASSWORD</string>
     <string name="actSignup.btnSignup.text">@string/const.SIGNUP</string>
     <!--endregion-->
 
@@ -72,9 +81,6 @@
     <string name="frgStatistics.tvErrorRateLabel.text">Error rate</string>
     <string name="frgTipManager_tieTitle_hint">Title</string>
     <string name="frgTipManager_tieExample_hint">Example</string>
-    <string name="error_email_empty">Email can\'t be empty</string>
-    <string name="error_password_empty">Password can\'t be empty</string>
-    <string name="error_invalid_credentials">The email or password are wrong.</string>
     
     <string name="frgSettings.category.general">Dark theme</string>
     <string name="frgSettings.dark_theme.title">Dark Theme</string>

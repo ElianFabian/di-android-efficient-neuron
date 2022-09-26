@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "638205349893",
-    "project_id": "efficient-neuron",
-    "storage_bucket": "efficient-neuron.appspot.com"
+    "project_number": "147324039183",
+    "project_id": "compute-it-0",
+    "storage_bucket": "compute-it-0.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:638205349893:android:f2c61d603924a6f3388c6c",
+        "mobilesdk_app_id": "1:147324039183:android:1e294fd9d5e6a07772f37a",
         "android_client_info": {
-          "package_name": "com.elian.efficientneuron"
+          "package_name": "com.elian.computeit"
         }
       },
       "oauth_client": [
         {
-          "client_id": "638205349893-urpu5j14hbnablom13dl0m4trkd7vje4.apps.googleusercontent.com",
+          "client_id": "147324039183-kqhj8j790b3m5knm6851ea3sps3esgpc.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCIb_03UzPCf8bPAall3s7FiEXeMFA6lYw"
+          "current_key": "AIzaSyANsVoSMRIy8RBD7fX-hp_chJ6Txc4StoE"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "638205349893-urpu5j14hbnablom13dl0m4trkd7vje4.apps.googleusercontent.com",
+              "client_id": "147324039183-kqhj8j790b3m5knm6851ea3sps3esgpc.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

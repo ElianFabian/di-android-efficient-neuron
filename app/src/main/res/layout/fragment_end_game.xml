@@ -6,7 +6,7 @@
         android:layout_height="match_parent"
         android:background="@color/blue_midnight"
         android:orientation="vertical"
-        tools:context=".ui.endgame.EndGameFragment">
+        tools:context=".ui.EndGameFragment">
 
     <TextView
             android:text="@string/frgEndGame.LabelFor_tvTotalTime.text"

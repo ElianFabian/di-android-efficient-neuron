@@ -1,8 +1,8 @@
 package com.elian.computeit.data.repository
 
 import com.elian.computeit.data.model.Tip
-import com.elian.computeit.ui.tipmanager.TipManagerContract
-import com.elian.computeit.ui.tiplist.TipListContract
+import com.elian.computeit.view_model.TipManagerContract
+import com.elian.computeit.view_model.TipListContract
 
 object TipStaticRepository :
     TipListContract.Repository,

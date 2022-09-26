@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <application
+        android:name=".ComputeItApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.EfficientNeuron">
-        <activity
-            android:name="com.elian.computeit.ui.signup.SignUpActivity"
-            android:exported="false" />
 
         <activity
-            android:name="com.elian.computeit.ui.login.LogInActivity"
+            android:name=".feature_auth.presentation.login.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,7 +21,11 @@
         </activity>
 
         <activity
-            android:name="com.elian.computeit.MainActivity"
+            android:name=".feature_auth.presentation.register.RegisterActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".MainActivity"
             android:exported="false" />
 
         <meta-data

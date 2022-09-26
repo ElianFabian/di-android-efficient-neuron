@@ -42,4 +42,7 @@
     <string name="frgSettings.disable_notifications.title">Desactivar notificaciones</string>
     <string name="frgSettings.category.general">General</string>
     <string name="frgAboutUs_github_title">Código fuente</string>
+    <string name="error_email_invalid">Email inválido</string>
+    <string name="error_password_invalid">Contraseña inválida</string>
+    <string name="error_unknown">Error desconocido</string>
 </resources>

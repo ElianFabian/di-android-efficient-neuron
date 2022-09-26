@@ -10,21 +10,22 @@ import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import com.elian.computeit.data.database.AppDatabase
 import com.elian.computeit.databinding.ActivityMainBinding
-import com.elian.computeit.ui.settings.SettingsFragment
-import com.elian.computeit.ui.aboutus.AboutUsFragment
-import com.elian.computeit.ui.operations.OperationsFragment
-import com.elian.computeit.ui.profile.ProfileFragment
-import com.elian.computeit.ui.statistics.StatisticsFragment
-import com.elian.computeit.ui.tiplist.TipListFragment
+import com.elian.computeit.ui.SettingsFragment
+import com.elian.computeit.ui.AboutUsFragment
+import com.elian.computeit.ui.OperationsFragment
+import com.elian.computeit.ui.ProfileFragment
+import com.elian.computeit.ui.StatisticsFragment
+import com.elian.computeit.ui.TipListFragment
 import com.elian.computeit.util.extension.goToFragment
 import com.google.android.material.navigation.NavigationView
+import dagger.hilt.android.AndroidEntryPoint
 
-
-class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener
+@AndroidEntryPoint
+class MainActivity : AppCompatActivity()
 {
     private lateinit var binding: ActivityMainBinding
     private lateinit var toggle: ActionBarDrawerToggle
-    private lateinit var currentFragmentItem: Fragment
+    private var currentFragmentItem: Fragment? = null
 
     //region Activity Methods
 
@@ -34,7 +35,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        
+
         AppDatabase.create(this)
 
         initUI()
@@ -50,40 +51,31 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         else goToFragment(OperationsFragment())
     }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean
+    {
+        if (toggle.onOptionsItemSelected(item))
+        {
+            return true
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
     //endregion
 
     //region Methods
 
     private fun initUI()
     {
-        toggle = ActionBarDrawerToggle(
-            this,
-            binding.drawerLayout,
-            R.string.navigation_drawer_open,
-            R.string.navigation_drawer_close
-        )
-
+        toggle = ActionBarDrawerToggle(this, binding.drawerLayout, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
         binding.drawerLayout.addDrawerListener(toggle)
-        binding.navigationView.setNavigationItemSelectedListener(this)
+        toggle.syncState()
+        
+        initMenuItemListener()
     }
-
-    // styles.xml/frgGame_ibButtons/android:onClick
-    fun animation_onClick(view: View)
+    
+    private fun initMenuItemListener() = binding.navigationView.setNavigationItemSelectedListener() 
     {
-        val scaleDown = AnimationUtils.loadAnimation(this, R.anim.scale_down)
-        val scaleUp = AnimationUtils.loadAnimation(this, R.anim.scale_up)
-
-        view.startAnimation(scaleDown)
-        view.postOnAnimation { view.startAnimation(scaleUp) }
-    }
-
-    //endregion
-
-    //region NavigationView.OnNavigationItemSelectedListener
-
-    override fun onNavigationItemSelected(item: MenuItem): Boolean
-    {
-        currentFragmentItem = when (item.itemId)
+        currentFragmentItem = when (it.itemId)
         {
             R.id.navHome       -> goToFragment(OperationsFragment())
             R.id.navProfile    -> goToFragment(ProfileFragment())
@@ -96,8 +88,18 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
 
         binding.drawerLayout.closeDrawer(GravityCompat.START)
+        
+        true
+    }
 
-        return true
+    // styles.xml/frgGame_ibButtons/android:onClick
+    fun animation_onClick(view: View)
+    {
+        val scaleDown = AnimationUtils.loadAnimation(this, R.anim.scale_down)
+        val scaleUp = AnimationUtils.loadAnimation(this, R.anim.scale_up)
+
+        view.startAnimation(scaleDown)
+        view.postOnAnimation { view.startAnimation(scaleUp) }
     }
 
     //endregion

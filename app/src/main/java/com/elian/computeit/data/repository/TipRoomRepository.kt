@@ -2,8 +2,8 @@ package com.elian.computeit.data.repository
 
 import com.elian.computeit.data.database.AppDatabase
 import com.elian.computeit.data.model.Tip
-import com.elian.computeit.ui.tipmanager.TipManagerContract
-import com.elian.computeit.ui.tiplist.TipListContract
+import com.elian.computeit.view_model.TipManagerContract
+import com.elian.computeit.view_model.TipListContract
 import java.util.concurrent.Callable
 import java.util.concurrent.Future
 
@@ -13,7 +13,7 @@ object TipRoomRepository :
 {
     private val tipDAO get() = AppDatabase.instance.tipDAO
 
-    private val execute = AppDatabase.executorService::execute
+    private fun execute(runnable: Runnable) = AppDatabase.executorService.execute(runnable) 
 
     private fun <T> submit(callable: Callable<T>): Future<T>
     {

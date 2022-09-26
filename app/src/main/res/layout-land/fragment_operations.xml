@@ -34,7 +34,7 @@
                 android:layout_gravity="center"
                 android:columnCount="2"
                 android:rowCount="2"
-                tools:context=".ui.operations.OperationsFragment">
+                tools:context=".ui.OperationsFragment">
 
             <!--region Sum-->
             <ImageButton

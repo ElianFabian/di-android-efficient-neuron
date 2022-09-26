@@ -12,7 +12,7 @@
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:orientation="vertical"
-            tools:context=".ui.tip.TipFragment">
+            tools:context=".ui.TipFragment">
 
         <TextView
                 android:id="@+id/tvTitle"
