@@ -4,15 +4,19 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.widget.addTextChangedListener
+import androidx.lifecycle.lifecycleScope
 import com.elian.computeit.R
 import com.elian.computeit.core.domain.util.collectLatestFlowWhenStarted
-import com.elian.computeit.core.presentation.util.asString
+import com.elian.computeit.core.presentation.util.extensions.asString
 import com.elian.computeit.data.model.User
 import com.elian.computeit.databinding.ActivityRegisterBinding
 import com.elian.computeit.feature_auth.presentation.login.LoginActivity
 import com.elian.computeit.feature_auth.presentation.util.AuthError
 import com.elian.computeit.util.extension.toast
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class RegisterActivity : AppCompatActivity()
 {
     private lateinit var binding: ActivityRegisterBinding
@@ -34,6 +38,7 @@ class RegisterActivity : AppCompatActivity()
         setContentView(binding.root)
 
         initUI()
+        subscribeToEvents()
     }
 
     //endregion
@@ -42,11 +47,31 @@ class RegisterActivity : AppCompatActivity()
 
     private fun initUI()
     {
-        binding.btnSignup.setOnClickListener()
+        binding.tieEmail.addTextChangedListener { setEmailError(null) }
+        binding.tiePassword.addTextChangedListener { setPasswordError(null) }
+        binding.tieConfirmPassword.addTextChangedListener { setConfirmPasswordError(null) }
+
+        binding.btnRegister.setOnClickListener()
         {
-            //presenter.signUp(userFromFields, binding.tieConfirmPassword.text.toString())
+            lifecycleScope.launchWhenStarted()
+            {
+                viewModel.onAction(RegisterAction.ReceivedEmail(binding.tieEmail.text.toString().trim()))
+            }
+            lifecycleScope.launchWhenStarted()
+            {
+                viewModel.onAction(RegisterAction.ReceivedPassword(binding.tiePassword.text.toString().trim()))
+            }
+            lifecycleScope.launchWhenStarted()
+            {
+                viewModel.onAction(RegisterAction.ReceivedConfirmPassword(binding.tieConfirmPassword.text.toString().trim()))
+            }
+            lifecycleScope.launchWhenStarted()
+            {
+                viewModel.onAction(RegisterAction.Register)
+            }
         }
     }
+
 
     private fun subscribeToEvents()
     {
@@ -62,8 +87,11 @@ class RegisterActivity : AppCompatActivity()
         {
             setEmailError(when (it.error)
             {
-                is AuthError.ValueEmpty -> getString(R.string.error_email_empty)
-                else                    -> null
+                is AuthError.ValueEmpty   -> getString(R.string.error_email_empty)
+                is AuthError.ValueInvalid -> String.format(
+                    getString(R.string.error_email_invalid), it.error.example
+                )
+                else                      -> null
             })
         }
         collectLatestFlowWhenStarted(viewModel.passwordState)
@@ -71,10 +99,15 @@ class RegisterActivity : AppCompatActivity()
             setPasswordError(when (it.error)
             {
                 is AuthError.ValueEmpty    -> getString(R.string.error_password_empty)
-                is AuthError.ValueTooShort -> "Password too short"
-                is AuthError.ValueInvalid  -> getString(R.string.error_password_invalid)
-                is AuthError.ValueTooLong  -> "Password too long"
-
+                is AuthError.ValueTooShort -> String.format(
+                    getString(R.string.error_too_short), it.error.minLength
+                )
+                is AuthError.ValueInvalid  -> String.format(
+                    getString(R.string.error_password_invalid), it.error.minCharacterCount, it.error.validCharacters
+                )
+                is AuthError.ValueTooLong  -> String.format(
+                    getString(R.string.error_too_long), it.error.maxLength
+                )
                 else                       -> null
             })
         }
@@ -83,7 +116,7 @@ class RegisterActivity : AppCompatActivity()
             setConfirmPasswordError(when (it.error)
             {
                 is AuthError.ValueEmpty   -> getString(R.string.error_password_empty)
-                is AuthError.ValueInvalid -> "Passwords don't match"
+                is AuthError.ValueInvalid -> getString(R.string.error_passwords_dont_match)
                 else                      -> null
             })
         }

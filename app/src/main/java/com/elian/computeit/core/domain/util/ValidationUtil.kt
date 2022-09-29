@@ -7,7 +7,8 @@ object ValidationUtil
 {
     private const val MIN_PASSWORD_LENGTH = 8
     private const val MAX_PASSWORD_LENGTH = 20
-    private const val SPECIAL_CHARACTERS = "!?/\\$%&#."
+    private const val SET_OF_SPECIAL_CHARACTERS = "!?/\\$%&#."
+    private const val SET_OF_DIGITS = "0123456789"
 
 
     fun validateEmail(email: String): AuthError?
@@ -17,7 +18,7 @@ object ValidationUtil
         return when
         {
             trimmedEmail.isBlank()                                  -> AuthError.ValueEmpty
-            !Patterns.EMAIL_ADDRESS.matcher(trimmedEmail).matches() -> AuthError.ValueInvalid
+            !Patterns.EMAIL_ADDRESS.matcher(trimmedEmail).matches() -> AuthError.ValueInvalid(example = "abcd@gmail.com")
 
             else                                                    -> null
         }
@@ -29,13 +30,13 @@ object ValidationUtil
 
         return when
         {
-            trimmedPassword.isBlank()                                -> AuthError.ValueEmpty
-            trimmedPassword.length < MIN_PASSWORD_LENGTH             -> AuthError.ValueTooShort
-            !trimmedPassword.any { it.isDigit() }                    -> AuthError.ValueInvalid
-            !trimmedPassword.any { SPECIAL_CHARACTERS.contains(it) } -> AuthError.ValueInvalid
-            trimmedPassword.length > MAX_PASSWORD_LENGTH             -> AuthError.ValueTooLong
+            trimmedPassword.isEmpty()                                       -> AuthError.ValueEmpty
+            trimmedPassword.length < MIN_PASSWORD_LENGTH                    -> AuthError.ValueTooShort(minLength = MIN_PASSWORD_LENGTH)
+            !trimmedPassword.any { it.isDigit() }                           -> AuthError.ValueInvalid(validCharacters = SET_OF_DIGITS, minCharacterCount = 1)
+            !trimmedPassword.any { SET_OF_SPECIAL_CHARACTERS.contains(it) } -> AuthError.ValueInvalid(validCharacters = SET_OF_SPECIAL_CHARACTERS, minCharacterCount = 1)
+            trimmedPassword.length > MAX_PASSWORD_LENGTH                    -> AuthError.ValueTooLong(maxLength = MAX_PASSWORD_LENGTH)
 
-            else                                                     -> null
+            else                                                            -> null
         }
     }
 
@@ -47,7 +48,7 @@ object ValidationUtil
         return when
         {
             trimmedConfirmPassword.isEmpty()          -> AuthError.ValueEmpty
-            trimmedConfirmPassword != trimmedPassword -> AuthError.ValueInvalid
+            trimmedConfirmPassword != trimmedPassword -> AuthError.ValueInvalid()
 
             else                                      -> null
         }

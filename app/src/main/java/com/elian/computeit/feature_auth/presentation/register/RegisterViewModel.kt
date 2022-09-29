@@ -33,24 +33,24 @@ class RegisterViewModel @Inject constructor(
     val passwordState = _passwordState.asStateFlow()
 
     private val _confirmPasswordState = MutableStateFlow(StandardTextFieldState())
-    val confirmPasswordState = _passwordState.asStateFlow()
+    val confirmPasswordState = _confirmPasswordState.asStateFlow()
 
 
     suspend fun onAction(action: RegisterAction) = when (action)
     {
-        is RegisterAction.EnteredEmail           ->
+        is RegisterAction.ReceivedEmail        ->
         {
-            _emailState.emit(_emailState.value.copy(text = action.value))
+            _emailState.value = _emailState.value.copy(text = action.value)
         }
-        is RegisterAction.EnteredPassword        ->
+        is RegisterAction.ReceivedPassword        ->
         {
-            _passwordState.emit(_passwordState.value.copy(text = action.value))
+            _passwordState.value = _passwordState.value.copy(text = action.value)
         }
-        is RegisterAction.EnteredConfirmPassword ->
+        is RegisterAction.ReceivedConfirmPassword ->
         {
-            _confirmPasswordState.emit(_confirmPasswordState.value.copy(text = action.value))
+            _confirmPasswordState.value = _confirmPasswordState.value.copy(text = action.value)
         }
-        is RegisterAction.Register               ->
+        is RegisterAction.Register                ->
         {
             register(
                 email = _emailState.value.text,
@@ -71,23 +71,9 @@ class RegisterViewModel @Inject constructor(
             confirmPassword = confirmPassword
         ).apply()
         {
-            if (emailError == null)
-            {
-                _emailState.value = _emailState.value.copy(error = null)
-            }
-            else _emailState.value = _emailState.value.copy(error = emailError)
-
-            if (passwordError == null)
-            {
-                _passwordState.value = _passwordState.value.copy(error = null)
-            }
-            else _passwordState.value = _passwordState.value.copy(error = passwordError)
-
-            if (confirmPassword != password)
-            {
-                _passwordState.value = _passwordState.value.copy(error = null)
-            }
-            else _passwordState.value = _passwordState.value.copy(error = passwordError)
+            _emailState.value = _emailState.value.copy(error = emailError)
+            _passwordState.value = _passwordState.value.copy(error = passwordError)
+            _confirmPasswordState.value = _confirmPasswordState.value.copy(error = confirmPasswordError)
 
             when (result)
             {

@@ -4,7 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import com.elian.computeit.base.BaseActivity
 import com.elian.computeit.data.model.User
-import com.elian.computeit.databinding.ActivitySignupBinding
+import com.elian.computeit.databinding.ActivityRegisterBinding
 import com.elian.computeit.feature_auth.presentation.login.LoginActivity
 import com.elian.computeit.view_model.SignUpContract
 import com.elian.computeit.view_model.SignUpPresenter
@@ -13,7 +13,7 @@ import com.elian.computeit.util.extension.toast
 class SignUpActivity : BaseActivity(),
     SignUpContract.View
 {
-    private lateinit var binding: ActivitySignupBinding
+    private lateinit var binding: ActivityRegisterBinding
 
     override lateinit var presenter: SignUpContract.Presenter
 
@@ -29,7 +29,7 @@ class SignUpActivity : BaseActivity(),
     {
         super.onCreate(savedInstanceState)
 
-        binding = ActivitySignupBinding.inflate(layoutInflater)
+        binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         presenter = SignUpPresenter(this)
@@ -43,9 +43,9 @@ class SignUpActivity : BaseActivity(),
 
     private fun initUI()
     {
-        binding.btnSignup.setOnClickListener()
+        binding.btnRegister.setOnClickListener()
         {
-            presenter.signUp(userFromFields, binding.tieRepeatedPassword.text.toString())
+            presenter.signUp(userFromFields, binding.tieConfirmPassword.text.toString())
         }
     }
 

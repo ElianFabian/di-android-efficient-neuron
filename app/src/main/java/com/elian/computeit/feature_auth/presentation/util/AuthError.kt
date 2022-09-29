@@ -6,7 +6,13 @@ import com.elian.computeit.core.util.Error
 sealed class AuthError : Error()
 {
     object ValueEmpty : AuthError()
-    object ValueInvalid : AuthError()
-    object ValueTooShort : AuthError()
-    object ValueTooLong : AuthError()
+
+    data class ValueInvalid(
+        val validCharacters: String? = null,
+        val minCharacterCount: Int? = null,
+        val example: String? = null,
+    ) : AuthError()
+
+    data class ValueTooShort(val minLength: Int? = null) : AuthError()
+    data class ValueTooLong(val maxLength: Int? = null) : AuthError()
 }

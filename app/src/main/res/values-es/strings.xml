@@ -42,7 +42,13 @@
     <string name="frgSettings.disable_notifications.title">Desactivar notificaciones</string>
     <string name="frgSettings.category.general">General</string>
     <string name="frgAboutUs_github_title">Código fuente</string>
-    <string name="error_email_invalid">Email inválido</string>
-    <string name="error_password_invalid">Contraseña inválida</string>
+    <string name="error_email_invalid">Email inválido, ejemplo: %s</string>
+    <string name="error_password_invalid">Contraseña inválida, debería contener al menos %d de estos caracteres: %s</string>
     <string name="error_unknown">Error desconocido</string>
+    <string name="error_user_already_exists">El usuario ya existe</string>
+    <string name="error_too_short">Demasiado corto, la longitud mínima es %d</string>
+    <string name="error_too_long">Demasiado largo, la longitud máxima es %d</string>
+    <string name="error_passwords_dont_match">Las contraseñas no coinciden</string>
+    <string name="error_password_is_wrong">La contraseña es incorrecta</string>
+    <string name="error_user_doesnt_exist">El usuario no existe</string>
 </resources>

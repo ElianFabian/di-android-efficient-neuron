@@ -1,5 +1,6 @@
 package com.elian.computeit.feature_auth.data.repository
 
+import com.elian.computeit.R
 import com.elian.computeit.core.util.Resource
 import com.elian.computeit.core.util.SimpleResource
 import com.elian.computeit.data.model.User
@@ -27,7 +28,7 @@ class AuthRepositoryImpl :
         }
         else if (user.password != password)
         {
-            Resource.Error(UiText.DynamicString("The password is wrong"))
+            Resource.Error(UiText.StringResource(R.string.error_password_is_wrong))
         }
         else Resource.Success(Unit)
     }
@@ -39,13 +40,11 @@ class AuthRepositoryImpl :
             password = password
         )
 
-        if (getUserByEmail(email) != null) return Resource.Error(UiText.DynamicString("User already exists."))
+        if (getUserByEmail(email) != null) return Resource.Error(UiText.StringResource(R.string.error_user_already_exists))
 
-        val result = firestore.document("users/$email").set(newUser).await()
+        firestore.document("users/$email").set(newUser).await()
 
-        println("-----register| result: $result")
-
-        return Resource.Success(Unit)
+        return Resource.Error()
     }
 
     private suspend fun getUserByEmail(email: String) = withContext(Dispatchers.IO)

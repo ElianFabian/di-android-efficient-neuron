@@ -9,7 +9,7 @@ import androidx.lifecycle.lifecycleScope
 import com.elian.computeit.MainActivity
 import com.elian.computeit.R
 import com.elian.computeit.core.domain.util.collectLatestFlowWhenStarted
-import com.elian.computeit.core.presentation.util.asString
+import com.elian.computeit.core.presentation.util.extensions.asString
 import com.elian.computeit.data.model.User
 import com.elian.computeit.databinding.ActivityLoginBinding
 import com.elian.computeit.feature_auth.presentation.register.RegisterActivity
@@ -57,7 +57,7 @@ class LoginActivity : AppCompatActivity()
         {
             lifecycleScope.launchWhenStarted { viewModel.onAction(LoginAction.Login) }
         }
-        binding.btnSignup.setOnClickListener()
+        binding.btnRegister.setOnClickListener()
         {
             goToRegister()
         }

@@ -86,7 +86,7 @@
 
     <!--region Button Signup-->
     <Button
-        android:id="@+id/btnSignup"
+        android:id="@+id/btn_register"
         style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

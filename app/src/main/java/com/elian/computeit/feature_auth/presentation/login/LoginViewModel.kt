@@ -58,17 +58,8 @@ class LoginViewModel @Inject constructor(
             password = password
         ).apply()
         {
-            if (emailError == null)
-            {
-                _emailState.value = _emailState.value.copy(error = null)
-            }
-            else _emailState.value = _emailState.value.copy(error = emailError)
-
-            if (passwordError == null)
-            {
-                _passwordState.value = _passwordState.value.copy(error = null)
-            }
-            else _passwordState.value = _passwordState.value.copy(error = passwordError)
+            _emailState.value = _emailState.value.copy(error = emailError)
+            _passwordState.value = _passwordState.value.copy(error = passwordError)
 
             when (result)
             {

@@ -6,15 +6,22 @@
     <string name="bundleKey_selectedTip_position" translatable="false">selectedTipPosition</string>
     
     <!--region Errors-->
+    <string name="error_unknown">Unknown error</string>
+
     <string name="error_title_empty">Title can\'t be empty</string>
     <string name="error_example_empty">Example can\'t be empty</string>
-
+    
     <string name="error_email_empty">Email can\'t be empty</string>
-    <string name="error_email_invalid">Invalid email</string>
+    <string name="error_email_invalid">Invalid email. Example: %s</string>
     <string name="error_password_empty">Password can\'t be empty</string>
-    <string name="error_password_invalid">Invalid password</string>
+    <string name="error_password_invalid">Invalid password, it should contain at least %d of these characters: %s</string>
     <string name="error_invalid_credentials">The email or password are wrong</string>
-    <string name="error_unknown">Unknown error</string>
+    <string name="error_user_already_exists">The user already exists</string>
+    <string name="error_too_short">Too short, the minimum length is %d</string>
+    <string name="error_too_long">Too long, the maximum length is %d</string>
+    <string name="error_passwords_dont_match">Passwords don\'t match</string>
+    <string name="error_password_is_wrong">Passwords don\'t match</string>
+    <string name="error_user_doesnt_exist">The user doesn\'t exist</string>
     <!--endregion-->
 
     <!--region Constants-->
