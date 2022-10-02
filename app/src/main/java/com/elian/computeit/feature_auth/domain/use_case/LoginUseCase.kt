@@ -1,5 +1,6 @@
 package com.elian.computeit.feature_auth.domain.use_case
 
+import com.elian.computeit.core.domain.util.HashingUtil
 import com.elian.computeit.feature_auth.domain.repository.AuthRepository
 import com.elian.computeit.feature_auth.domain.models.LoginResult
 import com.elian.computeit.core.domain.util.ValidationUtil
@@ -20,6 +21,8 @@ class LoginUseCase @Inject constructor(
             return LoginResult(emailError, passwordError)
         }
 
-        return LoginResult(result = repository.login(email, password))
+        val hashedPassword = HashingUtil.hash(password)
+
+        return LoginResult(result = repository.login(email, hashedPassword))
     }
 }

@@ -28,7 +28,7 @@ class AuthRepositoryImpl @Inject constructor(
         {
             Resource.Error(UiText.StringResource(R.string.error_password_is_wrong))
         }
-        else Resource.Success(Unit)
+        else Resource.Success()
     }
 
     override suspend fun register(email: String, password: String): SimpleResource
@@ -42,7 +42,7 @@ class AuthRepositoryImpl @Inject constructor(
 
         firestore.document("users/$email").set(newUser).await()
 
-        return Resource.Error()
+        return Resource.Success()
     }
 
     private suspend fun getUserByEmail(email: String) = withContext(Dispatchers.IO)

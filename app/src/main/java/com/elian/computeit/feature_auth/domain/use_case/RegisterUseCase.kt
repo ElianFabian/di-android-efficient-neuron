@@ -1,5 +1,6 @@
 package com.elian.computeit.feature_auth.domain.use_case
 
+import com.elian.computeit.core.domain.util.HashingUtil
 import com.elian.computeit.feature_auth.domain.models.RegisterResult
 import com.elian.computeit.feature_auth.domain.repository.AuthRepository
 import com.elian.computeit.core.domain.util.ValidationUtil
@@ -23,7 +24,9 @@ class RegisterUseCase @Inject constructor(
                 confirmPasswordError = confirmPasswordError
             )
         }
+        
+        val hashedPassword = HashingUtil.hash(password)
 
-        return RegisterResult(result = repository.register(email, password))
+        return RegisterResult(result = repository.register(email, hashedPassword))
     }
 }

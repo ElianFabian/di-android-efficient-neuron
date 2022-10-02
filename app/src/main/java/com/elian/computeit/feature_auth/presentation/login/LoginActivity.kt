@@ -11,6 +11,7 @@ import com.elian.computeit.MainActivity
 import com.elian.computeit.R
 import com.elian.computeit.core.domain.util.collectLatestFlowWhenStarted
 import com.elian.computeit.core.presentation.util.extensions.asString
+import com.elian.computeit.core.presentation.util.extensions.error2
 import com.elian.computeit.data.model.User
 import com.elian.computeit.databinding.ActivityLoginBinding
 import com.elian.computeit.feature_auth.presentation.register.RegisterAction
@@ -137,12 +138,12 @@ class LoginActivity : AppCompatActivity()
 
     private fun setEmailError(text: String?)
     {
-        binding.tilEmail.error = text
+        binding.tilEmail.error2 = text
     }
 
     private fun setPasswordError(text: String?)
     {
-        binding.tilPassword.error = text
+        binding.tilPassword.error2 = text
     }
 
     private fun onActionWhenStarted(action: LoginAction)

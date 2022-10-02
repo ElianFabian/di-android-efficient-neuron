@@ -27,6 +27,7 @@
             android:id="@+id/tieEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:maxLines="1"
             android:hint="@string/actSignup_tieEmail_hint" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -34,6 +35,7 @@
         android:id="@+id/tilPassword"
         android:layout_gravity="center"
         android:layout_marginTop="@dimen/base_til_layout_marginTop"
+        app:passwordToggleEnabled="true"
 
         style="@style/TextInputLayout">
 
@@ -42,6 +44,7 @@
             android:inputType="textPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:maxLines="1"
             android:hint="@string/actSignup_tilPassword_hint" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -49,6 +52,7 @@
         android:id="@+id/tilConfirmPassword"
         android:layout_gravity="center"
         android:layout_marginTop="@dimen/base_til_layout_marginTop"
+        app:passwordToggleEnabled="true"
 
         style="@style/TextInputLayout">
 
@@ -57,6 +61,7 @@
             android:inputType="textPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:maxLines="1"
             android:hint="@string/actSignup_tieConfirmPassword_hint" />
     </com.google.android.material.textfield.TextInputLayout>
 
