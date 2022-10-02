@@ -28,7 +28,6 @@ class LoginActivity : AppCompatActivity()
     lateinit var settings: AppSettingsRepository
     
     private lateinit var binding: ActivityLoginBinding
-
     private val viewModel by viewModels<LoginViewModel>()
 
     private val userFromFields = object
