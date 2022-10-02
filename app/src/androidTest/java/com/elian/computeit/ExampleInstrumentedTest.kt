@@ -21,6 +21,6 @@ class ExampleInstrumentedTest
     {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("com.elian.efficientneuron", appContext.packageName)
+        assertEquals("com.elian.computeit", appContext.packageName)
     }
 }

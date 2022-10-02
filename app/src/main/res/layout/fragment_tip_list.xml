@@ -5,13 +5,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:background="@color/blue_columbia"
+        android:background="@color/blue_200"
         android:orientation="vertical"
         tools:context=".ui.TipListFragment">
 
     <TextView
             android:id="@+id/tvTitle"
-            android:text="@string/frgTips.tvTitle.text"
+            android:text="@string/frgTips_tvTitle_text"
             style="@style/Title" />
     
     <androidx.recyclerview.widget.RecyclerView

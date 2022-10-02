@@ -15,7 +15,7 @@ class RegisterUseCase @Inject constructor(
         val passwordError = ValidationUtil.validatePassword(password)
         val confirmPasswordError = ValidationUtil.validateConfirmPassword(confirmPassword, password)
 
-        if (emailError != null || passwordError != null)
+        if (emailError != null || passwordError != null || confirmPasswordError != null)
         {
             return RegisterResult(
                 emailError = emailError,

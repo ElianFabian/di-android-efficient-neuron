@@ -2,27 +2,27 @@
 
 <resources>
 
-    <dimen name="base.til.layout_width">300dp</dimen>
-    <dimen name="base.til.layout_marginTop">32dp</dimen>
+    <dimen name="base_til_layout_width">300dp</dimen>
+    <dimen name="base_til_layout_marginTop">22dp</dimen>
 
-    <dimen name="tvTitle.textSize">45sp</dimen>
+    <dimen name="tvTitle_textSize">45sp</dimen>
 
     <!--region Styles-->
-    <dimen name="Button.paddingHorizontal">25dp</dimen>
-    <dimen name="Button.paddingVertical">10dp</dimen>
+    <dimen name="Button_paddingHorizontal">25dp</dimen>
+    <dimen name="Button_paddingVertical">10dp</dimen>
     <!--endregion-->
 
     <!--region Activities-->
-    <dimen name="actSignup.btnSignup.layout_marginTop">80dp</dimen>
+    <dimen name="actSignup_btnSignup_layout_marginTop">80dp</dimen>
     <!--endregion-->
 
     <!--region Fragments-->
-    <dimen name="frgFunctions.Landscape.overwrite.tvTitle.layout_marginTop">10dp</dimen>
+    <dimen name="frgFunctions_Landscape_overwrite_tvTitle_layout_marginTop">10dp</dimen>
 
-    <dimen name="frgGame.tvOperation.textSize">90sp</dimen>
-    <dimen name="frgGame.ibClose.size">50dp</dimen>
+    <dimen name="frgGame_tvOperation_textSize">90sp</dimen>
+    <dimen name="frgGame_ibClose_size">50dp</dimen>
 
-    <dimen name="frgGameConfiguration.overwrite.tvTitle.textSize">35sp</dimen>
+    <dimen name="frgGameConfiguration_overwrite_tvTitle_textSize">35sp</dimen>
     <!--endregion-->
 
 </resources>

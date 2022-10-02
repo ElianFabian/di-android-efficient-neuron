@@ -13,7 +13,7 @@
             android:layout_height="match_parent"
             android:padding="10dp"
             android:orientation="vertical"
-            android:background="@color/blue_deep_sky">
+            android:background="@color/indigo_200">
         
         <TextView
                 android:id="@+id/tvTitle"

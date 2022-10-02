@@ -20,11 +20,8 @@ class RegisterViewModel @Inject constructor(
     private val _eventFlow = MutableSharedFlow<RegisterEvent>()
     val eventFlow = _eventFlow.asSharedFlow()
 
-    private val _registerAction = MutableSharedFlow<RegisterAction>()
-    val loginEvent = _registerAction.asSharedFlow()
-
-    private val _registerState = MutableStateFlow(RegisterState())
-    val loginState = _registerState.asStateFlow()
+    private val _loadingState = MutableStateFlow(false)
+    val loadingState = _loadingState.asStateFlow()
 
     private val _emailState = MutableStateFlow(StandardTextFieldState())
     val emailState = _emailState.asStateFlow()
@@ -38,7 +35,7 @@ class RegisterViewModel @Inject constructor(
 
     suspend fun onAction(action: RegisterAction) = when (action)
     {
-        is RegisterAction.ReceivedEmail        ->
+        is RegisterAction.ReceivedEmail           ->
         {
             _emailState.value = _emailState.value.copy(text = action.value)
         }
@@ -63,7 +60,7 @@ class RegisterViewModel @Inject constructor(
 
     private suspend fun register(email: String, password: String, confirmPassword: String)
     {
-        _registerState.value = _registerState.value.copy(isLoading = true)
+        _loadingState.value = true
 
         registerUseCase(
             email = email,
@@ -86,6 +83,6 @@ class RegisterViewModel @Inject constructor(
             }
         }
 
-        _registerState.value = _registerState.value.copy(isLoading = false)
+        _loadingState.value = false
     }
 }

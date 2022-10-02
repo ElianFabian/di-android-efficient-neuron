@@ -4,12 +4,12 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.lifecycleScope
 import com.elian.computeit.R
 import com.elian.computeit.core.domain.util.collectLatestFlowWhenStarted
 import com.elian.computeit.core.presentation.util.extensions.asString
-import com.elian.computeit.data.model.User
 import com.elian.computeit.databinding.ActivityRegisterBinding
 import com.elian.computeit.feature_auth.presentation.login.LoginActivity
 import com.elian.computeit.feature_auth.presentation.util.AuthError
@@ -22,11 +22,12 @@ class RegisterActivity : AppCompatActivity()
     private lateinit var binding: ActivityRegisterBinding
     private val viewModel by viewModels<RegisterViewModel>()
 
-    private val userFromFields: User
-        get() = User(
-            binding.tieEmail.text.toString(),
-            binding.tiePassword.text.toString()
-        )
+    private val userFromFields = object
+    {
+        val email get() = binding.tieEmail.text.toString().trim()
+        val password get() = binding.tiePassword.text.toString().trim()
+        val confirmPassword get() = binding.tieConfirmPassword.text.toString().trim()
+    }
 
     //region Activity Methods
 
@@ -53,22 +54,10 @@ class RegisterActivity : AppCompatActivity()
 
         binding.btnRegister.setOnClickListener()
         {
-            lifecycleScope.launchWhenStarted()
-            {
-                viewModel.onAction(RegisterAction.ReceivedEmail(binding.tieEmail.text.toString().trim()))
-            }
-            lifecycleScope.launchWhenStarted()
-            {
-                viewModel.onAction(RegisterAction.ReceivedPassword(binding.tiePassword.text.toString().trim()))
-            }
-            lifecycleScope.launchWhenStarted()
-            {
-                viewModel.onAction(RegisterAction.ReceivedConfirmPassword(binding.tieConfirmPassword.text.toString().trim()))
-            }
-            lifecycleScope.launchWhenStarted()
-            {
-                viewModel.onAction(RegisterAction.Register)
-            }
+            onActionWhenStarted(RegisterAction.ReceivedEmail(userFromFields.email))
+            onActionWhenStarted(RegisterAction.ReceivedPassword(userFromFields.password))
+            onActionWhenStarted(RegisterAction.ReceivedConfirmPassword(userFromFields.confirmPassword))
+            onActionWhenStarted(RegisterAction.Register)
         }
     }
 
@@ -120,10 +109,9 @@ class RegisterActivity : AppCompatActivity()
                 else                      -> null
             })
         }
-        collectLatestFlowWhenStarted(viewModel.loginState)
+        collectLatestFlowWhenStarted(viewModel.loadingState)
         {
-            if (it.isLoading) showProgress()
-            else hideProgress()
+            if (it) showProgress() else hideProgress()
         }
     }
 
@@ -134,18 +122,14 @@ class RegisterActivity : AppCompatActivity()
         onDestroy()
     }
 
-    //endregion
-
-    //region SignUpContract.View
-
-    fun showProgress()
+    private fun showProgress()
     {
-
+        binding.pbLoading.isVisible = true
     }
 
-    fun hideProgress()
+    private fun hideProgress()
     {
-
+        binding.pbLoading.isVisible = false
     }
 
     private fun setEmailError(text: String?)
@@ -161,6 +145,11 @@ class RegisterActivity : AppCompatActivity()
     private fun setConfirmPasswordError(text: String?)
     {
         binding.tilConfirmPassword.error = text
+    }
+
+    private fun onActionWhenStarted(action: RegisterAction)
+    {
+        lifecycleScope.launchWhenStarted { viewModel.onAction(action) }
     }
 
     //endregion

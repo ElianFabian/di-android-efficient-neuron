@@ -17,11 +17,8 @@ class LoginViewModel @Inject constructor(
     private val _eventFlow = MutableSharedFlow<LoginEvent>()
     val eventFlow = _eventFlow.asSharedFlow()
 
-    private val _loginEvent = MutableSharedFlow<LoginAction>()
-    val loginAction = _loginEvent.asSharedFlow()
-
-    private val _loginState = MutableStateFlow(LoginState())
-    val loginState = _loginState.asStateFlow()
+    private val _loadingState = MutableStateFlow(false)
+    val loadingState = _loadingState.asStateFlow()
 
     private val _emailState = MutableStateFlow(StandardTextFieldState())
     val emailState = _emailState.asStateFlow()
@@ -34,11 +31,11 @@ class LoginViewModel @Inject constructor(
     {
         is LoginAction.EnteredEmail    ->
         {
-            _emailState.emit(_emailState.value.copy(text = action.value))
+            _emailState.value = _emailState.value.copy(text = action.value)
         }
         is LoginAction.EnteredPassword ->
         {
-            _passwordState.emit(_passwordState.value.copy(text = action.value))
+            _passwordState.value = _passwordState.value.copy(text = action.value)
         }
         is LoginAction.Login           ->
         {
@@ -51,7 +48,7 @@ class LoginViewModel @Inject constructor(
 
     private suspend fun login(email: String, password: String)
     {
-        _loginState.value = _loginState.value.copy(isLoading = true)
+        _loadingState.value = true
 
         loginUseCase(
             email = email,
@@ -72,6 +69,6 @@ class LoginViewModel @Inject constructor(
             }
         }
 
-        _loginState.value = _loginState.value.copy(isLoading = false)
+        _loadingState.value = false
     }
 }

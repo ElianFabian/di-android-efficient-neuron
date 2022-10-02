@@ -4,15 +4,15 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/blue_midnight"
+        android:background="@color/blue_gray_900"
         android:orientation="vertical"
         tools:context=".ui.GameFragment">
 
     <!--region Button Close-->
     <ImageButton
             android:id="@+id/ibExit"
-            android:layout_width="@dimen/frgGame.ibClose.size"
-            android:layout_height="@dimen/frgGame.ibClose.size"
+            android:layout_width="@dimen/frgGame_ibClose_size"
+            android:layout_height="@dimen/frgGame_ibClose_size"
             android:src="@drawable/ic_close"
             android:scaleType="fitCenter"
             android:background="@color/transparent"
@@ -25,7 +25,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/white"
-            android:textSize="@dimen/frgGame.tvOperation.textSize"
+            android:textSize="@dimen/frgGame_tvOperation_textSize"
             android:textStyle="bold"
             android:layout_gravity="center|top"
             android:layout_marginTop="10dp"

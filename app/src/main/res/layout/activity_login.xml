@@ -1,39 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+
+<androidx.appcompat.widget.LinearLayoutCompat
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
 
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/blue_columbia"
+    android:orientation="vertical"
+    android:background="@color/blue_200">
 
-    tools:context=".feature_auth.presentation.login.LoginActivity">
-
-    <!--region Guide Lines -->
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/glStart"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-
-        app:layout_constraintGuide_percent="0.05"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/glEnd"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-
-        app:layout_constraintGuide_percent="0.95"
-        app:layout_constraintStart_toEndOf="parent" />
-    <!--endregion-->
-
-    <!--region Title-->
     <TextView
         android:id="@+id/tvTitle"
-        android:text="@string/actLogin.tvTitle.text"
+        android:text="@string/actLogin_tvTitle_text"
 
         style="@style/Title"
 
@@ -42,79 +21,76 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0" />
-    <!--endregion-->
 
-    <!--region User-->
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tilEmail"
+        android:layout_gravity="center"
+        android:layout_marginTop="80dp"
 
-        style="@style/TextInputLayout"
-
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/glEnd"
-        app:layout_constraintStart_toStartOf="@+id/glStart"
-        app:layout_constraintTop_toBottomOf="@+id/tvTitle"
-        app:layout_constraintVertical_bias="0.1">
+        style="@style/TextInputLayout">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/tieEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/const.EMAIL" />
+            android:hint="@string/const_Email" />
     </com.google.android.material.textfield.TextInputLayout>
-    <!--endregion-->
 
-    <!--region Password-->
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tilPassword"
-        style="@style/TextInputLayout"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/base_til_layout_marginTop"
 
-        android:layout_marginTop="@dimen/base.til.layout_marginTop"
-        app:passwordToggleEnabled="true"
-        app:layout_constraintEnd_toStartOf="@+id/glEnd"
-        app:layout_constraintStart_toStartOf="@+id/glStart"
-        app:layout_constraintTop_toBottomOf="@+id/tilEmail">
+        style="@style/TextInputLayout">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/tiePassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/actLogin.tiePassword.hint"
+            android:hint="@string/actLogin_tiePassword_hint"
             android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
-    <!--endregion-->
 
-    <!--region Button Signup-->
     <Button
-        android:id="@+id/btn_register"
-        style="@style/Widget.AppCompat.Button.Borderless"
+        android:id="@+id/btnRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_marginTop="15dp"
         android:layout_marginEnd="16dp"
-        android:text="@string/actLogin.btnSignup.text"
+        android:text="@string/actLogin_btnSignup_text"
         android:textAllCaps="true"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textColor="@color/black"
         android:textStyle="bold"
 
-        app:layout_constraintBottom_toTopOf="@+id/btnLogin"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tilPassword"
-        app:layout_constraintVertical_bias="0.10" />
-    <!--endregion-->
+        style="@style/Widget.AppCompat.Button.Borderless" />
 
-    <!--region Button login-->
     <Button
         android:id="@+id/btnLogin"
-        android:text="@string/actLogin.btnLogin.text"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="30dp"
+        android:text="@string/actLogin_btnLogin_text"
 
-        style="@style/Button"
+        style="@style/Button" />
 
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tilPassword"
-        app:layout_constraintVertical_bias="0.3" />
-    <!--endregion-->
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <ProgressBar
+        android:id="@+id/pbLoading"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center_horizontal"
+        android:visibility="invisible"
+
+        tools:visibility="visible" />
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+</androidx.appcompat.widget.LinearLayoutCompat>

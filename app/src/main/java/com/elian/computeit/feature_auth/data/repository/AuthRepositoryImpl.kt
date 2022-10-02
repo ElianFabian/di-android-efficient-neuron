@@ -6,25 +6,23 @@ import com.elian.computeit.core.util.SimpleResource
 import com.elian.computeit.data.model.User
 import com.elian.computeit.core.util.UiText
 import com.elian.computeit.feature_auth.domain.repository.AuthRepository
-import com.elian.computeit.view_model.SignUpContract
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
+import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.*
 import kotlinx.coroutines.tasks.await
+import javax.inject.Inject
 
-class AuthRepositoryImpl :
+class AuthRepositoryImpl @Inject constructor(
+    private val firestore: FirebaseFirestore
+) :
     AuthRepository
 {
-    private val firestore get() = Firebase.firestore
-
-
     override suspend fun login(email: String, password: String): SimpleResource
     {
         val user = getUserByEmail(email)
 
         return if (user == null)
         {
-            Resource.Error(UiText.DynamicString("Couldn't get user from server"))
+            Resource.Error(UiText.StringResource(R.string.error_user_doesnt_exist))
         }
         else if (user.password != password)
         {

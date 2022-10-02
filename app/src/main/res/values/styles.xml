@@ -7,7 +7,7 @@
         <item name="android:layout_marginTop">20dp</item>
         <item name="android:layout_gravity">center_horizontal</item>
         <item name="android:fontFamily">@font/comfortaa_bold</item>
-        <item name="android:textSize">@dimen/tvTitle.textSize</item>
+        <item name="android:textSize">@dimen/tvTitle_textSize</item>
         <item name="android:textColor">@color/black</item>
         <item name="android:textAlignment">center</item>
     </style>
@@ -16,7 +16,7 @@
         <item name="android:layout_width">300dp</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="strokeColor">@color/black</item>
-        <item name="hintTextColor">@color/blue_botticelli</item>
+        <item name="hintTextColor">@color/blue_gray_300</item>
         <item name="boxBackgroundColor">@color/transparent</item>
         <item name="boxBackgroundMode">filled</item>
     </style>
@@ -29,10 +29,10 @@
         <item name="android:textSize">25sp</item>
 
         <!--paddingHorizontal and paddingVertical are only available on 26 version-->
-        <item name="android:paddingRight">@dimen/Button.paddingHorizontal</item>
-        <item name="android:paddingLeft">@dimen/Button.paddingHorizontal</item>
-        <item name="android:paddingTop">@dimen/Button.paddingVertical</item>
-        <item name="android:paddingBottom">@dimen/Button.paddingVertical</item>
+        <item name="android:paddingRight">@dimen/Button_paddingHorizontal</item>
+        <item name="android:paddingLeft">@dimen/Button_paddingHorizontal</item>
+        <item name="android:paddingTop">@dimen/Button_paddingVertical</item>
+        <item name="android:paddingBottom">@dimen/Button_paddingVertical</item>
     </style>
 
     <style name="frgOperation_ImageButton">
@@ -63,7 +63,7 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">40sp</item>
-        <item name="android:textColor">@color/blue_midnight</item>
+        <item name="android:textColor">@color/blue_gray_900</item>
         <item name="android:fontFamily">@font/comfortaa</item>
     </style>
 
@@ -85,7 +85,7 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:fontFamily">@font/comfortaa</item>
-        <item name="android:textColor">@color/blue_free_speech</item>
+        <item name="android:textColor">@color/blue_800</item>
         <item name="android:textSize">40sp</item>
     </style>
 
@@ -94,7 +94,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">40sp</item>
         <item name="android:fontFamily">@font/comfortaa_bold</item>
-        <item name="android:textColor">@color/gray_very_light</item>
+        <item name="android:textColor">@color/gray_400</item>
         <item name="android:layout_marginStart">20dp</item>
     </style>
 
@@ -103,7 +103,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">35sp</item>
         <item name="android:fontFamily">@font/comfortaa_bold</item>
-        <item name="android:textColor">@color/blue_columbia</item>
+        <item name="android:textColor">@color/blue_200</item>
         <item name="android:layout_marginStart">20dp</item>
     </style>
 
@@ -113,7 +113,7 @@
         <item name="android:layout_marginTop">20dp</item>
         <item name="android:layout_marginStart">10dp</item>
         <item name="android:layout_marginEnd">10dp</item>
-        <item name="android:textColor">@color/blue_curious</item>
+        <item name="android:textColor">@color/light_blue_800</item>
         <item name="android:textSize">22sp</item>
     </style>
 
@@ -121,7 +121,7 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginTop">10dp</item>
-        <item name="android:textColor">@color/blue_charcoal</item>
+        <item name="android:textColor">@color/grey_900</item>
         <item name="android:textSize">35sp</item>
     </style>
 
@@ -130,7 +130,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:fontFamily">@font/comfortaa</item>
         <item name="android:textSize">40sp</item>
-        <item name="android:textColor">@color/gray_dim</item>
+        <item name="android:textColor">@color/gray_600</item>
     </style>
 
     <style name="frgStatistics_TextView">
@@ -148,7 +148,7 @@
         <item name="android:fontFamily">@font/comfortaa_bold</item>
         <item name="android:includeFontPadding">false</item>
         <item name="android:textAlignment">center</item>
-        <item name="android:textColor">@color/blue_free_speech</item>
+        <item name="android:textColor">@color/blue_800</item>
     </style>
 
 </resources>

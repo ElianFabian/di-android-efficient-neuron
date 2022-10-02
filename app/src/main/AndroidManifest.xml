@@ -9,7 +9,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.EfficientNeuron">
+        android:theme="@style/Theme.ComputeIt">
 
         <activity
             android:name=".feature_auth.presentation.login.LoginActivity"
