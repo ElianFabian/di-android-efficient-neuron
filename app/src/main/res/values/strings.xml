@@ -51,7 +51,7 @@
     <string name="actLogin_btnLogin_text">@string/const_Login</string>
     <string name="actLogin_btnSignup_text">@string/const_Register</string>
 
-    <string name="actLogin_notification_contentTitle">You\'re now logged in! S's</string>
+    <string name="actLogin_notification_contentTitle">You\'re now logged in!</string>
 
     <string name="actSignup_tvTitle_text">@string/const_Register</string>
     <string name="actSignup_tieEmail_hint">@string/const_Email</string>
