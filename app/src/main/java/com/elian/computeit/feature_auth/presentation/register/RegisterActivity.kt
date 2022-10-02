@@ -1,6 +1,5 @@
 package com.elian.computeit.feature_auth.presentation.register
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
