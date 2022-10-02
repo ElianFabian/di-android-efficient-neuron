@@ -11,6 +11,7 @@ import com.elian.computeit.R
 import com.elian.computeit.core.domain.util.collectLatestFlowWhenStarted
 import com.elian.computeit.core.presentation.util.extensions.asString
 import com.elian.computeit.core.presentation.util.extensions.error2
+import com.elian.computeit.core.presentation.util.extensions.navigateTo
 import com.elian.computeit.databinding.ActivityRegisterBinding
 import com.elian.computeit.feature_auth.presentation.login.LoginActivity
 import com.elian.computeit.feature_auth.presentation.util.AuthError
@@ -45,7 +46,7 @@ class RegisterActivity : AppCompatActivity()
 
     override fun onBackPressed()
     {
-        goToLogin()
+        navigateTo<LoginActivity>()
     }
 
     //endregion
@@ -73,7 +74,7 @@ class RegisterActivity : AppCompatActivity()
         {
             when (it)
             {
-                is RegisterEvent.Register         -> goToLogin()
+                is RegisterEvent.Register         -> navigateTo<LoginActivity>()
                 is RegisterEvent.ShowErrorMessage -> toast(it.error.asString(applicationContext))
             }
         }
@@ -118,13 +119,6 @@ class RegisterActivity : AppCompatActivity()
         {
             if (it) showProgress() else hideProgress()
         }
-    }
-
-    private fun goToLogin()
-    {
-        val intent = Intent(this, LoginActivity::class.java)
-        startActivity(intent)
-        onDestroy()
     }
 
     private fun showProgress()

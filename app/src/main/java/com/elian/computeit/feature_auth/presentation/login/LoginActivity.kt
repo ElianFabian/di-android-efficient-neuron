@@ -1,6 +1,5 @@
 package com.elian.computeit.feature_auth.presentation.login
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -13,8 +12,8 @@ import com.elian.computeit.core.domain.repository.AppSettingsRepository
 import com.elian.computeit.core.domain.util.collectLatestFlowWhenStarted
 import com.elian.computeit.core.presentation.util.extensions.asString
 import com.elian.computeit.core.presentation.util.extensions.error2
+import com.elian.computeit.core.presentation.util.extensions.navigateTo
 import com.elian.computeit.databinding.ActivityLoginBinding
-import com.elian.computeit.feature_auth.presentation.register.RegisterActivity
 import com.elian.computeit.feature_auth.presentation.util.AuthError
 import com.elian.computeit.util.extension.toast
 import dagger.hilt.android.AndroidEntryPoint
@@ -68,7 +67,7 @@ class LoginActivity : AppCompatActivity()
         }
         binding.btnRegister.setOnClickListener()
         {
-            goToRegister()
+            navigateTo<MainActivity>()
         }
     }
 
@@ -81,7 +80,7 @@ class LoginActivity : AppCompatActivity()
                 is LoginEvent.Login            ->
                 {
                     settings.saveUserEmail(userFromFields.email)
-                    goToMainActivity()
+                    navigateTo<MainActivity>()
                 }
                 is LoginEvent.ShowErrorMessage -> toast(it.error.asString(applicationContext))
             }
@@ -108,20 +107,6 @@ class LoginActivity : AppCompatActivity()
         }
     }
 
-    private fun goToMainActivity()
-    {
-        val intent = Intent(this, MainActivity::class.java)
-        startActivity(intent)
-        finish()
-    }
-
-    private fun goToRegister()
-    {
-        val intent = Intent(this, RegisterActivity::class.java)
-        startActivity(intent)
-        finish()
-    }
-
     private fun tryLogInUser()
     {
         lifecycleScope.launch(Dispatchers.IO)
@@ -130,7 +115,7 @@ class LoginActivity : AppCompatActivity()
 
             if (isUserLoggedIn)
             {
-                goToMainActivity()
+                navigateTo<MainActivity>()
             }
         }
     }
