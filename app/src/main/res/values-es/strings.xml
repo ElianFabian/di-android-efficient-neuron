@@ -1,54 +1,60 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
 <resources>
-    <string name="frgGameConfiguration_btnPlay_text">JUGAR</string>
-    <string name="const_Login">INICIAR SESIÓN</string>
-    <string name="const_Register">REGISTRARSE</string>
     <string name="const_ConfirmPassword">Confirmar contraseña</string>
-    <string name="const_Password">Contraseña</string>
-    <string name="const_User">Usuario</string>
-    <string name="const_Time">segundos</string>
-    <string name="const_Tests">juegos</string>
-    <string name="frgGameConfiguration_tvMode_text">Modo:</string>
-    <string name="frgGameConfiguration_tvDigits_text">Dígitos:</string>
-    <string name="frgGameConfiguration_tvTitle_text">CONFIGURACIÓN DE JUEGO</string>
-    <string name="frgFunctions_tvTitle_text">OPERACIONES</string>
-    <string name="navigation_menu_navProfile_title">Perfil</string>
-    <string name="navigation_menu_navTips_title">Consejos</string>
-    <string name="navigation_menu_navStatistics_title">Estadísticas</string>
-    <string name="navigation_menu_navSettings_title">Configuración</string>
     <string name="const_Email">Email</string>
-    <string name="navigation_menu_navHome_title">Inicio</string>
-    <string name="frgAboutUs_description">Esta aplicación es un proyecto para aprender a cómo crear aplicaciones en Android. Es un ejercicio del módulo de Android de IES Portada Alta.</string>
-    <string name="frgEndGame_btnContinue_text">CONTINUAR</string>
-    <string name="frgTips_tvTitle_text">CONSEJOS</string>
-    <string name="frgEndGame_LabelFor_tvTotalTime_text">Tiempo Total</string>
-    <string name="frgEndGame_tvTimePerGame_text">Tiempo por partida</string>
-    <string name="navigation_menu_navAboutUs_title">Sobre Nosotros</string>
-    <string name="error_example_empty" translatable="false">Ejemplo no puede estar vacío</string>
-    <string name="error_title_empty" translatable="false">Título no puede estar vacío</string>
-    <string name="error_invalid_credentials">El email o la contraseña son erróneos</string>
-    <string name="error_password_empty">La contraseña no puede estar vacía</string>
+    <string name="const_Login">INICIAR SESIÓN</string>
+    <string name="const_Password">Contraseña</string>
+    <string name="const_Register">REGISTRARSE</string>
+    <string name="const_Tests">juegos</string>
+
     <string name="error_email_empty">El email no puede estar vacío</string>
-    <string name="frgTipManager_tieExample_hint">Ejemplo</string>
-    <string name="frgTipManager_tieTitle_hint">Título</string>
-    <string name="frgStatistics_tvErrorRateLabel_text">Porcentaje de error</string>
-    <string name="frgStatistics_tvTimePerGameLabel_text">Tiempo por partida</string>
-    <string name="frgStatistics_tvGamesLabel_text">Partidas</string>
-    <string name="frgStatistics_tvTimeLabel_text">Tiempo</string>
-    <string name="frgStatistics_tvTitle_text">ESTADÍSTICAS</string>
-    <string name="actLogin_notification_contentTitle">¡Ahora estás registrado!</string>
-    <string name="frgSettings_dark_theme_title">Tema oscuro</string>
-    <string name="frgSettings_use_inverted_numeric_keyboard_title">Usar teclado numérico invertido</string>
-    <string name="frgSettings_disable_notifications_title">Desactivar notificaciones</string>
-    <string name="frgSettings_category_general">General</string>
-    <string name="frgAboutUs_github_title">Código fuente</string>
     <string name="error_email_invalid">Email inválido, ejemplo: %s</string>
+    <string name="error_example_empty" translatable="false">Ejemplo no puede estar vacío</string>
+    <string name="error_password_empty">La contraseña no puede estar vacía</string>
     <string name="error_password_invalid">Contraseña inválida, debería contener al menos %d de estos caracteres: %s</string>
+    <string name="error_password_is_wrong">La contraseña es incorrecta</string>
+    <string name="error_passwords_dont_match">Las contraseñas no coinciden</string>
+    <string name="error_title_empty" translatable="false">Título no puede estar vacío</string>
+    <string name="error_too_long">Demasiado largo, la longitud máxima es %d</string>
+    <string name="error_too_short">Demasiado corto, la longitud mínima es %d</string>
     <string name="error_unknown">Error desconocido</string>
     <string name="error_user_already_exists">El usuario ya existe</string>
-    <string name="error_too_short">Demasiado corto, la longitud mínima es %d</string>
-    <string name="error_too_long">Demasiado largo, la longitud máxima es %d</string>
-    <string name="error_passwords_dont_match">Las contraseñas no coinciden</string>
-    <string name="error_password_is_wrong">La contraseña es incorrecta</string>
     <string name="error_user_doesnt_exist">El usuario no existe</string>
+
+    <string name="frgAboutUs_description">Esta aplicación es un proyecto para aprender a cómo crear aplicaciones en Android. Es un ejercicio del módulo de Android de IES Portada Alta.</string>
+    <string name="frgAboutUs_github_title">Código fuente</string>
+
+    <string name="frgEndGame_LabelFor_tvTotalTime_text">Tiempo Total</string>
+    <string name="frgEndGame_btnContinue_text">CONTINUAR</string>
+    <string name="frgEndGame_tvTimePerGame_text">Tiempo por partida</string>
+
+    <string name="frgFunctions_tvTitle_text">OPERACIONES</string>
+
+    <string name="frgGameConfiguration_btnPlay_text">JUGAR</string>
+    <string name="frgGameConfiguration_tvDigits_text">Dígitos:</string>
+    <string name="frgGameConfiguration_tvMode_text">Modo:</string>
+    <string name="frgGameConfiguration_tvTitle_text">CONFIGURACIÓN DE JUEGO</string>
+
+    <string name="frgSettings_category_general">General</string>
+    <string name="frgSettings_dark_theme_title">Tema oscuro</string>
+    <string name="frgSettings_disable_notifications_title">Desactivar notificaciones</string>
+    <string name="frgSettings_use_inverted_numeric_keyboard_title">Usar teclado numérico invertido</string>
+
+    <string name="frgStatistics_tvErrorRateLabel_text">Porcentaje de error</string>
+    <string name="frgStatistics_tvGamesLabel_text">Partidas</string>
+    <string name="frgStatistics_tvTimeLabel_text">Tiempo</string>
+    <string name="frgStatistics_tvTimePerGameLabel_text">Tiempo por partida</string>
+    <string name="frgStatistics_tvTitle_text">ESTADÍSTICAS</string>
+
+    <string name="frgTipManager_tieExample_hint">Ejemplo</string>
+    <string name="frgTipManager_tieTitle_hint">Título</string>
+
+    <string name="frgTips_tvTitle_text">CONSEJOS</string>
+
+    <string name="navigation_menu_navAboutUs_title">Sobre Nosotros</string>
+    <string name="navigation_menu_navHome_title">Inicio</string>
+    <string name="navigation_menu_navProfile_title">Perfil</string>
+    <string name="navigation_menu_navSettings_title">Configuración</string>
+    <string name="navigation_menu_navStatistics_title">Estadísticas</string>
+    <string name="navigation_menu_navTips_title">Consejos</string>
 </resources>

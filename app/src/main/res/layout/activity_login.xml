@@ -12,7 +12,7 @@
 
     <TextView
         android:id="@+id/tvTitle"
-        android:text="@string/actLogin_tvTitle_text"
+        android:text="@string/const_Login"
 
         style="@style/Title"
 
@@ -50,7 +50,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:maxLines="1"
-            android:hint="@string/actLogin_tiePassword_hint"
+            android:hint="@string/const_Password"
             android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -61,7 +61,7 @@
         android:layout_gravity="end"
         android:layout_marginTop="15dp"
         android:layout_marginEnd="16dp"
-        android:text="@string/actLogin_btnSignup_text"
+        android:text="@string/const_Register"
         android:textAllCaps="true"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textColor="@color/black"
@@ -73,7 +73,7 @@
         android:id="@+id/btnLogin"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="30dp"
-        android:text="@string/actLogin_btnLogin_text"
+        android:text="@string/const_Login"
 
         style="@style/Button" />
 

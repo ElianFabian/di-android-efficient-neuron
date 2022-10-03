@@ -12,7 +12,7 @@
 
     <TextView
         android:id="@+id/tvTitle"
-        android:text="@string/actSignup_tvTitle_text"
+        android:text="@string/const_Register"
 
         style="@style/Title" />
 
@@ -28,7 +28,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:maxLines="1"
-            android:hint="@string/actSignup_tieEmail_hint" />
+            android:hint="@string/const_Email" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -45,7 +45,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:maxLines="1"
-            android:hint="@string/actSignup_tilPassword_hint" />
+            android:hint="@string/const_Password" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -62,12 +62,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:maxLines="1"
-            android:hint="@string/actSignup_tieConfirmPassword_hint" />
+            android:hint="@string/const_ConfirmPassword" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/btnRegister"
-        android:text="@string/actSignup_btnSignup_text"
+        android:text="@string/const_Register"
         android:layout_gravity="center"
         android:layout_marginTop="@dimen/actSignup_btnSignup_layout_marginTop"
 

@@ -2,7 +2,6 @@
 
 <resources>
 
-    <dimen name="base_til_layout_width">300dp</dimen>
     <dimen name="base_til_layout_marginTop">22dp</dimen>
 
     <dimen name="tvTitle_textSize">45sp</dimen>
@@ -17,7 +16,6 @@
     <!--endregion-->
 
     <!--region Fragments-->
-    <dimen name="frgFunctions_Landscape_overwrite_tvTitle_layout_marginTop">10dp</dimen>
 
     <dimen name="frgGame_tvOperation_textSize">90sp</dimen>
     <dimen name="frgGame_ibClose_size">50dp</dimen>

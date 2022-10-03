@@ -10,6 +10,7 @@
         <item name="android:textSize">@dimen/tvTitle_textSize</item>
         <item name="android:textColor">@color/black</item>
         <item name="android:textAlignment">center</item>
+        <item name="textAllCaps">true</item>
     </style>
 
     <style name="TextInputLayout">
