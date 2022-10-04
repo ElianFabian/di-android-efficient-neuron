@@ -1,4 +1,4 @@
-package com.elian.computeit.core.presentation.util.extensions
+package com.elian.computeit.core.util.extensions
 
 import com.google.android.material.textfield.TextInputLayout
 

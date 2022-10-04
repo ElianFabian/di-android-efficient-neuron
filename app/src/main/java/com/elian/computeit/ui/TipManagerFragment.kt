@@ -10,7 +10,7 @@ import com.elian.computeit.data.model.Tip
 import com.elian.computeit.databinding.FragmentTipManagerBinding
 import com.elian.computeit.view_model.TipManagerContract
 import com.elian.computeit.view_model.TipManagerPresenter
-import com.elian.computeit.util.extension.goToFragment
+import com.elian.computeit.core.util.extensions.goToFragment
 
 
 class TipManagerFragment : BaseFragment(), TipManagerContract.View

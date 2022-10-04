@@ -15,8 +15,8 @@ import com.elian.computeit.databinding.FragmentTipListBinding
 import com.elian.computeit.util.RecyclerViewAdapter
 import com.elian.computeit.view_model.TipListContract
 import com.elian.computeit.view_model.TipListPresenter
-import com.elian.computeit.util.extension.goToFragment
-import com.elian.computeit.util.extension.toast
+import com.elian.computeit.core.util.extensions.goToFragment
+import com.elian.computeit.core.util.extensions.toast
 
 class TipListFragment : BaseFragment(),
     TipListContract.View,

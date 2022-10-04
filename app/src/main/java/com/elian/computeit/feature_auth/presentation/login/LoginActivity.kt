@@ -9,13 +9,12 @@ import androidx.lifecycle.lifecycleScope
 import com.elian.computeit.MainActivity
 import com.elian.computeit.R
 import com.elian.computeit.core.domain.repository.AppSettingsRepository
-import com.elian.computeit.core.domain.util.collectLatestFlowWhenStarted
-import com.elian.computeit.core.presentation.util.extensions.asString
-import com.elian.computeit.core.presentation.util.extensions.error2
-import com.elian.computeit.core.presentation.util.extensions.navigateTo
+import com.elian.computeit.core.util.extensions.collectLatestFlowWhenStarted
+import com.elian.computeit.core.util.extensions.error2
+import com.elian.computeit.core.util.extensions.navigateTo
 import com.elian.computeit.databinding.ActivityLoginBinding
 import com.elian.computeit.feature_auth.presentation.util.AuthError
-import com.elian.computeit.util.extension.toast
+import com.elian.computeit.core.util.extensions.toast
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

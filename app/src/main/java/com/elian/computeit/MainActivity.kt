@@ -16,8 +16,7 @@ import com.elian.computeit.ui.OperationsFragment
 import com.elian.computeit.ui.ProfileFragment
 import com.elian.computeit.ui.StatisticsFragment
 import com.elian.computeit.ui.TipListFragment
-import com.elian.computeit.util.extension.goToFragment
-import com.google.android.material.navigation.NavigationView
+import com.elian.computeit.core.util.extensions.goToFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

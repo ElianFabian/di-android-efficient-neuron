@@ -1,4 +1,4 @@
-package com.elian.computeit.core.domain.util
+package com.elian.computeit.core.util.extensions
 
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.lifecycleScope

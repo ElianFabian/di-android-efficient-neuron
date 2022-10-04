@@ -8,7 +8,7 @@ import androidx.core.view.children
 import androidx.fragment.app.Fragment
 import com.elian.computeit.R
 import com.elian.computeit.databinding.FragmentOperationsBinding
-import com.elian.computeit.util.extension.navigate
+import com.elian.computeit.core.util.extensions.navigate
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

@@ -13,6 +13,12 @@ sealed class UiText
         vararg val args: Any = emptyArray(),
     ) : UiText()
 
+    fun asString(context: Context) = when (this)
+    {
+        is DynamicString  -> this.value
+        is StringResource -> context.getString(this.resId, args)
+    }
+
     companion object
     {
         fun unknownError(): UiText

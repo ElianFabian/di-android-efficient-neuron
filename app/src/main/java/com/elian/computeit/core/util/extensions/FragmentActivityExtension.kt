@@ -1,4 +1,4 @@
-package com.elian.computeit.util.extension
+package com.elian.computeit.core.util.extensions
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
