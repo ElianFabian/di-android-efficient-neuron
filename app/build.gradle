@@ -47,6 +47,12 @@ apply plugin: 'com.android.application'
 apply plugin: 'dagger.hilt.android.plugin'
 
 dependencies {
+
+    // SSP: https://github.com/intuit/ssp
+    implementation 'com.intuit.ssp:ssp-android:1.1.0'
+    
+    // SDP: https://github.com/intuit/sdp
+    implementation 'com.intuit.sdp:sdp-android:1.1.0'
     
     // DataStore
     implementation 'androidx.datastore:datastore-preferences:1.0.0'

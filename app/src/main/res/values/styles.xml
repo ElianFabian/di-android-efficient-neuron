@@ -152,4 +152,27 @@
         <item name="android:textColor">@color/blue_800</item>
     </style>
 
+    <style name="CalculatorButton">
+        <item name="cornerRadius">@dimen/_10sdp</item>
+<!--        <item name="android:layout_width">@dimen/_70sdp</item>-->
+<!--        <item name="android:layout_height">@dimen/_70sdp</item>-->
+        <item name="android:layout_gravity">fill</item>
+        <item name="android:layout_columnWeight">1</item>
+        <item name="android:layout_rowWeight">1</item>
+        <item name="android:layout_marginStart">@dimen/_5sdp</item>
+        <item name="android:layout_marginEnd">@dimen/_5sdp</item>
+        <item name="android:maxLines">1</item>
+<!--        <item name="autoSizeTextType">uniform</item>-->
+        <item name="android:textSize">@dimen/_20ssp</item>
+    </style>
+
+    <style name="NumericButton" parent="CalculatorButton">
+        <item name="android:backgroundTint">@color/indigo_400</item>
+        <item name="android:fontFamily">@font/noto_sans_bold</item>
+    </style>
+    
+    <style name="ActionButton" parent="CalculatorButton">
+        
+    </style>
+
 </resources>
