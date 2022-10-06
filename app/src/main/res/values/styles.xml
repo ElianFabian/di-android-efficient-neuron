@@ -168,7 +168,7 @@
         <item name="autoSizeTextType">uniform</item>
 <!--        <item name="android:textSize">@dimen/_20ssp</item>-->
     </style>
-    
+
     <style name="CalculatorButtonRow">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">0dp</item>
