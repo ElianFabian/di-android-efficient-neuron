@@ -67,23 +67,25 @@
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/etResult"
-        android:layout_width="@dimen/_80sdp"
+        android:layout_width="@dimen/_200sdp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:backgroundTint="@color/teal_200"
-        android:focusable="false"
         android:cursorVisible="false"
+        android:focusable="false"
         android:fontFamily="@font/comfortaa_bold"
+        android:inputType="none"
+        android:maxLines="1"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="@dimen/_35ssp"
+        android:text="4"
         app:layout_constraintBottom_toTopOf="@+id/_glBottom"
         app:layout_constraintEnd_toEndOf="@+id/tvOperation"
         app:layout_constraintStart_toStartOf="@+id/tvOperation"
         app:layout_constraintTop_toBottomOf="@+id/tvOperation"
         app:layout_constraintVertical_bias="0.17"
-        tools:text="4"
-        android:inputType="none" />
+        tools:text="4" />
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="0dp"
