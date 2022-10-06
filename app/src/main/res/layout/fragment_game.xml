@@ -38,16 +38,16 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_end="@dimen/_10sdp" />
 
-<!--    <ImageButton-->
-<!--        android:id="@+id/ibExit"-->
-<!--        android:layout_width="@dimen/frgGame_ibClose_size"-->
-<!--        android:layout_height="@dimen/frgGame_ibClose_size"-->
-<!--        android:layout_gravity="end"-->
-<!--        android:background="@color/transparent"-->
-<!--        android:scaleType="fitCenter"-->
-<!--        android:src="@drawable/ic_close"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent" />-->
+    <!--    <ImageButton-->
+    <!--        android:id="@+id/ibExit"-->
+    <!--        android:layout_width="@dimen/frgGame_ibClose_size"-->
+    <!--        android:layout_height="@dimen/frgGame_ibClose_size"-->
+    <!--        android:layout_gravity="end"-->
+    <!--        android:background="@color/transparent"-->
+    <!--        android:scaleType="fitCenter"-->
+    <!--        android:src="@drawable/ic_close"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintTop_toTopOf="parent" />-->
 
     <TextView
         android:id="@+id/tvOperation"
@@ -84,72 +84,86 @@
         app:layout_constraintVertical_bias="0.17"
         tools:text="4" />
 
-    <com.google.android.material.circularreveal.CircularRevealGridLayout
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="@dimen/_20sdp"
-        android:columnCount="3"
-        android:orientation="horizontal"
-        android:rowCount="5"
+        android:layout_weight="1"
+        android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@+id/_glBottom"
         app:layout_constraintEnd_toStartOf="@+id/_glEnd"
         app:layout_constraintStart_toStartOf="@+id/_glStart"
         app:layout_constraintTop_toBottomOf="@+id/etResult"
         app:layout_constraintVertical_bias="0.53">
 
-        <com.google.android.material.button.MaterialButton
-            style="@style/ActionButton"
-            android:layout_columnSpan="3"
-            android:layout_rowSpan="1"
-            android:backgroundTint="@color/green_a400"
-            android:text="&gt;" />
 
-        <com.google.android.material.button.MaterialButton
-            style="@style/NumericButton"
-            android:text="1" />
+        <androidx.appcompat.widget.LinearLayoutCompat style="@style/CalculatorButtonRow">
+            <com.google.android.material.button.MaterialButton
+                style="@style/ActionButton"
+                android:layout_span="3"
+                android:backgroundTint="@color/green_a400"
+                android:text="&gt;" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
-        <com.google.android.material.button.MaterialButton
-            style="@style/NumericButton"
-            android:text="2" />
+        <androidx.appcompat.widget.LinearLayoutCompat style="@style/CalculatorButtonRow">
 
-        <com.google.android.material.button.MaterialButton
-            style="@style/NumericButton"
-            android:text="3" />
+            <com.google.android.material.button.MaterialButton
+                style="@style/NumericButton"
+                android:text="1" />
 
-        <com.google.android.material.button.MaterialButton
-            style="@style/NumericButton"
-            android:text="4" />
+            <com.google.android.material.button.MaterialButton
+                style="@style/NumericButton"
 
-        <com.google.android.material.button.MaterialButton
-            style="@style/NumericButton"
-            android:text="5" />
+                android:text="2" />
 
-        <com.google.android.material.button.MaterialButton
-            style="@style/NumericButton"
-            android:text="6" />
+            <com.google.android.material.button.MaterialButton
+                style="@style/NumericButton"
+                android:text="3" />
 
-        <com.google.android.material.button.MaterialButton
-            style="@style/NumericButton"
-            android:text="7" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
-        <com.google.android.material.button.MaterialButton
-            style="@style/NumericButton"
-            android:text="8" />
+        <androidx.appcompat.widget.LinearLayoutCompat style="@style/CalculatorButtonRow">
+            <com.google.android.material.button.MaterialButton
+                style="@style/NumericButton"
+                android:text="4" />
 
-        <com.google.android.material.button.MaterialButton
-            style="@style/NumericButton"
-            android:text="9" />
+            <com.google.android.material.button.MaterialButton
+                style="@style/NumericButton"
+                android:text="5" />
 
-        <com.google.android.material.button.MaterialButton
-            style="@style/NumericButton"
-            android:layout_columnSpan="2"
-            android:text="0" />
+            <com.google.android.material.button.MaterialButton
+                style="@style/NumericButton"
+                android:text="6" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
-        <com.google.android.material.button.MaterialButton
-            style="@style/ActionButton"
-            android:backgroundTint="@color/red_700"
-            android:text="&lt;" />
+        <androidx.appcompat.widget.LinearLayoutCompat style="@style/CalculatorButtonRow">
 
-    </com.google.android.material.circularreveal.CircularRevealGridLayout>
+            <com.google.android.material.button.MaterialButton
+                style="@style/NumericButton"
+                android:text="7" />
+
+            <com.google.android.material.button.MaterialButton
+                style="@style/NumericButton"
+                android:text="8" />
+
+            <com.google.android.material.button.MaterialButton
+                style="@style/NumericButton"
+                android:text="9" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat style="@style/CalculatorButtonRow">
+            <com.google.android.material.button.MaterialButton
+                style="@style/NumericButton"
+                android:layout_weight="2"
+                android:text="0" />
+
+            <com.google.android.material.button.MaterialButton
+                style="@style/ActionButton"
+                android:backgroundTint="@color/red_700"
+                android:text="&lt;" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
