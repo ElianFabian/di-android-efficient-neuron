@@ -65,14 +65,14 @@
         app:layout_constraintVertical_bias="0.04000002"
         tools:text="2 + 2" />
 
-    <EditText
+    <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/etResult"
         android:layout_width="@dimen/_80sdp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:backgroundTint="@color/teal_200"
-        android:editable="false"
         android:focusable="false"
+        android:cursorVisible="false"
         android:fontFamily="@font/comfortaa_bold"
         android:textAlignment="center"
         android:textColor="@color/white"
@@ -82,7 +82,8 @@
         app:layout_constraintStart_toStartOf="@+id/tvOperation"
         app:layout_constraintTop_toBottomOf="@+id/tvOperation"
         app:layout_constraintVertical_bias="0.17"
-        tools:text="4" />
+        tools:text="4"
+        android:inputType="none" />
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="0dp"
