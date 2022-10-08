@@ -11,21 +11,21 @@
         android:label="fragment_functions"
         tools:layout="@layout/fragment_operations" >
         <action
-            android:id="@+id/action_functionsFragment_to_gameConfigurationFragment"
-            app:destination="@id/gameConfigFragment" />
+            android:id="@+id/action_operationsFragment_to_testConfigurationFragment"
+            app:destination="@id/testConfigurationFragment" />
     </fragment>
     <fragment
-        android:id="@+id/gameConfigFragment"
-        android:name="com.elian.computeit.ui.GameConfigurationFragment"
-        android:label="fragment_game_config"
-        tools:layout="@layout/fragment_game_configuration" >
+        android:id="@+id/testConfigurationFragment"
+        android:name="com.elian.computeit.feature_tests.presentation.test_configuration.TestConfigurationFragment"
+        android:label="fragment_test_configuration"
+        tools:layout="@layout/fragment_test_configuration">
         <action
-            android:id="@+id/action_gameConfigFragment_to_gameFragment"
-            app:destination="@id/gameFragment" />
+            android:id="@+id/action_testConfigurationFragment_to_testFragment"
+            app:destination="@id/testFragment" />
     </fragment>
     <fragment
-        android:id="@+id/gameFragment"
-        android:name="com.elian.computeit.ui.GameFragment"
-        android:label="fragment_game"
-        tools:layout="@layout/fragment_game" />
+        android:id="@+id/testFragment"
+        android:name="com.elian.computeit.feature_tests.presentation.test.TestFragment"
+        android:label="fragment_test"
+        tools:layout="@layout/fragment_test" />
 </navigation>

@@ -15,14 +15,11 @@ class AppSettingsRepositoryImpl @Inject constructor(
 {
     override suspend fun getUserEmail(): String?
     {
-        return dataStore.data.first()[stringPreferencesKey(DataStoreKeys.userEmail)]
+        return dataStore.data.first()[stringPreferencesKey(DataStoreKeys.USER_EMAIL)]
     }
 
     override suspend fun saveUserEmail(email: String)
     {
-        dataStore.edit()
-        { 
-            it[stringPreferencesKey(DataStoreKeys.userEmail)] = email
-        }
+        dataStore.edit { it[stringPreferencesKey(DataStoreKeys.USER_EMAIL)] = email }
     }
 }

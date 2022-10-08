@@ -7,80 +7,78 @@
 
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/blue_200">
+    android:background="@color/blue_200"
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/tvTitle"
-        android:text="@string/const_Register"
+        style="@style/Title"
 
-        style="@style/Title" />
+        android:text="@string/generic_register" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tilEmail"
-        android:layout_gravity="center"
-        android:layout_marginTop="80dp"
-
-        style="@style/TextInputLayout">
+        style="@style/Auth_TextInputLayout"
+        android:layout_marginTop="@dimen/_70sdp">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/tieEmail"
+            style="@style/TextInputEditTextStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:maxLines="1"
-            android:hint="@string/const_Email" />
+            android:hint="@string/generic_email"
+            android:maxLines="2" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tilPassword"
-        android:layout_gravity="center"
-        android:layout_marginTop="@dimen/base_til_layout_marginTop"
-        app:passwordToggleEnabled="true"
-
-        style="@style/TextInputLayout">
+        style="@style/Auth_TextInputLayout"
+        android:layout_marginTop="@dimen/_15sdp"
+        app:passwordToggleEnabled="true">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/tiePassword"
-            android:inputType="textPassword"
+            style="@style/TextInputEditTextStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:maxLines="1"
-            android:hint="@string/const_Password" />
+            android:hint="@string/generic_password"
+            android:inputType="textPassword"
+            android:maxLines="1" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tilConfirmPassword"
-        android:layout_gravity="center"
-        android:layout_marginTop="@dimen/base_til_layout_marginTop"
-        app:passwordToggleEnabled="true"
-
-        style="@style/TextInputLayout">
+        style="@style/Auth_TextInputLayout"
+        android:layout_marginTop="@dimen/_15sdp"
+        app:passwordToggleEnabled="true">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/tieConfirmPassword"
-            android:inputType="textPassword"
+            style="@style/TextInputEditTextStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:maxLines="1"
-            android:hint="@string/const_ConfirmPassword" />
+            android:hint="@string/generic_confirm_password"
+            android:inputType="textPassword"
+            android:maxLines="1" />
     </com.google.android.material.textfield.TextInputLayout>
-
-    <Button
-        android:id="@+id/btnRegister"
-        android:text="@string/const_Register"
-        android:layout_gravity="center"
-        android:layout_marginTop="@dimen/actSignup_btnSignup_layout_marginTop"
-
-        style="@style/Button" />
 
     <ProgressBar
         android:id="@+id/pbLoading"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="30dp"
-        android:layout_gravity="center_horizontal"
-        android:visibility="invisible"
+        style="@style/Auth_ProgressBar"
+        android:layout_marginTop="@dimen/_30sdp"
 
         tools:visibility="visible" />
+
+    <View style="@style/Utils_LinearLayoutSeparator" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnRegister"
+        style="@style/ButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/_35sdp"
+        android:layout_marginBottom="@dimen/_20sdp"
+        android:text="@string/generic_register" />
 
 </LinearLayout>

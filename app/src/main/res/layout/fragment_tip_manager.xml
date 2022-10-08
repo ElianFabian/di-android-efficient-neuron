@@ -5,7 +5,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/blue_200"
+        android:background="@color/background_light"
         tools:context=".ui.TipManagerFragment"
         android:id="@+id/frameLayout">
 
@@ -43,7 +43,7 @@
     <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tilName"
 
-            style="@style/TextInputLayout"
+            style="@style/TextInputLayoutStyle"
 
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -69,7 +69,7 @@
     <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tilDescription"
 
-            style="@style/TextInputLayout"
+            style="@style/TextInputLayoutStyle"
 
             android:layout_width="0dp"
             android:layout_height="wrap_content"

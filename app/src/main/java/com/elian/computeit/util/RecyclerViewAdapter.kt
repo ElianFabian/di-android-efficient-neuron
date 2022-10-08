@@ -82,7 +82,7 @@ open class RecyclerViewAdapter<T>(
      */
     fun removeItem(item: T): Boolean
     {
-        if (list.contains(item))
+        if (item in list)
         {
             val position = list.indexOf(item)
 

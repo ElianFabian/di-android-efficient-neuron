@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <resources>
-    <string name="const_ConfirmPassword">Confirmar contraseña</string>
-    <string name="const_Email">Email</string>
-    <string name="const_Login">INICIAR SESIÓN</string>
-    <string name="const_Password">Contraseña</string>
-    <string name="const_Register">REGISTRARSE</string>
-    <string name="const_Tests">juegos</string>
+    <string name="generic_confirm_password">Confirmar contraseña</string>
+    <string name="generic_email">Email</string>
+    <string name="generic_login">Iniciar sesión</string>
+    <string name="generic_password">Contraseña</string>
+    <string name="generic_register">Registrarse</string>
+    <string name="generic_tests">juegos</string>
 
     <string name="error_email_empty">El email no puede estar vacío</string>
     <string name="error_email_invalid">Email inválido, ejemplo: %s</string>
-    <string name="error_example_empty" translatable="false">Ejemplo no puede estar vacío</string>
+    <string name="error_example_empty">Ejemplo no puede estar vacío</string>
     <string name="error_password_empty">La contraseña no puede estar vacía</string>
     <string name="error_password_invalid">Contraseña inválida, debería contener al menos %d de estos caracteres: %s</string>
     <string name="error_password_is_wrong">La contraseña es incorrecta</string>
     <string name="error_passwords_dont_match">Las contraseñas no coinciden</string>
-    <string name="error_title_empty" translatable="false">Título no puede estar vacío</string>
+    <string name="error_title_empty">Título no puede estar vacío</string>
     <string name="error_too_long">Demasiado largo, la longitud máxima es %d</string>
     <string name="error_too_short">Demasiado corto, la longitud mínima es %d</string>
     <string name="error_unknown">Error desconocido</string>
@@ -24,9 +24,9 @@
     <string name="frgAboutUs_description">Esta aplicación es un proyecto para aprender a cómo crear aplicaciones en Android. Es un ejercicio del módulo de Android de IES Portada Alta.</string>
     <string name="frgAboutUs_github_title">Código fuente</string>
 
-    <string name="frgEndGame_LabelFor_tvTotalTime_text">Tiempo Total</string>
-    <string name="frgEndGame_btnContinue_text">CONTINUAR</string>
-    <string name="frgEndGame_tvTimePerGame_text">Tiempo por partida</string>
+    <string name="frgEndGame_tvTimeOrTests_label_time_text">Time</string>
+    <string name="frgEndGame_btnContinue_text">Continuar</string>
+    <string name="frgEndGame_tvTimePerGame_label_text">Tiempo por partida</string>
 
     <string name="frgFunctions_tvTitle_text">OPERACIONES</string>
 
@@ -57,4 +57,7 @@
     <string name="navigation_menu_navSettings_title">Configuración</string>
     <string name="navigation_menu_navStatistics_title">Estadísticas</string>
     <string name="navigation_menu_navTips_title">Consejos</string>
+    <string name="array_test_modes_tests">Pruebas</string>
+    <string name="array_test_modes_time">Tiempo</string>
+    <string name="frgEndGame_tvTimeOrTests_label_tests_text">Tests</string>
 </resources>

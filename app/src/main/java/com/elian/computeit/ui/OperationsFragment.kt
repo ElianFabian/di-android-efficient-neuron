@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.core.view.children
 import androidx.fragment.app.Fragment
 import com.elian.computeit.R
+import com.elian.computeit.core.util.ArgKeys
 import com.elian.computeit.databinding.FragmentOperationsBinding
 import com.elian.computeit.core.util.extensions.navigate
 import dagger.hilt.android.AndroidEntryPoint
@@ -30,20 +31,20 @@ class OperationsFragment : Fragment()
     {
         super.onViewCreated(view, savedInstanceState)
 
-        initUI()
+        initUi()
     }
 
     //endregion
 
     //region Methods
 
-    private fun initUI() = binding.grdlButtons.children.iterator().forEach()
+    private fun initUi() = binding.grdlButtons.children.forEach()
     {
         it.setOnClickListener()
         {
-            navigate(R.id.action_functionsFragment_to_gameConfigurationFragment, Bundle().apply()
+            navigate(R.id.action_operationsFragment_to_testConfigurationFragment, Bundle().apply()
             {
-                putString("operation", it.tag.toString())
+                putString(ArgKeys.OPERATION_SYMBOL, it.tag as String)
             })
         }
     }

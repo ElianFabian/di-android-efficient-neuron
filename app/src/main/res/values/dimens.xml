@@ -2,25 +2,22 @@
 
 <resources>
 
-    <dimen name="base_til_layout_marginTop">22dp</dimen>
+    <dimen name="textSize_small1">@dimen/_5ssp</dimen>
+    <dimen name="textSize_small2">@dimen/_8ssp</dimen>
+    <dimen name="textSize_small3">@dimen/_10ssp</dimen>
 
-    <dimen name="tvTitle_textSize">45sp</dimen>
+    <dimen name="textSize_medium1">@dimen/_10ssp</dimen>
+    <dimen name="textSize_medium2">@dimen/_15ssp</dimen>
+    <dimen name="textSize_medium3">@dimen/_20ssp</dimen>
 
-    <!--region Styles-->
-    <dimen name="Button_paddingHorizontal">25dp</dimen>
-    <dimen name="Button_paddingVertical">10dp</dimen>
-    <!--endregion-->
+    <dimen name="textSize_large1">@dimen/_25ssp</dimen>
+    <dimen name="textSize_large2">@dimen/_30ssp</dimen>
+    <dimen name="textSize_large3">@dimen/_35ssp</dimen>
 
-    <!--region Activities-->
-    <dimen name="actSignup_btnSignup_layout_marginTop">80dp</dimen>
-    <!--endregion-->
-
-    <!--region Fragments-->
-
-    <dimen name="frgGame_tvOperation_textSize">90sp</dimen>
-    <dimen name="frgGame_ibClose_size">50dp</dimen>
-
-    <dimen name="frgGameConfiguration_overwrite_tvTitle_textSize">35sp</dimen>
-    <!--endregion-->
+    <dimen name="textSize_xlarge1">@dimen/_40ssp</dimen>
+    <dimen name="textSize_xlarge2">@dimen/_45ssp</dimen>
+    <dimen name="textSize_xlarge3">@dimen/_50ssp</dimen>
+    <dimen name="textSize_xlarge4">@dimen/_55ssp</dimen>
+    <dimen name="textSize_xlarge5">@dimen/_60ssp</dimen>
 
 </resources>

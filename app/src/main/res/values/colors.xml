@@ -10,8 +10,10 @@
 
     <color name="indigo_200">#9fa8da</color>
     <color name="indigo_400">#5c6bc0</color>
+    <color name="indigo_900">#000051</color>
 
     <color name="blue_200">#b8dcff</color>
+    <color name="blue_400">#42a5f5</color>
     <color name="blue_800">#1565c0</color>
 
     <color name="light_blue_800">#427bbc</color>

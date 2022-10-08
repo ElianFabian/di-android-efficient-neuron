@@ -73,7 +73,7 @@ class RegisterActivity : AppCompatActivity()
             when (it)
             {
                 is RegisterEvent.Register         -> navigateTo<LoginActivity>()
-                is RegisterEvent.ShowErrorMessage -> toast(it.error.asString(applicationContext))
+                is RegisterEvent.ShowErrorMessage -> toast(it.error.asString(this))
             }
         }
         collectLatestFlowWhenStarted(viewModel.emailState)

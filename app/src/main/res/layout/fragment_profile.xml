@@ -6,7 +6,7 @@
 
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/blue_200"
+        android:background="@color/background_light"
 
         tools:context=".ui.ProfileFragment">
 
@@ -72,7 +72,7 @@
     <!--region Email-->
     <TextView
             android:id="@+id/tvEmail"
-            android:text="@string/const_Password"
+            android:text="@string/generic_password"
 
             style="@style/frgProfile_LabelFor_TextInputLayout"
 
@@ -105,7 +105,7 @@
     <!--region Password-->
     <TextView
             android:id="@+id/tvPassword"
-            android:text="@string/const_Password"
+            android:text="@string/generic_password"
 
             style="@style/frgProfile_LabelFor_TextInputLayout"
 

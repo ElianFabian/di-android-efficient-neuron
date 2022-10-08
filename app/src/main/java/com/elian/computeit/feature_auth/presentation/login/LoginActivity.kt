@@ -26,7 +26,7 @@ class LoginActivity : AppCompatActivity()
 {
     @Inject
     lateinit var settings: AppSettingsRepository
-    
+
     private lateinit var binding: ActivityLoginBinding
     private val viewModel by viewModels<LoginViewModel>()
 
@@ -46,7 +46,7 @@ class LoginActivity : AppCompatActivity()
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        initUI()
+        initUi()
         subscribeToEvents()
     }
 
@@ -54,7 +54,7 @@ class LoginActivity : AppCompatActivity()
 
     //region Methods
 
-    private fun initUI()
+    private fun initUi()
     {
         binding.tieEmail.addTextChangedListener { setEmailError(null) }
         binding.tiePassword.addTextChangedListener { setPasswordError(null) }
@@ -81,7 +81,7 @@ class LoginActivity : AppCompatActivity()
                     settings.saveUserEmail(userFromFields.email)
                     navigateTo<MainActivity>()
                 }
-                is LoginEvent.ShowErrorMessage -> toast(it.error.asString(applicationContext))
+                is LoginEvent.ShowErrorMessage -> toast(it.error.asString(this))
             }
         }
         collectLatestFlowWhenStarted(viewModel.emailState)
