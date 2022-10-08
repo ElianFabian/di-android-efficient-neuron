@@ -15,6 +15,8 @@ import com.elian.computeit.core.util.extensions.navigateTo
 import com.elian.computeit.databinding.ActivityLoginBinding
 import com.elian.computeit.feature_auth.presentation.util.AuthError
 import com.elian.computeit.core.util.extensions.toast
+import com.elian.computeit.feature_auth.presentation.register.RegisterAction
+import com.elian.computeit.feature_auth.presentation.register.RegisterActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -65,7 +67,7 @@ class LoginActivity : AppCompatActivity()
         }
         binding.btnRegister.setOnClickListener()
         {
-            navigateTo<MainActivity>()
+            navigateTo<RegisterActivity>()
         }
     }
 
