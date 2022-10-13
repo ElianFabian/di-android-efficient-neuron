@@ -86,7 +86,7 @@
     </androidx.appcompat.widget.LinearLayoutCompat>
 
     <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/etInput"
+        android:id="@+id/tietInput"
         android:layout_width="@dimen/_200sdp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -96,7 +96,7 @@
         android:fontFamily="@font/comfortaa_bold"
         android:inputType="none"
         android:maxLines="1"
-        android:text="4"
+        android:text="0"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="@dimen/textSize_large2"
@@ -104,8 +104,7 @@
         app:layout_constraintEnd_toEndOf="@+id/_llOperation"
         app:layout_constraintStart_toStartOf="@+id/_llOperation"
         app:layout_constraintTop_toBottomOf="@+id/_llOperation"
-        app:layout_constraintVertical_bias="0.17"
-        tools:text="4" />
+        app:layout_constraintVertical_bias="0.17" />
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/llKeyBoard"
@@ -116,7 +115,7 @@
         app:layout_constraintBottom_toTopOf="@+id/_glBottom"
         app:layout_constraintEnd_toStartOf="@+id/_glEnd"
         app:layout_constraintStart_toStartOf="@+id/_glStart"
-        app:layout_constraintTop_toBottomOf="@+id/etInput"
+        app:layout_constraintTop_toBottomOf="@+id/tietInput"
         app:layout_constraintVertical_bias="0.53">
 
         <androidx.appcompat.widget.LinearLayoutCompat

@@ -39,8 +39,6 @@ class TestFragment : Fragment()
     {
         val numericButtons = binding.llKeyBoard.findViewsWithTagOfType<MaterialButton>(R.string.tag_numeric_button)
 
-        // TODO: check the format of the input in case the value is out of the int range
-
         numericButtons.forEach { button ->
             button.setOnClickListener()
             {
@@ -56,7 +54,7 @@ class TestFragment : Fragment()
     {
         collectLatestFlowWhenStarted(viewModel.currentNumberState)
         {
-            binding.etInput.setText(it.toString())
+            binding.tietInput.setText(it.toString())
         }
     }
 

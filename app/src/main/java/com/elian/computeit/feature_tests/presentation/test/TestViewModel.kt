@@ -1,6 +1,7 @@
 package com.elian.computeit.feature_tests.presentation.test
 
 import androidx.lifecycle.ViewModel
+import com.elian.computeit.core.util.extensions.clampLength
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
@@ -14,7 +15,8 @@ class TestViewModel : ViewModel()
     {
         is TestAction.EnteredNumber ->
         {
-            _currentNumberState.value = _currentNumberState.value * 10 + action.value
+            val newNumber = _currentNumberState.value * 10 + action.value
+            _currentNumberState.value = newNumber.clampLength(maxLength = 8)
         }
         TestAction.ClearInput       ->
         {
