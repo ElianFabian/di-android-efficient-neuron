@@ -12,6 +12,7 @@ import com.elian.computeit.core.util.extensions.collectLatestFlowWhenStarted
 import com.elian.computeit.core.util.extensions.findViewsWithTagOfType
 import com.elian.computeit.databinding.FragmentTestBinding
 import com.google.android.material.button.MaterialButton
+import kotlin.system.measureTimeMillis
 
 class TestFragment : Fragment()
 {

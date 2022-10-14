@@ -5,7 +5,7 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
 import com.elian.computeit.core.domain.repository.AppSettingsRepository
-import com.elian.computeit.core.util.DataStoreKeys
+import com.elian.computeit.core.util.USER_EMAIL
 import kotlinx.coroutines.flow.first
 import javax.inject.Inject
 
@@ -15,11 +15,11 @@ class AppSettingsRepositoryImpl @Inject constructor(
 {
     override suspend fun getUserEmail(): String?
     {
-        return dataStore.data.first()[stringPreferencesKey(DataStoreKeys.USER_EMAIL)]
+        return dataStore.data.first()[stringPreferencesKey(USER_EMAIL)]
     }
 
     override suspend fun saveUserEmail(email: String)
     {
-        dataStore.edit { it[stringPreferencesKey(DataStoreKeys.USER_EMAIL)] = email }
+        dataStore.edit { it[stringPreferencesKey(USER_EMAIL)] = email }
     }
 }

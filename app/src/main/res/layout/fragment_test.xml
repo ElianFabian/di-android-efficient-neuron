@@ -7,7 +7,8 @@
     android:layout_height="match_parent"
     android:background="@color/blue_gray_900"
     android:orientation="vertical"
-    tools:context=".feature_tests.presentation.test.TestFragment">
+    tools:context=".feature_tests.presentation.test.TestFragment"
+    >
 
     <!--region Guide lines-->
     <androidx.constraintlayout.widget.Guideline
@@ -15,28 +16,32 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="@dimen/_10sdp" />
+        app:layout_constraintGuide_begin="@dimen/_10sdp"
+        />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/_glEnd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_end="@dimen/_10sdp" />
+        app:layout_constraintGuide_end="@dimen/_10sdp"
+        />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/_glTop"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="@dimen/_5sdp" />
+        app:layout_constraintGuide_begin="@dimen/_5sdp"
+        />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/_glBottom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_end="@dimen/_10sdp" />
+        app:layout_constraintGuide_end="@dimen/_10sdp"
+        />
     <!--endregion-->
 
     <androidx.appcompat.widget.LinearLayoutCompat
@@ -48,7 +53,8 @@
         android:orientation="horizontal"
         app:layout_constraintEnd_toStartOf="@+id/_glEnd"
         app:layout_constraintStart_toStartOf="@+id/_glStart"
-        app:layout_constraintTop_toTopOf="@+id/_glTop">
+        app:layout_constraintTop_toTopOf="@+id/_glTop"
+        >
 
         <TextView
             android:id="@+id/tvFirstNumber"
@@ -59,7 +65,8 @@
             android:textColor="@color/white"
             android:textSize="@dimen/textSize_xlarge3"
             android:textStyle="bold"
-            tools:text="2" />
+            tools:text="2"
+            />
 
         <TextView
             android:id="@+id/tvOperationSymbol"
@@ -70,7 +77,8 @@
             android:textColor="@color/white"
             android:textSize="@dimen/textSize_xlarge3"
             android:textStyle="bold"
-            tools:text="+" />
+            tools:text="+"
+            />
 
         <TextView
             android:id="@+id/tvSecondNumber"
@@ -81,7 +89,8 @@
             android:textColor="@color/white"
             android:textSize="@dimen/textSize_xlarge3"
             android:textStyle="bold"
-            tools:text="2" />
+            tools:text="2"
+            />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -104,7 +113,8 @@
         app:layout_constraintEnd_toEndOf="@+id/_llOperation"
         app:layout_constraintStart_toStartOf="@+id/_llOperation"
         app:layout_constraintTop_toBottomOf="@+id/_llOperation"
-        app:layout_constraintVertical_bias="0.17" />
+        app:layout_constraintVertical_bias="0.17"
+        />
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/llKeyBoard"
@@ -116,96 +126,114 @@
         app:layout_constraintEnd_toStartOf="@+id/_glEnd"
         app:layout_constraintStart_toStartOf="@+id/_glStart"
         app:layout_constraintTop_toBottomOf="@+id/tietInput"
-        app:layout_constraintVertical_bias="0.53">
+        app:layout_constraintVertical_bias="0.53"
+        >
 
         <androidx.appcompat.widget.LinearLayoutCompat
             style="@style/CalculatorButton_Row"
-            android:theme="@style/FragmentTestTheme_CalculatorButtonRow">
+            android:theme="@style/FragmentTestTheme_CalculatorButtonRow"
+            >
             <Button
                 android:id="@+id/btnNextTest"
                 style="@style/CalculatorButton.Action"
                 android:layout_span="3"
                 android:backgroundTint="@color/green_a400"
-                android:text="&gt;" />
+                android:text="&gt;"
+                />
         </androidx.appcompat.widget.LinearLayoutCompat>
 
         <androidx.appcompat.widget.LinearLayoutCompat
             style="@style/CalculatorButton_Row"
-            android:theme="@style/FragmentTestTheme_CalculatorButtonRow">
+            android:theme="@style/FragmentTestTheme_CalculatorButtonRow"
+            >
 
             <Button
                 style="@style/CalculatorButton.Numeric"
                 android:tag="@string/tag_numeric_button"
-                android:text="1" />
+                android:text="1"
+                />
 
             <Button
                 style="@style/CalculatorButton.Numeric"
                 android:tag="@string/tag_numeric_button"
-                android:text="2" />
+                android:text="2"
+                />
 
             <Button
                 style="@style/CalculatorButton.Numeric"
                 android:tag="@string/tag_numeric_button"
-                android:text="3" />
-
-        </androidx.appcompat.widget.LinearLayoutCompat>
-
-        <androidx.appcompat.widget.LinearLayoutCompat
-            style="@style/CalculatorButton_Row"
-            android:theme="@style/FragmentTestTheme_CalculatorButtonRow">
-
-            <Button
-                style="@style/CalculatorButton.Numeric"
-                android:tag="@string/tag_numeric_button"
-                android:text="4" />
-
-            <Button
-                style="@style/CalculatorButton.Numeric"
-                android:tag="@string/tag_numeric_button"
-                android:text="5" />
-
-            <Button
-                style="@style/CalculatorButton.Numeric"
-                android:tag="@string/tag_numeric_button"
-                android:text="6" />
+                android:text="3"
+                />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
         <androidx.appcompat.widget.LinearLayoutCompat
             style="@style/CalculatorButton_Row"
-            android:theme="@style/FragmentTestTheme_CalculatorButtonRow">
+            android:theme="@style/FragmentTestTheme_CalculatorButtonRow"
+            >
 
             <Button
                 style="@style/CalculatorButton.Numeric"
                 android:tag="@string/tag_numeric_button"
-                android:text="7" />
+                android:text="4"
+                />
 
             <Button
                 style="@style/CalculatorButton.Numeric"
                 android:tag="@string/tag_numeric_button"
-                android:text="8" />
+                android:text="5"
+                />
 
             <Button
                 style="@style/CalculatorButton.Numeric"
                 android:tag="@string/tag_numeric_button"
-                android:text="9" />
+                android:text="6"
+                />
+
         </androidx.appcompat.widget.LinearLayoutCompat>
 
         <androidx.appcompat.widget.LinearLayoutCompat
             style="@style/CalculatorButton_Row"
-            android:theme="@style/FragmentTestTheme_CalculatorButtonRow">
+            android:theme="@style/FragmentTestTheme_CalculatorButtonRow"
+            >
+
+            <Button
+                style="@style/CalculatorButton.Numeric"
+                android:tag="@string/tag_numeric_button"
+                android:text="7"
+                />
+
+            <Button
+                style="@style/CalculatorButton.Numeric"
+                android:tag="@string/tag_numeric_button"
+                android:text="8"
+                />
+
+            <Button
+                style="@style/CalculatorButton.Numeric"
+                android:tag="@string/tag_numeric_button"
+                android:text="9"
+                />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            style="@style/CalculatorButton_Row"
+            android:theme="@style/FragmentTestTheme_CalculatorButtonRow"
+            >
 
             <Button
                 style="@style/FragmentTest_CalculatorButton.Numeric"
                 android:layout_weight="2"
                 android:tag="@string/tag_numeric_button"
-                android:text="0" />
+                android:text="0"
+                />
 
             <Button
                 android:id="@+id/btn_clear_input"
                 style="@style/FragmentTest_CalculatorButton.Action"
                 android:backgroundTint="@color/red_700"
-                android:text="&lt;" />
+                android:text="&lt;"
+                />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 

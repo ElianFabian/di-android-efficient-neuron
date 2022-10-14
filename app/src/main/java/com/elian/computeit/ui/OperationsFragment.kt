@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.core.view.children
 import androidx.fragment.app.Fragment
 import com.elian.computeit.R
-import com.elian.computeit.core.util.ArgKeys
+import com.elian.computeit.core.util.EXTRA_OPERATION_SYMBOL
 import com.elian.computeit.databinding.FragmentOperationsBinding
 import com.elian.computeit.core.util.extensions.navigate
 import dagger.hilt.android.AndroidEntryPoint
@@ -44,7 +44,7 @@ class OperationsFragment : Fragment()
         {
             navigate(R.id.action_operationsFragment_to_testConfigurationFragment, Bundle().apply()
             {
-                putString(ArgKeys.OPERATION_SYMBOL, it.tag as String)
+                putString(EXTRA_OPERATION_SYMBOL, it.tag as String)
             })
         }
     }

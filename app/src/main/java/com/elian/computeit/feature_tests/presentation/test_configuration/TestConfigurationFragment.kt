@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.elian.computeit.R
-import com.elian.computeit.core.util.ArgKeys
+import com.elian.computeit.core.util.EXTRA_OPERATION_SYMBOL
 import com.elian.computeit.core.util.extensions.navigate
 import com.elian.computeit.databinding.FragmentTestConfigurationBinding
 
@@ -35,7 +35,7 @@ class TestConfigurationFragment : Fragment()
     {
         binding.btnPlay.setOnClickListener { navigate(R.id.action_testConfigurationFragment_to_testFragment) }
 
-        binding.tvCornerIcon.text = arguments?.getString(ArgKeys.OPERATION_SYMBOL)
+        binding.tvCornerIcon.text = arguments?.getString(EXTRA_OPERATION_SYMBOL)
     }
 
     //endregion

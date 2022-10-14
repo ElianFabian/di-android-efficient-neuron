@@ -8,18 +8,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/blue_200"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    >
 
     <TextView
         android:id="@+id/tvTitle"
         style="@style/Title"
-
-        android:text="@string/generic_register" />
+        android:text="@string/generic_register"
+        />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tilEmail"
         style="@style/Auth_TextInputLayout"
-        android:layout_marginTop="@dimen/_70sdp">
+        android:layout_marginTop="@dimen/_70sdp"
+        >
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/tieEmail"
@@ -27,14 +29,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/generic_email"
-            android:maxLines="2" />
+            android:maxLines="2"
+            />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tilPassword"
         style="@style/Auth_TextInputLayout"
         android:layout_marginTop="@dimen/_15sdp"
-        app:passwordToggleEnabled="true">
+        app:passwordToggleEnabled="true"
+        >
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/tiePassword"
@@ -43,14 +47,16 @@
             android:layout_height="wrap_content"
             android:hint="@string/generic_password"
             android:inputType="textPassword"
-            android:maxLines="1" />
+            android:maxLines="1"
+            />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tilConfirmPassword"
         style="@style/Auth_TextInputLayout"
         android:layout_marginTop="@dimen/_15sdp"
-        app:passwordToggleEnabled="true">
+        app:passwordToggleEnabled="true"
+        >
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/tieConfirmPassword"
@@ -59,7 +65,8 @@
             android:layout_height="wrap_content"
             android:hint="@string/generic_confirm_password"
             android:inputType="textPassword"
-            android:maxLines="1" />
+            android:maxLines="1"
+            />
     </com.google.android.material.textfield.TextInputLayout>
 
     <ProgressBar
@@ -67,7 +74,8 @@
         style="@style/Auth_ProgressBar"
         android:layout_marginTop="@dimen/_30sdp"
 
-        tools:visibility="visible" />
+        tools:visibility="visible"
+        />
 
     <View style="@style/Utils_LinearLayoutSeparator" />
 
@@ -79,6 +87,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="@dimen/_35sdp"
         android:layout_marginBottom="@dimen/_20sdp"
-        android:text="@string/generic_register" />
+        android:text="@string/generic_register"
+        />
 
 </LinearLayout>
