@@ -2,26 +2,27 @@ package com.elian.computeit.core.presentation
 
 import android.os.Bundle
 import android.view.MenuItem
+import androidx.activity.viewModels
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import com.elian.computeit.R
+import com.elian.computeit.core.util.extensions.goToFragment
+import com.elian.computeit.core.util.extensions.navigateTo
 import com.elian.computeit.data.database.AppDatabase
 import com.elian.computeit.databinding.ActivityMainBinding
-import com.elian.computeit.ui.SettingsFragment
-import com.elian.computeit.ui.AboutUsFragment
-import com.elian.computeit.ui.OperationsFragment
-import com.elian.computeit.ui.ProfileFragment
-import com.elian.computeit.ui.StatisticsFragment
-import com.elian.computeit.ui.TipListFragment
-import com.elian.computeit.core.util.extensions.goToFragment
+import com.elian.computeit.feature_auth.presentation.login.LoginActivity
+import com.elian.computeit.ui.*
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity()
 {
     private lateinit var binding: ActivityMainBinding
+    private val viewModel by viewModels<MainActivityViewModel>()
+    
     private lateinit var toggle: ActionBarDrawerToggle
     private var currentFragmentItem: Fragment? = null
 
@@ -30,11 +31,15 @@ class MainActivity : AppCompatActivity()
     override fun onCreate(savedInstanceState: Bundle?)
     {
         super.onCreate(savedInstanceState)
+        
+        subscribeToEvents()
+        
+        viewModel.tryLoginUser()
+
+        AppDatabase.create(this)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        AppDatabase.create(this)
 
         initUI()
     }
@@ -71,6 +76,17 @@ class MainActivity : AppCompatActivity()
         initMenuItemListener()
     }
     
+    private fun subscribeToEvents()
+    {
+        lifecycleScope.launchWhenStarted()
+        {
+            viewModel.eventFlow.collect()
+            {
+                navigateTo<LoginActivity>()
+            }
+        }
+    }
+    
     private fun initMenuItemListener() = binding.navigationView.setNavigationItemSelectedListener() 
     {
         currentFragmentItem = when (it.itemId)
@@ -82,7 +98,7 @@ class MainActivity : AppCompatActivity()
             R.id.navSettings   -> goToFragment(SettingsFragment())
             R.id.navAboutUs    -> goToFragment(AboutUsFragment())
 
-            else               -> Fragment()
+            else               -> error("Trying to go to a non-existing fragment.")
         }
 
         binding.drawerLayout.closeDrawer(GravityCompat.START)

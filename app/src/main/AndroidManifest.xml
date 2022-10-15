@@ -12,7 +12,7 @@
         android:theme="@style/Theme.ComputeIt">
 
         <activity
-            android:name=".feature_auth.presentation.login.LoginActivity"
+            android:name=".core.presentation.MainActivity"
             android:screenOrientation="portrait"
             android:exported="true">
             <intent-filter>
@@ -27,7 +27,7 @@
             android:exported="false" />
 
         <activity
-            android:name=".core.presentation.MainActivity"
+            android:name=".feature_auth.presentation.login.LoginActivity"
             android:screenOrientation="portrait"
             android:exported="false" />
 

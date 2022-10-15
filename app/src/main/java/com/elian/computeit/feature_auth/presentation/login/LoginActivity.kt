@@ -6,19 +6,17 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.lifecycleScope
-import com.elian.computeit.MainActivity
 import com.elian.computeit.R
 import com.elian.computeit.core.domain.repository.AppSettingsRepository
+import com.elian.computeit.core.presentation.MainActivity
 import com.elian.computeit.core.util.extensions.collectLatestFlowWhenStarted
 import com.elian.computeit.core.util.extensions.error2
 import com.elian.computeit.core.util.extensions.navigateTo
-import com.elian.computeit.databinding.ActivityLoginBinding
-import com.elian.computeit.feature_auth.presentation.util.AuthError
 import com.elian.computeit.core.util.extensions.toast
+import com.elian.computeit.databinding.ActivityLoginBinding
 import com.elian.computeit.feature_auth.presentation.register.RegisterActivity
+import com.elian.computeit.feature_auth.presentation.util.AuthError
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -41,8 +39,6 @@ class LoginActivity : AppCompatActivity()
     override fun onCreate(savedInstanceState: Bundle?)
     {
         super.onCreate(savedInstanceState)
-
-        tryLogInUser()
 
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -104,19 +100,6 @@ class LoginActivity : AppCompatActivity()
         collectLatestFlowWhenStarted(viewModel.loadingState)
         {
             if (it) showProgress() else hideProgress()
-        }
-    }
-
-    private fun tryLogInUser()
-    {
-        lifecycleScope.launch(Dispatchers.IO)
-        {
-            val isUserLoggedIn = settings.getUserEmail() != null
-
-            if (isUserLoggedIn)
-            {
-                navigateTo<MainActivity>()
-            }
         }
     }
 
