@@ -50,16 +50,14 @@ class LoginActivity : AppCompatActivity()
     {
         binding.tieEmail.addTextChangedListener { setEmailError(null) }
         binding.tiePassword.addTextChangedListener { setPasswordError(null) }
+
         binding.btnLogin.setOnClickListener()
         {
             onActionWhenStarted(LoginAction.EnteredEmail(userFromFields.email))
             onActionWhenStarted(LoginAction.EnteredPassword(userFromFields.password))
             onActionWhenStarted(LoginAction.Login)
         }
-        binding.btnRegister.setOnClickListener()
-        {
-            navigateTo<RegisterActivity>()
-        }
+        binding.btnRegister.setOnClickListener { navigateTo<RegisterActivity>() }
     }
 
     private fun subscribeToEvents()
