@@ -99,18 +99,8 @@ class LoginActivity : AppCompatActivity()
         }
         collectLatestFlowWhenStarted(viewModel.loadingState)
         {
-            if (it) showProgress() else hideProgress()
+            binding.pbLoading.isVisible = it
         }
-    }
-
-    private fun showProgress()
-    {
-        binding.pbLoading.isVisible = true
-    }
-
-    private fun hideProgress()
-    {
-        binding.pbLoading.isVisible = false
     }
 
     private fun setEmailError(text: String?)
