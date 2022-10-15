@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity()
 {
     private lateinit var binding: ActivityMainBinding
     private val viewModel by viewModels<MainActivityViewModel>()
-    
+
     private lateinit var toggle: ActionBarDrawerToggle
     private var currentFragmentItem: Fragment? = null
 
@@ -31,9 +31,9 @@ class MainActivity : AppCompatActivity()
     override fun onCreate(savedInstanceState: Bundle?)
     {
         super.onCreate(savedInstanceState)
-        
+
         subscribeToEvents()
-        
+
         viewModel.tryLoginUser()
 
         AppDatabase.create(this)
@@ -72,10 +72,10 @@ class MainActivity : AppCompatActivity()
         toggle = ActionBarDrawerToggle(this, binding.drawerLayout, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
         binding.drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
-        
+
         initMenuItemListener()
     }
-    
+
     private fun subscribeToEvents()
     {
         lifecycleScope.launchWhenStarted()
@@ -86,8 +86,8 @@ class MainActivity : AppCompatActivity()
             }
         }
     }
-    
-    private fun initMenuItemListener() = binding.navigationView.setNavigationItemSelectedListener() 
+
+    private fun initMenuItemListener() = binding.navigationView.setNavigationItemSelectedListener()
     {
         currentFragmentItem = when (it.itemId)
         {
@@ -102,10 +102,9 @@ class MainActivity : AppCompatActivity()
         }
 
         binding.drawerLayout.closeDrawer(GravityCompat.START)
-        
+
         true
     }
 
     //endregion
 }
-
