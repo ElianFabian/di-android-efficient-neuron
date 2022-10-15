@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.core.view.children
 import androidx.fragment.app.Fragment
 import com.elian.computeit.R
@@ -38,14 +39,12 @@ class OperationsFragment : Fragment()
 
     //region Methods
 
-    private fun initUi() = binding.grdlButtons.children.forEach()
-    {
-        it.setOnClickListener()
+    private fun initUi() = binding.grdlButtons.children.forEach { button ->
+        button.setOnClickListener()
         {
-            navigate(R.id.action_operationsFragment_to_testConfigurationFragment, Bundle().apply()
-            {
-                putString(EXTRA_OPERATION_SYMBOL, it.tag as String)
-            })
+            navigate(R.id.action_operationsFragment_to_testConfigurationFragment, bundleOf(
+                EXTRA_OPERATION_SYMBOL to it.tag as String
+            ))
         }
     }
 

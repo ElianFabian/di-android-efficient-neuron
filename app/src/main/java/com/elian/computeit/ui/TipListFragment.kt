@@ -5,10 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.elian.computeit.R
 import com.elian.computeit.base.BaseFragment
+import com.elian.computeit.core.util.EXTRA_OPERATION_SYMBOL
 import com.elian.computeit.databinding.ItemTipBinding
 import com.elian.computeit.data.model.Tip
 import com.elian.computeit.databinding.FragmentTipListBinding
@@ -80,11 +82,10 @@ class TipListFragment : BaseFragment(),
 
     private fun sendSelectedTip_To_TaskEditFragment(tip: Tip, position: Int)
     {
-        activity?.goToFragment(TipManagerFragment(), Bundle().apply()
-        {
-            putSerializable(getString(R.string.bundleKey_selectedTip), tip)
-            putInt(getString(R.string.bundleKey_selectedTip_position), position)
-        })
+        activity?.goToFragment(TipManagerFragment(), bundleOf(
+            getString(R.string.bundleKey_selectedTip) to tip,
+            getString(R.string.bundleKey_selectedTip_position) to position
+        ))
 
         activity?.supportFragmentManager
     }

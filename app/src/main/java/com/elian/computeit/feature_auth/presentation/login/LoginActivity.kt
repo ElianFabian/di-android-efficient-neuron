@@ -35,6 +35,7 @@ class LoginActivity : AppCompatActivity()
         val email get() = binding.tieEmail.text.toString().trim()
         val password get() = binding.tiePassword.text.toString().trim()
     }
+
     //region Activity Methods
 
     override fun onCreate(savedInstanceState: Bundle?)
