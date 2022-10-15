@@ -1,13 +1,12 @@
-package com.elian.computeit
+package com.elian.computeit.core.presentation
 
 import android.os.Bundle
 import android.view.MenuItem
-import android.view.View
-import android.view.animation.AnimationUtils
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
+import com.elian.computeit.R
 import com.elian.computeit.data.database.AppDatabase
 import com.elian.computeit.databinding.ActivityMainBinding
 import com.elian.computeit.ui.SettingsFragment
@@ -89,16 +88,6 @@ class MainActivity : AppCompatActivity()
         binding.drawerLayout.closeDrawer(GravityCompat.START)
         
         true
-    }
-
-    // styles.xml/frgGame_ibButtons/android:onClick
-    fun animation_onClick(view: View)
-    {
-        val scaleDown = AnimationUtils.loadAnimation(this, R.anim.scale_down)
-        val scaleUp = AnimationUtils.loadAnimation(this, R.anim.scale_up)
-
-        view.startAnimation(scaleDown)
-        view.postOnAnimation { view.startAnimation(scaleUp) }
     }
 
     //endregion

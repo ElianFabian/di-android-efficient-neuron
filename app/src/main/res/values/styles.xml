@@ -56,16 +56,6 @@
 
     <style name="CalculatorButton.Action" />
 
-    <style name="frgGame_ibButtons">
-        <item name="android:layout_height">85dp</item>
-        <item name="android:layout_width">100dp</item>
-        <item name="android:layout_weight">1</item>
-        <item name="android:layout_margin">3dp</item>
-        <item name="android:background">@color/transparent</item>
-        <item name="android:scaleType">fitCenter</item>
-        <item name="android:onClick">animation_onClick</item>
-    </style>
-
     <style name="frgProfile_LabelFor_TextInputLayout">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>

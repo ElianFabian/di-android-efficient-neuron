@@ -9,7 +9,7 @@
     android:layout_height="match_parent"
     android:layout_gravity="start"
 
-    tools:context=".MainActivity"
+    tools:context=".core.presentation.MainActivity"
     tools:openDrawer="start">
 
     <fragment
