@@ -7,7 +7,6 @@ import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.lifecycleScope
 import com.elian.computeit.R
-import com.elian.computeit.core.domain.repository.AppSettingsRepository
 import com.elian.computeit.core.presentation.MainActivity
 import com.elian.computeit.core.util.extensions.collectLatestFlowWhenStarted
 import com.elian.computeit.core.util.extensions.error2
@@ -17,14 +16,10 @@ import com.elian.computeit.databinding.ActivityLoginBinding
 import com.elian.computeit.feature_auth.presentation.register.RegisterActivity
 import com.elian.computeit.feature_auth.presentation.util.AuthError
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class LoginActivity : AppCompatActivity()
 {
-    @Inject
-    lateinit var settings: AppSettingsRepository
-
     private lateinit var binding: ActivityLoginBinding
     private val viewModel by viewModels<LoginViewModel>()
 
@@ -75,7 +70,7 @@ class LoginActivity : AppCompatActivity()
             {
                 is LoginEvent.Login            ->
                 {
-                    settings.saveUserEmail(userFromFields.email)
+                    viewModel.saveUserEmail(userFromFields.email)
                     navigateTo<MainActivity>()
                 }
                 is LoginEvent.ShowErrorMessage -> toast(it.error.asString(this))
