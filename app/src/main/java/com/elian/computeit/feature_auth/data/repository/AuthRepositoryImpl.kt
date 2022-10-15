@@ -1,12 +1,16 @@
 package com.elian.computeit.feature_auth.data.repository
 
 import com.elian.computeit.R
-import com.elian.computeit.core.util.*
+import com.elian.computeit.core.util.COLLECTION_USERS
+import com.elian.computeit.core.util.Resource
+import com.elian.computeit.core.util.SimpleResource
+import com.elian.computeit.core.util.UiText
 import com.elian.computeit.data.model.User
 import com.elian.computeit.feature_auth.domain.repository.AuthRepository
 import com.google.firebase.firestore.FirebaseFirestore
-import kotlinx.coroutines.*
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.tasks.await
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class AuthRepositoryImpl @Inject constructor(
@@ -38,13 +42,13 @@ class AuthRepositoryImpl @Inject constructor(
             password = password
         )
 
-        firestore.document("$USERS_COLLECTION/$email").set(newUser).await()
+        firestore.document("$COLLECTION_USERS/$email").set(newUser).await()
 
         return Resource.Success()
     }
 
     private suspend fun getUserByEmail(email: String) = withContext(Dispatchers.IO)
     {
-        firestore.document("$USERS_COLLECTION/$email").get().await().toObject(User::class.java)
+        firestore.document("$COLLECTION_USERS/$email").get().await().toObject(User::class.java)
     }
 }
