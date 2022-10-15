@@ -19,7 +19,7 @@ abstract class AppDatabase : RoomDatabase()
         const val databaseName = "app_database"
         val instance get() = INSTANCE as AppDatabase
 
-        private const val NUMBER_OF_THREADS = 4;
+        private const val NUMBER_OF_THREADS = 4
 
         val executorService: ExecutorService = Executors.newFixedThreadPool(NUMBER_OF_THREADS)
 
