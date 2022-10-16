@@ -1,10 +1,10 @@
 package com.elian.computeit.feature_tests.presentation.test
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.elian.computeit.R
@@ -12,8 +12,9 @@ import com.elian.computeit.core.util.extensions.collectLatestFlowWhenStarted
 import com.elian.computeit.core.util.extensions.findViewsWithTagOfType
 import com.elian.computeit.databinding.FragmentTestBinding
 import com.google.android.material.button.MaterialButton
-import kotlin.system.measureTimeMillis
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class TestFragment : Fragment()
 {
     private lateinit var binding: FragmentTestBinding
@@ -47,15 +48,42 @@ class TestFragment : Fragment()
             }
         }
 
+        viewModel.initializeTimer(10_000L, 1_000L)
+
+        viewModel.startTimer()
+
         binding.btnNextTest.setOnClickListener { onActionWhenStarted(TestAction.NextTest) }
         binding.btnClearInput.setOnClickListener { onActionWhenStarted(TestAction.ClearInput) }
     }
 
     private fun subscribeToEvents()
     {
-        collectLatestFlowWhenStarted(viewModel.currentNumberState)
+        collectLatestFlowWhenStarted(viewModel.eventFlow)
+        {
+            when (it)
+            {
+                is TestEvent.TimerTicked   ->
+                {
+                    val seconds = it.millisUntilFinished / 1000F
+                    
+                    //toast("Seconds left: ${seconds}")
+                    //println("tick: $seconds")
+                }
+                is TestEvent.TimerFinished ->
+                {
+                    //toast("Finished")
+                    //println("tick: finished")
+                }
+            }
+        }
+        collectLatestFlowWhenStarted(viewModel.resultState)
         {
             binding.tietInput.setText(it.toString())
+        }
+        collectLatestFlowWhenStarted(viewModel.pairOfNumbersState)
+        {
+            binding.tvFirstNumber.text = it.first.toString()
+            binding.tvSecondNumber.text = it.second.toString()
         }
     }
 

@@ -6,6 +6,8 @@ import com.elian.computeit.core.data.repository.AppSettingsRepositoryImpl
 import com.elian.computeit.core.domain.repository.AppSettingsRepository
 import com.elian.computeit.feature_auth.data.repository.AuthRepositoryImpl
 import com.elian.computeit.feature_auth.domain.repository.AuthRepository
+import com.elian.computeit.feature_tests.data.TimerCountDownImpl
+import com.elian.computeit.feature_tests.domain.util.TimerCountDown
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import dagger.Module
@@ -31,4 +33,7 @@ object AppModule
     {
         return AppSettingsRepositoryImpl(context.dataStore)
     }
+
+    @Provides
+    fun provideCountDownTimer(): TimerCountDown = TimerCountDownImpl()
 }
