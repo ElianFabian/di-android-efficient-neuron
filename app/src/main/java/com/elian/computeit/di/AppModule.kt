@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.datastore.preferences.preferencesDataStore
 import com.elian.computeit.core.data.repository.AppSettingsRepositoryImpl
 import com.elian.computeit.core.domain.repository.AppSettingsRepository
+import com.elian.computeit.core.domain.util.DATA_STORE_PREFERENCES_NAME
 import com.elian.computeit.feature_auth.data.repository.AuthRepositoryImpl
 import com.elian.computeit.feature_auth.domain.repository.AuthRepository
 import com.elian.computeit.feature_tests.data.TimerCountDownImpl
@@ -17,7 +18,7 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
-val Context.dataStore by preferencesDataStore(name = "AppSettings")
+val Context.dataStore by preferencesDataStore(name = DATA_STORE_PREFERENCES_NAME)
 
 @Module
 @InstallIn(SingletonComponent::class)
