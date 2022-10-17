@@ -8,7 +8,7 @@ import com.elian.computeit.core.util.extensions.append
 import com.elian.computeit.core.util.extensions.clampLength
 import com.elian.computeit.feature_tests.domain.models.Operation
 import com.elian.computeit.feature_tests.domain.models.TestData
-import com.elian.computeit.feature_tests.domain.util.TimerCountDown
+import com.elian.computeit.core.domain.util.CountDownTimer
 import com.elian.computeit.feature_tests.presentation.util.getRandomPairOfNumbers
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -20,7 +20,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class TestViewModel @Inject constructor(
-    private val countDownTimer: TimerCountDown,
+    private val countDownTimer: CountDownTimer,
     savedState: SavedStateHandle,
 ) : ViewModel()
 {
@@ -88,13 +88,13 @@ class TestViewModel @Inject constructor(
 
     fun initializeTimer(millisInFuture: Long, countDownInterval: Long)
     {
-        countDownTimer.initializeTimer(
+        countDownTimer.initialize(
             millisInFuture = millisInFuture,
             countDownInterval = countDownInterval
         )
     }
 
-    fun startTimer() = countDownTimer.startTimer()
+    fun startTimer() = countDownTimer.start()
 
     //fun cancelTimer() = countDownTimer.cancelTimer()
 }

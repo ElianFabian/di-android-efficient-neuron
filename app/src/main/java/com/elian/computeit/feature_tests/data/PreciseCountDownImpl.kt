@@ -1,20 +1,20 @@
 package com.elian.computeit.feature_tests.data
 
-import android.os.CountDownTimer
-import com.elian.computeit.feature_tests.domain.util.TimerCountDown
+import com.elian.computeit.core.domain.util.CountDownTimer
+import com.elian.computeit.core.util.PreciseCountDown
 
-class TimerCountDownImpl : TimerCountDown
+class PreciseCountDownImpl : CountDownTimer
 {
-    private lateinit var countDownTimer: CountDownTimer
+    private lateinit var countDownTimer: PreciseCountDown
     private var _millisInFuture = 0L
     private var _countDownInterval = 0L
 
-    override fun initializeTimer(millisInFuture: Long, countDownInterval: Long)
+    override fun initialize(millisInFuture: Long, countDownInterval: Long)
     {
         _millisInFuture = millisInFuture
         _countDownInterval = countDownInterval
 
-        countDownTimer = object : CountDownTimer(millisInFuture, countDownInterval)
+        countDownTimer = object : PreciseCountDown(millisInFuture, countDownInterval)
         {
             override fun onTick(millisUntilFinished: Long)
             {
@@ -28,12 +28,11 @@ class TimerCountDownImpl : TimerCountDown
         }
     }
 
-    override fun startTimer()
-    {
-        countDownTimer.start()
-    }
+    override fun start() = countDownTimer.start()
 
-    override fun cancelTimer() = countDownTimer.cancel()
+    override fun restart() = countDownTimer.restart()
+
+    override fun stop() = countDownTimer.stop()
 
     override val millisInFuture: Long get() = _millisInFuture
 
