@@ -3,15 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/functionsFragment">
+    app:startDestination="@id/operationsFragment">
 
-    <fragment
-        android:id="@+id/functionsFragment"
+    <fragment android:id="@+id/operationsFragment"
         android:name="com.elian.computeit.ui.OperationsFragment"
-        android:label="fragment_functions"
-        tools:layout="@layout/fragment_operations" >
-        <action
-            android:id="@+id/action_operationsFragment_to_testConfigurationFragment"
+        android:label="fragment_operations"
+        tools:layout="@layout/fragment_operations">
+        <action android:id="@+id/action_operationsFragment_to_testConfigurationFragment"
             app:destination="@id/testConfigurationFragment" />
     </fragment>
     <fragment
@@ -22,6 +20,8 @@
         <action
             android:id="@+id/action_testConfigurationFragment_to_testFragment"
             app:destination="@id/testFragment" />
+        <action android:id="@+id/action_testConfigurationFragment_to_functionsFragment"
+            app:destination="@id/operationsFragment" />
     </fragment>
     <fragment
         android:id="@+id/testFragment"

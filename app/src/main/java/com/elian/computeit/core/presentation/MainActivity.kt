@@ -16,6 +16,7 @@ import com.elian.computeit.databinding.ActivityMainBinding
 import com.elian.computeit.feature_auth.presentation.login.LoginActivity
 import com.elian.computeit.ui.*
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity()
@@ -38,18 +39,16 @@ class MainActivity : AppCompatActivity()
 
         AppDatabase.create(this)
 
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-
-        initUI()
+        initUi()
+        initData()
     }
-
+    
     override fun onBackPressed()
     {
-        // Goes to Home Fragment unless we are already, other wise exits the app
+        // Goes to Home Fragment unless we are already in, other wise exits the app
         if (currentFragmentItem is OperationsFragment)
         {
-            super.onBackPressed()
+            onBackPressedDispatcher.onBackPressed()
         }
         else goToFragment(OperationsFragment())
     }
@@ -67,13 +66,24 @@ class MainActivity : AppCompatActivity()
 
     //region Methods
 
-    private fun initUI()
+    private fun initUi()
     {
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        
         toggle = ActionBarDrawerToggle(this, binding.drawerLayout, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
         binding.drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
 
         initMenuItemListener()
+    }
+    
+    private fun initData()
+    {
+        lifecycleScope.launch()
+        {
+            currentFragmentItem = OperationsFragment()
+        }
     }
 
     private fun subscribeToEvents()
@@ -82,7 +92,10 @@ class MainActivity : AppCompatActivity()
         {
             viewModel.eventFlow.collect()
             {
-                navigateTo<LoginActivity>()
+                when (it)
+                {
+                    is MainActivityEvent.UserNotRegistered -> navigateTo<LoginActivity>()
+                }
             }
         }
     }
