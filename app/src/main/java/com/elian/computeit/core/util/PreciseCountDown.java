@@ -26,6 +26,8 @@ public abstract class PreciseCountDown extends Timer
     public void start() {
         wasStarted = true;
         this.scheduleAtFixedRate(task, delay, interval);
+
+        if (!restart) onStart();
     }
 
     public void restart() {
@@ -37,14 +39,17 @@ public abstract class PreciseCountDown extends Timer
             this.task = getTask(totalTime);
             start();
         }
-        else{
+        else {
             this.restart = true;
+            onRestart();
         }
     }
 
     public void stop() {
         this.wasCancelled = true;
         this.task.cancel();
+
+        onStop();
     }
 
     // Call this when there's no further use for this timer
@@ -79,6 +84,9 @@ public abstract class PreciseCountDown extends Timer
         };
     }
 
+    public abstract void onStart();
+    public abstract void onRestart();
+    public abstract void onStop();
     public abstract void onTick(long timeLeft);
     public abstract void onFinish();
 }
