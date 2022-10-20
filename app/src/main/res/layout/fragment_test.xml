@@ -44,55 +44,105 @@
         />
     <!--endregion-->
 
-    <androidx.appcompat.widget.LinearLayoutCompat
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/_llOperation"
+        app:layout_constraintEnd_toStartOf="@+id/_glEnd"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/_glStart"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.5"
+        >
+
+        <com.google.android.material.progressindicator.CircularProgressIndicator
+            android:id="@+id/cpiRemainingSeconds"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:indicatorSize="@dimen/_70sdp"
+            app:trackThickness="@dimen/_6sdp"
+            tools:max="100"
+            tools:progress="75"
+            />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/mtvRemainingSeconds"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="@color/white"
+            android:textSize="@dimen/textSize_large1"
+            android:textStyle="bold"
+            tools:text="15.1"
+            />
+
+    </FrameLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/_llOperation"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_15sdp"
+        android:layout_marginHorizontal="@dimen/_26sdp"
         android:gravity="center"
         android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/_glEnd"
         app:layout_constraintStart_toStartOf="@+id/_glStart"
         app:layout_constraintTop_toTopOf="@+id/_glTop"
+        app:layout_constraintVertical_bias="0.16"
         >
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tvFirstNumber"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center|top"
             android:text="2"
             android:textColor="@color/white"
-            android:textSize="@dimen/textSize_xlarge3"
+            android:textSize="@dimen/textSize_xlarge2"
             android:textStyle="bold"
-            tools:text="2"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/tvOperationSymbol"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="2222"
             />
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tvOperationSymbol"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center|top"
             android:text="+"
             android:textColor="@color/white"
-            android:textSize="@dimen/textSize_xlarge3"
+            android:textSize="@dimen/textSize_xlarge2"
             android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             tools:text="+"
             />
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tvSecondNumber"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center|top"
             android:text="2"
             android:textColor="@color/white"
-            android:textSize="@dimen/textSize_xlarge3"
+            android:textSize="@dimen/textSize_xlarge2"
             android:textStyle="bold"
-            tools:text="2"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@id/tvOperationSymbol"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="2222"
             />
 
-    </androidx.appcompat.widget.LinearLayoutCompat>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/tietInput"
@@ -113,7 +163,7 @@
         app:layout_constraintEnd_toEndOf="@+id/_llOperation"
         app:layout_constraintStart_toStartOf="@+id/_llOperation"
         app:layout_constraintTop_toBottomOf="@+id/_llOperation"
-        app:layout_constraintVertical_bias="0.22"
+        app:layout_constraintVertical_bias="0.19999999"
         />
 
     <androidx.appcompat.widget.LinearLayoutCompat
@@ -133,7 +183,7 @@
             style="@style/CalculatorButton_Row"
             android:theme="@style/FragmentTestTheme_CalculatorButtonRow"
             >
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnNextTest"
                 style="@style/CalculatorButton.Action"
                 android:layout_span="3"
@@ -147,19 +197,19 @@
             android:theme="@style/FragmentTestTheme_CalculatorButtonRow"
             >
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 style="@style/CalculatorButton.Numeric"
                 android:tag="@string/tag_numeric_button"
                 android:text="1"
                 />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 style="@style/CalculatorButton.Numeric"
                 android:tag="@string/tag_numeric_button"
                 android:text="2"
                 />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 style="@style/CalculatorButton.Numeric"
                 android:tag="@string/tag_numeric_button"
                 android:text="3"
@@ -172,19 +222,19 @@
             android:theme="@style/FragmentTestTheme_CalculatorButtonRow"
             >
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 style="@style/CalculatorButton.Numeric"
                 android:tag="@string/tag_numeric_button"
                 android:text="4"
                 />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 style="@style/CalculatorButton.Numeric"
                 android:tag="@string/tag_numeric_button"
                 android:text="5"
                 />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 style="@style/CalculatorButton.Numeric"
                 android:tag="@string/tag_numeric_button"
                 android:text="6"
@@ -197,19 +247,19 @@
             android:theme="@style/FragmentTestTheme_CalculatorButtonRow"
             >
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 style="@style/CalculatorButton.Numeric"
                 android:tag="@string/tag_numeric_button"
                 android:text="7"
                 />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 style="@style/CalculatorButton.Numeric"
                 android:tag="@string/tag_numeric_button"
                 android:text="8"
                 />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 style="@style/CalculatorButton.Numeric"
                 android:tag="@string/tag_numeric_button"
                 android:text="9"
@@ -221,14 +271,14 @@
             android:theme="@style/FragmentTestTheme_CalculatorButtonRow"
             >
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 style="@style/FragmentTest_CalculatorButton.Numeric"
                 android:layout_weight="2"
                 android:tag="@string/tag_numeric_button"
                 android:text="0"
                 />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_clear_input"
                 style="@style/FragmentTest_CalculatorButton.Action"
                 android:backgroundTint="@color/red_700"

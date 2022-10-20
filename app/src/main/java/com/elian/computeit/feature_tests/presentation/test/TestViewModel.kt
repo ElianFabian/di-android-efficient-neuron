@@ -3,12 +3,13 @@ package com.elian.computeit.feature_tests.presentation.test
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.elian.computeit.core.domain.util.count_down_timer.CountDownTimer
+import com.elian.computeit.core.domain.util.count_down_timer.CountDownTimerEvent
 import com.elian.computeit.core.util.EXTRA_OPERATION_TYPE
 import com.elian.computeit.core.util.extensions.append
 import com.elian.computeit.core.util.extensions.clampLength
 import com.elian.computeit.feature_tests.domain.models.Operation
 import com.elian.computeit.feature_tests.domain.models.TestData
-import com.elian.computeit.core.domain.util.CountDownTimer
 import com.elian.computeit.feature_tests.presentation.util.getRandomPairOfNumbers
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -24,16 +25,24 @@ class TestViewModel @Inject constructor(
     savedState: SavedStateHandle,
 ) : ViewModel()
 {
+    val millisInFuture = savedState.get<Long>("") ?: 20_000L
+    val countDownInterval = savedState.get<Long>("") ?: 1L
+    
     init
     {
-        countDownTimer.onTick = {
-            viewModelScope.launch {
-                _eventFlow.emit(TestEvent.TimerTicked(millisUntilFinished = it))
-            }
-        }
-        countDownTimer.onFinish = {
-            viewModelScope.launch {
-                _eventFlow.emit(TestEvent.TimerFinished)
+        countDownTimer.setCoroutineScope(viewModelScope)
+
+        viewModelScope.launch()
+        {
+            countDownTimer.timerEvent.collect()
+            {
+                when (it)
+                {
+                    is CountDownTimerEvent.Ticked   -> _eventFlow.emit(TestEvent.TimerTicked(it.millisUntilFinished))
+                    is CountDownTimerEvent.Finished -> _eventFlow.emit(TestEvent.TimerFinished)
+
+                    else                            -> Unit
+                }
             }
         }
     }
@@ -86,7 +95,7 @@ class TestViewModel @Inject constructor(
         }
     }
 
-    fun initializeTimer(millisInFuture: Long, countDownInterval: Long)
+    fun initializeTimer()
     {
         countDownTimer.initialize(
             millisInFuture = millisInFuture,
@@ -95,6 +104,4 @@ class TestViewModel @Inject constructor(
     }
 
     fun startTimer() = countDownTimer.start()
-
-    //fun cancelTimer() = countDownTimer.cancelTimer()
 }

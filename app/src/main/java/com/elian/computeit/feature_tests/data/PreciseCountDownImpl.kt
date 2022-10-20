@@ -1,7 +1,7 @@
 package com.elian.computeit.feature_tests.data
 
-import com.elian.computeit.core.domain.util.CountDownTimer
-import com.elian.computeit.core.domain.util.CountDownTimerEvent
+import com.elian.computeit.core.domain.util.count_down_timer.CountDownTimer
+import com.elian.computeit.core.domain.util.count_down_timer.CountDownTimerEvent
 import com.elian.computeit.core.util.PreciseCountDown
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

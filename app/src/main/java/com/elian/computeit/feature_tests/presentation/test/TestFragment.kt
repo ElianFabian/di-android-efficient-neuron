@@ -10,6 +10,8 @@ import androidx.lifecycle.lifecycleScope
 import com.elian.computeit.R
 import com.elian.computeit.core.util.extensions.collectLatestFlowWhenStarted
 import com.elian.computeit.core.util.extensions.findViewsWithTagOfType
+import com.elian.computeit.core.util.extensions.format
+import com.elian.computeit.core.util.extensions.toast
 import com.elian.computeit.databinding.FragmentTestBinding
 import com.google.android.material.button.MaterialButton
 import dagger.hilt.android.AndroidEntryPoint
@@ -34,6 +36,7 @@ class TestFragment : Fragment()
         super.onViewCreated(view, savedInstanceState)
 
         initUi()
+        initLogic()
         subscribeToEvents()
     }
 
@@ -48,12 +51,21 @@ class TestFragment : Fragment()
             }
         }
 
-        viewModel.initializeTimer(10_000L, 1_000L)
+        binding.apply()
+        {
+            mtvRemainingSeconds.text = (viewModel.millisInFuture / 1000F).toString()
+            mpbRemainingSeconds.progress = mpbRemainingSeconds.max
+            mpbRemainingSeconds.max = viewModel.millisInFuture.toInt()
 
+            btnNextTest.setOnClickListener { onActionWhenStarted(TestAction.NextTest) }
+            btnClearInput.setOnClickListener { onActionWhenStarted(TestAction.ClearInput) }
+        }
+    }
+
+    private fun initLogic()
+    {
+        viewModel.initializeTimer()
         viewModel.startTimer()
-
-        binding.btnNextTest.setOnClickListener { onActionWhenStarted(TestAction.NextTest) }
-        binding.btnClearInput.setOnClickListener { onActionWhenStarted(TestAction.ClearInput) }
     }
 
     private fun subscribeToEvents()
@@ -65,14 +77,16 @@ class TestFragment : Fragment()
                 is TestEvent.TimerTicked   ->
                 {
                     val seconds = it.millisUntilFinished / 1000F
-                    
-                    //toast("Seconds left: ${seconds}")
-                    //println("tick: $seconds")
+
+                    binding.apply()
+                    {
+                        mpbRemainingSeconds.progress = it.millisUntilFinished.toInt()
+                        mtvRemainingSeconds.text = seconds.format("%.1f")
+                    }
                 }
                 is TestEvent.TimerFinished ->
                 {
-                    //toast("Finished")
-                    //println("tick: finished")
+                    toast("Finished")
                 }
             }
         }

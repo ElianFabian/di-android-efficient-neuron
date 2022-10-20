@@ -1,4 +1,4 @@
-package com.elian.computeit.core.domain.util
+package com.elian.computeit.core.domain.util.count_down_timer
 
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.SharedFlow

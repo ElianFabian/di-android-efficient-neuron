@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.datastore.preferences.preferencesDataStore
 import com.elian.computeit.core.data.repository.AppSettingsRepositoryImpl
 import com.elian.computeit.core.domain.repository.AppSettingsRepository
-import com.elian.computeit.core.domain.util.CountDownTimer
+import com.elian.computeit.core.domain.util.count_down_timer.CountDownTimer
 import com.elian.computeit.core.domain.util.DATA_STORE_PREFERENCES_NAME
 import com.elian.computeit.feature_auth.data.repository.AuthRepositoryImpl
 import com.elian.computeit.feature_auth.domain.repository.AuthRepository
