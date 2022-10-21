@@ -4,14 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.elian.computeit.R
-import com.elian.computeit.core.util.extensions.collectLatestFlowWhenStarted
-import com.elian.computeit.core.util.extensions.findViewsWithTagOfType
-import com.elian.computeit.core.util.extensions.format
-import com.elian.computeit.core.util.extensions.toast
+import com.elian.computeit.core.util.extensions.*
 import com.elian.computeit.databinding.FragmentTestBinding
 import com.google.android.material.button.MaterialButton
 import dagger.hilt.android.AndroidEntryPoint
@@ -36,35 +34,37 @@ class TestFragment : Fragment()
         super.onViewCreated(view, savedInstanceState)
 
         initUi()
-        initLogic()
         subscribeToEvents()
+        initTimer()
     }
 
     private fun initUi()
     {
-        val numericButtons = binding.llKeyBoard.findViewsWithTagOfType<MaterialButton>(R.string.tag_numeric_button)
-
-        numericButtons.forEach { button ->
-            button.setOnClickListener()
-            {
-                onActionWhenStarted(TestAction.EnteredNumber(value = button.text.toString().toInt()))
-            }
-        }
-
         binding.apply()
         {
-            mtvRemainingSeconds.text = (viewModel.millisInFuture / 1000F).toString()
-            mpbRemainingSeconds.progress = mpbRemainingSeconds.max
-            mpbRemainingSeconds.max = viewModel.millisInFuture.toInt()
+            val numericButtons = llKeyBoard.findViewsWithTagOfType<MaterialButton>(R.string.tag_numeric_button)
+
+            numericButtons.forEach { button ->
+                button.setOnClickListener()
+                {
+                    onActionWhenStarted(TestAction.EnteredNumber(value = button.text.toString().toInt()))
+                }
+            }
+
+            mtvRemainingSeconds.text = viewModel.millisInFuture.fromMillisToSeconds().toString()
+            cpiRemainingSeconds.apply()
+            {
+                progress = viewModel.millisInFuture.toInt()
+                max = viewModel.millisInFuture.toInt()
+            }
 
             btnNextTest.setOnClickListener { onActionWhenStarted(TestAction.NextTest) }
             btnClearInput.setOnClickListener { onActionWhenStarted(TestAction.ClearInput) }
         }
     }
 
-    private fun initLogic()
+    private fun initTimer()
     {
-        viewModel.initializeTimer()
         viewModel.startTimer()
     }
 
@@ -76,11 +76,11 @@ class TestFragment : Fragment()
             {
                 is TestEvent.TimerTicked   ->
                 {
-                    val seconds = it.millisUntilFinished / 1000F
+                    val seconds = it.millisUntilFinished.fromMillisToSeconds()
 
                     binding.apply()
                     {
-                        mpbRemainingSeconds.progress = it.millisUntilFinished.toInt()
+                        cpiRemainingSeconds.progress = it.millisUntilFinished.toInt()
                         mtvRemainingSeconds.text = seconds.format("%.1f")
                     }
                 }

@@ -1,4 +1,4 @@
-package com.elian.computeit.core.domain.util.count_down_timer
+package com.elian.computeit.core.domain.util
 
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.SharedFlow
@@ -9,8 +9,9 @@ interface CountDownTimer
     fun start()
     fun restart()
     fun stop()
+    fun resume()
     fun setCoroutineScope(coroutineScope: CoroutineScope)
-    val timerEvent: SharedFlow<CountDownTimerEvent>
+    val timerEvent: SharedFlow<TimerEvent>
     val millisInFuture: Long
     val countDownInterval: Long
 }

@@ -3,8 +3,8 @@ package com.elian.computeit.feature_tests.presentation.test
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.elian.computeit.core.domain.util.count_down_timer.CountDownTimer
-import com.elian.computeit.core.domain.util.count_down_timer.CountDownTimerEvent
+import com.elian.computeit.core.domain.util.CountDownTimer
+import com.elian.computeit.core.domain.util.TimerEvent
 import com.elian.computeit.core.util.EXTRA_OPERATION_TYPE
 import com.elian.computeit.core.util.extensions.append
 import com.elian.computeit.core.util.extensions.clampLength
@@ -25,11 +25,15 @@ class TestViewModel @Inject constructor(
     savedState: SavedStateHandle,
 ) : ViewModel()
 {
+    private val countDownInterval = 1L
     val millisInFuture = savedState.get<Long>("") ?: 20_000L
-    val countDownInterval = savedState.get<Long>("") ?: 1L
-    
+    val minValue = savedState.get<Int>("") ?: 1
+    val maxValue = savedState.get<Int>("") ?: 10
+
     init
     {
+        initializeTimer()
+
         countDownTimer.setCoroutineScope(viewModelScope)
 
         viewModelScope.launch()
@@ -38,8 +42,8 @@ class TestViewModel @Inject constructor(
             {
                 when (it)
                 {
-                    is CountDownTimerEvent.Ticked   -> _eventFlow.emit(TestEvent.TimerTicked(it.millisUntilFinished))
-                    is CountDownTimerEvent.Finished -> _eventFlow.emit(TestEvent.TimerFinished)
+                    is TimerEvent.Ticked   -> _eventFlow.emit(TestEvent.TimerTicked(it.millisUntilFinished))
+                    is TimerEvent.Finished -> _eventFlow.emit(TestEvent.TimerFinished)
 
                     else                            -> Unit
                 }
@@ -58,7 +62,7 @@ class TestViewModel @Inject constructor(
     private val _resultState = MutableStateFlow(0)
     val resultState = _resultState.asStateFlow()
 
-    private val _pairOfNumbersState = MutableStateFlow(getRandomPairOfNumbers(min = 1, max = 10))
+    private val _pairOfNumbersState = MutableStateFlow(getRandomPairOfNumbers(minValue, maxValue))
     val pairOfNumbersState = _pairOfNumbersState.asStateFlow()
 
 
@@ -90,18 +94,18 @@ class TestViewModel @Inject constructor(
 
                 testDataList.add(data)
 
-                _pairOfNumbersState.value = getRandomPairOfNumbers(min = 1, max = 10)
+                _pairOfNumbersState.value = getRandomPairOfNumbers(minValue, maxValue)
             }
         }
     }
 
-    fun initializeTimer()
+    fun startTimer() = countDownTimer.start()
+
+    private fun initializeTimer()
     {
         countDownTimer.initialize(
             millisInFuture = millisInFuture,
             countDownInterval = countDownInterval
         )
     }
-
-    fun startTimer() = countDownTimer.start()
 }

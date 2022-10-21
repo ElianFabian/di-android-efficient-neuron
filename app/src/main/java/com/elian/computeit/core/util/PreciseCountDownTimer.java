@@ -4,19 +4,20 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 // https://stackoverflow.com/questions/23323823/android-countdowntimer-tick-is-not-accurate
-public abstract class PreciseCountDown extends Timer
+public abstract class PreciseCountDownTimer extends Timer
 {
     private final long totalTime, interval, delay;
     private TimerTask task;
     private long startTime = -1;
+    private long timeLeft;
     private boolean restart = false, wasCancelled = false, wasStarted = false;
 
-    public PreciseCountDown(long totalTime, long interval) {
+    public PreciseCountDownTimer(long totalTime, long interval) {
         this(totalTime, interval, 0);
     }
 
-    public PreciseCountDown(long totalTime, long interval, long delay) {
-        super("PreciseCountDown", true);
+    public PreciseCountDownTimer(long totalTime, long interval, long delay) {
+        super("PreciseCountDownTimer", true);
         this.delay = delay;
         this.interval = interval;
         this.totalTime = totalTime;
@@ -37,6 +38,7 @@ public abstract class PreciseCountDown extends Timer
         else if(wasCancelled) {
             wasCancelled = false;
             this.task = getTask(totalTime);
+            this.startTime = - 1;
             start();
         }
         else {
@@ -52,6 +54,15 @@ public abstract class PreciseCountDown extends Timer
         onStop();
     }
 
+    public void resume() {
+        wasCancelled = false;
+        this.task = getTask(timeLeft);
+        this.startTime = - 1;
+        start();
+
+        onResume();
+    }
+
     // Call this when there's no further use for this timer
     public void dispose(){
         cancel();
@@ -63,7 +74,6 @@ public abstract class PreciseCountDown extends Timer
 
             @Override
             public void run() {
-                long timeLeft;
                 if (startTime < 0 || restart) {
                     startTime = scheduledExecutionTime();
                     timeLeft = totalTime;
@@ -85,8 +95,9 @@ public abstract class PreciseCountDown extends Timer
     }
 
     public abstract void onStart();
+    public abstract void onTick(long timeLeft);
     public abstract void onRestart();
     public abstract void onStop();
-    public abstract void onTick(long timeLeft);
+    public abstract void onResume();
     public abstract void onFinish();
 }
