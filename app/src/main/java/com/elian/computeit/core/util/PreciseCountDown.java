@@ -6,7 +6,7 @@ import java.util.TimerTask;
 // https://stackoverflow.com/questions/23323823/android-countdowntimer-tick-is-not-accurate
 public abstract class PreciseCountDown extends Timer
 {
-    private long totalTime, interval, delay;
+    private final long totalTime, interval, delay;
     private TimerTask task;
     private long startTime = -1;
     private boolean restart = false, wasCancelled = false, wasStarted = false;
