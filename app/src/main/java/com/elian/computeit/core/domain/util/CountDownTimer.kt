@@ -15,3 +15,13 @@ interface CountDownTimer
     val millisInFuture: Long
     val countDownInterval: Long
 }
+
+sealed interface TimerEvent
+{
+    object Started : TimerEvent
+    data class Ticked(val millisUntilFinished: Long) : TimerEvent
+    object Restarted : TimerEvent
+    object Stopped : TimerEvent
+    object Resumed : TimerEvent
+    object Finished : TimerEvent
+}

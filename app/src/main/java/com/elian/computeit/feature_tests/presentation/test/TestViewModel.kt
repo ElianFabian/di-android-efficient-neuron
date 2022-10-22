@@ -25,7 +25,7 @@ class TestViewModel @Inject constructor(
     savedState: SavedStateHandle,
 ) : ViewModel()
 {
-    private val countDownInterval = 1L
+    private val _countDownInterval = 1L
     val millisInFuture = savedState.get<Long>("") ?: 20_000L
     val minValue = savedState.get<Int>("") ?: 1
     val maxValue = savedState.get<Int>("") ?: 10
@@ -42,19 +42,23 @@ class TestViewModel @Inject constructor(
             {
                 when (it)
                 {
-                    is TimerEvent.Ticked   -> _eventFlow.emit(TestEvent.TimerTicked(it.millisUntilFinished))
+                    is TimerEvent.Ticked   ->
+                    {
+                        _millisUntilFinishState.value = it.millisUntilFinished
+                        _eventFlow.emit(TestEvent.TimerTicked(it.millisUntilFinished))
+                    }
                     is TimerEvent.Finished -> _eventFlow.emit(TestEvent.TimerFinished)
 
-                    else                            -> Unit
+                    else                   -> Unit
                 }
             }
         }
     }
 
 
-    private val operation = savedState.get<Operation>(EXTRA_OPERATION_TYPE)!!
+    private val _operation = savedState.get<Operation>(EXTRA_OPERATION_TYPE)!!
 
-    private val testDataList = mutableListOf<TestData>()
+    private val _testDataList = mutableListOf<TestData>()
 
     private val _eventFlow = MutableSharedFlow<TestEvent>()
     val eventFlow = _eventFlow.asSharedFlow()
@@ -64,6 +68,9 @@ class TestViewModel @Inject constructor(
 
     private val _pairOfNumbersState = MutableStateFlow(getRandomPairOfNumbers(minValue, maxValue))
     val pairOfNumbersState = _pairOfNumbersState.asStateFlow()
+
+    private val _millisUntilFinishState = MutableStateFlow(millisInFuture)
+    private val _millisSinceStart get() = millisInFuture - _millisUntilFinishState.value
 
 
     fun onAction(action: TestAction)
@@ -82,19 +89,21 @@ class TestViewModel @Inject constructor(
             }
             is TestAction.NextTest      ->
             {
-                _resultState.value = 0
-
                 val data = TestData(
-                    operation = operation.symbol,
+                    operation = _operation.symbol,
                     pairOfNumbers = _pairOfNumbersState.value,
                     insertedResult = _resultState.value,
-                    correctResult = operation(_pairOfNumbersState.value),
-                    timeInMillisSinceTestStarted = 1L
+                    correctResult = _operation(_pairOfNumbersState.value),
+                    millisSinceStart = _millisSinceStart
                 )
 
-                testDataList.add(data)
+                println("------$data")
+
+                _testDataList.add(data)
 
                 _pairOfNumbersState.value = getRandomPairOfNumbers(minValue, maxValue)
+
+                _resultState.value = 0
             }
         }
     }
@@ -105,7 +114,7 @@ class TestViewModel @Inject constructor(
     {
         countDownTimer.initialize(
             millisInFuture = millisInFuture,
-            countDownInterval = countDownInterval
+            countDownInterval = _countDownInterval
         )
     }
 }

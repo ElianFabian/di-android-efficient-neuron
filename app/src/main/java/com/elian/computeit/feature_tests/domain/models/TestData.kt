@@ -5,7 +5,7 @@ data class TestData(
     val operation: String,
     val insertedResult: Int,
     val correctResult: Int,
-    val timeInMillisSinceTestStarted: Long,
+    val millisSinceStart: Long,
 )
 {
     val isError get() = insertedResult == correctResult

@@ -13,6 +13,8 @@ import com.elian.computeit.core.util.extensions.*
 import com.elian.computeit.databinding.FragmentTestBinding
 import com.google.android.material.button.MaterialButton
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class TestFragment : Fragment()
@@ -37,7 +39,7 @@ class TestFragment : Fragment()
         subscribeToEvents()
         initTimer()
     }
-
+    // todo: añadir reset al temporizador
     private fun initUi()
     {
         binding.apply()
@@ -45,17 +47,20 @@ class TestFragment : Fragment()
             val numericButtons = llKeyBoard.findViewsWithTagOfType<MaterialButton>(R.string.tag_numeric_button)
 
             numericButtons.forEach { button ->
+
+                val number = button.text.toString().toInt()
+
                 button.setOnClickListener()
                 {
-                    onActionWhenStarted(TestAction.EnteredNumber(value = button.text.toString().toInt()))
+                    onActionWhenStarted(TestAction.EnteredNumber(value = number))
                 }
             }
 
             mtvRemainingSeconds.text = viewModel.millisInFuture.fromMillisToSeconds().toString()
             cpiRemainingSeconds.apply()
             {
-                progress = viewModel.millisInFuture.toInt()
                 max = viewModel.millisInFuture.toInt()
+                progress = viewModel.millisInFuture.toInt()
             }
 
             btnNextTest.setOnClickListener { onActionWhenStarted(TestAction.NextTest) }
@@ -65,7 +70,10 @@ class TestFragment : Fragment()
 
     private fun initTimer()
     {
-        viewModel.startTimer()
+        lifecycleScope.launch { 
+            delay(1000)
+            viewModel.startTimer()
+        }
     }
 
     private fun subscribeToEvents()
@@ -77,6 +85,7 @@ class TestFragment : Fragment()
                 is TestEvent.TimerTicked   ->
                 {
                     val seconds = it.millisUntilFinished.fromMillisToSeconds()
+                    println("---------------------${it.millisUntilFinished}")
 
                     binding.apply()
                     {

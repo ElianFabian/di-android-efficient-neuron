@@ -81,7 +81,7 @@ public abstract class PreciseCountDownTimer extends Timer
                 } else {
                     timeLeft = totalTime - (scheduledExecutionTime() - startTime);
 
-                    if (timeLeft <= 0) {
+                    if (timeLeft < 0) {
                         this.cancel();
                         startTime = -1;
                         onFinish();
