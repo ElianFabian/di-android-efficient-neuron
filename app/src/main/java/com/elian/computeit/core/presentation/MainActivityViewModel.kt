@@ -22,7 +22,7 @@ class MainActivityViewModel @Inject constructor(
     {
         viewModelScope.launch()
         {
-            if (!isUserLoggedIn()) _eventFlow.emit(MainActivityEvent.UserNotRegistered)
+            if (!isUserLoggedIn()) _eventFlow.emit(MainActivityEvent.OnUserNotRegistered)
         }
     }
 }

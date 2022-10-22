@@ -68,9 +68,9 @@ class LoginViewModel @Inject constructor(
             when (result)
             {
                 is Resource.Error   -> _eventFlow.emit(
-                    LoginEvent.ShowErrorMessage(result.uiText ?: UiText.unknownError())
+                    LoginEvent.OnShowErrorMessage(result.uiText ?: UiText.unknownError())
                 )
-                is Resource.Success -> _eventFlow.emit(LoginEvent.Login)
+                is Resource.Success -> _eventFlow.emit(LoginEvent.OnLogin)
 
                 else                -> Unit
             }

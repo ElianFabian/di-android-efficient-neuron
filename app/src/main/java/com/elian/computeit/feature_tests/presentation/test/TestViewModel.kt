@@ -42,12 +42,12 @@ class TestViewModel @Inject constructor(
             {
                 when (it)
                 {
-                    is TimerEvent.Ticked   ->
+                    is TimerEvent.OnTick   ->
                     {
                         _millisUntilFinishState.value = it.millisUntilFinished
-                        _eventFlow.emit(TestEvent.TimerTicked(it.millisUntilFinished))
+                        _eventFlow.emit(TestEvent.OnTimerTick(it.millisUntilFinished))
                     }
-                    is TimerEvent.Finished -> _eventFlow.emit(TestEvent.TimerFinished)
+                    is TimerEvent.OnFinish -> _eventFlow.emit(TestEvent.OnTimerFinish)
 
                     else                   -> Unit
                 }

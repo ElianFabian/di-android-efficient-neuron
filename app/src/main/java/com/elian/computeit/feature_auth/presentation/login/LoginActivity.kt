@@ -66,12 +66,12 @@ class LoginActivity : AppCompatActivity()
         {
             when (it)
             {
-                is LoginEvent.Login            ->
+                is LoginEvent.OnLogin            ->
                 {
                     viewModel.saveUserEmail(userFromFields.email)
                     navigateTo<MainActivity>()
                 }
-                is LoginEvent.ShowErrorMessage -> toast(it.error.asString(this))
+                is LoginEvent.OnShowErrorMessage -> toast(it.error.asString(this))
             }
         }
         collectLatestFlowWhenStarted(viewModel.emailState)

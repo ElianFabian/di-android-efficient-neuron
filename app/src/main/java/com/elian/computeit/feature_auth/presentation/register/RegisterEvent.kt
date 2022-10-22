@@ -4,6 +4,6 @@ import com.elian.computeit.core.util.UiText
 
 sealed interface RegisterEvent
 {
-    object Register : RegisterEvent
-    data class ShowErrorMessage(val error: UiText) : RegisterEvent
+    object OnRegister : RegisterEvent
+    data class OnShowErrorMessage(val error: UiText) : RegisterEvent
 }

@@ -42,32 +42,32 @@ class PreciseCountDownTimerImpl : CountDownTimer
         {
             override fun onStart()
             {
-                _coroutineScope.launch(Dispatchers.IO) { _timerEvent.emit(TimerEvent.Started) }
+                _coroutineScope.launch(Dispatchers.IO) { _timerEvent.emit(TimerEvent.OnStart) }
             }
 
             override fun onTick(millisUntilFinished: Long)
             {
-                _coroutineScope.launch(Dispatchers.IO) { _timerEvent.emit(TimerEvent.Ticked(millisUntilFinished)) }
+                _coroutineScope.launch(Dispatchers.IO) { _timerEvent.emit(TimerEvent.OnTick(millisUntilFinished)) }
             }
 
             override fun onRestart()
             {
-                _coroutineScope.launch(Dispatchers.IO) { _timerEvent.emit(TimerEvent.Restarted) }
+                _coroutineScope.launch(Dispatchers.IO) { _timerEvent.emit(TimerEvent.OnRestart) }
             }
 
             override fun onStop()
             {
-                _coroutineScope.launch(Dispatchers.IO) { _timerEvent.emit(TimerEvent.Stopped) }
+                _coroutineScope.launch(Dispatchers.IO) { _timerEvent.emit(TimerEvent.OnStop) }
             }
 
             override fun onResume()
             {
-                _coroutineScope.launch(Dispatchers.IO) { _timerEvent.emit(TimerEvent.Resumed) }
+                _coroutineScope.launch(Dispatchers.IO) { _timerEvent.emit(TimerEvent.OnResume) }
             }
 
             override fun onFinish()
             {
-                _coroutineScope.launch(Dispatchers.IO) { _timerEvent.emit(TimerEvent.Finished) }
+                _coroutineScope.launch(Dispatchers.IO) { _timerEvent.emit(TimerEvent.OnFinish) }
             }
         }
     }

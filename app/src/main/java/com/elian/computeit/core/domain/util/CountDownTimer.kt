@@ -18,10 +18,10 @@ interface CountDownTimer
 
 sealed interface TimerEvent
 {
-    object Started : TimerEvent
-    data class Ticked(val millisUntilFinished: Long) : TimerEvent
-    object Restarted : TimerEvent
-    object Stopped : TimerEvent
-    object Resumed : TimerEvent
-    object Finished : TimerEvent
+    object OnStart : TimerEvent
+    data class OnTick(val millisUntilFinished: Long) : TimerEvent
+    object OnRestart : TimerEvent
+    object OnStop : TimerEvent
+    object OnResume : TimerEvent
+    object OnFinish : TimerEvent
 }

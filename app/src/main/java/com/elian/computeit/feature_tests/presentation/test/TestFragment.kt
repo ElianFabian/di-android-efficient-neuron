@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -82,7 +81,7 @@ class TestFragment : Fragment()
         {
             when (it)
             {
-                is TestEvent.TimerTicked   ->
+                is TestEvent.OnTimerTick ->
                 {
                     val seconds = it.millisUntilFinished.fromMillisToSeconds()
                     println("---------------------${it.millisUntilFinished}")
@@ -93,9 +92,9 @@ class TestFragment : Fragment()
                         mtvRemainingSeconds.text = seconds.format("%.1f")
                     }
                 }
-                is TestEvent.TimerFinished ->
+                is TestEvent.OnTimerFinish ->
                 {
-                    toast("Finished")
+                    toast("OnFinish")
                 }
             }
         }
