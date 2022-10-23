@@ -5,15 +5,14 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
-import androidx.lifecycle.lifecycleScope
 import com.elian.computeit.R
 import com.elian.computeit.core.util.extensions.collectLatestFlowWhenStarted
 import com.elian.computeit.core.util.extensions.error2
 import com.elian.computeit.core.util.extensions.navigateTo
+import com.elian.computeit.core.util.extensions.toast
 import com.elian.computeit.databinding.ActivityRegisterBinding
 import com.elian.computeit.feature_auth.presentation.login.LoginActivity
 import com.elian.computeit.feature_auth.presentation.util.AuthError
-import com.elian.computeit.core.util.extensions.toast
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -21,13 +20,6 @@ class RegisterActivity : AppCompatActivity()
 {
     private lateinit var binding: ActivityRegisterBinding
     private val viewModel by viewModels<RegisterViewModel>()
-
-    private val userFromFields = object
-    {
-        val email get() = binding.tieEmail.text.toString().trim()
-        val password get() = binding.tiePassword.text.toString().trim()
-        val confirmPassword get() = binding.tieConfirmPassword.text.toString().trim()
-    }
 
     //region Activity Methods
 
@@ -53,17 +45,21 @@ class RegisterActivity : AppCompatActivity()
 
     private fun initUI()
     {
-        binding.tieEmail.addTextChangedListener { setEmailError(null) }
-        binding.tiePassword.addTextChangedListener { setPasswordError(null) }
-        binding.tieConfirmPassword.addTextChangedListener { setConfirmPasswordError(null) }
-
-        binding.btnRegister.setOnClickListener()
+        binding.apply()
         {
-            onActionWhenStarted(RegisterAction.ReceivedEmail(userFromFields.email))
-            onActionWhenStarted(RegisterAction.ReceivedPassword(userFromFields.password))
-            onActionWhenStarted(RegisterAction.ReceivedConfirmPassword(userFromFields.confirmPassword))
-            onActionWhenStarted(RegisterAction.Register)
+            tietEmail.addTextChangedListener { setEmailError(null) }
+            tietPassword.addTextChangedListener { setPasswordError(null) }
+            tietConfirmPassword.addTextChangedListener { setConfirmPasswordError(null) }
+
+            btnRegister.setOnClickListener()
+            {
+                viewModel.onAction(RegisterAction.EnterEmail(tietEmail.text.toString().trim()))
+                viewModel.onAction(RegisterAction.EnterPassword(tietPassword.text.toString().trim()))
+                viewModel.onAction(RegisterAction.EnterConfirmPassword(tietConfirmPassword.text.toString().trim()))
+                viewModel.onAction(RegisterAction.Register)
+            }
         }
+
     }
 
     private fun subscribeToEvents()
@@ -115,18 +111,8 @@ class RegisterActivity : AppCompatActivity()
         }
         collectLatestFlowWhenStarted(viewModel.loadingState)
         {
-            if (it) showProgress() else hideProgress()
+            binding.pbLoading.isVisible = it
         }
-    }
-
-    private fun showProgress()
-    {
-        binding.pbLoading.isVisible = true
-    }
-
-    private fun hideProgress()
-    {
-        binding.pbLoading.isVisible = false
     }
 
     private fun setEmailError(text: String?)
@@ -142,11 +128,6 @@ class RegisterActivity : AppCompatActivity()
     private fun setConfirmPasswordError(text: String?)
     {
         binding.tilConfirmPassword.error2 = text
-    }
-
-    private fun onActionWhenStarted(action: RegisterAction)
-    {
-        lifecycleScope.launchWhenStarted { viewModel.onAction(action) }
     }
 
     //endregion

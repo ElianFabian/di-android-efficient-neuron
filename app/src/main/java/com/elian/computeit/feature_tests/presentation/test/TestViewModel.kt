@@ -5,11 +5,15 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.elian.computeit.core.domain.util.CountDownTimer
 import com.elian.computeit.core.domain.util.TimerEvent
+import com.elian.computeit.core.util.EXTRA_OPERATION_MAX_VALUE
+import com.elian.computeit.core.util.EXTRA_OPERATION_MIN_VALUE
 import com.elian.computeit.core.util.EXTRA_OPERATION_TYPE
+import com.elian.computeit.core.util.EXTRA_TEST_TIME_IN_SECONDS
 import com.elian.computeit.core.util.extensions.append
 import com.elian.computeit.core.util.extensions.clampLength
-import com.elian.computeit.feature_tests.domain.models.Operation
-import com.elian.computeit.feature_tests.domain.models.TestData
+import com.elian.computeit.feature_tests.data.models.Operation
+import com.elian.computeit.feature_tests.data.models.TestData
+import com.elian.computeit.feature_tests.presentation.test.TestAction.*
 import com.elian.computeit.feature_tests.presentation.util.getRandomPairOfNumbers
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -26,9 +30,9 @@ class TestViewModel @Inject constructor(
 ) : ViewModel()
 {
     private val _countDownInterval = 1L
-    val millisInFuture = savedState.get<Long>("") ?: 20_000L
-    val minValue = savedState.get<Int>("") ?: 1
-    val maxValue = savedState.get<Int>("") ?: 10
+    val millisInFuture = savedState.get<Int>(EXTRA_TEST_TIME_IN_SECONDS)?.let { it * 1_000L } ?: 20_000L
+    private val minValue = savedState.get<Int>(EXTRA_OPERATION_MIN_VALUE) ?: error("Min value was expected.")
+    private val maxValue = savedState.get<Int>(EXTRA_OPERATION_MAX_VALUE) ?: error("Max value was expected.")
 
     init
     {
@@ -77,17 +81,17 @@ class TestViewModel @Inject constructor(
     {
         when (action)
         {
-            is TestAction.EnteredNumber ->
+            is EnteredNumber ->
             {
                 _resultState.value = _resultState.value
                     .append(action.value)
                     .clampLength(maxLength = 8)
             }
-            is TestAction.ClearInput    ->
+            is ClearInput    ->
             {
                 _resultState.value = 0
             }
-            is TestAction.NextTest      ->
+            is NextTest      ->
             {
                 val data = TestData(
                     operation = _operation.symbol,

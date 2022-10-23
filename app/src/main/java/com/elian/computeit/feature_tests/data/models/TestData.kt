@@ -1,4 +1,4 @@
-package com.elian.computeit.feature_tests.domain.models
+package com.elian.computeit.feature_tests.data.models
 
 data class TestData(
     val pairOfNumbers: Pair<Int, Int>,

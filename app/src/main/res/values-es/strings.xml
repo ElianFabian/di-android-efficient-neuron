@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <resources>
-    <string name="generic_confirm_password">Confirmar contraseña</string>
-    <string name="generic_email">Email</string>
-    <string name="generic_login">Iniciar sesión</string>
-    <string name="generic_password">Contraseña</string>
-    <string name="generic_register">Registrarse</string>
-    <string name="generic_tests">juegos</string>
+    <string name="array_test_modes_tests">Pruebas</string>
+    <string name="array_test_modes_time">Tiempo</string>
 
     <string name="error_email_empty">El email no puede estar vacío</string>
     <string name="error_email_invalid">Email inválido, ejemplo: %s</string>
@@ -24,15 +20,18 @@
     <string name="frgAboutUs_description">Esta aplicación es un proyecto para aprender a cómo crear aplicaciones en Android. Es un ejercicio del módulo de Android de IES Portada Alta.</string>
     <string name="frgAboutUs_github_title">Código fuente</string>
 
-    <string name="frgEndGame_tvTimeOrTests_label_time_text">Time</string>
     <string name="frgEndGame_btnContinue_text">Continuar</string>
+    <string name="frgEndGame_tvTimeOrTests_label_tests_text">Tests</string>
+    <string name="frgEndGame_tvTimeOrTests_label_time_text">Time</string>
     <string name="frgEndGame_tvTimePerGame_label_text">Tiempo por partida</string>
 
     <string name="frgFunctions_tvTitle_text">OPERACIONES</string>
 
     <string name="frgGameConfiguration_btnPlay_text">JUGAR</string>
-    <string name="frgGameConfiguration_tvDigits_text">Dígitos:</string>
+    <string name="frgGameConfiguration_tietMaxValue_hint">Máximo</string>
+    <string name="frgGameConfiguration_tietMinValue_hint">Minimo</string>
     <string name="frgGameConfiguration_tvMode_text">Modo:</string>
+    <string name="frgGameConfiguration_tvNumberRange_text">Intervalo:</string>
     <string name="frgGameConfiguration_tvTitle_text">CONFIGURACIÓN DE JUEGO</string>
 
     <string name="frgSettings_category_general">General</string>
@@ -51,13 +50,17 @@
 
     <string name="frgTips_tvTitle_text">CONSEJOS</string>
 
+    <string name="generic_confirm_password">Confirmar contraseña</string>
+    <string name="generic_email">Email</string>
+    <string name="generic_login">Iniciar sesión</string>
+    <string name="generic_password">Contraseña</string>
+    <string name="generic_register">Registrarse</string>
+    <string name="generic_tests">Pruebas</string>
+
     <string name="navigation_menu_navAboutUs_title">Sobre Nosotros</string>
     <string name="navigation_menu_navHome_title">Inicio</string>
     <string name="navigation_menu_navProfile_title">Perfil</string>
     <string name="navigation_menu_navSettings_title">Configuración</string>
     <string name="navigation_menu_navStatistics_title">Estadísticas</string>
     <string name="navigation_menu_navTips_title">Consejos</string>
-    <string name="array_test_modes_tests">Pruebas</string>
-    <string name="array_test_modes_time">Tiempo</string>
-    <string name="frgEndGame_tvTimeOrTests_label_tests_text">Tests</string>
 </resources>

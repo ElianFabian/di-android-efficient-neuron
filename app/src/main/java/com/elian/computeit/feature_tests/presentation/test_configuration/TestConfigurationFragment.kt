@@ -6,16 +6,19 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import com.elian.computeit.R
-import com.elian.computeit.core.util.EXTRA_OPERATION_SYMBOL
-import com.elian.computeit.core.util.EXTRA_OPERATION_TYPE
+import com.elian.computeit.core.util.EXTRA_TEST_COUNT
+import com.elian.computeit.core.util.EXTRA_TEST_TIME_IN_SECONDS
+import com.elian.computeit.core.util.extensions.collectLatestFlowWhenStarted
 import com.elian.computeit.core.util.extensions.navigate
 import com.elian.computeit.databinding.FragmentTestConfigurationBinding
-import com.elian.computeit.feature_tests.domain.models.Sum
 
 class TestConfigurationFragment : Fragment()
 {
+    private val viewModel by viewModels<TestConfigurationViewModel>()
     private lateinit var binding: FragmentTestConfigurationBinding
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?,
@@ -30,24 +33,56 @@ class TestConfigurationFragment : Fragment()
         super.onViewCreated(view, savedInstanceState)
 
         initUI()
+        subscribeToEvents()
     }
 
     //region Methods
 
     private fun initUI()
     {
-        binding.btnPlay.setOnClickListener()
+        binding.apply()
         {
-            // TODO: finish this fragment
-            navigate(
-                R.id.action_testConfigurationFragment_to_testFragment,
-                bundleOf(
-                    EXTRA_OPERATION_TYPE to Sum
-                )
-            )
-        }
+            btnPlay.setOnClickListener()
+            {
+                val extraTimeOrTestCount = when (spnModes.selectedItem as String)
+                {
+                    getString(R.string.array_test_modes_time)  -> EXTRA_TEST_TIME_IN_SECONDS
+                    getString(R.string.array_test_modes_tests) -> EXTRA_TEST_COUNT
 
-        binding.tvCornerIcon.text = arguments?.getString(EXTRA_OPERATION_SYMBOL)
+                    else                                       -> ""
+                }
+
+                val secondsOrTestCount = etTestsOrTime.text.toString().toInt()
+
+                when (spnModes.selectedItem as String)
+                {
+                    getString(R.string.array_test_modes_time)  -> viewModel.onAction(TestConfigurationAction.EnterSeconds(secondsOrTestCount))
+                    getString(R.string.array_test_modes_tests) -> viewModel.onAction(TestConfigurationAction.EnterTestCount(secondsOrTestCount))
+                }
+
+                viewModel.onAction(TestConfigurationAction.EnterRange(
+                    min = tietMinValue.toString().toInt(),
+                    max = tietMaxValue.toString().toInt()
+                ))
+            }
+        }
+    }
+
+    private fun subscribeToEvents()
+    {
+        collectLatestFlowWhenStarted(viewModel.eventFlow)
+        {
+            when (it)
+            {
+                is TestConfigurationEvent.OnPlay ->
+                {
+                    navigate(
+                        R.id.action_testConfigurationFragment_to_testFragment,
+                        bundleOf(*it.args.toTypedArray())
+                    )
+                }
+            }
+        }
     }
 
     //endregion

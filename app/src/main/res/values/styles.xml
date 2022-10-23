@@ -83,7 +83,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:fontFamily">@font/comfortaa</item>
         <item name="android:textColor">@color/blue_800</item>
-        <item name="android:textSize">40sp</item>
+        <item name="android:textSize">@dimen/textSize_medium3</item>
     </style>
 
     <style name="frgEndGame_LabelFor_TextView_Time">

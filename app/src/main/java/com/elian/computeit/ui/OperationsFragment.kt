@@ -39,12 +39,13 @@ class OperationsFragment : Fragment()
 
     //region Methods
 
-    private fun initUi() = binding.grdlButtons.children.forEach { button ->
-        button.setOnClickListener()
-        {
-            navigate(R.id.action_operationsFragment_to_testConfigurationFragment, bundleOf(
-                EXTRA_OPERATION_SYMBOL to it.tag as String
-            ))
+    private fun initUi()
+    {
+        binding.grdlButtons.children.forEach { button ->
+            button.setOnClickListener()
+            {
+                navigate(R.id.action_operationsFragment_to_testConfigurationFragment)
+            }
         }
     }
 

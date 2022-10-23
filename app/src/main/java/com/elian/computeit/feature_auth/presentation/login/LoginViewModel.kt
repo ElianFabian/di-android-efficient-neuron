@@ -1,22 +1,25 @@
 package com.elian.computeit.feature_auth.presentation.login
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.elian.computeit.core.domain.states.StandardTextFieldState
 import com.elian.computeit.core.util.Resource
 import com.elian.computeit.core.util.UiText
 import com.elian.computeit.feature_auth.domain.use_case.LoginUseCase
 import com.elian.computeit.feature_auth.domain.use_case.SaveUserEmailUseCase
+import com.elian.computeit.feature_auth.presentation.login.LoginAction.*
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class LoginViewModel @Inject constructor(
     private val loginUseCase: LoginUseCase,
-    private val saveUserEmailUseCase: SaveUserEmailUseCase
+    private val saveUserEmailUseCase: SaveUserEmailUseCase,
 ) : ViewModel()
 {
     private val _eventFlow = MutableSharedFlow<LoginEvent>()
@@ -32,25 +35,28 @@ class LoginViewModel @Inject constructor(
     val passwordState = _passwordState.asStateFlow()
 
 
-    suspend fun onAction(action: LoginAction) = when (action)
+    fun onAction(action: LoginAction)
     {
-        is LoginAction.EnteredEmail    ->
+        when (action)
         {
-            _emailState.value = _emailState.value.copy(text = action.value)
-        }
-        is LoginAction.EnteredPassword ->
-        {
-            _passwordState.value = _passwordState.value.copy(text = action.value)
-        }
-        is LoginAction.Login           ->
-        {
-            login(
-                email = _emailState.value.text,
-                password = _passwordState.value.text
-            )
+            is EnterEmail    ->
+            {
+                _emailState.value = _emailState.value.copy(text = action.value)
+            }
+            is EnterPassword ->
+            {
+                _passwordState.value = _passwordState.value.copy(text = action.value)
+            }
+            is Login         -> viewModelScope.launch()
+            {
+                login(
+                    email = _emailState.value.text,
+                    password = _passwordState.value.text
+                )
+            }
         }
     }
-    
+
     suspend fun saveUserEmail(email: String) = saveUserEmailUseCase(email)
 
     private suspend fun login(email: String, password: String)

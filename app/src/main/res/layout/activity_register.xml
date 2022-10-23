@@ -24,7 +24,7 @@
         >
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/tieEmail"
+            android:id="@+id/tiet_email"
             style="@style/TextInputEditTextStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -41,7 +41,7 @@
         >
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/tiePassword"
+            android:id="@+id/tiet_password"
             style="@style/TextInputEditTextStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -59,7 +59,7 @@
         >
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/tieConfirmPassword"
+            android:id="@+id/tiet_confirm_password"
             style="@style/TextInputEditTextStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

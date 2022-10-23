@@ -1,197 +1,175 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<androidx.appcompat.widget.LinearLayoutCompat
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
 
     android:id="@+id/frameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/blue_200"
+    android:background="@color/background_dark"
+    android:orientation="vertical"
 
     tools:context=".feature_tests.presentation.test_configuration.TestConfigurationFragment">
 
-    <!--region Icon operation-->
-    <TextView
-        android:id="@+id/tvCornerIcon"
-        android:layout_width="30dp"
-        android:layout_height="38dp"
-        android:layout_marginEnd="4dp"
-        android:fontFamily="@font/comfortaa_bold"
-        android:includeFontPadding="false"
-        android:textAlignment="center"
-        android:textColor="@color/blue_800"
-        android:textSize="50sp"
-
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-
-        tools:text="+" />
-    <!--endregion-->
-
-    <!--region Title-->
     <TextView
         android:id="@+id/tvTitle"
         style="@style/Title"
+        android:layout_marginBottom="@dimen/_20sdp"
         android:text="@string/frgGameConfiguration_tvTitle_text"
+        android:textAlignment="center" />
 
-        android:textSize="@dimen/_25sdp"
-
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.03" />
-    <!--endregion-->
-
-    <!--region Title Digits-->
-    <TextView
-        android:id="@+id/tvDigits"
-        style="@style/frgGameConfiguration_TextView"
-
-        android:text="@string/frgGameConfiguration_tvDigits_text"
-
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.14"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvTitle"
-        app:layout_constraintVertical_bias="0.08" />
-    <!--endregion-->
-
-    <!--region First digit-->
-    <EditText
-        android:id="@+id/etDigit1"
-        android:layout_width="82dp"
-        android:layout_height="48dp"
-        android:gravity="center"
-        android:inputType="number"
-        android:minHeight="48dp"
-
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/tvDigits"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.398"
-
-        tools:text="12" />
-    <!--endregion-->
-
-    <!--region Symbol X-->
-    <TextView
-        android:id="@+id/tvSymbolX"
-        android:layout_width="wrap_content"
+    <RadioGroup
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/comfortaa_bold"
-        android:text="@string/frgGameConfiguration_tvSymbolX_text"
-        android:textColor="@color/green_a700"
-        android:textSize="20sp"
-
-        app:layout_constraintBottom_toBottomOf="@+id/etDigit1"
-        app:layout_constraintEnd_toStartOf="@+id/etDigit2"
-        app:layout_constraintStart_toEndOf="@+id/etDigit1"
-        app:layout_constraintTop_toTopOf="@+id/etDigit1" />
-    <!--endregion-->
-
-    <!--region Second digit-->
-    <EditText
-        android:id="@+id/etDigit2"
-        android:layout_width="82dp"
-        android:layout_height="48dp"
+        android:layout_margin="@dimen/_15sdp"
         android:gravity="center"
-        android:inputType="number"
-        android:minHeight="48dp"
+        android:orientation="horizontal">
 
-        app:layout_constraintBottom_toBottomOf="@+id/etDigit1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/etDigit1"
-        app:layout_constraintTop_toTopOf="@+id/etDigit1"
+        <com.google.android.material.radiobutton.MaterialRadioButton
+            android:layout_width="@dimen/_60sdp"
+            android:layout_height="@dimen/_60sdp"
+            android:background="@drawable/selector_radio_button_operation"
+            android:button="@color/transparent"
+            android:gravity="center"
+            android:text="+"
+            android:textAppearance="@style/TextAppearance_OperationButton" />
 
-        tools:text="2" />
-    <!--endregion-->
+        <androidx.legacy.widget.Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
 
-    <!--region Title Mode-->
-    <TextView
-        android:id="@+id/tvMode"
-        style="@style/frgGameConfiguration_TextView"
+        <com.google.android.material.radiobutton.MaterialRadioButton
+            android:layout_width="@dimen/_60sdp"
+            android:layout_height="@dimen/_60sdp"
+            android:background="@drawable/selector_radio_button_operation"
+            android:button="@color/transparent"
+            android:gravity="center"
+            android:text="−"
+            android:textAppearance="@style/TextAppearance_OperationButton" />
 
-        android:text="@string/frgGameConfiguration_tvMode_text"
+        <androidx.legacy.widget.Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
 
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0"
-        app:layout_constraintStart_toStartOf="@+id/tvDigits"
-        app:layout_constraintTop_toBottomOf="@+id/tvDigits"
-        app:layout_constraintVertical_bias="0.3" />
-    <!--endregion-->
+        <com.google.android.material.radiobutton.MaterialRadioButton
+            android:layout_width="@dimen/_60sdp"
+            android:layout_height="@dimen/_60sdp"
+            android:background="@drawable/selector_radio_button_operation"
+            android:button="@color/transparent"
+            android:gravity="center"
+            android:text="×"
+            android:textAppearance="@style/TextAppearance_OperationButton" />
 
-    <!--region Games/Time-->
-    <EditText
-        android:id="@+id/etGamesOrTime"
-        android:layout_width="82dp"
-        android:layout_height="48dp"
-        android:ems="10"
-        android:gravity="center"
-        android:inputType="number"
-        android:minHeight="48dp"
+        <androidx.legacy.widget.Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
 
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.668"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.688"
+        <com.google.android.material.radiobutton.MaterialRadioButton
+            android:layout_width="@dimen/_60sdp"
+            android:layout_height="@dimen/_60sdp"
+            android:background="@drawable/selector_radio_button_operation"
+            android:button="@color/transparent"
+            android:gravity="center"
+            android:text="÷"
+            android:textAppearance="@style/TextAppearance_OperationButton" />
 
-        tools:text="5" />
-    <!--endregion-->
+    </RadioGroup>
 
-    <!--region Text Type of Game-->
-    <TextView
-        android:id="@+id/tvModes"
-        android:layout_width="wrap_content"
+    <androidx.legacy.widget.Space
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_20sdp" />
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="18sp"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:orientation="vertical">
 
-        app:layout_constraintBottom_toBottomOf="@+id/etGamesOrTime"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/etGamesOrTime"
-        app:layout_constraintTop_toTopOf="@+id/etGamesOrTime"
+        <TextView
+            android:id="@+id/mTvNumberRange"
+            style="@style/frgGameConfiguration_TextView"
+            android:layout_marginBottom="@dimen/_5sdp"
+            android:text="@string/frgGameConfiguration_tvNumberRange_text" />
 
-        tools:text="@string/generic_tests" />
-    <!--endregion-->
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
-    <!--region Spinner Modes-->
-    <Spinner
-        android:id="@+id/spnModes"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/shape_round_stroke_with_background"
-        android:entries="@array/test_modes"
-        android:minHeight="48dp"
-        android:spinnerMode="dialog"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tietMinValue"
+                android:layout_width="@dimen/_100sdp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:hint="@string/frgGameConfiguration_tietMinValue_hint"
+                android:inputType="number"
+                android:maxLength="4"
+                android:minHeight="48dp"
+                tools:text="" />
 
-        app:layout_constraintBottom_toBottomOf="@+id/etGamesOrTime"
-        app:layout_constraintEnd_toStartOf="@+id/etGamesOrTime"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvMode"
-        app:layout_constraintVertical_bias="1.0" />
-    <!--endregion-->
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tietMaxValue"
+                android:layout_width="@dimen/_100sdp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:hint="@string/frgGameConfiguration_tietMaxValue_hint"
+                android:inputType="number"
+                android:maxLength="4"
+                android:minHeight="48dp"
+                tools:text="" />
 
-    <!--region Button play-->
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.legacy.widget.Space
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_20sdp" />
+
+        <TextView
+            android:id="@+id/tvMode"
+            style="@style/frgGameConfiguration_TextView"
+            android:layout_marginBottom="@dimen/_5sdp"
+            android:text="@string/frgGameConfiguration_tvMode_text" />
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatSpinner
+                android:id="@+id/spnModes"
+                android:layout_width="@dimen/_90sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginEnd="@dimen/_15sdp"
+                android:background="@drawable/shape_spinner_background"
+                android:entries="@array/test_modes" />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etTestsOrTime"
+                android:layout_width="@dimen/_90sdp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:hint="@string/generic_tests"
+                android:inputType="number"
+                android:maxLength="3" />
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <View style="@style/Utils_LinearLayoutSeparator" />
+
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnPlay"
         style="@style/ButtonStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/frgGameConfiguration_btnPlay_text"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="@dimen/_20sdp"
+        android:text="@string/frgGameConfiguration_btnPlay_text" />
 
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvMode"
-        app:layout_constraintVertical_bias="0.8" />
-    <!--endregion-->
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.appcompat.widget.LinearLayoutCompat>

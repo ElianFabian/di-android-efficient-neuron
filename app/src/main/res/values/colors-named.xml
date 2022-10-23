@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <color name="background_light">@color/blue_200</color>
     <color name="background_dark">@color/blue_gray_900</color>
+
 </resources>

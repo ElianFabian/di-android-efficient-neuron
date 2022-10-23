@@ -1,4 +1,4 @@
-package com.elian.computeit.feature_tests.domain.models
+package com.elian.computeit.feature_tests.data.models
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
@@ -11,6 +11,12 @@ sealed class Operation(
 {
     operator fun invoke(pair: Pair<Int, Int>) = calculate(pair.first, pair.second)
 }
+
+//val symbolToOperation = Operation::class.nestedClasses.associate {
+//    val operation = it.objectInstance as Operation
+//
+//    operation.symbol to operation
+//}
 
 //enum class Op(
 //    val symbol: String,

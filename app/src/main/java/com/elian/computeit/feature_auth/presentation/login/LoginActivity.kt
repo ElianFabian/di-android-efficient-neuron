@@ -5,7 +5,6 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
-import androidx.lifecycle.lifecycleScope
 import com.elian.computeit.R
 import com.elian.computeit.core.presentation.MainActivity
 import com.elian.computeit.core.util.extensions.collectLatestFlowWhenStarted
@@ -22,12 +21,6 @@ class LoginActivity : AppCompatActivity()
 {
     private lateinit var binding: ActivityLoginBinding
     private val viewModel by viewModels<LoginViewModel>()
-
-    private val userFromFields = object
-    {
-        val email get() = binding.tieEmail.text.toString().trim()
-        val password get() = binding.tiePassword.text.toString().trim()
-    }
 
     //region Activity Methods
 
@@ -48,16 +41,19 @@ class LoginActivity : AppCompatActivity()
 
     private fun initUi()
     {
-        binding.tieEmail.addTextChangedListener { setEmailError(null) }
-        binding.tiePassword.addTextChangedListener { setPasswordError(null) }
-
-        binding.btnLogin.setOnClickListener()
+        binding.apply()
         {
-            onActionWhenStarted(LoginAction.EnteredEmail(userFromFields.email))
-            onActionWhenStarted(LoginAction.EnteredPassword(userFromFields.password))
-            onActionWhenStarted(LoginAction.Login)
+            tietEmail.addTextChangedListener { setEmailError(null) }
+            tietPassword.addTextChangedListener { setPasswordError(null) }
+
+            btnLogin.setOnClickListener()
+            {
+                viewModel.onAction(LoginAction.EnterEmail(tietEmail.text.toString().trim()))
+                viewModel.onAction(LoginAction.EnterPassword(tietPassword.text.toString().trim()))
+                viewModel.onAction(LoginAction.Login)
+            }
+            btnRegister.setOnClickListener { navigateTo<RegisterActivity>() }
         }
-        binding.btnRegister.setOnClickListener { navigateTo<RegisterActivity>() }
     }
 
     private fun subscribeToEvents()
@@ -68,7 +64,7 @@ class LoginActivity : AppCompatActivity()
             {
                 is LoginEvent.OnLogin            ->
                 {
-                    viewModel.saveUserEmail(userFromFields.email)
+                    viewModel.saveUserEmail(binding.tietEmail.text.toString().trim())
                     navigateTo<MainActivity>()
                 }
                 is LoginEvent.OnShowErrorMessage -> toast(it.error.asString(this))
@@ -104,11 +100,6 @@ class LoginActivity : AppCompatActivity()
     private fun setPasswordError(text: String?)
     {
         binding.tilPassword.error2 = text
-    }
-
-    private fun onActionWhenStarted(action: LoginAction)
-    {
-        lifecycleScope.launchWhenStarted { viewModel.onAction(action) }
     }
 
     //endregion

@@ -4,10 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.elian.computeit.R
+import com.elian.computeit.core.presentation.MainActivity
 import com.elian.computeit.core.util.extensions.*
 import com.elian.computeit.databinding.FragmentTestBinding
 import com.google.android.material.button.MaterialButton
@@ -38,9 +40,11 @@ class TestFragment : Fragment()
         subscribeToEvents()
         initTimer()
     }
-    // todo: añadir reset al temporizador
+    
     private fun initUi()
     {
+        (activity as MainActivity).disableDrawerLayout()
+
         binding.apply()
         {
             val numericButtons = llKeyBoard.findViewsWithTagOfType<MaterialButton>(R.string.tag_numeric_button)
@@ -69,7 +73,8 @@ class TestFragment : Fragment()
 
     private fun initTimer()
     {
-        lifecycleScope.launch { 
+        lifecycleScope.launch()
+        { 
             delay(1000)
             viewModel.startTimer()
         }

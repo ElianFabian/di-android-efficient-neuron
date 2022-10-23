@@ -6,8 +6,10 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.findNavController
 import com.elian.computeit.R
 import com.elian.computeit.core.util.extensions.goToFragment
 import com.elian.computeit.core.util.extensions.navigateTo
@@ -40,17 +42,23 @@ class MainActivity : AppCompatActivity()
         AppDatabase.create(this)
 
         initUi()
-        initData()
+        init()
     }
-    
+
     override fun onBackPressed()
     {
+        enableDrawerLayout()
+
         // Goes to Home Fragment unless we are already in, other wise exits the app
         if (currentFragmentItem is OperationsFragment)
         {
             onBackPressedDispatcher.onBackPressed()
         }
-        else goToFragment(OperationsFragment())
+        else
+        {
+            findNavController(R.id.nav_host_fragment).navigateUp()
+            goToFragmentAndSetCurrent(OperationsFragment())
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean
@@ -66,19 +74,23 @@ class MainActivity : AppCompatActivity()
 
     //region Methods
 
+    fun disableDrawerLayout() = binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
+
+    private fun enableDrawerLayout() = binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
+
     private fun initUi()
     {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        
+
         toggle = ActionBarDrawerToggle(this, binding.drawerLayout, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
         binding.drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
 
         initMenuItemListener()
     }
-    
-    private fun initData()
+
+    private fun init()
     {
         lifecycleScope.launch()
         {
@@ -102,14 +114,14 @@ class MainActivity : AppCompatActivity()
 
     private fun initMenuItemListener() = binding.navigationView.setNavigationItemSelectedListener()
     {
-        currentFragmentItem = when (it.itemId)
+        when (it.itemId)
         {
-            R.id.navHome       -> goToFragment(OperationsFragment())
-            R.id.navProfile    -> goToFragment(ProfileFragment())
-            R.id.navTips       -> goToFragment(TipListFragment())
-            R.id.navStatistics -> goToFragment(StatisticsFragment())
-            R.id.navSettings   -> goToFragment(SettingsFragment())
-            R.id.navAboutUs    -> goToFragment(AboutUsFragment())
+            R.id.navHome       -> goToFragmentAndSetCurrent(OperationsFragment())
+            R.id.navProfile    -> goToFragmentAndSetCurrent(ProfileFragment())
+            R.id.navTips       -> goToFragmentAndSetCurrent(TipListFragment())
+            R.id.navStatistics -> goToFragmentAndSetCurrent(StatisticsFragment())
+            R.id.navSettings   -> goToFragmentAndSetCurrent(SettingsFragment())
+            R.id.navAboutUs    -> goToFragmentAndSetCurrent(AboutUsFragment())
 
             else               -> error("Trying to go to a non-existing fragment.")
         }
@@ -117,6 +129,11 @@ class MainActivity : AppCompatActivity()
         binding.drawerLayout.closeDrawer(GravityCompat.START)
 
         true
+    }
+    
+    private fun goToFragmentAndSetCurrent(fragment: Fragment, args: Bundle? = null)
+    {
+        currentFragmentItem = goToFragment(fragment, args)
     }
 
     //endregion

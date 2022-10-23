@@ -93,7 +93,7 @@
             app:layout_constraintVertical_bias="0">
 
         <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/tieEmail"
+                android:id="@+id/tiet_email"
                 android:inputType="textEmailAddress"
 
                 style="@style/frgProfile_TextInputEditText"
@@ -126,7 +126,7 @@
             app:layout_constraintVertical_bias="0.0">
 
         <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/tiePassword"
+                android:id="@+id/tiet_password"
                 android:inputType="textPassword"
 
                 style="@style/frgProfile_TextInputEditText"

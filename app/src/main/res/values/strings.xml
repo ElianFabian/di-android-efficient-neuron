@@ -2,22 +2,12 @@
 <resources>
     <string name="app_name" translatable="false">ComputeIt</string>
 
-    <string name="bundleKey_selectedTip" translatable="false">selectedTip</string>
-    <string name="bundleKey_selectedTip_position" translatable="false">selectedTipPosition</string>
-
-    <!--Generics-->
-    <string name="generic_confirm_password">Confirm password</string>
-    <string name="generic_email">Email</string>
-    <string name="generic_login">Login</string>
-    <string name="generic_password">Password</string>
-    <string name="generic_register">Register</string>
-    <string name="generic_tests">tests</string>
-
-    <!--Arrays-->
     <string name="array_test_modes_tests">Tests</string>
     <string name="array_test_modes_time">Time</string>
 
-    <!--Errors-->
+    <string name="bundleKey_selectedTip" translatable="false">selectedTip</string>
+    <string name="bundleKey_selectedTip_position" translatable="false">selectedTipPosition</string>
+
     <string name="error_email_empty">Email can\'t be empty</string>
     <string name="error_email_invalid">Invalid email. Example: %s</string>
     <string name="error_example_empty">Example can\'t be empty</string>
@@ -32,22 +22,22 @@
     <string name="error_user_already_exists">The user already exists</string>
     <string name="error_user_doesnt_exist">The user doesn\'t exist</string>
 
-    <!--Fragments -->
     <string name="frgAboutUs_description">This application is a project to learn how to create applications on android. It\'s an exercise from the Android module in IES Portada Alta.</string>
     <string name="frgAboutUs_github_title">Source code</string>
 
-    <string name="frgEndGame_tvTimeOrTests_label_time_text">Total time</string>
-    <string name="frgEndGame_tvTimeOrTests_label_tests_text">Total tests</string>
     <string name="frgEndGame_btnContinue_text">Continue</string>
+    <string name="frgEndGame_tvTimeOrTests_label_tests_text">Total tests</string>
+    <string name="frgEndGame_tvTimeOrTests_label_time_text">Total time</string>
     <string name="frgEndGame_tvTimePerGame_label_text">Time per game</string>
 
     <string name="frgFunctions_tvTitle_text">OPERATIONS</string>
 
     <string name="frgGameConfiguration_btnPlay_text">PLAY</string>
-    <string name="frgGameConfiguration_tvDigits_text">Digits:</string>
+    <string name="frgGameConfiguration_tietMaxValue_hint">Max</string>
+    <string name="frgGameConfiguration_tietMinValue_hint">Min</string>
     <string name="frgGameConfiguration_tvMode_text">Mode:</string>
-    <string name="frgGameConfiguration_tvSymbolX_text" translatable="false">X</string>
-    <string name="frgGameConfiguration_tvTitle_text">GAME CONFIGURATION</string>
+    <string name="frgGameConfiguration_tvNumberRange_text">Range:</string>
+    <string name="frgGameConfiguration_tvTitle_text">Game configuration</string>
 
     <string name="frgSettings_category_general">Dark theme</string>
     <string name="frgSettings_dark_theme_title">Dark Theme</string>
@@ -65,7 +55,13 @@
 
     <string name="frgTips_tvTitle_text">TIPS</string>
 
-    <!--Navigation Menu-->
+    <string name="generic_confirm_password">Confirm password</string>
+    <string name="generic_email">Email</string>
+    <string name="generic_login">Login</string>
+    <string name="generic_password">Password</string>
+    <string name="generic_register">Register</string>
+    <string name="generic_tests">Tests</string>
+
     <string name="navigation_drawer_close" translatable="false">Close</string>
     <string name="navigation_drawer_open" translatable="false">Open</string>
     <string name="navigation_menu_navAboutUs_title">About Us</string>

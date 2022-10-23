@@ -1,15 +1,18 @@
 package com.elian.computeit.feature_auth.presentation.register
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.elian.computeit.core.domain.states.StandardTextFieldState
 import com.elian.computeit.core.util.Resource
 import com.elian.computeit.core.util.UiText
 import com.elian.computeit.feature_auth.domain.use_case.RegisterUseCase
+import com.elian.computeit.feature_auth.presentation.register.RegisterAction.*
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
@@ -33,27 +36,30 @@ class RegisterViewModel @Inject constructor(
     val confirmPasswordState = _confirmPasswordState.asStateFlow()
 
 
-    suspend fun onAction(action: RegisterAction) = when (action)
+    fun onAction(action: RegisterAction)
     {
-        is RegisterAction.ReceivedEmail           ->
+        when (action)
         {
-            _emailState.value = _emailState.value.copy(text = action.value)
-        }
-        is RegisterAction.ReceivedPassword        ->
-        {
-            _passwordState.value = _passwordState.value.copy(text = action.value)
-        }
-        is RegisterAction.ReceivedConfirmPassword ->
-        {
-            _confirmPasswordState.value = _confirmPasswordState.value.copy(text = action.value)
-        }
-        is RegisterAction.Register                ->
-        {
-            register(
-                email = _emailState.value.text,
-                password = _passwordState.value.text,
-                confirmPassword = _confirmPasswordState.value.text
-            )
+            is EnterEmail           ->
+            {
+                _emailState.value = _emailState.value.copy(text = action.value)
+            }
+            is EnterPassword        ->
+            {
+                _passwordState.value = _passwordState.value.copy(text = action.value)
+            }
+            is EnterConfirmPassword ->
+            {
+                _confirmPasswordState.value = _confirmPasswordState.value.copy(text = action.value)
+            }
+            is Register             -> viewModelScope.launch()
+            {
+                register(
+                    email = _emailState.value.text,
+                    password = _passwordState.value.text,
+                    confirmPassword = _confirmPasswordState.value.text
+                )
+            }
         }
     }
 
