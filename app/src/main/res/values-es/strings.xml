@@ -3,6 +3,7 @@
     <string name="array_test_modes_tests">Pruebas</string>
     <string name="array_test_modes_time">Tiempo</string>
 
+    <string name="error_cant_be_empty">No puede estar vacío</string>
     <string name="error_email_empty">El email no puede estar vacío</string>
     <string name="error_email_invalid">Email inválido, ejemplo: %s</string>
     <string name="error_example_empty">Ejemplo no puede estar vacío</string>

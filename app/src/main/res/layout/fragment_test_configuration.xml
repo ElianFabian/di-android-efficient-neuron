@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.appcompat.widget.LinearLayoutCompat
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
 
     android:id="@+id/frameLayout"
@@ -19,6 +20,7 @@
         android:textAlignment="center" />
 
     <RadioGroup
+        android:id="@+id/rgOperationType"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/_15sdp"
@@ -30,7 +32,9 @@
             android:layout_height="@dimen/_60sdp"
             android:background="@drawable/selector_radio_button_operation"
             android:button="@color/transparent"
+            android:checked="true"
             android:gravity="center"
+            android:tag="@string/tag_operation_type"
             android:text="+"
             android:textAppearance="@style/TextAppearance_OperationButton" />
 
@@ -45,6 +49,7 @@
             android:background="@drawable/selector_radio_button_operation"
             android:button="@color/transparent"
             android:gravity="center"
+            android:tag="@string/tag_operation_type"
             android:text="−"
             android:textAppearance="@style/TextAppearance_OperationButton" />
 
@@ -59,6 +64,7 @@
             android:background="@drawable/selector_radio_button_operation"
             android:button="@color/transparent"
             android:gravity="center"
+            android:tag="@string/tag_operation_type"
             android:text="×"
             android:textAppearance="@style/TextAppearance_OperationButton" />
 
@@ -73,6 +79,7 @@
             android:background="@drawable/selector_radio_button_operation"
             android:button="@color/transparent"
             android:gravity="center"
+            android:tag="@string/tag_operation_type"
             android:text="÷"
             android:textAppearance="@style/TextAppearance_OperationButton" />
 
@@ -147,7 +154,7 @@
                 android:entries="@array/test_modes" />
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etTestsOrTime"
+                android:id="@+id/et_test_count_or_time"
                 android:layout_width="@dimen/_90sdp"
                 android:layout_height="wrap_content"
                 android:gravity="center"

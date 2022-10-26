@@ -5,13 +5,13 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.elian.computeit.core.domain.util.CountDownTimer
 import com.elian.computeit.core.domain.util.TimerEvent
-import com.elian.computeit.core.util.EXTRA_OPERATION_MAX_VALUE
-import com.elian.computeit.core.util.EXTRA_OPERATION_MIN_VALUE
+import com.elian.computeit.core.util.EXTRA_OPERATION_RANGE
 import com.elian.computeit.core.util.EXTRA_OPERATION_TYPE
 import com.elian.computeit.core.util.EXTRA_TEST_TIME_IN_SECONDS
 import com.elian.computeit.core.util.extensions.append
 import com.elian.computeit.core.util.extensions.clampLength
 import com.elian.computeit.feature_tests.data.models.Operation
+import com.elian.computeit.feature_tests.data.models.Range
 import com.elian.computeit.feature_tests.data.models.TestData
 import com.elian.computeit.feature_tests.presentation.test.TestAction.*
 import com.elian.computeit.feature_tests.presentation.util.getRandomPairOfNumbers
@@ -29,13 +29,19 @@ class TestViewModel @Inject constructor(
     savedState: SavedStateHandle,
 ) : ViewModel()
 {
-    private val _countDownInterval = 1L
+    companion object
+    {
+        private const val countDownInterval = 1L
+    }
+
+
     val millisInFuture = savedState.get<Int>(EXTRA_TEST_TIME_IN_SECONDS)?.let { it * 1_000L } ?: 20_000L
-    private val minValue = savedState.get<Int>(EXTRA_OPERATION_MIN_VALUE) ?: error("Min value was expected.")
-    private val maxValue = savedState.get<Int>(EXTRA_OPERATION_MAX_VALUE) ?: error("Max value was expected.")
+    private val range = savedState.get<Range>(EXTRA_OPERATION_RANGE) ?: error("Range value expected.")
+    private val operation = savedState.get<Operation>(EXTRA_OPERATION_TYPE) ?: error("Operation value expected")
 
     init
     {
+
         initializeTimer()
 
         countDownTimer.setCoroutineScope(viewModelScope)
@@ -60,8 +66,6 @@ class TestViewModel @Inject constructor(
     }
 
 
-    private val _operation = savedState.get<Operation>(EXTRA_OPERATION_TYPE)!!
-
     private val _testDataList = mutableListOf<TestData>()
 
     private val _eventFlow = MutableSharedFlow<TestEvent>()
@@ -70,7 +74,7 @@ class TestViewModel @Inject constructor(
     private val _resultState = MutableStateFlow(0)
     val resultState = _resultState.asStateFlow()
 
-    private val _pairOfNumbersState = MutableStateFlow(getRandomPairOfNumbers(minValue, maxValue))
+    private val _pairOfNumbersState = MutableStateFlow(getRandomPairOfNumbers(range.min, range.max))
     val pairOfNumbersState = _pairOfNumbersState.asStateFlow()
 
     private val _millisUntilFinishState = MutableStateFlow(millisInFuture)
@@ -93,19 +97,19 @@ class TestViewModel @Inject constructor(
             }
             is NextTest      ->
             {
-                val data = TestData(
-                    operation = _operation.symbol,
-                    pairOfNumbers = _pairOfNumbersState.value,
-                    insertedResult = _resultState.value,
-                    correctResult = _operation(_pairOfNumbersState.value),
-                    millisSinceStart = _millisSinceStart
-                )
+//                val data = TestData(
+//                    operation = operation.symbol,
+//                    pairOfNumbers = _pairOfNumbersState.value,
+//                    insertedResult = _resultState.value,
+//                    correctResult = operation(_pairOfNumbersState.value),
+//                    millisSinceStart = _millisSinceStart
+//                )
+//
+//                println("------$data")
+//
+//                _testDataList.add(data)
 
-                println("------$data")
-
-                _testDataList.add(data)
-
-                _pairOfNumbersState.value = getRandomPairOfNumbers(minValue, maxValue)
+                _pairOfNumbersState.value = getRandomPairOfNumbers(range.min, range.max)
 
                 _resultState.value = 0
             }
@@ -118,7 +122,7 @@ class TestViewModel @Inject constructor(
     {
         countDownTimer.initialize(
             millisInFuture = millisInFuture,
-            countDownInterval = _countDownInterval
+            countDownInterval = countDownInterval
         )
     }
 }

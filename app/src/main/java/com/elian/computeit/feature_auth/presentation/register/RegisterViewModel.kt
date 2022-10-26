@@ -2,7 +2,7 @@ package com.elian.computeit.feature_auth.presentation.register
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.elian.computeit.core.domain.states.StandardTextFieldState
+import com.elian.computeit.core.domain.states.TextFieldState
 import com.elian.computeit.core.util.Resource
 import com.elian.computeit.core.util.UiText
 import com.elian.computeit.feature_auth.domain.use_case.RegisterUseCase
@@ -26,13 +26,13 @@ class RegisterViewModel @Inject constructor(
     private val _loadingState = MutableStateFlow(false)
     val loadingState = _loadingState.asStateFlow()
 
-    private val _emailState = MutableStateFlow(StandardTextFieldState())
+    private val _emailState = MutableStateFlow(TextFieldState())
     val emailState = _emailState.asStateFlow()
 
-    private val _passwordState = MutableStateFlow(StandardTextFieldState())
+    private val _passwordState = MutableStateFlow(TextFieldState())
     val passwordState = _passwordState.asStateFlow()
 
-    private val _confirmPasswordState = MutableStateFlow(StandardTextFieldState())
+    private val _confirmPasswordState = MutableStateFlow(TextFieldState())
     val confirmPasswordState = _confirmPasswordState.asStateFlow()
 
 

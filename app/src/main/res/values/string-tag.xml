@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
-    <string name="tag_numeric_button" translatable="false">Numeric Button</string>
+
+    <string name="tag_numeric_button">numeric_button</string>
+    <string name="tag_operation_type">operation_type</string>
+
 </resources>

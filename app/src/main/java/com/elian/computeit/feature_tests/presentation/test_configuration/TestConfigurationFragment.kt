@@ -5,14 +5,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.elian.computeit.R
-import com.elian.computeit.core.util.EXTRA_TEST_COUNT
-import com.elian.computeit.core.util.EXTRA_TEST_TIME_IN_SECONDS
 import com.elian.computeit.core.util.extensions.collectLatestFlowWhenStarted
+import com.elian.computeit.core.util.extensions.findViewsWithTagOfType
 import com.elian.computeit.core.util.extensions.navigate
 import com.elian.computeit.databinding.FragmentTestConfigurationBinding
+import com.elian.computeit.feature_auth.presentation.util.AuthError
+import com.google.android.material.radiobutton.MaterialRadioButton
 
 class TestConfigurationFragment : Fragment()
 {
@@ -42,17 +44,25 @@ class TestConfigurationFragment : Fragment()
     {
         binding.apply()
         {
+            tietMinValue.addTextChangedListener { setMinValueError(null) }
+            tietMaxValue.addTextChangedListener { setMaxValueError(null) }
+            etTestCountOrTime.addTextChangedListener { setTestCountOrTimeError(null) }
+
+            val operationTypeList = rgOperationType.findViewsWithTagOfType<MaterialRadioButton>(R.string.tag_operation_type)
+
+            operationTypeList.forEach { radioButton ->
+
+                radioButton.setOnClickListener()
+                {
+                    viewModel.onAction(TestConfigurationAction.SelectOperationType(symbol = radioButton.text.toString()))
+                }
+            }
+
+            viewModel.onAction(TestConfigurationAction.SelectOperationType(symbol = operationTypeList.first().text.toString()))
+
             btnPlay.setOnClickListener()
             {
-                val extraTimeOrTestCount = when (spnModes.selectedItem as String)
-                {
-                    getString(R.string.array_test_modes_time)  -> EXTRA_TEST_TIME_IN_SECONDS
-                    getString(R.string.array_test_modes_tests) -> EXTRA_TEST_COUNT
-
-                    else                                       -> ""
-                }
-
-                val secondsOrTestCount = etTestsOrTime.text.toString().toInt()
+                val secondsOrTestCount = etTestCountOrTime.text.toString().toIntOrNull()
 
                 when (spnModes.selectedItem as String)
                 {
@@ -61,9 +71,11 @@ class TestConfigurationFragment : Fragment()
                 }
 
                 viewModel.onAction(TestConfigurationAction.EnterRange(
-                    min = tietMinValue.toString().toInt(),
-                    max = tietMaxValue.toString().toInt()
+                    min = tietMinValue.text.toString().toIntOrNull(),
+                    max = tietMaxValue.text.toString().toIntOrNull()
                 ))
+
+                viewModel.onAction(TestConfigurationAction.Play)
             }
         }
     }
@@ -83,6 +95,45 @@ class TestConfigurationFragment : Fragment()
                 }
             }
         }
+        collectLatestFlowWhenStarted(viewModel.minValueState)
+        {
+            setMinValueError(when (it.error)
+            {
+                is AuthError.ValueEmpty -> getString(R.string.error_cant_be_empty)
+                else                    -> null
+            })
+        }
+        collectLatestFlowWhenStarted(viewModel.maxValueState)
+        {
+            setMaxValueError(when (it.error)
+            {
+                is AuthError.ValueEmpty -> getString(R.string.error_cant_be_empty)
+                else                    -> null
+            })
+        }
+        collectLatestFlowWhenStarted(viewModel.testCountOrTimeState)
+        {
+            setTestCountOrTimeError(when (it.error)
+            {
+                is AuthError.ValueEmpty -> getString(R.string.error_cant_be_empty)
+                else                    -> null
+            })
+        }
+    }
+
+    private fun setMinValueError(error: String?)
+    {
+        binding.tietMinValue.error = error
+    }
+
+    private fun setMaxValueError(error: String?)
+    {
+        binding.tietMaxValue.error = error
+    }
+
+    private fun setTestCountOrTimeError(error: String?)
+    {
+        binding.etTestCountOrTime.error = error
     }
 
     //endregion
