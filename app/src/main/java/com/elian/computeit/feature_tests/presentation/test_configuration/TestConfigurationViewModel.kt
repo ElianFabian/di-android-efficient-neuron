@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.elian.computeit.core.data.util.symbolToOperation
 import com.elian.computeit.core.domain.states.NumericFieldState
-import com.elian.computeit.core.util.EXTRA_OPERATION_RANGE
+import com.elian.computeit.core.util.EXTRA_OPERATION_NUMBER_RANGE
 import com.elian.computeit.core.util.EXTRA_OPERATION_TYPE
 import com.elian.computeit.core.util.EXTRA_TEST_COUNT
 import com.elian.computeit.core.util.EXTRA_TEST_TIME_IN_SECONDS
@@ -74,7 +74,7 @@ class TestConfigurationViewModel @Inject constructor() : ViewModel()
                 _minValueState.value = _minValueState.value.copy(number = action.min)
                 _maxValueState.value = _maxValueState.value.copy(number = action.max)
 
-                argsToSend[EXTRA_OPERATION_RANGE] = Range(action.min, action.max)
+                argsToSend[EXTRA_OPERATION_NUMBER_RANGE] = Range(action.min, action.max)
             }
             is Play                ->
             {

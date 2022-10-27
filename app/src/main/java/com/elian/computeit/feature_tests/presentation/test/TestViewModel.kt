@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.elian.computeit.core.domain.util.CountDownTimer
 import com.elian.computeit.core.domain.util.TimerEvent
-import com.elian.computeit.core.util.EXTRA_OPERATION_RANGE
+import com.elian.computeit.core.util.EXTRA_OPERATION_NUMBER_RANGE
 import com.elian.computeit.core.util.EXTRA_OPERATION_TYPE
 import com.elian.computeit.core.util.EXTRA_TEST_TIME_IN_SECONDS
 import com.elian.computeit.core.util.extensions.append
@@ -36,7 +36,7 @@ class TestViewModel @Inject constructor(
 
 
     val millisInFuture = savedState.get<Int>(EXTRA_TEST_TIME_IN_SECONDS)?.let { it * 1_000L } ?: 20_000L
-    private val range = savedState.get<Range>(EXTRA_OPERATION_RANGE) ?: error("Range value expected.")
+    private val range = savedState.get<Range>(EXTRA_OPERATION_NUMBER_RANGE) ?: error("Range value expected.")
     private val operation = savedState.get<Operation>(EXTRA_OPERATION_TYPE) ?: error("Operation value expected")
 
     init
