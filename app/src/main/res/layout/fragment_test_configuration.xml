@@ -25,14 +25,15 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/_15sdp"
         android:gravity="center"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:checkedButton="@id/mFirstOperation">
 
         <com.google.android.material.radiobutton.MaterialRadioButton
+            android:id="@+id/mFirstOperation"
             android:layout_width="@dimen/_60sdp"
             android:layout_height="@dimen/_60sdp"
             android:background="@drawable/selector_radio_button_operation"
             android:button="@color/transparent"
-            android:checked="true"
             android:gravity="center"
             android:tag="@string/tag_operation_type"
             android:text="+"

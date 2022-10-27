@@ -51,7 +51,7 @@ object Sum : Operation(
 
 @Parcelize
 object Subtract : Operation(
-    symbol = "-",
+    symbol = "−",
     calculate = { a, b -> a - b }
 )
 
