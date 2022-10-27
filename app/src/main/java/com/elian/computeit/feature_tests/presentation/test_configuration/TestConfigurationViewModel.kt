@@ -80,10 +80,10 @@ class TestConfigurationViewModel @Inject constructor() : ViewModel()
             {
                 isThereAnyError = false
 
-                _minValueState.trySetError()
-                _maxValueState.trySetError()
-                _testCountOrTimeState.trySetError()
-
+                _minValueState.setError()
+                _maxValueState.setError()
+                _testCountOrTimeState.setError()
+ 
                 if (isThereAnyError) return
 
                 viewModelScope.launch()
@@ -94,7 +94,7 @@ class TestConfigurationViewModel @Inject constructor() : ViewModel()
         }
     }
 
-    private fun MutableStateFlow<NumericFieldState<Int>>.trySetError()
+    private fun MutableStateFlow<NumericFieldState<Int>>.setError()
     {
         val error = if (value.number == null) AuthError.ValueEmpty else null
 
