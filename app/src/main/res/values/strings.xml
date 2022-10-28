@@ -14,7 +14,7 @@
     <string name="error_example_empty">Example can\'t be empty</string>
     <string name="error_password_empty">Password can\'t be empty</string>
     <string name="error_password_invalid">Invalid password, it should contain at least %d of these characters: %s</string>
-    <string name="error_password_is_wrong">Passwords don\'t match</string>
+    <string name="error_password_is_wrong">Password is wrong</string>
     <string name="error_passwords_dont_match">Passwords don\'t match</string>
     <string name="error_title_empty">Title can\'t be empty</string>
     <string name="error_too_long">Too long, the maximum length is %d</string>
