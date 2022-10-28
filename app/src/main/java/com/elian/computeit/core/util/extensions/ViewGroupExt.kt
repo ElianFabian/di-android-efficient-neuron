@@ -3,7 +3,6 @@ package com.elian.computeit.core.util.extensions
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.StringRes
-import kotlin.collections.ArrayDeque
 
 // https://stackoverflow.com/questions/8817377/android-how-to-find-multiple-views-with-common-attribute
 
@@ -20,10 +19,12 @@ private fun findViewsWithTag(tag: String, root: ViewGroup): List<View>
     {
         val child = root.getChildAt(i)
 
-        when
+        if (child.tag != tag) continue
+
+        when (child)
         {
-            child is ViewGroup -> views.addAll(findViewsWithTag(tag, child))
-            child.tag == tag   -> views.add(child)
+            is ViewGroup -> views.addAll(findViewsWithTag(tag, child))
+            else         -> views.add(child)
         }
     }
     return views
@@ -87,18 +88,20 @@ inline fun <reified T : View> findViewsWithTagOfType(tag: String, root: ViewGrou
             childIndex = 0
             continue
         }
-        if (!(child is T || child is ViewGroup))
+        if (!(child is T || child is ViewGroup || child.tag == tag))
         {
             childIndex++
             continue
         }
-        when
+        println("$$$$$ $child")
+        when (child)
         {
-            child is ViewGroup -> parentList.add(child)
-            child.tag == tag   -> views.add(child)
+            is ViewGroup -> parentList.add(child)
+            else         -> views.add(child)
         }
 
         childIndex++
     }
+    println("$$$$---------------")
     return views as List<T>
 }
