@@ -54,11 +54,15 @@ class TestConfigurationFragment : Fragment()
 
                 radioButton.setOnClickListener()
                 {
-                    viewModel.onAction(TestConfigurationAction.SelectOperationType(symbol = radioButton.text.toString()))
+                    viewModel.onAction(TestConfigurationAction.SelectOperationType(
+                        symbol = radioButton.text.toString()
+                    ))
                 }
             }
 
-            viewModel.onAction(TestConfigurationAction.SelectOperationType(symbol = operationTypeList.first().text.toString()))
+            viewModel.onAction(TestConfigurationAction.SelectOperationType(
+                symbol = operationTypeList.first().text.toString()
+            ))
 
             btnPlay.setOnClickListener()
             {
@@ -97,8 +101,7 @@ class TestConfigurationFragment : Fragment()
         }
         collectLatestFlowWhenStarted(viewModel.minValueState)
         {
-            setMinValueError(when (it.error)
-            {
+            setMinValueError(when (it.error) {
                 is AuthError.ValueEmpty -> getString(R.string.error_cant_be_empty)
                 else                    -> null
             })

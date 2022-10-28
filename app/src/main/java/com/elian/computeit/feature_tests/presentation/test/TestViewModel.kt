@@ -85,13 +85,13 @@ class TestViewModel @Inject constructor(
     {
         when (action)
         {
-            is EnteredNumber ->
+            is EnterNumber ->
             {
                 _resultState.value = _resultState.value
                     .append(action.value)
                     .clampLength(maxLength = 8)
             }
-            is ClearInput    ->
+            is ClearInput  ->
             {
                 _resultState.value = 0
             }

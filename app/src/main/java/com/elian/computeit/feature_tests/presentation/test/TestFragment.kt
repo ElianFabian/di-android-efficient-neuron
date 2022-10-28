@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -47,15 +46,13 @@ class TestFragment : Fragment()
 
         binding.apply()
         {
-            val numericButtons = llKeyBoard.findViewsWithTagOfType<MaterialButton>(R.string.tag_numeric_button)
-
-            numericButtons.forEach { button ->
-
-                val number = button.text.toString().toInt()
+            llKeyBoard.findViewsWithTagOfType<MaterialButton>(R.string.tag_numeric_button).forEach { button ->
 
                 button.setOnClickListener()
                 {
-                    onActionWhenStarted(TestAction.EnteredNumber(value = number))
+                    onActionWhenStarted(TestAction.EnterNumber(
+                        value = button.text.toString().toInt()
+                    ))
                 }
             }
 
