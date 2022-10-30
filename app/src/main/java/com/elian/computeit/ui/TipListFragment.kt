@@ -10,15 +10,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.elian.computeit.R
 import com.elian.computeit.base.BaseFragment
-import com.elian.computeit.core.util.EXTRA_OPERATION_SYMBOL
-import com.elian.computeit.databinding.ItemTipBinding
+import com.elian.computeit.core.util.extensions.goToFragment
+import com.elian.computeit.core.util.extensions.toast
 import com.elian.computeit.data.model.Tip
 import com.elian.computeit.databinding.FragmentTipListBinding
+import com.elian.computeit.databinding.ItemTipBinding
 import com.elian.computeit.util.RecyclerViewAdapter
 import com.elian.computeit.view_model.TipListContract
 import com.elian.computeit.view_model.TipListPresenter
-import com.elian.computeit.core.util.extensions.goToFragment
-import com.elian.computeit.core.util.extensions.toast
 
 class TipListFragment : BaseFragment(),
     TipListContract.View,

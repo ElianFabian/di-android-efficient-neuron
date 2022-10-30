@@ -4,13 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.os.bundleOf
 import androidx.core.view.children
 import androidx.fragment.app.Fragment
 import com.elian.computeit.R
-import com.elian.computeit.core.util.EXTRA_OPERATION_SYMBOL
-import com.elian.computeit.databinding.FragmentOperationsBinding
 import com.elian.computeit.core.util.extensions.navigate
+import com.elian.computeit.databinding.FragmentOperationsBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

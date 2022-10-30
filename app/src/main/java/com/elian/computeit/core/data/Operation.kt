@@ -1,4 +1,4 @@
-package com.elian.computeit.feature_tests.data.models
+package com.elian.computeit.core.data
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize

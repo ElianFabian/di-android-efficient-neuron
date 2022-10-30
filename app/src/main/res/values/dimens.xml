@@ -19,8 +19,5 @@
     <dimen name="textSize_xlarge3">@dimen/_50ssp</dimen>
     <dimen name="textSize_xlarge4">@dimen/_55ssp</dimen>
     <dimen name="textSize_xlarge5">@dimen/_60ssp</dimen>
-    
-    <dimen name="radio_button_operation_corner_radius">@dimen/_10sdp</dimen>
-    <dimen name="radio_button_operation_stroke_width">@dimen/_2sdp</dimen>
 
 </resources>

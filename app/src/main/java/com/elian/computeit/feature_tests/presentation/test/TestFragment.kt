@@ -9,8 +9,10 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.elian.computeit.R
 import com.elian.computeit.core.presentation.MainActivity
+import com.elian.computeit.core.util.EXTRA_OPERATION_TYPE
 import com.elian.computeit.core.util.extensions.*
 import com.elian.computeit.databinding.FragmentTestBinding
+import com.elian.computeit.core.data.Operation
 import com.google.android.material.button.MaterialButton
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
@@ -46,6 +48,11 @@ class TestFragment : Fragment()
 
         binding.apply()
         {
+            arguments?.getParcelable<Operation>(EXTRA_OPERATION_TYPE)!!.also()
+            { 
+                tvOperationSymbol.text = it.symbol
+            }
+
             llKeyBoard.findViewsWithTagOfType<MaterialButton>(R.string.tag_numeric_button).forEach { button ->
 
                 button.setOnClickListener()
@@ -96,7 +103,7 @@ class TestFragment : Fragment()
                 }
                 is TestEvent.OnTimerFinish ->
                 {
-                    toast("OnFinish")
+                    navigate(R.id.action_testFragment_to_testEndFragment)
                 }
             }
         }

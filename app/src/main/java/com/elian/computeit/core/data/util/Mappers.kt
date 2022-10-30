@@ -1,9 +1,9 @@
 package com.elian.computeit.core.data.util
 
-import com.elian.computeit.feature_tests.data.models.Divide
-import com.elian.computeit.feature_tests.data.models.Multiply
-import com.elian.computeit.feature_tests.data.models.Subtract
-import com.elian.computeit.feature_tests.data.models.Sum
+import com.elian.computeit.core.data.Divide
+import com.elian.computeit.core.data.Multiply
+import com.elian.computeit.core.data.Subtract
+import com.elian.computeit.core.data.Sum
 
 val symbolToOperation = mapOf(
     Sum.symbol to Sum,

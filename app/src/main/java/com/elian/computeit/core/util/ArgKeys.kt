@@ -1,8 +1,5 @@
 package com.elian.computeit.core.util
 
-/** @see String */
-const val EXTRA_OPERATION_SYMBOL = "operation_symbol"
-
 /** @see com.elian.computeit.feature_tests.data.models.Operation */
 const val EXTRA_OPERATION_TYPE = "operation_type"
 

@@ -30,6 +30,7 @@
     <color name="grey_900">#212121</color>
 
     <color name="blue_gray_300">#90a4ae</color>
+    <color name="blue_gray_800">#37474f</color>
     <color name="blue_gray_900">#263238</color>
 
 </resources>

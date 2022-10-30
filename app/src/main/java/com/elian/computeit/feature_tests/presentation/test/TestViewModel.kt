@@ -10,7 +10,7 @@ import com.elian.computeit.core.util.EXTRA_OPERATION_TYPE
 import com.elian.computeit.core.util.EXTRA_TEST_TIME_IN_SECONDS
 import com.elian.computeit.core.util.extensions.append
 import com.elian.computeit.core.util.extensions.clampLength
-import com.elian.computeit.feature_tests.data.models.Operation
+import com.elian.computeit.core.data.Operation
 import com.elian.computeit.feature_tests.data.models.Range
 import com.elian.computeit.feature_tests.data.models.TestData
 import com.elian.computeit.feature_tests.presentation.test.TestAction.*
@@ -97,17 +97,17 @@ class TestViewModel @Inject constructor(
             }
             is NextTest      ->
             {
-//                val data = TestData(
-//                    operation = operation.symbol,
-//                    pairOfNumbers = _pairOfNumbersState.value,
-//                    insertedResult = _resultState.value,
-//                    correctResult = operation(_pairOfNumbersState.value),
-//                    millisSinceStart = _millisSinceStart
-//                )
-//
-//                println("------$data")
-//
-//                _testDataList.add(data)
+                val data = TestData(
+                    operation = operation.symbol,
+                    pairOfNumbers = _pairOfNumbersState.value,
+                    insertedResult = _resultState.value,
+                    correctResult = operation(_pairOfNumbersState.value),
+                    millisSinceStart = _millisSinceStart
+                )
+
+                println("------$data")
+
+                _testDataList.add(data)
 
                 _pairOfNumbersState.value = getRandomPairOfNumbers(range.min, range.max)
 
