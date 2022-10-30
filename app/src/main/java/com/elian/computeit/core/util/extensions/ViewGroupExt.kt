@@ -93,7 +93,6 @@ inline fun <reified T : View> findViewsWithTagOfType(tag: String, root: ViewGrou
             childIndex++
             continue
         }
-        println("$$$$$ $child")
         when (child)
         {
             is ViewGroup -> parentList.add(child)
@@ -102,6 +101,5 @@ inline fun <reified T : View> findViewsWithTagOfType(tag: String, root: ViewGrou
 
         childIndex++
     }
-    println("$$$$---------------")
     return views as List<T>
 }

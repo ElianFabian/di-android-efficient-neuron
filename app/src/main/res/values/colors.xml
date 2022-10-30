@@ -25,8 +25,8 @@
     <color name="green_a400">#00e676</color>
     <color name="green_a700">#00c853</color>
 
-    <color name="gray_600">#757575</color>
     <color name="gray_400">#bdbdbd</color>
+    <color name="gray_600">#757575</color>
     <color name="grey_900">#212121</color>
 
     <color name="blue_gray_300">#90a4ae</color>

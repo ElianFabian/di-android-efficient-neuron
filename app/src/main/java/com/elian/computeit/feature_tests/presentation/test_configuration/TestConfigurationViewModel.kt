@@ -4,10 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.elian.computeit.core.data.util.symbolToOperation
 import com.elian.computeit.core.domain.states.NumericFieldState
-import com.elian.computeit.core.util.EXTRA_OPERATION_NUMBER_RANGE
-import com.elian.computeit.core.util.EXTRA_OPERATION_TYPE
-import com.elian.computeit.core.util.EXTRA_TEST_COUNT
-import com.elian.computeit.core.util.EXTRA_TEST_TIME_IN_SECONDS
+import com.elian.computeit.core.util.*
 import com.elian.computeit.feature_auth.presentation.util.AuthError
 import com.elian.computeit.feature_tests.data.models.Range
 import com.elian.computeit.feature_tests.presentation.test_configuration.TestConfigurationAction.*
@@ -78,13 +75,14 @@ class TestConfigurationViewModel @Inject constructor() : ViewModel()
             }
             is Play                ->
             {
-                isThereAnyError = false
-
-                _minValueState.setError()
-                _maxValueState.setError()
-                _testCountOrTimeState.setError()
- 
-                if (isThereAnyError) return
+                isThereAnyError(
+                    _minValueState.setError(),
+                    _maxValueState.setError(),
+                    _testCountOrTimeState.setError(),
+                ).also()
+                {
+                    if (it) return
+                }
 
                 viewModelScope.launch()
                 {
@@ -94,12 +92,14 @@ class TestConfigurationViewModel @Inject constructor() : ViewModel()
         }
     }
 
-    private fun MutableStateFlow<NumericFieldState<Int>>.setError()
+    private fun MutableStateFlow<NumericFieldState<Int>>.setError(): AuthError.ValueEmpty?
     {
         val error = if (value.number == null) AuthError.ValueEmpty else null
 
         value = value.copy(error = error)
 
-        isThereAnyError = error != null
+        return error
     }
+
+    private fun isThereAnyError(vararg errors: Error?) = errors.any { it != null }
 }

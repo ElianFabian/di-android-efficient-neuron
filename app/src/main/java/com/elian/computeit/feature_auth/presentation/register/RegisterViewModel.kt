@@ -40,20 +40,15 @@ class RegisterViewModel @Inject constructor(
     {
         when (action)
         {
-            is EnterEmail           ->
-            {
-                _emailState.value = _emailState.value.copy(text = action.value)
-            }
-            is EnterPassword        ->
-            {
-                _passwordState.value = _passwordState.value.copy(text = action.value)
-            }
-            is EnterConfirmPassword ->
-            {
-                _confirmPasswordState.value = _confirmPasswordState.value.copy(text = action.value)
-            }
+            is EnterEmail           -> _emailState.value = _emailState.value.copy(text = action.value)
+            is EnterPassword        -> _passwordState.value = _passwordState.value.copy(text = action.value)
+            is EnterConfirmPassword -> _confirmPasswordState.value = _confirmPasswordState.value.copy(text = action.value)
             is Register             -> viewModelScope.launch()
             {
+                _emailState.value = _emailState.value.copy(error = null)
+                _passwordState.value = _passwordState.value.copy(error = null)
+                _confirmPasswordState.value = _confirmPasswordState.value.copy(error = null)
+
                 register(
                     email = _emailState.value.text,
                     password = _passwordState.value.text,

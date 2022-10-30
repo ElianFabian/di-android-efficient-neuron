@@ -6,7 +6,6 @@ import com.elian.computeit.core.domain.states.TextFieldState
 import com.elian.computeit.core.util.Resource
 import com.elian.computeit.core.util.UiText
 import com.elian.computeit.feature_auth.domain.use_case.LoginUseCase
-import com.elian.computeit.feature_auth.domain.use_case.SaveUserEmailUseCase
 import com.elian.computeit.feature_auth.presentation.login.LoginAction.*
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -19,7 +18,6 @@ import javax.inject.Inject
 @HiltViewModel
 class LoginViewModel @Inject constructor(
     private val loginUseCase: LoginUseCase,
-    private val saveUserEmailUseCase: SaveUserEmailUseCase,
 ) : ViewModel()
 {
     private val _eventFlow = MutableSharedFlow<LoginEvent>()
@@ -49,6 +47,9 @@ class LoginViewModel @Inject constructor(
             }
             is Login         -> viewModelScope.launch()
             {
+                _emailState.value = _emailState.value.copy(error = null)
+                _passwordState.value = _passwordState.value.copy(error = null)
+
                 login(
                     email = _emailState.value.text,
                     password = _passwordState.value.text
@@ -56,8 +57,6 @@ class LoginViewModel @Inject constructor(
             }
         }
     }
-
-    suspend fun saveUserEmail(email: String) = saveUserEmailUseCase(email)
 
     private suspend fun login(email: String, password: String)
     {

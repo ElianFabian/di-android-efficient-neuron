@@ -3,6 +3,7 @@ package com.elian.computeit.feature_tests.presentation.test
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.elian.computeit.core.data.Operation
 import com.elian.computeit.core.domain.util.CountDownTimer
 import com.elian.computeit.core.domain.util.TimerEvent
 import com.elian.computeit.core.util.EXTRA_OPERATION_NUMBER_RANGE
@@ -10,7 +11,6 @@ import com.elian.computeit.core.util.EXTRA_OPERATION_TYPE
 import com.elian.computeit.core.util.EXTRA_TEST_TIME_IN_SECONDS
 import com.elian.computeit.core.util.extensions.append
 import com.elian.computeit.core.util.extensions.clampLength
-import com.elian.computeit.core.data.Operation
 import com.elian.computeit.feature_tests.data.models.Range
 import com.elian.computeit.feature_tests.data.models.TestData
 import com.elian.computeit.feature_tests.presentation.test.TestAction.*
@@ -22,6 +22,7 @@ import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
+import kotlin.math.sign
 
 @HiltViewModel
 class TestViewModel @Inject constructor(
@@ -31,7 +32,7 @@ class TestViewModel @Inject constructor(
 {
     companion object
     {
-        private const val countDownInterval = 1L
+        private const val COUNT_DOWN_INTERVAL = 1L
     }
 
 
@@ -57,7 +58,10 @@ class TestViewModel @Inject constructor(
                         _millisUntilFinishState.value = it.millisUntilFinished
                         _eventFlow.emit(TestEvent.OnTimerTick(it.millisUntilFinished))
                     }
-                    is TimerEvent.OnFinish -> _eventFlow.emit(TestEvent.OnTimerFinish)
+                    is TimerEvent.OnFinish ->
+                    {
+                        _eventFlow.emit(TestEvent.OnTimerFinish)
+                    }
 
                     else                   -> Unit
                 }
@@ -95,17 +99,21 @@ class TestViewModel @Inject constructor(
             {
                 _resultState.value = 0
             }
-            is NextTest      ->
+            is NextTest    ->
             {
+                // As there's no negative sign button even if the answer it's negative you can introduce a positive number
+                // but when storing the data we save the value with the correct sign
+                val sign = sign(operation(_pairOfNumbersState.value).toFloat()).toInt()
+
                 val data = TestData(
                     operation = operation.symbol,
                     pairOfNumbers = _pairOfNumbersState.value,
-                    insertedResult = _resultState.value,
+                    insertedResult = _resultState.value * sign,
                     correctResult = operation(_pairOfNumbersState.value),
                     millisSinceStart = _millisSinceStart
                 )
 
-                println("------$data")
+                println("$$$$$$$$ $data")
 
                 _testDataList.add(data)
 
@@ -122,7 +130,7 @@ class TestViewModel @Inject constructor(
     {
         countDownTimer.initialize(
             millisInFuture = millisInFuture,
-            countDownInterval = countDownInterval
+            countDownInterval = COUNT_DOWN_INTERVAL
         )
     }
 }

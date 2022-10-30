@@ -64,7 +64,6 @@ class LoginActivity : AppCompatActivity()
             {
                 is LoginEvent.OnLogin            ->
                 {
-                    viewModel.saveUserEmail(binding.tietEmail.text.toString().trim())
                     navigateTo<MainActivity>()
                 }
                 is LoginEvent.OnShowErrorMessage -> toast(it.error.asString(this))

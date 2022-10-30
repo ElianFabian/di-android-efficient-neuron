@@ -9,10 +9,12 @@
         <item name="boxCornerRadiusTopEnd">8dp</item>
         <item name="boxCornerRadiusBottomStart">8dp</item>
         <item name="boxCornerRadiusTopStart">8dp</item>
+        <item name="passwordToggleTint">@color/gray_600</item>
     </style>
 
     <style name="TextInputEditTextStyle">
         <item name="android:textSize">@dimen/textSize_textInput</item>
+        <item name="android:textColor">@color/black</item>
     </style>
 
     <style name="Title">
@@ -34,7 +36,7 @@
         <item name="android:textAppearance">@style/TextAppearance_TextButton</item>
         <item name="android:textColor">@null</item>
     </style>
-    
+
     <style name="OperationButton">
         <item name="android:textAppearance">@style/TextAppearance_OperationButton</item>
         <item name="android:backgroundTint">@color/blue_400</item>

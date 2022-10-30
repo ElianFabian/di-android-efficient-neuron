@@ -106,7 +106,7 @@ class MainActivity : AppCompatActivity()
             {
                 when (it)
                 {
-                    is MainActivityEvent.OnUserNotRegistered -> navigateTo<LoginActivity>()
+                    is MainActivityEvent.OnUserNotLoggedIn -> navigateTo<LoginActivity>()
                 }
             }
         }

@@ -1,6 +1,7 @@
 package com.elian.computeit.feature_auth.data.repository
 
 import com.elian.computeit.R
+import com.elian.computeit.core.domain.repository.AppSettingsRepository
 import com.elian.computeit.core.util.COLLECTION_USERS
 import com.elian.computeit.core.util.Resource
 import com.elian.computeit.core.util.SimpleResource
@@ -14,7 +15,8 @@ import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class AuthRepositoryImpl @Inject constructor(
-    private val firestore: FirebaseFirestore
+    private val firestore: FirebaseFirestore,
+    private val settings: AppSettingsRepository,
 ) :
     AuthRepository
 {
@@ -37,18 +39,25 @@ class AuthRepositoryImpl @Inject constructor(
     {
         if (getUserByEmail(email) != null) return Resource.Error(UiText.StringResource(R.string.error_user_already_exists))
 
-        val newUser = User(
+        User(
             email = email,
             password = password
-        )
+        ).apply()
+        {
+            settings.saveCurrentUserUuid(uuid)
 
-        firestore.document("$COLLECTION_USERS/$email").set(newUser).await()
+            firestore.document("$COLLECTION_USERS/$uuid").set(this).await()
+        }
 
         return Resource.Success()
     }
 
     private suspend fun getUserByEmail(email: String) = withContext(Dispatchers.IO)
     {
-        firestore.document("$COLLECTION_USERS/$email").get().await().toObject(User::class.java)
+        val users = firestore.collection(COLLECTION_USERS)
+            .whereEqualTo(User::email.name, email).get().await()
+
+        if (users.isEmpty) null
+        else users.first().toObject(User::class.java)
     }
 }

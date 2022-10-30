@@ -59,7 +59,6 @@ class RegisterActivity : AppCompatActivity()
                 viewModel.onAction(RegisterAction.Register)
             }
         }
-
     }
 
     private fun subscribeToEvents()

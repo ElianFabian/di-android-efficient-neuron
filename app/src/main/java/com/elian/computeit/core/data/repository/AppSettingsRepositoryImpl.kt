@@ -12,13 +12,13 @@ class AppSettingsRepositoryImpl @Inject constructor(
     private val dataStore: DataStore<Preferences>
 ) : AppSettingsRepository
 {
-    override suspend fun getUserEmail(): String?
+    override suspend fun getCurrentUserUuid(): String?
     {
         return dataStore.data.first()[KEY_USER_EMAIL]
     }
 
-    override suspend fun saveUserEmail(email: String)
+    override suspend fun saveCurrentUserUuid(uuid: String)
     {
-        dataStore.edit { it[KEY_USER_EMAIL] = email }
+        dataStore.edit { it[KEY_USER_EMAIL] = uuid }
     }
 }

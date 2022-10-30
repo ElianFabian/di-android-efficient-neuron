@@ -7,29 +7,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/blue_200"
-    android:orientation="vertical"
-    >
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/tvTitle"
         style="@style/Title"
 
-        android:text="@string/generic_login"
-        />
+        android:text="@string/generic_login" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tilEmail"
         style="@style/Auth_TextInputLayout"
-        android:layout_marginTop="@dimen/_70sdp"
-        >
+        android:layout_marginTop="@dimen/_70sdp">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/tiet_email"
             style="@style/TextInputEditTextStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/generic_email"
-            />
+            android:hint="@string/generic_email" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -37,8 +33,7 @@
         style="@style/Auth_TextInputLayout"
 
         android:layout_marginTop="@dimen/_15sdp"
-        app:passwordToggleEnabled="true"
-        >
+        app:passwordToggleEnabled="true">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/tiet_password"
@@ -46,8 +41,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/generic_password"
-            android:inputType="textPassword"
-            />
+            android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.button.MaterialButton
@@ -59,16 +53,14 @@
         android:layout_marginTop="@dimen/_10sdp"
         android:layout_marginEnd="@dimen/_16sdp"
         android:maxLines="1"
-        android:text="@string/generic_register"
-        />
+        android:text="@string/generic_register" />
 
     <View style="@style/Utils_LinearLayoutSeparator" />
 
     <ProgressBar
         android:id="@+id/pbLoading"
         style="@style/Auth_ProgressBar"
-        tools:visibility="visible"
-        />
+        tools:visibility="visible" />
 
     <View style="@style/Utils_LinearLayoutSeparator" />
 
@@ -80,6 +72,5 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="@dimen/_35sdp"
         android:layout_marginBottom="@dimen/_20sdp"
-        android:text="@string/generic_login"
-        />
+        android:text="@string/generic_login" />
 </androidx.appcompat.widget.LinearLayoutCompat>
