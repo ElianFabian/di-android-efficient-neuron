@@ -13,6 +13,8 @@ import com.elian.computeit.core.util.extensions.append
 import com.elian.computeit.core.util.extensions.clampLength
 import com.elian.computeit.feature_tests.data.models.Range
 import com.elian.computeit.feature_tests.data.models.TestData
+import com.elian.computeit.feature_tests.data.models.TestSessionData
+import com.elian.computeit.feature_tests.domain.use_case.SaveTestSessionDataUseCase
 import com.elian.computeit.feature_tests.presentation.test.TestAction.*
 import com.elian.computeit.feature_tests.presentation.util.getRandomPairOfNumbers
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -26,8 +28,9 @@ import kotlin.math.sign
 
 @HiltViewModel
 class TestViewModel @Inject constructor(
-    private val countDownTimer: CountDownTimer,
     savedState: SavedStateHandle,
+    private val countDownTimer: CountDownTimer,
+    private val saveTestSessionData: SaveTestSessionDataUseCase,
 ) : ViewModel()
 {
     companion object
@@ -36,38 +39,9 @@ class TestViewModel @Inject constructor(
     }
 
 
-    val millisInFuture = savedState.get<Int>(EXTRA_TEST_TIME_IN_SECONDS)?.let { it * 1_000L } ?: 20_000L
-    private val range = savedState.get<Range>(EXTRA_OPERATION_NUMBER_RANGE) ?: error("Range value expected.")
-    private val operation = savedState.get<Operation>(EXTRA_OPERATION_TYPE) ?: error("Operation value expected")
-
-    init
-    {
-
-        initializeTimer()
-
-        countDownTimer.setCoroutineScope(viewModelScope)
-
-        viewModelScope.launch()
-        {
-            countDownTimer.timerEvent.collect()
-            {
-                when (it)
-                {
-                    is TimerEvent.OnTick   ->
-                    {
-                        _millisUntilFinishState.value = it.millisUntilFinished
-                        _eventFlow.emit(TestEvent.OnTimerTick(it.millisUntilFinished))
-                    }
-                    is TimerEvent.OnFinish ->
-                    {
-                        _eventFlow.emit(TestEvent.OnTimerFinish)
-                    }
-
-                    else                   -> Unit
-                }
-            }
-        }
-    }
+    val millisInFuture = savedState.get<Int>(EXTRA_TEST_TIME_IN_SECONDS)?.let { it * 1_000L } ?: error("Test time in seconds value expected.")
+    private val _range = savedState.get<Range>(EXTRA_OPERATION_NUMBER_RANGE) ?: error("Range value expected.")
+    private val _operation = savedState.get<Operation>(EXTRA_OPERATION_TYPE) ?: error("Operation value expected")
 
 
     private val _testDataList = mutableListOf<TestData>()
@@ -78,12 +52,50 @@ class TestViewModel @Inject constructor(
     private val _resultState = MutableStateFlow(0)
     val resultState = _resultState.asStateFlow()
 
-    private val _pairOfNumbersState = MutableStateFlow(getRandomPairOfNumbers(range.min, range.max))
+    private val _pairOfNumbersState = MutableStateFlow<Pair<Int, Int>?>(null)
     val pairOfNumbersState = _pairOfNumbersState.asStateFlow()
 
-    private val _millisUntilFinishState = MutableStateFlow(millisInFuture)
-    private val _millisSinceStart get() = millisInFuture - _millisUntilFinishState.value
+    private var _millisUntilFinish = millisInFuture
+    private val _millisSinceStart get() = millisInFuture - _millisUntilFinish
 
+    init
+    {
+        initializeTimer()
+
+        countDownTimer.setCoroutineScope(viewModelScope)
+
+        viewModelScope.launch()
+        {
+            countDownTimer.timerEvent.collect()
+            {
+                when (it)
+                {
+                    is TimerEvent.OnStart  ->
+                    {
+                        _pairOfNumbersState.value = getRandomPairOfNumbers(_range.min, _range.max)
+                    }
+                    is TimerEvent.OnTick   ->
+                    {
+                        _millisUntilFinish = it.millisUntilFinished
+                        _eventFlow.emit(TestEvent.OnTimerTick(it.millisUntilFinished))
+                    }
+                    is TimerEvent.OnFinish ->
+                    {
+                        val testSessionData = TestSessionData(
+                            dateInSeconds = System.currentTimeMillis() / 1000,
+                            testTimeInMillis = _millisSinceStart,
+                            testDataList = _testDataList.toList()
+                        )
+
+                        saveTestSessionData(testSessionData)
+
+                        _eventFlow.emit(TestEvent.OnTimerFinish)
+                    }
+                    else                   -> Unit
+                }
+            }
+        }
+    }
 
     fun onAction(action: TestAction)
     {
@@ -101,24 +113,23 @@ class TestViewModel @Inject constructor(
             }
             is NextTest    ->
             {
+                val expectedResult = _operation(_pairOfNumbersState.value!!)
+
                 // As there's no negative sign button even if the answer it's negative you can introduce a positive number
                 // but when storing the data we save the value with the correct sign
-                val sign = sign(operation(_pairOfNumbersState.value).toFloat()).toInt()
+                val sign = sign(expectedResult.toFloat()).toInt()
 
                 val data = TestData(
-                    operation = operation.symbol,
-                    pairOfNumbers = _pairOfNumbersState.value,
+                    operation = _operation.symbol,
+                    pairOfNumbers = _pairOfNumbersState.value!!,
                     insertedResult = _resultState.value * sign,
-                    correctResult = operation(_pairOfNumbersState.value),
+                    expectedResult = expectedResult,
                     millisSinceStart = _millisSinceStart
                 )
 
-                println("$$$$$$$$ $data")
-
                 _testDataList.add(data)
 
-                _pairOfNumbersState.value = getRandomPairOfNumbers(range.min, range.max)
-
+                _pairOfNumbersState.value = getRandomPairOfNumbers(_range.min, _range.max)
                 _resultState.value = 0
             }
         }

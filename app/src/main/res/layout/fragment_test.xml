@@ -90,7 +90,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center|top"
-            android:text="2"
+            android:text="\?"
             android:textColor="@color/white"
             android:textSize="@dimen/textSize_xlarge2"
             android:textStyle="bold"
@@ -98,15 +98,13 @@
             app:layout_constraintEnd_toStartOf="@id/tvOperationSymbol"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="2222" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tvOperationSymbol"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center|top"
-            android:text="+"
             android:textColor="@color/white"
             android:textSize="@dimen/textSize_xlarge2"
             android:textStyle="bold"
@@ -121,7 +119,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center|top"
-            android:text="2"
+            android:text="\?"
             android:textColor="@color/white"
             android:textSize="@dimen/textSize_xlarge2"
             android:textStyle="bold"
@@ -129,8 +127,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@id/tvOperationSymbol"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="2222" />
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
