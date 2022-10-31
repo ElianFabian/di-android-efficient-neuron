@@ -21,8 +21,8 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class TestFragment : Fragment()
 {
-    private lateinit var binding: FragmentTestBinding
     private val viewModel by viewModels<TestViewModel>()
+    private lateinit var binding: FragmentTestBinding
 
 
     override fun onCreateView(
