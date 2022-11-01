@@ -31,7 +31,7 @@
     <string name="frgEndGame_tvTimeOrTests_label_time_text">Total time</string>
     <string name="frgEndGame_tvTimePerGame_label_text">Time per game</string>
 
-    <string name="frgFunctions_tvTitle_text">OPERATIONS</string>
+    <string name="frgFunctions_tvTitle_text">Operations</string>
 
     <string name="frgGameConfiguration_btnPlay_text">PLAY</string>
     <string name="frgGameConfiguration_tietMaxValue_hint">Max</string>
@@ -49,18 +49,19 @@
     <string name="frgStatistics_tvGamesLabel_text">Games</string>
     <string name="frgStatistics_tvTimeLabel_text">Time</string>
     <string name="frgStatistics_tvTimePerGameLabel_text">Time per game</string>
-    <string name="frgStatistics_tvTitle_text">STATISTICS</string>
+    <string name="frgStatistics_tvTitle_text">Statistics</string>
 
     <string name="frgTipManager_tieExample_hint">Example</string>
     <string name="frgTipManager_tieTitle_hint">Title</string>
 
-    <string name="frgTips_tvTitle_text">TIPS</string>
+    <string name="frgTips_tvTitle_text">Tips</string>
 
     <string name="generic_confirm_password">Confirm password</string>
     <string name="generic_email">Email</string>
     <string name="generic_login">Login</string>
     <string name="generic_password">Password</string>
     <string name="generic_register">Register</string>
+    <string name="generic_seconds">Seconds</string>
     <string name="generic_tests">Tests</string>
 
     <string name="navigation_drawer_close" translatable="false">Close</string>

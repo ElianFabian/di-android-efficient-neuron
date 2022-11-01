@@ -26,14 +26,14 @@
     <string name="frgEndGame_tvTimeOrTests_label_time_text">Time</string>
     <string name="frgEndGame_tvTimePerGame_label_text">Tiempo por partida</string>
 
-    <string name="frgFunctions_tvTitle_text">OPERACIONES</string>
+    <string name="frgFunctions_tvTitle_text">Operaciones</string>
 
     <string name="frgGameConfiguration_btnPlay_text">JUGAR</string>
     <string name="frgGameConfiguration_tietMaxValue_hint">Máximo</string>
     <string name="frgGameConfiguration_tietMinValue_hint">Minimo</string>
     <string name="frgGameConfiguration_tvMode_text">Modo:</string>
     <string name="frgGameConfiguration_tvNumberRange_text">Intervalo:</string>
-    <string name="frgGameConfiguration_tvTitle_text">CONFIGURACIÓN DE JUEGO</string>
+    <string name="frgGameConfiguration_tvTitle_text">Configuración de Juego</string>
 
     <string name="frgSettings_category_general">General</string>
     <string name="frgSettings_dark_theme_title">Tema oscuro</string>
@@ -44,18 +44,19 @@
     <string name="frgStatistics_tvGamesLabel_text">Partidas</string>
     <string name="frgStatistics_tvTimeLabel_text">Tiempo</string>
     <string name="frgStatistics_tvTimePerGameLabel_text">Tiempo por partida</string>
-    <string name="frgStatistics_tvTitle_text">ESTADÍSTICAS</string>
+    <string name="frgStatistics_tvTitle_text">Estadísticas</string>
 
     <string name="frgTipManager_tieExample_hint">Ejemplo</string>
     <string name="frgTipManager_tieTitle_hint">Título</string>
 
-    <string name="frgTips_tvTitle_text">CONSEJOS</string>
+    <string name="frgTips_tvTitle_text">Consejos</string>
 
     <string name="generic_confirm_password">Confirmar contraseña</string>
     <string name="generic_email">Email</string>
     <string name="generic_login">Iniciar sesión</string>
     <string name="generic_password">Contraseña</string>
     <string name="generic_register">Registrarse</string>
+    <string name="generic_seconds">Segundos</string>
     <string name="generic_tests">Pruebas</string>
 
     <string name="navigation_menu_navAboutUs_title">Sobre Nosotros</string>

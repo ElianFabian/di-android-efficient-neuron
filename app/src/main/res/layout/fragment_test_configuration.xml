@@ -24,9 +24,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/_15sdp"
+        android:checkedButton="@id/mFirstOperation"
         android:gravity="center"
-        android:orientation="horizontal"
-        android:checkedButton="@id/mFirstOperation">
+        android:orientation="horizontal">
 
         <com.google.android.material.radiobutton.MaterialRadioButton
             android:id="@+id/mFirstOperation"
@@ -145,24 +145,23 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
-
-            <androidx.appcompat.widget.AppCompatSpinner
-                android:id="@+id/spnModes"
-                android:layout_width="@dimen/_90sdp"
-                android:layout_height="@dimen/_40sdp"
-                android:layout_marginEnd="@dimen/_15sdp"
-                android:background="@drawable/shape_spinner_background"
-                android:entries="@array/test_modes" />
+            <!--TODO: when the project is more advanced I will try to add support for both tests and time modes-->
+            <!--            <androidx.appcompat.widget.AppCompatSpinner-->
+            <!--                android:id="@+id/spnModes"-->
+            <!--                android:layout_width="@dimen/_90sdp"-->
+            <!--                android:layout_height="@dimen/_40sdp"-->
+            <!--                android:layout_marginEnd="@dimen/_15sdp"-->
+            <!--                android:background="@drawable/shape_spinner_background"-->
+            <!--                android:entries="@array/test_modes" />-->
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/et_test_count_or_time"
                 android:layout_width="@dimen/_90sdp"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:hint="@string/generic_tests"
+                android:hint="@string/generic_seconds"
                 android:inputType="number"
                 android:maxLength="3" />
-
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 

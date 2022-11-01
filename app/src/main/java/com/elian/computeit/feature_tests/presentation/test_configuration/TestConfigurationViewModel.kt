@@ -21,8 +21,6 @@ class TestConfigurationViewModel @Inject constructor() : ViewModel()
 {
     private val argsToSend = mutableMapOf<String, Any>()
 
-    private var isThereAnyError = false
-
     private val _eventFlow = MutableSharedFlow<TestConfigurationEvent>()
     val eventFlow = _eventFlow.asSharedFlow()
 

@@ -68,11 +68,14 @@ class TestConfigurationFragment : Fragment()
             {
                 val secondsOrTestCount = etTestCountOrTime.text.toString().toIntOrNull()
 
-                when (spnModes.selectedItem as String)
-                {
-                    getString(R.string.array_test_modes_time)  -> viewModel.onAction(TestConfigurationAction.EnterSeconds(secondsOrTestCount))
-                    getString(R.string.array_test_modes_tests) -> viewModel.onAction(TestConfigurationAction.EnterTestCount(secondsOrTestCount))
-                }
+                // TODO: when the project is more advanced I will try to add support for both tests and time modes
+//                when (spnModes.selectedItem as String)
+//                {
+//                    getString(R.string.array_test_modes_time)  -> viewModel.onAction(TestConfigurationAction.EnterSeconds(secondsOrTestCount))
+//                    getString(R.string.array_test_modes_tests) -> viewModel.onAction(TestConfigurationAction.EnterTestCount(secondsOrTestCount))
+//                }
+    
+                viewModel.onAction(TestConfigurationAction.EnterSeconds(secondsOrTestCount))
 
                 viewModel.onAction(TestConfigurationAction.EnterRange(
                     min = tietMinValue.text.toString().toIntOrNull(),
@@ -101,7 +104,8 @@ class TestConfigurationFragment : Fragment()
         }
         collectLatestFlowWhenStarted(viewModel.minValueState)
         {
-            setMinValueError(when (it.error) {
+            setMinValueError(when (it.error)
+            {
                 is AuthError.ValueEmpty -> getString(R.string.error_cant_be_empty)
                 else                    -> null
             })
