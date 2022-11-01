@@ -7,6 +7,7 @@ import com.elian.computeit.feature_tests.data.models.TestSessionData
 import com.elian.computeit.feature_tests.domain.repository.TestDataRepository
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
 
 class TestDataRepositoryImpl @Inject constructor(
@@ -17,8 +18,14 @@ class TestDataRepositoryImpl @Inject constructor(
     override suspend fun saveTestSessionData(testSessionData: TestSessionData)
     {
         val userUuid = settings.getCurrentUserUuid()!!
+        val userDataRef = firestore.document("$COLLECTION_USERS_DATA/$userUuid")
 
-        firestore.document("$COLLECTION_USERS_DATA/$userUuid")
-            .update(FIELD_TEST_SESSION_DATA_LIST, FieldValue.arrayUnion(testSessionData))
+        val listFromServerSize = userDataRef.get().await().data?.size ?: 0
+
+        if (listFromServerSize == 0)
+        {
+            userDataRef.set(mapOf(FIELD_TEST_SESSION_DATA_LIST to listOf(testSessionData)))
+        }
+        else userDataRef.update(FIELD_TEST_SESSION_DATA_LIST, FieldValue.arrayUnion(testSessionData))
     }
 }
