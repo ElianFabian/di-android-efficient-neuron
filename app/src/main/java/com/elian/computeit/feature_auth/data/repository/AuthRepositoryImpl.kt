@@ -32,7 +32,12 @@ class AuthRepositoryImpl @Inject constructor(
         {
             Resource.Error(UiText.StringResource(R.string.error_password_is_wrong))
         }
-        else Resource.Success()
+        else
+        {
+            settings.saveCurrentUserUuid(user.uuid)
+
+            Resource.Success()
+        }
     }
 
     override suspend fun register(email: String, password: String): SimpleResource
@@ -44,8 +49,6 @@ class AuthRepositoryImpl @Inject constructor(
             password = password
         ).apply()
         {
-            settings.saveCurrentUserUuid(uuid)
-
             firestore.document("$COLLECTION_USERS/$uuid").set(this).await()
         }
 
