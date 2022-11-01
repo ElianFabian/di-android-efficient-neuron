@@ -24,7 +24,7 @@ class MainActivityViewModel @Inject constructor(
         {
             val isUserLoggedIn = settings.getCurrentUserUuid() != null
 
-            if (!isUserLoggedIn) _eventFlow.emit(MainActivityEvent.OnUserNotLoggedIn)
+            if (isUserLoggedIn.not()) _eventFlow.emit(MainActivityEvent.OnUserNotLoggedIn)
         }
     }
 }

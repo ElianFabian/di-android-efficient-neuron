@@ -17,10 +17,10 @@ object ValidationUtil
 
         return when
         {
-            trimmedEmail.isBlank()                                  -> AuthError.ValueEmpty
-            !Patterns.EMAIL_ADDRESS.matcher(trimmedEmail).matches() -> AuthError.ValueInvalid(example = "abcd@gmail.com")
+            trimmedEmail.isBlank()                                       -> AuthError.ValueEmpty
+            Patterns.EMAIL_ADDRESS.matcher(trimmedEmail).matches().not() -> AuthError.ValueInvalid(example = "abcd@gmail.com")
 
-            else                                                    -> null
+            else                                                         -> null
         }
     }
 
@@ -30,13 +30,13 @@ object ValidationUtil
 
         return when
         {
-            trimmedPassword.isBlank()                         -> AuthError.ValueEmpty
-            trimmedPassword.length < MIN_PASSWORD_LENGTH      -> AuthError.ValueTooShort(minLength = MIN_PASSWORD_LENGTH)
-            !trimmedPassword.any { it.isDigit() }             -> AuthError.ValueInvalid(validCharacters = SET_OF_DIGITS, minCharacterCount = 1)
-            !trimmedPassword.any { it in SPECIAL_CHARACTERS } -> AuthError.ValueInvalid(validCharacters = SPECIAL_CHARACTERS, minCharacterCount = 1)
-            trimmedPassword.length > MAX_PASSWORD_LENGTH      -> AuthError.ValueTooLong(maxLength = MAX_PASSWORD_LENGTH)
+            trimmedPassword.isBlank()                              -> AuthError.ValueEmpty
+            trimmedPassword.length < MIN_PASSWORD_LENGTH           -> AuthError.ValueTooShort(minLength = MIN_PASSWORD_LENGTH)
+            trimmedPassword.any { it.isDigit() }.not()             -> AuthError.ValueInvalid(validCharacters = SET_OF_DIGITS, minCharacterCount = 1)
+            trimmedPassword.any { it in SPECIAL_CHARACTERS }.not() -> AuthError.ValueInvalid(validCharacters = SPECIAL_CHARACTERS, minCharacterCount = 1)
+            trimmedPassword.length > MAX_PASSWORD_LENGTH           -> AuthError.ValueTooLong(maxLength = MAX_PASSWORD_LENGTH)
 
-            else                                              -> null
+            else                                                   -> null
         }
     }
 

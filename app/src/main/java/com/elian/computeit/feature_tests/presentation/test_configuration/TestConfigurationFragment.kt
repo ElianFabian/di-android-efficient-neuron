@@ -12,8 +12,9 @@ import com.elian.computeit.R
 import com.elian.computeit.core.util.extensions.collectLatestFlowWhenStarted
 import com.elian.computeit.core.util.extensions.findViewsWithTagOfType
 import com.elian.computeit.core.util.extensions.navigate
+import com.elian.computeit.core.util.extensions.toast
 import com.elian.computeit.databinding.FragmentTestConfigurationBinding
-import com.elian.computeit.feature_auth.presentation.util.AuthError
+import com.elian.computeit.feature_tests.presentation.util.ConfigurationError
 import com.google.android.material.radiobutton.MaterialRadioButton
 
 class TestConfigurationFragment : Fragment()
@@ -74,7 +75,7 @@ class TestConfigurationFragment : Fragment()
 //                    getString(R.string.array_test_modes_time)  -> viewModel.onAction(TestConfigurationAction.EnterSeconds(secondsOrTestCount))
 //                    getString(R.string.array_test_modes_tests) -> viewModel.onAction(TestConfigurationAction.EnterTestCount(secondsOrTestCount))
 //                }
-    
+
                 viewModel.onAction(TestConfigurationAction.EnterSeconds(secondsOrTestCount))
 
                 viewModel.onAction(TestConfigurationAction.EnterRange(
@@ -93,12 +94,22 @@ class TestConfigurationFragment : Fragment()
         {
             when (it)
             {
-                is TestConfigurationEvent.OnPlay ->
+                is TestConfigurationEvent.OnPlay             ->
                 {
                     navigate(
                         R.id.action_testConfigurationFragment_to_testFragment,
                         bundleOf(*it.args.toTypedArray())
                     )
+                }
+                is TestConfigurationEvent.OnShowErrorMessage -> toast(it.error.asString(requireContext()))
+            }
+        }
+        collectLatestFlowWhenStarted(viewModel.testConfigurationErrorState)
+        {
+            it?.forEach { error ->
+                when (error)
+                {
+                    is ConfigurationError.RangeValuesAreInverted -> toast(R.string.error_range_values_are_inverted)
                 }
             }
         }
@@ -106,24 +117,24 @@ class TestConfigurationFragment : Fragment()
         {
             setMinValueError(when (it.error)
             {
-                is AuthError.ValueEmpty -> getString(R.string.error_cant_be_empty)
-                else                    -> null
+                is ConfigurationError.ValueEmpty -> getString(R.string.error_cant_be_empty)
+                else                             -> null
             })
         }
         collectLatestFlowWhenStarted(viewModel.maxValueState)
         {
             setMaxValueError(when (it.error)
             {
-                is AuthError.ValueEmpty -> getString(R.string.error_cant_be_empty)
-                else                    -> null
+                is ConfigurationError.ValueEmpty -> getString(R.string.error_cant_be_empty)
+                else                             -> null
             })
         }
         collectLatestFlowWhenStarted(viewModel.testCountOrTimeState)
         {
             setTestCountOrTimeError(when (it.error)
             {
-                is AuthError.ValueEmpty -> getString(R.string.error_cant_be_empty)
-                else                    -> null
+                is ConfigurationError.ValueEmpty -> getString(R.string.error_cant_be_empty)
+                else                             -> null
             })
         }
     }

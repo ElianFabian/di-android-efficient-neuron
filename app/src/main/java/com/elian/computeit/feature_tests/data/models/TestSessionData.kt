@@ -4,4 +4,5 @@ data class TestSessionData(
     val dateInSeconds: Long,
     val testTimeInMillis: Long,
     val testDataList: List<TestData>,
+    val range: Range,
 )

@@ -3,6 +3,7 @@ package com.elian.computeit.core.util.extensions
 import android.os.Bundle
 import android.widget.Toast
 import androidx.annotation.IdRes
+import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.NavHostFragment
 
@@ -14,4 +15,9 @@ fun Fragment.navigate(@IdRes action: Int, args: Bundle? = null)
 fun Fragment.toast(text: CharSequence, duration: Int = Toast.LENGTH_SHORT)
 {
     Toast.makeText(context, text, duration).show()
+}
+
+fun Fragment.toast(@StringRes resId: Int, duration: Int = Toast.LENGTH_SHORT)
+{
+    Toast.makeText(context, resId, duration).show()
 }

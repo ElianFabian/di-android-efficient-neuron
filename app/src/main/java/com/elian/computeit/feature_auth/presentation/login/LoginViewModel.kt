@@ -7,6 +7,7 @@ import com.elian.computeit.core.util.Resource
 import com.elian.computeit.core.util.UiText
 import com.elian.computeit.feature_auth.domain.use_case.LoginUseCase
 import com.elian.computeit.feature_auth.presentation.login.LoginAction.*
+import com.elian.computeit.feature_auth.presentation.login.LoginEvent.*
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -72,10 +73,8 @@ class LoginViewModel @Inject constructor(
 
             when (result)
             {
-                is Resource.Error   -> _eventFlow.emit(
-                    LoginEvent.OnShowErrorMessage(result.uiText ?: UiText.unknownError())
-                )
-                is Resource.Success -> _eventFlow.emit(LoginEvent.OnLogin)
+                is Resource.Error   -> _eventFlow.emit(OnShowErrorMessage(result.uiText ?: UiText.unknownError()))
+                is Resource.Success -> _eventFlow.emit(OnLogin)
 
                 else                -> Unit
             }
