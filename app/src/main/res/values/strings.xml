@@ -30,7 +30,7 @@
     <string name="frgEndGame_btnContinue_text">Continue</string>
     <string name="frgEndGame_tvTimeOrTests_label_tests_text">Total tests</string>
     <string name="frgEndGame_tvTimeOrTests_label_time_text">Total time</string>
-    <string name="frgEndGame_tvTimePerGame_label_text">Time per game</string>
+    <string name="frgEndGame_tvTestsPerSecond_label_text">Tests per second</string>
 
     <string name="frgFunctions_tvTitle_text">Operations</string>
 

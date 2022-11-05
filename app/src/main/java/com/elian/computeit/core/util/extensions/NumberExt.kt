@@ -51,3 +51,5 @@ fun Double.isWholeNumber() = this == floor(this)
 fun Float.isWholeNumber() = this == floor(this)
 
 fun Long.fromMillisToSeconds() = this / 1000f
+
+fun Float.ifNaNReturnZero() = if (isNaN()) 0F else this

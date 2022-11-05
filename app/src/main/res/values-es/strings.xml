@@ -25,13 +25,13 @@
     <string name="frgEndGame_btnContinue_text">Continuar</string>
     <string name="frgEndGame_tvTimeOrTests_label_tests_text">Tests</string>
     <string name="frgEndGame_tvTimeOrTests_label_time_text">Time</string>
-    <string name="frgEndGame_tvTimePerGame_label_text">Tiempo por partida</string>
+    <string name="frgEndGame_tvTestsPerSecond_label_text">Pruebas por segundo</string>
 
     <string name="frgFunctions_tvTitle_text">Operaciones</string>
 
     <string name="frgGameConfiguration_btnPlay_text">JUGAR</string>
     <string name="frgGameConfiguration_tietMaxValue_hint">Máximo</string>
-    <string name="frgGameConfiguration_tietMinValue_hint">Minimo</string>
+    <string name="frgGameConfiguration_tietMinValue_hint">Mínimo</string>
     <string name="frgGameConfiguration_tvMode_text">Modo:</string>
     <string name="frgGameConfiguration_tvNumberRange_text">Intervalo:</string>
     <string name="frgGameConfiguration_tvTitle_text">Configuración de Juego</string>

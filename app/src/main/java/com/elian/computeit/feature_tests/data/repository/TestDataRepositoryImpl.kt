@@ -15,7 +15,7 @@ class TestDataRepositoryImpl @Inject constructor(
     private val settings: AppSettingsRepository,
 ) : TestDataRepository
 {
-    override suspend fun saveTestSessionData(testSessionData: TestSessionData)
+    override suspend fun addTestSessionData(testSessionData: TestSessionData)
     {
         val userUuid = settings.getCurrentUserUuid()!!
         val userDataRef = firestore.document("$COLLECTION_USERS_DATA/$userUuid")

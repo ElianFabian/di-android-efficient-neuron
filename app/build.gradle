@@ -48,6 +48,9 @@ apply plugin: 'dagger.hilt.android.plugin'
 
 dependencies {
 
+    // MPAndroidChart: https://github.com/PhilJay/MPAndroidChart
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+
     // SSP: https://github.com/intuit/ssp
     implementation 'com.intuit.ssp:ssp-android:1.1.0'
 

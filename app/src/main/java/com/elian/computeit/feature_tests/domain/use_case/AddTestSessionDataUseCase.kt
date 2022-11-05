@@ -4,7 +4,9 @@ import com.elian.computeit.feature_tests.data.models.TestSessionData
 import com.elian.computeit.feature_tests.domain.repository.TestDataRepository
 import javax.inject.Inject
 
-class SaveTestSessionDataUseCase @Inject constructor(private val repository: TestDataRepository)
+class AddTestSessionDataUseCase @Inject constructor(
+    private val repository: TestDataRepository,
+)
 {
-    suspend operator fun invoke(testSessionData: TestSessionData) = repository.saveTestSessionData(testSessionData)
+    suspend operator fun invoke(testSessionData: TestSessionData) = repository.addTestSessionData(testSessionData)
 }

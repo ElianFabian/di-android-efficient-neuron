@@ -29,7 +29,7 @@
         <item name="android:textSize">@dimen/textSize_large3</item>
         <item name="android:includeFontPadding">false</item>
     </style>
-    
+
     <style name="TextAppearance_TextView_Time">
         <item name="android:textSize">@dimen/_29ssp</item>
         <item name="android:fontFamily">@font/comfortaa_bold</item>
@@ -37,7 +37,7 @@
     </style>
 
     <style name="TextAppearance_TextView_Time_Label">
-        <item name="android:textSize">@dimen/_33ssp</item>
+        <item name="android:textSize">@dimen/textSize_large2</item>
         <item name="android:fontFamily">@font/comfortaa_bold</item>
         <item name="android:textColor">@color/gray_400</item>
     </style>

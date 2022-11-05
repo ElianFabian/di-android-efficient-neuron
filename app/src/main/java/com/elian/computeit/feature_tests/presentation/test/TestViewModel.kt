@@ -8,13 +8,14 @@ import com.elian.computeit.core.domain.util.CountDownTimer
 import com.elian.computeit.core.domain.util.TimerEvent
 import com.elian.computeit.core.util.EXTRA_OPERATION_NUMBER_RANGE
 import com.elian.computeit.core.util.EXTRA_OPERATION_TYPE
+import com.elian.computeit.core.util.EXTRA_TEST_SESSION_DATA
 import com.elian.computeit.core.util.EXTRA_TEST_TIME_IN_SECONDS
 import com.elian.computeit.core.util.extensions.append
 import com.elian.computeit.core.util.extensions.clampLength
 import com.elian.computeit.feature_tests.data.models.Range
 import com.elian.computeit.feature_tests.data.models.TestData
 import com.elian.computeit.feature_tests.data.models.TestSessionData
-import com.elian.computeit.feature_tests.domain.use_case.SaveTestSessionDataUseCase
+import com.elian.computeit.feature_tests.domain.use_case.AddTestSessionDataUseCase
 import com.elian.computeit.feature_tests.presentation.test.TestAction.*
 import com.elian.computeit.feature_tests.presentation.util.getRandomPairOfNumbers
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -30,7 +31,7 @@ import kotlin.math.sign
 class TestViewModel @Inject constructor(
     savedState: SavedStateHandle,
     private val countDownTimer: CountDownTimer,
-    private val saveTestSessionData: SaveTestSessionDataUseCase,
+    private val addTestSessionData: AddTestSessionDataUseCase,
 ) : ViewModel()
 {
     companion object
@@ -83,14 +84,16 @@ class TestViewModel @Inject constructor(
                     {
                         val testSessionData = TestSessionData(
                             dateInSeconds = System.currentTimeMillis() / 1000,
-                            testTimeInMillis = _millisSinceStart,
+                            testTimeInSeconds = _millisSinceStart.toInt() / 1000,
                             testDataList = _testDataList.toList(),
                             range = _range
                         )
 
-                        saveTestSessionData(testSessionData)
+                        addTestSessionData(testSessionData)
 
-                        _eventFlow.emit(TestEvent.OnTimerFinish)
+                        _eventFlow.emit(TestEvent.OnTimerFinish(
+                            args = listOf(EXTRA_TEST_SESSION_DATA to testSessionData)
+                        ))
                     }
                     else                   -> Unit
                 }
