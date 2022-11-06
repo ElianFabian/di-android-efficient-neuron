@@ -2,7 +2,7 @@ package com.elian.computeit.feature_auth.data.repository
 
 import com.elian.computeit.R
 import com.elian.computeit.core.domain.repository.AppSettingsRepository
-import com.elian.computeit.core.util.COLLECTION_USERS
+import com.elian.computeit.core.util.constants.COLLECTION_USERS
 import com.elian.computeit.core.util.Resource
 import com.elian.computeit.core.util.SimpleResource
 import com.elian.computeit.core.util.UiText

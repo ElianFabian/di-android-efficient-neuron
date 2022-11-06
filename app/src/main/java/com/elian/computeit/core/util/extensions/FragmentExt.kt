@@ -2,6 +2,7 @@ package com.elian.computeit.core.util.extensions
 
 import android.os.Bundle
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.annotation.ColorRes
 import androidx.annotation.IdRes
 import androidx.annotation.StringRes
@@ -24,5 +25,17 @@ fun Fragment.toast(@StringRes resId: Int, duration: Int = Toast.LENGTH_SHORT)
     Toast.makeText(context, resId, duration).show()
 }
 
-fun Fragment.getColor(@ColorRes id: Int) = ContextCompat.getColor(requireContext(), id)
+fun Fragment.getColorRes(@ColorRes id: Int) = ContextCompat.getColor(requireContext(), id)
+
+fun Fragment.onBackPressed(action: (() -> Unit)? = null) = activity?.onBackPressedDispatcher?.addCallback(
+    object : OnBackPressedCallback(true)
+    {
+        override fun handleOnBackPressed()
+        {
+            action?.invoke()
+        }
+    }
+)
+
+fun Fragment.disableNavigateUp() = onBackPressed()
 

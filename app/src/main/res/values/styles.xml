@@ -84,16 +84,17 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:fontFamily">@font/comfortaa</item>
-        <item name="android:textColor">@color/blue_800</item>
+        <item name="android:textColor">@color/teal_200</item>
         <item name="android:textSize">@dimen/textSize_medium3</item>
     </style>
 
-    <style name="frgEndGame_LabelFor_TextView_Time">
+    <style name="frgEndGame_Label">
         <item name="android:textAppearance">@style/TextAppearance_TextView_Time_Label</item>
     </style>
 
-    <style name="frgEndGame_TextView_Time">
+    <style name="frgEndGame_TexView_Value">
         <item name="android:textAppearance">@style/TextAppearance_TextView_Time</item>
+        <item name="android:includeFontPadding">false</item>
     </style>
 
     <style name="frgTip_Text">
@@ -138,6 +139,11 @@
         <item name="android:includeFontPadding">false</item>
         <item name="android:textAlignment">center</item>
         <item name="android:textColor">@color/blue_800</item>
+    </style>
+    
+    <style name="Theme_frgTestConfiguration_TextInputEditText">
+        <item name="colorControlNormal">@color/gray_400</item>
+        <item name="android:textColorHint">@color/gray_400</item>
     </style>
 
 </resources>

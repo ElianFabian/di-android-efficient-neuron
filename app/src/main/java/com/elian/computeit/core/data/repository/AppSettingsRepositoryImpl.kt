@@ -4,7 +4,7 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import com.elian.computeit.core.domain.repository.AppSettingsRepository
-import com.elian.computeit.core.util.KEY_USER_EMAIL
+import com.elian.computeit.core.util.constants.KEY_USER_EMAIL
 import kotlinx.coroutines.flow.first
 import javax.inject.Inject
 

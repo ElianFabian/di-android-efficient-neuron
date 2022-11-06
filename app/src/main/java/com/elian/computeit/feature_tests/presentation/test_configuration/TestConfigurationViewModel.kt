@@ -6,6 +6,10 @@ import com.elian.computeit.R
 import com.elian.computeit.core.data.util.symbolToOperation
 import com.elian.computeit.core.domain.states.NumericFieldState
 import com.elian.computeit.core.util.*
+import com.elian.computeit.core.util.constants.EXTRA_OPERATION_NUMBER_RANGE
+import com.elian.computeit.core.util.constants.EXTRA_OPERATION_TYPE
+import com.elian.computeit.core.util.constants.EXTRA_TEST_COUNT
+import com.elian.computeit.core.util.constants.EXTRA_TEST_TIME_IN_SECONDS
 import com.elian.computeit.feature_tests.data.models.Range
 import com.elian.computeit.feature_tests.presentation.test_configuration.TestConfigurationAction.*
 import com.elian.computeit.feature_tests.presentation.test_configuration.TestConfigurationEvent.OnPlay

@@ -1,16 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.appcompat.widget.LinearLayoutCompat
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
 
     android:id="@+id/frameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background_dark"
-    android:orientation="vertical"
-
-    tools:context=".feature_tests.presentation.test_configuration.TestConfigurationFragment">
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/tvTitle"
@@ -116,7 +113,7 @@
                 android:inputType="number"
                 android:maxLength="4"
                 android:minHeight="48dp"
-                tools:text="" />
+                android:theme="@style/Theme_frgTestConfiguration_TextInputEditText" />
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/tietMaxValue"
@@ -127,7 +124,7 @@
                 android:inputType="number"
                 android:maxLength="4"
                 android:minHeight="48dp"
-                tools:text="" />
+                android:theme="@style/Theme_frgTestConfiguration_TextInputEditText" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -155,16 +152,16 @@
             <!--                android:entries="@array/test_modes" />-->
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/et_test_count_or_time"
+                android:id="@+id/etTime"
                 android:layout_width="@dimen/_90sdp"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:hint="@string/generic_seconds"
                 android:inputType="number"
-                android:maxLength="3" />
+                android:maxLength="3"
+                android:theme="@style/Theme_frgTestConfiguration_TextInputEditText" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
-
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 

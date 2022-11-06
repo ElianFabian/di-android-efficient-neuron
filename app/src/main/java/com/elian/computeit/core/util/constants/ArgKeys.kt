@@ -1,4 +1,4 @@
-package com.elian.computeit.core.util
+package com.elian.computeit.core.util.constants
 
 /** @see com.elian.computeit.feature_tests.data.models.Operation */
 const val EXTRA_OPERATION_TYPE = "EXTRA_OPERATION_TYPE"

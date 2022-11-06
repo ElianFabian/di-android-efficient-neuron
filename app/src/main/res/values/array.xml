@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="test_modes">
-        <item>@string/array_test_modes_tests</item>
-        <item>@string/array_test_modes_time</item>
+        <item>@string/arrayTest_modes_tests</item>
+        <item>@string/arrayTest_modes_time</item>
     </string-array>
 </resources>

@@ -47,7 +47,7 @@ class TestConfigurationFragment : Fragment()
         {
             tietMinValue.addTextChangedListener { setMinValueError(null) }
             tietMaxValue.addTextChangedListener { setMaxValueError(null) }
-            etTestCountOrTime.addTextChangedListener { setTestCountOrTimeError(null) }
+            etTime.addTextChangedListener { setTimeError(null) }
 
             val operationTypeList = rgOperationType.findViewsWithTagOfType<MaterialRadioButton>(R.string.tag_operation_type)
 
@@ -67,7 +67,7 @@ class TestConfigurationFragment : Fragment()
 
             btnPlay.setOnClickListener()
             {
-                val secondsOrTestCount = etTestCountOrTime.text.toString().toIntOrNull()
+                val secondsOrTestCount = etTime.text.toString().toIntOrNull()
 
                 // TODO: when the project is more advanced I will try to add support for both tests and time modes
 //                when (spnModes.selectedItem as String)
@@ -131,7 +131,7 @@ class TestConfigurationFragment : Fragment()
         }
         collectLatestFlowWhenStarted(viewModel.testCountOrTimeState)
         {
-            setTestCountOrTimeError(when (it.error)
+            setTimeError(when (it.error)
             {
                 is ConfigurationError.ValueEmpty -> getString(R.string.error_cant_be_empty)
                 else                             -> null
@@ -149,9 +149,9 @@ class TestConfigurationFragment : Fragment()
         binding.tietMaxValue.error = error
     }
 
-    private fun setTestCountOrTimeError(error: String?)
+    private fun setTimeError(error: String?)
     {
-        binding.etTestCountOrTime.error = error
+        binding.etTime.error = error
     }
 
     //endregion

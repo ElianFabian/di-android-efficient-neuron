@@ -6,10 +6,10 @@ import androidx.lifecycle.viewModelScope
 import com.elian.computeit.core.data.Operation
 import com.elian.computeit.core.domain.util.CountDownTimer
 import com.elian.computeit.core.domain.util.TimerEvent
-import com.elian.computeit.core.util.EXTRA_OPERATION_NUMBER_RANGE
-import com.elian.computeit.core.util.EXTRA_OPERATION_TYPE
-import com.elian.computeit.core.util.EXTRA_TEST_SESSION_DATA
-import com.elian.computeit.core.util.EXTRA_TEST_TIME_IN_SECONDS
+import com.elian.computeit.core.util.constants.EXTRA_OPERATION_NUMBER_RANGE
+import com.elian.computeit.core.util.constants.EXTRA_OPERATION_TYPE
+import com.elian.computeit.core.util.constants.EXTRA_TEST_SESSION_DATA
+import com.elian.computeit.core.util.constants.EXTRA_TEST_TIME_IN_SECONDS
 import com.elian.computeit.core.util.extensions.append
 import com.elian.computeit.core.util.extensions.clampLength
 import com.elian.computeit.feature_tests.data.models.Range

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <resources>
-    <string name="array_test_modes_tests">Pruebas</string>
-    <string name="array_test_modes_time">Tiempo</string>
+    <string name="arrayTest_modes_tests">Pruebas</string>
+    <string name="arrayTest_modes_time">Tiempo</string>
 
     <string name="error_cant_be_empty">No puede estar vacío</string>
     <string name="error_email_empty">El email no puede estar vacío</string>
@@ -25,11 +25,10 @@
     <string name="frgEndGame_btnContinue_text">Continuar</string>
     <string name="frgEndGame_tvTimeOrTests_label_tests_text">Tests</string>
     <string name="frgEndGame_tvTimeOrTests_label_time_text">Time</string>
-    <string name="frgEndGame_tvTestsPerSecond_label_text">Pruebas por segundo</string>
 
     <string name="frgFunctions_tvTitle_text">Operaciones</string>
 
-    <string name="frgGameConfiguration_btnPlay_text">JUGAR</string>
+    <string name="frgGameConfiguration_btnPlay_text">Jugar</string>
     <string name="frgGameConfiguration_tietMaxValue_hint">Máximo</string>
     <string name="frgGameConfiguration_tietMinValue_hint">Mínimo</string>
     <string name="frgGameConfiguration_tvMode_text">Modo:</string>
@@ -56,9 +55,11 @@
     <string name="generic_email">Email</string>
     <string name="generic_login">Iniciar sesión</string>
     <string name="generic_password">Contraseña</string>
+    <string name="generic_raw">Bruto</string>
     <string name="generic_register">Registrarse</string>
     <string name="generic_seconds">Segundos</string>
     <string name="generic_tests">Pruebas</string>
+    <string name="generic_tmp">PPM</string>
 
     <string name="navigation_menu_navAboutUs_title">Sobre Nosotros</string>
     <string name="navigation_menu_navHome_title">Inicio</string>

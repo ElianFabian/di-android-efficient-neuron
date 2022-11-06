@@ -19,7 +19,8 @@
         tools:layout="@layout/fragment_test_configuration">
         <action
             android:id="@+id/action_testConfigurationFragment_to_testFragment"
-            app:destination="@id/testFragment" />
+            app:destination="@id/testFragment"
+            app:popUpToInclusive="false" />
         <action android:id="@+id/action_testConfigurationFragment_to_functionsFragment"
             app:destination="@id/operationsFragment" />
     </fragment>
@@ -33,11 +34,18 @@
             app:destination="@id/testEndFragment"
             app:enterAnim="@android:anim/fade_in"
             app:exitAnim="@android:anim/fade_out"
-            app:launchSingleTop="false" />
+            app:launchSingleTop="false"
+            app:popUpToInclusive="false" />
     </fragment>
     <fragment
         android:id="@+id/testEndFragment"
         android:name="com.elian.computeit.feature_tests.presentation.test_end.TestEndFragment"
         android:label="fragment_test_end"
-        tools:layout="@layout/fragment_test_end" />
+        tools:layout="@layout/fragment_test_end" >
+        <action
+            android:id="@+id/action_testEndFragment_to_operationsFragment"
+            app:destination="@id/operationsFragment"
+            app:popUpTo="@id/operationsFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
 </navigation>

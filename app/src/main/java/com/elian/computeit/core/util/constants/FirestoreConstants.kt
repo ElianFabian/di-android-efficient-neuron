@@ -1,4 +1,4 @@
-package com.elian.computeit.core.util
+package com.elian.computeit.core.util.constants
 
 const val COLLECTION_USERS = "users"
 const val COLLECTION_USERS_DATA = "users-data"
