@@ -58,6 +58,7 @@
 
     <string name="generic_confirm_password">Confirm password</string>
     <string name="generic_email">Email</string>
+    <string name="generic_errors">Errors</string>
     <string name="generic_login">Login</string>
     <string name="generic_password">Password</string>
     <string name="generic_raw">Raw</string>

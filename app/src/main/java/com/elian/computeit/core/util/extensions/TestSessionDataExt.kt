@@ -30,3 +30,8 @@ val TestSessionData.speedOverTimeInTpm
     get() = getSpeedOverTimeInTPM { testData, currentSecond ->
         testData.isError.not() && testData.millisSinceStart < currentSecond * 1000
     }
+
+val TestSessionData.rawSpeedInTpm get() = rawSpeedOverTimeInTpm.values.last()
+val TestSessionData.speedInTpm get() = speedOverTimeInTpm.values.last()
+
+val TestSessionData.errorCount get() = testDataList.count { it.isError }

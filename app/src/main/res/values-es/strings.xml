@@ -53,6 +53,7 @@
 
     <string name="generic_confirm_password">Confirmar contraseña</string>
     <string name="generic_email">Email</string>
+    <string name="generic_errors">Errores</string>
     <string name="generic_login">Iniciar sesión</string>
     <string name="generic_password">Contraseña</string>
     <string name="generic_raw">Bruto</string>

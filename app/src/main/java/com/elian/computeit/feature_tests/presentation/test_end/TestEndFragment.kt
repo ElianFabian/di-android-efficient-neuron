@@ -6,15 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import com.elian.computeit.R
-import com.elian.computeit.core.util.extensions.disableNavigateUp
-import com.elian.computeit.core.util.extensions.getColorRes
-import com.elian.computeit.core.util.extensions.navigate
+import com.elian.computeit.core.util.constants.EXTRA_TEST_SESSION_DATA
+import com.elian.computeit.core.util.extensions.*
 import com.elian.computeit.core.util.mp_android_chart.applyDefaultStyle
 import com.elian.computeit.core.util.mp_android_chart.lineAndCirclesColor
 import com.elian.computeit.core.util.mp_android_chart.toEntries
 import com.elian.computeit.databinding.FragmentTestEndBinding
+import com.elian.computeit.feature_tests.data.models.TestSessionData
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import dagger.hilt.android.AndroidEntryPoint
@@ -22,8 +21,8 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class TestEndFragment : Fragment()
 {
-    private val viewModel by viewModels<TestEndViewModel>()
     private lateinit var binding: FragmentTestEndBinding
+    private lateinit var testSessionData: TestSessionData
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?,
@@ -38,6 +37,7 @@ class TestEndFragment : Fragment()
     {
         super.onViewCreated(view, savedInstanceState)
 
+        initData()
         initUi()
     }
 
@@ -47,15 +47,25 @@ class TestEndFragment : Fragment()
 
         disableNavigateUp()
     }
+    
+    private fun initData()
+    {
+        testSessionData = arguments?.getParcelable(EXTRA_TEST_SESSION_DATA)!!
+    }
 
     private fun initUi()
     {
         binding.apply()
         {
-            tvTmp.text = viewModel.getSpeedInTmp().toString()
-            tvRawTmp.text = viewModel.getRawSpeedInTpm().toString()
-            tvTime.text = "${viewModel.getTestTimeInSeconds()} s"
-            tvTests.text = viewModel.getTestCount().toString()
+            testSessionData.apply()
+            {
+                tvTmp.text = "$speedInTpm"
+                tvRawTmp.text = "$rawSpeedInTpm"
+                tvTime.text = "$testTimeInSeconds s"
+                tvTests.text = "${testDataList.size}"
+                tvErrors.text = "$errorCount"
+            }
+
             btnContinue.setOnClickListener { navigate(R.id.action_testEndFragment_to_operationsFragment) }
         }
 
@@ -65,7 +75,7 @@ class TestEndFragment : Fragment()
     private fun initChart()
     {
         val tpmSet = LineDataSet(
-            viewModel.getSpeedOverTimeInTpm().toEntries(),
+            testSessionData.speedOverTimeInTpm.toEntries(),
             getString(R.string.generic_tmp)
         ).applyDefaultStyle().apply()
         {
@@ -73,7 +83,7 @@ class TestEndFragment : Fragment()
         }
 
         val rawTpmSet = LineDataSet(
-            viewModel.getRawSpeedOverTimeInTpm().toEntries(),
+            testSessionData.rawSpeedOverTimeInTpm.toEntries(),
             getString(R.string.generic_raw)
         ).applyDefaultStyle().apply()
         {
