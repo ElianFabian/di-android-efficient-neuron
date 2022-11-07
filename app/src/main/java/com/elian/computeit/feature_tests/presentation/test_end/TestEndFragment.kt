@@ -103,8 +103,8 @@ class TestEndFragment : Fragment()
             isDoubleTapToZoomEnabled = false
             setScaleEnabled(false)
             setTouchEnabled(false)
-            setDrawGridBackground(false)
 
+            setDrawGridBackground(false)
             description.isEnabled = false
             axisRight.isEnabled = false
 
