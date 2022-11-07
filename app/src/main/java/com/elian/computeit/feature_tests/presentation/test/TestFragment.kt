@@ -14,6 +14,8 @@ import com.elian.computeit.core.presentation.MainActivity
 import com.elian.computeit.core.util.constants.EXTRA_OPERATION_TYPE
 import com.elian.computeit.core.util.extensions.*
 import com.elian.computeit.databinding.FragmentTestBinding
+import com.elian.computeit.feature_tests.presentation.test.TestAction.*
+import com.elian.computeit.feature_tests.presentation.test.TestEvent.*
 import com.google.android.material.button.MaterialButton
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
@@ -58,9 +60,9 @@ class TestFragment : Fragment()
 
                 button.setOnClickListener()
                 {
-                    onActionWhenStarted(TestAction.EnterNumber(
+                    viewModel onAction EnterNumber(
                         value = button.text.toString().toInt()
-                    ))
+                    )
                 }
             }
 
@@ -71,8 +73,8 @@ class TestFragment : Fragment()
                 progress = viewModel.millisInFuture.toInt()
             }
 
-            btnNextTest.setOnClickListener { onActionWhenStarted(TestAction.NextTest) }
-            btnClearInput.setOnClickListener { onActionWhenStarted(TestAction.ClearInput) }
+            btnNextTest.setOnClickListener { viewModel onAction NextTest }
+            btnClearInput.setOnClickListener { viewModel onAction ClearInput }
         }
     }
 
@@ -91,7 +93,7 @@ class TestFragment : Fragment()
         {
             when (it)
             {
-                is TestEvent.OnTimerTick   ->
+                is OnTimerTick   ->
                 {
                     val seconds = it.millisUntilFinished.fromMillisToSeconds()
 
@@ -101,7 +103,7 @@ class TestFragment : Fragment()
                         mtvRemainingSeconds.text = seconds.format("%.1f")
                     }
                 }
-                is TestEvent.OnTimerFinish ->
+                is OnTimerFinish ->
                 {
                     navigate(R.id.action_testFragment_to_testEndFragment, bundleOf(*it.args.toTypedArray()))
                 }
@@ -118,10 +120,5 @@ class TestFragment : Fragment()
             binding.tvFirstNumber.text = it.first.toString()
             binding.tvSecondNumber.text = it.second.toString()
         }
-    }
-
-    private fun onActionWhenStarted(action: TestAction)
-    {
-        lifecycleScope.launchWhenStarted { viewModel.onAction(action) }
     }
 }

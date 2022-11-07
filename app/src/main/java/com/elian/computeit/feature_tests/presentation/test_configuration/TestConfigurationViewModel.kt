@@ -5,7 +5,8 @@ import androidx.lifecycle.viewModelScope
 import com.elian.computeit.R
 import com.elian.computeit.core.data.util.symbolToOperation
 import com.elian.computeit.core.domain.states.NumericFieldState
-import com.elian.computeit.core.util.*
+import com.elian.computeit.core.util.Error
+import com.elian.computeit.core.util.UiText
 import com.elian.computeit.core.util.constants.EXTRA_OPERATION_NUMBER_RANGE
 import com.elian.computeit.core.util.constants.EXTRA_OPERATION_TYPE
 import com.elian.computeit.core.util.constants.EXTRA_TEST_COUNT
@@ -41,7 +42,7 @@ class TestConfigurationViewModel @Inject constructor() : ViewModel()
     val testCountOrTimeState = _testCountOrTimeState.asStateFlow()
 
 
-    fun onAction(action: TestConfigurationAction)
+    infix fun onAction(action: TestConfigurationAction)
     {
         when (action)
         {

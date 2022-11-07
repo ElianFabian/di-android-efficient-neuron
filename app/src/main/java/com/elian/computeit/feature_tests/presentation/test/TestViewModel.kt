@@ -101,7 +101,7 @@ class TestViewModel @Inject constructor(
         }
     }
 
-    fun onAction(action: TestAction)
+    infix fun onAction(action: TestAction)
     {
         when (action)
         {

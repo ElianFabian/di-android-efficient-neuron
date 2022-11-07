@@ -6,10 +6,6 @@ import androidx.annotation.StringRes
 
 // https://stackoverflow.com/questions/8817377/android-how-to-find-multiple-views-with-common-attribute
 
-fun ViewGroup.findViewsWithTag(tag: String) = findViewsWithTag(tag, this)
-
-fun ViewGroup.findViewsWithTag(@StringRes tag: Int) = findViewsWithTag(context.getString(tag), this)
-
 private fun findViewsWithTag(tag: String, root: ViewGroup): List<View>
 {
     val views = mutableListOf<View>()
@@ -30,9 +26,11 @@ private fun findViewsWithTag(tag: String, root: ViewGroup): List<View>
     return views
 }
 
-inline fun <reified T : View> ViewGroup.findViewsOfType() = findViewsOfTypeFromRoot<T>(this)
+fun ViewGroup.findViewsWithTag(tag: String) = findViewsWithTag(tag, this)
 
-// This is public because of inline limitations
+fun ViewGroup.findViewsWithTag(@StringRes tag: Int) = findViewsWithTag(context.getString(tag), this)
+
+// It's public because of inline limitations
 @Suppress("UNCHECKED_CAST")
 inline fun <reified T : View> findViewsOfTypeFromRoot(root: ViewGroup): List<T>
 {
@@ -65,11 +63,13 @@ inline fun <reified T : View> findViewsOfTypeFromRoot(root: ViewGroup): List<T>
     return views as List<T>
 }
 
+inline fun <reified T : View> ViewGroup.findViewsOfType() = findViewsOfTypeFromRoot<T>(this)
+
 inline fun <reified T : View> ViewGroup.findViewsWithTagOfType(tag: String) = findViewsWithTagOfType<T>(tag, this)
 
 inline fun <reified T : View> ViewGroup.findViewsWithTagOfType(@StringRes tag: Int) = findViewsWithTagOfType<T>(context.getString(tag), this)
 
-// This is public because of inline limitations
+// It's public because of inline limitations
 @Suppress("UNCHECKED_CAST")
 inline fun <reified T : View> findViewsWithTagOfType(tag: String, root: ViewGroup): List<T>
 {

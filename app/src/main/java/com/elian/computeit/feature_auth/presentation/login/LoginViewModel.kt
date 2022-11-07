@@ -7,7 +7,8 @@ import com.elian.computeit.core.util.Resource
 import com.elian.computeit.core.util.UiText
 import com.elian.computeit.feature_auth.domain.use_case.LoginUseCase
 import com.elian.computeit.feature_auth.presentation.login.LoginAction.*
-import com.elian.computeit.feature_auth.presentation.login.LoginEvent.*
+import com.elian.computeit.feature_auth.presentation.login.LoginEvent.OnLogin
+import com.elian.computeit.feature_auth.presentation.login.LoginEvent.OnShowErrorMessage
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -34,7 +35,7 @@ class LoginViewModel @Inject constructor(
     val passwordState = _passwordState.asStateFlow()
 
 
-    fun onAction(action: LoginAction)
+    infix fun onAction(action: LoginAction)
     {
         when (action)
         {
