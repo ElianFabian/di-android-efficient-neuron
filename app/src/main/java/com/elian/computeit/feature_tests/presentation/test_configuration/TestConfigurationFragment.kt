@@ -65,7 +65,7 @@ class TestConfigurationFragment : Fragment()
                 symbol = operationTypeList.first().text.toString()
             ))
 
-            btnPlay.setOnClickListener()
+            btnStart.setOnClickListener()
             {
                 val secondsOrTestCount = etTime.text.toString().toIntOrNull()
 

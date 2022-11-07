@@ -33,7 +33,6 @@
 
     <string name="frgFunctions_tvTitle_text">Operations</string>
 
-    <string name="frgGameConfiguration_btnPlay_text">PLAY</string>
     <string name="frgGameConfiguration_tietMaxValue_hint">Max</string>
     <string name="frgGameConfiguration_tietMinValue_hint">Min</string>
     <string name="frgGameConfiguration_tvMode_text">Mode:</string>
@@ -64,6 +63,7 @@
     <string name="generic_raw">Raw</string>
     <string name="generic_register">Register</string>
     <string name="generic_seconds">Seconds</string>
+    <string name="generic_start">Start</string>
     <string name="generic_tests">Tests</string>
     <string name="generic_tmp">TPM</string>
 
