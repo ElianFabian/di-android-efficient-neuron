@@ -2,6 +2,6 @@
 <resources>
 
     <dimen name="radio_button_operation_corner_radius">@dimen/_10sdp</dimen>
-    <dimen name="radio_button_operation_stroke_width">@dimen/_2sdp</dimen>
+    <dimen name="radio_button_operation_stroke_width">@dimen/_3sdp</dimen>
 
 </resources>

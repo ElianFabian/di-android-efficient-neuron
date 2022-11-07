@@ -2,7 +2,6 @@
 <resources>
 
     <color name="background_light">@color/blue_200</color>
-<!--    <color name="background_dark">@color/blue_gray_900</color>-->
-    <color name="background_dark">#0a1928</color>
+    <color name="background_dark">@color/blue_gray_600_00</color>
 
 </resources>
