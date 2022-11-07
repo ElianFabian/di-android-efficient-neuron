@@ -1,6 +1,5 @@
 package com.elian.computeit.feature_tests.presentation.test_end
 
-import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,12 +8,9 @@ import androidx.fragment.app.Fragment
 import com.elian.computeit.R
 import com.elian.computeit.core.util.constants.EXTRA_TEST_SESSION_DATA
 import com.elian.computeit.core.util.extensions.*
-import com.elian.computeit.core.util.mp_android_chart.applyDefaultStyle
-import com.elian.computeit.core.util.mp_android_chart.lineAndCirclesColor
-import com.elian.computeit.core.util.mp_android_chart.toEntries
+import com.elian.computeit.core.util.mp_android_chart.*
 import com.elian.computeit.databinding.FragmentTestEndBinding
 import com.elian.computeit.feature_tests.data.models.TestSessionData
-import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -47,7 +43,7 @@ class TestEndFragment : Fragment()
 
         disableNavigateUp()
     }
-    
+
     private fun initData()
     {
         testSessionData = arguments?.getParcelable(EXTRA_TEST_SESSION_DATA)!!
@@ -90,38 +86,16 @@ class TestEndFragment : Fragment()
             lineAndCirclesColor = getColorRes(R.color.teal_700)
         }
 
-        binding.lcTestGraph.apply()
+        binding.lcTestGraph.applyDefaultStyle().apply()
         {
-            data = LineData().apply()
-            {
-                addDataSet(rawTpmSet)
-                addDataSet(tpmSet)
-            }
+            setAllData(
+                rawTpmSet,
+                tpmSet
+            )
 
             animateX(500)
 
-            isDoubleTapToZoomEnabled = false
-            setScaleEnabled(false)
-            setTouchEnabled(false)
-
-            setDrawGridBackground(false)
-            description.isEnabled = false
-            axisRight.isEnabled = false
-
-            xAxis.apply()
-            {
-                setDrawGridLines(false)
-                textColor = Color.WHITE
-            }
-            axisLeft.apply()
-            {
-                setDrawGridLines(false)
-                textColor = Color.WHITE
-            }
-            legend.apply()
-            {
-                textColor = Color.WHITE
-            }
+            disableInteraction()
         }
     }
 }
