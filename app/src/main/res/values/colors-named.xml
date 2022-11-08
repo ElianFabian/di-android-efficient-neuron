@@ -3,5 +3,6 @@
 
     <color name="background_light">@color/blue_200</color>
     <color name="background_dark">@color/blue_gray_600_00</color>
+    <color name="background_line_chart">@color/blue_sapphire</color>
 
 </resources>

@@ -3,6 +3,7 @@
 <resources>
     
     <!-- Most of the colors here are material colors taken from: https://m2.material.io/resources/color/ -->
+    <!-- For custom colors the name will be get from: https://www.color-blindness.com/color-name-hue/ -->
     <!--
     The naming convetion is the same as in the web, but to allow extra colors we use the light and dark versions of the colors.
     To named you have to add and underscore and then 1 if you took the light version and 0 if dark.
@@ -44,5 +45,9 @@
     <color name="blue_gray_600_00">#001c26</color>
     <color name="blue_gray_800">#37474f</color>
     <color name="blue_gray_900">#263238</color>
+    
+    
+    <!-- Custom colors -->
+    <color name="blue_sapphire">#030925</color>
 
 </resources>
