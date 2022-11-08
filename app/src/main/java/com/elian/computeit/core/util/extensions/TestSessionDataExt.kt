@@ -3,9 +3,9 @@ package com.elian.computeit.core.util.extensions
 import com.elian.computeit.feature_tests.data.models.TestData
 import com.elian.computeit.feature_tests.data.models.TestSessionData
 
-
-private fun TestSessionData.getSpeedOverTimeInTPM(
-    testCountCondition: (testData: TestData, currentSecond: Int) -> Boolean,
+private fun TestSessionData.getValuesOverTime(
+    getCountSinceStartFromCondition: (testData: TestData) -> Boolean = { true },
+    getValue: (currentSecond: Int, countSinceStart: Int) -> Float,
 ): Map<Int, Int>
 {
     val start = 1
@@ -13,25 +13,33 @@ private fun TestSessionData.getSpeedOverTimeInTPM(
 
     return (start..end).associateWith { currentSecond ->
 
-        val testCountSinceStart = testDataList.count { testCountCondition(it, currentSecond) }
+        val countSinceStart = testDataList.count()
+        {
+            getCountSinceStartFromCondition(it) && it.millisSinceStart < currentSecond * 1000
+        }
 
-        val velocity = testCountSinceStart / currentSecond.toFloat() * 60
+        val value = getValue(currentSecond, countSinceStart)
 
-        velocity.ifNaNReturnZero().toInt()
+        value.ifNaNReturnZero().toInt()
     }
 }
 
 val TestSessionData.rawSpeedOverTimeInTpm
-    get() = getSpeedOverTimeInTPM { testData, currentSecond ->
-        testData.millisSinceStart < currentSecond * 1000
-    }
+    get() = getValuesOverTime(
+        getValue = { currentSecond, testCountSinceStart ->
+            testCountSinceStart / currentSecond.toFloat() * 60
+        },
+    )
 
 val TestSessionData.speedOverTimeInTpm
-    get() = getSpeedOverTimeInTPM { testData, currentSecond ->
-        testData.isError.not() && testData.millisSinceStart < currentSecond * 1000
-    }
+    get() = getValuesOverTime(
+        getCountSinceStartFromCondition = { it.isError.not() },
+        getValue = { currentSecond, testCountSinceStart ->
+            testCountSinceStart / currentSecond.toFloat() * 60
+        },
+    )
 
 val TestSessionData.rawSpeedInTpm get() = rawSpeedOverTimeInTpm.values.last()
 val TestSessionData.speedInTpm get() = speedOverTimeInTpm.values.last()
-
 val TestSessionData.errorCount get() = testDataList.count { it.isError }
+

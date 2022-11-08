@@ -1,6 +1,5 @@
 package com.elian.computeit.core.util.extensions
 
-import kotlin.math.floor
 import kotlin.math.pow
 
 fun Long.digitCount(): Int
@@ -18,9 +17,6 @@ fun Long.digitCount(): Int
 
     return count
 }
-
-fun Int.digitCount() = this.toLong().digitCount()
-
 
 fun Long.clampLength(maxLength: Int): Long
 {
@@ -45,10 +41,6 @@ fun Long.append(number: Long): Long
 }
 
 fun Int.append(number: Int) = this.toLong().append(number.toLong()).toInt()
-
-
-fun Double.isWholeNumber() = this == floor(this)
-fun Float.isWholeNumber() = this == floor(this)
 
 fun Long.fromMillisToSeconds() = this / 1000f
 
