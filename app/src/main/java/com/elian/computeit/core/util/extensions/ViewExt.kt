@@ -3,7 +3,7 @@ package com.elian.computeit.core.util.extensions
 import android.view.View
 import android.view.animation.AlphaAnimation
 
-fun View.startFadeAnimation(
+fun View.startAlphaAnimation(
     fromAlpha: Float,
     toAlpha: Float,
     duration: Long,

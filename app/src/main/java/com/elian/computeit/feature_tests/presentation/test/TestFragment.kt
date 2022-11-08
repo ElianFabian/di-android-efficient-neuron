@@ -86,7 +86,7 @@ class TestFragment : Fragment()
 
                 val transitionDuration = 600L
 
-                clTouchToStart.startFadeAnimation(
+                clTouchToStart.startAlphaAnimation(
                     fromAlpha = 1F,
                     toAlpha = 0F,
                     duration = transitionDuration
