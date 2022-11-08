@@ -12,6 +12,7 @@ import com.elian.computeit.core.util.constants.EXTRA_TEST_SESSION_DATA
 import com.elian.computeit.core.util.constants.EXTRA_TEST_TIME_IN_SECONDS
 import com.elian.computeit.core.util.extensions.append
 import com.elian.computeit.core.util.extensions.clampLength
+import com.elian.computeit.core.util.extensions.fromMillisToSeconds
 import com.elian.computeit.feature_tests.data.models.Range
 import com.elian.computeit.feature_tests.data.models.TestData
 import com.elian.computeit.feature_tests.data.models.TestSessionData
@@ -83,17 +84,17 @@ class TestViewModel @Inject constructor(
                     is TimerEvent.OnFinish ->
                     {
                         val testSessionData = TestSessionData(
-                            dateInSeconds = System.currentTimeMillis() / 1000,
-                            testTimeInSeconds = _millisSinceStart.toInt() / 1000,
+                            dateInSeconds = System.currentTimeMillis().fromMillisToSeconds().toLong(),
+                            testTimeInSeconds = _millisSinceStart.fromMillisToSeconds().toInt(),
                             testDataList = _testDataList.toList(),
                             range = _range
                         )
 
-                        addTestSessionData(testSessionData)
-
                         _eventFlow.emit(TestEvent.OnTimerFinish(
                             args = listOf(EXTRA_TEST_SESSION_DATA to testSessionData)
                         ))
+
+                        addTestSessionData(testSessionData)
                     }
                     else                   -> Unit
                 }
