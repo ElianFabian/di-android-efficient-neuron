@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AlphaAnimation
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -15,7 +16,8 @@ import com.elian.computeit.core.util.constants.EXTRA_OPERATION_TYPE
 import com.elian.computeit.core.util.extensions.*
 import com.elian.computeit.databinding.FragmentTestBinding
 import com.elian.computeit.feature_tests.presentation.test.TestAction.*
-import com.elian.computeit.feature_tests.presentation.test.TestEvent.*
+import com.elian.computeit.feature_tests.presentation.test.TestEvent.OnTimerFinish
+import com.elian.computeit.feature_tests.presentation.test.TestEvent.OnTimerTick
 import com.google.android.material.button.MaterialButton
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
@@ -42,7 +44,6 @@ class TestFragment : Fragment()
 
         initUi()
         subscribeToEvents()
-        initTimer()
     }
 
     private fun initUi()
@@ -75,15 +76,30 @@ class TestFragment : Fragment()
 
             btnNextTest.setOnClickListener { viewModel onAction NextTest }
             btnClearInput.setOnClickListener { viewModel onAction ClearInput }
-        }
-    }
 
-    private fun initTimer()
-    {
-        lifecycleScope.launch()
-        {
-            delay(1000)
-            viewModel.startTimer()
+            clMain.isClickable = false
+
+            clTouchToStart.setOnClickListener()
+            {
+                clMain.isClickable = true
+                clTouchToStart.isClickable = false
+
+                val transitionDuration = 600L
+
+                val fadeOutAnimation = AlphaAnimation(1f, 0f).apply()
+                {
+                    duration = transitionDuration
+                    fillAfter = true
+                }
+
+                clTouchToStart.startAnimation(fadeOutAnimation)
+
+                lifecycleScope.launch()
+                {
+                    delay(transitionDuration + 150L)
+                    viewModel.startTimer()
+                }
+            }
         }
     }
 

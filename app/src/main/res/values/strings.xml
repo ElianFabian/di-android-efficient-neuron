@@ -50,6 +50,8 @@
     <string name="frgStatistics_tvTimePerGameLabel_text">Time per game</string>
     <string name="frgStatistics_tvTitle_text">Statistics</string>
 
+    <string name="frgTestFragment_touch_to_start">Touch to start</string>
+
     <string name="frgTipManager_tieExample_hint">Example</string>
     <string name="frgTipManager_tieTitle_hint">Title</string>
 

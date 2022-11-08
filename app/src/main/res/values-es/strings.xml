@@ -45,6 +45,8 @@
     <string name="frgStatistics_tvTimePerGameLabel_text">Tiempo por partida</string>
     <string name="frgStatistics_tvTitle_text">Estadísticas</string>
 
+    <string name="frgTestFragment_touch_to_start">Toca para empezar</string>
+
     <string name="frgTipManager_tieExample_hint">Ejemplo</string>
     <string name="frgTipManager_tieTitle_hint">Título</string>
 

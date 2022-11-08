@@ -1,260 +1,291 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/background_dark"
-    android:orientation="vertical"
-    tools:context=".feature_tests.presentation.test.TestFragment">
-
-    <!--region Guide lines-->
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/mGlStart"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="@dimen/_10sdp" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/mGlEnd"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_end="@dimen/_10sdp" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/mGlTop"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="@dimen/_5sdp" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/mGlBottom"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_end="@dimen/_10sdp" />
-    <!--endregion-->
-
-    <FrameLayout
-        android:id="@+id/mTimer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/mLlOperation"
-        app:layout_constraintEnd_toStartOf="@+id/mGlEnd"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="@+id/mGlStart"
-        app:layout_constraintTop_toTopOf="@id/mGlTop"
-        app:layout_constraintVertical_bias="0">
-
-        <com.google.android.material.progressindicator.CircularProgressIndicator
-            android:id="@+id/cpiRemainingSeconds"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:indicatorSize="@dimen/_82sdp"
-            app:trackColor="@color/blue_gray_800"
-            app:trackThickness="@dimen/_6sdp"
-            tools:max="100"
-            tools:progress="75" />
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/mtvRemainingSeconds"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:textColor="@color/white"
-            android:textSize="@dimen/textSize_large1"
-            android:textStyle="bold"
-            tools:text="100.0" />
-
-    </FrameLayout>
+    android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/mLlOperation"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/_26sdp"
-        android:gravity="center"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/mGlEnd"
-        app:layout_constraintStart_toStartOf="@+id/mGlStart"
-        app:layout_constraintTop_toTopOf="@+id/mGlTop"
-        app:layout_constraintVertical_bias="0.16">
+        android:id="@+id/clMain"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background_dark"
+        android:orientation="vertical"
+        tools:context=".feature_tests.presentation.test.TestFragment">
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tvFirstNumber"
+        <!--region Guide lines-->
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/mGlStart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center|top"
-            android:text="\?"
-            android:textColor="@color/white"
-            android:textSize="@dimen/textSize_xlarge2"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/tvOperationSymbol"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="@dimen/_10sdp" />
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tvOperationSymbol"
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/mGlEnd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center|top"
-            android:textColor="@color/white"
-            android:textSize="@dimen/textSize_xlarge2"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="+" />
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="@dimen/_10sdp" />
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tvSecondNumber"
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/mGlTop"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center|top"
-            android:text="\?"
-            android:textColor="@color/white"
-            android:textSize="@dimen/textSize_xlarge2"
-            android:textStyle="bold"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="@dimen/_5sdp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/mGlBottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_end="@dimen/_10sdp" />
+        <!--endregion-->
+
+        <FrameLayout
+            android:id="@+id/mTimer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@+id/mLlOperation"
+            app:layout_constraintEnd_toStartOf="@+id/mGlEnd"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/mGlStart"
+            app:layout_constraintTop_toTopOf="@id/mGlTop"
+            app:layout_constraintVertical_bias="0">
+
+            <com.google.android.material.progressindicator.CircularProgressIndicator
+                android:id="@+id/cpiRemainingSeconds"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:indicatorSize="@dimen/_82sdp"
+                app:trackColor="@color/blue_gray_800"
+                app:trackThickness="@dimen/_6sdp"
+                tools:max="100"
+                tools:progress="75" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/mtvRemainingSeconds"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textColor="@color/white"
+                android:textSize="@dimen/textSize_large1"
+                android:textStyle="bold"
+                tools:text="100.0" />
+
+        </FrameLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/mLlOperation"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_26sdp"
+            android:gravity="center"
+            android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@id/tvOperationSymbol"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintEnd_toStartOf="@+id/mGlEnd"
+            app:layout_constraintStart_toStartOf="@+id/mGlStart"
+            app:layout_constraintTop_toTopOf="@+id/mGlTop"
+            app:layout_constraintVertical_bias="0.16">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvFirstNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|top"
+                android:text="\?"
+                android:textColor="@color/white"
+                android:textSize="@dimen/textSize_xlarge2"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/tvOperationSymbol"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvOperationSymbol"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|top"
+                android:textColor="@color/white"
+                android:textSize="@dimen/textSize_xlarge2"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="+" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvSecondNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|top"
+                android:text="\?"
+                android:textColor="@color/white"
+                android:textSize="@dimen/textSize_xlarge2"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@id/tvOperationSymbol"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tietInput"
+            android:layout_width="@dimen/_200sdp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:backgroundTint="@color/teal_200"
+            android:cursorVisible="false"
+            android:focusable="false"
+            android:fontFamily="@font/comfortaa_bold"
+            android:inputType="none"
+            android:maxLines="1"
+            android:text="0"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="@dimen/textSize_large2"
+            app:layout_constraintBottom_toTopOf="@+id/mGlBottom"
+            app:layout_constraintEnd_toEndOf="@+id/mLlOperation"
+            app:layout_constraintStart_toStartOf="@+id/mLlOperation"
+            app:layout_constraintTop_toBottomOf="@+id/mLlOperation"
+            app:layout_constraintVertical_bias="0.2" />
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/llKeyBoard"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@+id/mGlBottom"
+            app:layout_constraintEnd_toStartOf="@+id/mGlEnd"
+            app:layout_constraintStart_toStartOf="@+id/mGlStart"
+            app:layout_constraintTop_toBottomOf="@+id/tietInput"
+            app:layout_constraintVertical_bias="0.53">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                style="@style/CalculatorButton_Row"
+                android:theme="@style/FragmentTestTheme_CalculatorButtonRow">
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnNextTest"
+                    style="@style/CalculatorButton.Action"
+                    android:layout_span="3"
+                    android:backgroundTint="@color/green_a400"
+                    android:text="&gt;" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                style="@style/CalculatorButton_Row"
+                android:theme="@style/FragmentTestTheme_CalculatorButtonRow">
+
+                <com.google.android.material.button.MaterialButton
+                    style="@style/CalculatorButton.Numeric"
+                    android:tag="@string/tag_numeric_button"
+                    android:text="1" />
+
+                <com.google.android.material.button.MaterialButton
+                    style="@style/CalculatorButton.Numeric"
+                    android:tag="@string/tag_numeric_button"
+                    android:text="2" />
+
+                <com.google.android.material.button.MaterialButton
+                    style="@style/CalculatorButton.Numeric"
+                    android:tag="@string/tag_numeric_button"
+                    android:text="3" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                style="@style/CalculatorButton_Row"
+                android:theme="@style/FragmentTestTheme_CalculatorButtonRow">
+
+                <com.google.android.material.button.MaterialButton
+                    style="@style/CalculatorButton.Numeric"
+                    android:tag="@string/tag_numeric_button"
+                    android:text="4" />
+
+                <com.google.android.material.button.MaterialButton
+                    style="@style/CalculatorButton.Numeric"
+                    android:tag="@string/tag_numeric_button"
+                    android:text="5" />
+
+                <com.google.android.material.button.MaterialButton
+                    style="@style/CalculatorButton.Numeric"
+                    android:tag="@string/tag_numeric_button"
+                    android:text="6" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                style="@style/CalculatorButton_Row"
+                android:theme="@style/FragmentTestTheme_CalculatorButtonRow">
+
+                <com.google.android.material.button.MaterialButton
+                    style="@style/CalculatorButton.Numeric"
+                    android:tag="@string/tag_numeric_button"
+                    android:text="7" />
+
+                <com.google.android.material.button.MaterialButton
+                    style="@style/CalculatorButton.Numeric"
+                    android:tag="@string/tag_numeric_button"
+                    android:text="8" />
+
+                <com.google.android.material.button.MaterialButton
+                    style="@style/CalculatorButton.Numeric"
+                    android:tag="@string/tag_numeric_button"
+                    android:text="9" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                style="@style/CalculatorButton_Row"
+                android:theme="@style/FragmentTestTheme_CalculatorButtonRow">
+
+                <com.google.android.material.button.MaterialButton
+                    style="@style/FragmentTest_CalculatorButton.Numeric"
+                    android:layout_weight="2"
+                    android:tag="@string/tag_numeric_button"
+                    android:text="0" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_clear_input"
+                    style="@style/FragmentTest_CalculatorButton.Action"
+                    android:backgroundTint="@color/red_700"
+                    android:text="&lt;" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/tietInput"
-        android:layout_width="@dimen/_200sdp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:backgroundTint="@color/teal_200"
-        android:cursorVisible="false"
-        android:focusable="false"
-        android:fontFamily="@font/comfortaa_bold"
-        android:inputType="none"
-        android:maxLines="1"
-        android:text="0"
-        android:textAlignment="center"
-        android:textColor="@color/white"
-        android:textSize="@dimen/textSize_large2"
-        app:layout_constraintBottom_toTopOf="@+id/mGlBottom"
-        app:layout_constraintEnd_toEndOf="@+id/mLlOperation"
-        app:layout_constraintStart_toStartOf="@+id/mLlOperation"
-        app:layout_constraintTop_toBottomOf="@+id/mLlOperation"
-        app:layout_constraintVertical_bias="0.2" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clTouchToStart"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0.9"
+        android:background="@color/blue_sapphire"
+        android:gravity="center">
 
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:id="@+id/llKeyBoard"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="@dimen/_20sdp"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/mGlBottom"
-        app:layout_constraintEnd_toStartOf="@+id/mGlEnd"
-        app:layout_constraintStart_toStartOf="@+id/mGlStart"
-        app:layout_constraintTop_toBottomOf="@+id/tietInput"
-        app:layout_constraintVertical_bias="0.53">
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/frgTestFragment_touch_to_start"
+            android:textColor="@color/white"
+            android:textSize="@dimen/textSize_large2"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.32" />
 
-        <androidx.appcompat.widget.LinearLayoutCompat
-            style="@style/CalculatorButton_Row"
-            android:theme="@style/FragmentTestTheme_CalculatorButtonRow">
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnNextTest"
-                style="@style/CalculatorButton.Action"
-                android:layout_span="3"
-                android:backgroundTint="@color/green_a400"
-                android:text="&gt;" />
-        </androidx.appcompat.widget.LinearLayoutCompat>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <androidx.appcompat.widget.LinearLayoutCompat
-            style="@style/CalculatorButton_Row"
-            android:theme="@style/FragmentTestTheme_CalculatorButtonRow">
-
-            <com.google.android.material.button.MaterialButton
-                style="@style/CalculatorButton.Numeric"
-                android:tag="@string/tag_numeric_button"
-                android:text="1" />
-
-            <com.google.android.material.button.MaterialButton
-                style="@style/CalculatorButton.Numeric"
-                android:tag="@string/tag_numeric_button"
-                android:text="2" />
-
-            <com.google.android.material.button.MaterialButton
-                style="@style/CalculatorButton.Numeric"
-                android:tag="@string/tag_numeric_button"
-                android:text="3" />
-
-        </androidx.appcompat.widget.LinearLayoutCompat>
-
-        <androidx.appcompat.widget.LinearLayoutCompat
-            style="@style/CalculatorButton_Row"
-            android:theme="@style/FragmentTestTheme_CalculatorButtonRow">
-
-            <com.google.android.material.button.MaterialButton
-                style="@style/CalculatorButton.Numeric"
-                android:tag="@string/tag_numeric_button"
-                android:text="4" />
-
-            <com.google.android.material.button.MaterialButton
-                style="@style/CalculatorButton.Numeric"
-                android:tag="@string/tag_numeric_button"
-                android:text="5" />
-
-            <com.google.android.material.button.MaterialButton
-                style="@style/CalculatorButton.Numeric"
-                android:tag="@string/tag_numeric_button"
-                android:text="6" />
-
-        </androidx.appcompat.widget.LinearLayoutCompat>
-
-        <androidx.appcompat.widget.LinearLayoutCompat
-            style="@style/CalculatorButton_Row"
-            android:theme="@style/FragmentTestTheme_CalculatorButtonRow">
-
-            <com.google.android.material.button.MaterialButton
-                style="@style/CalculatorButton.Numeric"
-                android:tag="@string/tag_numeric_button"
-                android:text="7" />
-
-            <com.google.android.material.button.MaterialButton
-                style="@style/CalculatorButton.Numeric"
-                android:tag="@string/tag_numeric_button"
-                android:text="8" />
-
-            <com.google.android.material.button.MaterialButton
-                style="@style/CalculatorButton.Numeric"
-                android:tag="@string/tag_numeric_button"
-                android:text="9" />
-        </androidx.appcompat.widget.LinearLayoutCompat>
-
-        <androidx.appcompat.widget.LinearLayoutCompat
-            style="@style/CalculatorButton_Row"
-            android:theme="@style/FragmentTestTheme_CalculatorButtonRow">
-
-            <com.google.android.material.button.MaterialButton
-                style="@style/FragmentTest_CalculatorButton.Numeric"
-                android:layout_weight="2"
-                android:tag="@string/tag_numeric_button"
-                android:text="0" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_clear_input"
-                style="@style/FragmentTest_CalculatorButton.Action"
-                android:backgroundTint="@color/red_700"
-                android:text="&lt;" />
-
-        </androidx.appcompat.widget.LinearLayoutCompat>
-
-    </androidx.appcompat.widget.LinearLayoutCompat>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>
