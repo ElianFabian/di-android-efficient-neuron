@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.AlphaAnimation
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -28,6 +27,8 @@ class TestFragment : Fragment()
 {
     private val viewModel by viewModels<TestViewModel>()
     private lateinit var binding: FragmentTestBinding
+
+    private var hasTestStarted = false
 
 
     override fun onCreateView(
@@ -77,28 +78,30 @@ class TestFragment : Fragment()
             btnNextTest.setOnClickListener { viewModel onAction NextTest }
             btnClearInput.setOnClickListener { viewModel onAction ClearInput }
 
-            clMain.isClickable = false
+            disableScreenInteraction()
 
             clTouchToStart.setOnClickListener()
             {
-                clMain.isClickable = true
-                clTouchToStart.isClickable = false
+                if (hasTestStarted) return@setOnClickListener
 
                 val transitionDuration = 600L
 
-                val fadeOutAnimation = AlphaAnimation(1f, 0f).apply()
-                {
+                clTouchToStart.startFadeAnimation(
+                    fromAlpha = 1F,
+                    toAlpha = 0F,
                     duration = transitionDuration
-                    fillAfter = true
-                }
-
-                clTouchToStart.startAnimation(fadeOutAnimation)
+                )
 
                 lifecycleScope.launch()
                 {
                     delay(transitionDuration + 150L)
+
+                    enableScreenInteraction()
+
                     viewModel.startTimer()
                 }
+
+                hasTestStarted = true
             }
         }
     }
@@ -121,6 +124,8 @@ class TestFragment : Fragment()
                 }
                 is OnTimerFinish ->
                 {
+                    disableScreenInteraction()
+
                     navigate(R.id.action_testFragment_to_testEndFragment, bundleOf(*it.args.toTypedArray()))
                 }
             }
@@ -136,5 +141,15 @@ class TestFragment : Fragment()
             binding.tvFirstNumber.text = it.first.toString()
             binding.tvSecondNumber.text = it.second.toString()
         }
+    }
+
+    private fun enableScreenInteraction()
+    {
+        binding.clTouchToStart.isClickable = false
+    }
+
+    private fun disableScreenInteraction()
+    {
+        binding.clTouchToStart.isClickable = true
     }
 }
