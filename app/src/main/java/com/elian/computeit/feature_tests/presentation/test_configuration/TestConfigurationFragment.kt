@@ -8,6 +8,7 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.elian.computeit.R
+import com.elian.computeit.core.util.Error
 import com.elian.computeit.core.util.extensions.*
 import com.elian.computeit.databinding.FragmentTestConfigurationBinding
 import com.elian.computeit.feature_tests.presentation.test_configuration.TestConfigurationAction.*
@@ -113,27 +114,21 @@ class TestConfigurationFragment : Fragment()
         }
         collectLatestFlowWhenStarted(viewModel.minValueState)
         {
-            binding.tietMinValue.error = when (it.error)
-            {
-                is ConfigurationError.ValueEmpty -> getString(R.string.error_cant_be_empty)
-                else                             -> null
-            }
+            binding.tietMinValue.error = getFieldError(it.error)
         }
         collectLatestFlowWhenStarted(viewModel.maxValueState)
         {
-            binding.tietMaxValue.error = when (it.error)
-            {
-                is ConfigurationError.ValueEmpty -> getString(R.string.error_cant_be_empty)
-                else                             -> null
-            }
+            binding.tietMaxValue.error = getFieldError(it.error)
         }
         collectLatestFlowWhenStarted(viewModel.testCountOrTimeState)
         {
-            binding.etTime.error = when (it.error)
-            {
-                is ConfigurationError.ValueEmpty -> getString(R.string.error_cant_be_empty)
-                else                             -> null
-            }
+            binding.etTime.error = getFieldError(it.error)
         }
+    }
+
+    private fun getFieldError(error: Error?) = when (error)
+    {
+        is ConfigurationError.ValueEmpty -> getString(R.string.error_cant_be_empty)
+        else                             -> null
     }
 }
