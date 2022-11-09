@@ -71,9 +71,7 @@ class RegisterActivity : AppCompatActivity()
             binding.tilEmail.error2 = when (it.error)
             {
                 is AuthError.ValueEmpty   -> getString(R.string.error_email_empty)
-                is AuthError.ValueInvalid -> String.format(
-                    getString(R.string.error_email_invalid), it.error.example
-                )
+                is AuthError.ValueInvalid -> getString(R.string.error_email_invalid).format(it.error.example)
                 else                      -> null
             }
         }
@@ -82,15 +80,9 @@ class RegisterActivity : AppCompatActivity()
             binding.tilPassword.error2 = when (it.error)
             {
                 is AuthError.ValueEmpty    -> getString(R.string.error_password_empty)
-                is AuthError.ValueTooShort -> String.format(
-                    getString(R.string.error_too_short), it.error.minLength
-                )
-                is AuthError.ValueInvalid  -> String.format(
-                    getString(R.string.error_password_invalid), it.error.minCharacterCount, it.error.validCharacters
-                )
-                is AuthError.ValueTooLong  -> String.format(
-                    getString(R.string.error_too_long), it.error.maxLength
-                )
+                is AuthError.ValueTooShort -> getString(R.string.error_too_short).format(it.error.minLength)
+                is AuthError.ValueInvalid  -> getString(R.string.error_password_invalid).format(it.error.minCharacterCount, it.error.validCharacters)
+                is AuthError.ValueTooLong  -> getString(R.string.error_too_long).format(it.error.maxLength)
                 else                       -> null
             }
         }
