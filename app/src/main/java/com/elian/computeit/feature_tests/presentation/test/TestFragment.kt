@@ -62,9 +62,9 @@ class TestFragment : Fragment()
 
                 button.setOnClickListener()
                 {
-                    viewModel onAction EnterNumber(
+                    viewModel.onAction(EnterNumber(
                         value = button.text.toString().toInt()
-                    )
+                    ))
                 }
             }
 
@@ -75,8 +75,8 @@ class TestFragment : Fragment()
                 progress = viewModel.millisInFuture.toInt()
             }
 
-            btnNextTest.setOnClickListener { viewModel onAction NextTest }
-            btnClearInput.setOnClickListener { viewModel onAction ClearInput }
+            btnNextTest.setOnClickListener { viewModel.onAction(NextTest) }
+            btnClearInput.setOnClickListener { viewModel.onAction(ClearInput) }
 
             disableScreenInteraction()
 

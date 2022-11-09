@@ -53,15 +53,15 @@ class TestConfigurationFragment : Fragment()
 
                 radioButton.setOnClickListener()
                 {
-                    viewModel onAction SelectOperationType(
+                    viewModel.onAction(SelectOperationType(
                         symbol = radioButton.text.toString()
-                    )
+                    ))
                 }
             }
 
-            viewModel onAction SelectOperationType(
+            viewModel.onAction(SelectOperationType(
                 symbol = operationTypeList.first().text.toString()
-            )
+            ))
 
             btnStart.setOnClickListener()
             {
@@ -70,18 +70,18 @@ class TestConfigurationFragment : Fragment()
                 // TODO: when the project is more advanced I will try to add support for both tests and time modes
 //                when (spnModes.selectedItem as String)
 //                {
-//                    getString(R.string.array_test_modes_time)  -> viewModel onAction EnterSeconds(secondsOrTestCount)
-//                    getString(R.string.array_test_modes_tests) -> viewModel onAction EnterTestCount(secondsOrTestCount)
+//                    getString(R.string.array_test_modes_time)  -> viewModel.onAction(EnterSeconds(secondsOrTestCount))
+//                    getString(R.string.array_test_modes_tests) -> viewModel.onAction(EnterTestCount(secondsOrTestCount))
 //                }
 
-                viewModel onAction EnterSeconds(seconds)
+                viewModel.onAction(EnterSeconds(seconds))
 
-                viewModel onAction EnterRange(
+                viewModel.onAction(EnterRange(
                     min = tietMinValue.text.toString().toIntOrNull(),
                     max = tietMaxValue.text.toString().toIntOrNull()
-                )
+                ))
 
-                viewModel onAction Play
+                viewModel.onAction(Play)
             }
         }
     }

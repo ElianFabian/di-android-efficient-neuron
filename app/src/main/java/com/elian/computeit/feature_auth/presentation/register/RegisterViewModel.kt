@@ -36,7 +36,7 @@ class RegisterViewModel @Inject constructor(
     val confirmPasswordState = _confirmPasswordState.asStateFlow()
 
 
-    infix fun onAction(action: RegisterAction)
+    fun onAction(action: RegisterAction)
     {
         when (action)
         {

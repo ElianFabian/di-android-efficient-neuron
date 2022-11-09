@@ -42,9 +42,9 @@ class LoginActivity : AppCompatActivity()
 
             btnLogin.setOnClickListener()
             {
-                viewModel onAction EnterEmail(tietEmail.text.toString().trim())
-                viewModel onAction EnterPassword(tietPassword.text.toString().trim())
-                viewModel onAction Login
+                viewModel.onAction(EnterEmail(tietEmail.text.toString().trim()))
+                viewModel.onAction(EnterPassword(tietPassword.text.toString().trim()))
+                viewModel.onAction(Login)
             }
             btnRegister.setOnClickListener { navigateTo<RegisterActivity>() }
         }

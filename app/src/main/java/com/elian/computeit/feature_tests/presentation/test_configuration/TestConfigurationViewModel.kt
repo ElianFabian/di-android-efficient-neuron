@@ -42,7 +42,7 @@ class TestConfigurationViewModel @Inject constructor() : ViewModel()
     val testCountOrTimeState = _testCountOrTimeState.asStateFlow()
 
 
-    infix fun onAction(action: TestConfigurationAction)
+    fun onAction(action: TestConfigurationAction)
     {
         when (action)
         {

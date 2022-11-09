@@ -48,10 +48,10 @@ class RegisterActivity : AppCompatActivity()
 
             btnRegister.setOnClickListener()
             {
-                viewModel onAction EnterEmail(tietEmail.text.toString().trim())
-                viewModel onAction EnterPassword(tietPassword.text.toString().trim())
-                viewModel onAction EnterConfirmPassword(tietConfirmPassword.text.toString().trim())
-                viewModel onAction Register
+                viewModel.onAction(EnterEmail(tietEmail.text.toString().trim()))
+                viewModel.onAction(EnterPassword(tietPassword.text.toString().trim()))
+                viewModel.onAction(EnterConfirmPassword(tietConfirmPassword.text.toString().trim()))
+                viewModel.onAction(Register)
             }
         }
     }

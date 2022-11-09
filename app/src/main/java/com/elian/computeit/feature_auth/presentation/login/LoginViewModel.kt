@@ -35,7 +35,7 @@ class LoginViewModel @Inject constructor(
     val passwordState = _passwordState.asStateFlow()
 
 
-    infix fun onAction(action: LoginAction)
+    fun onAction(action: LoginAction)
     {
         when (action)
         {
