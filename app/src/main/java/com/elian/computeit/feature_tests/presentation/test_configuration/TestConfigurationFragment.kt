@@ -50,6 +50,10 @@ class TestConfigurationFragment : Fragment()
 
             val operationTypeList = rgOperationType.findViewsWithTagOfType<MaterialRadioButton>(R.string.tag_operation_type)
 
+            viewModel.onAction(SelectOperationType(
+                symbol = operationTypeList.first().text.toString()
+            ))
+
             operationTypeList.forEach { radioButton ->
 
                 radioButton.setOnClickListener()
@@ -59,10 +63,6 @@ class TestConfigurationFragment : Fragment()
                     ))
                 }
             }
-
-            viewModel.onAction(SelectOperationType(
-                symbol = operationTypeList.first().text.toString()
-            ))
 
             btnStart.setOnClickListener()
             {
