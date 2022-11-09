@@ -120,7 +120,7 @@ class TestConfigurationFragment : Fragment()
         {
             binding.tietMaxValue.error = getFieldError(it.error)
         }
-        collectLatestFlowWhenStarted(viewModel.testCountOrTimeState)
+        collectLatestFlowWhenStarted(viewModel.testTimeState)
         {
             binding.etTime.error = getFieldError(it.error)
         }

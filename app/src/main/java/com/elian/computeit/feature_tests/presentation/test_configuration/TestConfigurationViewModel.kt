@@ -38,8 +38,8 @@ class TestConfigurationViewModel @Inject constructor() : ViewModel()
     private val _maxValueState = MutableStateFlow(NumericFieldState<Int>())
     val maxValueState = _maxValueState.asStateFlow()
 
-    private val _testCountOrTimeState = MutableStateFlow(NumericFieldState<Int>())
-    val testCountOrTimeState = _testCountOrTimeState.asStateFlow()
+    private val _testTimeState = MutableStateFlow(NumericFieldState<Int>())
+    val testTimeState = _testTimeState.asStateFlow()
 
 
     fun onAction(action: TestConfigurationAction)
@@ -54,7 +54,7 @@ class TestConfigurationViewModel @Inject constructor() : ViewModel()
             }
             is EnterSeconds        ->
             {
-                _testCountOrTimeState.value = _testCountOrTimeState.value.copy(error = getEmptyErrorOrNull(action.seconds))
+                _testTimeState.value = _testTimeState.value.copy(error = getEmptyErrorOrNull(action.seconds))
 
                 if (action.seconds == null) return
 
@@ -63,7 +63,7 @@ class TestConfigurationViewModel @Inject constructor() : ViewModel()
             }
             is EnterTestCount      ->
             {
-                _testCountOrTimeState.value = _testCountOrTimeState.value.copy(error = getEmptyErrorOrNull(action.testCount))
+                _testTimeState.value = _testTimeState.value.copy(error = getEmptyErrorOrNull(action.testCount))
 
                 if (action.testCount == null) return
 
@@ -99,7 +99,7 @@ class TestConfigurationViewModel @Inject constructor() : ViewModel()
                 val isThereAnyError = mutableListOf(
                     _minValueState.value.error,
                     _maxValueState.value.error,
-                    _testCountOrTimeState.value.error,
+                    _testTimeState.value.error,
                 ).run {
                     addAll(_errorsState.value)
                     any { it != null }
