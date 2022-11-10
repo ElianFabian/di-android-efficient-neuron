@@ -101,7 +101,7 @@ class TestConfigurationFragment : Fragment()
                         currentDestination = R.id.testConfigurationFragment,
                     )
                 }
-                is OnShowErrorMessage -> toast(it.error.asString(requireContext()))
+                is OnShowErrorMessage -> toast(it.error.asString(context))
             }
         }
         collectLatestFlowWhenStarted(viewModel.testConfigurationErrorState)
