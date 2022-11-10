@@ -75,7 +75,7 @@ class TestEndFragment : Fragment()
             getString(R.string.generic_tmp)
         ).applyDefaultStyle().apply()
         {
-            lineAndCirclesColor = getColorRes(R.color.teal_200)
+            lineAndCirclesColor = getColor2(R.color.teal_200)
         }
 
         val rawTpmSet = LineDataSet(
@@ -83,7 +83,7 @@ class TestEndFragment : Fragment()
             getString(R.string.generic_raw)
         ).applyDefaultStyle().apply()
         {
-            lineAndCirclesColor = getColorRes(R.color.teal_700)
+            lineAndCirclesColor = getColor2(R.color.teal_700)
         }
 
         binding.lcTestGraph.applyDefaultStyle().apply()
