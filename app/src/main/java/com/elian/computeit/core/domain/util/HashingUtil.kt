@@ -4,5 +4,5 @@ import com.squareup.okhttp.internal.Util
 
 object HashingUtil
 {
-    fun hash(text: String) = Util.shaBase64(text)
+    fun hash(text: String): String = Util.shaBase64(text)
 }
