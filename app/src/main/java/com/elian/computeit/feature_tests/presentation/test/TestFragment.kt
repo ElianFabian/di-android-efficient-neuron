@@ -51,6 +51,8 @@ class TestFragment : Fragment()
 
         binding.apply()
         {
+            disableScreenInteraction()
+
             arguments?.getParcelable<Operation>(EXTRA_OPERATION_TYPE)!!.also()
             {
                 tvOperationSymbol.text = it.symbol
@@ -73,8 +75,6 @@ class TestFragment : Fragment()
 
             btnNextTest.setOnClickListener { viewModel.onAction(NextTest) }
             btnClearInput.setOnClickListener { viewModel.onAction(ClearInput) }
-
-            disableScreenInteraction()
 
             clTouchToStart.setOnClickListenerOnlyOnce()
             {
