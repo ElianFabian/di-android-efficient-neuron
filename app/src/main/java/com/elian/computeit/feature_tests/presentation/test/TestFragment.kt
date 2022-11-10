@@ -62,9 +62,7 @@ class TestFragment : Fragment()
 
                 button.setOnClickListener()
                 {
-                    viewModel.onAction(EnterNumber(
-                        value = button.text.toString().toInt()
-                    ))
+                    viewModel.onAction(EnterNumber(button.text.toString().toInt()))
                 }
             }
 
@@ -84,12 +82,14 @@ class TestFragment : Fragment()
             {
                 if (hasTestStarted) return@setOnClickListener
 
+                hasTestStarted = true
+
                 val transitionDuration = 600L
 
                 clTouchToStart.startAlphaAnimation(
                     fromAlpha = 1F,
                     toAlpha = 0F,
-                    duration = transitionDuration
+                    duration = transitionDuration,
                 )
 
                 lifecycleScope.launch()
@@ -100,8 +100,6 @@ class TestFragment : Fragment()
 
                     viewModel.startTimer()
                 }
-
-                hasTestStarted = true
             }
         }
     }
