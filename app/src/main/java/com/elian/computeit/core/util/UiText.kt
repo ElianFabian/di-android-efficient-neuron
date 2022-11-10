@@ -21,9 +21,6 @@ sealed class UiText
 
     companion object
     {
-        fun unknownError(): UiText
-        {
-            return UiText.StringResource(R.string.error_unknown)
-        }
+        fun unknownError() = StringResource(R.string.error_unknown)
     }
 }
