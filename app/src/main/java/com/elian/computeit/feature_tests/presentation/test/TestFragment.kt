@@ -28,8 +28,6 @@ class TestFragment : Fragment()
     private val viewModel by viewModels<TestViewModel>()
     private lateinit var binding: FragmentTestBinding
 
-    private var hasTestStarted = false
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?,
@@ -78,12 +76,8 @@ class TestFragment : Fragment()
 
             disableScreenInteraction()
 
-            clTouchToStart.setOnClickListener()
+            clTouchToStart.setOnClickListenerOnlyOnce()
             {
-                if (hasTestStarted) return@setOnClickListener
-
-                hasTestStarted = true
-
                 val transitionDuration = 600L
 
                 clTouchToStart.startAlphaAnimation(
