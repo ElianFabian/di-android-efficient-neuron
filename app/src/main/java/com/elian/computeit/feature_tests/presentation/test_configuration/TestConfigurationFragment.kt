@@ -95,7 +95,11 @@ class TestConfigurationFragment : Fragment()
             {
                 is OnPlay             ->
                 {
-                    navigate(R.id.action_testConfigurationFragment_to_testFragment, bundleOf(*it.args.toTypedArray()))
+                    navigateSafe(
+                        action = R.id.action_testConfigurationFragment_to_testFragment,
+                        args = bundleOf(*it.args.toTypedArray()),
+                        currentDestination = R.id.testConfigurationFragment,
+                    )
                 }
                 is OnShowErrorMessage -> toast(it.error.asString(requireContext()))
             }
