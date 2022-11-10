@@ -13,7 +13,7 @@ import androidx.navigation.fragment.findNavController
 fun Fragment.navigate(@IdRes action: Int, args: Bundle? = null) = findNavController().navigate(action, args)
 
 /**
- * Use it in case you have an exception like this:
+ * You may use it in case you have an exception like this:
  *
  * java.lang.IllegalArgumentException: Navigation action/destination id/action_fromFragment_to_toFragment cannot be found from the current destination Destination(id/toFragment)
  */
