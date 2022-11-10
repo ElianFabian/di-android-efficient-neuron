@@ -1,16 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
     app:startDestination="@id/operationsFragment">
 
-    <fragment android:id="@+id/operationsFragment"
+    <fragment
+        android:id="@+id/operationsFragment"
         android:name="com.elian.computeit.ui.OperationsFragment"
         android:label="fragment_operations"
         tools:layout="@layout/fragment_operations">
-        <action android:id="@+id/action_operationsFragment_to_testConfigurationFragment"
-            app:destination="@id/testConfigurationFragment" />
+        <action
+            android:id="@+id/action_operationsFragment_to_testConfigurationFragment"
+            app:destination="@id/testConfigurationFragment"
+            app:enterAnim="@anim/enter_from_end"
+            app:exitAnim="@anim/exit_to_start"
+            app:popEnterAnim="@anim/enter_from_start"
+            app:popExitAnim="@anim/exit_to_end" />
     </fragment>
     <fragment
         android:id="@+id/testConfigurationFragment"
@@ -20,15 +27,16 @@
         <action
             android:id="@+id/action_testConfigurationFragment_to_testFragment"
             app:destination="@id/testFragment"
-            app:popUpToInclusive="false" />
-        <action android:id="@+id/action_testConfigurationFragment_to_functionsFragment"
-            app:destination="@id/operationsFragment" />
+            app:enterAnim="@anim/enter_from_end"
+            app:exitAnim="@anim/exit_to_start"
+            app:popEnterAnim="@anim/enter_from_start"
+            app:popExitAnim="@anim/exit_to_end" />
     </fragment>
     <fragment
         android:id="@+id/testFragment"
         android:name="com.elian.computeit.feature_tests.presentation.test.TestFragment"
         android:label="fragment_test"
-        tools:layout="@layout/fragment_test" >
+        tools:layout="@layout/fragment_test">
         <action
             android:id="@+id/action_testFragment_to_testEndFragment"
             app:destination="@id/testEndFragment"
@@ -41,10 +49,12 @@
         android:id="@+id/testEndFragment"
         android:name="com.elian.computeit.feature_tests.presentation.test_end.TestEndFragment"
         android:label="fragment_test_end"
-        tools:layout="@layout/fragment_test_end" >
+        tools:layout="@layout/fragment_test_end">
         <action
             android:id="@+id/action_testEndFragment_to_operationsFragment"
             app:destination="@id/operationsFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
             app:popUpTo="@id/operationsFragment"
             app:popUpToInclusive="true" />
     </fragment>
