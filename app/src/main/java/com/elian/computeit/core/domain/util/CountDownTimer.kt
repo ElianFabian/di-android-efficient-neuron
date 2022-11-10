@@ -11,6 +11,7 @@ interface CountDownTimer
     fun stop()
     fun resume()
     fun setCoroutineScope(coroutineScope: CoroutineScope)
+
     val timerEvent: SharedFlow<TimerEvent>
     val millisInFuture: Long
     val countDownInterval: Long
