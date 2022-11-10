@@ -90,9 +90,9 @@ class TestFragment : Fragment()
                 {
                     delay(transitionDuration + 150L)
 
-                    enableScreenInteraction()
-
                     viewModel.startTimer()
+
+                    enableScreenInteraction()
                 }
             }
         }
