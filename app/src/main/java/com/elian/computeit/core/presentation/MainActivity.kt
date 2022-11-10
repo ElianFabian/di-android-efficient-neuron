@@ -29,7 +29,6 @@ class MainActivity : AppCompatActivity()
     private lateinit var toggle: ActionBarDrawerToggle
     private var currentFragmentItem: Fragment? = null
 
-    //region Activity Methods
 
     override fun onCreate(savedInstanceState: Bundle?)
     {
@@ -70,9 +69,6 @@ class MainActivity : AppCompatActivity()
         return super.onOptionsItemSelected(item)
     }
 
-    //endregion
-
-    //region Methods
 
     fun disableDrawerLayout() = binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
 
@@ -130,11 +126,9 @@ class MainActivity : AppCompatActivity()
 
         true
     }
-    
+
     private fun goToFragmentAndSetCurrent(fragment: Fragment, args: Bundle? = null)
     {
         currentFragmentItem = goToFragment(fragment, args)
     }
-
-    //endregion
 }
