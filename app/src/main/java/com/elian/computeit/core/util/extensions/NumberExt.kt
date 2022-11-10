@@ -32,7 +32,6 @@ fun Long.clampLength(maxLength: Int): Long
 
 fun Int.clampLength(maxLength: Int) = this.toLong().clampLength(maxLength).toInt()
 
-
 fun Long.append(number: Long): Long
 {
     val power = number.digitCount()
@@ -41,7 +40,5 @@ fun Long.append(number: Long): Long
 }
 
 fun Int.append(number: Int) = this.toLong().append(number.toLong()).toInt()
-
-fun Long.fromMillisToSeconds() = this / 1000f
 
 fun Float.ifNaNReturnZero() = if (isNaN()) 0F else this

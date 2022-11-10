@@ -68,7 +68,7 @@ class TestFragment : Fragment()
                 }
             }
 
-            mtvRemainingSeconds.text = viewModel.millisInFuture.fromMillisToSeconds().toString()
+            mtvRemainingSeconds.text = (viewModel.millisInFuture / 1000F).toString()
             cpiRemainingSeconds.apply()
             {
                 max = viewModel.millisInFuture.toInt()
@@ -114,7 +114,7 @@ class TestFragment : Fragment()
             {
                 is OnTimerTick   ->
                 {
-                    val seconds = it.millisUntilFinished.fromMillisToSeconds()
+                    val seconds = it.millisUntilFinished / 1000F
 
                     binding.apply()
                     {
