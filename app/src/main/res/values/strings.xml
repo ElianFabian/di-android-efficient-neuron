@@ -31,8 +31,6 @@
     <string name="frgEndGame_tvTimeOrTests_label_tests_text">Total tests</string>
     <string name="frgEndGame_tvTimeOrTests_label_time_text">Total time</string>
 
-    <string name="frgFunctions_tvTitle_text">Operations</string>
-
     <string name="frgGameConfiguration_tietMaxValue_hint">Max</string>
     <string name="frgGameConfiguration_tietMinValue_hint">Min</string>
     <string name="frgGameConfiguration_tvMode_text">Mode:</string>

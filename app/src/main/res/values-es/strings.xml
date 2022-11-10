@@ -26,8 +26,6 @@
     <string name="frgEndGame_tvTimeOrTests_label_tests_text">Tests</string>
     <string name="frgEndGame_tvTimeOrTests_label_time_text">Time</string>
 
-    <string name="frgFunctions_tvTitle_text">Operaciones</string>
-
     <string name="frgGameConfiguration_tietMaxValue_hint">Máximo</string>
     <string name="frgGameConfiguration_tietMinValue_hint">Mínimo</string>
     <string name="frgGameConfiguration_tvMode_text">Modo:</string>

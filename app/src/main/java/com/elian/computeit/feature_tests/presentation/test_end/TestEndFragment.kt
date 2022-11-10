@@ -62,7 +62,7 @@ class TestEndFragment : Fragment()
                 tvErrors.text = "$errorCount"
             }
 
-            btnContinue.setOnClickListener { navigate(R.id.action_testEndFragment_to_operationsFragment) }
+            btnContinue.setOnClickListener { navigate(R.id.action_testEndFragment_to_homeFragment) }
         }
 
         initChart()

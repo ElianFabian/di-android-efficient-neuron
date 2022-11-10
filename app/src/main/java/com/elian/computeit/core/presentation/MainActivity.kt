@@ -50,14 +50,14 @@ class MainActivity : AppCompatActivity()
         enableDrawerLayout()
 
         // Goes to Home Fragment unless we are already in, other wise exits the app
-        if (currentFragmentItem is OperationsFragment)
+        if (currentFragmentItem is HomeFragment)
         {
             onBackPressedDispatcher.onBackPressed()
         }
         else
         {
             findNavController(R.id.nav_host_fragment).navigateUp()
-            goToFragmentAndSetCurrent(OperationsFragment())
+            goToFragmentAndSetCurrent(HomeFragment())
         }
     }
 
@@ -94,7 +94,7 @@ class MainActivity : AppCompatActivity()
     {
         lifecycleScope.launch()
         {
-            currentFragmentItem = OperationsFragment()
+            currentFragmentItem = HomeFragment()
         }
     }
 
@@ -116,7 +116,7 @@ class MainActivity : AppCompatActivity()
     {
         when (it.itemId)
         {
-            R.id.navHome       -> goToFragmentAndSetCurrent(OperationsFragment())
+            R.id.navHome       -> goToFragmentAndSetCurrent(HomeFragment())
             R.id.navProfile    -> goToFragmentAndSetCurrent(ProfileFragment())
             R.id.navTips       -> goToFragmentAndSetCurrent(TipListFragment())
             R.id.navStatistics -> goToFragmentAndSetCurrent(StatisticsFragment())

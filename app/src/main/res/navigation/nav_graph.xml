@@ -4,15 +4,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/operationsFragment">
+    app:startDestination="@id/homeFragment">
 
     <fragment
-        android:id="@+id/operationsFragment"
-        android:name="com.elian.computeit.ui.OperationsFragment"
-        android:label="fragment_operations"
-        tools:layout="@layout/fragment_operations">
+        android:id="@+id/homeFragment"
+        android:name="com.elian.computeit.core.presentation.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home">
         <action
-            android:id="@+id/action_operationsFragment_to_testConfigurationFragment"
+            android:id="@+id/action_homeFragment_to_testConfigurationFragment"
             app:destination="@id/testConfigurationFragment"
             app:enterAnim="@anim/enter_from_end"
             app:exitAnim="@anim/exit_to_start"
@@ -51,11 +51,11 @@
         android:label="fragment_test_end"
         tools:layout="@layout/fragment_test_end">
         <action
-            android:id="@+id/action_testEndFragment_to_operationsFragment"
-            app:destination="@id/operationsFragment"
+            android:id="@+id/action_testEndFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
             app:enterAnim="@android:anim/fade_in"
             app:exitAnim="@android:anim/fade_out"
-            app:popUpTo="@id/operationsFragment"
+            app:popUpTo="@id/homeFragment"
             app:popUpToInclusive="true" />
     </fragment>
 </navigation>
