@@ -20,6 +20,7 @@ class TestEndFragment : Fragment()
     private lateinit var binding: FragmentTestEndBinding
     private lateinit var testSessionData: TestSessionData
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?,
     ): View
