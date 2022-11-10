@@ -1,4 +1,4 @@
-package com.elian.computeit.data.model
+package com.elian.computeit.feature_tips.data.models
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

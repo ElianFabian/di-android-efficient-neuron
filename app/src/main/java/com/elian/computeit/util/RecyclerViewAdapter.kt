@@ -5,7 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.recyclerview.widget.RecyclerView
-import kotlin.collections.ArrayList
+import com.elian.computeit.util.RecyclerViewAdapter.*
 
 open class RecyclerViewAdapter<T>(
     @LayoutRes private val itemLayout: Int,

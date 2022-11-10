@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.elian.computeit.R
+import com.elian.computeit.core.util.extensions.navigate
 import com.elian.computeit.databinding.FragmentHomeBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -32,6 +34,6 @@ class HomeFragment : Fragment()
 
     private fun initUi()
     {
-
+        binding.btnGoToConfiguration.setOnClickListener { navigate(R.id.action_homeFragment_to_testConfigurationFragment) }
     }
 }

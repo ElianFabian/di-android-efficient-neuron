@@ -32,7 +32,7 @@ fun LineChart.applyDefaultStyle(): LineChart
     {
         textColor = Color.WHITE
     }
-    
+
     return this
 }
 

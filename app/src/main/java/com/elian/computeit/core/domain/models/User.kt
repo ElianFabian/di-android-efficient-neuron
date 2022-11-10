@@ -1,4 +1,4 @@
-package com.elian.computeit.data.model
+package com.elian.computeit.core.domain.models
 
 import java.util.*
 

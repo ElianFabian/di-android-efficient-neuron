@@ -5,8 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background_dark"
+    android:gravity="center"
     android:orientation="vertical">
 
-
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnGoToConfiguration"
+        android:layout_width="@dimen/_200sdp"
+        android:layout_height="@dimen/_80sdp"
+        android:text="Go to configuration" />
 
 </LinearLayout>
