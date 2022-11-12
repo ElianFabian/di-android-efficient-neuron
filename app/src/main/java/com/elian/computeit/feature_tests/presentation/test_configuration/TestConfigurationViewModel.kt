@@ -72,9 +72,9 @@ class TestConfigurationViewModel @Inject constructor(
                                 EXTRA_OPERATION_TYPE to _selectedOperation,
                                 EXTRA_TEST_TIME_IN_SECONDS to _testTimeState.value.number!!,
                                 EXTRA_OPERATION_NUMBER_RANGE to Range(_minValueState.value.number!!, _maxValueState.value.number!!),
-                            )
+                            ).toList()
 
-                            _eventFlow.emit(OnStart(args = argsToSend.toList()))
+                            _eventFlow.emit(OnStart(args = argsToSend))
                         }
 
                         else                -> Unit
