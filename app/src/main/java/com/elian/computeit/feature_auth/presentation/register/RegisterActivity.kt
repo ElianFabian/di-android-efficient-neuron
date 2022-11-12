@@ -55,17 +55,17 @@ class RegisterActivity : AppCompatActivity()
         }
     }
 
-    private fun subscribeToEvents()
+    private fun subscribeToEvents() = viewModel.apply()
     {
-        collectLatestFlowWhenStarted(viewModel.eventFlow)
+        collectLatestFlowWhenStarted(eventFlow)
         {
             when (it)
             {
                 is OnRegister         -> navigateTo<LoginActivity>()
-                is OnShowErrorMessage -> toast(it.error.asString(this))
+                is OnShowErrorMessage -> toast(it.error.asString(this@RegisterActivity))
             }
         }
-        collectLatestFlowWhenStarted(viewModel.emailState.map { it.error })
+        collectLatestFlowWhenStarted(emailState.map { it.error })
         {
             binding.tilEmail.error2 = when (it)
             {
@@ -74,7 +74,7 @@ class RegisterActivity : AppCompatActivity()
                 else                 -> null
             }
         }
-        collectLatestFlowWhenStarted(viewModel.passwordState.map { it.error })
+        collectLatestFlowWhenStarted(passwordState.map { it.error })
         {
             binding.tilPassword.error2 = when (it)
             {
@@ -85,7 +85,7 @@ class RegisterActivity : AppCompatActivity()
                 else                  -> null
             }
         }
-        collectLatestFlowWhenStarted(viewModel.confirmPasswordState.map { it.error })
+        collectLatestFlowWhenStarted(confirmPasswordState.map { it.error })
         {
             binding.tilConfirmPassword.error2 = when (it)
             {
@@ -94,7 +94,7 @@ class RegisterActivity : AppCompatActivity()
                 else                 -> null
             }
         }
-        collectLatestFlowWhenStarted(viewModel.loadingState)
+        collectLatestFlowWhenStarted(loadingState)
         {
             binding.pbLoading.isVisible = it
         }
