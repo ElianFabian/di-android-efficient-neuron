@@ -67,14 +67,14 @@ class LoginViewModel @Inject constructor(
         loginUseCase(
             email = email,
             password = password
-        ).apply()
+        ).also()
         {
-            _emailState.value = _emailState.value.copy(error = emailError)
-            _passwordState.value = _passwordState.value.copy(error = passwordError)
+            _emailState.value = _emailState.value.copy(error = it.emailError)
+            _passwordState.value = _passwordState.value.copy(error = it.passwordError)
 
-            when (result)
+            when (it.result)
             {
-                is Resource.Error   -> _eventFlow.emit(OnShowErrorMessage(result.uiText ?: UiText.unknownError()))
+                is Resource.Error   -> _eventFlow.emit(OnShowErrorMessage(it.result.uiText ?: UiText.unknownError()))
                 is Resource.Success -> _eventFlow.emit(OnLogin)
 
                 else                -> Unit
