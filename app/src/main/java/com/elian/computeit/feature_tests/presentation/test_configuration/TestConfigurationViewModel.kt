@@ -68,9 +68,7 @@ class TestConfigurationViewModel @Inject constructor(
 
                     when (it.result)
                     {
-                        is Resource.Error   -> _eventFlow.emit(
-                            OnShowErrorMessage(it.result.uiText ?: UiText.unknownError())
-                        )
+                        is Resource.Error   -> _eventFlow.emit(OnShowErrorMessage(it.result.uiText ?: UiText.unknownError()))
                         is Resource.Success ->
                         {
                             val argsToSend = mapOf(
