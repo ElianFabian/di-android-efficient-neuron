@@ -39,14 +39,8 @@ class LoginViewModel @Inject constructor(
     {
         when (action)
         {
-            is EnterEmail    ->
-            {
-                _emailState.value = _emailState.value.copy(text = action.value)
-            }
-            is EnterPassword ->
-            {
-                _passwordState.value = _passwordState.value.copy(text = action.value)
-            }
+            is EnterEmail    -> _emailState.value = _emailState.value.copy(text = action.value, error = null)
+            is EnterPassword -> _passwordState.value = _passwordState.value.copy(text = action.value, error = null)
             is Login         -> viewModelScope.launch()
             {
                 _emailState.value = _emailState.value.copy(error = null)
