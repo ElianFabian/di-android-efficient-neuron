@@ -4,7 +4,6 @@ import android.content.Context
 import androidx.annotation.StringRes
 import com.elian.computeit.R
 
-// From: https://github.com/philipplackner/SocialNetworkTwitch/blob/development/app/src/main/java/com/plcoding/socialnetworktwitch/core/util/UiText.kt
 sealed class UiText
 {
     data class DynamicString(val value: String) : UiText()
