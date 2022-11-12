@@ -15,10 +15,10 @@ fun validateEmail(email: String): AuthError?
 
     return when
     {
-        trimmedEmail.isBlank()                                       -> AuthError.Empty
-        Patterns.EMAIL_ADDRESS.matcher(trimmedEmail).matches().not() -> AuthError.Invalid(example = "abcd@gmail.com")
+        trimmedEmail.isBlank()                                  -> AuthError.Empty
+        !Patterns.EMAIL_ADDRESS.matcher(trimmedEmail).matches() -> AuthError.Invalid(example = "abcd@gmail.com")
 
-        else                                                         -> null
+        else                                                    -> null
     }
 }
 
@@ -28,13 +28,13 @@ fun validatePassword(password: String): AuthError?
 
     return when
     {
-        trimmedPassword.isBlank()                              -> AuthError.Empty
-        trimmedPassword.length < MIN_PASSWORD_LENGTH           -> AuthError.TooShort(minLength = MIN_PASSWORD_LENGTH)
-        trimmedPassword.any { it.isDigit() }.not()             -> AuthError.Invalid(validCharacters = SET_OF_DIGITS, minCharacterCount = 1)
-        trimmedPassword.any { it in SPECIAL_CHARACTERS }.not() -> AuthError.Invalid(validCharacters = SPECIAL_CHARACTERS, minCharacterCount = 1)
-        trimmedPassword.length > MAX_PASSWORD_LENGTH           -> AuthError.TooLong(maxLength = MAX_PASSWORD_LENGTH)
+        trimmedPassword.isBlank()                         -> AuthError.Empty
+        trimmedPassword.length < MIN_PASSWORD_LENGTH      -> AuthError.TooShort(minLength = MIN_PASSWORD_LENGTH)
+        !trimmedPassword.any { it.isDigit() }             -> AuthError.Invalid(validCharacters = SET_OF_DIGITS, minCharacterCount = 1)
+        !trimmedPassword.any { it in SPECIAL_CHARACTERS } -> AuthError.Invalid(validCharacters = SPECIAL_CHARACTERS, minCharacterCount = 1)
+        trimmedPassword.length > MAX_PASSWORD_LENGTH      -> AuthError.TooLong(maxLength = MAX_PASSWORD_LENGTH)
 
-        else                                                   -> null
+        else                                              -> null
     }
 }
 

@@ -33,7 +33,7 @@ val TestSessionData.rawSpeedOverTimeInTpm
 
 val TestSessionData.speedOverTimeInTpm
     get() = getValuesOverTime(
-        getCountSinceStartFromCondition = { it.isError.not() },
+        getCountSinceStartFromCondition = { !it.isError },
         getValue = { currentSecond, testCountSinceStart ->
             testCountSinceStart / currentSecond.toFloat() * 60
         },
