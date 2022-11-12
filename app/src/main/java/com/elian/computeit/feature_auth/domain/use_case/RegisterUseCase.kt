@@ -1,9 +1,6 @@
 package com.elian.computeit.feature_auth.domain.use_case
 
-import com.elian.computeit.core.domain.util.hash
-import com.elian.computeit.core.domain.util.validateConfirmPassword
-import com.elian.computeit.core.domain.util.validateEmail
-import com.elian.computeit.core.domain.util.validatePassword
+import com.elian.computeit.core.domain.util.*
 import com.elian.computeit.feature_auth.domain.models.RegisterResult
 import com.elian.computeit.feature_auth.domain.repository.AuthRepository
 import javax.inject.Inject
@@ -18,7 +15,7 @@ class RegisterUseCase @Inject constructor(
         val passwordError = validatePassword(password)
         val confirmPasswordError = validateConfirmPassword(confirmPassword, password)
 
-        if (emailError != null || passwordError != null || confirmPasswordError != null)
+        if (checkErrors(emailError, passwordError, confirmPasswordError))
         {
             return RegisterResult(
                 emailError = emailError,
