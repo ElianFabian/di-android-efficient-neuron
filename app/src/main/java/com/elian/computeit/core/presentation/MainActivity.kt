@@ -25,8 +25,8 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity()
 {
-    private lateinit var binding: ActivityMainBinding
     private val viewModel by viewModels<MainActivityViewModel>()
+    private lateinit var binding: ActivityMainBinding
 
     private lateinit var toggle: ActionBarDrawerToggle
     private var currentFragment: Fragment? = null
