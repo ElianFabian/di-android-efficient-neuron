@@ -23,7 +23,7 @@ class RegisterUseCase @Inject constructor(
             return RegisterResult(
                 emailError = emailError,
                 passwordError = passwordError,
-                confirmPasswordError = confirmPasswordError
+                confirmPasswordError = confirmPasswordError,
             )
         }
 
