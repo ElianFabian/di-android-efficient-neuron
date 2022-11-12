@@ -14,6 +14,7 @@ import com.elian.computeit.feature_auth.presentation.login.LoginEvent.OnShowErro
 import com.elian.computeit.feature_auth.presentation.register.RegisterActivity
 import com.elian.computeit.feature_auth.presentation.util.AuthError
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.map
 
 @AndroidEntryPoint
 class LoginActivity : AppCompatActivity()
@@ -60,20 +61,20 @@ class LoginActivity : AppCompatActivity()
                 is OnShowErrorMessage -> toast(it.error.asString(this))
             }
         }
-        collectLatestFlowWhenStarted(viewModel.emailState)
+        collectLatestFlowWhenStarted(viewModel.emailState.map { it.error })
         {
-            binding.tilEmail.error2 = when (it.error)
+            binding.tilEmail.error2 = when (it)
             {
-                is AuthError.ValueEmpty -> getString(R.string.error_email_empty)
-                else                    -> null
+                is AuthError.Empty -> getString(R.string.error_email_empty)
+                else               -> null
             }
         }
-        collectLatestFlowWhenStarted(viewModel.passwordState)
+        collectLatestFlowWhenStarted(viewModel.passwordState.map { it.error })
         {
-            binding.tilPassword.error2 = when (it.error)
+            binding.tilPassword.error2 = when (it)
             {
-                is AuthError.ValueEmpty -> getString(R.string.error_password_empty)
-                else                    -> null
+                is AuthError.Empty -> getString(R.string.error_password_empty)
+                else               -> null
             }
         }
         collectLatestFlowWhenStarted(viewModel.loadingState)

@@ -4,6 +4,6 @@ import com.elian.computeit.core.util.Error
 
 sealed class ConfigurationError : Error()
 {
-    object ValueEmpty : ConfigurationError()
+    object Empty : ConfigurationError()
     object RangeValuesAreInverted : ConfigurationError()
 }

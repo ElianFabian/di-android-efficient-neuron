@@ -16,6 +16,7 @@ import com.elian.computeit.feature_tests.presentation.test_configuration.TestCon
 import com.elian.computeit.feature_tests.presentation.test_configuration.TestConfigurationEvent.OnShowErrorMessage
 import com.elian.computeit.feature_tests.presentation.util.ConfigurationError
 import com.google.android.material.radiobutton.MaterialRadioButton
+import kotlinx.coroutines.flow.map
 
 class TestConfigurationFragment : Fragment()
 {
@@ -113,23 +114,23 @@ class TestConfigurationFragment : Fragment()
                 }
             }
         }
-        collectLatestFlowWhenStarted(viewModel.minValueState)
+        collectLatestFlowWhenStarted(viewModel.minValueState.map { it.error })
         {
-            binding.tietMinValue.error = getFieldError(it.error)
+            binding.tietMinValue.error = getFieldError(it)
         }
-        collectLatestFlowWhenStarted(viewModel.maxValueState)
+        collectLatestFlowWhenStarted(viewModel.maxValueState.map { it.error })
         {
-            binding.tietMaxValue.error = getFieldError(it.error)
+            binding.tietMaxValue.error = getFieldError(it)
         }
-        collectLatestFlowWhenStarted(viewModel.testTimeState)
+        collectLatestFlowWhenStarted(viewModel.testTimeState.map { it.error })
         {
-            binding.etTime.error = getFieldError(it.error)
+            binding.etTime.error = getFieldError(it)
         }
     }
 
     private fun getFieldError(error: Error?) = when (error)
     {
-        is ConfigurationError.ValueEmpty -> getString(R.string.error_cant_be_empty)
-        else                             -> null
+        is ConfigurationError.Empty -> getString(R.string.error_cant_be_empty)
+        else                        -> null
     }
 }

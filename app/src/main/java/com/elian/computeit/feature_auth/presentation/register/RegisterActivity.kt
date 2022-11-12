@@ -13,6 +13,7 @@ import com.elian.computeit.feature_auth.presentation.register.RegisterEvent.OnRe
 import com.elian.computeit.feature_auth.presentation.register.RegisterEvent.OnShowErrorMessage
 import com.elian.computeit.feature_auth.presentation.util.AuthError
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.map
 
 @AndroidEntryPoint
 class RegisterActivity : AppCompatActivity()
@@ -66,33 +67,33 @@ class RegisterActivity : AppCompatActivity()
                 is OnShowErrorMessage -> toast(it.error.asString(this))
             }
         }
-        collectLatestFlowWhenStarted(viewModel.emailState)
+        collectLatestFlowWhenStarted(viewModel.emailState.map { it.error })
         {
-            binding.tilEmail.error2 = when (it.error)
+            binding.tilEmail.error2 = when (it)
             {
-                is AuthError.ValueEmpty   -> getString(R.string.error_email_empty)
-                is AuthError.ValueInvalid -> getString(R.string.error_email_invalid).format(it.error.example)
-                else                      -> null
+                is AuthError.Empty   -> getString(R.string.error_email_empty)
+                is AuthError.Invalid -> getString(R.string.error_email_invalid).format(it.example)
+                else                 -> null
             }
         }
-        collectLatestFlowWhenStarted(viewModel.passwordState)
+        collectLatestFlowWhenStarted(viewModel.passwordState.map { it.error })
         {
-            binding.tilPassword.error2 = when (it.error)
+            binding.tilPassword.error2 = when (it)
             {
-                is AuthError.ValueEmpty    -> getString(R.string.error_password_empty)
-                is AuthError.ValueTooShort -> getString(R.string.error_too_short).format(it.error.minLength)
-                is AuthError.ValueInvalid  -> getString(R.string.error_password_invalid).format(it.error.minCharacterCount, it.error.validCharacters)
-                is AuthError.ValueTooLong  -> getString(R.string.error_too_long).format(it.error.maxLength)
-                else                       -> null
+                is AuthError.Empty    -> getString(R.string.error_password_empty)
+                is AuthError.TooShort -> getString(R.string.error_too_short).format(it.minLength)
+                is AuthError.Invalid  -> getString(R.string.error_password_invalid).format(it.minCharacterCount, it.validCharacters)
+                is AuthError.TooLong  -> getString(R.string.error_too_long).format(it.maxLength)
+                else                  -> null
             }
         }
-        collectLatestFlowWhenStarted(viewModel.confirmPasswordState)
+        collectLatestFlowWhenStarted(viewModel.confirmPasswordState.map { it.error })
         {
-            binding.tilConfirmPassword.error2 = when (it.error)
+            binding.tilConfirmPassword.error2 = when (it)
             {
-                is AuthError.ValueEmpty   -> getString(R.string.error_password_empty)
-                is AuthError.ValueInvalid -> getString(R.string.error_passwords_dont_match)
-                else                      -> null
+                is AuthError.Empty   -> getString(R.string.error_password_empty)
+                is AuthError.Invalid -> getString(R.string.error_passwords_dont_match)
+                else                 -> null
             }
         }
         collectLatestFlowWhenStarted(viewModel.loadingState)

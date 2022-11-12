@@ -117,5 +117,5 @@ class TestConfigurationViewModel @Inject constructor() : ViewModel()
         }
     }
 
-    private fun getEmptyErrorOrNull(value: Int?) = if (value == null) ConfigurationError.ValueEmpty else null
+    private fun getEmptyErrorOrNull(value: Int?) = if (value == null) ConfigurationError.Empty else null
 }
