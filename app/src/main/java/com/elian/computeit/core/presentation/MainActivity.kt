@@ -60,7 +60,7 @@ class MainActivity : AppCompatActivity()
         else
         {
             findNavController(R.id.nav_host_fragment).navigateUp()
-            goToFragmentAndSetCurrent(HomeFragment())
+            goTo(HomeFragment())
         }
     }
 
@@ -107,12 +107,12 @@ class MainActivity : AppCompatActivity()
     {
         when (it.itemId)
         {
-            R.id.navHome       -> goToFragmentAndSetCurrent(HomeFragment())
-            R.id.navProfile    -> goToFragmentAndSetCurrent(ProfileFragment())
-            R.id.navTips       -> goToFragmentAndSetCurrent(TipListFragment())
-            R.id.navStatistics -> goToFragmentAndSetCurrent(StatisticsFragment())
-            R.id.navSettings   -> goToFragmentAndSetCurrent(SettingsFragment())
-            R.id.navAboutUs    -> goToFragmentAndSetCurrent(AboutUsFragment())
+            R.id.navHome       -> goTo(HomeFragment())
+            R.id.navProfile    -> goTo(ProfileFragment())
+            R.id.navTips       -> goTo(TipListFragment())
+            R.id.navStatistics -> goTo(StatisticsFragment())
+            R.id.navSettings   -> goTo(SettingsFragment())
+            R.id.navAboutUs    -> goTo(AboutUsFragment())
 
             else               -> error("Trying to go to a non-existing fragment.")
         }
@@ -122,7 +122,7 @@ class MainActivity : AppCompatActivity()
         true
     }
 
-    private fun goToFragmentAndSetCurrent(fragment: Fragment, args: Bundle? = null)
+    private fun goTo(fragment: Fragment, args: Bundle? = null)
     {
         currentFragment = goToFragment(fragment, args)
     }
