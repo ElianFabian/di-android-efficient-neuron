@@ -17,7 +17,10 @@ class LoginUseCase @Inject constructor(
 
         if (emailError != null || passwordError != null)
         {
-            return LoginResult(emailError, passwordError)
+            return LoginResult(
+                emailError = emailError,
+                passwordError = passwordError,
+            )
         }
 
         val hashedPassword = hash(password)
