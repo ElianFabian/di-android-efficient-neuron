@@ -23,8 +23,8 @@ import kotlinx.coroutines.flow.map
 @AndroidEntryPoint
 class RegisterActivity : AppCompatActivity()
 {
-    private lateinit var binding: ActivityRegisterBinding
     private val viewModel by viewModels<RegisterViewModel>()
+    private lateinit var binding: ActivityRegisterBinding
 
 
     override fun onCreate(savedInstanceState: Bundle?)
