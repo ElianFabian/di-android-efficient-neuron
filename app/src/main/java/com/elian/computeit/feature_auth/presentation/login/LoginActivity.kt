@@ -25,8 +25,8 @@ import kotlinx.coroutines.flow.map
 @AndroidEntryPoint
 class LoginActivity : AppCompatActivity()
 {
-    private lateinit var binding: ActivityLoginBinding
     private val viewModel by viewModels<LoginViewModel>()
+    private lateinit var binding: ActivityLoginBinding
 
     override fun onCreate(savedInstanceState: Bundle?)
     {
