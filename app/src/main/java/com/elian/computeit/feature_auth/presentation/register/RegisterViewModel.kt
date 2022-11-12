@@ -67,16 +67,16 @@ class RegisterViewModel @Inject constructor(
             email = email,
             password = password,
             confirmPassword = confirmPassword
-        ).apply()
+        ).also()
         {
-            _emailState.value = _emailState.value.copy(error = emailError)
-            _passwordState.value = _passwordState.value.copy(error = passwordError)
-            _confirmPasswordState.value = _confirmPasswordState.value.copy(error = confirmPasswordError)
+            _emailState.value = _emailState.value.copy(error = it.emailError)
+            _passwordState.value = _passwordState.value.copy(error = it.passwordError)
+            _confirmPasswordState.value = _confirmPasswordState.value.copy(error = it.confirmPasswordError)
 
-            when (result)
+            when (it.result)
             {
                 is Resource.Error   -> _eventFlow.emit(
-                    RegisterEvent.OnShowErrorMessage(result.uiText ?: UiText.unknownError())
+                    RegisterEvent.OnShowErrorMessage(it.result.uiText ?: UiText.unknownError())
                 )
                 is Resource.Success -> _eventFlow.emit(RegisterEvent.OnRegister)
 
