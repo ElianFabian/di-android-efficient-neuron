@@ -79,7 +79,7 @@ class TestConfigurationViewModel @Inject constructor() : ViewModel()
 
                 when
                 {
-                    action.min > action.max || action.max < action.min ->
+                    action.min > action.max ->
                     {
                         viewModelScope.launch()
                         {
