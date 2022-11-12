@@ -34,7 +34,8 @@ class AuthRepositoryImpl @Inject constructor(
         }
         else
         {
-            settings.saveCurrentUserUuid(user.uuid)
+            settings.saveUserUuid(user.uuid)
+            settings.saveUserEmail(user.email)
 
             Resource.Success()
         }

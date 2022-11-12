@@ -17,7 +17,7 @@ class TestDataRepositoryImpl @Inject constructor(
 {
     override suspend fun addTestSessionData(testSessionData: TestSessionData)
     {
-        val userUuid = settings.getCurrentUserUuid()!!
+        val userUuid = settings.getUserUuid()!!
         val userDataRef = firestore.document("$COLLECTION_USERS_DATA/$userUuid")
 
         val listFromServerSize = userDataRef.get().await().data?.size ?: 0
