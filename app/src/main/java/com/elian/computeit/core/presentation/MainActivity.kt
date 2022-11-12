@@ -10,6 +10,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import com.elian.computeit.R
+import com.elian.computeit.core.presentation.MainActivityEvent.OnUserNotLoggedIn
 import com.elian.computeit.core.util.extensions.collectLatestFlowWhenStarted
 import com.elian.computeit.core.util.extensions.goToFragment
 import com.elian.computeit.core.util.extensions.navigateTo
@@ -97,7 +98,7 @@ class MainActivity : AppCompatActivity()
         {
             when (it)
             {
-                is MainActivityEvent.OnUserNotLoggedIn -> navigateTo<LoginActivity>()
+                is OnUserNotLoggedIn -> navigateTo<LoginActivity>()
             }
         }
     }
