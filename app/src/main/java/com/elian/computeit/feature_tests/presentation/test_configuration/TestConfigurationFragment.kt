@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.elian.computeit.R
 import com.elian.computeit.core.util.Error
 import com.elian.computeit.core.util.extensions.*
@@ -40,6 +41,10 @@ class TestConfigurationFragment : Fragment()
 
         initUI()
         subscribeToEvents()
+
+        // For some reason if I don't add this line then when going from TestEndFragment to HomeFragment
+        // navigate up with the back button doesn't work in any fragment.
+        onBackPressed { findNavController().navigateUp() }
     }
 
 
