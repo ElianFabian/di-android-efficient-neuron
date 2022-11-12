@@ -77,9 +77,7 @@ class RegisterViewModel @Inject constructor(
 
             when (it.result)
             {
-                is Resource.Error   -> _eventFlow.emit(
-                    OnShowErrorMessage(it.result.uiText ?: UiText.unknownError())
-                )
+                is Resource.Error   -> _eventFlow.emit(OnShowErrorMessage(it.result.uiText ?: UiText.unknownError()))
                 is Resource.Success -> _eventFlow.emit(OnRegister)
 
                 else                -> Unit
