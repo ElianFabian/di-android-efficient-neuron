@@ -5,9 +5,10 @@ import androidx.lifecycle.viewModelScope
 import com.elian.computeit.core.domain.states.TextFieldState
 import com.elian.computeit.core.util.Resource
 import com.elian.computeit.core.util.UiText
+import com.elian.computeit.core.util.constants.EXTRA_EMAIL
+import com.elian.computeit.core.util.constants.EXTRA_PASSWORD
 import com.elian.computeit.feature_auth.domain.use_case.RegisterUseCase
 import com.elian.computeit.feature_auth.presentation.register.RegisterAction.*
-import com.elian.computeit.feature_auth.presentation.register.RegisterEvent.OnRegister
 import com.elian.computeit.feature_auth.presentation.register.RegisterEvent.OnShowErrorMessage
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -78,7 +79,15 @@ class RegisterViewModel @Inject constructor(
             when (it.result)
             {
                 is Resource.Error   -> _eventFlow.emit(OnShowErrorMessage(it.result.uiText ?: UiText.unknownError()))
-                is Resource.Success -> _eventFlow.emit(OnRegister)
+                is Resource.Success ->
+                {
+                    val argsToSend = mapOf(
+                        EXTRA_EMAIL to _emailState.value.text,
+                        EXTRA_PASSWORD to _passwordState.value.text,
+                    ).toList()
+                    
+                    _eventFlow.emit(RegisterEvent.OnRegister(args = argsToSend))
+                }
 
                 else                -> Unit
             }

@@ -7,6 +7,8 @@ import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
 import com.elian.computeit.R
 import com.elian.computeit.core.presentation.MainActivity
+import com.elian.computeit.core.util.constants.EXTRA_EMAIL
+import com.elian.computeit.core.util.constants.EXTRA_PASSWORD
 import com.elian.computeit.core.util.extensions.collectLatestFlowWhenStarted
 import com.elian.computeit.core.util.extensions.error2
 import com.elian.computeit.core.util.extensions.navigateTo
@@ -47,6 +49,12 @@ class LoginActivity : AppCompatActivity()
 
             btnLogin.setOnClickListener { viewModel.onAction(Login) }
             btnRegister.setOnClickListener { navigateTo<RegisterActivity>() }
+
+            intent.extras?.apply()
+            {
+                tietEmail.setText(getString(EXTRA_EMAIL))
+                tietPassword.setText(getString(EXTRA_PASSWORD))
+            }
         }
     }
 

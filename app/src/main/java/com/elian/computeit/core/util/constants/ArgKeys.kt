@@ -1,5 +1,16 @@
 package com.elian.computeit.core.util.constants
 
+//region Register -> Login
+
+/** @see String */
+const val EXTRA_EMAIL = "EXTRA_EMAIL"
+
+/** @see String */
+const val EXTRA_PASSWORD = "EXTRA_PASSWORD"
+
+//endregion
+
+//region Test Configuration -> Test End
 /** @see com.elian.computeit.feature_tests.data.models.Operation */
 const val EXTRA_OPERATION_TYPE = "EXTRA_OPERATION_TYPE"
 
@@ -11,3 +22,5 @@ const val EXTRA_TEST_TIME_IN_SECONDS = "EXTRA_TEST_TIME_IN_SECONDS"
 
 /** @see com.elian.computeit.feature_tests.data.models.TestSessionData */
 const val EXTRA_TEST_SESSION_DATA = "EXTRA_TEST_SESSION_DATA"
+
+//endregion

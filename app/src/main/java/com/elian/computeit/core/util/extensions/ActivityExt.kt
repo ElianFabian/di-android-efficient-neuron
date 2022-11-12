@@ -2,11 +2,12 @@ package com.elian.computeit.core.util.extensions
 
 import android.app.Activity
 import android.content.Intent
+import android.os.Bundle
 import android.widget.Toast
 
-inline fun <reified T : Activity> Activity.navigateTo()
+inline fun <reified T : Activity> Activity.navigateTo(args: Bundle = Bundle())
 {
-    startActivity(Intent(this, T::class.java))
+    startActivity(Intent(this, T::class.java).putExtras(args))
     finish()
 }
 

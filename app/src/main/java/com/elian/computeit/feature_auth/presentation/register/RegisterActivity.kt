@@ -3,6 +3,7 @@ package com.elian.computeit.feature_auth.presentation.register
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
 import com.elian.computeit.R
@@ -61,7 +62,7 @@ class RegisterActivity : AppCompatActivity()
         {
             when (it)
             {
-                is OnRegister         -> navigateTo<LoginActivity>()
+                is OnRegister         -> navigateTo<LoginActivity>(bundleOf(*it.args.toTypedArray()))
                 is OnShowErrorMessage -> toast(it.error.asString(this@RegisterActivity))
             }
         }
