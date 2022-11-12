@@ -7,6 +7,8 @@ import com.elian.computeit.core.util.Resource
 import com.elian.computeit.core.util.UiText
 import com.elian.computeit.feature_auth.domain.use_case.RegisterUseCase
 import com.elian.computeit.feature_auth.presentation.register.RegisterAction.*
+import com.elian.computeit.feature_auth.presentation.register.RegisterEvent.OnRegister
+import com.elian.computeit.feature_auth.presentation.register.RegisterEvent.OnShowErrorMessage
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -76,9 +78,9 @@ class RegisterViewModel @Inject constructor(
             when (it.result)
             {
                 is Resource.Error   -> _eventFlow.emit(
-                    RegisterEvent.OnShowErrorMessage(it.result.uiText ?: UiText.unknownError())
+                    OnShowErrorMessage(it.result.uiText ?: UiText.unknownError())
                 )
-                is Resource.Success -> _eventFlow.emit(RegisterEvent.OnRegister)
+                is Resource.Success -> _eventFlow.emit(OnRegister)
 
                 else                -> Unit
             }
