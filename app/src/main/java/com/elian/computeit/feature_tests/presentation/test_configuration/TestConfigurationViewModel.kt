@@ -2,35 +2,36 @@ package com.elian.computeit.feature_tests.presentation.test_configuration
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.elian.computeit.R
+import com.elian.computeit.core.data.Operation
 import com.elian.computeit.core.data.util.symbolToOperation
 import com.elian.computeit.core.domain.states.NumericFieldState
-import com.elian.computeit.core.util.Error
+import com.elian.computeit.core.util.Resource
 import com.elian.computeit.core.util.UiText
 import com.elian.computeit.core.util.constants.EXTRA_OPERATION_NUMBER_RANGE
 import com.elian.computeit.core.util.constants.EXTRA_OPERATION_TYPE
-import com.elian.computeit.core.util.constants.EXTRA_TEST_COUNT
 import com.elian.computeit.core.util.constants.EXTRA_TEST_TIME_IN_SECONDS
 import com.elian.computeit.feature_tests.data.models.Range
+import com.elian.computeit.feature_tests.domain.use_case.ValidateFieldsUseCase
 import com.elian.computeit.feature_tests.presentation.test_configuration.TestConfigurationAction.*
-import com.elian.computeit.feature_tests.presentation.test_configuration.TestConfigurationEvent.OnPlay
 import com.elian.computeit.feature_tests.presentation.test_configuration.TestConfigurationEvent.OnShowErrorMessage
-import com.elian.computeit.feature_tests.presentation.util.ConfigurationError
+import com.elian.computeit.feature_tests.presentation.test_configuration.TestConfigurationEvent.OnStart
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asSharedFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class TestConfigurationViewModel @Inject constructor() : ViewModel()
+class TestConfigurationViewModel @Inject constructor(
+    private val validateFields: ValidateFieldsUseCase,
+) : ViewModel()
 {
-    private val argsToSend = mutableMapOf<String, Any>()
-
     private val _eventFlow = MutableSharedFlow<TestConfigurationEvent>()
     val eventFlow = _eventFlow.asSharedFlow()
 
-    private val _errorsState = MutableStateFlow<MutableSet<Error>>(mutableSetOf())
-    val testConfigurationErrorState = _errorsState.asStateFlow() as StateFlow<Set<Error>?>
+    private lateinit var _selectedOperation: Operation
 
     private val _minValueState = MutableStateFlow(NumericFieldState<Int>())
     val minValueState = _minValueState.asStateFlow()
@@ -42,78 +43,49 @@ class TestConfigurationViewModel @Inject constructor() : ViewModel()
     val testTimeState = _testTimeState.asStateFlow()
 
 
-    fun onAction(action: TestConfigurationAction)
+    fun onAction(action: TestConfigurationAction) = viewModelScope.launch()
     {
         when (action)
         {
-            is SelectOperationType ->
-            {
-                val operation = symbolToOperation[action.symbol]!!
-
-                argsToSend[EXTRA_OPERATION_TYPE] = operation
-            }
-            is EnterSeconds        ->
-            {
-                _testTimeState.value = _testTimeState.value.copy(error = getEmptyErrorOrNull(action.seconds))
-
-                if (action.seconds == null) return
-
-                argsToSend[EXTRA_TEST_TIME_IN_SECONDS] = action.seconds
-                argsToSend.remove(EXTRA_TEST_COUNT)
-            }
-            is EnterTestCount      ->
-            {
-                _testTimeState.value = _testTimeState.value.copy(error = getEmptyErrorOrNull(action.testCount))
-
-                if (action.testCount == null) return
-
-                argsToSend[EXTRA_TEST_COUNT] = action.testCount
-                argsToSend.remove(EXTRA_TEST_TIME_IN_SECONDS)
-            }
+            is SelectOperationType -> _selectedOperation = symbolToOperation[action.symbol]!!
+            is EnterSeconds        -> _testTimeState.value = _testTimeState.value.copy(number = action.seconds)
             is EnterRange          ->
             {
-                _minValueState.value = _minValueState.value.copy(error = getEmptyErrorOrNull(action.min))
-                _maxValueState.value = _maxValueState.value.copy(error = getEmptyErrorOrNull(action.max))
-
-                if (action.min == null || action.max == null) return
-
-                when
-                {
-                    action.min > action.max ->
-                    {
-                        viewModelScope.launch()
-                        {
-                            _eventFlow.emit(OnShowErrorMessage(UiText.StringResource(R.string.error_range_values_are_inverted)))
-                            _errorsState.value.add(ConfigurationError.RangeValuesAreInverted)
-                        }
-                        return
-                    }
-                }
-
-                argsToSend[EXTRA_OPERATION_NUMBER_RANGE] = Range(action.min, action.max)
+                _minValueState.value = _minValueState.value.copy(number = action.min)
+                _maxValueState.value = _maxValueState.value.copy(number = action.max)
             }
-            is Play                ->
+            is Start               ->
             {
-                val isThereAnyError = mutableListOf(
-                    _minValueState.value.error,
-                    _maxValueState.value.error,
-                    _testTimeState.value.error,
-                ).run {
-                    addAll(_errorsState.value)
-                    any { it != null }
-                }
-
-                _errorsState.value.clear()
-
-                if (isThereAnyError) return
-
-                viewModelScope.launch()
+                validateFields(
+                    minValue = _minValueState.value.number,
+                    maxValue = _maxValueState.value.number,
+                    testTime = _testTimeState.value.number,
+                ).also()
                 {
-                    _eventFlow.emit(OnPlay(args = argsToSend.toList()))
+                    _minValueState.value = _minValueState.value.copy(error = it.minValueError)
+                    _maxValueState.value = _maxValueState.value.copy(error = it.maxValueError)
+                    _testTimeState.value = _testTimeState.value.copy(error = it.testTimeError)
+
+                    when (it.result)
+                    {
+                        is Resource.Error   -> _eventFlow.emit(
+                            OnShowErrorMessage(it.result.uiText ?: UiText.unknownError())
+                        )
+                        is Resource.Success ->
+                        {
+                            val argsToSend = mapOf(
+                                EXTRA_OPERATION_TYPE to _selectedOperation,
+                                EXTRA_TEST_TIME_IN_SECONDS to _testTimeState.value.number!!,
+                                EXTRA_OPERATION_NUMBER_RANGE to Range(_minValueState.value.number!!, _maxValueState.value.number!!),
+                            )
+
+                            _eventFlow.emit(OnStart(args = argsToSend.toList()))
+                        }
+
+                        else                -> Unit
+                    }
                 }
             }
         }
     }
-
-    private fun getEmptyErrorOrNull(value: Int?) = if (value == null) ConfigurationError.Empty else null
 }

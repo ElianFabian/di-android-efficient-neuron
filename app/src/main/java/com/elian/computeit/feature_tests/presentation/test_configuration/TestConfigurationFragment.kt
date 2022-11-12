@@ -12,12 +12,14 @@ import com.elian.computeit.core.util.Error
 import com.elian.computeit.core.util.extensions.*
 import com.elian.computeit.databinding.FragmentTestConfigurationBinding
 import com.elian.computeit.feature_tests.presentation.test_configuration.TestConfigurationAction.*
-import com.elian.computeit.feature_tests.presentation.test_configuration.TestConfigurationEvent.OnPlay
 import com.elian.computeit.feature_tests.presentation.test_configuration.TestConfigurationEvent.OnShowErrorMessage
-import com.elian.computeit.feature_tests.presentation.util.ConfigurationError
+import com.elian.computeit.feature_tests.presentation.test_configuration.TestConfigurationEvent.OnStart
+import com.elian.computeit.feature_tests.presentation.util.TestConfigurationError
 import com.google.android.material.radiobutton.MaterialRadioButton
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.map
 
+@AndroidEntryPoint
 class TestConfigurationFragment : Fragment()
 {
     private val viewModel by viewModels<TestConfigurationViewModel>()
@@ -67,23 +69,14 @@ class TestConfigurationFragment : Fragment()
 
             btnStart.setOnClickListener()
             {
-                val seconds = etTime.text.toString().toIntOrNull()
-
-                // TODO: when the project is more advanced I will try to add support for both tests and time modes
-//                when (spnModes.selectedItem as String)
-//                {
-//                    getString(R.string.array_test_modes_time)  -> viewModel.onAction(EnterSeconds(secondsOrTestCount))
-//                    getString(R.string.array_test_modes_tests) -> viewModel.onAction(EnterTestCount(secondsOrTestCount))
-//                }
-
-                viewModel.onAction(EnterSeconds(seconds))
+                viewModel.onAction(EnterSeconds(etTime.text.toString().toIntOrNull()))
 
                 viewModel.onAction(EnterRange(
                     min = tietMinValue.text.toString().toIntOrNull(),
                     max = tietMaxValue.text.toString().toIntOrNull()
                 ))
 
-                viewModel.onAction(Play)
+                viewModel.onAction(Start)
             }
         }
     }
@@ -94,7 +87,7 @@ class TestConfigurationFragment : Fragment()
         {
             when (it)
             {
-                is OnPlay             ->
+                is OnStart            ->
                 {
                     navigateSafe(
                         action = R.id.action_testConfigurationFragment_to_testFragment,
@@ -103,15 +96,6 @@ class TestConfigurationFragment : Fragment()
                     )
                 }
                 is OnShowErrorMessage -> toast(it.error.asString(context))
-            }
-        }
-        collectLatestFlowWhenStarted(viewModel.testConfigurationErrorState)
-        {
-            it?.forEach { error ->
-                when (error)
-                {
-                    is ConfigurationError.RangeValuesAreInverted -> toast(R.string.error_range_values_are_inverted)
-                }
             }
         }
         collectLatestFlowWhenStarted(viewModel.minValueState.map { it.error })
@@ -130,7 +114,7 @@ class TestConfigurationFragment : Fragment()
 
     private fun getFieldError(error: Error?) = when (error)
     {
-        is ConfigurationError.Empty -> getString(R.string.error_cant_be_empty)
-        else                        -> null
+        is TestConfigurationError.Empty -> getString(R.string.error_cant_be_empty)
+        else                            -> null
     }
 }
