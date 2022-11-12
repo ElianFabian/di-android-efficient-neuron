@@ -22,9 +22,9 @@ class MainActivityViewModel @Inject constructor(
     {
         viewModelScope.launch()
         {
-            val isUserLoggedIn = settings.getUserUuid() != null
+            val isUserNotLoggedIn = settings.getUserUuid() == null
 
-            if (!isUserLoggedIn) _eventFlow.emit(MainActivityEvent.OnUserNotLoggedIn)
+            if (isUserNotLoggedIn) _eventFlow.emit(MainActivityEvent.OnUserNotLoggedIn)
         }
     }
 }
