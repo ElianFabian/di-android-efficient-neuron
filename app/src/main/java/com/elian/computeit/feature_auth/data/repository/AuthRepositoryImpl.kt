@@ -5,7 +5,7 @@ import com.elian.computeit.core.domain.models.User
 import com.elian.computeit.core.domain.repository.AppSettingsRepository
 import com.elian.computeit.core.util.Resource
 import com.elian.computeit.core.util.SimpleResource
-import com.elian.computeit.core.util.UiText
+import com.elian.computeit.core.util.UiText.StringResource
 import com.elian.computeit.core.util.constants.COLLECTION_USERS
 import com.elian.computeit.feature_auth.domain.repository.AuthRepository
 import com.google.firebase.firestore.FirebaseFirestore
@@ -26,11 +26,11 @@ class AuthRepositoryImpl @Inject constructor(
 
         return if (user == null)
         {
-            Resource.Error(UiText.StringResource(R.string.error_user_doesnt_exist))
+            Resource.Error(StringResource(R.string.error_user_doesnt_exist))
         }
         else if (user.password != password)
         {
-            Resource.Error(UiText.StringResource(R.string.error_password_is_wrong))
+            Resource.Error(StringResource(R.string.error_password_is_wrong))
         }
         else
         {
@@ -42,7 +42,7 @@ class AuthRepositoryImpl @Inject constructor(
 
     override suspend fun register(email: String, password: String): SimpleResource
     {
-        if (getUserByEmail(email) != null) return Resource.Error(UiText.StringResource(R.string.error_user_already_exists))
+        if (getUserByEmail(email) != null) return Resource.Error(StringResource(R.string.error_user_already_exists))
 
         User(
             email = email,
