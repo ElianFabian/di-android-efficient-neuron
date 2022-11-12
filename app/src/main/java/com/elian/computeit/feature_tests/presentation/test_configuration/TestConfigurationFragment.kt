@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -52,10 +53,6 @@ class TestConfigurationFragment : Fragment()
     {
         binding.apply()
         {
-            tietMinValue.onTextChangedClearError()
-            tietMaxValue.onTextChangedClearError()
-            etTime.onTextChangedClearError()
-
             val operationTypeList = rgOperationType.findViewsWithTagOfType<MaterialRadioButton>(R.string.tag_operation_type)
 
             viewModel.onAction(SelectOperationType(
@@ -66,23 +63,15 @@ class TestConfigurationFragment : Fragment()
 
                 radioButton.setOnClickListener()
                 {
-                    viewModel.onAction(SelectOperationType(
-                        symbol = radioButton.text.toString()
-                    ))
+                    viewModel.onAction(SelectOperationType(symbol = radioButton.text.toString()))
                 }
             }
 
-            btnStart.setOnClickListener()
-            {
-                viewModel.onAction(EnterSeconds(etTime.text.toString().toIntOrNull()))
+            tietMinValue.addTextChangedListener { viewModel.onAction(EnterMinValue(it.toString().toIntOrNull())) }
+            tietMaxValue.addTextChangedListener { viewModel.onAction(EnterMaxValue(it.toString().toIntOrNull())) }
+            etTime.addTextChangedListener { viewModel.onAction(EnterTestTime(it.toString().toIntOrNull())) }
 
-                viewModel.onAction(EnterRange(
-                    min = tietMinValue.text.toString().toIntOrNull(),
-                    max = tietMaxValue.text.toString().toIntOrNull()
-                ))
-
-                viewModel.onAction(Start)
-            }
+            btnStart.setOnClickListener { viewModel.onAction(Start) }
         }
     }
 

@@ -4,12 +4,17 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
+import androidx.core.widget.addTextChangedListener
 import com.elian.computeit.R
 import com.elian.computeit.core.presentation.MainActivity
-import com.elian.computeit.core.util.extensions.*
+import com.elian.computeit.core.util.extensions.collectLatestFlowWhenStarted
+import com.elian.computeit.core.util.extensions.error2
+import com.elian.computeit.core.util.extensions.navigateTo
+import com.elian.computeit.core.util.extensions.toast
 import com.elian.computeit.databinding.ActivityLoginBinding
 import com.elian.computeit.feature_auth.presentation.login.LoginAction.*
-import com.elian.computeit.feature_auth.presentation.login.LoginEvent.*
+import com.elian.computeit.feature_auth.presentation.login.LoginEvent.OnLogin
+import com.elian.computeit.feature_auth.presentation.login.LoginEvent.OnShowErrorMessage
 import com.elian.computeit.feature_auth.presentation.register.RegisterActivity
 import com.elian.computeit.feature_auth.presentation.util.AuthError
 import dagger.hilt.android.AndroidEntryPoint
@@ -37,15 +42,10 @@ class LoginActivity : AppCompatActivity()
     {
         binding.apply()
         {
-            tietEmail.onTextChangedClearError2To(tilEmail)
-            tietPassword.onTextChangedClearError2To(tilPassword)
+            tietEmail.addTextChangedListener { viewModel.onAction(EnterEmail(it.toString().trim())) }
+            tietPassword.addTextChangedListener { viewModel.onAction(EnterPassword(it.toString().trim())) }
 
-            btnLogin.setOnClickListener()
-            {
-                viewModel.onAction(EnterEmail(tietEmail.text.toString().trim()))
-                viewModel.onAction(EnterPassword(tietPassword.text.toString().trim()))
-                viewModel.onAction(Login)
-            }
+            btnLogin.setOnClickListener { viewModel.onAction(Login) }
             btnRegister.setOnClickListener { navigateTo<RegisterActivity>() }
         }
     }

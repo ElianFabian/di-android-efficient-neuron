@@ -48,12 +48,9 @@ class TestConfigurationViewModel @Inject constructor(
         when (action)
         {
             is SelectOperationType -> _selectedOperation = symbolToOperation[action.symbol]!!
-            is EnterSeconds        -> _testTimeState.value = _testTimeState.value.copy(number = action.seconds, error = null)
-            is EnterRange          ->
-            {
-                _minValueState.value = _minValueState.value.copy(number = action.min, error = null)
-                _maxValueState.value = _maxValueState.value.copy(number = action.max, error = null)
-            }
+            is EnterTestTime       -> _testTimeState.value = _testTimeState.value.copy(number = action.value, error = null)
+            is EnterMinValue       -> _minValueState.value = _minValueState.value.copy(number = action.value, error = null)
+            is EnterMaxValue       -> _maxValueState.value = _maxValueState.value.copy(number = action.value, error = null)
             is Start               ->
             {
                 validateFields(

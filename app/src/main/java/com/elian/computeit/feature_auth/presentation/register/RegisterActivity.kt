@@ -4,8 +4,12 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
+import androidx.core.widget.addTextChangedListener
 import com.elian.computeit.R
-import com.elian.computeit.core.util.extensions.*
+import com.elian.computeit.core.util.extensions.collectLatestFlowWhenStarted
+import com.elian.computeit.core.util.extensions.error2
+import com.elian.computeit.core.util.extensions.navigateTo
+import com.elian.computeit.core.util.extensions.toast
 import com.elian.computeit.databinding.ActivityRegisterBinding
 import com.elian.computeit.feature_auth.presentation.login.LoginActivity
 import com.elian.computeit.feature_auth.presentation.register.RegisterAction.*
@@ -43,17 +47,11 @@ class RegisterActivity : AppCompatActivity()
     {
         binding.apply()
         {
-            tietEmail.onTextChangedClearError2To(tilEmail)
-            tietPassword.onTextChangedClearError2To(tilPassword)
-            tietConfirmPassword.onTextChangedClearError2To(tilConfirmPassword)
+            tietEmail.addTextChangedListener { viewModel.onAction(EnterEmail(it.toString().trim())) }
+            tietPassword.addTextChangedListener { viewModel.onAction(EnterPassword(it.toString().trim())) }
+            tietConfirmPassword.addTextChangedListener { viewModel.onAction(EnterConfirmPassword(it.toString().trim())) }
 
-            btnRegister.setOnClickListener()
-            {
-                viewModel.onAction(EnterEmail(tietEmail.text.toString().trim()))
-                viewModel.onAction(EnterPassword(tietPassword.text.toString().trim()))
-                viewModel.onAction(EnterConfirmPassword(tietConfirmPassword.text.toString().trim()))
-                viewModel.onAction(Register)
-            }
+            btnRegister.setOnClickListener { viewModel.onAction(Register) }
         }
     }
 
