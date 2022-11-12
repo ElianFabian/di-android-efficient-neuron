@@ -19,7 +19,6 @@ import com.elian.computeit.feature_tests.presentation.test_configuration.TestCon
 import com.elian.computeit.feature_tests.presentation.util.TestConfigurationError
 import com.google.android.material.radiobutton.MaterialRadioButton
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.map
 
 @AndroidEntryPoint
 class TestConfigurationFragment : Fragment()
@@ -92,18 +91,9 @@ class TestConfigurationFragment : Fragment()
                 is OnShowErrorMessage -> toast(it.error.asString(context))
             }
         }
-        collectLatestFlowWhenStarted(viewModel.minValueState.map { it.error })
-        {
-            binding.tietMinValue.error = getFieldError(it)
-        }
-        collectLatestFlowWhenStarted(viewModel.maxValueState.map { it.error })
-        {
-            binding.tietMaxValue.error = getFieldError(it)
-        }
-        collectLatestFlowWhenStarted(viewModel.testTimeState.map { it.error })
-        {
-            binding.etTime.error = getFieldError(it)
-        }
+        collectLatestFlowWhenStarted(viewModel.minValueState) { binding.tietMinValue.error = getFieldError(it.error) }
+        collectLatestFlowWhenStarted(viewModel.maxValueState) { binding.tietMaxValue.error = getFieldError(it.error) }
+        collectLatestFlowWhenStarted(viewModel.testTimeState) { binding.etTime.error = getFieldError(it.error) }
     }
 
     private fun getFieldError(error: Error?) = when (error)
