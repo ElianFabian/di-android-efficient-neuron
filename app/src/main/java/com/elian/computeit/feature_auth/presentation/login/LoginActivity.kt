@@ -84,9 +84,6 @@ class LoginActivity : AppCompatActivity()
                 else               -> null
             }
         }
-        collectLatestFlowWhenStarted(loadingState)
-        {
-            binding.pbLoading.isVisible = it
-        }
+        collectLatestFlowWhenStarted(loadingState) { binding.pbLoading.isVisible = it }
     }
 }
