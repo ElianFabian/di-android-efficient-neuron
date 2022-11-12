@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity()
 
         subscribeToEvents()
 
-        viewModel.tryLoginUser()
+        viewModel.tryLogin()
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)

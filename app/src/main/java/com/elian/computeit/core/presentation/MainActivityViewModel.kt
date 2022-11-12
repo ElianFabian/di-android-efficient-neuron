@@ -18,7 +18,7 @@ class MainActivityViewModel @Inject constructor(
     val eventFlow = _eventFlow.asSharedFlow()
 
 
-    fun tryLoginUser()
+    fun tryLogin()
     {
         viewModelScope.launch()
         {
