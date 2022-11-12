@@ -83,9 +83,7 @@ class TestConfigurationViewModel @Inject constructor() : ViewModel()
                     {
                         viewModelScope.launch()
                         {
-                            _eventFlow.emit(OnShowErrorMessage(UiText.StringResource(
-                                R.string.error_range_values_are_inverted
-                            )))
+                            _eventFlow.emit(OnShowErrorMessage(UiText.StringResource(R.string.error_range_values_are_inverted)))
                             _errorsState.value.add(ConfigurationError.RangeValuesAreInverted)
                         }
                         return
