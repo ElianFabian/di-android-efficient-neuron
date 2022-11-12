@@ -74,9 +74,9 @@ class TestConfigurationFragment : Fragment()
         }
     }
 
-    private fun subscribeToEvents()
+    private fun subscribeToEvents() = viewModel.apply()
     {
-        collectLatestFlowWhenStarted(viewModel.eventFlow)
+        collectLatestFlowWhenStarted(eventFlow)
         {
             when (it)
             {
@@ -91,9 +91,9 @@ class TestConfigurationFragment : Fragment()
                 is OnShowErrorMessage -> toast(it.error.asString(context))
             }
         }
-        collectLatestFlowWhenStarted(viewModel.minValueState) { binding.tietMinValue.error = getFieldError(it.error) }
-        collectLatestFlowWhenStarted(viewModel.maxValueState) { binding.tietMaxValue.error = getFieldError(it.error) }
-        collectLatestFlowWhenStarted(viewModel.testTimeState) { binding.etTime.error = getFieldError(it.error) }
+        collectLatestFlowWhenStarted(minValueState) { binding.tietMinValue.error = getFieldError(it.error) }
+        collectLatestFlowWhenStarted(maxValueState) { binding.tietMaxValue.error = getFieldError(it.error) }
+        collectLatestFlowWhenStarted(testTimeState) { binding.etTime.error = getFieldError(it.error) }
     }
 
     private fun getFieldError(error: Error?) = when (error)
