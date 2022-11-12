@@ -8,7 +8,7 @@ import com.elian.computeit.feature_tests.domain.models.TestConfigurationResult
 import com.elian.computeit.feature_tests.presentation.util.TestConfigurationError
 import javax.inject.Inject
 
-class ValidateFieldsUseCase @Inject constructor()
+class ValidateConfigurationFieldsUseCase @Inject constructor()
 {
     operator fun invoke(
         minValue: Int?,
