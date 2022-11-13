@@ -145,14 +145,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
-            <!--TODO: when the project is more advanced I will try to add support for both tests and time modes-->
-            <!--            <androidx.appcompat.widget.AppCompatSpinner-->
-            <!--                android:id="@+id/spnModes"-->
-            <!--                android:layout_width="@dimen/_90sdp"-->
-            <!--                android:layout_height="@dimen/_40sdp"-->
-            <!--                android:layout_marginEnd="@dimen/_15sdp"-->
-            <!--                android:background="@drawable/shape_spinner_background"-->
-            <!--                android:entries="@array/test_modes" />-->
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/tietTestTime"
