@@ -14,7 +14,7 @@ import androidx.navigation.findNavController
 import com.elian.computeit.R
 import com.elian.computeit.core.presentation.MainActivityEvent.OnUserNotLoggedIn
 import com.elian.computeit.core.presentation.util.NavigationDrawerFragmentTag
-import com.elian.computeit.core.util.extensions.collectLatestFlowWhenStarted
+import com.elian.computeit.core.util.extensions.collectFlowWhenStarted
 import com.elian.computeit.core.util.extensions.goToFragment
 import com.elian.computeit.core.util.extensions.navigateTo
 import com.elian.computeit.databinding.ActivityMainBinding
@@ -88,7 +88,7 @@ class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedList
 
     private fun subscribeToEvents()
     {
-        collectLatestFlowWhenStarted(viewModel.eventFlow)
+        collectFlowWhenStarted(viewModel.eventFlow)
         {
             when (it)
             {
