@@ -9,10 +9,7 @@ import com.elian.computeit.R
 import com.elian.computeit.core.presentation.MainActivity
 import com.elian.computeit.core.util.constants.EXTRA_EMAIL
 import com.elian.computeit.core.util.constants.EXTRA_PASSWORD
-import com.elian.computeit.core.util.extensions.collectLatestFlowWhenStarted
-import com.elian.computeit.core.util.extensions.error2
-import com.elian.computeit.core.util.extensions.navigateTo
-import com.elian.computeit.core.util.extensions.toast
+import com.elian.computeit.core.util.extensions.*
 import com.elian.computeit.databinding.ActivityLoginBinding
 import com.elian.computeit.feature_auth.presentation.login.LoginAction.*
 import com.elian.computeit.feature_auth.presentation.login.LoginEvent.OnLogin
@@ -60,7 +57,7 @@ class LoginActivity : AppCompatActivity()
 
     private fun subscribeToEvents() = viewModel.apply()
     {
-        collectLatestFlowWhenStarted(eventFlow)
+        collectFlowWhenStarted(eventFlow)
         {
             when (it)
             {
