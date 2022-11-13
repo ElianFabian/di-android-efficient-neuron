@@ -140,7 +140,7 @@
         <item name="android:textAlignment">center</item>
         <item name="android:textColor">@color/blue_800</item>
     </style>
-    
+
     <style name="Theme_frgTestConfiguration_TextInputEditText">
         <item name="colorControlNormal">@color/gray_400</item>
         <item name="android:textColorHint">@color/gray_400</item>

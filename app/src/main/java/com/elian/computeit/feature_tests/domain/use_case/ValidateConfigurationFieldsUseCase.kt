@@ -3,7 +3,7 @@ package com.elian.computeit.feature_tests.domain.use_case
 import com.elian.computeit.R
 import com.elian.computeit.core.domain.util.checkIfError
 import com.elian.computeit.core.util.Resource
-import com.elian.computeit.core.util.UiText.*
+import com.elian.computeit.core.util.UiText.StringResource
 import com.elian.computeit.feature_tests.domain.models.TestConfigurationResult
 import com.elian.computeit.feature_tests.presentation.util.TestConfigurationError
 import javax.inject.Inject

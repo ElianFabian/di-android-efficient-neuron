@@ -1,43 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/background_light">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_light">
 
     <LinearLayout
-            android:id="@+id/llMainContainer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:orientation="vertical"
-            tools:context=".feature_tips.presentation.tip_details.TipDetailsFragment">
+        android:id="@+id/llMainContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        tools:context=".feature_tips.presentation.tip_details.TipDetailsFragment">
 
         <TextView
-                android:id="@+id/tvTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginVertical="30dp"
-                android:layout_marginHorizontal="10dp"
-                android:fontFamily="@font/comfortaa"
-                android:textAlignment="center"
-                android:textSize="22sp"
-                android:textColor="@color/black"
-                tools:text="Square of numbers ending in 5" />
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="30dp"
+            android:layout_marginHorizontal="10dp"
+            android:fontFamily="@font/comfortaa"
+            android:textAlignment="center"
+            android:textSize="22sp"
+            android:textColor="@color/black"
+            tools:text="Square of numbers ending in 5" />
 
         <!--region Preview (only visible in editor)-->
         <TextView
-                android:text="Tomamos un número, 35, para elevarlo al cuadrado primero ponemos 25 a la drecha:"
-                android:visibility="gone"
-                style="@style/frgTip_Text"
-                tools:visibility="visible" />
+            android:text="Tomamos un número, 35, para elevarlo al cuadrado primero ponemos 25 a la drecha:"
+            android:visibility="gone"
+            style="@style/frgTip_Text"
+            tools:visibility="visible" />
 
         <TextView
-                android:text="__25"
-                android:visibility="gone"
-                style="@style/frgTip_Number"
-                tools:visibility="visible" />
+            android:text="__25"
+            android:visibility="gone"
+            style="@style/frgTip_Number"
+            tools:visibility="visible" />
         <!--endregion-->
 
     </LinearLayout>

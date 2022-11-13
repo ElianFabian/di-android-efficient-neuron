@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <resources>
-    
+
     <!-- Most of the colors here are material colors taken from: https://m2.material.io/resources/color/ -->
     <!-- For custom colors the name will be get from: https://www.color-blindness.com/color-name-hue/ -->
     <!--
@@ -45,8 +45,8 @@
     <color name="blue_gray_600_00">#001c26</color>
     <color name="blue_gray_800">#37474f</color>
     <color name="blue_gray_900">#263238</color>
-    
-    
+
+
     <!-- Custom colors -->
     <color name="blue_sapphire">#030925</color>
 
