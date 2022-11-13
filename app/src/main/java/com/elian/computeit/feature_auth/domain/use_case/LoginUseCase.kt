@@ -1,6 +1,6 @@
 package com.elian.computeit.feature_auth.domain.use_case
 
-import com.elian.computeit.core.domain.util.checkErrors
+import com.elian.computeit.core.domain.util.checkIfError
 import com.elian.computeit.core.domain.util.hash
 import com.elian.computeit.feature_auth.domain.models.LoginResult
 import com.elian.computeit.feature_auth.domain.repository.AuthRepository
@@ -16,7 +16,7 @@ class LoginUseCase @Inject constructor(
         val emailError = if (email.isBlank()) AuthError.Empty else null
         val passwordError = if (password.isBlank()) AuthError.Empty else null
 
-        if (checkErrors(emailError, passwordError))
+        if (checkIfError(emailError, passwordError))
         {
             return LoginResult(
                 emailError = emailError,

@@ -1,7 +1,7 @@
 package com.elian.computeit.feature_tests.domain.use_case
 
 import com.elian.computeit.R
-import com.elian.computeit.core.domain.util.checkErrors
+import com.elian.computeit.core.domain.util.checkIfError
 import com.elian.computeit.core.util.Resource
 import com.elian.computeit.core.util.UiText.*
 import com.elian.computeit.feature_tests.domain.models.TestConfigurationResult
@@ -20,7 +20,7 @@ class ValidateConfigurationFieldsUseCase @Inject constructor()
         val maxValueError = getFieldError(maxValue)
         val testTimeError = getFieldError(testTime)
 
-        if (checkErrors(minValueError, maxValueError, testTimeError))
+        if (checkIfError(minValueError, maxValueError, testTimeError))
         {
             return TestConfigurationResult(
                 minValueError = minValueError,
