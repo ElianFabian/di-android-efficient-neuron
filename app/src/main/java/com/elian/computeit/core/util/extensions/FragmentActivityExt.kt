@@ -12,7 +12,7 @@ fun FragmentActivity.goToFragment(fragment: Fragment, args: Bundle? = null): Fra
 
     supportFragmentManager
         .beginTransaction()
-        .replace(R.id.nav_host_fragment, fragment)
+        .replace(R.id.navHostFragment, fragment)
         .commit()
 
     return fragment

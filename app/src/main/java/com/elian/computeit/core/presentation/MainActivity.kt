@@ -58,7 +58,7 @@ class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedList
         {
             currentFragment is HomeFragment                -> finish()
             currentFragment is NavigationDrawerFragmentTag -> goTo(HomeFragment())
-            _isNavigateUpEnable                            -> findNavController(R.id.nav_host_fragment).navigateUp()
+            _isNavigateUpEnable                            -> findNavController(R.id.navHostFragment).navigateUp()
         }
     }
 
@@ -81,7 +81,7 @@ class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedList
         binding.drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
 
-        findNavController(R.id.nav_host_fragment).addOnDestinationChangedListener(this)
+        findNavController(R.id.navHostFragment).addOnDestinationChangedListener(this)
 
         initMenuItemListener()
     }
