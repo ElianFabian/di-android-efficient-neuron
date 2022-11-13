@@ -13,7 +13,7 @@ import com.elian.computeit.core.data.Operation
 import com.elian.computeit.core.presentation.MainActivity
 import com.elian.computeit.core.presentation.util.extensions.*
 import com.elian.computeit.core.util.constants.EXTRA_OPERATION_TYPE
-import com.elian.computeit.core.util.extensions.*
+import com.elian.computeit.core.util.extensions.format
 import com.elian.computeit.databinding.FragmentTestBinding
 import com.elian.computeit.feature_tests.presentation.test.TestAction.*
 import com.elian.computeit.feature_tests.presentation.test.TestEvent.OnTimerFinish
@@ -54,7 +54,7 @@ class TestFragment : Fragment()
         {
             disableScreenInteraction()
 
-            arguments?.getParcelable<Operation>(EXTRA_OPERATION_TYPE)!!.also()
+            arguments?.getSerializable(EXTRA_OPERATION_TYPE)!!.let { it as Operation }.also()
             {
                 tvOperationSymbol.text = it.symbol
             }
