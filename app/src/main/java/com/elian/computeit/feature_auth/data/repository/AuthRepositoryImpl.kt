@@ -6,7 +6,6 @@ import com.elian.computeit.core.domain.models.User
 import com.elian.computeit.core.domain.repository.LocalAppDataRepository
 import com.elian.computeit.core.util.Resource
 import com.elian.computeit.core.util.SimpleResource
-import com.elian.computeit.core.util.UiText.StringResource
 import com.elian.computeit.feature_auth.domain.repository.AuthRepository
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.Dispatchers
@@ -26,8 +25,8 @@ class AuthRepositoryImpl @Inject constructor(
 
         return when
         {
-            user == null              -> Resource.Error(StringResource(R.string.error_user_doesnt_exist))
-            user.password != password -> Resource.Error(StringResource(R.string.error_password_is_wrong))
+            user == null              -> Resource.Error(R.string.error_user_doesnt_exist)
+            user.password != password -> Resource.Error(R.string.error_password_is_wrong)
             else                      ->
             {
                 appRepository.saveUserUuid(user.uuid)
@@ -45,8 +44,8 @@ class AuthRepositoryImpl @Inject constructor(
         password: String,
     ): SimpleResource = when
     {
-        getUserByEmail(email) != null       -> Resource.Error(StringResource(R.string.error_email_is_already_in_use))
-        getUserByUsername(username) != null -> Resource.Error(StringResource(R.string.error_username_is_already_in_use))
+        getUserByEmail(email) != null       -> Resource.Error(R.string.error_email_is_already_in_use)
+        getUserByUsername(username) != null -> Resource.Error(R.string.error_username_is_already_in_use)
         else                                ->
         {
             User(

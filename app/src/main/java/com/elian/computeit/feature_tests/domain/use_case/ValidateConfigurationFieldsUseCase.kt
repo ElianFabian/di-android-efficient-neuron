@@ -3,7 +3,6 @@ package com.elian.computeit.feature_tests.domain.use_case
 import com.elian.computeit.R
 import com.elian.computeit.core.domain.util.checkIfError
 import com.elian.computeit.core.util.Resource
-import com.elian.computeit.core.util.UiText.StringResource
 import com.elian.computeit.feature_tests.domain.models.TestConfigurationResult
 import com.elian.computeit.feature_tests.presentation.util.TestConfigurationError
 import javax.inject.Inject
@@ -31,7 +30,7 @@ class ValidateConfigurationFieldsUseCase @Inject constructor()
         if (minValue!! > maxValue!!)
         {
             return TestConfigurationResult(
-                result = Resource.Error(StringResource(R.string.error_range_values_are_inverted))
+                result = Resource.Error(R.string.error_range_values_are_inverted)
             )
         }
         return TestConfigurationResult(result = Resource.Success())
