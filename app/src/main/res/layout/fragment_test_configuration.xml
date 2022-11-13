@@ -155,7 +155,7 @@
             <!--                android:entries="@array/test_modes" />-->
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etTime"
+                android:id="@+id/tietTestTime"
                 android:layout_width="@dimen/_90sdp"
                 android:layout_height="wrap_content"
                 android:gravity="center"

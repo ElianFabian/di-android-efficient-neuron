@@ -67,7 +67,7 @@ class TestConfigurationFragment : Fragment()
 
             tietMinValue.addTextChangedListener { viewModel.onAction(EnterMinValue(it.toString().toIntOrNull())) }
             tietMaxValue.addTextChangedListener { viewModel.onAction(EnterMaxValue(it.toString().toIntOrNull())) }
-            etTime.addTextChangedListener { viewModel.onAction(EnterTestTime(it.toString().toIntOrNull())) }
+            tietTestTime.addTextChangedListener { viewModel.onAction(EnterTestTime(it.toString().toIntOrNull())) }
 
             btnStart.setOnClickListener { viewModel.onAction(Start) }
         }
@@ -92,7 +92,7 @@ class TestConfigurationFragment : Fragment()
         }
         collectLatestFlowWhenStarted(minValueState.map { it.error }) { binding.tietMinValue.error = getFieldError(it) }
         collectLatestFlowWhenStarted(maxValueState.map { it.error }) { binding.tietMaxValue.error = getFieldError(it) }
-        collectLatestFlowWhenStarted(testTimeState.map { it.error }) { binding.etTime.error = getFieldError(it) }
+        collectLatestFlowWhenStarted(testTimeState.map { it.error }) { binding.tietTestTime.error = getFieldError(it) }
     }
 
     private fun getFieldError(error: Error?) = when (error)
