@@ -1,7 +1,6 @@
-package com.elian.computeit.core.util.extensions
+package com.elian.computeit.core.presentation.util.extensions
 
 import com.google.android.material.textfield.TextInputLayout
-
 
 /**
  * Allows the layout to adjust the available space when removing the error.

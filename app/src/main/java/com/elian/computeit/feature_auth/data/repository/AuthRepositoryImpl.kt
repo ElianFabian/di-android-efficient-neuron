@@ -6,7 +6,7 @@ import com.elian.computeit.core.domain.repository.LocalAppDataRepository
 import com.elian.computeit.core.util.Resource
 import com.elian.computeit.core.util.SimpleResource
 import com.elian.computeit.core.util.UiText.StringResource
-import com.elian.computeit.core.util.constants.COLLECTION_USERS
+import com.elian.computeit.core.data.util.constants.COLLECTION_USERS
 import com.elian.computeit.feature_auth.domain.repository.AuthRepository
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.Dispatchers

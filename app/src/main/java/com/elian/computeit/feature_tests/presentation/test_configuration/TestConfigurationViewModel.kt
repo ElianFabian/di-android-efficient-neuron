@@ -3,7 +3,7 @@ package com.elian.computeit.feature_tests.presentation.test_configuration
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.elian.computeit.core.data.Operation
-import com.elian.computeit.core.data.util.symbolToOperation
+import com.elian.computeit.core.domain.util.symbolToOperation
 import com.elian.computeit.core.domain.states.NumericFieldState
 import com.elian.computeit.core.util.Resource
 import com.elian.computeit.core.util.UiText

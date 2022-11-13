@@ -1,4 +1,4 @@
-package com.elian.computeit.core.data.util
+package com.elian.computeit.core.domain.util
 
 import com.elian.computeit.core.data.Divide
 import com.elian.computeit.core.data.Multiply

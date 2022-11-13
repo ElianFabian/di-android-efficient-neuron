@@ -1,4 +1,4 @@
-package com.elian.computeit.core.util.constants
+package com.elian.computeit.core.data.util.constants
 
 import androidx.datastore.preferences.core.stringPreferencesKey
 

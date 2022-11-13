@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.elian.computeit.R
-import com.elian.computeit.core.util.extensions.navigate
+import com.elian.computeit.core.presentation.util.extensions.navigate
 import com.elian.computeit.databinding.FragmentHomeBinding
 import dagger.hilt.android.AndroidEntryPoint
 

@@ -1,4 +1,4 @@
-package com.elian.computeit.core.util.extensions
+package com.elian.computeit.core.presentation.util.extensions
 
 import android.view.View
 import android.view.animation.AlphaAnimation

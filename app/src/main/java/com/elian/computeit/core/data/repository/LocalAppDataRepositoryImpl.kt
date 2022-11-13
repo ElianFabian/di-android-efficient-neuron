@@ -3,9 +3,9 @@ package com.elian.computeit.core.data.repository
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import com.elian.computeit.core.domain.repository.LocalAppDataRepository
-import com.elian.computeit.core.util.constants.KEY_USERNAME
-import com.elian.computeit.core.util.constants.KEY_USER_EMAIL
-import com.elian.computeit.core.util.constants.KEY_USER_UUID
+import com.elian.computeit.core.data.util.constants.KEY_USERNAME
+import com.elian.computeit.core.data.util.constants.KEY_USER_EMAIL
+import com.elian.computeit.core.data.util.constants.KEY_USER_UUID
 import com.elian.computeit.core.util.extensions.get
 import com.elian.computeit.core.util.extensions.set
 import javax.inject.Inject

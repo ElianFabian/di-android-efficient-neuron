@@ -14,9 +14,9 @@ import androidx.navigation.findNavController
 import com.elian.computeit.R
 import com.elian.computeit.core.presentation.MainActivityEvent.OnUserNotLoggedIn
 import com.elian.computeit.core.presentation.util.NavigationDrawerFragmentTag
-import com.elian.computeit.core.util.extensions.collectFlowWhenStarted
-import com.elian.computeit.core.util.extensions.goToFragment
-import com.elian.computeit.core.util.extensions.navigateTo
+import com.elian.computeit.core.presentation.util.extensions.collectFlowWhenStarted
+import com.elian.computeit.core.presentation.util.extensions.goToFragment
+import com.elian.computeit.core.presentation.util.extensions.navigateTo
 import com.elian.computeit.databinding.ActivityMainBinding
 import com.elian.computeit.feature_auth.presentation.login.LoginActivity
 import com.elian.computeit.feature_tips.presentation.tip_list.TipListFragment

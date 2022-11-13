@@ -7,7 +7,7 @@ import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
 import com.elian.computeit.R
-import com.elian.computeit.core.util.extensions.*
+import com.elian.computeit.core.presentation.util.extensions.*
 import com.elian.computeit.databinding.ActivityRegisterBinding
 import com.elian.computeit.feature_auth.presentation.login.LoginActivity
 import com.elian.computeit.feature_auth.presentation.register.RegisterAction.*

@@ -6,7 +6,7 @@ import com.elian.computeit.core.data.repository.LocalAppDataRepositoryImpl
 import com.elian.computeit.core.data.util.PreciseCountDownTimerImpl
 import com.elian.computeit.core.domain.repository.LocalAppDataRepository
 import com.elian.computeit.core.domain.util.CountDownTimer
-import com.elian.computeit.core.domain.util.DATA_STORE_PREFERENCES_NAME
+import com.elian.computeit.core.presentation.util.constants.DATA_STORE_PREFERENCES_NAME
 import com.elian.computeit.feature_auth.data.repository.AuthRepositoryImpl
 import com.elian.computeit.feature_auth.domain.repository.AuthRepository
 import com.elian.computeit.feature_tests.data.repository.TestDataRepositoryImpl
