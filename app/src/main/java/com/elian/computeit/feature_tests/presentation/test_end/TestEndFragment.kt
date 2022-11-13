@@ -38,12 +38,6 @@ class TestEndFragment : Fragment()
         initUi()
     }
 
-    override fun onStart()
-    {
-        super.onStart()
-
-        disableNavigateUp()
-    }
 
     private fun initData()
     {

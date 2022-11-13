@@ -8,9 +8,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
+import androidx.navigation.NavController
+import androidx.navigation.NavDestination
 import androidx.navigation.findNavController
 import com.elian.computeit.R
 import com.elian.computeit.core.presentation.MainActivityEvent.OnUserNotLoggedIn
+import com.elian.computeit.core.presentation.util.NavigationDrawerFragmentTag
 import com.elian.computeit.core.util.extensions.collectLatestFlowWhenStarted
 import com.elian.computeit.core.util.extensions.goToFragment
 import com.elian.computeit.core.util.extensions.navigateTo
@@ -24,12 +27,13 @@ import com.elian.computeit.ui.StatisticsFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity()
+class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedListener
 {
     private val viewModel by viewModels<MainActivityViewModel>()
     private lateinit var binding: ActivityMainBinding
     private lateinit var toggle: ActionBarDrawerToggle
-    private lateinit var currentFragment: Fragment
+    private var currentFragment: Fragment? = null
+    private var _isNavigateUpEnable = true
 
 
     override fun onCreate(savedInstanceState: Bundle?)
@@ -44,22 +48,17 @@ class MainActivity : AppCompatActivity()
         setContentView(binding.root)
 
         initUi()
-        initData()
     }
 
     override fun onBackPressed()
     {
         enableDrawerLayout()
 
-        // Goes to Home Fragment unless we are already in, other wise exits the app
-        if (currentFragment is HomeFragment)
+        when
         {
-            onBackPressedDispatcher.onBackPressed()
-        }
-        else
-        {
-            findNavController(R.id.nav_host_fragment).navigateUp()
-            goTo(HomeFragment())
+            currentFragment is HomeFragment                -> finish()
+            currentFragment is NavigationDrawerFragmentTag -> goTo(HomeFragment())
+            _isNavigateUpEnable                            -> findNavController(R.id.nav_host_fragment).navigateUp()
         }
     }
 
@@ -72,7 +71,6 @@ class MainActivity : AppCompatActivity()
         return super.onOptionsItemSelected(item)
     }
 
-
     fun disableDrawerLayout() = binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
 
     private fun enableDrawerLayout() = binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
@@ -83,12 +81,9 @@ class MainActivity : AppCompatActivity()
         binding.drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
 
-        initMenuItemListener()
-    }
+        findNavController(R.id.nav_host_fragment).addOnDestinationChangedListener(this)
 
-    private fun initData()
-    {
-        currentFragment = HomeFragment()
+        initMenuItemListener()
     }
 
     private fun subscribeToEvents()
@@ -124,5 +119,22 @@ class MainActivity : AppCompatActivity()
     private fun goTo(fragment: Fragment, args: Bundle? = null)
     {
         currentFragment = goToFragment(fragment, args)
+    }
+
+    override fun onDestinationChanged(controller: NavController, destination: NavDestination, arguments: Bundle?)
+    {
+        currentFragment = if (destination.id == R.id.homeFragment)
+        {
+            HomeFragment()
+        }
+        else null
+
+        if (destination.id == R.id.testEndFragment)
+        {
+            _isNavigateUpEnable = false
+            return
+        }
+
+        _isNavigateUpEnable = true
     }
 }

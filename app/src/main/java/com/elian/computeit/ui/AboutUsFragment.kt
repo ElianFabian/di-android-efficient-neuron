@@ -9,10 +9,11 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import com.elian.computeit.R
+import com.elian.computeit.core.presentation.util.NavigationDrawerFragmentTag
 import mehdi.sakout.aboutpage.AboutPage
 
 // https://camposha.info/android-examples/android-about-us-page-libraries
-class AboutUsFragment : Fragment()
+class AboutUsFragment : Fragment(), NavigationDrawerFragmentTag
 {
     override fun onCreateView(
         inflater: LayoutInflater,
