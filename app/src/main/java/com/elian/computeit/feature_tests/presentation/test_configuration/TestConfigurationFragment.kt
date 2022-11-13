@@ -9,11 +9,11 @@ import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.elian.computeit.R
-import com.elian.computeit.core.util.Error
 import com.elian.computeit.core.presentation.util.extensions.collectLatestFlowWhenStarted
 import com.elian.computeit.core.presentation.util.extensions.findViewsWithTagOfType
 import com.elian.computeit.core.presentation.util.extensions.navigateSafe
 import com.elian.computeit.core.presentation.util.extensions.toast
+import com.elian.computeit.core.util.Error
 import com.elian.computeit.databinding.FragmentTestConfigurationBinding
 import com.elian.computeit.feature_tests.presentation.test_configuration.TestConfigurationAction.*
 import com.elian.computeit.feature_tests.presentation.test_configuration.TestConfigurationEvent.OnShowErrorMessage
