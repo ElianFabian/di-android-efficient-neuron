@@ -28,9 +28,8 @@ class MainActivity : AppCompatActivity()
 {
     private val viewModel by viewModels<MainActivityViewModel>()
     private lateinit var binding: ActivityMainBinding
-
     private lateinit var toggle: ActionBarDrawerToggle
-    private var currentFragment: Fragment? = null
+    private lateinit var currentFragment: Fragment
 
 
     override fun onCreate(savedInstanceState: Bundle?)
