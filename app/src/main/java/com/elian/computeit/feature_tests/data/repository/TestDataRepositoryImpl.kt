@@ -1,6 +1,6 @@
 package com.elian.computeit.feature_tests.data.repository
 
-import com.elian.computeit.core.domain.repository.AppSettingsRepository
+import com.elian.computeit.core.domain.repository.LocalAppDataRepository
 import com.elian.computeit.core.util.constants.COLLECTION_USERS_DATA
 import com.elian.computeit.core.util.constants.FIELD_TEST_SESSION_DATA_LIST
 import com.elian.computeit.feature_tests.data.models.TestSessionData
@@ -12,12 +12,12 @@ import javax.inject.Inject
 
 class TestDataRepositoryImpl @Inject constructor(
     private val firestore: FirebaseFirestore,
-    private val settings: AppSettingsRepository,
+    private val appRepository: LocalAppDataRepository,
 ) : TestDataRepository
 {
     override suspend fun addTestSessionData(testSessionData: TestSessionData)
     {
-        val userUuid = settings.getUserUuid()!!
+        val userUuid = appRepository.getUserUuid()!!
         val userDataRef = firestore.document("$COLLECTION_USERS_DATA/$userUuid")
 
         val listFromServerSize = userDataRef.get().await().data?.size ?: 0

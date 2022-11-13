@@ -2,7 +2,7 @@ package com.elian.computeit.feature_auth.data.repository
 
 import com.elian.computeit.R
 import com.elian.computeit.core.domain.models.User
-import com.elian.computeit.core.domain.repository.AppSettingsRepository
+import com.elian.computeit.core.domain.repository.LocalAppDataRepository
 import com.elian.computeit.core.util.Resource
 import com.elian.computeit.core.util.SimpleResource
 import com.elian.computeit.core.util.UiText.StringResource
@@ -16,7 +16,7 @@ import javax.inject.Inject
 
 class AuthRepositoryImpl @Inject constructor(
     private val firestore: FirebaseFirestore,
-    private val settings: AppSettingsRepository,
+    private val appRepository: LocalAppDataRepository,
 ) :
     AuthRepository
 {
@@ -30,9 +30,9 @@ class AuthRepositoryImpl @Inject constructor(
             user.password != password -> Resource.Error(StringResource(R.string.error_password_is_wrong))
             else                      ->
             {
-                settings.saveUserUuid(user.uuid)
-                settings.saveUserEmail(user.email)
-                settings.saveUsername(user.username)
+                appRepository.saveUserUuid(user.uuid)
+                appRepository.saveUserEmail(user.email)
+                appRepository.saveUsername(user.username)
 
                 Resource.Success()
             }

@@ -2,9 +2,9 @@ package com.elian.computeit.di
 
 import android.content.Context
 import androidx.datastore.preferences.preferencesDataStore
-import com.elian.computeit.core.data.repository.AppSettingsRepositoryImpl
+import com.elian.computeit.core.data.repository.LocalAppDataRepositoryImpl
 import com.elian.computeit.core.data.util.PreciseCountDownTimerImpl
-import com.elian.computeit.core.domain.repository.AppSettingsRepository
+import com.elian.computeit.core.domain.repository.LocalAppDataRepository
 import com.elian.computeit.core.domain.util.CountDownTimer
 import com.elian.computeit.core.domain.util.DATA_STORE_PREFERENCES_NAME
 import com.elian.computeit.feature_auth.data.repository.AuthRepositoryImpl
@@ -28,23 +28,23 @@ object AppModule
 {
     @Singleton
     @Provides
-    fun provideAuthRepository(settings: AppSettingsRepository): AuthRepository = AuthRepositoryImpl(
+    fun provideAuthRepository(appRepository: LocalAppDataRepository): AuthRepository = AuthRepositoryImpl(
         firestore = Firebase.firestore,
-        settings = settings
+        appRepository = appRepository
     )
 
     @Singleton
     @Provides
-    fun provideTestDataRepository(settings: AppSettingsRepository): TestDataRepository = TestDataRepositoryImpl(
+    fun provideTestDataRepository(appDataRepository: LocalAppDataRepository): TestDataRepository = TestDataRepositoryImpl(
         firestore = Firebase.firestore,
-        settings = settings
+        appRepository = appDataRepository
     )
 
     @Singleton
     @Provides
-    fun provideAppSettingsRepository(@ApplicationContext context: Context): AppSettingsRepository
+    fun provideLocalAppDataRepository(@ApplicationContext context: Context): LocalAppDataRepository
     {
-        return AppSettingsRepositoryImpl(context.dataStore)
+        return LocalAppDataRepositoryImpl(context.dataStore)
     }
 
     @Provides
