@@ -7,6 +7,7 @@ import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
 import com.elian.computeit.R
 import com.elian.computeit.core.presentation.MainActivity
+import com.elian.computeit.core.util.Error
 import com.elian.computeit.core.util.constants.EXTRA_EMAIL
 import com.elian.computeit.core.util.constants.EXTRA_PASSWORD
 import com.elian.computeit.core.util.extensions.*
@@ -67,20 +68,18 @@ class LoginActivity : AppCompatActivity()
         }
         collectLatestFlowWhenStarted(emailState.map { it.error })
         {
-            binding.tilEmail.error2 = when (it)
-            {
-                is AuthError.Empty -> getString(R.string.error_cant_be_empty)
-                else               -> null
-            }
+            binding.tilEmail.error2 = getFieldError(it)
         }
         collectLatestFlowWhenStarted(passwordState.map { it.error })
         {
-            binding.tilPassword.error2 = when (it)
-            {
-                is AuthError.Empty -> getString(R.string.error_cant_be_empty)
-                else               -> null
-            }
+            binding.tilPassword.error2 = getFieldError(it)
         }
         collectLatestFlowWhenStarted(loadingState) { binding.pbLoading.isVisible = it }
+    }
+
+    private fun getFieldError(error: Error?) = when (error)
+    {
+        is AuthError.Empty -> getString(R.string.error_cant_be_empty)
+        else               -> null
     }
 }
