@@ -98,9 +98,9 @@ class TestFragment : Fragment()
         }
     }
 
-    private fun subscribeToEvents()
+    private fun subscribeToEvents() = viewModel.apply()
     {
-        collectLatestFlowWhenStarted(viewModel.eventFlow)
+        collectFlowWhenStarted(eventFlow)
         {
             when (it)
             {
@@ -122,11 +122,11 @@ class TestFragment : Fragment()
                 }
             }
         }
-        collectLatestFlowWhenStarted(viewModel.resultState)
+        collectLatestFlowWhenStarted(resultState)
         {
             binding.tietInput.setText(it.toString())
         }
-        collectLatestFlowWhenStarted(viewModel.pairOfNumbersState)
+        collectLatestFlowWhenStarted(pairOfNumbersState)
         {
             if (it == null) return@collectLatestFlowWhenStarted
 
