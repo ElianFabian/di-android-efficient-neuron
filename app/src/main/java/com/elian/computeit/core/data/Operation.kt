@@ -22,7 +22,7 @@ enum class Operation(
         calculate = { a, b -> a / b },
     );
 
-    operator fun invoke(pair: Pair<Int, Int>) = calculate(pair.first, pair.second)
+    operator fun invoke(pairOfNumbers: Pair<Int, Int>) = calculate(pairOfNumbers.first, pairOfNumbers.second)
 }
 
 val symbolToOperation = Operation.values().associateBy { it.symbol }
