@@ -9,20 +9,17 @@
     <string name="bundleKey_selectedTip_position" translatable="false">selectedTipPosition</string>
 
     <string name="error_cant_be_empty">Can\'t be empty</string>
-    <string name="error_email_empty">Email can\'t be empty</string>
     <string name="error_email_invalid">Invalid email. Example: %s</string>
-    <string name="error_example_empty">Example can\'t be empty</string>
-    <string name="error_password_empty">Password can\'t be empty</string>
     <string name="error_password_invalid">Invalid password, it should contain at least %d of these characters: %s</string>
     <string name="error_password_is_wrong">Password is wrong</string>
     <string name="error_passwords_dont_match">Passwords don\'t match</string>
     <string name="error_range_values_are_inverted">Range values are inverted</string>
-    <string name="error_title_empty">Title can\'t be empty</string>
     <string name="error_too_long">Too long, the maximum length is %d</string>
     <string name="error_too_short">Too short, the minimum length is %d</string>
     <string name="error_unknown">Unknown error</string>
     <string name="error_user_already_exists">The user already exists</string>
     <string name="error_user_doesnt_exist">The user doesn\'t exist</string>
+    <string name="error_username_invalid">Invalid username, it can only contain letters, digits and these characters: %s</string>
 
     <string name="frgAboutUs_description">This application is a project to learn how to create applications on android. It\'s an exercise from the Android module in IES Portada Alta.</string>
     <string name="frgAboutUs_github_title">Source code</string>
@@ -66,6 +63,7 @@
     <string name="generic_start">Start</string>
     <string name="generic_tests">Tests</string>
     <string name="generic_tmp">TPM</string>
+    <string name="generic_username">Username</string>
 
     <string name="navigation_drawer_close" translatable="false">Close</string>
     <string name="navigation_drawer_open" translatable="false">Open</string>

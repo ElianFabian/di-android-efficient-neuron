@@ -20,7 +20,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class RegisterViewModel @Inject constructor(
-    private val registerUseCase: RegisterUseCase,
+    private val register: RegisterUseCase,
 ) : ViewModel()
 {
     private val _eventFlow = MutableSharedFlow<RegisterEvent>()
@@ -31,6 +31,9 @@ class RegisterViewModel @Inject constructor(
 
     private val _emailState = MutableStateFlow(TextFieldState())
     val emailState = _emailState.asStateFlow()
+
+    private val _usernameState = MutableStateFlow(TextFieldState())
+    val usernameState = _usernameState.asStateFlow()
 
     private val _passwordState = MutableStateFlow(TextFieldState())
     val passwordState = _passwordState.asStateFlow()
@@ -44,55 +47,44 @@ class RegisterViewModel @Inject constructor(
         when (action)
         {
             is EnterEmail           -> _emailState.value = _emailState.value.copy(text = action.value, error = null)
+            is EnterUsername        -> _usernameState.value = _usernameState.value.copy(text = action.value, error = null)
             is EnterPassword        -> _passwordState.value = _passwordState.value.copy(text = action.value, error = null)
             is EnterConfirmPassword -> _confirmPasswordState.value = _confirmPasswordState.value.copy(text = action.value, error = null)
             is Register             -> viewModelScope.launch()
             {
-                _emailState.value = _emailState.value.copy(error = null)
-                _passwordState.value = _passwordState.value.copy(error = null)
-                _confirmPasswordState.value = _confirmPasswordState.value.copy(error = null)
+                _loadingState.value = true
 
                 register(
                     email = _emailState.value.text,
+                    username = _usernameState.value.text,
                     password = _passwordState.value.text,
                     confirmPassword = _confirmPasswordState.value.text
-                )
-            }
-        }
-    }
-
-
-    private suspend fun register(email: String, password: String, confirmPassword: String)
-    {
-        _loadingState.value = true
-
-        registerUseCase(
-            email = email,
-            password = password,
-            confirmPassword = confirmPassword
-        ).also()
-        {
-            _emailState.value = _emailState.value.copy(error = it.emailError)
-            _passwordState.value = _passwordState.value.copy(error = it.passwordError)
-            _confirmPasswordState.value = _confirmPasswordState.value.copy(error = it.confirmPasswordError)
-
-            when (it.result)
-            {
-                is Resource.Error   -> _eventFlow.emit(OnShowErrorMessage(it.result.uiText ?: UiText.unknownError()))
-                is Resource.Success ->
+                ).also()
                 {
-                    val argsToSend = mapOf(
-                        EXTRA_EMAIL to _emailState.value.text,
-                        EXTRA_PASSWORD to _passwordState.value.text,
-                    ).toList()
-                    
-                    _eventFlow.emit(RegisterEvent.OnRegister(args = argsToSend))
+                    _emailState.value = _emailState.value.copy(error = it.emailError)
+                    _usernameState.value = _usernameState.value.copy(error = it.usernameError)
+                    _passwordState.value = _passwordState.value.copy(error = it.passwordError)
+                    _confirmPasswordState.value = _confirmPasswordState.value.copy(error = it.confirmPasswordError)
+
+                    when (it.result)
+                    {
+                        is Resource.Error   -> _eventFlow.emit(OnShowErrorMessage(it.result.uiText ?: UiText.unknownError()))
+                        is Resource.Success ->
+                        {
+                            val argsToSend = mapOf(
+                                EXTRA_EMAIL to _emailState.value.text,
+                                EXTRA_PASSWORD to _passwordState.value.text,
+                            ).toList()
+
+                            _eventFlow.emit(RegisterEvent.OnRegister(args = argsToSend))
+                        }
+
+                        else                -> Unit
+                    }
                 }
 
-                else                -> Unit
+                _loadingState.value = false
             }
         }
-
-        _loadingState.value = false
     }
 }

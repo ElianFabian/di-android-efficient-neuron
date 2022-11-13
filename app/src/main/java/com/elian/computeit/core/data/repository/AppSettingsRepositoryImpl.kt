@@ -3,6 +3,7 @@ package com.elian.computeit.core.data.repository
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import com.elian.computeit.core.domain.repository.AppSettingsRepository
+import com.elian.computeit.core.util.constants.KEY_USERNAME
 import com.elian.computeit.core.util.constants.KEY_USER_EMAIL
 import com.elian.computeit.core.util.constants.KEY_USER_UUID
 import com.elian.computeit.core.util.extensions.get
@@ -18,4 +19,7 @@ class AppSettingsRepositoryImpl @Inject constructor(
 
     override suspend fun getUserEmail() = dataStore.get(KEY_USER_EMAIL)
     override suspend fun saveUserEmail(email: String) = dataStore.set(KEY_USER_EMAIL, email)
+
+    override suspend fun getUsername() = dataStore.get(KEY_USERNAME)
+    override suspend fun saveUsername(username: String) = dataStore.set(KEY_USERNAME, username)
 }

@@ -10,7 +10,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class MainActivityViewModel @Inject constructor(
+class MainViewModel @Inject constructor(
     private val settings: AppSettingsRepository,
 ) : ViewModel()
 {
@@ -24,7 +24,7 @@ class MainActivityViewModel @Inject constructor(
         {
             val isUserNotLoggedIn = settings.getUserUuid() == null
 
-            if (isUserNotLoggedIn) _eventFlow.emit(MainActivityEvent.OnUserNotLoggedIn)
+            if (!isUserNotLoggedIn) _eventFlow.emit(MainActivityEvent.OnUserNotLoggedIn)
         }
     }
 }

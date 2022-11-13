@@ -19,7 +19,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class LoginViewModel @Inject constructor(
-    private val loginUseCase: LoginUseCase,
+    private val login: LoginUseCase,
 ) : ViewModel()
 {
     private val _eventFlow = MutableSharedFlow<LoginEvent>()
@@ -43,38 +43,27 @@ class LoginViewModel @Inject constructor(
             is EnterPassword -> _passwordState.value = _passwordState.value.copy(text = action.value, error = null)
             is Login         -> viewModelScope.launch()
             {
-                _emailState.value = _emailState.value.copy(error = null)
-                _passwordState.value = _passwordState.value.copy(error = null)
+                _loadingState.value = true
 
                 login(
                     email = _emailState.value.text,
-                    password = _passwordState.value.text
-                )
+                    password = _passwordState.value.text,
+                ).also()
+                {
+                    _emailState.value = _emailState.value.copy(error = it.emailError)
+                    _passwordState.value = _passwordState.value.copy(error = it.passwordError)
+
+                    when (it.result)
+                    {
+                        is Resource.Error   -> _eventFlow.emit(OnShowErrorMessage(it.result.uiText ?: UiText.unknownError()))
+                        is Resource.Success -> _eventFlow.emit(OnLogin)
+
+                        else                -> Unit
+                    }
+                }
+
+                _loadingState.value = false
             }
         }
-    }
-
-    private suspend fun login(email: String, password: String)
-    {
-        _loadingState.value = true
-
-        loginUseCase(
-            email = email,
-            password = password
-        ).also()
-        {
-            _emailState.value = _emailState.value.copy(error = it.emailError)
-            _passwordState.value = _passwordState.value.copy(error = it.passwordError)
-
-            when (it.result)
-            {
-                is Resource.Error   -> _eventFlow.emit(OnShowErrorMessage(it.result.uiText ?: UiText.unknownError()))
-                is Resource.Success -> _eventFlow.emit(OnLogin)
-
-                else                -> Unit
-            }
-        }
-
-        _loadingState.value = false
     }
 }

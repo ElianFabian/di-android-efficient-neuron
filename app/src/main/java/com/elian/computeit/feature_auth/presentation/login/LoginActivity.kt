@@ -72,7 +72,7 @@ class LoginActivity : AppCompatActivity()
         {
             binding.tilEmail.error2 = when (it)
             {
-                is AuthError.Empty -> getString(R.string.error_email_empty)
+                is AuthError.Empty -> getString(R.string.error_cant_be_empty)
                 else               -> null
             }
         }
@@ -80,7 +80,7 @@ class LoginActivity : AppCompatActivity()
         {
             binding.tilPassword.error2 = when (it)
             {
-                is AuthError.Empty -> getString(R.string.error_password_empty)
+                is AuthError.Empty -> getString(R.string.error_cant_be_empty)
                 else               -> null
             }
         }

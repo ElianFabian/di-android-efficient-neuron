@@ -24,30 +24,33 @@ class AuthRepositoryImpl @Inject constructor(
     {
         val user = getUserByEmail(email)
 
-        return if (user == null)
+        return when
         {
-            Resource.Error(StringResource(R.string.error_user_doesnt_exist))
-        }
-        else if (user.password != password)
-        {
-            Resource.Error(StringResource(R.string.error_password_is_wrong))
-        }
-        else
-        {
-            settings.saveUserUuid(user.uuid)
-            settings.saveUserEmail(user.email)
+            user == null              -> Resource.Error(StringResource(R.string.error_user_doesnt_exist))
+            user.password != password -> Resource.Error(StringResource(R.string.error_password_is_wrong))
+            else                      ->
+            {
+                settings.saveUserUuid(user.uuid)
+                settings.saveUserEmail(user.email)
+                settings.saveUsername(user.username)
 
-            Resource.Success()
+                Resource.Success()
+            }
         }
     }
 
-    override suspend fun register(email: String, password: String): SimpleResource
+    override suspend fun register(
+        email: String,
+        username: String,
+        password: String,
+    ): SimpleResource
     {
         if (getUserByEmail(email) != null) return Resource.Error(StringResource(R.string.error_user_already_exists))
 
         User(
             email = email,
-            password = password
+            username = username,
+            password = password,
         ).apply()
         {
             firestore.document("$COLLECTION_USERS/$uuid").set(this).await()

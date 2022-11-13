@@ -23,9 +23,9 @@ class LoginUseCase @Inject constructor(
                 passwordError = passwordError,
             )
         }
-
-        val hashedPassword = hash(password)
-
-        return LoginResult(result = repository.login(email, hashedPassword))
+        return LoginResult(result = repository.login(
+            email = email,
+            password = hash(password),
+        ))
     }
 }

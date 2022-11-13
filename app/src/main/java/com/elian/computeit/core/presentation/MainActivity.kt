@@ -29,7 +29,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedListener
 {
-    private val viewModel by viewModels<MainActivityViewModel>()
+    private val viewModel by viewModels<MainViewModel>()
     private lateinit var binding: ActivityMainBinding
     private lateinit var toggle: ActionBarDrawerToggle
     private var currentFragment: Fragment? = null

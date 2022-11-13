@@ -5,6 +5,7 @@ import com.elian.computeit.feature_auth.presentation.util.AuthError
 
 data class RegisterResult(
     val emailError: AuthError? = null,
+    val usernameError: AuthError? = null,
     val passwordError: AuthError? = null,
     val confirmPasswordError: AuthError? = null,
     val result: SimpleResource? = null,

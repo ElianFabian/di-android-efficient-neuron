@@ -4,20 +4,17 @@
     <string name="arrayTest_modes_time">Tiempo</string>
 
     <string name="error_cant_be_empty">No puede estar vacío</string>
-    <string name="error_email_empty">El email no puede estar vacío</string>
     <string name="error_email_invalid">Email inválido, ejemplo: %s</string>
-    <string name="error_example_empty">Ejemplo no puede estar vacío</string>
-    <string name="error_password_empty">La contraseña no puede estar vacía</string>
     <string name="error_password_invalid">Contraseña inválida, debería contener al menos %d de estos caracteres: %s</string>
     <string name="error_password_is_wrong">La contraseña es incorrecta</string>
     <string name="error_passwords_dont_match">Las contraseñas no coinciden</string>
     <string name="error_range_values_are_inverted">Los valores del invertalo están invertidos</string>
-    <string name="error_title_empty">Título no puede estar vacío</string>
     <string name="error_too_long">Demasiado largo, la longitud máxima es %d</string>
     <string name="error_too_short">Demasiado corto, la longitud mínima es %d</string>
     <string name="error_unknown">Error desconocido</string>
     <string name="error_user_already_exists">El usuario ya existe</string>
     <string name="error_user_doesnt_exist">El usuario no existe</string>
+    <string name="error_username_invalid">Nombre de usuario inválido, sólo puede contener letras, dígitos o estos caracteres: %s</string>
 
     <string name="frgAboutUs_description">Esta aplicación es un proyecto para aprender a cómo crear aplicaciones en Android. Es un ejercicio del módulo de Android de IES Portada Alta.</string>
     <string name="frgAboutUs_github_title">Código fuente</string>
@@ -61,6 +58,7 @@
     <string name="generic_start">Empezar</string>
     <string name="generic_tests">Pruebas</string>
     <string name="generic_tmp">PPM</string>
+    <string name="generic_username">Nombre de usuario</string>
 
     <string name="navigation_menu_navAboutUs_title">Sobre Nosotros</string>
     <string name="navigation_menu_navHome_title">Inicio</string>

@@ -49,6 +49,7 @@ class RegisterActivity : AppCompatActivity()
         binding.apply()
         {
             tietEmail.addTextChangedListener { viewModel.onAction(EnterEmail(it.toString().trim())) }
+            tietUsername.addTextChangedListener { viewModel.onAction(EnterUsername(it.toString().trim())) }
             tietPassword.addTextChangedListener { viewModel.onAction(EnterPassword(it.toString().trim())) }
             tietConfirmPassword.addTextChangedListener { viewModel.onAction(EnterConfirmPassword(it.toString().trim())) }
 
@@ -70,16 +71,27 @@ class RegisterActivity : AppCompatActivity()
         {
             binding.tilEmail.error2 = when (it)
             {
-                is AuthError.Empty   -> getString(R.string.error_email_empty)
+                is AuthError.Empty   -> getString(R.string.error_cant_be_empty)
                 is AuthError.Invalid -> getString(R.string.error_email_invalid).format(it.example)
                 else                 -> null
+            }
+        }
+        collectLatestFlowWhenStarted(usernameState.map { it.error })
+        {
+            binding.tilUsername.error2 = when (it)
+            {
+                is AuthError.Invalid  -> getString(R.string.error_username_invalid).format(it.validCharacters)
+                is AuthError.Empty    -> getString(R.string.error_cant_be_empty)
+                is AuthError.TooShort -> getString(R.string.error_too_short).format(it.minLength)
+                is AuthError.TooLong  -> getString(R.string.error_too_long).format(it.maxLength)
+                else                  -> null
             }
         }
         collectLatestFlowWhenStarted(passwordState.map { it.error })
         {
             binding.tilPassword.error2 = when (it)
             {
-                is AuthError.Empty    -> getString(R.string.error_password_empty)
+                is AuthError.Empty    -> getString(R.string.error_cant_be_empty)
                 is AuthError.TooShort -> getString(R.string.error_too_short).format(it.minLength)
                 is AuthError.Invalid  -> getString(R.string.error_password_invalid).format(it.minCharacterCount, it.validCharacters)
                 is AuthError.TooLong  -> getString(R.string.error_too_long).format(it.maxLength)
@@ -90,7 +102,7 @@ class RegisterActivity : AppCompatActivity()
         {
             binding.tilConfirmPassword.error2 = when (it)
             {
-                is AuthError.Empty   -> getString(R.string.error_password_empty)
+                is AuthError.Empty   -> getString(R.string.error_cant_be_empty)
                 is AuthError.Invalid -> getString(R.string.error_passwords_dont_match)
                 else                 -> null
             }
