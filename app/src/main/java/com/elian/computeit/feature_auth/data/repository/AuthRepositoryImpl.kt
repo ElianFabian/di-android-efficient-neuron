@@ -43,21 +43,23 @@ class AuthRepositoryImpl @Inject constructor(
         email: String,
         username: String,
         password: String,
-    ): SimpleResource
+    ): SimpleResource = when
     {
-        if (getUserByEmail(email) != null) return Resource.Error(StringResource(R.string.error_email_is_already_in_use))
-        if (getUserByUsername(username) != null) return Resource.Error(StringResource(R.string.error_username_is_already_in_use))
-
-        User(
-            email = email,
-            username = username,
-            password = password,
-        ).apply()
+        getUserByEmail(email) != null       -> Resource.Error(StringResource(R.string.error_email_is_already_in_use))
+        getUserByUsername(username) != null -> Resource.Error(StringResource(R.string.error_username_is_already_in_use))
+        else                                ->
         {
-            firestore.document("$COLLECTION_USERS/$uuid").set(this).await()
-        }
+            User(
+                email = email,
+                username = username,
+                password = password,
+            ).apply()
+            {
+                firestore.document("$COLLECTION_USERS/$uuid").set(this).await()
+            }
 
-        return Resource.Success()
+            Resource.Success()
+        }
     }
 
 
