@@ -45,7 +45,8 @@ class AuthRepositoryImpl @Inject constructor(
         password: String,
     ): SimpleResource
     {
-        if (getUserByEmail(email) != null) return Resource.Error(StringResource(R.string.error_user_already_exists))
+        if (getUserByEmail(email) != null) return Resource.Error(StringResource(R.string.error_email_is_already_in_use))
+        if (getUserByUsername(username) != null) return Resource.Error(StringResource(R.string.error_username_is_already_in_use))
 
         User(
             email = email,
@@ -59,10 +60,15 @@ class AuthRepositoryImpl @Inject constructor(
         return Resource.Success()
     }
 
-    private suspend fun getUserByEmail(email: String) = withContext(Dispatchers.IO)
+
+    private suspend fun getUserByEmail(email: String) = getUserByField(User::email.name, email)
+
+    private suspend fun getUserByUsername(username: String) = getUserByField(User::username.name, username)
+
+    private suspend fun getUserByField(fieldName: String, value: String) = withContext(Dispatchers.IO)
     {
         val users = firestore.collection(COLLECTION_USERS)
-            .whereEqualTo(User::email.name, email).get().await()
+            .whereEqualTo(fieldName, value).get().await()
 
         if (users.isEmpty) null
         else users.first().toObject(User::class.java)
