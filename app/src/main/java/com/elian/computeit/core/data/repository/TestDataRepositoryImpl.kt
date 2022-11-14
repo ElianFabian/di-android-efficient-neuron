@@ -29,9 +29,9 @@ class TestDataRepositoryImpl @Inject constructor(
     {
         val userUuid = appRepository.getUserUuid()!!
         val userDataRef = firestore.document("$COLLECTION_USERS_DATA/$userUuid")
-        val userData = userDataRef.get().await()
+        val userData = userDataRef.get().await().data
 
-        val listFromServer = userData.data?.get(FIELD_TEST_SESSION_DATA_LIST) as? List<TestSessionData> ?: emptyList()
+        val listFromServer = userData?.get(FIELD_TEST_SESSION_DATA_LIST) as? List<TestSessionData> ?: emptyList()
 
         emit(listFromServer)
     }
