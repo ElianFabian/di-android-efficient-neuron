@@ -16,14 +16,14 @@ class LoginUseCase @Inject constructor(
         val emailError = if (email.isBlank()) AuthError.Empty else null
         val passwordError = if (password.isBlank()) AuthError.Empty else null
 
-        if (checkIfError(emailError, passwordError))
+        return if (checkIfError(emailError, passwordError))
         {
-            return LoginResult(
+            LoginResult(
                 emailError = emailError,
                 passwordError = passwordError,
             )
         }
-        return LoginResult(result = repository.login(
+        else LoginResult(result = repository.login(
             email = email,
             password = hash(password),
         ))
