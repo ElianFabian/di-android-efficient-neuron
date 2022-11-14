@@ -1,8 +1,8 @@
 package com.elian.computeit.core.data.repository
 
-import com.elian.computeit.core.domain.models.TestSessionData
 import com.elian.computeit.core.data.util.constants.COLLECTION_USERS_DATA
 import com.elian.computeit.core.data.util.constants.FIELD_TEST_SESSION_DATA_LIST
+import com.elian.computeit.core.domain.models.TestSessionData
 import com.elian.computeit.core.domain.repository.LocalAppDataRepository
 import com.elian.computeit.core.domain.repository.TestDataRepository
 import com.google.firebase.firestore.FieldValue
@@ -20,9 +20,9 @@ class TestDataRepositoryImpl @Inject constructor(
         val userUuid = appRepository.getUserUuid()!!
         val userDataRef = firestore.document("$COLLECTION_USERS_DATA/$userUuid")
 
-        val listFromServerSize = userDataRef.get().await().data?.size ?: 0
+        val isListFromServerEmpty = (userDataRef.get().await().data?.size ?: 0) == 0
 
-        if (listFromServerSize == 0)
+        if (isListFromServerEmpty)
         {
             userDataRef.set(mapOf(FIELD_TEST_SESSION_DATA_LIST to listOf(testSessionData)))
         }
