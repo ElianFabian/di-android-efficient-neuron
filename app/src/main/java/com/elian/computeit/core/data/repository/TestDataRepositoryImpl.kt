@@ -5,6 +5,7 @@ import com.elian.computeit.core.data.util.constants.FIELD_TEST_SESSION_DATA_LIST
 import com.elian.computeit.core.domain.models.TestSessionData
 import com.elian.computeit.core.domain.repository.LocalAppDataRepository
 import com.elian.computeit.core.domain.repository.TestDataRepository
+import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.flow.flow
@@ -18,21 +19,24 @@ class TestDataRepositoryImpl @Inject constructor(
 {
     override suspend fun addTestSessionData(testSessionData: TestSessionData)
     {
-        val userUuid = appRepository.getUserUuid()!!
-        val userDataRef = firestore.document("$COLLECTION_USERS_DATA/$userUuid")
-
-        userDataRef.update(FIELD_TEST_SESSION_DATA_LIST, FieldValue.arrayUnion(testSessionData))
+        getUserDataRef().update(FIELD_TEST_SESSION_DATA_LIST, FieldValue.arrayUnion(testSessionData))
     }
 
     @Suppress("UNCHECKED_CAST")
     override suspend fun getTestSessionDataList() = flow()
     {
-        val userUuid = appRepository.getUserUuid()!!
-        val userDataRef = firestore.document("$COLLECTION_USERS_DATA/$userUuid")
-        val userData = userDataRef.get().await().data
+        val userData = getUserDataRef().get().await().data
 
         val listFromServer = userData?.get(FIELD_TEST_SESSION_DATA_LIST) as? List<TestSessionData> ?: emptyList()
 
         emit(listFromServer)
+    }
+
+
+    private suspend fun getUserDataRef(): DocumentReference
+    {
+        val userUuid = appRepository.getUserUuid()!!
+
+        return firestore.document("$COLLECTION_USERS_DATA/$userUuid")
     }
 }
