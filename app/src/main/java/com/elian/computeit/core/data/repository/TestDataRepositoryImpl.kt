@@ -22,11 +22,11 @@ class TestDataRepositoryImpl @Inject constructor(
         getUserDataRef().update(FIELD_TEST_SESSION_DATA_LIST, FieldValue.arrayUnion(testSessionData))
     }
 
-    @Suppress("UNCHECKED_CAST")
     override suspend fun getTestSessionDataList() = flow()
     {
         val userData = getUserDataRef().get().await().data
 
+        @Suppress("UNCHECKED_CAST")
         val listFromServer = userData?.get(FIELD_TEST_SESSION_DATA_LIST) as? List<TestSessionData> ?: emptyList()
 
         emit(listFromServer)
