@@ -20,15 +20,8 @@ class TestDataRepositoryImpl @Inject constructor(
     {
         val userUuid = appRepository.getUserUuid()!!
         val userDataRef = firestore.document("$COLLECTION_USERS_DATA/$userUuid")
-        val userData = userDataRef.get().await()
 
-        val listFromServer = userData.data?.get(FIELD_TEST_SESSION_DATA_LIST) as List<*>
-
-        if (listFromServer.isEmpty())
-        {
-            userDataRef.set(mapOf(FIELD_TEST_SESSION_DATA_LIST to listOf(testSessionData)))
-        }
-        else userDataRef.update(FIELD_TEST_SESSION_DATA_LIST, FieldValue.arrayUnion(testSessionData))
+        userDataRef.update(FIELD_TEST_SESSION_DATA_LIST, FieldValue.arrayUnion(testSessionData))
     }
 
     @Suppress("UNCHECKED_CAST")
@@ -38,7 +31,7 @@ class TestDataRepositoryImpl @Inject constructor(
         val userDataRef = firestore.document("$COLLECTION_USERS_DATA/$userUuid")
         val userData = userDataRef.get().await()
 
-        val listFromServer = userData.data?.get(FIELD_TEST_SESSION_DATA_LIST) as List<TestSessionData>
+        val listFromServer = userData.data?.get(FIELD_TEST_SESSION_DATA_LIST) as? List<TestSessionData> ?: emptyList()
 
         emit(listFromServer)
     }
