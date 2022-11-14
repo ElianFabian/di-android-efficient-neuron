@@ -19,10 +19,11 @@ class TestDataRepositoryImpl @Inject constructor(
     {
         val userUuid = appRepository.getUserUuid()!!
         val userDataRef = firestore.document("$COLLECTION_USERS_DATA/$userUuid")
+        val userData = userDataRef.get().await()
 
-        val isListFromServerEmpty = (userDataRef.get().await().data?.size ?: 0) == 0
+        val listFromServer = userData.data?.get(FIELD_TEST_SESSION_DATA_LIST) as List<*>
 
-        if (isListFromServerEmpty)
+        if (listFromServer.isEmpty())
         {
             userDataRef.set(mapOf(FIELD_TEST_SESSION_DATA_LIST to listOf(testSessionData)))
         }
