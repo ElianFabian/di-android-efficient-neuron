@@ -11,28 +11,28 @@ class RegisterUseCase @Inject constructor(
 {
     suspend operator fun invoke(
         email: String,
-        username: String,
+        name: String,
         password: String,
         confirmPassword: String,
     ): RegisterResult
     {
         val emailError = validateEmail(email)
-        val usernameError = validateUsername(username)
+        val nameError = validateName(name)
         val passwordError = validatePassword(password)
         val confirmPasswordError = validateConfirmPassword(confirmPassword, password)
 
-        if (checkIfError(emailError, usernameError, passwordError, confirmPasswordError))
+        if (checkIfError(emailError, nameError, passwordError, confirmPasswordError))
         {
             return RegisterResult(
                 emailError = emailError,
-                usernameError = usernameError,
+                nameError = nameError,
                 passwordError = passwordError,
                 confirmPasswordError = confirmPasswordError,
             )
         }
         return RegisterResult(result = repository.register(
             email = email,
-            username = username,
+            name = name,
             password = hash(password),
         ))
     }

@@ -8,6 +8,6 @@ interface LocalAppDataRepository
     suspend fun getUserEmail(): String?
     suspend fun saveUserEmail(email: String)
 
-    suspend fun getUsername(): String?
-    suspend fun saveUsername(username: String)
+    suspend fun getUserName(): String?
+    suspend fun saveUserName(name: String)
 }

@@ -29,9 +29,12 @@ class AuthRepositoryImpl @Inject constructor(
             user.password != password -> Resource.Error(R.string.error_password_is_wrong)
             else                      ->
             {
-                appRepository.saveUserUuid(user.uuid)
-                appRepository.saveUserEmail(user.email)
-                appRepository.saveUsername(user.username)
+                appRepository.apply()
+                {
+                    saveUserUuid(user.uuid)
+                    saveUserEmail(user.email)
+                    saveUserName(user.name)
+                }
 
                 Resource.Success()
             }
@@ -40,17 +43,17 @@ class AuthRepositoryImpl @Inject constructor(
 
     override suspend fun register(
         email: String,
-        username: String,
+        name: String,
         password: String,
     ): SimpleResource = when
     {
-        getUserByEmail(email) != null       -> Resource.Error(R.string.error_email_is_already_in_use)
-        getUserByUsername(username) != null -> Resource.Error(R.string.error_username_is_already_in_use)
-        else                                ->
+        getUserByEmail(email) != null -> Resource.Error(R.string.error_email_is_already_in_use)
+        getUserByName(name) != null   -> Resource.Error(R.string.error_username_is_already_in_use)
+        else                          ->
         {
             User(
                 email = email,
-                username = username,
+                name = name,
                 password = password,
             ).apply()
             {
@@ -64,7 +67,7 @@ class AuthRepositoryImpl @Inject constructor(
 
     private suspend fun getUserByEmail(email: String) = getUserByField(User::email.name, email)
 
-    private suspend fun getUserByUsername(username: String) = getUserByField(User::username.name, username)
+    private suspend fun getUserByName(name: String) = getUserByField(User::name.name, name)
 
     private suspend fun getUserByField(fieldName: String, value: String) = withContext(Dispatchers.IO)
     {

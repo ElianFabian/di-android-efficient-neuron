@@ -5,11 +5,11 @@ import com.elian.computeit.feature_auth.presentation.util.AuthError
 
 private const val SET_OF_DIGITS = "0123456789"
 
-private const val USERNAME_MIN_LENGTH = 2
-private const val USERNAME_MAX_LENGTH = 30
-private const val USERNAME_VALID_CHARACTERS = "!?$&#._-"
-private const val USERNAME_PATTERN = """[\w$USERNAME_VALID_CHARACTERS]+"""
-private val USERNAME_REGEX = USERNAME_PATTERN.toRegex()
+private const val NAME_MIN_LENGTH = 2
+private const val NAME_MAX_LENGTH = 30
+private const val NAME_VALID_CHARACTERS = "!?$&#._-"
+private const val NAME_PATTERN = """[\w$NAME_VALID_CHARACTERS]+"""
+private val NAME_REGEX = NAME_PATTERN.toRegex()
 
 private const val PASSWORD_MIN_LENGTH = 8
 private const val PASSWORD_MAX_LENGTH = 20
@@ -29,16 +29,16 @@ fun validateEmail(email: String): AuthError?
     }
 }
 
-fun validateUsername(username: String): AuthError?
+fun validateName(name: String): AuthError?
 {
-    val trimmedUsername = username.trim()
+    val trimmedName = name.trim()
 
     return when
     {
-        trimmedUsername.isBlank()                    -> AuthError.Empty
-        !trimmedUsername.matches(USERNAME_REGEX)     -> AuthError.Invalid(validCharacters = USERNAME_VALID_CHARACTERS)
-        trimmedUsername.length < USERNAME_MIN_LENGTH -> AuthError.TooShort(minLength = USERNAME_MIN_LENGTH)
-        trimmedUsername.length > USERNAME_MAX_LENGTH -> AuthError.TooLong(maxLength = USERNAME_MAX_LENGTH)
+        trimmedName.isBlank()                -> AuthError.Empty
+        !trimmedName.matches(NAME_REGEX)     -> AuthError.Invalid(validCharacters = NAME_VALID_CHARACTERS)
+        trimmedName.length < NAME_MIN_LENGTH -> AuthError.TooShort(minLength = NAME_MIN_LENGTH)
+        trimmedName.length > NAME_MAX_LENGTH -> AuthError.TooLong(maxLength = NAME_MAX_LENGTH)
 
         else                                         -> null
     }

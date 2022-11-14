@@ -56,13 +56,13 @@ class RegisterViewModel @Inject constructor(
 
                 register(
                     email = _emailState.value.text,
-                    username = _usernameState.value.text,
+                    name = _usernameState.value.text,
                     password = _passwordState.value.text,
                     confirmPassword = _confirmPasswordState.value.text
                 ).also()
                 {
                     _emailState.value = _emailState.value.copy(error = it.emailError)
-                    _usernameState.value = _usernameState.value.copy(error = it.usernameError)
+                    _usernameState.value = _usernameState.value.copy(error = it.nameError)
                     _passwordState.value = _passwordState.value.copy(error = it.passwordError)
                     _confirmPasswordState.value = _confirmPasswordState.value.copy(error = it.confirmPasswordError)
 
