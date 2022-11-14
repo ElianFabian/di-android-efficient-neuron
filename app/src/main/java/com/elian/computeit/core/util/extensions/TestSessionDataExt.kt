@@ -1,7 +1,7 @@
 package com.elian.computeit.core.util.extensions
 
-import com.elian.computeit.feature_tests.data.models.TestData
-import com.elian.computeit.feature_tests.data.models.TestSessionData
+import com.elian.computeit.core.domain.models.TestData
+import com.elian.computeit.core.domain.models.TestSessionData
 
 private fun TestSessionData.getValuesOverTime(
     getCountSinceStartFromCondition: (testData: TestData) -> Boolean = { true },

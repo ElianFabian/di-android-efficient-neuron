@@ -12,9 +12,9 @@ import com.elian.computeit.core.util.constants.EXTRA_TEST_SESSION_DATA
 import com.elian.computeit.core.util.constants.EXTRA_TEST_TIME_IN_SECONDS
 import com.elian.computeit.core.util.extensions.append
 import com.elian.computeit.core.util.extensions.clampLength
-import com.elian.computeit.feature_tests.data.models.Range
-import com.elian.computeit.feature_tests.data.models.TestData
-import com.elian.computeit.feature_tests.data.models.TestSessionData
+import com.elian.computeit.core.domain.models.Range
+import com.elian.computeit.core.domain.models.TestData
+import com.elian.computeit.core.domain.models.TestSessionData
 import com.elian.computeit.feature_tests.domain.use_case.AddTestSessionDataUseCase
 import com.elian.computeit.feature_tests.presentation.test.TestAction.*
 import com.elian.computeit.feature_tests.presentation.util.getRandomPairOfNumbers

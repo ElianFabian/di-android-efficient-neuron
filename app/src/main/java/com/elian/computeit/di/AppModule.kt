@@ -9,8 +9,8 @@ import com.elian.computeit.core.domain.util.CountDownTimer
 import com.elian.computeit.core.presentation.util.constants.DATA_STORE_PREFERENCES_NAME
 import com.elian.computeit.feature_auth.data.repository.AuthRepositoryImpl
 import com.elian.computeit.feature_auth.domain.repository.AuthRepository
-import com.elian.computeit.feature_tests.data.repository.TestDataRepositoryImpl
-import com.elian.computeit.feature_tests.domain.repository.TestDataRepository
+import com.elian.computeit.core.data.repository.TestDataRepositoryImpl
+import com.elian.computeit.core.domain.repository.TestDataRepository
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import dagger.Module
