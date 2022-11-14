@@ -19,19 +19,19 @@ class ValidateConfigurationFieldsUseCase @Inject constructor()
         val maxValueError = getFieldError(maxValue)
         val testTimeError = getFieldError(testTime)
 
-        if (checkIfError(minValueError, maxValueError, testTimeError))
+        return if (checkIfError(minValueError, maxValueError, testTimeError))
         {
-            return TestConfigurationResult(
+            TestConfigurationResult(
                 minValueError = minValueError,
                 maxValueError = maxValueError,
                 testTimeError = testTimeError,
             )
         }
-        if (minValue!! > maxValue!!)
+        else if (minValue!! > maxValue!!)
         {
-            return TestConfigurationResult(result = Resource.Error(R.string.error_range_values_are_inverted))
+            TestConfigurationResult(result = Resource.Error(R.string.error_range_values_are_inverted))
         }
-        return TestConfigurationResult(result = Resource.Success())
+        else TestConfigurationResult(result = Resource.Success())
     }
 }
 
