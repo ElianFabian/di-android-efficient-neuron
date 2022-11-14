@@ -42,4 +42,3 @@ val TestSessionData.speedOverTimeInTpm
 val TestSessionData.rawSpeedInTpm get() = rawSpeedOverTimeInTpm.values.last()
 val TestSessionData.speedInTpm get() = speedOverTimeInTpm.values.last()
 val TestSessionData.errorCount get() = testDataList.count { it.isError }
-
