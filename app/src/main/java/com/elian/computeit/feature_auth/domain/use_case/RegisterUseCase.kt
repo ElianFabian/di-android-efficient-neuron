@@ -21,16 +21,16 @@ class RegisterUseCase @Inject constructor(
         val passwordError = validatePassword(password)
         val confirmPasswordError = validateConfirmPassword(confirmPassword, password)
 
-        if (checkIfError(emailError, nameError, passwordError, confirmPasswordError))
+        return if (checkIfError(emailError, nameError, passwordError, confirmPasswordError))
         {
-            return RegisterResult(
+            RegisterResult(
                 emailError = emailError,
                 nameError = nameError,
                 passwordError = passwordError,
                 confirmPasswordError = confirmPasswordError,
             )
         }
-        return RegisterResult(result = repository.register(
+        else RegisterResult(result = repository.register(
             email = email,
             name = name,
             password = hash(password),
