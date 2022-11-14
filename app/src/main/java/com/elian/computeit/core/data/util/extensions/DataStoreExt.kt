@@ -1,4 +1,4 @@
-package com.elian.computeit.core.util.extensions
+package com.elian.computeit.core.data.util.extensions
 
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences

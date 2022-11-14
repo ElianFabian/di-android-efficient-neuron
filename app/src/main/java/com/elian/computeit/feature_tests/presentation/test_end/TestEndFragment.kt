@@ -10,7 +10,7 @@ import com.elian.computeit.core.presentation.util.extensions.getColor2
 import com.elian.computeit.core.presentation.util.extensions.navigate
 import com.elian.computeit.core.util.constants.EXTRA_TEST_SESSION_DATA
 import com.elian.computeit.core.util.extensions.*
-import com.elian.computeit.core.util.mp_android_chart.*
+import com.elian.computeit.core.presentation.util.mp_android_chart.*
 import com.elian.computeit.databinding.FragmentTestEndBinding
 import com.elian.computeit.feature_tests.data.models.TestSessionData
 import com.github.mikephil.charting.data.LineDataSet
