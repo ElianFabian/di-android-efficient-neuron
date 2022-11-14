@@ -29,9 +29,7 @@ class ValidateConfigurationFieldsUseCase @Inject constructor()
         }
         if (minValue!! > maxValue!!)
         {
-            return TestConfigurationResult(
-                result = Resource.Error(R.string.error_range_values_are_inverted)
-            )
+            return TestConfigurationResult(result = Resource.Error(R.string.error_range_values_are_inverted))
         }
         return TestConfigurationResult(result = Resource.Success())
     }
