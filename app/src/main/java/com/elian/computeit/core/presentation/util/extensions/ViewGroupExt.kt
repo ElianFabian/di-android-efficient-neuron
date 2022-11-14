@@ -31,7 +31,6 @@ fun ViewGroup.findViewsWithTag(tag: String) = findViewsWithTag(tag, this)
 fun ViewGroup.findViewsWithTag(@StringRes tag: Int) = findViewsWithTag(context.getString(tag), this)
 
 // It's public because of inline limitations
-@Suppress("UNCHECKED_CAST")
 inline fun <reified T : View> findViewsOfTypeFromRoot(root: ViewGroup): List<T>
 {
     val views = mutableListOf<View>()
@@ -60,6 +59,7 @@ inline fun <reified T : View> findViewsOfTypeFromRoot(root: ViewGroup): List<T>
 
         childIndex++
     }
+    @Suppress("UNCHECKED_CAST")
     return views as List<T>
 }
 
@@ -70,7 +70,6 @@ inline fun <reified T : View> ViewGroup.findViewsWithTagOfType(tag: String) = fi
 inline fun <reified T : View> ViewGroup.findViewsWithTagOfType(@StringRes tag: Int) = findViewsWithTagOfType<T>(context.getString(tag), this)
 
 // It's public because of inline limitations
-@Suppress("UNCHECKED_CAST")
 inline fun <reified T : View> findViewsWithTagOfType(tag: String, root: ViewGroup): List<T>
 {
     val views = mutableListOf<View>()
@@ -103,5 +102,6 @@ inline fun <reified T : View> findViewsWithTagOfType(tag: String, root: ViewGrou
 
         childIndex++
     }
+    @Suppress("UNCHECKED_CAST")
     return views as List<T>
 }
