@@ -52,8 +52,8 @@ class TestEndFragment : Fragment()
         {
             testSessionData.apply()
             {
-                tvTmp.text = "$speedInTpm"
-                tvRawTmp.text = "$rawSpeedInTpm"
+                tvTmp.text = "$tpm"
+                tvRawTmp.text = "$rawTpm"
                 tvTime.text = "$testTimeInSeconds s"
                 tvTests.text = "${testDataList.size}"
                 tvErrors.text = "$errorCount"
@@ -68,7 +68,7 @@ class TestEndFragment : Fragment()
     private fun initChart()
     {
         val tpmSet = LineDataSet(
-            testSessionData.speedOverTimeInTpm.toEntries(),
+            testSessionData.tpmPerSecond.toEntries(),
             getString(R.string.generic_tmp)
         ).applyDefaultStyle().apply()
         {
@@ -76,7 +76,7 @@ class TestEndFragment : Fragment()
         }
 
         val rawTpmSet = LineDataSet(
-            testSessionData.rawSpeedOverTimeInTpm.toEntries(),
+            testSessionData.rawTpmPerSecond.toEntries(),
             getString(R.string.generic_raw)
         ).applyDefaultStyle().apply()
         {

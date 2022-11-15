@@ -3,7 +3,7 @@ package com.elian.computeit.core.util.extensions
 import com.elian.computeit.core.domain.models.TestData
 import com.elian.computeit.core.domain.models.TestSessionData
 
-private fun TestSessionData.getValuesOverTime(
+private fun TestSessionData.getValuePerSecond(
     getCountSinceStartFromCondition: (testData: TestData) -> Boolean = { true },
     getValue: (currentSecond: Int, countSinceStart: Int) -> Float,
 ): Map<Int, Int>
@@ -24,21 +24,21 @@ private fun TestSessionData.getValuesOverTime(
     }
 }
 
-val TestSessionData.rawSpeedOverTimeInTpm
-    get() = getValuesOverTime(
+val TestSessionData.rawTpmPerSecond
+    get() = getValuePerSecond(
         getValue = { currentSecond, testCountSinceStart ->
             testCountSinceStart / currentSecond.toFloat() * 60
         },
     )
 
-val TestSessionData.speedOverTimeInTpm
-    get() = getValuesOverTime(
+val TestSessionData.tpmPerSecond
+    get() = getValuePerSecond(
         getCountSinceStartFromCondition = { !it.isError },
         getValue = { currentSecond, testCountSinceStart ->
             testCountSinceStart / currentSecond.toFloat() * 60
         },
     )
 
-val TestSessionData.rawSpeedInTpm get() = rawSpeedOverTimeInTpm.values.last()
-val TestSessionData.speedInTpm get() = speedOverTimeInTpm.values.last()
+val TestSessionData.rawTpm get() = rawTpmPerSecond.values.last()
+val TestSessionData.tpm get() = tpmPerSecond.values.last()
 val TestSessionData.errorCount get() = testDataList.count { it.isError }
