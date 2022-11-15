@@ -24,17 +24,17 @@ fun LineChart.applyDefaultStyle(): LineChart
     {
         setDrawGridLines(false)
         granularity = 1F
-        textColor = Color.WHITE
+        this.textColor = Color.WHITE
     }
     axisLeft.apply()
     {
         setDrawGridLines(false)
         granularity = 1F
-        textColor = Color.WHITE
+        this.textColor = Color.WHITE
     }
     legend.apply()
     {
-        textColor = Color.WHITE
+        this.textColor = Color.WHITE
     }
 
     return this

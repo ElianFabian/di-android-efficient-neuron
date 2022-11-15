@@ -11,10 +11,7 @@ import com.elian.computeit.core.presentation.util.extensions.getColorCompat
 import com.elian.computeit.core.presentation.util.extensions.navigate
 import com.elian.computeit.core.presentation.util.mp_android_chart.*
 import com.elian.computeit.core.util.constants.EXTRA_TEST_SESSION_DATA
-import com.elian.computeit.core.util.extensions.errorCount
-import com.elian.computeit.core.util.extensions.rawTpm
-import com.elian.computeit.core.util.extensions.tpm
-import com.elian.computeit.core.util.extensions.tpmPerSecond
+import com.elian.computeit.core.util.extensions.*
 import com.elian.computeit.databinding.FragmentTestEndBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -72,13 +69,13 @@ class TestEndFragment : Fragment()
         val tpmSet = lineDataSet(
             entries = testSessionData.tpmPerSecond.toEntries(),
             label = getString(R.string.generic_tmp),
-            lineAndCirclesColor = getColorCompat(R.color.teal_200)
         )
         val rawTpmSet = lineDataSet(
-            entries = testSessionData.tpmPerSecond.toEntries(),
+            entries = testSessionData.rawTpmPerSecond.toEntries(),
             label = getString(R.string.generic_raw),
+        ) {
             lineAndCirclesColor = getColorCompat(R.color.teal_700)
-        )
+        }
 
         binding.lcTestGraph.applyDefaultStyle().apply()
         {

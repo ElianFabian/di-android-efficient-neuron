@@ -1,18 +1,18 @@
 package com.elian.computeit.core.presentation.util.mp_android_chart
 
-import androidx.annotation.ColorInt
+import android.graphics.Color
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineDataSet
 
 fun lineDataSet(
     entries: List<Entry>,
     label: String,
-    @ColorInt
-    lineAndCirclesColor: Int,
+    lineDataSetBlock: (LineDataSet.() -> Unit)? = null,
 ): LineDataSet
 {
     return LineDataSet(entries, label).applyDefaultStyle().apply()
     {
-        this.lineAndCirclesColor = lineAndCirclesColor
+        this.lineAndCirclesColor = Color.parseColor("#03dac5")
+        lineDataSetBlock?.invoke(this)
     }
 }

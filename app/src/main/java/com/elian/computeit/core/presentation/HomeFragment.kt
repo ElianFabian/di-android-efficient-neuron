@@ -63,8 +63,10 @@ class HomeFragment : Fragment()
         val tpmSet = lineDataSet(
             entries = tpmPerSession.toEntries(),
             label = getString(R.string.generic_tmp),
-            lineAndCirclesColor = getColorCompat(R.color.teal_200)
-        )
+        ) {
+            setDrawVerticalHighlightIndicator(true)
+            highLightColor = getColorCompat(R.color.blue_200)
+        }
 
         binding.lcTpmPerSession.applyDefaultStyle().apply()
         {

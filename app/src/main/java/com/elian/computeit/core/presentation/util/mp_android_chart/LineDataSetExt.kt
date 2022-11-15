@@ -22,10 +22,10 @@ var LineDataSet.lineAndCirclesColor: Int?
 fun LineDataSet.applyDefaultStyle(): LineDataSet
 {
     setDrawValues(false)
-    mode = LineDataSet.Mode.CUBIC_BEZIER
-    cubicIntensity = 0.2F
-    lineWidth = 2.2F
-    circleRadius = 3F
+    this.mode = LineDataSet.Mode.CUBIC_BEZIER
+    this.cubicIntensity = 0.2F
+    this.lineWidth = 2.2F
+    this.circleRadius = 3F
 
     setDrawHorizontalHighlightIndicator(false)
     setDrawVerticalHighlightIndicator(false)
