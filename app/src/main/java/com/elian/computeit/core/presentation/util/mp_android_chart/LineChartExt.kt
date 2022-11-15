@@ -8,11 +8,11 @@ import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
 var LineChart.isInteractionEnable: Boolean
     get() = isDoubleTapToZoomEnabled && isScaleXEnabled
     set(value)
-{
-    isDoubleTapToZoomEnabled = value
-    setScaleEnabled(value)
-    setTouchEnabled(value)
-}
+    {
+        isDoubleTapToZoomEnabled = value
+        setScaleEnabled(value)
+        setTouchEnabled(value)
+    }
 
 fun LineChart.applyDefaultStyle(): LineChart
 {
