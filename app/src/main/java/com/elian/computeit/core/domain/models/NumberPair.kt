@@ -4,7 +4,7 @@ import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class Range(
-    val min: Int = 0,
-    val max: Int = 0,
+data class NumberPair(
+    val first: Int = 0,
+    val second: Int = 0,
 ) : Parcelable

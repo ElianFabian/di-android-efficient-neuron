@@ -39,6 +39,8 @@ val TestSessionData.tpmPerSecond
         },
     )
 
-val TestSessionData.rawTpm get() = rawTpmPerSecond.values.last()
-val TestSessionData.tpm get() = tpmPerSecond.values.last()
+val TestSessionData.rawTpm get() = rawTpmPerSecond.values.lastOrNull() ?: 0
+val TestSessionData.tpm get() = tpmPerSecond.values.lastOrNull() ?: 0
 val TestSessionData.errorCount get() = testDataList.count { it.isError }
+
+val List<TestSessionData>.tpmPerSession get() = map { it.tpm }

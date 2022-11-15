@@ -4,6 +4,7 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.elian.computeit.core.data.Operation
+import com.elian.computeit.core.domain.models.NumberPair
 import com.elian.computeit.core.domain.util.CountDownTimer
 import com.elian.computeit.core.domain.util.TimerEvent
 import com.elian.computeit.core.util.constants.EXTRA_OPERATION_NUMBER_RANGE
@@ -53,7 +54,7 @@ class TestViewModel @Inject constructor(
     private val _resultState = MutableStateFlow(0)
     val resultState = _resultState.asStateFlow()
 
-    private val _pairOfNumbersState = MutableStateFlow<Pair<Int, Int>?>(null)
+    private val _pairOfNumbersState = MutableStateFlow<NumberPair?>(null)
     val pairOfNumbersState = _pairOfNumbersState.asStateFlow()
 
     private var _millisUntilFinish = millisInFuture

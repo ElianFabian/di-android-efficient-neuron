@@ -1,7 +1,7 @@
 package com.elian.computeit.core.data.repository
 
+import com.elian.computeit.core.data.models.UserData
 import com.elian.computeit.core.data.util.constants.COLLECTION_USERS_DATA
-import com.elian.computeit.core.data.util.constants.FIELD_TEST_SESSION_DATA_LIST
 import com.elian.computeit.core.domain.models.TestSessionData
 import com.elian.computeit.core.domain.repository.LocalAppDataRepository
 import com.elian.computeit.core.domain.repository.TestDataRepository
@@ -19,17 +19,14 @@ class TestDataRepositoryImpl @Inject constructor(
 {
     override suspend fun addTestSessionData(testSessionData: TestSessionData)
     {
-        getUserDataRef().update(FIELD_TEST_SESSION_DATA_LIST, FieldValue.arrayUnion(testSessionData))
+        getUserDataRef().update(UserData::testSessionDataList.name, FieldValue.arrayUnion(testSessionData))
     }
 
     override suspend fun getTestSessionDataList() = flow()
     {
-        val userData = getUserDataRef().get().await().data
+        val userDataFromServer = getUserDataRef().get().await().toObject(UserData::class.java)!!
 
-        @Suppress("UNCHECKED_CAST")
-        val listFromServer = userData?.get(FIELD_TEST_SESSION_DATA_LIST) as? List<TestSessionData> ?: emptyList()
-
-        emit(listFromServer)
+        emit(userDataFromServer.testSessionDataList)
     }
 
 

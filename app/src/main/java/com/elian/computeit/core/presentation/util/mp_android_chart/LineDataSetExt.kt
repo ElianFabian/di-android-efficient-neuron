@@ -27,5 +27,8 @@ fun LineDataSet.applyDefaultStyle(): LineDataSet
     lineWidth = 2.2F
     circleRadius = 3F
 
+    setDrawHorizontalHighlightIndicator(false)
+    setDrawVerticalHighlightIndicator(false)
+
     return this
 }

@@ -5,9 +5,9 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class TestData(
-    val pairOfNumbers: Pair<Int, Int>,
-    val operation: String,
-    val insertedResult: Int,
-    val expectedResult: Int,
-    val millisSinceStart: Long,
+    val pairOfNumbers: NumberPair = NumberPair(),
+    val operation: String = "",
+    val insertedResult: Int = 0,
+    val expectedResult: Int = 0,
+    val millisSinceStart: Long = 0,
 ) : Parcelable

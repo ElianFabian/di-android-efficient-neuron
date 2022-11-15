@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.elian.computeit.R
 import com.elian.computeit.core.domain.models.TestSessionData
-import com.elian.computeit.core.presentation.util.extensions.getColor2
+import com.elian.computeit.core.presentation.util.extensions.getColorCompat
 import com.elian.computeit.core.presentation.util.extensions.navigate
 import com.elian.computeit.core.presentation.util.mp_android_chart.*
 import com.elian.computeit.core.util.constants.EXTRA_TEST_SESSION_DATA
@@ -72,7 +72,7 @@ class TestEndFragment : Fragment()
             getString(R.string.generic_tmp)
         ).applyDefaultStyle().apply()
         {
-            lineAndCirclesColor = getColor2(R.color.teal_200)
+            lineAndCirclesColor = getColorCompat(R.color.teal_200)
         }
 
         val rawTpmSet = LineDataSet(
@@ -80,7 +80,7 @@ class TestEndFragment : Fragment()
             getString(R.string.generic_raw)
         ).applyDefaultStyle().apply()
         {
-            lineAndCirclesColor = getColor2(R.color.teal_700)
+            lineAndCirclesColor = getColorCompat(R.color.teal_700)
         }
 
         binding.lcTestGraph.applyDefaultStyle().apply()

@@ -5,20 +5,26 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import com.elian.computeit.R
-import com.elian.computeit.core.presentation.util.extensions.getColor2
+import com.elian.computeit.core.presentation.util.HomeViewModel
+import com.elian.computeit.core.presentation.util.extensions.getColorCompat
 import com.elian.computeit.core.presentation.util.extensions.navigate
 import com.elian.computeit.core.presentation.util.mp_android_chart.applyDefaultStyle
-import com.elian.computeit.core.presentation.util.mp_android_chart.disableInteraction
 import com.elian.computeit.core.presentation.util.mp_android_chart.lineAndCirclesColor
+import com.elian.computeit.core.presentation.util.mp_android_chart.toEntries
+import com.elian.computeit.core.util.extensions.tpmPerSession
 import com.elian.computeit.databinding.FragmentHomeBinding
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class HomeFragment : Fragment()
 {
+    private val viewModel by viewModels<HomeViewModel>()
     private lateinit var binding: FragmentHomeBinding
 
 
@@ -34,6 +40,8 @@ class HomeFragment : Fragment()
     {
         super.onViewCreated(view, savedInstanceState)
 
+        viewModel
+
         initUi()
     }
 
@@ -41,27 +49,31 @@ class HomeFragment : Fragment()
     private fun initUi()
     {
         binding.btnGoToConfiguration.setOnClickListener { navigate(R.id.action_homeFragment_to_testConfigurationFragment) }
-        
-        initChart()
+
+        lifecycleScope.launch()
+        {
+            viewModel.getTestSessionDataList().collect()
+            {
+                initTpmPerSessionChart(it.tpmPerSession)
+            }
+        }
     }
 
-    private fun initChart()
+    private fun initTpmPerSessionChart(tpmPerSession: List<Int>)
     {
         val tpmSet = LineDataSet(
-           listOf(),
+            tpmPerSession.toEntries(),
             getString(R.string.generic_tmp)
         ).applyDefaultStyle().apply()
         {
-            lineAndCirclesColor = getColor2(R.color.teal_200)
+            lineAndCirclesColor = getColorCompat(R.color.teal_200)
         }
 
-        binding.lcAverageTmpInEveryTestSession.applyDefaultStyle().apply()
+        binding.lcTpmPerSession.applyDefaultStyle().apply()
         {
             data = LineData(tpmSet)
 
             animateX(500)
-
-            disableInteraction()
         }
     }
 }

@@ -23,7 +23,7 @@
         app:cardCornerRadius="@dimen/_10sdp">
 
         <com.github.mikephil.charting.charts.LineChart
-            android:id="@+id/lcAverageTmpInEveryTestSession"
+            android:id="@+id/lcTpmPerSession"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginVertical="@dimen/_5sdp"

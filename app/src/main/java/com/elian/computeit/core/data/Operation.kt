@@ -1,5 +1,7 @@
 package com.elian.computeit.core.data
 
+import com.elian.computeit.core.domain.models.NumberPair
+
 enum class Operation(
     val symbol: String,
     val calculate: (a: Int, b: Int) -> Int,
@@ -22,7 +24,7 @@ enum class Operation(
         calculate = { a, b -> a / b },
     );
 
-    operator fun invoke(pairOfNumbers: Pair<Int, Int>) = calculate(pairOfNumbers.first, pairOfNumbers.second)
+    operator fun invoke(pairOfNumbers: NumberPair) = calculate(pairOfNumbers.first, pairOfNumbers.second)
 }
 
 val symbolToOperation = Operation.values().associateBy { it.symbol }

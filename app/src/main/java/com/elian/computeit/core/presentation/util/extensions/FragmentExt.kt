@@ -30,7 +30,7 @@ fun Fragment.toast(text: CharSequence, duration: Int = Toast.LENGTH_SHORT)
     Toast.makeText(context, text, duration).show()
 }
 
-fun Fragment.getColor2(@ColorRes id: Int) = ContextCompat.getColor(requireContext(), id)
+fun Fragment.getColorCompat(@ColorRes id: Int) = ContextCompat.getColor(requireContext(), id)
 
 fun Fragment.onBackPressed(action: (() -> Unit)? = null) = activity?.onBackPressedDispatcher?.addCallback(
     object : OnBackPressedCallback(true)
