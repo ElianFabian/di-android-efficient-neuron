@@ -23,11 +23,13 @@ fun LineChart.applyDefaultStyle(): LineChart
     xAxis.apply()
     {
         setDrawGridLines(false)
+        granularity = 1F
         textColor = Color.WHITE
     }
     axisLeft.apply()
     {
         setDrawGridLines(false)
+        granularity = 1F
         textColor = Color.WHITE
     }
     legend.apply()
