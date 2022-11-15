@@ -12,12 +12,11 @@ import com.elian.computeit.core.presentation.util.HomeViewModel
 import com.elian.computeit.core.presentation.util.extensions.getColorCompat
 import com.elian.computeit.core.presentation.util.extensions.navigate
 import com.elian.computeit.core.presentation.util.mp_android_chart.applyDefaultStyle
-import com.elian.computeit.core.presentation.util.mp_android_chart.lineAndCirclesColor
+import com.elian.computeit.core.presentation.util.mp_android_chart.lineDataSet
 import com.elian.computeit.core.presentation.util.mp_android_chart.toEntries
 import com.elian.computeit.core.util.extensions.tpmPerSession
 import com.elian.computeit.databinding.FragmentHomeBinding
 import com.github.mikephil.charting.data.LineData
-import com.github.mikephil.charting.data.LineDataSet
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -61,13 +60,11 @@ class HomeFragment : Fragment()
 
     private fun initTpmPerSessionChart(tpmPerSession: List<Int>)
     {
-        val tpmSet = LineDataSet(
-            tpmPerSession.toEntries(),
-            getString(R.string.generic_tmp)
-        ).applyDefaultStyle().apply()
-        {
+        val tpmSet = lineDataSet(
+            entries = tpmPerSession.toEntries(),
+            label = getString(R.string.generic_tmp),
             lineAndCirclesColor = getColorCompat(R.color.teal_200)
-        }
+        )
 
         binding.lcTpmPerSession.applyDefaultStyle().apply()
         {

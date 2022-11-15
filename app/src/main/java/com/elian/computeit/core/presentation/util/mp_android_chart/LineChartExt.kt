@@ -5,11 +5,13 @@ import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
 
-fun LineChart.disableInteraction()
+var LineChart.isInteractionEnable: Boolean
+    get() = isDoubleTapToZoomEnabled && isScaleXEnabled
+    set(value)
 {
-    isDoubleTapToZoomEnabled = false
-    setScaleEnabled(false)
-    setTouchEnabled(false)
+    isDoubleTapToZoomEnabled = value
+    setScaleEnabled(value)
+    setTouchEnabled(value)
 }
 
 fun LineChart.applyDefaultStyle(): LineChart
