@@ -1,35 +1,135 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<androidx.core.widget.NestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
-
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_dark"
-    android:gravity="center"
-    android:orientation="vertical">
+    android:animateLayoutChanges="true"
+    android:fillViewport="true">
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnGoToConfiguration"
-        android:layout_width="@dimen/_200sdp"
-        android:layout_height="@dimen/_80sdp"
-        android:text="Go to configuration" />
-
-    <com.google.android.material.card.MaterialCardView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_200sdp"
-        android:layout_marginHorizontal="@dimen/_8sdp"
-        android:backgroundTint="@color/blue_sapphire"
-        app:cardCornerRadius="@dimen/_10sdp">
+        android:layout_height="match_parent"
+        android:animateLayoutChanges="true"
+        android:background="@color/background_dark"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingHorizontal="@dimen/_10sdp"
+        android:paddingVertical="@dimen/_20sdp">
 
-        <com.github.mikephil.charting.charts.LineChart
-            android:id="@+id/lcTpmPerSession"
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginVertical="@dimen/_5sdp"
-            android:background="@color/blue_sapphire" />
+            android:layout_height="wrap_content"
+            android:animateLayoutChanges="true"
+            android:backgroundTint="@color/background_line_chart"
+            app:cardCornerRadius="@dimen/_10sdp">
 
-    </com.google.android.material.card.MaterialCardView>
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_150sdp" />
+
+            <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/lcTpmPerSession"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_200sdp"
+                android:layout_marginVertical="@dimen/_5sdp"
+                android:background="@color/background_line_chart"
+                android:visibility="gone"
+                tools:visibility="visible" />
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:backgroundTint="@color/background_line_chart"
+            app:cardCornerRadius="@dimen/_10sdp">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:animateLayoutChanges="true"
+                android:orientation="vertical"
+                android:paddingHorizontal="@dimen/_15sdp"
+                android:paddingVertical="@dimen/_15sdp">
+
+                <com.google.android.material.textview.MaterialTextView
+                    style="@style/TextView_Label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/frgHomeFragment_averageTpm" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tvAverageTpm"
+                    style="@style/TextView_Value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_20sdp"
+                    android:visibility="gone"
+                    tools:text="60"
+                    tools:visibility="visible" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    style="@style/TextView_Label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/frgHomeFragment_averageRawTpm" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tvAverageRawTpm"
+                    style="@style/TextView_Value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_20sdp"
+                    android:visibility="gone"
+                    tools:text="60"
+                    tools:visibility="visible" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    style="@style/TextView_Label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/frgHomeFragment_highestTpm" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tvHighestTpm"
+                    style="@style/TextView_Value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_20sdp"
+                    android:visibility="gone"
+                    tools:text="70"
+                    tools:visibility="visible" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    style="@style/TextView_Label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/frgHomeFragment_highestRawTpm" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tvHighestRawTpm"
+                    style="@style/TextView_Value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    tools:text="80"
+                    tools:visibility="visible" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnGoToConfiguration"
+            android:layout_width="@dimen/_200sdp"
+            android:layout_height="@dimen/_80sdp"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:text="Go to configuration" />
 
 
-</LinearLayout>
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>

@@ -48,9 +48,9 @@ class TestEndFragment : Fragment()
 
     private fun initUi()
     {
-        binding.apply()
+        binding.apply2()
         {
-            testSessionData.apply()
+            testSessionData.apply2()
             {
                 tvTpm.text = "$tpm"
                 tvRawTpm.text = "$rawTpm"

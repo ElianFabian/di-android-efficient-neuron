@@ -30,15 +30,15 @@
         <item name="android:includeFontPadding">false</item>
     </style>
 
-    <style name="TextAppearance_TextView_Time">
-        <item name="android:textSize">@dimen/textSize_medium3</item>
+    <style name="TextAppearance_TextView_Value">
+        <item name="android:textSize">@dimen/textSize_medium2_1</item>
         <item name="android:fontFamily">@font/comfortaa_bold</item>
         <item name="android:textColor">@color/blue_200</item>
         <item name="android:includeFontPadding">false</item>
     </style>
 
-    <style name="TextAppearance_TextView_Time_Label">
-        <item name="android:textSize">@dimen/textSize_large1</item>
+    <style name="TextAppearance_TextView_Label">
+        <item name="android:textSize">@dimen/textSize_medium3</item>
         <item name="android:fontFamily">@font/comfortaa_bold</item>
         <item name="android:textColor">@color/white</item>
     </style>

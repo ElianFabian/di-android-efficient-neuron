@@ -8,6 +8,7 @@
 
     <dimen name="textSize_medium1">@dimen/_10ssp</dimen>
     <dimen name="textSize_medium2">@dimen/_15ssp</dimen>
+    <dimen name="textSize_medium2_1">@dimen/_17ssp</dimen>
     <dimen name="textSize_medium3">@dimen/_20ssp</dimen>
 
     <dimen name="textSize_large1">@dimen/_25ssp</dimen>

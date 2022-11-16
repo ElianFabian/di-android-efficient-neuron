@@ -88,12 +88,12 @@
         <item name="android:textSize">@dimen/textSize_medium3</item>
     </style>
 
-    <style name="frgEndGame_Label">
-        <item name="android:textAppearance">@style/TextAppearance_TextView_Time_Label</item>
+    <style name="TextView_Label">
+        <item name="android:textAppearance">@style/TextAppearance_TextView_Label</item>
     </style>
 
-    <style name="frgEndGame_TexView_Value">
-        <item name="android:textAppearance">@style/TextAppearance_TextView_Time</item>
+    <style name="TextView_Value">
+        <item name="android:textAppearance">@style/TextAppearance_TextView_Value</item>
         <item name="android:includeFontPadding">false</item>
     </style>
 

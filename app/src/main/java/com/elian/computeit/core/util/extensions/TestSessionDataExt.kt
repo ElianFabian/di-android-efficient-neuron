@@ -42,5 +42,12 @@ val TestSessionData.tpmPerSecond
 val TestSessionData.rawTpm get() = rawTpmPerSecond.values.lastOrNull() ?: 0
 val TestSessionData.tpm get() = tpmPerSecond.values.lastOrNull() ?: 0
 val TestSessionData.errorCount get() = testDataList.count { it.isError }
+val TestSessionData.maxTpm get() = tpmPerSecond.maxBy { it.value }.value
 
 val List<TestSessionData>.tpmPerSession get() = map { it.tpm }
+val List<TestSessionData>.rawTpmPerSession get() = map { it.rawTpm }
+val List<TestSessionData>.averageTpm get() = tpmPerSession.average().toFloat()
+val List<TestSessionData>.averageRawTpm get() = rawTpmPerSession.average().toFloat()
+val List<TestSessionData>.maxTpm get() = tpmPerSession.max()
+val List<TestSessionData>.maxRawTpm get() = rawTpmPerSession.max()
+val List<TestSessionData>.testsCount get() = sumOf { it.testDataList.size }
