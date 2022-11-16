@@ -13,6 +13,7 @@ import com.elian.computeit.core.presentation.util.mp_android_chart.*
 import com.elian.computeit.core.util.constants.EXTRA_TEST_SESSION_DATA
 import com.elian.computeit.core.util.extensions.*
 import com.elian.computeit.databinding.FragmentTestEndBinding
+import com.github.mikephil.charting.data.LineData
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -67,21 +68,23 @@ class TestEndFragment : Fragment()
     private fun initTestSessionChart()
     {
         val tpmSet = lineDataSet(
+            context = context,
             entries = testSessionData.tpmPerSecond.toEntries(),
-            label = getString(R.string.generic_tpm),
+            labelResId = R.string.generic_tpm,
         )
         val rawTpmSet = lineDataSet(
+            context = context,
             entries = testSessionData.rawTpmPerSecond.toEntries(),
-            label = getString(R.string.generic_raw),
+            labelResId = R.string.generic_raw,
         ) {
-            lineAndCirclesColor = getColorCompat(R.color.teal_700)
+            lineAndCirclesColor = context.getColorCompat(R.color.teal_700)
         }
 
-        binding.lcTestGraph.applyDefaultStyle().apply()
+        binding.lcTestGraph.applyDefaultStyle()
         {
-            setAllData(
+            data = LineData(
                 rawTpmSet,
-                tpmSet
+                tpmSet,
             )
 
             animateX(500)

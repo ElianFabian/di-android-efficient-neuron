@@ -18,17 +18,3 @@ var LineDataSet.lineAndCirclesColor: Int?
         circleHoleColor = value
         color = value
     }
-
-fun LineDataSet.applyDefaultStyle(): LineDataSet
-{
-    setDrawValues(false)
-    this.mode = LineDataSet.Mode.CUBIC_BEZIER
-    this.cubicIntensity = 0.2F
-    this.lineWidth = 2.2F
-    this.circleRadius = 3F
-
-    setDrawHorizontalHighlightIndicator(false)
-    setDrawVerticalHighlightIndicator(false)
-
-    return this
-}

@@ -59,14 +59,15 @@ class HomeFragment : Fragment()
     private fun initTpmPerSessionChart(tpmPerSession: List<Int>)
     {
         val tpmSet = lineDataSet(
+            context = context,
             entries = tpmPerSession.toEntries(),
-            label = getString(R.string.generic_tpm),
+            labelResId = R.string.generic_tpm,
         ) {
             setDrawVerticalHighlightIndicator(true)
-            highLightColor = getColorCompat(R.color.blue_200)
+            highLightColor = context.getColorCompat(R.color.blue_200)
         }
 
-        binding.lcTpmPerSession.applyDefaultStyle().apply()
+        binding.lcTpmPerSession.applyDefaultStyle()
         {
             data = LineData(tpmSet)
 

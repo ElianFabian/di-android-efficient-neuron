@@ -2,8 +2,6 @@ package com.elian.computeit.core.presentation.util.mp_android_chart
 
 import android.graphics.Color
 import com.github.mikephil.charting.charts.LineChart
-import com.github.mikephil.charting.data.LineData
-import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
 
 var LineChart.isInteractionEnable: Boolean
     get() = isDoubleTapToZoomEnabled && isScaleXEnabled
@@ -14,7 +12,7 @@ var LineChart.isInteractionEnable: Boolean
         setTouchEnabled(value)
     }
 
-fun LineChart.applyDefaultStyle(): LineChart
+fun LineChart.applyDefaultStyle(block: (LineChart.() -> Unit)? = null): LineChart
 {
     setDrawGridBackground(false)
     description.isEnabled = false
@@ -37,11 +35,7 @@ fun LineChart.applyDefaultStyle(): LineChart
         this.textColor = Color.WHITE
     }
 
-    return this
-}
+    block?.invoke(this)
 
-fun LineChart.setAllData(vararg dataSets: ILineDataSet?)
-{
-    data = LineData()
-    dataSets.forEach { data.addDataSet(it) }
+    return this
 }

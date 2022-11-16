@@ -1,18 +1,32 @@
 package com.elian.computeit.core.presentation.util.mp_android_chart
 
-import android.graphics.Color
+import android.content.Context
+import androidx.annotation.StringRes
+import com.elian.computeit.R
+import com.elian.computeit.core.presentation.util.extensions.getColorCompat
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineDataSet
 
 fun lineDataSet(
+    context: Context?,
     entries: List<Entry>,
-    label: String,
-    lineDataSetBlock: (LineDataSet.() -> Unit)? = null,
+    label: String? = null,
+    @StringRes labelResId: Int = 0,
+    block: (LineDataSet.() -> Unit)? = null,
 ): LineDataSet
 {
-    return LineDataSet(entries, label).applyDefaultStyle().apply()
+    return LineDataSet(entries, label ?: context!!.getString(labelResId)).apply()
     {
-        this.lineAndCirclesColor = Color.parseColor("#03dac5")
-        lineDataSetBlock?.invoke(this)
+        setDrawValues(false)
+        setDrawHorizontalHighlightIndicator(false)
+        setDrawVerticalHighlightIndicator(false)
+
+        lineAndCirclesColor = context.getColorCompat(R.color.teal_200)
+        mode = LineDataSet.Mode.CUBIC_BEZIER
+        cubicIntensity = 0.2F
+        lineWidth = 2.2F
+        circleRadius = 3F
+
+        block?.invoke(this)
     }
 }
