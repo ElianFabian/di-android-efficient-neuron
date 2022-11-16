@@ -22,6 +22,7 @@ import com.elian.computeit.databinding.FragmentHomeBinding
 import com.github.mikephil.charting.data.LineData
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 
 @AndroidEntryPoint
 class HomeFragment : Fragment()
@@ -57,14 +58,21 @@ class HomeFragment : Fragment()
             initTpmPerTestChart(_testDataListFromServer.tpmPerTest)
             initTextInfo(_testDataListFromServer)
         }
-        else lifecycleScope.launch()
+        else
         {
+            binding.lpiIsLoding.isGone = false
 
-            viewModel.getTestDataList().collect()
+            lifecycleScope.launch()
             {
-                _testDataListFromServer = it
-                initTpmPerTestChart(it.tpmPerTest)
-                initTextInfo(it)
+                viewModel.getTestDataList().collect()
+                {
+                    _testDataListFromServer = it
+
+                    initTpmPerTestChart(it.tpmPerTest)
+                    initTextInfo(it)
+
+                    runBlocking { binding.lpiIsLoding.isGone = true }
+                }
             }
         }
     }

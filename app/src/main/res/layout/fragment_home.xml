@@ -18,6 +18,18 @@
         android:paddingHorizontal="@dimen/_10sdp"
         android:paddingVertical="@dimen/_20sdp">
 
+        <ProgressBar
+            android:id="@+id/lpiIsLoding"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_20sdp"
+            android:indeterminate="true"
+            android:visibility="gone"
+            android:indeterminateTint="?colorPrimary"
+            app:trackCornerRadius="@dimen/_10sdp"
+            tools:visibility="visible" />
+
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
