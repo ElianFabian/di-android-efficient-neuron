@@ -29,6 +29,8 @@ class HomeFragment : Fragment()
     private val viewModel by viewModels<HomeViewModel>()
     private lateinit var binding: FragmentHomeBinding
 
+    private lateinit var _testDataListFromServer: List<TestData>
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?,
@@ -50,10 +52,17 @@ class HomeFragment : Fragment()
     {
         binding.btnGoToConfiguration.setOnClickListener { navigate(R.id.action_homeFragment_to_testConfigurationFragment) }
 
-        lifecycleScope.launch()
+        if (::_testDataListFromServer.isInitialized)
         {
+            initTpmPerTestChart(_testDataListFromServer.tpmPerTest)
+            initTextInfo(_testDataListFromServer)
+        }
+        else lifecycleScope.launch()
+        {
+
             viewModel.getTestDataList().collect()
             {
+                _testDataListFromServer = it
                 initTpmPerTestChart(it.tpmPerTest)
                 initTextInfo(it)
             }
