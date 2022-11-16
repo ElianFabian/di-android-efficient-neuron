@@ -2,7 +2,7 @@ package com.elian.computeit.core.data.repository
 
 import com.elian.computeit.core.data.models.UserData
 import com.elian.computeit.core.data.util.constants.COLLECTION_USERS_DATA
-import com.elian.computeit.core.domain.models.TestSessionData
+import com.elian.computeit.core.domain.models.TestData
 import com.elian.computeit.core.domain.repository.LocalAppDataRepository
 import com.elian.computeit.core.domain.repository.TestDataRepository
 import com.google.firebase.firestore.DocumentReference
@@ -17,16 +17,16 @@ class TestDataRepositoryImpl @Inject constructor(
     private val appRepository: LocalAppDataRepository,
 ) : TestDataRepository
 {
-    override suspend fun addTestSessionData(testSessionData: TestSessionData)
+    override suspend fun addTestData(testData: TestData)
     {
-        getUserDataRef().update(UserData::testSessionDataList.name, FieldValue.arrayUnion(testSessionData))
+        getUserDataRef().update(UserData::testDataList.name, FieldValue.arrayUnion(testData))
     }
 
-    override suspend fun getTestSessionDataList() = flow()
+    override suspend fun getTestDataList() = flow()
     {
         val userDataFromServer = getUserDataRef().get().await().toObject(UserData::class.java)!!
 
-        emit(userDataFromServer.testSessionDataList)
+        emit(userDataFromServer.testDataList)
     }
 
 

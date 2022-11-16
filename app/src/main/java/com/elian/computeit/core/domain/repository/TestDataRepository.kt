@@ -1,10 +1,10 @@
 package com.elian.computeit.core.domain.repository
 
-import com.elian.computeit.core.domain.models.TestSessionData
+import com.elian.computeit.core.domain.models.TestData
 import kotlinx.coroutines.flow.Flow
 
 interface TestDataRepository
 {
-    suspend fun addTestSessionData(testSessionData: TestSessionData)
-    suspend fun getTestSessionDataList(): Flow<List<TestSessionData>>
+    suspend fun addTestData(testData: TestData)
+    suspend fun getTestDataList(): Flow<List<TestData>>
 }

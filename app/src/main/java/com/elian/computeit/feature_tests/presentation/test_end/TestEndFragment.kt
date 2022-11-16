@@ -6,11 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.elian.computeit.R
-import com.elian.computeit.core.domain.models.TestSessionData
+import com.elian.computeit.core.domain.models.TestData
 import com.elian.computeit.core.presentation.util.extensions.getColorCompat
 import com.elian.computeit.core.presentation.util.extensions.navigate
 import com.elian.computeit.core.presentation.util.mp_android_chart.*
-import com.elian.computeit.core.util.constants.EXTRA_TEST_SESSION_DATA
+import com.elian.computeit.core.util.constants.EXTRA_TEST_DATA
 import com.elian.computeit.core.util.extensions.*
 import com.elian.computeit.databinding.FragmentTestEndBinding
 import com.github.mikephil.charting.data.LineData
@@ -20,7 +20,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class TestEndFragment : Fragment()
 {
     private lateinit var binding: FragmentTestEndBinding
-    private lateinit var testSessionData: TestSessionData
+    private lateinit var testData: TestData
 
 
     override fun onCreateView(
@@ -43,14 +43,14 @@ class TestEndFragment : Fragment()
 
     private fun initData()
     {
-        testSessionData = arguments?.getParcelable(EXTRA_TEST_SESSION_DATA)!!
+        testData = arguments?.getParcelable(EXTRA_TEST_DATA)!!
     }
 
     private fun initUi()
     {
         binding.apply2()
         {
-            testSessionData.apply2()
+            testData.apply2()
             {
                 tvTpm.text = "$tpm"
                 tvRawTpm.text = "$rawTpm"
@@ -62,19 +62,19 @@ class TestEndFragment : Fragment()
             btnContinue.setOnClickListener { navigate(R.id.action_testEndFragment_to_homeFragment) }
         }
 
-        initTestSessionChart()
+        initTpmPerSecondChart()
     }
 
-    private fun initTestSessionChart()
+    private fun initTpmPerSecondChart()
     {
         val tpmSet = lineDataSet(
             context = context,
-            entries = testSessionData.tpmPerSecond.toEntries(),
+            entries = testData.tpmPerSecond.toEntries(),
             labelResId = R.string.generic_tpm,
         )
         val rawTpmSet = lineDataSet(
             context = context,
-            entries = testSessionData.rawTpmPerSecond.toEntries(),
+            entries = testData.rawTpmPerSecond.toEntries(),
             labelResId = R.string.generic_raw,
         ) {
             lineAndCirclesColor = context.getColorCompat(R.color.teal_700)

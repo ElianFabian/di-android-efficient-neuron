@@ -30,7 +30,7 @@
                 android:layout_height="@dimen/_150sdp" />
 
             <com.github.mikephil.charting.charts.LineChart
-                android:id="@+id/lcTpmPerSession"
+                android:id="@+id/lcTpmPerTest"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_200sdp"
                 android:layout_marginVertical="@dimen/_5sdp"

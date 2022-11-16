@@ -5,18 +5,18 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.elian.computeit.core.data.Operation
 import com.elian.computeit.core.domain.models.NumberPair
+import com.elian.computeit.core.domain.models.OperationData
+import com.elian.computeit.core.domain.models.Range
+import com.elian.computeit.core.domain.models.TestData
 import com.elian.computeit.core.domain.util.CountDownTimer
 import com.elian.computeit.core.domain.util.TimerEvent
 import com.elian.computeit.core.util.constants.EXTRA_OPERATION_NUMBER_RANGE
 import com.elian.computeit.core.util.constants.EXTRA_OPERATION_TYPE
-import com.elian.computeit.core.util.constants.EXTRA_TEST_SESSION_DATA
+import com.elian.computeit.core.util.constants.EXTRA_TEST_DATA
 import com.elian.computeit.core.util.constants.EXTRA_TEST_TIME_IN_SECONDS
 import com.elian.computeit.core.util.extensions.append
 import com.elian.computeit.core.util.extensions.clampLength
-import com.elian.computeit.core.domain.models.Range
-import com.elian.computeit.core.domain.models.TestData
-import com.elian.computeit.core.domain.models.TestSessionData
-import com.elian.computeit.feature_tests.domain.use_case.AddTestSessionDataUseCase
+import com.elian.computeit.feature_tests.domain.use_case.AddTestDataUseCase
 import com.elian.computeit.feature_tests.presentation.test.TestAction.*
 import com.elian.computeit.feature_tests.presentation.util.getRandomPairOfNumbers
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -32,7 +32,7 @@ import kotlin.math.sign
 class TestViewModel @Inject constructor(
     savedState: SavedStateHandle,
     private val countDownTimer: CountDownTimer,
-    private val addTestSessionData: AddTestSessionDataUseCase,
+    private val addTestData: AddTestDataUseCase,
 ) : ViewModel()
 {
     companion object
@@ -46,7 +46,7 @@ class TestViewModel @Inject constructor(
     private val _operation = savedState.get<Operation>(EXTRA_OPERATION_TYPE) ?: error("Operation value expected")
 
 
-    private val _testDataList = mutableListOf<TestData>()
+    private val _testDataList = mutableListOf<OperationData>()
 
     private val _eventFlow = MutableSharedFlow<TestEvent>()
     val eventFlow = _eventFlow.asSharedFlow()
@@ -83,7 +83,7 @@ class TestViewModel @Inject constructor(
                     }
                     is TimerEvent.OnFinish ->
                     {
-                        val testSessionData = TestSessionData(
+                        val testData = TestData(
                             dateInSeconds = System.currentTimeMillis() / 1000,
                             testTimeInSeconds = _millisSinceStart.toInt() / 1000,
                             testDataList = _testDataList.toList(),
@@ -91,10 +91,10 @@ class TestViewModel @Inject constructor(
                         )
 
                         _eventFlow.emit(TestEvent.OnTimerFinish(
-                            args = listOf(EXTRA_TEST_SESSION_DATA to testSessionData)
+                            args = listOf(EXTRA_TEST_DATA to testData)
                         ))
 
-                        addTestSessionData(testSessionData)
+                        addTestData(testData)
                     }
                     else                   -> Unit
                 }
@@ -124,7 +124,7 @@ class TestViewModel @Inject constructor(
                 // but when storing the data we save the value with the correct sign
                 val sign = sign(expectedResult.toFloat()).toInt()
 
-                val data = TestData(
+                val data = OperationData(
                     operation = _operation.symbol,
                     pairOfNumbers = _pairOfNumbersState.value!!,
                     insertedResult = _resultState.value * sign,

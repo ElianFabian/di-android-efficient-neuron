@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.elian.computeit.R
-import com.elian.computeit.core.domain.models.TestSessionData
+import com.elian.computeit.core.domain.models.TestData
 import com.elian.computeit.core.presentation.util.HomeViewModel
 import com.elian.computeit.core.presentation.util.extensions.getColorCompat
 import com.elian.computeit.core.presentation.util.extensions.navigate
@@ -51,17 +51,17 @@ class HomeFragment : Fragment()
 
         lifecycleScope.launch()
         {
-            viewModel.getTestSessionDataList().collect()
+            viewModel.getTestDataList().collect()
             {
-                initTpmPerSessionChart(it.tpmPerSession)
+                initTpmPerTestChart(it.tpmPerTest)
                 initTextInfo(it)
             }
         }
     }
 
-    private fun initTextInfo(testSessionDataList: List<TestSessionData>) = binding.apply2()
+    private fun initTextInfo(testDataList: List<TestData>) = binding.apply2()
     {
-        testSessionDataList.apply()
+        testDataList.apply()
         {
             tvAverageTpm.text = averageTpm.format("%.2f")
             tvAverageRawTpm.text = averageRawTpm.format("%.2f")
@@ -75,18 +75,18 @@ class HomeFragment : Fragment()
         tvHighestRawTpm.isGone = false
     }
 
-    private fun initTpmPerSessionChart(tpmPerSession: List<Int>)
+    private fun initTpmPerTestChart(tpmPerTest: List<Int>)
     {
         val tpmSet = lineDataSet(
             context = context,
-            entries = tpmPerSession.toEntries(),
+            entries = tpmPerTest.toEntries(),
             labelResId = R.string.generic_tpm,
         ) {
             setDrawVerticalHighlightIndicator(true)
             highLightColor = context.getColorCompat(R.color.blue_200)
         }
 
-        binding.lcTpmPerSession.applyDefaultStyle()
+        binding.lcTpmPerTest.applyDefaultStyle()
         {
             data = LineData(tpmSet)
 

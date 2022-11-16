@@ -14,13 +14,13 @@ const val EXTRA_PASSWORD = "EXTRA_PASSWORD"
 /** @see com.elian.computeit.feature_tests.data.models.Operation */
 const val EXTRA_OPERATION_TYPE = "EXTRA_OPERATION_TYPE"
 
-/** @see com.elian.computeit.feature_tests.data.models.Range */
+/** @see com.elian.computeit.core.domain.models.Range */
 const val EXTRA_OPERATION_NUMBER_RANGE = "EXTRA_OPERATION_NUMBER_RANGE"
 
 /** @see Int */
 const val EXTRA_TEST_TIME_IN_SECONDS = "EXTRA_TEST_TIME_IN_SECONDS"
 
-/** @see com.elian.computeit.feature_tests.data.models.TestSessionData */
-const val EXTRA_TEST_SESSION_DATA = "EXTRA_TEST_SESSION_DATA"
+/** @see com.elian.computeit.core.domain.models.TestData */
+const val EXTRA_TEST_DATA = "EXTRA_TEST_DATA"
 
 //endregion

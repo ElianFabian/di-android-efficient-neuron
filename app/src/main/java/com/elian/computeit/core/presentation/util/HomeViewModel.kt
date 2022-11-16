@@ -10,5 +10,5 @@ class HomeViewModel @Inject constructor(
     private val testDataRepository: TestDataRepository,
 ) : ViewModel()
 {
-    suspend fun getTestSessionDataList() = testDataRepository.getTestSessionDataList()
+    suspend fun getTestDataList() = testDataRepository.getTestDataList()
 }
