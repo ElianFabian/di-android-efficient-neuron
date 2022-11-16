@@ -58,7 +58,7 @@
     <string name="generic_seconds">Segundos</string>
     <string name="generic_start">Empezar</string>
     <string name="generic_tests">Pruebas</string>
-    <string name="generic_tmp">PPM</string>
+    <string name="generic_tpm">PPM</string>
     <string name="generic_username">Nombre de usuario</string>
 
     <string name="navigation_menu_navAboutUs_title">Sobre Nosotros</string>

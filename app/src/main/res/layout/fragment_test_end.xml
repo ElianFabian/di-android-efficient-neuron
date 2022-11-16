@@ -79,10 +79,10 @@
                     style="@style/frgEndGame_Label"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/generic_tmp" />
+                    android:text="@string/generic_tpm" />
 
                 <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/tvTmp"
+                    android:id="@+id/tvTpm"
                     style="@style/frgEndGame_TexView_Value"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -103,7 +103,7 @@
                     android:text="@string/generic_raw" />
 
                 <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/tvRawTmp"
+                    android:id="@+id/tvRawTpm"
                     style="@style/frgEndGame_TexView_Value"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

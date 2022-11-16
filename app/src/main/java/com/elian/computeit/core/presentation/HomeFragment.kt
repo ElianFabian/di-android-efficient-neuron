@@ -60,7 +60,7 @@ class HomeFragment : Fragment()
     {
         val tpmSet = lineDataSet(
             entries = tpmPerSession.toEntries(),
-            label = getString(R.string.generic_tmp),
+            label = getString(R.string.generic_tpm),
         ) {
             setDrawVerticalHighlightIndicator(true)
             highLightColor = getColorCompat(R.color.blue_200)

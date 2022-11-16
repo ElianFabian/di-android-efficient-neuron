@@ -63,7 +63,7 @@
     <string name="generic_seconds">Seconds</string>
     <string name="generic_start">Start</string>
     <string name="generic_tests">Tests</string>
-    <string name="generic_tmp">TPM</string>
+    <string name="generic_tpm">TPM</string>
     <string name="generic_username">Username</string>
 
     <string name="navigation_drawer_close" translatable="false">Close</string>

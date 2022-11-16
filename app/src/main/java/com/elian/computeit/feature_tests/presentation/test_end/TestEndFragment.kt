@@ -51,8 +51,8 @@ class TestEndFragment : Fragment()
         {
             testSessionData.apply()
             {
-                tvTmp.text = "$tpm"
-                tvRawTmp.text = "$rawTpm"
+                tvTpm.text = "$tpm"
+                tvRawTpm.text = "$rawTpm"
                 tvTime.text = "$testTimeInSeconds s"
                 tvTests.text = "${testDataList.size}"
                 tvErrors.text = "$errorCount"
@@ -61,14 +61,14 @@ class TestEndFragment : Fragment()
             btnContinue.setOnClickListener { navigate(R.id.action_testEndFragment_to_homeFragment) }
         }
 
-        initChart()
+        initTestSessionChart()
     }
 
-    private fun initChart()
+    private fun initTestSessionChart()
     {
         val tpmSet = lineDataSet(
             entries = testSessionData.tpmPerSecond.toEntries(),
-            label = getString(R.string.generic_tmp),
+            label = getString(R.string.generic_tpm),
         )
         val rawTpmSet = lineDataSet(
             entries = testSessionData.rawTpmPerSecond.toEntries(),
