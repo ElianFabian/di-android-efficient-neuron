@@ -59,6 +59,54 @@
                     style="@style/TextView_Label"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:text="@string/frgHomeFragment_testsCompleted" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tvTestsCompleted"
+                    style="@style/TextView_Value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_20sdp"
+                    android:visibility="gone"
+                    tools:text="60"
+                    tools:visibility="visible" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    style="@style/TextView_Label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/frgHomeFragment_operationsCompleted" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tvOperationsCompleted"
+                    style="@style/TextView_Value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_20sdp"
+                    android:visibility="gone"
+                    tools:text="60"
+                    tools:visibility="visible" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    style="@style/TextView_Label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/frgHomeFragment_correctOperationsCompleted" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tvCorrectOperationsCompleted"
+                    style="@style/TextView_Value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_20sdp"
+                    android:visibility="gone"
+                    tools:text="60"
+                    tools:visibility="visible" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    style="@style/TextView_Label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:text="@string/frgHomeFragment_averageTpm" />
 
                 <com.google.android.material.textview.MaterialTextView

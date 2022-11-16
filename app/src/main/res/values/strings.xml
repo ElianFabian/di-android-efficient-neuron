@@ -35,6 +35,14 @@
     <string name="frgGameConfiguration_tvNumberRange_text">Range:</string>
     <string name="frgGameConfiguration_tvTitle_text">Game configuration</string>
 
+    <string name="frgHomeFragment_averageRawTpm">Average raw TPM</string>
+    <string name="frgHomeFragment_averageTpm">Average TPM</string>
+    <string name="frgHomeFragment_correctOperationsCompleted">Correct operations completed</string>
+    <string name="frgHomeFragment_highestRawTpm">Highest raw TPM</string>
+    <string name="frgHomeFragment_highestTpm">Highest TPM</string>
+    <string name="frgHomeFragment_operationsCompleted">Operations completed</string>
+    <string name="frgHomeFragment_testsCompleted">Tests completed</string>
+
     <string name="frgSettings_category_general">Dark theme</string>
     <string name="frgSettings_dark_theme_title">Dark Theme</string>
     <string name="frgSettings_disable_notifications_title">Disable notifications</string>
@@ -74,8 +82,4 @@
     <string name="navigation_menu_navSettings_title">Settings</string>
     <string name="navigation_menu_navStatistics_title">Statistics</string>
     <string name="navigation_menu_navTips_title">Tips</string>
-    <string name="frgHomeFragment_highestTpm">Highest TPM</string>
-    <string name="frgHomeFragment_highestRawTpm">Highest raw TPM</string>
-    <string name="frgHomeFragment_averageTpm">Average TPM</string>
-    <string name="frgHomeFragment_averageRawTpm">Average raw TPM</string>
 </resources>

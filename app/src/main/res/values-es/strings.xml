@@ -17,6 +17,14 @@
     <string name="error_username_invalid">Nombre de usuario inválido, sólo puede contener letras, dígitos o estos caracteres: %s</string>
     <string name="error_username_is_already_in_use">El nombre de usario ya está en uso</string>
 
+    <string name="frgHomeFragment_highestTpm">PPM más alto</string>
+    <string name="frgHomeFragment_highestRawTpm">PPM bruto más alto</string>
+    <string name="frgHomeFragment_averageTpm">PPM promedio</string>
+    <string name="frgHomeFragment_averageRawTpm">PPM bruto promedio</string>
+    <string name="frgHomeFragment_testsCompleted">Pruebas completadas</string>
+    <string name="frgHomeFragment_operationsCompleted">Operaciones completadas</string>
+    <string name="frgHomeFragment_correctOperationsCompleted">Operaciones correctas completadas</string>
+
     <string name="frgAboutUs_description">Esta aplicación es un proyecto para aprender a cómo crear aplicaciones en Android. Es un ejercicio del módulo de Android de IES Portada Alta.</string>
     <string name="frgAboutUs_github_title">Código fuente</string>
 

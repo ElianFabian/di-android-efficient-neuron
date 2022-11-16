@@ -16,6 +16,7 @@ import com.elian.computeit.core.presentation.util.extensions.navigate
 import com.elian.computeit.core.presentation.util.mp_android_chart.applyDefaultStyle
 import com.elian.computeit.core.presentation.util.mp_android_chart.lineDataSet
 import com.elian.computeit.core.presentation.util.mp_android_chart.toEntries
+import com.elian.computeit.core.presentation.util.showViews
 import com.elian.computeit.core.util.extensions.*
 import com.elian.computeit.databinding.FragmentHomeBinding
 import com.github.mikephil.charting.data.LineData
@@ -63,16 +64,24 @@ class HomeFragment : Fragment()
     {
         testDataList.apply()
         {
+            tvTestsCompleted.text = "$size"
+            tvOperationsCompleted.text = "$operationsCompleted"
+            tvCorrectOperationsCompleted.text = "$correctOperationsCompleted"
             tvAverageTpm.text = averageTpm.format("%.2f")
             tvAverageRawTpm.text = averageRawTpm.format("%.2f")
             tvHighestTpm.text = "$maxTpm"
             tvHighestRawTpm.text = "$maxRawTpm"
         }
 
-        tvAverageTpm.isGone = false
-        tvAverageRawTpm.isGone = false
-        tvHighestTpm.isGone = false
-        tvHighestRawTpm.isGone = false
+        showViews(
+            tvTestsCompleted,
+            tvOperationsCompleted,
+            tvCorrectOperationsCompleted,
+            tvAverageTpm,
+            tvAverageRawTpm,
+            tvHighestTpm,
+            tvHighestRawTpm
+        )
     }
 
     private fun initTpmPerTestChart(tpmPerTest: List<Int>)
@@ -91,7 +100,7 @@ class HomeFragment : Fragment()
             data = LineData(tpmSet)
 
             animateX(500)
-            
+
             isGone = false
         }
     }
