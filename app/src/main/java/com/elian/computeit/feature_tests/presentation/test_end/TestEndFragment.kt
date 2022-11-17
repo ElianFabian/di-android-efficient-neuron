@@ -55,7 +55,7 @@ class TestEndFragment : Fragment()
                 tvTpm.text = "$tpm"
                 tvRawTpm.text = "$rawTpm"
                 tvTime.text = "$testTimeInSeconds s"
-                tvTests.text = "${testDataList.size}"
+                tvTests.text = "${operationDataList.size}"
                 tvErrors.text = "$errorCount"
             }
 

@@ -7,6 +7,6 @@ import kotlinx.parcelize.Parcelize
 data class TestData(
     val dateInSeconds: Long = 0,
     val testTimeInSeconds: Int = 0,
-    val testDataList: List<OperationData> = emptyList(),
+    val operationDataList: List<OperationData> = emptyList(),
     val range: Range? = null,
 ) : Parcelable

@@ -86,7 +86,7 @@ class TestViewModel @Inject constructor(
                         val testData = TestData(
                             dateInSeconds = System.currentTimeMillis() / 1000,
                             testTimeInSeconds = _millisSinceStart.toInt() / 1000,
-                            testDataList = _testDataList.toList(),
+                            operationDataList = _testDataList.toList(),
                             range = _range
                         )
 

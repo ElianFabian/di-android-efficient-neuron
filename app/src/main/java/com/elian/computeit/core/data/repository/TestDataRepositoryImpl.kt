@@ -8,6 +8,7 @@ import com.elian.computeit.core.domain.repository.TestDataRepository
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.SetOptions
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
@@ -24,7 +25,7 @@ class TestDataRepositoryImpl @Inject constructor(
 
     override suspend fun getTestDataList() = flow()
     {
-        val listFromServer = getUserDataRef().get().await().toObject(UserData::class.java)!!.testDataList
+        val listFromServer = getUserDataRef().get().await().toObject(UserData::class.java)!!.testDataList!!
 
         emit(listFromServer)
     }
@@ -36,7 +37,15 @@ class TestDataRepositoryImpl @Inject constructor(
 
         val documentRef = firestore.document("$COLLECTION_USERS_DATA/$userUuid")
         val snapShot = documentRef.get().await()
+        val userData = snapShot.toObject(UserData::class.java)
 
-        return documentRef.apply { if (!snapShot.exists()) set(UserData(emptyList())) }
+        return documentRef.apply()
+        {
+            if (!snapShot.exists()) set(UserData(emptyList()))
+            else if (userData?.testDataList == null)
+            {
+                documentRef.set(UserData(emptyList()), SetOptions.merge())
+            }
+        }
     }
 }
