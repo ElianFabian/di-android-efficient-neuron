@@ -82,4 +82,6 @@
     <string name="navigation_menu_navSettings_title">Settings</string>
     <string name="navigation_menu_navStatistics_title">Statistics</string>
     <string name="navigation_menu_navTips_title">Tips</string>
+
+    <string name="no_data_available">No data available</string>
 </resources>

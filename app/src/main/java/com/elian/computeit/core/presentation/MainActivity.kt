@@ -2,7 +2,6 @@ package com.elian.computeit.core.presentation
 
 import android.os.Bundle
 import android.view.MenuItem
-import androidx.activity.viewModels
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
@@ -12,13 +11,9 @@ import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.findNavController
 import com.elian.computeit.R
-import com.elian.computeit.core.presentation.MainActivityEvent.OnUserNotLoggedIn
 import com.elian.computeit.core.presentation.util.NavigationDrawerFragmentTag
-import com.elian.computeit.core.presentation.util.extensions.collectFlowWhenStarted
 import com.elian.computeit.core.presentation.util.extensions.goToFragment
-import com.elian.computeit.core.presentation.util.extensions.navigateTo
 import com.elian.computeit.databinding.ActivityMainBinding
-import com.elian.computeit.feature_auth.presentation.login.LoginActivity
 import com.elian.computeit.feature_tips.presentation.tip_list.TipListFragment
 import com.elian.computeit.ui.AboutUsFragment
 import com.elian.computeit.ui.ProfileFragment
@@ -29,7 +24,6 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedListener
 {
-    private val viewModel by viewModels<MainViewModel>()
     private lateinit var binding: ActivityMainBinding
     private lateinit var toggle: ActionBarDrawerToggle
     private var currentFragment: Fragment? = null
@@ -40,13 +34,8 @@ class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedList
     {
         super.onCreate(savedInstanceState)
 
-        subscribeToEvents()
-
-        viewModel.tryLogin()
-
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         initUi()
     }
 
@@ -84,17 +73,6 @@ class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedList
         findNavController(R.id.navHostFragment).addOnDestinationChangedListener(this)
 
         initMenuItemListener()
-    }
-
-    private fun subscribeToEvents()
-    {
-        collectFlowWhenStarted(viewModel.eventFlow)
-        {
-            when (it)
-            {
-                is OnUserNotLoggedIn -> navigateTo<LoginActivity>()
-            }
-        }
     }
 
     private fun initMenuItemListener() = binding.navigationView.setNavigationItemSelectedListener()

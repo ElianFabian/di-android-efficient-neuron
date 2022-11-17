@@ -22,7 +22,6 @@ import com.elian.computeit.databinding.FragmentHomeBinding
 import com.github.mikephil.charting.data.LineData
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 
 @AndroidEntryPoint
 class HomeFragment : Fragment()
@@ -58,21 +57,18 @@ class HomeFragment : Fragment()
             initTpmPerTestChart(_testDataListFromServer.tpmPerTest)
             initTextInfo(_testDataListFromServer)
         }
-        else
+        else lifecycleScope.launch()
         {
             binding.lpiIsLoding.isGone = false
 
-            lifecycleScope.launch()
+            viewModel.getTestDataList().collect()
             {
-                viewModel.getTestDataList().collect()
-                {
-                    _testDataListFromServer = it
+                _testDataListFromServer = it
 
-                    initTpmPerTestChart(it.tpmPerTest)
-                    initTextInfo(it)
+                initTpmPerTestChart(it.tpmPerTest)
+                initTextInfo(it)
 
-                    runBlocking { binding.lpiIsLoding.isGone = true }
-                }
+                binding.lpiIsLoding.isGone = true
             }
         }
     }
@@ -103,22 +99,33 @@ class HomeFragment : Fragment()
 
     private fun initTpmPerTestChart(tpmPerTest: List<Int>)
     {
-        val tpmSet = lineDataSet(
-            context = context,
-            entries = tpmPerTest.toEntries(),
-            labelResId = R.string.generic_tpm,
-        ) {
-            setDrawVerticalHighlightIndicator(true)
-            highLightColor = context.getColorCompat(R.color.blue_200)
-        }
-
-        binding.lcTpmPerTest.applyDefaultStyle()
+        if (tpmPerTest.isNotEmpty())
         {
-            data = LineData(tpmSet)
+            val tpmSet = lineDataSet(
+                context = context,
+                entries = tpmPerTest.toEntries(),
+                labelResId = R.string.generic_tpm,
+            ) {
+                setDrawVerticalHighlightIndicator(true)
+                highLightColor = context.getColorCompat(R.color.blue_200)
+            }
 
-            animateX(500)
+            binding.lcTpmPerTest.applyDefaultStyle()
+            {
+                data = LineData(tpmSet)
 
-            isGone = false
+                animateX(500)
+            }
         }
+        else
+        {
+            binding.lcTpmPerTest.apply()
+            {
+                setNoDataText(getString(R.string.no_data_available))
+                setNoDataTextColor(context.getColorCompat(R.color.teal_200))
+            }
+        }
+
+        binding.lcTpmPerTest.isGone = false
     }
 }

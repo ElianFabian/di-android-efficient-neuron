@@ -45,8 +45,8 @@ val TestData.errorCount get() = testDataList.count { it.isError }
 
 val List<TestData>.tpmPerTest get() = map { it.tpm }
 val List<TestData>.rawTpmPerTest get() = map { it.rawTpm }
-val List<TestData>.averageTpm get() = tpmPerTest.average().toFloat()
-val List<TestData>.averageRawTpm get() = rawTpmPerTest.average().toFloat()
+val List<TestData>.averageTpm get() = tpmPerTest.average().toFloat().ifNaNReturnZero()
+val List<TestData>.averageRawTpm get() = rawTpmPerTest.average().toFloat().ifNaNReturnZero()
 val List<TestData>.maxTpm get() = tpmPerTest.maxOrNull() ?: 0
 val List<TestData>.maxRawTpm get() = rawTpmPerTest.maxOrNull() ?: 0
 val List<TestData>.operationsCompleted get() = sumOf { it.testDataList.size }

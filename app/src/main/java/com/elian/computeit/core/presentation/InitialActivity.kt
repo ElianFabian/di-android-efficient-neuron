@@ -1,0 +1,34 @@
+package com.elian.computeit.core.presentation
+
+import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
+import com.elian.computeit.core.domain.repository.LocalAppDataRepository
+import com.elian.computeit.core.domain.util.extensions.isUserLoggedIn
+import com.elian.computeit.core.presentation.util.extensions.navigateTo
+import com.elian.computeit.feature_auth.presentation.login.LoginActivity
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
+import javax.inject.Inject
+
+@AndroidEntryPoint
+class InitialActivity : AppCompatActivity()
+{
+    @Inject
+    lateinit var appRepository: LocalAppDataRepository
+
+
+    override fun onCreate(savedInstanceState: Bundle?)
+    {
+        super.onCreate(savedInstanceState)
+
+        lifecycleScope.launch()
+        {
+            if (appRepository.isUserLoggedIn())
+            {
+                navigateTo<MainActivity>()
+            }
+            else navigateTo<LoginActivity>()
+        }
+    }
+}

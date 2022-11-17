@@ -24,9 +24,9 @@ class TestDataRepositoryImpl @Inject constructor(
 
     override suspend fun getTestDataList() = flow()
     {
-        val userDataFromServer = getUserDataRef().get().await().toObject(UserData::class.java)!!
+        val listFromServer = getUserDataRef().get().await().toObject(UserData::class.java)!!.testDataList
 
-        emit(userDataFromServer.testDataList)
+        emit(listFromServer)
     }
 
 
@@ -34,6 +34,9 @@ class TestDataRepositoryImpl @Inject constructor(
     {
         val userUuid = appRepository.getUserUuid()!!
 
-        return firestore.document("$COLLECTION_USERS_DATA/$userUuid")
+        val documentRef = firestore.document("$COLLECTION_USERS_DATA/$userUuid")
+        val snapShot = documentRef.get().await()
+
+        return documentRef.apply { if (!snapShot.exists()) set(UserData(emptyList())) }
     }
 }
