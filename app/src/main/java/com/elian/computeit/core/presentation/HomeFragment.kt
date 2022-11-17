@@ -117,7 +117,7 @@ class HomeFragment : Fragment()
             {
                 data = LineData(tpmSet)
 
-                animateX(100 / tpmPerTest.size)
+                animateX(1000 / tpmPerTest.size)
             }
         }
         else binding.lcTpmPerTest.apply()
