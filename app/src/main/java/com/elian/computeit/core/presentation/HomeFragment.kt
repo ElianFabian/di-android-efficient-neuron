@@ -79,9 +79,12 @@ class HomeFragment : Fragment()
         {
             tvTestsCompleted.text = "$size"
             tvOperationsCompleted.text = "$operationsCompleted"
-            tvCorrectOperationsCompleted.text = "$correctOperationsCompleted"
-            tvAverageTpm.text = averageTpm.format("%.2f")
-            tvAverageRawTpm.text = averageRawTpm.format("%.2f")
+            correctOperationsCompleted.also()
+            {
+                tvCorrectOperationsCompleted.text = "$it (${correctOperationsCompletedPercentage.defaultFormat()} %)"
+            }
+            tvAverageTpm.text = averageTpm.defaultFormat()
+            tvAverageRawTpm.text = averageRawTpm.defaultFormat()
             tvHighestTpm.text = "$maxTpm"
             tvHighestRawTpm.text = "$maxRawTpm"
         }
