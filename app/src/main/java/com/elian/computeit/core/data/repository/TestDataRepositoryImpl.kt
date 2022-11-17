@@ -41,10 +41,9 @@ class TestDataRepositoryImpl @Inject constructor(
 
         return documentRef.apply()
         {
-            if (!snapShot.exists()) set(UserData(emptyList()))
-            else if (userData?.testDataList == null)
+            if (!snapShot.exists() || userData?.testDataList == null)
             {
-                documentRef.set(UserData(emptyList()), SetOptions.merge())
+                set(UserData(emptyList()), SetOptions.merge())
             }
         }
     }
