@@ -54,4 +54,4 @@ val List<TestData>.correctOperationsCompleted
     get() = sumOf {
         it.operationDataList.count { operationData -> !operationData.isError }
     }
-val List<TestData>.correctOperationsCompletedPercentage get() = 100F * correctOperationsCompleted / operationsCompleted
+val List<TestData>.correctOperationsCompletedPercentage get() = (100F * correctOperationsCompleted / operationsCompleted).ifNaNReturnZero()
