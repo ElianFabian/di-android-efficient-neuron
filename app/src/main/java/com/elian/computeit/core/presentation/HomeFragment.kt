@@ -81,7 +81,7 @@ class HomeFragment : Fragment()
             tvOperationsCompleted.text = "$operationsCompleted"
             correctOperationsCompleted.also()
             {
-                tvCorrectOperationsCompleted.text = "$it (${correctOperationsCompletedPercentage.defaultFormat()} %)"
+                tvCorrectOperationsCompleted.text = "$it (${correctOperationsCompletedPercentage.toInt()} %)"
             }
             tvAverageTpm.text = averageTpm.defaultFormat()
             tvAverageRawTpm.text = averageRawTpm.defaultFormat()
