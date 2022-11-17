@@ -41,9 +41,9 @@ class TestViewModel @Inject constructor(
     }
 
 
-    val millisInFuture = savedState.get<Int>(EXTRA_TEST_TIME_IN_SECONDS)?.let { it * 1_000L } ?: error("Test time in seconds value expected.")
-    private val _range = savedState.get<Range>(EXTRA_OPERATION_NUMBER_RANGE) ?: error("Range value expected.")
-    private val _operation = savedState.get<Operation>(EXTRA_OPERATION_TYPE) ?: error("Operation value expected")
+    val millisInFuture = savedState.get<Int>(EXTRA_TEST_TIME_IN_SECONDS)?.let { it * 1_000L }!!
+    private val _range = savedState.get<Range>(EXTRA_OPERATION_NUMBER_RANGE)!!
+    private val _operation = savedState.get<Operation>(EXTRA_OPERATION_TYPE)!!
 
 
     private val _testDataList = mutableListOf<OperationData>()
