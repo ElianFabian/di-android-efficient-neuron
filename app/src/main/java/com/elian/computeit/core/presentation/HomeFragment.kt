@@ -114,16 +114,13 @@ class HomeFragment : Fragment()
             {
                 data = LineData(tpmSet)
 
-                animateX(500)
+                animateX(5 / tpmPerTest.size)
             }
         }
-        else
+        else binding.lcTpmPerTest.apply()
         {
-            binding.lcTpmPerTest.apply()
-            {
-                setNoDataText(getString(R.string.no_data_available))
-                setNoDataTextColor(context.getColorCompat(R.color.teal_200))
-            }
+            setNoDataText(getString(R.string.no_data_available))
+            setNoDataTextColor(context.getColorCompat(R.color.teal_200))
         }
 
         binding.lcTpmPerTest.isGone = false
