@@ -11,6 +11,7 @@ const val EXTRA_PASSWORD = "EXTRA_PASSWORD"
 //endregion
 
 //region Test Configuration -> Test End
+
 /** @see com.elian.computeit.feature_tests.data.models.Operation */
 const val EXTRA_OPERATION_TYPE = "EXTRA_OPERATION_TYPE"
 
