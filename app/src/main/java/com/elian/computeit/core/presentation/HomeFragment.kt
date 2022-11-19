@@ -80,7 +80,7 @@ class HomeFragment : Fragment()
 
     private fun initLineChart(testDataList: List<TestData>) = testDataList.apply2()
     {
-        if (opmPerTest.isNotEmpty() || opmPerTest.isNotEmpty())
+        if (opmPerTest.isNotEmpty() || rawOpmPerTest.isNotEmpty())
         {
             binding.lcOpmPerTest.applyDefault(
                 lineDataSet(
