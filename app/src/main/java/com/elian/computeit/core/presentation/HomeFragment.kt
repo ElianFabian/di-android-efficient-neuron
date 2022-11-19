@@ -99,13 +99,16 @@ class HomeFragment : Fragment()
                     labelResId = R.string.generic_raw,
                     lineAndCirclesColorResId = R.color.default_chart_25,
                     entries = rawOpmPerTest.toEntries(),
-                ),
+                ) {
+                    setDrawVerticalHighlightIndicator(true)
+                    highLightColor = getColorCompat(R.color.blue_200)
+                },
                 lineDataSet(
                     label = getString(R.string.generic_opm),
                     entries = opmPerTest.toEntries(),
                 ) {
                     setDrawVerticalHighlightIndicator(true)
-                    highLightColor = context.getColorCompat(R.color.blue_200)
+                    highLightColor = getColorCompat(R.color.blue_200)
                 },
             )
         }
