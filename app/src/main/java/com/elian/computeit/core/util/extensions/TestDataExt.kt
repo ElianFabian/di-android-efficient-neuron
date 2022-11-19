@@ -50,8 +50,5 @@ val List<TestData>.averageRawOpm get() = rawOpmPerTest.average().toFloat().ifNaN
 val List<TestData>.maxOpm get() = opmPerTest.maxOrNull() ?: 0
 val List<TestData>.maxRawOpm get() = rawOpmPerTest.maxOrNull() ?: 0
 val List<TestData>.operationsCompleted get() = sumOf { it.operationDataList.size }
-val List<TestData>.correctOperationsCompleted
-    get() = sumOf {
-        it.operationDataList.count { operationData -> !operationData.isError }
-    }
+val List<TestData>.correctOperationsCompleted get() = sumOf { it.operationDataList.count { data -> !data.isError } }
 val List<TestData>.correctOperationsCompletedPercentage get() = (100F * correctOperationsCompleted / operationsCompleted).ifNaNReturnZero()
