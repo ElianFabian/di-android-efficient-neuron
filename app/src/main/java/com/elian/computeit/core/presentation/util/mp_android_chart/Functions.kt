@@ -21,7 +21,7 @@ fun lineDataSet(
         setDrawHorizontalHighlightIndicator(false)
         setDrawVerticalHighlightIndicator(false)
 
-        lineAndCirclesColor = context.getColorCompat(R.color.teal_200)
+        lineAndCirclesColor = context.getColorCompat(R.color.default_line_chart)
         mode = LineDataSet.Mode.CUBIC_BEZIER
         cubicIntensity = 0.2F
         lineWidth = 2.2F

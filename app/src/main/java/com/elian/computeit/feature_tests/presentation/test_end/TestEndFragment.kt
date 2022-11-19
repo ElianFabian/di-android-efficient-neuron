@@ -9,11 +9,13 @@ import com.elian.computeit.R
 import com.elian.computeit.core.domain.models.TestData
 import com.elian.computeit.core.presentation.util.extensions.getColorCompat
 import com.elian.computeit.core.presentation.util.extensions.navigate
-import com.elian.computeit.core.presentation.util.mp_android_chart.*
+import com.elian.computeit.core.presentation.util.mp_android_chart.applyDefault
+import com.elian.computeit.core.presentation.util.mp_android_chart.lineAndCirclesColor
+import com.elian.computeit.core.presentation.util.mp_android_chart.lineDataSet
+import com.elian.computeit.core.presentation.util.mp_android_chart.toEntries
 import com.elian.computeit.core.util.constants.EXTRA_TEST_DATA
 import com.elian.computeit.core.util.extensions.*
 import com.elian.computeit.databinding.FragmentTestEndBinding
-import com.github.mikephil.charting.data.LineData
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -67,29 +69,19 @@ class TestEndFragment : Fragment()
 
     private fun initOpmPerSecondChart()
     {
-        val opmSet = lineDataSet(
-            context = context,
-            entries = testData.opmPerSecond.toEntries(),
-            labelResId = R.string.generic_opm,
+        binding.lcTestGraph.applyDefault(
+            lineDataSet(
+                labelResId = R.string.generic_raw,
+                entries = testData.rawOpmPerSecond.toEntries(),
+                context = context,
+            ) {
+                lineAndCirclesColor = context.getColorCompat(R.color.default_line_chart_25)
+            },
+            lineDataSet(
+                labelResId = R.string.generic_opm,
+                entries = testData.opmPerSecond.toEntries(),
+                context = context,
+            ),
         )
-        val rawOpmSet = lineDataSet(
-            context = context,
-            entries = testData.rawOpmPerSecond.toEntries(),
-            labelResId = R.string.generic_raw,
-        ) {
-            lineAndCirclesColor = context.getColorCompat(R.color.teal_700)
-        }
-
-        binding.lcTestGraph.applyDefaultStyle()
-        {
-            data = LineData(
-                rawOpmSet,
-                opmSet,
-            )
-
-            animateX(500)
-
-            isInteractionEnable = false
-        }
     }
 }

@@ -14,12 +14,11 @@ import com.elian.computeit.core.presentation.util.HomeViewModel
 import com.elian.computeit.core.presentation.util.extensions.getColorCompat
 import com.elian.computeit.core.presentation.util.extensions.navigate
 import com.elian.computeit.core.presentation.util.extensions.text2
-import com.elian.computeit.core.presentation.util.mp_android_chart.applyDefaultStyle
+import com.elian.computeit.core.presentation.util.mp_android_chart.applyDefault
 import com.elian.computeit.core.presentation.util.mp_android_chart.lineDataSet
 import com.elian.computeit.core.presentation.util.mp_android_chart.toEntries
 import com.elian.computeit.core.util.extensions.*
 import com.elian.computeit.databinding.FragmentHomeBinding
-import com.github.mikephil.charting.data.LineData
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -91,23 +90,16 @@ class HomeFragment : Fragment()
     {
         if (opmPerTest.isNotEmpty())
         {
-            val opmSet = lineDataSet(
-                context = context,
-                entries = opmPerTest.toEntries(),
-                labelResId = R.string.generic_opm,
-            ) {
-                setDrawVerticalHighlightIndicator(true)
-                highLightColor = context.getColorCompat(R.color.blue_200)
-            }
-
-            binding.lcOpmPerTest.applyDefaultStyle()
-            {
-                data = LineData(opmSet)
-
-                val animationTime = opmPerTest.size * 25
-
-                animateX(animationTime)
-            }
+            binding.lcOpmPerTest.applyDefault(
+                lineDataSet(
+                    labelResId = R.string.generic_opm,
+                    entries = opmPerTest.toEntries(),
+                    context = context,
+                ) {
+                    setDrawVerticalHighlightIndicator(true)
+                    highLightColor = context.getColorCompat(R.color.blue_200)
+                },
+            )
         }
         else binding.lcOpmPerTest.apply()
         {
