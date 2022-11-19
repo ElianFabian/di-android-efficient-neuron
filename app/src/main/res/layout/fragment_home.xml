@@ -82,7 +82,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:animateLayoutChanges="true"
-            android:backgroundTint="@color/background_line_chart"
+            android:backgroundTint="@color/background_card"
             app:cardCornerRadius="@dimen/_10sdp">
 
             <View
@@ -94,7 +94,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_200sdp"
                 android:layout_marginVertical="@dimen/_5sdp"
-                android:background="@color/background_line_chart"
+                android:background="@color/background_card"
                 android:visibility="gone"
                 tools:visibility="visible" />
 
@@ -104,129 +104,23 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_15sdp"
-            android:backgroundTint="@color/background_line_chart"
+            android:animateLayoutChanges="true"
+            android:backgroundTint="@color/background_card"
             app:cardCornerRadius="@dimen/_10sdp">
 
-            <androidx.appcompat.widget.LinearLayoutCompat
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_300sdp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvLabeledData"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:animateLayoutChanges="true"
-                android:orientation="vertical"
-                android:paddingHorizontal="@dimen/_15sdp"
-                android:paddingVertical="@dimen/_15sdp">
-
-                <com.google.android.material.textview.MaterialTextView
-                    style="@style/TextView_Label"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/frgHomeFragment_testsCompleted" />
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/tvTestsCompleted"
-                    style="@style/TextView_Value"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/_20sdp"
-                    android:visibility="gone"
-                    tools:text="60"
-                    tools:visibility="visible" />
-
-                <com.google.android.material.textview.MaterialTextView
-                    style="@style/TextView_Label"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/frgHomeFragment_operationsCompleted" />
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/tvOperationsCompleted"
-                    style="@style/TextView_Value"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/_20sdp"
-                    android:visibility="gone"
-                    tools:text="60"
-                    tools:visibility="visible" />
-
-                <com.google.android.material.textview.MaterialTextView
-                    style="@style/TextView_Label"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/frgHomeFragment_correctOperationsCompleted" />
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/tvCorrectOperationsCompleted"
-                    style="@style/TextView_Value"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/_20sdp"
-                    android:visibility="gone"
-                    tools:text="60"
-                    tools:visibility="visible" />
-
-                <com.google.android.material.textview.MaterialTextView
-                    style="@style/TextView_Label"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/frgHomeFragment_averageOpm" />
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/tvAverageOpm"
-                    style="@style/TextView_Value"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/_20sdp"
-                    android:visibility="gone"
-                    tools:text="60"
-                    tools:visibility="visible" />
-
-                <com.google.android.material.textview.MaterialTextView
-                    style="@style/TextView_Label"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/frgHomeFragment_averageRawOpm" />
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/tvAverageRawOpm"
-                    style="@style/TextView_Value"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/_20sdp"
-                    android:visibility="gone"
-                    tools:text="60"
-                    tools:visibility="visible" />
-
-                <com.google.android.material.textview.MaterialTextView
-                    style="@style/TextView_Label"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/frgHomeFragment_highestOpm" />
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/tvHighestOpm"
-                    style="@style/TextView_Value"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/_20sdp"
-                    android:visibility="gone"
-                    tools:text="70"
-                    tools:visibility="visible" />
-
-                <com.google.android.material.textview.MaterialTextView
-                    style="@style/TextView_Label"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/frgHomeFragment_highestRawOpm" />
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/tvHighestRawOpm"
-                    style="@style/TextView_Value"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:visibility="gone"
-                    tools:text="80"
-                    tools:visibility="visible" />
-
-            </androidx.appcompat.widget.LinearLayoutCompat>
+                android:background="@color/background_card"
+                android:padding="@dimen/_10sdp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:itemCount="5"
+                tools:listitem="@layout/item_labeled_data" />
 
         </com.google.android.material.card.MaterialCardView>
 

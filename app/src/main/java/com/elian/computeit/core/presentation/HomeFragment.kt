@@ -10,17 +10,19 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.elian.computeit.R
 import com.elian.computeit.core.domain.models.TestData
+import com.elian.computeit.core.presentation.adapters.LabeledDataAdapter
+import com.elian.computeit.core.presentation.model.LabeledData
 import com.elian.computeit.core.presentation.util.HomeViewModel
 import com.elian.computeit.core.presentation.util.extensions.getColorCompat
 import com.elian.computeit.core.presentation.util.extensions.getThemeColor
 import com.elian.computeit.core.presentation.util.extensions.navigate
-import com.elian.computeit.core.presentation.util.extensions.text2
 import com.elian.computeit.core.presentation.util.mp_android_chart.applyDefault
 import com.elian.computeit.core.presentation.util.mp_android_chart.lineDataSet
 import com.elian.computeit.core.presentation.util.mp_android_chart.toEntries
 import com.elian.computeit.core.util.extensions.*
 import com.elian.computeit.databinding.FragmentHomeBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -76,20 +78,6 @@ class HomeFragment : Fragment()
         }
     }
 
-    private fun initTextInfo(testDataList: List<TestData>) = binding.apply2()
-    {
-        testDataList.apply()
-        {
-            tvTestsCompleted.text2 = "$size"
-            tvOperationsCompleted.text2 = "$operationsCompleted"
-            tvCorrectOperationsCompleted.text2 = "$correctOperationsCompleted (${correctOperationsCompletedPercentage.toInt()} %)"
-            tvAverageOpm.text2 = averageOpm.defaultFormat()
-            tvAverageRawOpm.text2 = averageRawOpm.defaultFormat()
-            tvHighestOpm.text2 = "$maxOpm"
-            tvHighestRawOpm.text2 = "$maxRawOpm"
-        }
-    }
-
     private fun initLineChart(testDataList: List<TestData>) = testDataList.apply2()
     {
         if (opmPerTest.isNotEmpty() || opmPerTest.isNotEmpty())
@@ -119,5 +107,54 @@ class HomeFragment : Fragment()
         }
 
         binding.lcOpmPerTest.isGone = false
+    }
+
+    private fun initTextInfo(testDataList: List<TestData>) = testDataList.apply2()
+    {
+        val list = listOf(
+            LabeledData(
+                label = getString(R.string.frgHomeFragment_testsCompleted),
+                value = "$size",
+            ),
+            LabeledData(
+                label = getString(R.string.frgHomeFragment_operationsCompleted),
+                value = "$operationsCompleted",
+            ),
+            LabeledData(
+                label = getString(R.string.frgHomeFragment_correctOperationsCompleted),
+                value = "$correctOperationsCompleted (${correctOperationsCompletedPercentage.toInt()} %)",
+            ),
+            LabeledData(
+                label = getString(R.string.frgHomeFragment_averageOpm),
+                value = averageOpm.defaultFormat(),
+            ),
+            LabeledData(
+                label = getString(R.string.frgHomeFragment_averageRawOpm),
+                value = averageRawOpm.defaultFormat(),
+            ),
+            LabeledData(
+                label = getString(R.string.frgHomeFragment_highestOpm),
+                value = "$maxOpm",
+            ),
+            LabeledData(
+                label = getString(R.string.frgHomeFragment_highestRawOpm),
+                value = "$maxRawOpm",
+            ),
+        )
+
+        val adapter = LabeledDataAdapter()
+        binding.rvLabeledData.adapter = adapter
+
+        lifecycleScope.launch()
+        {
+            val itemAdditionDelay = 175L
+            val labeledDataList = mutableListOf<LabeledData>()
+
+            list.forEach()
+            {
+                delay(itemAdditionDelay)
+                adapter.submitList(labeledDataList.apply { add(it) }.toList())
+            }
+        }
     }
 }
