@@ -1,11 +1,11 @@
-package com.elian.computeit.util
+package com.elian.computeit.core.util
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.recyclerview.widget.RecyclerView
-import com.elian.computeit.util.RecyclerViewAdapter.*
+import com.elian.computeit.core.util.RecyclerViewAdapter.*
 
 open class RecyclerViewAdapter<T>(
     @LayoutRes private val itemLayout: Int,
@@ -13,7 +13,6 @@ open class RecyclerViewAdapter<T>(
 ) :
     RecyclerView.Adapter<RecyclerViewAdapter<T>.ViewHolder>()
 {
-
     private var onItemCLickListener = OnItemClickListener<T> { _, _, _ -> }
     private var onItemLongCLickListener = OnItemLongClickListener<T> { _, _, _ -> false }
     private var onBindViewHolderListener = OnBindViewHolderListener<T> { _, _, _ -> }

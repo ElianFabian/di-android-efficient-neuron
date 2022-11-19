@@ -18,6 +18,15 @@
             app:exitAnim="@anim/exit_to_start"
             app:popEnterAnim="@anim/enter_from_start"
             app:popExitAnim="@anim/exit_to_end" />
+        <action
+            android:id="@+id/action_homeFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_tipsFragment"
+            app:destination="@id/tipsFragment" />
     </fragment>
     <fragment
         android:id="@+id/testConfigurationFragment"
@@ -61,4 +70,17 @@
             app:popUpTo="@id/homeFragment"
             app:popUpToInclusive="true" />
     </fragment>
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.elian.computeit.feature_settings.presentation.SettingsFragment"
+        android:label="SettingsFragment" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.elian.computeit.feature_profile.presentation.ProfileFragment"
+        android:label="ProfileFragment" />
+    <fragment
+        android:id="@+id/tipsFragment"
+        android:name="com.elian.computeit.feature_tips.presentation.tips.TipsFragment"
+        android:label="TipsFragment"
+        tools:layout="@layout/fragment_tips" />
 </navigation>

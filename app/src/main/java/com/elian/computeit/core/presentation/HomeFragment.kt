@@ -50,7 +50,10 @@ class HomeFragment : Fragment()
 
     private fun initUi()
     {
-        binding.btnGoToConfiguration.setOnClickListener { navigate(R.id.action_homeFragment_to_testConfigurationFragment) }
+        binding.sivGoToTestConfiguration.setOnClickListener { navigate(R.id.action_homeFragment_to_testConfigurationFragment) }
+        binding.sivGoToProfile.setOnClickListener { navigate(R.id.action_homeFragment_to_profileFragment) }
+        binding.sivGoToTips.setOnClickListener { navigate(R.id.action_homeFragment_to_tipsFragment) }
+        binding.sivGoToSettings.setOnClickListener { navigate(R.id.action_homeFragment_to_settingsFragment) }
 
         if (::_testDataListFromServer.isInitialized)
         {
@@ -59,7 +62,7 @@ class HomeFragment : Fragment()
         }
         else lifecycleScope.launch()
         {
-            binding.lpiIsLoding.isGone = false
+            binding.lpiIsLoading.isGone = false
 
             viewModel.getTestDataList().collect()
             {
@@ -68,7 +71,7 @@ class HomeFragment : Fragment()
                 initLineChart(it)
                 initTextInfo(it)
 
-                binding.lpiIsLoding.isGone = true
+                binding.lpiIsLoading.isGone = true
             }
         }
     }

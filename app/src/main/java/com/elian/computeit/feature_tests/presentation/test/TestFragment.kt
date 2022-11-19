@@ -10,7 +10,6 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.elian.computeit.R
 import com.elian.computeit.core.data.Operation
-import com.elian.computeit.core.presentation.MainActivity
 import com.elian.computeit.core.presentation.util.extensions.*
 import com.elian.computeit.core.util.constants.EXTRA_OPERATION_TYPE
 import com.elian.computeit.core.util.extensions.format
@@ -48,8 +47,6 @@ class TestFragment : Fragment()
 
     private fun initUi()
     {
-        (activity as MainActivity).disableDrawerLayout()
-
         binding.apply()
         {
             disableScreenInteraction()

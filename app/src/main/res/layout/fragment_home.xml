@@ -19,16 +19,64 @@
         android:paddingVertical="@dimen/_20sdp">
 
         <ProgressBar
-            android:id="@+id/lpiIsLoding"
+            android:id="@+id/lpiIsLoading"
             style="@style/Widget.AppCompat.ProgressBar.Horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/_20sdp"
             android:indeterminate="true"
-            android:visibility="gone"
             android:indeterminateTint="?colorPrimary"
+            android:visibility="gone"
             app:trackCornerRadius="@dimen/_10sdp"
             tools:visibility="visible" />
+
+        <HorizontalScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/_20sdp">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/sivGoToTestConfiguration"
+                    android:layout_width="@dimen/_50sdp"
+                    android:layout_height="@dimen/_50sdp"
+                    android:layout_marginHorizontal="@dimen/_5sdp"
+                    android:tint="@color/white"
+                    app:srcCompat="@drawable/ic_keyboard" />
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/sivGoToProfile"
+                    android:layout_width="@dimen/_50sdp"
+                    android:layout_height="@dimen/_50sdp"
+                    android:layout_marginHorizontal="@dimen/_5sdp"
+                    android:tint="@color/white"
+                    app:srcCompat="@drawable/ic_profile" />
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/sivGoToTips"
+                    android:layout_width="@dimen/_50sdp"
+                    android:layout_height="@dimen/_50sdp"
+                    android:layout_marginHorizontal="@dimen/_5sdp"
+                    android:tint="@color/white"
+                    app:srcCompat="@drawable/ic_tips" />
+
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/sivGoToSettings"
+                    android:layout_width="@dimen/_50sdp"
+                    android:layout_height="@dimen/_50sdp"
+                    android:layout_marginHorizontal="@dimen/_5sdp"
+                    android:tint="@color/white"
+                    app:srcCompat="@drawable/ic_settings" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </HorizontalScrollView>
+
 
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
@@ -181,14 +229,6 @@
             </androidx.appcompat.widget.LinearLayoutCompat>
 
         </com.google.android.material.card.MaterialCardView>
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnGoToConfiguration"
-            android:layout_width="@dimen/_200sdp"
-            android:layout_height="@dimen/_80sdp"
-            android:layout_marginTop="@dimen/_15sdp"
-            android:text="Go to configuration" />
-
 
     </LinearLayout>
 

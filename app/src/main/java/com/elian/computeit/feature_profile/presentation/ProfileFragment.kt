@@ -1,4 +1,4 @@
-package com.elian.computeit.ui
+package com.elian.computeit.feature_profile.presentation
 
 import android.os.Bundle
 import android.view.LayoutInflater

@@ -1,4 +1,4 @@
-package com.elian.computeit.feature_tips.presentation.tip_list
+package com.elian.computeit.feature_tips.presentation.tips
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,17 +11,17 @@ import androidx.recyclerview.widget.RecyclerView
 import com.elian.computeit.R
 import com.elian.computeit.core.presentation.util.NavigationDrawerFragmentTag
 import com.elian.computeit.core.presentation.util.extensions.toast
-import com.elian.computeit.databinding.FragmentTipListBinding
+import com.elian.computeit.core.util.RecyclerViewAdapter
+import com.elian.computeit.databinding.FragmentTipsBinding
 import com.elian.computeit.databinding.ItemTipBinding
 import com.elian.computeit.feature_tips.data.models.Tip
-import com.elian.computeit.util.RecyclerViewAdapter
 
-class TipListFragment : Fragment(), NavigationDrawerFragmentTag,
+class TipsFragment : Fragment(), NavigationDrawerFragmentTag,
     RecyclerViewAdapter.OnBindViewHolderListener<Tip>,
     RecyclerViewAdapter.OnItemClickListener<Tip>,
     RecyclerViewAdapter.OnItemLongClickListener<Tip>
 {
-    private lateinit var binding: FragmentTipListBinding
+    private lateinit var binding: FragmentTipsBinding
     private val tipAdapter = RecyclerViewAdapter<Tip>(itemLayout = R.layout.item_tip)
 
 
@@ -29,7 +29,7 @@ class TipListFragment : Fragment(), NavigationDrawerFragmentTag,
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?,
     ): View
     {
-        binding = FragmentTipListBinding.inflate(inflater)
+        binding = FragmentTipsBinding.inflate(inflater)
         return binding.root
     }
 
