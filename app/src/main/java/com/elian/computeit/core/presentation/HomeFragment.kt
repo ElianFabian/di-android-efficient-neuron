@@ -148,7 +148,7 @@ class HomeFragment : Fragment()
         // Add the items with a certain delay to create an animation
         lifecycleScope.launch()
         {
-            val itemAdditionDelay = 175L
+            val itemAdditionDelay = 150L
             val currentLabeledDataList = mutableListOf<LabeledData>()
 
             uiLabeledDataList.forEach()
