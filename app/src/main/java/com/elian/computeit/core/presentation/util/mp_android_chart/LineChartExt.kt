@@ -37,5 +37,7 @@ fun LineChart.applyDefaultStyle(block: (LineChart.() -> Unit)? = null): LineChar
 
     block?.invoke(this)
 
+    isDoubleTapToZoomEnabled = false
+
     return this
 }
