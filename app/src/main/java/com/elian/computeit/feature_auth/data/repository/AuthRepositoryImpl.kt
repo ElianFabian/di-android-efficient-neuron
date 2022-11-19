@@ -49,6 +49,8 @@ class AuthRepositoryImpl @Inject constructor(
                 password = password,
             ).apply()
             {
+                appRepository.saveUserUuid(uuid)
+
                 firestore.document("$COLLECTION_USERS/$uuid").set(this).await()
             }
 

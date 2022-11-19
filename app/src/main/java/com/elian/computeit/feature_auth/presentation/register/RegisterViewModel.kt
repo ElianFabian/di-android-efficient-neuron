@@ -5,8 +5,6 @@ import androidx.lifecycle.viewModelScope
 import com.elian.computeit.core.domain.states.TextFieldState
 import com.elian.computeit.core.util.Resource
 import com.elian.computeit.core.util.UiText
-import com.elian.computeit.core.util.constants.EXTRA_USERNAME
-import com.elian.computeit.core.util.constants.EXTRA_PASSWORD
 import com.elian.computeit.feature_auth.domain.use_case.RegisterUseCase
 import com.elian.computeit.feature_auth.presentation.register.RegisterAction.*
 import com.elian.computeit.feature_auth.presentation.register.RegisterEvent.OnShowErrorMessage
@@ -63,15 +61,7 @@ class RegisterViewModel @Inject constructor(
                     when (it.result)
                     {
                         is Resource.Error   -> _eventFlow.emit(OnShowErrorMessage(it.result.uiText ?: UiText.unknownError()))
-                        is Resource.Success ->
-                        {
-                            val argsToSend = mapOf(
-                                EXTRA_USERNAME to _usernameState.value.text,
-                                EXTRA_PASSWORD to _passwordState.value.text,
-                            ).toList()
-
-                            _eventFlow.emit(RegisterEvent.OnRegister(args = argsToSend))
-                        }
+                        is Resource.Success -> _eventFlow.emit(RegisterEvent.OnRegister)
 
                         else                -> Unit
                     }

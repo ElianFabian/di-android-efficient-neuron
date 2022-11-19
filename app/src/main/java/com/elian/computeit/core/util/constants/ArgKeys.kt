@@ -1,15 +1,5 @@
 package com.elian.computeit.core.util.constants
 
-//region Register -> Login
-
-/** @see String */
-const val EXTRA_USERNAME = "EXTRA_USERNAME"
-
-/** @see String */
-const val EXTRA_PASSWORD = "EXTRA_PASSWORD"
-
-//endregion
-
 //region Test Configuration -> Test End
 
 /** @see com.elian.computeit.feature_tests.data.models.Operation */

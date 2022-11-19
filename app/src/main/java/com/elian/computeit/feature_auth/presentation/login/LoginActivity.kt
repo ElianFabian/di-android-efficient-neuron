@@ -9,8 +9,6 @@ import com.elian.computeit.R
 import com.elian.computeit.core.presentation.MainActivity
 import com.elian.computeit.core.presentation.util.extensions.*
 import com.elian.computeit.core.util.Error
-import com.elian.computeit.core.util.constants.EXTRA_USERNAME
-import com.elian.computeit.core.util.constants.EXTRA_PASSWORD
 import com.elian.computeit.databinding.ActivityLoginBinding
 import com.elian.computeit.feature_auth.presentation.login.LoginAction.*
 import com.elian.computeit.feature_auth.presentation.login.LoginEvent.OnLogin
@@ -48,12 +46,6 @@ class LoginActivity : AppCompatActivity()
 
             btnLogin.setOnClickListener { viewModel.onAction(Login) }
             btnRegister.setOnClickListener { navigateTo<RegisterActivity>() }
-
-            intent.extras?.apply()
-            {
-                tietUsername.setText(getString(EXTRA_USERNAME))
-                tietPassword.setText(getString(EXTRA_PASSWORD))
-            }
         }
     }
 
