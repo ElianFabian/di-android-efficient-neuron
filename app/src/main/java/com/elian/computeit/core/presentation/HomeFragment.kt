@@ -53,7 +53,7 @@ class HomeFragment : Fragment()
 
         if (::_testDataListFromServer.isInitialized)
         {
-            initOpmPerTestChart(_testDataListFromServer.opmPerTest)
+            initOpmPerTestChart(_testDataListFromServer)
             initTextInfo(_testDataListFromServer)
         }
         else lifecycleScope.launch()
@@ -64,7 +64,7 @@ class HomeFragment : Fragment()
             {
                 _testDataListFromServer = it
 
-                initOpmPerTestChart(it.opmPerTest)
+                initOpmPerTestChart(it)
                 initTextInfo(it)
 
                 binding.lpiIsLoding.isGone = true
@@ -86,11 +86,17 @@ class HomeFragment : Fragment()
         }
     }
 
-    private fun initOpmPerTestChart(opmPerTest: List<Int>)
+    private fun initOpmPerTestChart(testDataList: List<TestData>) = testDataList.apply2()
     {
-        if (opmPerTest.isNotEmpty())
+        if (opmPerTest.isNotEmpty() || opmPerTest.isNotEmpty())
         {
             binding.lcOpmPerTest.applyDefault(
+                lineDataSet(
+                    labelResId = R.string.generic_raw,
+                    lineAndCirclesColor = R.color.default_line_chart_25,
+                    entries = rawOpmPerTest.toEntries(),
+                    context = context,
+                ),
                 lineDataSet(
                     labelResId = R.string.generic_opm,
                     entries = opmPerTest.toEntries(),

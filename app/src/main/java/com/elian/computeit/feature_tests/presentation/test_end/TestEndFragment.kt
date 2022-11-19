@@ -7,10 +7,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.elian.computeit.R
 import com.elian.computeit.core.domain.models.TestData
-import com.elian.computeit.core.presentation.util.extensions.getColorCompat
 import com.elian.computeit.core.presentation.util.extensions.navigate
 import com.elian.computeit.core.presentation.util.mp_android_chart.applyDefault
-import com.elian.computeit.core.presentation.util.mp_android_chart.lineAndCirclesColor
 import com.elian.computeit.core.presentation.util.mp_android_chart.lineDataSet
 import com.elian.computeit.core.presentation.util.mp_android_chart.toEntries
 import com.elian.computeit.core.util.constants.EXTRA_TEST_DATA
@@ -72,11 +70,10 @@ class TestEndFragment : Fragment()
         binding.lcTestGraph.applyDefault(
             lineDataSet(
                 labelResId = R.string.generic_raw,
+                lineAndCirclesColor = R.color.default_line_chart_25,
                 entries = testData.rawOpmPerSecond.toEntries(),
                 context = context,
-            ) {
-                lineAndCirclesColor = context.getColorCompat(R.color.default_line_chart_25)
-            },
+            ),
             lineDataSet(
                 labelResId = R.string.generic_opm,
                 entries = testData.opmPerSecond.toEntries(),

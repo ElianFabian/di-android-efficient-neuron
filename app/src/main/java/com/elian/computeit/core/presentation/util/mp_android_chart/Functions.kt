@@ -1,6 +1,7 @@
 package com.elian.computeit.core.presentation.util.mp_android_chart
 
 import android.content.Context
+import androidx.annotation.ColorRes
 import androidx.annotation.StringRes
 import com.elian.computeit.R
 import com.elian.computeit.core.presentation.util.extensions.getColorCompat
@@ -12,6 +13,7 @@ fun lineDataSet(
     entries: List<Entry>,
     label: String? = null,
     @StringRes labelResId: Int = 0,
+    @ColorRes lineAndCirclesColor: Int = R.color.default_line_chart,
     block: (LineDataSet.() -> Unit)? = null,
 ): LineDataSet
 {
@@ -21,7 +23,7 @@ fun lineDataSet(
         setDrawHorizontalHighlightIndicator(false)
         setDrawVerticalHighlightIndicator(false)
 
-        lineAndCirclesColor = context.getColorCompat(R.color.default_line_chart)
+        this.lineAndCirclesColor = context.getColorCompat(lineAndCirclesColor)
         mode = LineDataSet.Mode.CUBIC_BEZIER
         cubicIntensity = 0.2F
         lineWidth = 2.2F
