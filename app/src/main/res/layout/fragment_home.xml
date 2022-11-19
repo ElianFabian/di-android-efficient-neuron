@@ -29,52 +29,54 @@
             app:trackCornerRadius="@dimen/_10sdp"
             tools:visibility="visible" />
 
-        <HorizontalScrollView
+        <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="@dimen/_25sdp">
+            android:layout_marginVertical="@dimen/_25sdp"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
 
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:orientation="horizontal">
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/sivGoToTestConfiguration"
+                android:layout_width="@dimen/_43sdp"
+                android:layout_height="@dimen/_43sdp"
+                android:layout_marginHorizontal="@dimen/_8sdp"
+                android:tint="@color/white"
+                app:srcCompat="@drawable/ic_play_arrow" />
 
-                <com.google.android.material.imageview.ShapeableImageView
-                    android:id="@+id/sivGoToTestConfiguration"
-                    android:layout_width="@dimen/_50sdp"
-                    android:layout_height="@dimen/_50sdp"
-                    android:layout_marginHorizontal="@dimen/_8sdp"
-                    android:tint="@color/white"
-                    app:srcCompat="@drawable/ic_play_arrow" />
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/sivGoToStatistics"
+                android:layout_width="@dimen/_43sdp"
+                android:layout_height="@dimen/_43sdp"
+                android:layout_marginHorizontal="@dimen/_8sdp"
+                android:tint="@color/white"
+                app:srcCompat="@drawable/ic_statistics" />
 
-                <com.google.android.material.imageview.ShapeableImageView
-                    android:id="@+id/sivGoToProfile"
-                    android:layout_width="@dimen/_50sdp"
-                    android:layout_height="@dimen/_50sdp"
-                    android:layout_marginHorizontal="@dimen/_8sdp"
-                    android:tint="@color/white"
-                    app:srcCompat="@drawable/ic_profile" />
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/sivGoToTips"
+                android:layout_width="@dimen/_43sdp"
+                android:layout_height="@dimen/_43sdp"
+                android:layout_marginHorizontal="@dimen/_8sdp"
+                android:tint="@color/white"
+                app:srcCompat="@drawable/ic_tips" />
 
-                <com.google.android.material.imageview.ShapeableImageView
-                    android:id="@+id/sivGoToTips"
-                    android:layout_width="@dimen/_50sdp"
-                    android:layout_height="@dimen/_50sdp"
-                    android:layout_marginHorizontal="@dimen/_8sdp"
-                    android:tint="@color/white"
-                    app:srcCompat="@drawable/ic_tips" />
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/sivGoToProfile"
+                android:layout_width="@dimen/_43sdp"
+                android:layout_height="@dimen/_43sdp"
+                android:layout_marginHorizontal="@dimen/_8sdp"
+                android:tint="@color/white"
+                app:srcCompat="@drawable/ic_profile" />
 
-                <com.google.android.material.imageview.ShapeableImageView
-                    android:id="@+id/sivGoToSettings"
-                    android:layout_width="@dimen/_50sdp"
-                    android:layout_height="@dimen/_50sdp"
-                    android:layout_marginHorizontal="@dimen/_8sdp"
-                    android:tint="@color/white"
-                    app:srcCompat="@drawable/ic_settings" />
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/sivGoToSettings"
+                android:layout_width="@dimen/_43sdp"
+                android:layout_height="@dimen/_43sdp"
+                android:layout_marginHorizontal="@dimen/_8sdp"
+                android:tint="@color/white"
+                app:srcCompat="@drawable/ic_settings" />
 
-            </androidx.appcompat.widget.LinearLayoutCompat>
-
-        </HorizontalScrollView>
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
