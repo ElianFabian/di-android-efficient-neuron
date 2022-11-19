@@ -13,10 +13,10 @@ import com.elian.computeit.core.domain.models.TestData
 import com.elian.computeit.core.presentation.util.HomeViewModel
 import com.elian.computeit.core.presentation.util.extensions.getColorCompat
 import com.elian.computeit.core.presentation.util.extensions.navigate
+import com.elian.computeit.core.presentation.util.extensions.text2
 import com.elian.computeit.core.presentation.util.mp_android_chart.applyDefaultStyle
 import com.elian.computeit.core.presentation.util.mp_android_chart.lineDataSet
 import com.elian.computeit.core.presentation.util.mp_android_chart.toEntries
-import com.elian.computeit.core.presentation.util.showViews
 import com.elian.computeit.core.util.extensions.*
 import com.elian.computeit.databinding.FragmentHomeBinding
 import com.github.mikephil.charting.data.LineData
@@ -77,27 +77,17 @@ class HomeFragment : Fragment()
     {
         testDataList.apply()
         {
-            tvTestsCompleted.text = "$size"
-            tvOperationsCompleted.text = "$operationsCompleted"
+            tvTestsCompleted.text2 = "$size"
+            tvOperationsCompleted.text2 = "$operationsCompleted"
             correctOperationsCompleted.also()
             {
-                tvCorrectOperationsCompleted.text = "$it (${correctOperationsCompletedPercentage.toInt()} %)"
+                tvCorrectOperationsCompleted.text2 = "$it (${correctOperationsCompletedPercentage.toInt()} %)"
             }
-            tvAverageTpm.text = averageTpm.defaultFormat()
-            tvAverageRawTpm.text = averageRawTpm.defaultFormat()
-            tvHighestTpm.text = "$maxTpm"
-            tvHighestRawTpm.text = "$maxRawTpm"
+            tvAverageTpm.text2 = averageTpm.defaultFormat()
+            tvAverageRawTpm.text2 = averageRawTpm.defaultFormat()
+            tvHighestTpm.text2 = "$maxTpm"
+            tvHighestRawTpm.text2 = "$maxRawTpm"
         }
-
-        showViews(
-            tvTestsCompleted,
-            tvOperationsCompleted,
-            tvCorrectOperationsCompleted,
-            tvAverageTpm,
-            tvAverageRawTpm,
-            tvHighestTpm,
-            tvHighestRawTpm
-        )
     }
 
     private fun initTpmPerTestChart(tpmPerTest: List<Int>)
