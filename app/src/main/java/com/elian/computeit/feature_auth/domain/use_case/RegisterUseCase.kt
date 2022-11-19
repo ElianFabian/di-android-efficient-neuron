@@ -10,29 +10,25 @@ class RegisterUseCase @Inject constructor(
 )
 {
     suspend operator fun invoke(
-        email: String,
-        name: String,
+        username: String,
         password: String,
         confirmPassword: String,
     ): RegisterResult
     {
-        val emailError = validateEmail(email)
-        val nameError = validateName(name)
+        val nameError = validateName(username)
         val passwordError = validatePassword(password)
         val confirmPasswordError = validateConfirmPassword(confirmPassword, password)
 
-        return if (checkIfError(emailError, nameError, passwordError, confirmPasswordError))
+        return if (checkIfError(nameError, passwordError, confirmPasswordError))
         {
             RegisterResult(
-                emailError = emailError,
-                nameError = nameError,
+                usernameError = nameError,
                 passwordError = passwordError,
                 confirmPasswordError = confirmPasswordError,
             )
         }
         else RegisterResult(result = repository.register(
-            email = email,
-            name = name,
+            username = username,
             password = hash(password),
         ))
     }

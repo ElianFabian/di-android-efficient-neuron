@@ -11,20 +11,20 @@ class LoginUseCase @Inject constructor(
     private val repository: AuthRepository,
 )
 {
-    suspend operator fun invoke(email: String, password: String): LoginResult
+    suspend operator fun invoke(username: String, password: String): LoginResult
     {
-        val emailError = if (email.isBlank()) AuthError.Empty else null
+        val usernameError = if (username.isBlank()) AuthError.Empty else null
         val passwordError = if (password.isBlank()) AuthError.Empty else null
 
-        return if (checkIfError(emailError, passwordError))
+        return if (checkIfError(usernameError, passwordError))
         {
             LoginResult(
-                emailError = emailError,
+                usernameError = usernameError,
                 passwordError = passwordError,
             )
         }
         else LoginResult(result = repository.login(
-            email = email,
+            username = username,
             password = hash(password),
         ))
     }

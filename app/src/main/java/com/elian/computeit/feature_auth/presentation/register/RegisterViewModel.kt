@@ -5,7 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.elian.computeit.core.domain.states.TextFieldState
 import com.elian.computeit.core.util.Resource
 import com.elian.computeit.core.util.UiText
-import com.elian.computeit.core.util.constants.EXTRA_EMAIL
+import com.elian.computeit.core.util.constants.EXTRA_USERNAME
 import com.elian.computeit.core.util.constants.EXTRA_PASSWORD
 import com.elian.computeit.feature_auth.domain.use_case.RegisterUseCase
 import com.elian.computeit.feature_auth.presentation.register.RegisterAction.*
@@ -29,9 +29,6 @@ class RegisterViewModel @Inject constructor(
     private val _loadingState = MutableStateFlow(false)
     val loadingState = _loadingState.asStateFlow()
 
-    private val _emailState = MutableStateFlow(TextFieldState())
-    val emailState = _emailState.asStateFlow()
-
     private val _usernameState = MutableStateFlow(TextFieldState())
     val usernameState = _usernameState.asStateFlow()
 
@@ -46,7 +43,6 @@ class RegisterViewModel @Inject constructor(
     {
         when (action)
         {
-            is EnterEmail           -> _emailState.value = _emailState.value.copy(text = action.value, error = null)
             is EnterUsername        -> _usernameState.value = _usernameState.value.copy(text = action.value, error = null)
             is EnterPassword        -> _passwordState.value = _passwordState.value.copy(text = action.value, error = null)
             is EnterConfirmPassword -> _confirmPasswordState.value = _confirmPasswordState.value.copy(text = action.value, error = null)
@@ -55,14 +51,12 @@ class RegisterViewModel @Inject constructor(
                 _loadingState.value = true
 
                 register(
-                    email = _emailState.value.text,
-                    name = _usernameState.value.text,
+                    username = _usernameState.value.text,
                     password = _passwordState.value.text,
                     confirmPassword = _confirmPasswordState.value.text
                 ).also()
                 {
-                    _emailState.value = _emailState.value.copy(error = it.emailError)
-                    _usernameState.value = _usernameState.value.copy(error = it.nameError)
+                    _usernameState.value = _usernameState.value.copy(error = it.usernameError)
                     _passwordState.value = _passwordState.value.copy(error = it.passwordError)
                     _confirmPasswordState.value = _confirmPasswordState.value.copy(error = it.confirmPasswordError)
 
@@ -72,7 +66,7 @@ class RegisterViewModel @Inject constructor(
                         is Resource.Success ->
                         {
                             val argsToSend = mapOf(
-                                EXTRA_EMAIL to _emailState.value.text,
+                                EXTRA_USERNAME to _usernameState.value.text,
                                 EXTRA_PASSWORD to _passwordState.value.text,
                             ).toList()
 

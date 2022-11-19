@@ -9,7 +9,7 @@ import com.elian.computeit.R
 import com.elian.computeit.core.presentation.MainActivity
 import com.elian.computeit.core.presentation.util.extensions.*
 import com.elian.computeit.core.util.Error
-import com.elian.computeit.core.util.constants.EXTRA_EMAIL
+import com.elian.computeit.core.util.constants.EXTRA_USERNAME
 import com.elian.computeit.core.util.constants.EXTRA_PASSWORD
 import com.elian.computeit.databinding.ActivityLoginBinding
 import com.elian.computeit.feature_auth.presentation.login.LoginAction.*
@@ -43,7 +43,7 @@ class LoginActivity : AppCompatActivity()
     {
         binding.apply()
         {
-            tietEmail.addTextChangedListener { viewModel.onAction(EnterEmail(it.toString().trim())) }
+            tietUsername.addTextChangedListener { viewModel.onAction(EnterUsername(it.toString().trim())) }
             tietPassword.addTextChangedListener { viewModel.onAction(EnterPassword(it.toString().trim())) }
 
             btnLogin.setOnClickListener { viewModel.onAction(Login) }
@@ -51,7 +51,7 @@ class LoginActivity : AppCompatActivity()
 
             intent.extras?.apply()
             {
-                tietEmail.setText(getString(EXTRA_EMAIL))
+                tietUsername.setText(getString(EXTRA_USERNAME))
                 tietPassword.setText(getString(EXTRA_PASSWORD))
             }
         }
@@ -67,9 +67,9 @@ class LoginActivity : AppCompatActivity()
                 is OnShowErrorMessage -> toast(it.error.asString(this@LoginActivity))
             }
         }
-        collectLatestFlowWhenStarted(emailState.map { it.error })
+        collectLatestFlowWhenStarted(usernameState.map { it.error })
         {
-            binding.tilEmail.error2 = getFieldError(it)
+            binding.tilUsername.error2 = getFieldError(it)
         }
         collectLatestFlowWhenStarted(passwordState.map { it.error })
         {

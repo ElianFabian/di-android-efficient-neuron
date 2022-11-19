@@ -9,8 +9,6 @@
     <string name="bundleKey_selectedTip_position" translatable="false">selectedTipPosition</string>
 
     <string name="error_cant_be_empty">Can\'t be empty</string>
-    <string name="error_email_invalid">Invalid email. Example: %s</string>
-    <string name="error_email_is_already_in_use">The email is already in use</string>
     <string name="error_password_invalid">Invalid password, it should contain at least %d of these characters: %s</string>
     <string name="error_password_is_wrong">Password is wrong</string>
     <string name="error_passwords_dont_match">Passwords don\'t match</string>
@@ -62,7 +60,6 @@
     <string name="frgTips_tvTitle_text">Tips</string>
 
     <string name="generic_confirm_password">Confirm password</string>
-    <string name="generic_email">Email</string>
     <string name="generic_errors">Errors</string>
     <string name="generic_login">Login</string>
     <string name="generic_operations">Operations</string>

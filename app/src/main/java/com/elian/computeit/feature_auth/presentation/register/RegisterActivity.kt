@@ -45,7 +45,6 @@ class RegisterActivity : AppCompatActivity()
     {
         binding.apply()
         {
-            tietEmail.addTextChangedListener { viewModel.onAction(EnterEmail(it.toString().trim())) }
             tietUsername.addTextChangedListener { viewModel.onAction(EnterUsername(it.toString().trim())) }
             tietPassword.addTextChangedListener { viewModel.onAction(EnterPassword(it.toString().trim())) }
             tietConfirmPassword.addTextChangedListener { viewModel.onAction(EnterConfirmPassword(it.toString().trim())) }
@@ -62,15 +61,6 @@ class RegisterActivity : AppCompatActivity()
             {
                 is OnRegister         -> navigateTo<LoginActivity>(bundleOf(*it.args.toTypedArray()))
                 is OnShowErrorMessage -> toast(it.error.asString(this@RegisterActivity))
-            }
-        }
-        collectLatestFlowWhenStarted(emailState.map { it.error })
-        {
-            binding.tilEmail.error2 = when (it)
-            {
-                is AuthError.Empty   -> getString(R.string.error_cant_be_empty)
-                is AuthError.Invalid -> getString(R.string.error_email_invalid).format(it.example)
-                else                 -> null
             }
         }
         collectLatestFlowWhenStarted(usernameState.map { it.error })

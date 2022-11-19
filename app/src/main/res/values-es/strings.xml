@@ -4,8 +4,6 @@
     <string name="arrayTest_modes_time">Tiempo</string>
 
     <string name="error_cant_be_empty">No puede estar vacío</string>
-    <string name="error_email_invalid">Email inválido, ejemplo: %s</string>
-    <string name="error_email_is_already_in_use">El email ya está en uso</string>
     <string name="error_password_invalid">Contraseña inválida, debería contener al menos %d de estos caracteres: %s</string>
     <string name="error_password_is_wrong">La contraseña es incorrecta</string>
     <string name="error_passwords_dont_match">Las contraseñas no coinciden</string>
@@ -57,7 +55,6 @@
     <string name="frgTips_tvTitle_text">Consejos</string>
 
     <string name="generic_confirm_password">Confirmar contraseña</string>
-    <string name="generic_email">Email</string>
     <string name="generic_errors">Errores</string>
     <string name="generic_login">Iniciar sesión</string>
     <string name="generic_operations">Operaciones</string>

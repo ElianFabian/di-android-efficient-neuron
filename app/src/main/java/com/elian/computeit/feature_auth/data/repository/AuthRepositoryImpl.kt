@@ -19,9 +19,9 @@ class AuthRepositoryImpl @Inject constructor(
 ) :
     AuthRepository
 {
-    override suspend fun login(email: String, password: String): SimpleResource
+    override suspend fun login(username: String, password: String): SimpleResource
     {
-        val user = getUserByEmail(email)
+        val user = getUserByName(username)
 
         return when
         {
@@ -32,7 +32,6 @@ class AuthRepositoryImpl @Inject constructor(
                 appRepository.apply()
                 {
                     saveUserUuid(user.uuid)
-                    saveUserEmail(user.email)
                     saveUserName(user.name)
                 }
 
@@ -42,18 +41,15 @@ class AuthRepositoryImpl @Inject constructor(
     }
 
     override suspend fun register(
-        email: String,
-        name: String,
+        username: String,
         password: String,
     ): SimpleResource = when
     {
-        getUserByEmail(email) != null -> Resource.Error(R.string.error_email_is_already_in_use)
-        getUserByName(name) != null   -> Resource.Error(R.string.error_username_is_already_in_use)
-        else                          ->
+        getUserByName(username) != null -> Resource.Error(R.string.error_username_is_already_in_use)
+        else                            ->
         {
             User(
-                email = email,
-                name = name,
+                name = username,
                 password = password,
             ).apply()
             {
@@ -64,8 +60,6 @@ class AuthRepositoryImpl @Inject constructor(
         }
     }
 
-
-    private suspend fun getUserByEmail(email: String) = getUserByField(User::email.name, email)
 
     private suspend fun getUserByName(name: String) = getUserByField(User::name.name, name)
 

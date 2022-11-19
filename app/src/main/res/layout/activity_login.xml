@@ -16,16 +16,16 @@
         android:textColor="@color/black" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tilEmail"
+        android:id="@+id/tilUsername"
         style="@style/Auth_TextInputLayout"
         android:layout_marginTop="@dimen/_70sdp">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/tietEmail"
+            android:id="@+id/tietUsername"
             style="@style/TextInputEditTextStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/generic_email" />
+            android:hint="@string/generic_username" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout

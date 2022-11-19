@@ -3,7 +3,7 @@ package com.elian.computeit.core.util.constants
 //region Register -> Login
 
 /** @see String */
-const val EXTRA_EMAIL = "EXTRA_EMAIL"
+const val EXTRA_USERNAME = "EXTRA_USERNAME"
 
 /** @see String */
 const val EXTRA_PASSWORD = "EXTRA_PASSWORD"

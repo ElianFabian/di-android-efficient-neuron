@@ -28,8 +28,8 @@ class LoginViewModel @Inject constructor(
     private val _loadingState = MutableStateFlow(false)
     val loadingState = _loadingState.asStateFlow()
 
-    private val _emailState = MutableStateFlow(TextFieldState())
-    val emailState = _emailState.asStateFlow()
+    private val _usernameState = MutableStateFlow(TextFieldState())
+    val usernameState = _usernameState.asStateFlow()
 
     private val _passwordState = MutableStateFlow(TextFieldState())
     val passwordState = _passwordState.asStateFlow()
@@ -39,18 +39,18 @@ class LoginViewModel @Inject constructor(
     {
         when (action)
         {
-            is EnterEmail    -> _emailState.value = _emailState.value.copy(text = action.value, error = null)
+            is EnterUsername -> _usernameState.value = _usernameState.value.copy(text = action.value, error = null)
             is EnterPassword -> _passwordState.value = _passwordState.value.copy(text = action.value, error = null)
             is Login         -> viewModelScope.launch()
             {
                 _loadingState.value = true
 
                 login(
-                    email = _emailState.value.text,
+                    username = _usernameState.value.text,
                     password = _passwordState.value.text,
                 ).also()
                 {
-                    _emailState.value = _emailState.value.copy(error = it.emailError)
+                    _usernameState.value = _usernameState.value.copy(error = it.usernameError)
                     _passwordState.value = _passwordState.value.copy(error = it.passwordError)
 
                     when (it.result)

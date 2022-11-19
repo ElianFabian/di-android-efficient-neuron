@@ -1,6 +1,5 @@
 package com.elian.computeit.core.domain.util
 
-import android.util.Patterns
 import com.elian.computeit.feature_auth.presentation.util.AuthError
 
 private const val SET_OF_DIGITS = "0123456789"
@@ -16,19 +15,6 @@ private const val PASSWORD_MAX_LENGTH = 20
 private const val PASSWORD_SPECIAL_CHARACTERS = """!?/\$€%&#.=+-"""
 
 
-fun validateEmail(email: String): AuthError?
-{
-    val trimmedEmail = email.trim()
-
-    return when
-    {
-        trimmedEmail.isBlank()                                  -> AuthError.Empty
-        !trimmedEmail.matches(Patterns.EMAIL_ADDRESS.toRegex()) -> AuthError.Invalid(example = "abcd@gmail.com")
-
-        else                                                    -> null
-    }
-}
-
 fun validateName(name: String): AuthError?
 {
     val trimmedName = name.trim()
@@ -40,7 +26,7 @@ fun validateName(name: String): AuthError?
         trimmedName.length < NAME_MIN_LENGTH -> AuthError.TooShort(minLength = NAME_MIN_LENGTH)
         trimmedName.length > NAME_MAX_LENGTH -> AuthError.TooLong(maxLength = NAME_MAX_LENGTH)
 
-        else                                         -> null
+        else                                 -> null
     }
 }
 
