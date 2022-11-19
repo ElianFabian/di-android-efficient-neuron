@@ -12,6 +12,7 @@ import com.elian.computeit.R
 import com.elian.computeit.core.domain.models.TestData
 import com.elian.computeit.core.presentation.util.HomeViewModel
 import com.elian.computeit.core.presentation.util.extensions.getColorCompat
+import com.elian.computeit.core.presentation.util.extensions.getThemeColor
 import com.elian.computeit.core.presentation.util.extensions.navigate
 import com.elian.computeit.core.presentation.util.extensions.text2
 import com.elian.computeit.core.presentation.util.mp_android_chart.applyDefault
@@ -93,14 +94,12 @@ class HomeFragment : Fragment()
             binding.lcOpmPerTest.applyDefault(
                 lineDataSet(
                     labelResId = R.string.generic_raw,
-                    lineAndCirclesColor = R.color.default_line_chart_25,
+                    lineAndCirclesColorResId = R.color.default_chart_25,
                     entries = rawOpmPerTest.toEntries(),
-                    context = context,
                 ),
                 lineDataSet(
-                    labelResId = R.string.generic_opm,
+                    label = getString(R.string.generic_opm),
                     entries = opmPerTest.toEntries(),
-                    context = context,
                 ) {
                     setDrawVerticalHighlightIndicator(true)
                     highLightColor = context.getColorCompat(R.color.blue_200)
@@ -110,7 +109,7 @@ class HomeFragment : Fragment()
         else binding.lcOpmPerTest.apply()
         {
             setNoDataText(getString(R.string.no_data_available))
-            setNoDataTextColor(context.getColorCompat(R.color.teal_200))
+            setNoDataTextColor(getThemeColor(R.attr.colorSecondary))
         }
 
         binding.lcOpmPerTest.isGone = false

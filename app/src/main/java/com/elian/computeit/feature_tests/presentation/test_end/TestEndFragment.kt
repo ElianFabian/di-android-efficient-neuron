@@ -70,14 +70,12 @@ class TestEndFragment : Fragment()
         binding.lcTestGraph.applyDefault(
             lineDataSet(
                 labelResId = R.string.generic_raw,
-                lineAndCirclesColor = R.color.default_line_chart_25,
+                lineAndCirclesColorResId = R.color.default_chart_25,
                 entries = testData.rawOpmPerSecond.toEntries(),
-                context = context,
             ),
             lineDataSet(
                 labelResId = R.string.generic_opm,
                 entries = testData.opmPerSecond.toEntries(),
-                context = context,
             ),
         )
     }

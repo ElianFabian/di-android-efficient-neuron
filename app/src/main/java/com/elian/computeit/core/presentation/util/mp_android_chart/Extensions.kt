@@ -1,29 +1,29 @@
 package com.elian.computeit.core.presentation.util.mp_android_chart
 
-import android.content.Context
 import androidx.annotation.ColorRes
 import androidx.annotation.StringRes
+import androidx.fragment.app.Fragment
 import com.elian.computeit.R
 import com.elian.computeit.core.presentation.util.extensions.getColorCompat
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineDataSet
 
-fun lineDataSet(
-    context: Context?,
+fun Fragment.lineDataSet(
     entries: List<Entry>,
     label: String? = null,
     @StringRes labelResId: Int = 0,
-    @ColorRes lineAndCirclesColor: Int = R.color.default_line_chart,
+    @ColorRes lineAndCirclesColorResId: Int = R.color.default_chart,
     block: (LineDataSet.() -> Unit)? = null,
 ): LineDataSet
 {
-    return LineDataSet(entries, label ?: context!!.getString(labelResId)).apply()
+    return LineDataSet(entries, label ?: getString(labelResId)).apply()
     {
         setDrawValues(false)
         setDrawHorizontalHighlightIndicator(false)
         setDrawVerticalHighlightIndicator(false)
 
-        this.lineAndCirclesColor = context.getColorCompat(lineAndCirclesColor)
+        this.lineAndCirclesColor = getColorCompat(lineAndCirclesColorResId)
+
         mode = LineDataSet.Mode.CUBIC_BEZIER
         cubicIntensity = 0.2F
         lineWidth = 2.2F
