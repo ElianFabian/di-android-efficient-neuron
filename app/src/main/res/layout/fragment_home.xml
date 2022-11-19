@@ -104,7 +104,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_15sdp"
-            android:animateLayoutChanges="true"
             android:backgroundTint="@color/background_card"
             app:cardCornerRadius="@dimen/_10sdp">
 
