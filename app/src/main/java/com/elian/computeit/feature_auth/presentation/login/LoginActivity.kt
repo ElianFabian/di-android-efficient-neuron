@@ -9,6 +9,7 @@ import com.elian.computeit.R
 import com.elian.computeit.core.presentation.MainActivity
 import com.elian.computeit.core.presentation.util.extensions.*
 import com.elian.computeit.core.util.Error
+import com.elian.computeit.core.util.extensions.apply2
 import com.elian.computeit.databinding.ActivityLoginBinding
 import com.elian.computeit.feature_auth.presentation.login.LoginAction.*
 import com.elian.computeit.feature_auth.presentation.login.LoginEvent.OnLogin
@@ -49,7 +50,7 @@ class LoginActivity : AppCompatActivity()
         }
     }
 
-    private fun subscribeToEvents() = viewModel.apply()
+    private fun subscribeToEvents() = viewModel.apply2()
     {
         collectFlowWhenStarted(eventFlow)
         {
