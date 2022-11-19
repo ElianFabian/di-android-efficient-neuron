@@ -48,9 +48,9 @@ class TestEndFragment : Fragment()
 
     private fun initUi()
     {
-        binding.apply2()
+        binding.apply()
         {
-            testData.apply2()
+            testData.apply()
             {
                 tvOpm.text = "$opm"
                 tvRawOpm.text = "$rawOpm"
@@ -62,10 +62,10 @@ class TestEndFragment : Fragment()
             btnContinue.setOnClickListener { navigate(R.id.action_testEndFragment_to_homeFragment) }
         }
 
-        initOpmPerSecondChart()
+        initLineChart()
     }
 
-    private fun initOpmPerSecondChart()
+    private fun initLineChart()
     {
         binding.lcTestGraph.applyDefault(
             lineDataSet(
