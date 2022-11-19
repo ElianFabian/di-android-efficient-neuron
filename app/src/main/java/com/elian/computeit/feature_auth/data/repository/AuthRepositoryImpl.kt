@@ -29,11 +29,7 @@ class AuthRepositoryImpl @Inject constructor(
             user.password != password -> Resource.Error(R.string.error_password_is_wrong)
             else                      ->
             {
-                appRepository.apply()
-                {
-                    saveUserUuid(user.uuid)
-                    saveUserName(user.name)
-                }
+                appRepository.saveUserUuid(user.uuid)
 
                 Resource.Success()
             }
