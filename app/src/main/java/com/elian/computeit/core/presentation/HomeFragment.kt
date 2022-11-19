@@ -53,7 +53,7 @@ class HomeFragment : Fragment()
 
         if (::_testDataListFromServer.isInitialized)
         {
-            initOpmPerTestChart(_testDataListFromServer)
+            initLineChart(_testDataListFromServer)
             initTextInfo(_testDataListFromServer)
         }
         else lifecycleScope.launch()
@@ -64,7 +64,7 @@ class HomeFragment : Fragment()
             {
                 _testDataListFromServer = it
 
-                initOpmPerTestChart(it)
+                initLineChart(it)
                 initTextInfo(it)
 
                 binding.lpiIsLoding.isGone = true
@@ -86,7 +86,7 @@ class HomeFragment : Fragment()
         }
     }
 
-    private fun initOpmPerTestChart(testDataList: List<TestData>) = testDataList.apply2()
+    private fun initLineChart(testDataList: List<TestData>) = testDataList.apply2()
     {
         if (opmPerTest.isNotEmpty() || opmPerTest.isNotEmpty())
         {
