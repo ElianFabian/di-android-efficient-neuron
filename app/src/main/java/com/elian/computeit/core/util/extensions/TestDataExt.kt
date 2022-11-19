@@ -24,13 +24,6 @@ private fun TestData.getValuePerSecond(
     }
 }
 
-val TestData.rawOpmPerSecond
-    get() = getValuePerSecond(
-        getValue = { currentSecond, testCountSinceStart ->
-            testCountSinceStart / currentSecond.toFloat() * 60
-        },
-    )
-
 val TestData.opmPerSecond
     get() = getValuePerSecond(
         getCountSinceStartFromCondition = { !it.isError },
@@ -38,7 +31,12 @@ val TestData.opmPerSecond
             testCountSinceStart / currentSecond.toFloat() * 60
         },
     )
-
+val TestData.rawOpmPerSecond
+    get() = getValuePerSecond(
+        getValue = { currentSecond, testCountSinceStart ->
+            testCountSinceStart / currentSecond.toFloat() * 60
+        },
+    )
 val TestData.opm get() = opmPerSecond.values.lastOrNull() ?: 0
 val TestData.rawOpm get() = rawOpmPerSecond.values.lastOrNull() ?: 0
 val TestData.errorCount get() = operationDataList.count { it.isError }
