@@ -111,7 +111,7 @@ class HomeFragment : Fragment()
 
     private fun initTextInfo(testDataList: List<TestData>) = testDataList.apply2()
     {
-        val list = listOf(
+        val uiLabeledDataList = listOf(
             LabeledData(
                 label = getString(R.string.frgHomeFragment_testsCompleted),
                 value = "$testsCompleted",
@@ -144,16 +144,17 @@ class HomeFragment : Fragment()
 
         val adapter = LabeledDataAdapter()
         binding.rvLabeledData.adapter = adapter
-
+        
+        // Add the items with a certain delay to create an animation
         lifecycleScope.launch()
         {
             val itemAdditionDelay = 175L
-            val labeledDataList = mutableListOf<LabeledData>()
+            val currentLabeledDataList = mutableListOf<LabeledData>()
 
-            list.forEach()
+            uiLabeledDataList.forEach()
             {
                 delay(itemAdditionDelay)
-                adapter.submitList(labeledDataList.apply { add(it) }.toList())
+                adapter.submitList(currentLabeledDataList.apply { add(it) }.toList())
             }
         }
     }
