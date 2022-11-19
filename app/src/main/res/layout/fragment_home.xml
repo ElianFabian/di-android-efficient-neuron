@@ -32,7 +32,7 @@
         <HorizontalScrollView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="@dimen/_20sdp">
+            android:layout_marginVertical="@dimen/_25sdp">
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="wrap_content"
@@ -44,7 +44,7 @@
                     android:id="@+id/sivGoToTestConfiguration"
                     android:layout_width="@dimen/_50sdp"
                     android:layout_height="@dimen/_50sdp"
-                    android:layout_marginHorizontal="@dimen/_5sdp"
+                    android:layout_marginHorizontal="@dimen/_8sdp"
                     android:tint="@color/white"
                     app:srcCompat="@drawable/ic_keyboard" />
 
@@ -52,7 +52,7 @@
                     android:id="@+id/sivGoToProfile"
                     android:layout_width="@dimen/_50sdp"
                     android:layout_height="@dimen/_50sdp"
-                    android:layout_marginHorizontal="@dimen/_5sdp"
+                    android:layout_marginHorizontal="@dimen/_8sdp"
                     android:tint="@color/white"
                     app:srcCompat="@drawable/ic_profile" />
 
@@ -60,7 +60,7 @@
                     android:id="@+id/sivGoToTips"
                     android:layout_width="@dimen/_50sdp"
                     android:layout_height="@dimen/_50sdp"
-                    android:layout_marginHorizontal="@dimen/_5sdp"
+                    android:layout_marginHorizontal="@dimen/_8sdp"
                     android:tint="@color/white"
                     app:srcCompat="@drawable/ic_tips" />
 
@@ -69,7 +69,7 @@
                     android:id="@+id/sivGoToSettings"
                     android:layout_width="@dimen/_50sdp"
                     android:layout_height="@dimen/_50sdp"
-                    android:layout_marginHorizontal="@dimen/_5sdp"
+                    android:layout_marginHorizontal="@dimen/_8sdp"
                     android:tint="@color/white"
                     app:srcCompat="@drawable/ic_settings" />
 
