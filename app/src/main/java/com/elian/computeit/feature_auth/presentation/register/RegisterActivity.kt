@@ -67,8 +67,8 @@ class RegisterActivity : AppCompatActivity()
         {
             binding.tilUsername.error2 = when (it)
             {
-                is AuthError.Invalid  -> getString(R.string.error_username_invalid).format(it.validCharacters)
                 is AuthError.Empty    -> getString(R.string.error_cant_be_empty)
+                is AuthError.Invalid  -> getString(R.string.error_username_invalid).format(it.validCharacters)
                 is AuthError.TooShort -> getString(R.string.error_too_short).format(it.minLength)
                 is AuthError.TooLong  -> getString(R.string.error_too_long).format(it.maxLength)
                 else                  -> null
