@@ -114,7 +114,7 @@ class HomeFragment : Fragment()
         val list = listOf(
             LabeledData(
                 label = getString(R.string.frgHomeFragment_testsCompleted),
-                value = "$size",
+                value = "$testsCompleted",
             ),
             LabeledData(
                 label = getString(R.string.frgHomeFragment_operationsCompleted),

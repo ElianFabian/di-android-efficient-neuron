@@ -41,6 +41,7 @@ val TestData.opm get() = opmPerSecond.values.lastOrNull() ?: 0
 val TestData.rawOpm get() = rawOpmPerSecond.values.lastOrNull() ?: 0
 val TestData.errorCount get() = operationDataList.count { it.isError }
 
+val List<TestData>.testsCompleted get() = size
 val List<TestData>.opmPerTest get() = map { it.opm }
 val List<TestData>.rawOpmPerTest get() = map { it.rawOpm }
 val List<TestData>.averageOpm get() = opmPerTest.average().toFloat().ifNaNReturnZero()
