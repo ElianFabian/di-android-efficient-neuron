@@ -12,7 +12,7 @@
         android:id="@+id/tvTitle"
         style="@style/Title"
         android:layout_marginBottom="@dimen/_20sdp"
-        android:text="@string/frgGameConfiguration_tvTitle_text"
+        android:text="@string/frgTestConfiguration_tvTitle_text"
         android:textAlignment="center" />
 
     <RadioGroup
@@ -100,7 +100,7 @@
             android:id="@+id/mTvNumberRange"
             style="@style/frgGameConfiguration_TextView"
             android:layout_marginBottom="@dimen/_5sdp"
-            android:text="@string/frgGameConfiguration_tvNumberRange_text" />
+            android:text="@string/frgTestConfiguration_tvNumberRange_text" />
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
@@ -112,7 +112,7 @@
                 android:layout_width="@dimen/_100sdp"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:hint="@string/frgGameConfiguration_tietMinValue_hint"
+                android:hint="@string/frgTestConfiguration_tietMinValue_hint"
                 android:inputType="number"
                 android:maxLength="4"
                 android:minHeight="48dp"
@@ -124,7 +124,7 @@
                 android:layout_width="@dimen/_100sdp"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:hint="@string/frgGameConfiguration_tietMaxValue_hint"
+                android:hint="@string/frgTestConfiguration_tietMaxValue_hint"
                 android:inputType="number"
                 android:maxLength="4"
                 android:minHeight="48dp"
@@ -141,7 +141,7 @@
             android:id="@+id/tvMode"
             style="@style/frgGameConfiguration_TextView"
             android:layout_marginBottom="@dimen/_5sdp"
-            android:text="@string/frgGameConfiguration_tvMode_text" />
+            android:text="@string/frgTestConfiguration_tvMode_text" />
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"

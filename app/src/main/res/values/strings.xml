@@ -29,17 +29,11 @@
     <string name="frgEndGame_tvTimeOrTests_label_tests_text">Total tests</string>
     <string name="frgEndGame_tvTimeOrTests_label_time_text">Total time</string>
 
-    <string name="frgGameConfiguration_tietMaxValue_hint">Max</string>
-    <string name="frgGameConfiguration_tietMinValue_hint">Min</string>
-    <string name="frgGameConfiguration_tvMode_text">Mode:</string>
-    <string name="frgGameConfiguration_tvNumberRange_text">Range:</string>
-    <string name="frgGameConfiguration_tvTitle_text">Game configuration</string>
-
-    <string name="frgHomeFragment_averageRawTpm">Average raw TPM</string>
-    <string name="frgHomeFragment_averageTpm">Average TPM</string>
+    <string name="frgHomeFragment_averageOpm">Average OPM</string>
+    <string name="frgHomeFragment_averageRawOpm">Average raw OPM</string>
     <string name="frgHomeFragment_correctOperationsCompleted">Correct operations completed</string>
-    <string name="frgHomeFragment_highestRawTpm">Highest raw TPM</string>
-    <string name="frgHomeFragment_highestTpm">Highest TPM</string>
+    <string name="frgHomeFragment_highestOpm">Highest OPM</string>
+    <string name="frgHomeFragment_highestRawOpm">Highest raw OPM</string>
     <string name="frgHomeFragment_operationsCompleted">Operations completed</string>
     <string name="frgHomeFragment_testsCompleted">Tests completed</string>
 
@@ -54,6 +48,12 @@
     <string name="frgStatistics_tvTimePerGameLabel_text">Time per game</string>
     <string name="frgStatistics_tvTitle_text">Statistics</string>
 
+    <string name="frgTestConfiguration_tietMaxValue_hint">Max</string>
+    <string name="frgTestConfiguration_tietMinValue_hint">Min</string>
+    <string name="frgTestConfiguration_tvMode_text">Mode:</string>
+    <string name="frgTestConfiguration_tvNumberRange_text">Range:</string>
+    <string name="frgTestConfiguration_tvTitle_text">Test configuration</string>
+
     <string name="frgTestFragment_touch_to_start">Touch to start</string>
 
     <string name="frgTipManager_tieExample_hint">Example</string>
@@ -65,13 +65,14 @@
     <string name="generic_email">Email</string>
     <string name="generic_errors">Errors</string>
     <string name="generic_login">Login</string>
+    <string name="generic_operations">Operations</string>
+    <string name="generic_opm">OPM</string>
     <string name="generic_password">Password</string>
     <string name="generic_raw">Raw</string>
     <string name="generic_register">Register</string>
     <string name="generic_seconds">Seconds</string>
     <string name="generic_start">Start</string>
     <string name="generic_tests">Tests</string>
-    <string name="generic_tpm">TPM</string>
     <string name="generic_username">Username</string>
 
     <string name="navigation_drawer_close" translatable="false">Close</string>

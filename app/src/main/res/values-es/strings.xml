@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <resources>
-    <string name="arrayTest_modes_tests">Pruebas</string>
+    <string name="arrayTest_modes_tests">Tests</string>
     <string name="arrayTest_modes_time">Tiempo</string>
 
     <string name="error_cant_be_empty">No puede estar vacío</string>
@@ -24,19 +24,13 @@
     <string name="frgEndGame_tvTimeOrTests_label_tests_text">Tests</string>
     <string name="frgEndGame_tvTimeOrTests_label_time_text">Time</string>
 
-    <string name="frgGameConfiguration_tietMaxValue_hint">Máximo</string>
-    <string name="frgGameConfiguration_tietMinValue_hint">Mínimo</string>
-    <string name="frgGameConfiguration_tvMode_text">Modo:</string>
-    <string name="frgGameConfiguration_tvNumberRange_text">Intervalo:</string>
-    <string name="frgGameConfiguration_tvTitle_text">Configuración de Juego</string>
-
-    <string name="frgHomeFragment_averageRawTpm">PPM bruto promedio</string>
-    <string name="frgHomeFragment_averageTpm">PPM promedio</string>
+    <string name="frgHomeFragment_averageOpm">OPM promedio</string>
+    <string name="frgHomeFragment_averageRawOpm">OPM bruto promedio</string>
     <string name="frgHomeFragment_correctOperationsCompleted">Operaciones correctas completadas</string>
-    <string name="frgHomeFragment_highestRawTpm">PPM bruto más alto</string>
-    <string name="frgHomeFragment_highestTpm">PPM más alto</string>
+    <string name="frgHomeFragment_highestOpm">OPM más alto</string>
+    <string name="frgHomeFragment_highestRawOpm">OPM bruto más alto</string>
     <string name="frgHomeFragment_operationsCompleted">Operaciones completadas</string>
-    <string name="frgHomeFragment_testsCompleted">Pruebas completadas</string>
+    <string name="frgHomeFragment_testsCompleted">Tests completados</string>
 
     <string name="frgSettings_category_general">General</string>
     <string name="frgSettings_dark_theme_title">Tema oscuro</string>
@@ -49,6 +43,12 @@
     <string name="frgStatistics_tvTimePerGameLabel_text">Tiempo por partida</string>
     <string name="frgStatistics_tvTitle_text">Estadísticas</string>
 
+    <string name="frgTestConfiguration_tietMaxValue_hint">Máximo</string>
+    <string name="frgTestConfiguration_tietMinValue_hint">Mínimo</string>
+    <string name="frgTestConfiguration_tvMode_text">Modo:</string>
+    <string name="frgTestConfiguration_tvNumberRange_text">Intervalo:</string>
+    <string name="frgTestConfiguration_tvTitle_text">Configuración de test</string>
+
     <string name="frgTestFragment_touch_to_start">Toca para empezar</string>
 
     <string name="frgTipManager_tieExample_hint">Ejemplo</string>
@@ -60,13 +60,14 @@
     <string name="generic_email">Email</string>
     <string name="generic_errors">Errores</string>
     <string name="generic_login">Iniciar sesión</string>
+    <string name="generic_operations">Operaciones</string>
+    <string name="generic_opm">OPM</string>
     <string name="generic_password">Contraseña</string>
     <string name="generic_raw">Bruto</string>
     <string name="generic_register">Registrarse</string>
     <string name="generic_seconds">Segundos</string>
     <string name="generic_start">Empezar</string>
-    <string name="generic_tests">Pruebas</string>
-    <string name="generic_tpm">PPM</string>
+    <string name="generic_tests">Tests</string>
     <string name="generic_username">Nombre de usuario</string>
 
     <string name="navigation_menu_navAboutUs_title">Sobre Nosotros</string>

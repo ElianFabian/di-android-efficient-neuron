@@ -54,7 +54,7 @@ class HomeFragment : Fragment()
 
         if (::_testDataListFromServer.isInitialized)
         {
-            initTpmPerTestChart(_testDataListFromServer.tpmPerTest)
+            initOpmPerTestChart(_testDataListFromServer.opmPerTest)
             initTextInfo(_testDataListFromServer)
         }
         else lifecycleScope.launch()
@@ -65,7 +65,7 @@ class HomeFragment : Fragment()
             {
                 _testDataListFromServer = it
 
-                initTpmPerTestChart(it.tpmPerTest)
+                initOpmPerTestChart(it.opmPerTest)
                 initTextInfo(it)
 
                 binding.lpiIsLoding.isGone = true
@@ -80,41 +80,41 @@ class HomeFragment : Fragment()
             tvTestsCompleted.text2 = "$size"
             tvOperationsCompleted.text2 = "$operationsCompleted"
             tvCorrectOperationsCompleted.text2 = "$correctOperationsCompleted (${correctOperationsCompletedPercentage.toInt()} %)"
-            tvAverageTpm.text2 = averageTpm.defaultFormat()
-            tvAverageRawTpm.text2 = averageRawTpm.defaultFormat()
-            tvHighestTpm.text2 = "$maxTpm"
-            tvHighestRawTpm.text2 = "$maxRawTpm"
+            tvAverageOpm.text2 = averageOpm.defaultFormat()
+            tvAverageRawOpm.text2 = averageRawOpm.defaultFormat()
+            tvHighestOpm.text2 = "$maxOpm"
+            tvHighestRawOpm.text2 = "$maxRawOpm"
         }
     }
 
-    private fun initTpmPerTestChart(tpmPerTest: List<Int>)
+    private fun initOpmPerTestChart(opmPerTest: List<Int>)
     {
-        if (tpmPerTest.isNotEmpty())
+        if (opmPerTest.isNotEmpty())
         {
-            val tpmSet = lineDataSet(
+            val opmSet = lineDataSet(
                 context = context,
-                entries = tpmPerTest.toEntries(),
-                labelResId = R.string.generic_tpm,
+                entries = opmPerTest.toEntries(),
+                labelResId = R.string.generic_opm,
             ) {
                 setDrawVerticalHighlightIndicator(true)
                 highLightColor = context.getColorCompat(R.color.blue_200)
             }
 
-            binding.lcTpmPerTest.applyDefaultStyle()
+            binding.lcOpmPerTest.applyDefaultStyle()
             {
-                data = LineData(tpmSet)
+                data = LineData(opmSet)
 
-                val animationTime = tpmPerTest.size * 25
+                val animationTime = opmPerTest.size * 25
 
                 animateX(animationTime)
             }
         }
-        else binding.lcTpmPerTest.apply()
+        else binding.lcOpmPerTest.apply()
         {
             setNoDataText(getString(R.string.no_data_available))
             setNoDataTextColor(context.getColorCompat(R.color.teal_200))
         }
 
-        binding.lcTpmPerTest.isGone = false
+        binding.lcOpmPerTest.isGone = false
     }
 }

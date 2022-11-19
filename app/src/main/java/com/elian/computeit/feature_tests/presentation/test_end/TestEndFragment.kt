@@ -52,8 +52,8 @@ class TestEndFragment : Fragment()
         {
             testData.apply2()
             {
-                tvTpm.text = "$tpm"
-                tvRawTpm.text = "$rawTpm"
+                tvOpm.text = "$opm"
+                tvRawOpm.text = "$rawOpm"
                 tvTime.text = "$testTimeInSeconds s"
                 tvTests.text = "${operationDataList.size}"
                 tvErrors.text = "$errorCount"
@@ -62,19 +62,19 @@ class TestEndFragment : Fragment()
             btnContinue.setOnClickListener { navigate(R.id.action_testEndFragment_to_homeFragment) }
         }
 
-        initTpmPerSecondChart()
+        initOpmPerSecondChart()
     }
 
-    private fun initTpmPerSecondChart()
+    private fun initOpmPerSecondChart()
     {
-        val tpmSet = lineDataSet(
+        val opmSet = lineDataSet(
             context = context,
-            entries = testData.tpmPerSecond.toEntries(),
-            labelResId = R.string.generic_tpm,
+            entries = testData.opmPerSecond.toEntries(),
+            labelResId = R.string.generic_opm,
         )
-        val rawTpmSet = lineDataSet(
+        val rawOpmSet = lineDataSet(
             context = context,
-            entries = testData.rawTpmPerSecond.toEntries(),
+            entries = testData.rawOpmPerSecond.toEntries(),
             labelResId = R.string.generic_raw,
         ) {
             lineAndCirclesColor = context.getColorCompat(R.color.teal_700)
@@ -83,8 +83,8 @@ class TestEndFragment : Fragment()
         binding.lcTestGraph.applyDefaultStyle()
         {
             data = LineData(
-                rawTpmSet,
-                tpmSet,
+                rawOpmSet,
+                opmSet,
             )
 
             animateX(500)

@@ -24,14 +24,14 @@ private fun TestData.getValuePerSecond(
     }
 }
 
-val TestData.rawTpmPerSecond
+val TestData.rawOpmPerSecond
     get() = getValuePerSecond(
         getValue = { currentSecond, testCountSinceStart ->
             testCountSinceStart / currentSecond.toFloat() * 60
         },
     )
 
-val TestData.tpmPerSecond
+val TestData.opmPerSecond
     get() = getValuePerSecond(
         getCountSinceStartFromCondition = { !it.isError },
         getValue = { currentSecond, testCountSinceStart ->
@@ -39,16 +39,16 @@ val TestData.tpmPerSecond
         },
     )
 
-val TestData.rawTpm get() = rawTpmPerSecond.values.lastOrNull() ?: 0
-val TestData.tpm get() = tpmPerSecond.values.lastOrNull() ?: 0
+val TestData.rawOpm get() = rawOpmPerSecond.values.lastOrNull() ?: 0
+val TestData.opm get() = opmPerSecond.values.lastOrNull() ?: 0
 val TestData.errorCount get() = operationDataList.count { it.isError }
 
-val List<TestData>.tpmPerTest get() = map { it.tpm }
-val List<TestData>.rawTpmPerTest get() = map { it.rawTpm }
-val List<TestData>.averageTpm get() = tpmPerTest.average().toFloat().ifNaNReturnZero()
-val List<TestData>.averageRawTpm get() = rawTpmPerTest.average().toFloat().ifNaNReturnZero()
-val List<TestData>.maxTpm get() = tpmPerTest.maxOrNull() ?: 0
-val List<TestData>.maxRawTpm get() = rawTpmPerTest.maxOrNull() ?: 0
+val List<TestData>.opmPerTest get() = map { it.opm }
+val List<TestData>.rawOpmPerTest get() = map { it.rawOpm }
+val List<TestData>.averageOpm get() = opmPerTest.average().toFloat().ifNaNReturnZero()
+val List<TestData>.averageRawOpm get() = rawOpmPerTest.average().toFloat().ifNaNReturnZero()
+val List<TestData>.maxOpm get() = opmPerTest.maxOrNull() ?: 0
+val List<TestData>.maxRawOpm get() = rawOpmPerTest.maxOrNull() ?: 0
 val List<TestData>.operationsCompleted get() = sumOf { it.operationDataList.size }
 val List<TestData>.correctOperationsCompleted
     get() = sumOf {

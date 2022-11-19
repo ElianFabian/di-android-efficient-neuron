@@ -42,7 +42,7 @@
                 android:layout_height="@dimen/_150sdp" />
 
             <com.github.mikephil.charting.charts.LineChart
-                android:id="@+id/lcTpmPerTest"
+                android:id="@+id/lcOpmPerTest"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_200sdp"
                 android:layout_marginVertical="@dimen/_5sdp"
@@ -119,10 +119,10 @@
                     style="@style/TextView_Label"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/frgHomeFragment_averageTpm" />
+                    android:text="@string/frgHomeFragment_averageOpm" />
 
                 <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/tvAverageTpm"
+                    android:id="@+id/tvAverageOpm"
                     style="@style/TextView_Value"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -135,10 +135,10 @@
                     style="@style/TextView_Label"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/frgHomeFragment_averageRawTpm" />
+                    android:text="@string/frgHomeFragment_averageRawOpm" />
 
                 <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/tvAverageRawTpm"
+                    android:id="@+id/tvAverageRawOpm"
                     style="@style/TextView_Value"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -151,10 +151,10 @@
                     style="@style/TextView_Label"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/frgHomeFragment_highestTpm" />
+                    android:text="@string/frgHomeFragment_highestOpm" />
 
                 <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/tvHighestTpm"
+                    android:id="@+id/tvHighestOpm"
                     style="@style/TextView_Value"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -167,10 +167,10 @@
                     style="@style/TextView_Label"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/frgHomeFragment_highestRawTpm" />
+                    android:text="@string/frgHomeFragment_highestRawOpm" />
 
                 <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/tvHighestRawTpm"
+                    android:id="@+id/tvHighestRawOpm"
                     style="@style/TextView_Value"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
