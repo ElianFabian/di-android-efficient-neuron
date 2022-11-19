@@ -46,7 +46,7 @@
                     android:layout_height="@dimen/_50sdp"
                     android:layout_marginHorizontal="@dimen/_8sdp"
                     android:tint="@color/white"
-                    app:srcCompat="@drawable/ic_keyboard" />
+                    app:srcCompat="@drawable/ic_play_arrow" />
 
                 <com.google.android.material.imageview.ShapeableImageView
                     android:id="@+id/sivGoToProfile"
