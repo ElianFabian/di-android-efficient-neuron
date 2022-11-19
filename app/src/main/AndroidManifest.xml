@@ -13,7 +13,7 @@
         android:theme="@style/Theme.ComputeIt">
 
         <activity
-            android:name=".core.presentation.InitialActivity"
+            android:name=".core.InitialActivity"
             android:exported="true"
             android:screenOrientation="portrait">
             <intent-filter>
