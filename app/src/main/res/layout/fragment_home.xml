@@ -64,7 +64,6 @@
                     android:tint="@color/white"
                     app:srcCompat="@drawable/ic_tips" />
 
-
                 <com.google.android.material.imageview.ShapeableImageView
                     android:id="@+id/sivGoToSettings"
                     android:layout_width="@dimen/_50sdp"
@@ -76,7 +75,6 @@
             </androidx.appcompat.widget.LinearLayoutCompat>
 
         </HorizontalScrollView>
-
 
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
@@ -110,7 +108,7 @@
 
             <View
                 android:layout_width="wrap_content"
-                android:layout_height="@dimen/_300sdp" />
+                android:layout_height="@dimen/_280sdp" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvLabeledData"
