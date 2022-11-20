@@ -4,15 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.RadioButton
 import androidx.core.os.bundleOf
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.elian.computeit.R
-import com.elian.computeit.core.presentation.util.extensions.collectLatestFlowWhenStarted
-import com.elian.computeit.core.presentation.util.extensions.findViewsWithTagOfType
-import com.elian.computeit.core.presentation.util.extensions.navigateSafe
-import com.elian.computeit.core.presentation.util.extensions.toast
+import com.elian.computeit.core.presentation.util.extensions.*
 import com.elian.computeit.core.util.Error
 import com.elian.computeit.core.util.extensions.apply2
 import com.elian.computeit.databinding.FragmentTestConfigurationBinding
@@ -20,7 +18,6 @@ import com.elian.computeit.feature_tests.presentation.test_configuration.TestCon
 import com.elian.computeit.feature_tests.presentation.test_configuration.TestConfigurationEvent.OnShowErrorMessage
 import com.elian.computeit.feature_tests.presentation.test_configuration.TestConfigurationEvent.OnStart
 import com.elian.computeit.feature_tests.presentation.util.TestConfigurationError
-import com.google.android.material.radiobutton.MaterialRadioButton
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.map
 
@@ -29,6 +26,8 @@ class TestConfigurationFragment : Fragment()
 {
     private val viewModel by viewModels<TestConfigurationViewModel>()
     private lateinit var binding: FragmentTestConfigurationBinding
+
+    private lateinit var _lastCheckedOperationRadioButton: RadioButton
 
 
     override fun onCreateView(
@@ -50,17 +49,22 @@ class TestConfigurationFragment : Fragment()
 
     private fun initUI() = binding.apply2()
     {
-        val operationTypeList = rgOperationType.findViewsWithTagOfType<MaterialRadioButton>(R.string.tag_operation_type)
-
-        viewModel.onAction(SelectOperationType(symbol = operationTypeList.first().text.toString()))
+        val operationTypeList = rgOperationType.findViewsWithTagOfType<RadioButton>(R.string.tag_operation_type)
 
         operationTypeList.forEach { radioButton ->
-
             radioButton.setOnClickListener()
             {
+                _lastCheckedOperationRadioButton = radioButton
+
                 viewModel.onAction(SelectOperationType(symbol = radioButton.text.toString()))
             }
         }
+        // This is to avoid problems when saving the RadioButton checked state after navigating up from test to here
+        if (!::_lastCheckedOperationRadioButton.isInitialized)
+        {
+            _lastCheckedOperationRadioButton = rgOperationType.checkedRadioButton!!
+        }
+        _lastCheckedOperationRadioButton.performClick()
 
         tietMinValue.addTextChangedListener { viewModel.onAction(EnterMinValue(it.toString().toIntOrNull())) }
         tietMaxValue.addTextChangedListener { viewModel.onAction(EnterMaxValue(it.toString().toIntOrNull())) }
