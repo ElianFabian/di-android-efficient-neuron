@@ -8,6 +8,7 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.elian.computeit.R
 import com.elian.computeit.core.data.Operation
 import com.elian.computeit.core.presentation.util.extensions.*
@@ -27,6 +28,8 @@ class TestFragment : Fragment()
 {
     private val viewModel by viewModels<TestViewModel>()
     private lateinit var binding: FragmentTestBinding
+    
+    private var _hasTestStarted = false
 
 
     override fun onCreateView(
@@ -44,6 +47,14 @@ class TestFragment : Fragment()
         initUi()
         subscribeToEvents()
     }
+
+    override fun onPause()
+    {
+        super.onPause()
+
+        if (_hasTestStarted) findNavController().navigateUp()
+    }
+
 
     private fun initUi()
     {
@@ -76,6 +87,8 @@ class TestFragment : Fragment()
 
             clTouchToStart.setOnClickListenerOnlyOnce()
             {
+                _hasTestStarted = true
+                
                 val transitionDuration = 600L
 
                 clTouchToStart.startAlphaAnimation(
