@@ -144,7 +144,7 @@ class HomeFragment : Fragment()
 
         val adapter = LabeledDataAdapter()
         binding.rvLabeledData.adapter = adapter
-        
+
         // Add the items with a certain delay to create an animation
         lifecycleScope.launch()
         {
