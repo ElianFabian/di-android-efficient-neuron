@@ -1,4 +1,4 @@
-package com.elian.computeit.feature_tests.presentation.util
+package com.elian.computeit.feature_tests.domain.util
 
 import com.elian.computeit.core.domain.models.NumberPair
 import kotlin.random.Random

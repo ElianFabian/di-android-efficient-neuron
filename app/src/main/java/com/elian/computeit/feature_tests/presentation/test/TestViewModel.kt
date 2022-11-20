@@ -18,8 +18,8 @@ import com.elian.computeit.core.util.extensions.append
 import com.elian.computeit.core.util.extensions.clampLength
 import com.elian.computeit.feature_tests.domain.use_case.AddTestDataUseCase
 import com.elian.computeit.feature_tests.presentation.test.TestAction.*
-import com.elian.computeit.feature_tests.presentation.util.getDifferentRandomPairOfNumbers
-import com.elian.computeit.feature_tests.presentation.util.getRandomPairOfNumbers
+import com.elian.computeit.feature_tests.domain.util.getDifferentRandomPairOfNumbers
+import com.elian.computeit.feature_tests.domain.util.getRandomPairOfNumbers
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
