@@ -7,19 +7,19 @@ enum class Operation(
     val calculate: (a: Int, b: Int) -> Int,
 )
 {
-    Sum(
+    SUM(
         symbol = "+",
         calculate = { a, b -> a + b },
     ),
-    Subtract(
+    SUBTRACT(
         symbol = "−",
         calculate = { a, b -> a - b },
     ),
-    Multiply(
+    MULTIPLY(
         symbol = "×",
         calculate = { a, b -> a * b },
     ),
-    Divide(
+    DIVIDE(
         symbol = "÷",
         calculate = { a, b -> a / b },
     );
