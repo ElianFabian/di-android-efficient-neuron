@@ -17,8 +17,7 @@ import com.elian.computeit.core.util.constants.EXTRA_TEST_TIME_IN_SECONDS
 import com.elian.computeit.core.util.extensions.append
 import com.elian.computeit.core.util.extensions.clampLength
 import com.elian.computeit.feature_tests.domain.use_case.AddTestDataUseCase
-import com.elian.computeit.feature_tests.domain.util.getDifferentRandomPairOfNumbers
-import com.elian.computeit.feature_tests.domain.util.getRandomPairOfNumbers
+import com.elian.computeit.feature_tests.domain.use_case.GetRandomNumberPairUseCase
 import com.elian.computeit.feature_tests.presentation.test.TestAction.*
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -34,6 +33,7 @@ class TestViewModel @Inject constructor(
     savedState: SavedStateHandle,
     private val countDownTimer: CountDownTimer,
     private val addTestData: AddTestDataUseCase,
+    private val getRandomNumberPair: GetRandomNumberPairUseCase,
 ) : ViewModel()
 {
     companion object
@@ -74,7 +74,7 @@ class TestViewModel @Inject constructor(
                 {
                     is TimerEvent.OnStart  ->
                     {
-                        _pairOfNumbersState.value = getRandomPairOfNumbers(_range.min, _range.max)
+                        _pairOfNumbersState.value = getRandomNumberPair()
                     }
                     is TimerEvent.OnTick   ->
                     {
@@ -134,11 +134,7 @@ class TestViewModel @Inject constructor(
 
                 _testDataList.add(data)
 
-                _pairOfNumbersState.value = getDifferentRandomPairOfNumbers(
-                    min = _range.min,
-                    max = _range.max,
-                    oldPair = _pairOfNumbersState.value!!
-                )
+                _pairOfNumbersState.value = getRandomNumberPair(oldPair = _pairOfNumbersState.value)
                 _resultState.value = 0
             }
         }

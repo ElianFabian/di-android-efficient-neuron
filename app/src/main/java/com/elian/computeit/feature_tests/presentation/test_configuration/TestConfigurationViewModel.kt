@@ -16,10 +16,10 @@ import com.elian.computeit.feature_tests.presentation.test_configuration.TestCon
 import com.elian.computeit.feature_tests.presentation.test_configuration.TestConfigurationEvent.OnShowErrorMessage
 import com.elian.computeit.feature_tests.presentation.test_configuration.TestConfigurationEvent.OnStart
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -28,8 +28,8 @@ class TestConfigurationViewModel @Inject constructor(
     private val validateFields: ValidateConfigurationFieldsUseCase,
 ) : ViewModel()
 {
-    private val _eventFlow = MutableSharedFlow<TestConfigurationEvent>()
-    val eventFlow = _eventFlow.asSharedFlow()
+    private val _eventFlow = Channel<TestConfigurationEvent>()
+    val eventFlow = _eventFlow.receiveAsFlow()
 
     private lateinit var _selectedOperation: Operation
 
@@ -54,6 +54,7 @@ class TestConfigurationViewModel @Inject constructor(
             is Start               ->
             {
                 validateFields(
+                    operation = _selectedOperation,
                     minValue = _minValueState.value.number,
                     maxValue = _maxValueState.value.number,
                     time = _timeState.value.number,
@@ -65,7 +66,7 @@ class TestConfigurationViewModel @Inject constructor(
 
                     when (it.result)
                     {
-                        is Resource.Error   -> _eventFlow.emit(OnShowErrorMessage(it.result.uiText ?: UiText.unknownError()))
+                        is Resource.Error   -> _eventFlow.send(OnShowErrorMessage(it.result.uiText ?: UiText.unknownError()))
                         is Resource.Success ->
                         {
                             val argsToSend = mapOf(
@@ -74,7 +75,7 @@ class TestConfigurationViewModel @Inject constructor(
                                 EXTRA_OPERATION_NUMBER_RANGE to Range(_minValueState.value.number!!, _maxValueState.value.number!!),
                             ).toList()
 
-                            _eventFlow.emit(OnStart(args = argsToSend))
+                            _eventFlow.send(OnStart(args = argsToSend))
                         }
 
                         else                -> Unit
