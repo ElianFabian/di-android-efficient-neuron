@@ -13,6 +13,10 @@ sealed class Resource<T>(
     class Error<T> : Resource<T>
     {
         constructor(message: String, data: T? = null) : super(data, UiText.DynamicString(message))
-        constructor(@StringRes messageResId: Int, data: T? = null) : super(data, UiText.StringResource(messageResId))
+        constructor(
+            @StringRes messageResId: Int,
+            vararg args: Any?,
+            data: T? = null,
+        ) : super(data, UiText.StringResource(messageResId, *args))
     }
 }

@@ -15,7 +15,7 @@ sealed class UiText
     fun asString(context: Context?) = when (this)
     {
         is DynamicString  -> this.value
-        is StringResource -> context?.getString(this.resId, args) ?: throw NullPointerException()
+        is StringResource -> context?.getString(this.resId, *args) ?: throw NullPointerException()
     }
 
     companion object
