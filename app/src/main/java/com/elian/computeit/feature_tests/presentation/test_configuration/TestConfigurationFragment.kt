@@ -14,6 +14,7 @@ import com.elian.computeit.core.presentation.util.extensions.findViewsWithTagOfT
 import com.elian.computeit.core.presentation.util.extensions.navigateSafe
 import com.elian.computeit.core.presentation.util.extensions.toast
 import com.elian.computeit.core.util.Error
+import com.elian.computeit.core.util.extensions.apply2
 import com.elian.computeit.databinding.FragmentTestConfigurationBinding
 import com.elian.computeit.feature_tests.presentation.test_configuration.TestConfigurationAction.*
 import com.elian.computeit.feature_tests.presentation.test_configuration.TestConfigurationEvent.OnShowErrorMessage
@@ -47,33 +48,30 @@ class TestConfigurationFragment : Fragment()
     }
 
 
-    private fun initUI()
+    private fun initUI() = binding.apply2()
     {
-        binding.apply()
-        {
-            val operationTypeList = rgOperationType.findViewsWithTagOfType<MaterialRadioButton>(R.string.tag_operation_type)
+        val operationTypeList = rgOperationType.findViewsWithTagOfType<MaterialRadioButton>(R.string.tag_operation_type)
 
-            viewModel.onAction(SelectOperationType(
-                symbol = operationTypeList.first().text.toString()
-            ))
+        viewModel.onAction(SelectOperationType(
+            symbol = operationTypeList.first().text.toString()
+        ))
 
-            operationTypeList.forEach { radioButton ->
+        operationTypeList.forEach { radioButton ->
 
-                radioButton.setOnClickListener()
-                {
-                    viewModel.onAction(SelectOperationType(symbol = radioButton.text.toString()))
-                }
+            radioButton.setOnClickListener()
+            {
+                viewModel.onAction(SelectOperationType(symbol = radioButton.text.toString()))
             }
-
-            tietMinValue.addTextChangedListener { viewModel.onAction(EnterMinValue(it.toString().toIntOrNull())) }
-            tietMaxValue.addTextChangedListener { viewModel.onAction(EnterMaxValue(it.toString().toIntOrNull())) }
-            tietTestTime.addTextChangedListener { viewModel.onAction(EnterTestTime(it.toString().toIntOrNull())) }
-
-            btnStart.setOnClickListener { viewModel.onAction(Start) }
         }
+
+        tietMinValue.addTextChangedListener { viewModel.onAction(EnterMinValue(it.toString().toIntOrNull())) }
+        tietMaxValue.addTextChangedListener { viewModel.onAction(EnterMaxValue(it.toString().toIntOrNull())) }
+        tietTestTime.addTextChangedListener { viewModel.onAction(EnterTestTime(it.toString().toIntOrNull())) }
+
+        btnStart.setOnClickListener { viewModel.onAction(Start) }
     }
 
-    private fun subscribeToEvents() = viewModel.apply()
+    private fun subscribeToEvents() = viewModel.apply2()
     {
         collectLatestFlowWhenStarted(eventFlow)
         {
