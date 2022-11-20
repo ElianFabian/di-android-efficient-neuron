@@ -14,3 +14,22 @@ fun getRandomPairOfNumbers(min: Int, max: Int): NumberPair
 
     return NumberPair(first, second)
 }
+
+fun getDifferentRandomPairOfNumbers(
+    oldPair: NumberPair,
+    min: Int,
+    max: Int,
+): NumberPair
+{
+    while (true)
+    {
+        val newPair = getRandomPairOfNumbers(min, max)
+        
+        println("$$$$ $newPair")
+
+        val isDifferent = newPair.first != oldPair.first || newPair.second != oldPair.second
+        val isDifferentInReverse = newPair.first != oldPair.second || newPair.second != oldPair.first
+
+        if (isDifferent && isDifferentInReverse) return newPair
+    }
+}
