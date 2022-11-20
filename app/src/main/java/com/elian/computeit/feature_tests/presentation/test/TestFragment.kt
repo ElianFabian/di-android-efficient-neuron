@@ -12,6 +12,7 @@ import androidx.navigation.fragment.findNavController
 import com.elian.computeit.R
 import com.elian.computeit.core.data.Operation
 import com.elian.computeit.core.presentation.util.extensions.*
+import com.elian.computeit.core.presentation.util.isScreenOn
 import com.elian.computeit.core.util.constants.EXTRA_OPERATION_TYPE
 import com.elian.computeit.core.util.extensions.apply2
 import com.elian.computeit.core.util.extensions.format
@@ -53,7 +54,7 @@ class TestFragment : Fragment()
     {
         super.onPause()
 
-        if (_hasTestStarted) findNavController().navigateUp()
+        if (_hasTestStarted && !isScreenOn(context)) findNavController().navigateUp()
     }
 
 
