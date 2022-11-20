@@ -6,9 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.preference.PreferenceFragmentCompat
 import com.elian.computeit.R
-import com.elian.computeit.core.presentation.util.NavigationDrawerFragmentTag
 
-class SettingsFragment : PreferenceFragmentCompat(), NavigationDrawerFragmentTag
+class SettingsFragment : PreferenceFragmentCompat()
 {
     // This is to make sure that the settings fragment is not transparent
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View

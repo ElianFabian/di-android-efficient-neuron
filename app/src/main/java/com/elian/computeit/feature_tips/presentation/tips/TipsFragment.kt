@@ -9,14 +9,13 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.elian.computeit.R
-import com.elian.computeit.core.presentation.util.NavigationDrawerFragmentTag
 import com.elian.computeit.core.presentation.util.extensions.toast
 import com.elian.computeit.core.util.RecyclerViewAdapter
 import com.elian.computeit.databinding.FragmentTipsBinding
 import com.elian.computeit.databinding.ItemTipBinding
 import com.elian.computeit.feature_tips.data.models.Tip
 
-class TipsFragment : Fragment(), NavigationDrawerFragmentTag,
+class TipsFragment : Fragment(),
     RecyclerViewAdapter.OnBindViewHolderListener<Tip>,
     RecyclerViewAdapter.OnItemClickListener<Tip>,
     RecyclerViewAdapter.OnItemLongClickListener<Tip>
