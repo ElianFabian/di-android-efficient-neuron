@@ -13,6 +13,7 @@ import com.elian.computeit.R
 import com.elian.computeit.core.data.Operation
 import com.elian.computeit.core.presentation.util.extensions.*
 import com.elian.computeit.core.util.constants.EXTRA_OPERATION_TYPE
+import com.elian.computeit.core.util.extensions.apply2
 import com.elian.computeit.core.util.extensions.format
 import com.elian.computeit.databinding.FragmentTestBinding
 import com.elian.computeit.feature_tests.presentation.test.TestAction.*
@@ -28,7 +29,7 @@ class TestFragment : Fragment()
 {
     private val viewModel by viewModels<TestViewModel>()
     private lateinit var binding: FragmentTestBinding
-    
+
     private var _hasTestStarted = false
 
 
@@ -56,55 +57,52 @@ class TestFragment : Fragment()
     }
 
 
-    private fun initUi()
+    private fun initUi() = binding.apply2()
     {
-        binding.apply()
+        disableScreenInteraction()
+
+        arguments?.getSerializable(EXTRA_OPERATION_TYPE)!!.let { it as Operation }.also()
         {
-            disableScreenInteraction()
+            tvOperationSymbol.text = it.symbol
+        }
 
-            arguments?.getSerializable(EXTRA_OPERATION_TYPE)!!.let { it as Operation }.also()
+        llKeyBoard.findViewsWithTagOfType<MaterialButton>(R.string.tag_numeric_button).forEach { button ->
+
+            button.setOnClickListener()
             {
-                tvOperationSymbol.text = it.symbol
+                viewModel.onAction(EnterNumber(button.text.toString().toInt()))
             }
+        }
 
-            llKeyBoard.findViewsWithTagOfType<MaterialButton>(R.string.tag_numeric_button).forEach { button ->
+        mtvRemainingSeconds.text = (viewModel.millisInFuture / 1000F).toString()
+        cpiRemainingSeconds.apply()
+        {
+            max = viewModel.millisInFuture.toInt()
+            progress = viewModel.millisInFuture.toInt()
+        }
 
-                button.setOnClickListener()
-                {
-                    viewModel.onAction(EnterNumber(button.text.toString().toInt()))
-                }
-            }
+        btnNextTest.setOnClickListener { viewModel.onAction(NextTest) }
+        btnClearInput.setOnClickListener { viewModel.onAction(ClearInput) }
 
-            mtvRemainingSeconds.text = (viewModel.millisInFuture / 1000F).toString()
-            cpiRemainingSeconds.apply()
+        clTouchToStart.setOnClickListenerOnlyOnce()
+        {
+            _hasTestStarted = true
+
+            val transitionDuration = 600L
+
+            clTouchToStart.startAlphaAnimation(
+                fromAlpha = 1F,
+                toAlpha = 0F,
+                duration = transitionDuration,
+            )
+
+            lifecycleScope.launch()
             {
-                max = viewModel.millisInFuture.toInt()
-                progress = viewModel.millisInFuture.toInt()
-            }
+                delay(transitionDuration + 150L)
 
-            btnNextTest.setOnClickListener { viewModel.onAction(NextTest) }
-            btnClearInput.setOnClickListener { viewModel.onAction(ClearInput) }
+                viewModel.startTimer()
 
-            clTouchToStart.setOnClickListenerOnlyOnce()
-            {
-                _hasTestStarted = true
-                
-                val transitionDuration = 600L
-
-                clTouchToStart.startAlphaAnimation(
-                    fromAlpha = 1F,
-                    toAlpha = 0F,
-                    duration = transitionDuration,
-                )
-
-                lifecycleScope.launch()
-                {
-                    delay(transitionDuration + 150L)
-
-                    viewModel.startTimer()
-
-                    enableScreenInteraction()
-                }
+                enableScreenInteraction()
             }
         }
     }
