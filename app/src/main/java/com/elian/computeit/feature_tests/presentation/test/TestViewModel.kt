@@ -17,9 +17,9 @@ import com.elian.computeit.core.util.constants.EXTRA_TEST_TIME_IN_SECONDS
 import com.elian.computeit.core.util.extensions.append
 import com.elian.computeit.core.util.extensions.clampLength
 import com.elian.computeit.feature_tests.domain.use_case.AddTestDataUseCase
-import com.elian.computeit.feature_tests.presentation.test.TestAction.*
 import com.elian.computeit.feature_tests.domain.util.getDifferentRandomPairOfNumbers
 import com.elian.computeit.feature_tests.domain.util.getRandomPairOfNumbers
+import com.elian.computeit.feature_tests.presentation.test.TestAction.*
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -45,7 +45,6 @@ class TestViewModel @Inject constructor(
     val millisInFuture = savedState.get<Int>(EXTRA_TEST_TIME_IN_SECONDS)?.let { it * 1_000L }!!
     private val _range = savedState.get<Range>(EXTRA_OPERATION_NUMBER_RANGE)!!
     private val _operation = savedState.get<Operation>(EXTRA_OPERATION_TYPE)!!
-
 
     private val _testDataList = mutableListOf<OperationData>()
 
