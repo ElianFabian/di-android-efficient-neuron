@@ -4,13 +4,13 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.elian.computeit.core.data.Operation
 import com.elian.computeit.core.data.symbolToOperation
+import com.elian.computeit.core.domain.models.Range
 import com.elian.computeit.core.domain.states.NumericFieldState
 import com.elian.computeit.core.util.Resource
 import com.elian.computeit.core.util.UiText
 import com.elian.computeit.core.util.constants.EXTRA_OPERATION_NUMBER_RANGE
 import com.elian.computeit.core.util.constants.EXTRA_OPERATION_TYPE
 import com.elian.computeit.core.util.constants.EXTRA_TEST_TIME_IN_SECONDS
-import com.elian.computeit.core.domain.models.Range
 import com.elian.computeit.feature_tests.domain.use_case.ValidateConfigurationFieldsUseCase
 import com.elian.computeit.feature_tests.presentation.test_configuration.TestConfigurationAction.*
 import com.elian.computeit.feature_tests.presentation.test_configuration.TestConfigurationEvent.OnShowErrorMessage
@@ -39,8 +39,8 @@ class TestConfigurationViewModel @Inject constructor(
     private val _maxValueState = MutableStateFlow(NumericFieldState<Int>())
     val maxValueState = _maxValueState.asStateFlow()
 
-    private val _testTimeState = MutableStateFlow(NumericFieldState<Int>())
-    val testTimeState = _testTimeState.asStateFlow()
+    private val _timeState = MutableStateFlow(NumericFieldState<Int>())
+    val timeState = _timeState.asStateFlow()
 
 
     fun onAction(action: TestConfigurationAction) = viewModelScope.launch()
@@ -48,7 +48,7 @@ class TestConfigurationViewModel @Inject constructor(
         when (action)
         {
             is SelectOperationType -> _selectedOperation = symbolToOperation[action.symbol]!!
-            is EnterTestTime       -> _testTimeState.value = _testTimeState.value.copy(number = action.value, error = null)
+            is EnterTime           -> _timeState.value = _timeState.value.copy(number = action.value, error = null)
             is EnterMinValue       -> _minValueState.value = _minValueState.value.copy(number = action.value, error = null)
             is EnterMaxValue       -> _maxValueState.value = _maxValueState.value.copy(number = action.value, error = null)
             is Start               ->
@@ -56,12 +56,12 @@ class TestConfigurationViewModel @Inject constructor(
                 validateFields(
                     minValue = _minValueState.value.number,
                     maxValue = _maxValueState.value.number,
-                    testTime = _testTimeState.value.number,
+                    time = _timeState.value.number,
                 ).also()
                 {
                     _minValueState.value = _minValueState.value.copy(error = it.minValueError)
                     _maxValueState.value = _maxValueState.value.copy(error = it.maxValueError)
-                    _testTimeState.value = _testTimeState.value.copy(error = it.testTimeError)
+                    _timeState.value = _timeState.value.copy(error = it.timeError)
 
                     when (it.result)
                     {
@@ -70,7 +70,7 @@ class TestConfigurationViewModel @Inject constructor(
                         {
                             val argsToSend = mapOf(
                                 EXTRA_OPERATION_TYPE to _selectedOperation,
-                                EXTRA_TEST_TIME_IN_SECONDS to _testTimeState.value.number!!,
+                                EXTRA_TEST_TIME_IN_SECONDS to _timeState.value.number!!,
                                 EXTRA_OPERATION_NUMBER_RANGE to Range(_minValueState.value.number!!, _maxValueState.value.number!!),
                             ).toList()
 

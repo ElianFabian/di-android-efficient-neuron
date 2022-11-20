@@ -6,6 +6,6 @@ import com.elian.computeit.feature_tests.presentation.util.TestConfigurationErro
 data class TestConfigurationResult(
     val minValueError: TestConfigurationError? = null,
     val maxValueError: TestConfigurationError? = null,
-    val testTimeError: TestConfigurationError? = null,
+    val timeError: TestConfigurationError? = null,
     val result: SimpleResource? = null,
 )

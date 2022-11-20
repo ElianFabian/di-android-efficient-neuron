@@ -12,19 +12,19 @@ class ValidateConfigurationFieldsUseCase @Inject constructor()
     operator fun invoke(
         minValue: Int?,
         maxValue: Int?,
-        testTime: Int?,
+        time: Int?,
     ): TestConfigurationResult
     {
         val minValueError = getFieldError(minValue)
         val maxValueError = getFieldError(maxValue)
-        val testTimeError = getFieldError(testTime)
+        val timeError = getFieldError(time)
 
-        return if (checkIfError(minValueError, maxValueError, testTimeError))
+        return if (checkIfError(minValueError, maxValueError, timeError))
         {
             TestConfigurationResult(
                 minValueError = minValueError,
                 maxValueError = maxValueError,
-                testTimeError = testTimeError,
+                timeError = timeError,
             )
         }
         else if (minValue!! > maxValue!!)
