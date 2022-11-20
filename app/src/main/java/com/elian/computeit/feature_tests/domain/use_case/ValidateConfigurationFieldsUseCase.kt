@@ -9,6 +9,9 @@ import javax.inject.Inject
 
 class ValidateConfigurationFieldsUseCase @Inject constructor()
 {
+    private val _minRangeLength = 10
+
+
     operator fun invoke(
         minValue: Int?,
         maxValue: Int?,
@@ -32,6 +35,13 @@ class ValidateConfigurationFieldsUseCase @Inject constructor()
             minValue!! > maxValue!!                               ->
             {
                 TestConfigurationResult(result = Resource.Error(R.string.error_range_values_are_inverted))
+            }
+            maxValue - minValue + 1 < _minRangeLength             ->
+            {
+                TestConfigurationResult(result = Resource.Error(
+                    messageResId = R.string.error_range_length_must_be_greater_than,
+                    args = arrayOf(_minRangeLength)
+                ))
             }
             else                                                  ->
             {

@@ -12,6 +12,7 @@
     <string name="error_password_invalid">Invalid password, it should contain at least %d of these characters: %s</string>
     <string name="error_password_is_wrong">Password is wrong</string>
     <string name="error_passwords_dont_match">Passwords don\'t match</string>
+    <string name="error_range_length_must_be_greater_than">Range length must be greater than %d</string>
     <string name="error_range_values_are_inverted">Range values are inverted</string>
     <string name="error_too_long">Too long, the maximum length is %d</string>
     <string name="error_too_short">Too short, the minimum length is %d</string>
