@@ -113,13 +113,13 @@ class TestViewModel @Inject constructor(
                     .append(action.value)
                     .clampLength(maxLength = 8)
             }
-            is ClearInput  ->
-            {
-                _resultState.value = 0
-            }
+            is ClearInput  -> _resultState.value = 0
             is NextTest    ->
             {
-                val expectedResult = _operation(_pairOfNumbersState.value!!)
+                val expectedResult = _operation(
+                    first = _pairOfNumbersState.value!!.first,
+                    second = _pairOfNumbersState.value!!.second
+                )
 
                 // As there's no negative sign button even if the answer it's negative you can introduce a positive number
                 // but when storing the data we save the value with the correct sign
