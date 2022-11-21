@@ -115,32 +115,6 @@
         <item name="android:textSize">35sp</item>
     </style>
 
-    <style name="frgStatistics_LabelFor_TextView">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:fontFamily">@font/comfortaa</item>
-        <item name="android:textSize">40sp</item>
-        <item name="android:textColor">@color/gray_600</item>
-    </style>
-
-    <style name="frgStatistics_TextView">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:fontFamily">@font/comfortaa</item>
-        <item name="android:textColor">@color/black</item>
-        <item name="android:textSize">35sp</item>
-    </style>
-
-    <style name="frgStatistics_TextView_Operation">
-        <item name="android:layout_width">80dp</item>
-        <item name="android:layout_height">80dp</item>
-        <item name="android:textSize">80sp</item>
-        <item name="android:fontFamily">@font/comfortaa_bold</item>
-        <item name="android:includeFontPadding">false</item>
-        <item name="android:textAlignment">center</item>
-        <item name="android:textColor">@color/blue_800</item>
-    </style>
-
     <style name="Theme_frgTestConfiguration_TextInputEditText">
         <item name="colorControlNormal">@color/gray_400</item>
         <item name="android:textColorHint">@color/gray_400</item>
