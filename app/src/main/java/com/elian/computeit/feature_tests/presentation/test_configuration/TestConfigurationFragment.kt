@@ -49,9 +49,8 @@ class TestConfigurationFragment : Fragment()
 
     private fun initUI() = binding.apply2()
     {
-        val operationTypeList = rgOperationType.findViewsWithTagOfType<RadioButton>(R.string.tag_operation_type)
+        rgOperationType.findViewsWithTagOfType<RadioButton>(R.string.tag_operation_type).forEach { radioButton ->
 
-        operationTypeList.forEach { radioButton ->
             radioButton.setOnClickListener()
             {
                 _lastCheckedOperationRadioButton = radioButton
@@ -59,6 +58,7 @@ class TestConfigurationFragment : Fragment()
                 viewModel.onAction(SelectOperationType(symbol = radioButton.text.toString()))
             }
         }
+
         // This is to avoid problems when saving the RadioButton checked state after navigating up from test to here
         if (!::_lastCheckedOperationRadioButton.isInitialized)
         {
