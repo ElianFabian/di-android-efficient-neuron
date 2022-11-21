@@ -22,7 +22,6 @@ import com.elian.computeit.core.presentation.util.mp_android_chart.toEntries
 import com.elian.computeit.core.util.extensions.*
 import com.elian.computeit.databinding.FragmentHomeBinding
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -144,18 +143,6 @@ class HomeFragment : Fragment()
 
         val adapter = LabeledDataAdapter()
         binding.rvLabeledData.adapter = adapter
-
-        // Add the items with a certain delay to create an animation
-        lifecycleScope.launch()
-        {
-            val itemAdditionDelay = 150L
-            val currentLabeledDataList = mutableListOf<LabeledData>()
-
-            uiLabeledDataList.forEach()
-            {
-                delay(itemAdditionDelay)
-                adapter.submitList(currentLabeledDataList.apply { add(it) }.toList())
-            }
-        }
+        adapter.submitList(uiLabeledDataList)
     }
 }
