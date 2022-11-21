@@ -4,6 +4,7 @@ import android.graphics.Color
 import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
+import kotlin.math.ln
 
 var LineChart.isInteractionEnable: Boolean
     get() = isDoubleTapToZoomEnabled && isScaleXEnabled
@@ -55,7 +56,7 @@ fun LineChart.applyDefaultAnimation(block: (LineChart.() -> Unit)? = null): Line
 {
     val largestDataSetCount = this.data.dataSets.maxOfOrNull { it.entryCount } ?: 0
 
-    val animationTime = largestDataSetCount * 25
+    val animationTime = ln(largestDataSetCount.toFloat() + 1).toInt() * 150
 
     animateX(animationTime)
 
