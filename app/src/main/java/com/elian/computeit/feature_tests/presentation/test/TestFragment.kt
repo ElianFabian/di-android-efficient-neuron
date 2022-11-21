@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -20,7 +21,6 @@ import com.elian.computeit.databinding.FragmentTestBinding
 import com.elian.computeit.feature_tests.presentation.test.TestAction.*
 import com.elian.computeit.feature_tests.presentation.test.TestEvent.OnTimerFinish
 import com.elian.computeit.feature_tests.presentation.test.TestEvent.OnTimerTick
-import com.google.android.material.button.MaterialButton
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -67,7 +67,7 @@ class TestFragment : Fragment()
             tvOperationSymbol.text = it.symbol
         }
 
-        llKeyBoard.findViewsWithTagOfType<MaterialButton>(R.string.tag_numeric_button).forEach { button ->
+        llKeyBoard.findViewsWithTagOfType<Button>(R.string.tag_numeric_button).forEach { button ->
 
             button.setOnClickListener()
             {
