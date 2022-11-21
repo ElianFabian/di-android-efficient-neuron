@@ -75,7 +75,7 @@ class TestConfigurationFragment : Fragment()
 
     private fun subscribeToEvents() = viewModel.apply2()
     {
-        collectLatestFlowWhenStarted(eventFlow)
+        collectFlowWhenStarted(eventFlow)
         {
             when (it)
             {
