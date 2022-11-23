@@ -3,7 +3,7 @@ package com.elian.computeit.feature_profile.data.repository
 import com.elian.computeit.core.data.util.constants.COLLECTION_USERS
 import com.elian.computeit.core.domain.models.User
 import com.elian.computeit.core.domain.repository.LocalAppDataRepository
-import com.elian.computeit.core.util.constants.profileDateFormat
+import com.elian.computeit.core.util.constants.dayMonthYearFormat
 import com.elian.computeit.feature_profile.domain.model.ProfileInfo
 import com.elian.computeit.feature_profile.domain.repository.ProfileRepository
 import com.google.firebase.firestore.ktx.firestore
@@ -29,7 +29,7 @@ class ProfileRepositoryImpl @Inject constructor(
             ProfileInfo(
                 username = name,
                 profilePicUrl = profilePicUrl,
-                createdAt = profileDateFormat.format(Date(createdAtInSeconds * 1000L)),
+                createdAt = dayMonthYearFormat.format(Date(createdAtInSeconds * 1000L)),
             )
         }
 

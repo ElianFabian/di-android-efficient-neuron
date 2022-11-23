@@ -6,4 +6,4 @@ import java.util.*
 private fun dateFormat(pattern: String) = SimpleDateFormat(pattern, Locale.getDefault())
 
 
-val profileDateFormat = dateFormat("dd/MM/yyyy")
+val dayMonthYearFormat = dateFormat("dd/MM/yyyy")
