@@ -42,5 +42,3 @@ fun Long.append(number: Long): Long
 fun Int.append(number: Int) = this.toLong().append(number.toLong()).toInt()
 
 fun Float.ifNaNReturnZero() = if (isNaN()) 0F else this
-
-fun Float.defaultFormat() = this.format("%.2f")

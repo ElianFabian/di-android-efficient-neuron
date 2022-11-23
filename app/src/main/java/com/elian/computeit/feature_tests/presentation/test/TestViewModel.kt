@@ -12,10 +12,11 @@ import com.elian.computeit.core.domain.util.CountDownTimer
 import com.elian.computeit.core.domain.util.TimerEvent
 import com.elian.computeit.core.util.constants.EXTRA_OPERATION_NUMBER_RANGE
 import com.elian.computeit.core.util.constants.EXTRA_OPERATION_TYPE
-import com.elian.computeit.core.util.constants.EXTRA_TEST_DATA
+import com.elian.computeit.core.util.constants.EXTRA_TEST_INFO
 import com.elian.computeit.core.util.constants.EXTRA_TEST_TIME_IN_SECONDS
 import com.elian.computeit.core.util.extensions.append
 import com.elian.computeit.core.util.extensions.clampLength
+import com.elian.computeit.feature_tests.domain.models.toTestInfo
 import com.elian.computeit.feature_tests.domain.use_case.AddTestDataUseCase
 import com.elian.computeit.feature_tests.domain.use_case.GetRandomNumberPairUseCase
 import com.elian.computeit.feature_tests.presentation.test.TestAction.*
@@ -91,7 +92,7 @@ class TestViewModel @Inject constructor(
                         )
 
                         _eventFlow.emit(TestEvent.OnTimerFinish(
-                            args = listOf(EXTRA_TEST_DATA to testData)
+                            args = listOf(EXTRA_TEST_INFO to testData.toTestInfo())
                         ))
 
                         addTestData(testData)

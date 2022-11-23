@@ -6,21 +6,20 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.elian.computeit.R
-import com.elian.computeit.core.domain.models.TestData
 import com.elian.computeit.core.presentation.util.extensions.navigate
 import com.elian.computeit.core.presentation.util.mp_android_chart.applyDefault
 import com.elian.computeit.core.presentation.util.mp_android_chart.lineDataSet
 import com.elian.computeit.core.presentation.util.mp_android_chart.toEntries
-import com.elian.computeit.core.util.constants.EXTRA_TEST_DATA
-import com.elian.computeit.core.util.extensions.*
+import com.elian.computeit.core.util.constants.EXTRA_TEST_INFO
 import com.elian.computeit.databinding.FragmentTestEndBinding
+import com.elian.computeit.feature_tests.domain.models.TestInfo
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class TestEndFragment : Fragment()
 {
     private lateinit var binding: FragmentTestEndBinding
-    private lateinit var testData: TestData
+    private lateinit var testInfo: TestInfo
 
 
     override fun onCreateView(
@@ -36,46 +35,41 @@ class TestEndFragment : Fragment()
     {
         super.onViewCreated(view, savedInstanceState)
 
-        initData()
         initUi()
-    }
-
-
-    private fun initData()
-    {
-        testData = arguments?.getParcelable(EXTRA_TEST_DATA)!!
     }
 
     private fun initUi()
     {
+        testInfo = arguments?.getParcelable(EXTRA_TEST_INFO)!!
+
         binding.apply()
         {
-            testData.apply()
+            testInfo.apply()
             {
                 tvOpm.text = "$opm"
                 tvRawOpm.text = "$rawOpm"
-                tvTime.text = "$testTimeInSeconds s"
-                tvOperations.text = "${operationDataList.size}"
+                tvTime.text = "$timeInSeconds s"
+                tvOperations.text = "$operationCount"
                 tvErrors.text = "$errorCount"
             }
 
             btnContinue.setOnClickListener { navigate(R.id.action_testEndFragment_to_homeFragment) }
         }
 
-        initLineChart()
+        initLineChart(testInfo)
     }
 
-    private fun initLineChart()
+    private fun initLineChart(testInfo: TestInfo)
     {
         binding.lcTestGraph.applyDefault(
             lineDataSet(
                 labelResId = R.string.generic_raw,
                 lineAndCirclesColorResId = R.color.default_chart_25,
-                entries = testData.rawOpmPerSecond.toEntries(),
+                entries = testInfo.rawOpmPerSecond.toEntries(),
             ),
             lineDataSet(
                 labelResId = R.string.generic_opm,
-                entries = testData.opmPerSecond.toEntries(),
+                entries = testInfo.opmPerSecond.toEntries(),
             ),
         )
     }

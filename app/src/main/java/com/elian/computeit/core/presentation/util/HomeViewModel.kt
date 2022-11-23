@@ -1,14 +1,14 @@
 package com.elian.computeit.core.presentation.util
 
 import androidx.lifecycle.ViewModel
-import com.elian.computeit.core.domain.repository.TestDataRepository
+import com.elian.computeit.core.domain.use_case.GetTestListInfoUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val testDataRepository: TestDataRepository,
+    private val getTestListInfoUseCase: GetTestListInfoUseCase,
 ) : ViewModel()
 {
-    suspend fun getTestDataList() = testDataRepository.getTestDataList()
+    suspend fun getTestListInfo() = getTestListInfoUseCase()
 }

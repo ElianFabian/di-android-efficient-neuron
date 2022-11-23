@@ -5,6 +5,7 @@ import com.elian.computeit.core.data.util.constants.COLLECTION_USERS_DATA
 import com.elian.computeit.core.domain.models.TestData
 import com.elian.computeit.core.domain.repository.LocalAppDataRepository
 import com.elian.computeit.core.domain.repository.TestDataRepository
+import com.elian.computeit.feature_tests.domain.models.toTestListInfo
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.SetOptions
@@ -24,14 +25,20 @@ class TestDataRepositoryImpl @Inject constructor(
         getUserDataRef().update(UserData::testDataList.name, FieldValue.arrayUnion(testData))
     }
 
-    override suspend fun getTestDataList() = flow()
+    override suspend fun getTestListInfo() = flow()
     {
-        val listFromServer = getUserDataRef()
+        val listFromServer = getTestDataList()
+
+        emit(listFromServer.toTestListInfo())
+    }
+
+
+    private suspend fun getTestDataList(): List<TestData>
+    {
+        return getUserDataRef()
             .get()
             .await()
             .toObject<UserData>()!!.testDataList!!
-
-        emit(listFromServer)
     }
 
 

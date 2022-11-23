@@ -5,11 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isGone
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.elian.computeit.R
-import com.elian.computeit.core.domain.models.TestData
 import com.elian.computeit.core.presentation.adapters.LabeledDataAdapter
 import com.elian.computeit.core.presentation.model.LabeledData
 import com.elian.computeit.core.presentation.util.HomeViewModel
@@ -19,8 +19,11 @@ import com.elian.computeit.core.presentation.util.extensions.navigate
 import com.elian.computeit.core.presentation.util.mp_android_chart.applyDefault
 import com.elian.computeit.core.presentation.util.mp_android_chart.lineDataSet
 import com.elian.computeit.core.presentation.util.mp_android_chart.toEntries
-import com.elian.computeit.core.util.extensions.*
+import com.elian.computeit.core.util.constants.DEFAULT_DECIMAL_FORMAT
+import com.elian.computeit.core.util.extensions.apply2
+import com.elian.computeit.core.util.extensions.format
 import com.elian.computeit.databinding.FragmentHomeBinding
+import com.elian.computeit.feature_tests.domain.models.TestListInfo
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -30,7 +33,9 @@ class HomeFragment : Fragment()
     private val viewModel by viewModels<HomeViewModel>()
     private lateinit var binding: FragmentHomeBinding
 
-    private lateinit var _testDataListFromServer: List<TestData>
+    
+    // This is to avoid doing server calls when navigating up to home
+    private lateinit var _testListInfoFromServer: TestListInfo
 
 
     override fun onCreateView(
@@ -56,18 +61,18 @@ class HomeFragment : Fragment()
 //        binding.sivGoToTips.setOnClickListener { navigate(R.id.action_homeFragment_to_tipsFragment) }
 //        binding.sivGoToSettings.setOnClickListener { navigate(R.id.action_homeFragment_to_settingsFragment) }
 
-        if (::_testDataListFromServer.isInitialized)
+        if (::_testListInfoFromServer.isInitialized)
         {
-            initLineChart(_testDataListFromServer)
-            initTextInfo(_testDataListFromServer)
+            initLineChart(_testListInfoFromServer)
+            initTextInfo(_testListInfoFromServer)
         }
         else lifecycleScope.launch()
         {
-            binding.lpiIsLoading.isGone = false
+            binding.lpiIsLoading.isVisible = true
 
-            viewModel.getTestDataList().collect()
+            viewModel.getTestListInfo().collect()
             {
-                _testDataListFromServer = it
+                _testListInfoFromServer = it
 
                 initLineChart(it)
                 initTextInfo(it)
@@ -77,7 +82,7 @@ class HomeFragment : Fragment()
         }
     }
 
-    private fun initLineChart(testDataList: List<TestData>) = testDataList.apply2()
+    private fun initLineChart(info: TestListInfo) = info.apply2()
     {
         if (opmPerTest.isNotEmpty() || rawOpmPerTest.isNotEmpty())
         {
@@ -105,10 +110,10 @@ class HomeFragment : Fragment()
             setNoDataTextColor(getThemeColor(R.attr.colorSecondary))
         }
 
-        binding.lcOpmPerTest.isGone = false
+        binding.lcOpmPerTest.isVisible = true
     }
 
-    private fun initTextInfo(testDataList: List<TestData>) = testDataList.apply2()
+    private fun initTextInfo(info: TestListInfo) = info.apply2()
     {
         val uiLabeledDataList = listOf(
             LabeledData(
@@ -125,11 +130,11 @@ class HomeFragment : Fragment()
             ),
             LabeledData(
                 label = getString(R.string.frgHomeFragment_averageOpm),
-                value = averageOpm.defaultFormat(),
+                value = averageOpm.format(DEFAULT_DECIMAL_FORMAT),
             ),
             LabeledData(
                 label = getString(R.string.frgHomeFragment_averageRawOpm),
-                value = averageRawOpm.defaultFormat(),
+                value = averageRawOpm.format(DEFAULT_DECIMAL_FORMAT),
             ),
             LabeledData(
                 label = getString(R.string.frgHomeFragment_highestOpm),

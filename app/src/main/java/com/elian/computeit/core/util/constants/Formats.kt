@@ -7,3 +7,5 @@ private fun dateFormat(pattern: String) = SimpleDateFormat(pattern, Locale.getDe
 
 
 val dayMonthYearFormat = dateFormat("dd/MM/yyyy")
+
+const val DEFAULT_DECIMAL_FORMAT = "%.2f"
