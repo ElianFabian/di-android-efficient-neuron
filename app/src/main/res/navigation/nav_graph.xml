@@ -76,7 +76,7 @@
         android:label="SettingsFragment" />
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.elian.computeit.feature_profile.presentation.ProfileFragment"
+        android:name="com.elian.computeit.feature_profile.presentation.private_profile.PrivateProfileFragment"
         android:label="ProfileFragment" />
     <fragment
         android:id="@+id/tipsFragment"

@@ -84,4 +84,6 @@
     <string name="navigation_menu_navTips_title">Tips</string>
 
     <string name="no_data_available">No data available</string>
+
+    <string name="profile_account_created_at_ph">The account was created at: %s</string>
 </resources>

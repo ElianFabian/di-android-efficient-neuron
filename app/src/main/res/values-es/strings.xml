@@ -77,4 +77,6 @@
     <string name="navigation_menu_navTips_title">Consejos</string>
 
     <string name="no_data_available">No hay datos de dispobles</string>
+
+    <string name="profile_account_created_at_ph">La cuenta fue creada en: %s</string>
 </resources>

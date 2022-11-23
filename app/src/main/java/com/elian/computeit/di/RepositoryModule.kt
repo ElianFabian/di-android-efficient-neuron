@@ -6,6 +6,8 @@ import com.elian.computeit.core.domain.repository.LocalAppDataRepository
 import com.elian.computeit.core.domain.repository.TestDataRepository
 import com.elian.computeit.feature_auth.data.repository.AuthRepositoryImpl
 import com.elian.computeit.feature_auth.domain.repository.AuthRepository
+import com.elian.computeit.feature_profile.data.repository.ProfileRepositoryImpl
+import com.elian.computeit.feature_profile.domain.repository.ProfileRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -27,4 +29,8 @@ abstract class RepositoryModule
     @Binds
     @Singleton
     abstract fun bindLocalAppDataRepository(repository: LocalAppDataRepositoryImpl): LocalAppDataRepository
+
+    @Binds
+    @Singleton
+    abstract fun bindProfileRepository(repository: ProfileRepositoryImpl): ProfileRepository
 }

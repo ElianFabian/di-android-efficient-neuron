@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
 
-class PreciseCountDownTimerImpl : CountDownTimer
+class CountDownTimerImpl : CountDownTimer
 {
     private lateinit var countDownTimer: PreciseCountDownTimer
     private var _millisInFuture = 0L

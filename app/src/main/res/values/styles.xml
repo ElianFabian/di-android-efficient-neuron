@@ -28,7 +28,7 @@
     <style name="ButtonStyle" parent="Widget.MaterialComponents.Button">
         <item name="cornerRadius">@dimen/_18sdp</item>
         <item name="android:textAppearance">@style/TextAppearance_Button</item>
-     
+
     </style>
 
     <style name="TextButtonStyle" parent="Widget.MaterialComponents.Button.TextButton">
@@ -56,28 +56,6 @@
     </style>
 
     <style name="CalculatorButton.Action" />
-
-    <style name="frgProfile_LabelFor_TextInputLayout">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:textSize">40sp</item>
-        <item name="android:textColor">@color/blue_gray_900</item>
-        <item name="android:fontFamily">@font/comfortaa</item>
-    </style>
-
-    <style name="frgProfile_TextInputLayout">
-        <item name="android:layout_width">0dp</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginTop">10dp</item>
-    </style>
-
-    <style name="frgProfile_TextInputEditText">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:background">@color/transparent</item>
-        <item name="android:textSize">25sp</item>
-        <item name="android:textColor">@color/black</item>
-    </style>
 
     <style name="frgGameConfiguration_TextView">
         <item name="android:layout_width">wrap_content</item>

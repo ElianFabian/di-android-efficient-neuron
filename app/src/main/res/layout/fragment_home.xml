@@ -65,7 +65,7 @@
                 android:layout_width="@dimen/_43sdp"
                 android:layout_height="@dimen/_43sdp"
                 android:layout_marginHorizontal="@dimen/_8sdp"
-                android:tint="@color/blue_gray_800"
+                android:tint="@color/white"
                 app:srcCompat="@drawable/ic_profile" />
 
             <com.google.android.material.imageview.ShapeableImageView
