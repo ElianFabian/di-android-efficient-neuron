@@ -7,15 +7,15 @@ import com.elian.computeit.core.domain.repository.LocalAppDataRepository
 import com.elian.computeit.core.domain.repository.TestDataRepository
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FieldValue
-import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
+import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
+import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
 
 class TestDataRepositoryImpl @Inject constructor(
-    private val firestore: FirebaseFirestore,
     private val appRepository: LocalAppDataRepository,
 ) : TestDataRepository
 {
@@ -36,7 +36,7 @@ class TestDataRepositoryImpl @Inject constructor(
     {
         val userUuid = appRepository.getUserUuid()!!
 
-        val documentRef = firestore.document("$COLLECTION_USERS_DATA/$userUuid")
+        val documentRef = Firebase.firestore.document("$COLLECTION_USERS_DATA/$userUuid")
         val snapShot = documentRef.get().await()
         val userData = snapShot.toObject<UserData>()
 
