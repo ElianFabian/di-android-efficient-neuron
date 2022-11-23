@@ -22,7 +22,10 @@ class ProfileRepositoryImpl @Inject constructor(
     {
         val userUuid = appRepository.getUserUuid()
 
-        val user = firestore.document("$COLLECTION_USERS/$userUuid").get().await().toObject<User>()!!
+        val user = firestore.document("$COLLECTION_USERS/$userUuid")
+            .get()
+            .await()
+            .toObject<User>()!!
 
         val profileInfo = user.run()
         {
