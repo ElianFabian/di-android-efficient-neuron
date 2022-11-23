@@ -26,10 +26,9 @@
     </style>
 
     <style name="ButtonStyle" parent="Widget.MaterialComponents.Button">
-        <item name="cornerRadius">500dp</item>
+        <item name="cornerRadius">@dimen/_18sdp</item>
         <item name="android:textAppearance">@style/TextAppearance_Button</item>
-        <item name="android:paddingTop">@dimen/_5sdp</item>
-        <item name="android:paddingBottom">@dimen/_5sdp</item>
+     
     </style>
 
     <style name="TextButtonStyle" parent="Widget.MaterialComponents.Button.TextButton">
