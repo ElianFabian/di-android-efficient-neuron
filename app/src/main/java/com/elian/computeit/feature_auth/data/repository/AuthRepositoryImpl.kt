@@ -9,9 +9,7 @@ import com.elian.computeit.core.util.SimpleResource
 import com.elian.computeit.feature_auth.domain.repository.AuthRepository
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.toObject
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.tasks.await
-import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class AuthRepositoryImpl @Inject constructor(
@@ -60,14 +58,13 @@ class AuthRepositoryImpl @Inject constructor(
     }
 
 
-    private suspend fun getUserByName(name: String) = getUserByField(User::name.name, name)
-
-    private suspend fun getUserByField(fieldName: String, value: String) = withContext(Dispatchers.IO)
+    private suspend fun getUserByName(name: String): User?
     {
         val users = firestore.collection(COLLECTION_USERS)
-            .whereEqualTo(fieldName, value).get().await()
+            .whereEqualTo(User::name.name, name)
+            .get()
+            .await()
 
-        if (users.isEmpty) null
-        else users.first().toObject<User>()
+        return if (users.isEmpty) null else users.first().toObject()
     }
 }
