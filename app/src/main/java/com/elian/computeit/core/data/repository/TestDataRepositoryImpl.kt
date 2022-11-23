@@ -9,6 +9,7 @@ import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
+import com.google.firebase.firestore.ktx.toObject
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
@@ -25,7 +26,7 @@ class TestDataRepositoryImpl @Inject constructor(
 
     override suspend fun getTestDataList() = flow()
     {
-        val listFromServer = getUserDataRef().get().await().toObject(UserData::class.java)!!.testDataList!!
+        val listFromServer = getUserDataRef().get().await().toObject<UserData>()!!.testDataList!!
 
         emit(listFromServer)
     }
@@ -37,7 +38,7 @@ class TestDataRepositoryImpl @Inject constructor(
 
         val documentRef = firestore.document("$COLLECTION_USERS_DATA/$userUuid")
         val snapShot = documentRef.get().await()
-        val userData = snapShot.toObject(UserData::class.java)
+        val userData = snapShot.toObject<UserData>()
 
         return documentRef.apply()
         {

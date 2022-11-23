@@ -8,6 +8,7 @@ import com.elian.computeit.core.util.Resource
 import com.elian.computeit.core.util.SimpleResource
 import com.elian.computeit.feature_auth.domain.repository.AuthRepository
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.toObject
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
@@ -67,6 +68,6 @@ class AuthRepositoryImpl @Inject constructor(
             .whereEqualTo(fieldName, value).get().await()
 
         if (users.isEmpty) null
-        else users.first().toObject(User::class.java)
+        else users.first().toObject<User>()
     }
 }
