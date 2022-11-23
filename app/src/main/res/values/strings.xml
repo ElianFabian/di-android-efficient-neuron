@@ -22,12 +22,7 @@
     <string name="error_username_invalid">Invalid username, it can only contain letters, digits and these characters: %s</string>
     <string name="error_username_is_already_in_use">The username is already in use</string>
 
-    <string name="frgAboutUs_description">This application is a project to learn how to create applications on android. It\'s an exercise from the Android module in IES Portada Alta.</string>
-    <string name="frgAboutUs_github_title">Source code</string>
-
     <string name="frgEndGame_btnContinue_text">Continue</string>
-    <string name="frgEndGame_tvTimeOrTests_label_tests_text">Total tests</string>
-    <string name="frgEndGame_tvTimeOrTests_label_time_text">Total time</string>
 
     <string name="frgHomeFragment_averageOpm">Average OPM</string>
     <string name="frgHomeFragment_averageRawOpm">Average raw OPM</string>
@@ -41,12 +36,6 @@
     <string name="frgSettings_dark_theme_title">Dark Theme</string>
     <string name="frgSettings_disable_notifications_title">Disable notifications</string>
     <string name="frgSettings_use_inverted_numeric_keyboard_title">Use inverted numeric keyboard</string>
-
-    <string name="frgStatistics_tvErrorRateLabel_text">Error rate</string>
-    <string name="frgStatistics_tvGamesLabel_text">Games</string>
-    <string name="frgStatistics_tvTimeLabel_text">Time</string>
-    <string name="frgStatistics_tvTimePerGameLabel_text">Time per game</string>
-    <string name="frgStatistics_tvTitle_text">Statistics</string>
 
     <string name="frgTestConfiguration_tietMaxValue_hint">Max</string>
     <string name="frgTestConfiguration_tietMinValue_hint">Min</string>
@@ -76,12 +65,6 @@
 
     <string name="navigation_drawer_close" translatable="false">Close</string>
     <string name="navigation_drawer_open" translatable="false">Open</string>
-    <string name="navigation_menu_navAboutUs_title">About Us</string>
-    <string name="navigation_menu_navHome_title">Home</string>
-    <string name="navigation_menu_navProfile_title">Profile</string>
-    <string name="navigation_menu_navSettings_title">Settings</string>
-    <string name="navigation_menu_navStatistics_title">Statistics</string>
-    <string name="navigation_menu_navTips_title">Tips</string>
 
     <string name="no_data_available">No data available</string>
 
