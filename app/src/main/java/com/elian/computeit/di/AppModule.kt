@@ -5,6 +5,8 @@ import androidx.datastore.preferences.preferencesDataStore
 import com.elian.computeit.core.data.util.CountDownTimerImpl
 import com.elian.computeit.core.domain.util.CountDownTimer
 import com.elian.computeit.core.presentation.util.constants.DATA_STORE_PREFERENCES_NAME
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -19,6 +21,9 @@ object AppModule
 {
     @Provides
     fun provideDataStore(@ApplicationContext context: Context) = context.dataStore
+    
+    @Provides
+    fun provideFirestore() = Firebase.firestore
 
     @Provides
     fun provideCountDownTimer(): CountDownTimer = CountDownTimerImpl()

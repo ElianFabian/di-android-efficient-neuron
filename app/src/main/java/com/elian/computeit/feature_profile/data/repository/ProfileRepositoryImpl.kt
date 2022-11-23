@@ -6,15 +6,15 @@ import com.elian.computeit.core.domain.repository.LocalAppDataRepository
 import com.elian.computeit.core.util.constants.dayMonthYearFormat
 import com.elian.computeit.feature_profile.domain.model.ProfileInfo
 import com.elian.computeit.feature_profile.domain.repository.ProfileRepository
-import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.toObject
-import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.tasks.await
 import java.util.*
 import javax.inject.Inject
 
 class ProfileRepositoryImpl @Inject constructor(
+    private val firestore: FirebaseFirestore,
     private val appRepository: LocalAppDataRepository,
 ) : ProfileRepository
 {
@@ -22,7 +22,7 @@ class ProfileRepositoryImpl @Inject constructor(
     {
         val userUuid = appRepository.getUserUuid()
 
-        val user = Firebase.firestore.document("$COLLECTION_USERS/$userUuid").get().await().toObject<User>()!!
+        val user = firestore.document("$COLLECTION_USERS/$userUuid").get().await().toObject<User>()!!
 
         val profileInfo = user.run()
         {

@@ -7,13 +7,13 @@ import com.elian.computeit.core.domain.repository.LocalAppDataRepository
 import com.elian.computeit.core.util.Resource
 import com.elian.computeit.core.util.SimpleResource
 import com.elian.computeit.feature_auth.domain.repository.AuthRepository
-import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.toObject
-import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
 
 class AuthRepositoryImpl @Inject constructor(
+    private val firestore: FirebaseFirestore,
     private val appRepository: LocalAppDataRepository,
 ) :
     AuthRepository
@@ -50,7 +50,7 @@ class AuthRepositoryImpl @Inject constructor(
             {
                 appRepository.saveUserUuid(uuid)
 
-                Firebase.firestore.document("$COLLECTION_USERS/$uuid").set(this).await()
+                firestore.document("$COLLECTION_USERS/$uuid").set(this).await()
             }
 
             Resource.Success()
@@ -60,7 +60,7 @@ class AuthRepositoryImpl @Inject constructor(
 
     private suspend fun getUserByName(name: String): User?
     {
-        val users = Firebase.firestore.collection(COLLECTION_USERS)
+        val users = firestore.collection(COLLECTION_USERS)
             .whereEqualTo(User::name.name, name)
             .get()
             .await()
