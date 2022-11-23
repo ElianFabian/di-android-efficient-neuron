@@ -54,7 +54,7 @@
                     android:text="@string/generic_operations" />
 
                 <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/tvTests"
+                    android:id="@+id/tvOperations"
                     style="@style/TextView_Value"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
