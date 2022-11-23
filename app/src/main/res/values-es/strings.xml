@@ -26,7 +26,7 @@
 
     <string name="frgHomeFragment_averageOpm">OPM promedio</string>
     <string name="frgHomeFragment_averageRawOpm">OPM bruto promedio</string>
-    <string name="frgHomeFragment_correctOperationsCompleted">Operaciones correctas completadas</string>
+    <string name="frgHomeFragment_correctOperationsCompleted">Operaciones completadas correctas</string>
     <string name="frgHomeFragment_highestOpm">OPM más alto</string>
     <string name="frgHomeFragment_highestRawOpm">OPM bruto más alto</string>
     <string name="frgHomeFragment_operationsCompleted">Operaciones completadas</string>
