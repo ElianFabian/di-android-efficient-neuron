@@ -26,7 +26,10 @@ class TestDataRepositoryImpl @Inject constructor(
 
     override suspend fun getTestDataList() = flow()
     {
-        val listFromServer = getUserDataRef().get().await().toObject<UserData>()!!.testDataList!!
+        val listFromServer = getUserDataRef()
+            .get()
+            .await()
+            .toObject<UserData>()!!.testDataList!!
 
         emit(listFromServer)
     }
