@@ -23,6 +23,7 @@ import com.elian.computeit.feature_tests.presentation.test.TestEvent.OnTimerFini
 import com.elian.computeit.feature_tests.presentation.test.TestEvent.OnTimerTick
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -136,10 +137,8 @@ class TestFragment : Fragment()
         {
             binding.tietInput.setText(it.toString())
         }
-        collectLatestFlowWhenStarted(pairOfNumbersState)
+        collectLatestFlowWhenStarted(pairOfNumbersState.filterNotNull())
         {
-            if (it == null) return@collectLatestFlowWhenStarted
-
             binding.tvFirstNumber.text = it.first.toString()
             binding.tvSecondNumber.text = it.second.toString()
         }

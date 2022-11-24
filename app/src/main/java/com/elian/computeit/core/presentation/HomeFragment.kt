@@ -22,6 +22,7 @@ import com.elian.computeit.core.util.extensions.format
 import com.elian.computeit.databinding.FragmentHomeBinding
 import com.elian.computeit.feature_tests.domain.models.TestListInfo
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.filterNotNull
 
 @AndroidEntryPoint
 class HomeFragment : Fragment()
@@ -58,10 +59,8 @@ class HomeFragment : Fragment()
 
     private fun subscribeToEvents() = viewModel.apply2()
     {
-        collectLatestFlowWhenStarted(infoState)
+        collectLatestFlowWhenStarted(infoState.filterNotNull())
         {
-            if (it == null) return@collectLatestFlowWhenStarted
-
             initLineChart(it)
             initTextInfo(it)
         }
