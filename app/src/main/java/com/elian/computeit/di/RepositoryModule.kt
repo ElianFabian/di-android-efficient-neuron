@@ -28,9 +28,9 @@ abstract class RepositoryModule
 
     @Binds
     @Singleton
-    abstract fun bindLocalAppDataRepository(repository: LocalAppDataRepositoryImpl): LocalAppDataRepository
+    abstract fun bindProfileRepository(repository: ProfileRepositoryImpl): ProfileRepository
 
     @Binds
     @Singleton
-    abstract fun bindProfileRepository(repository: ProfileRepositoryImpl): ProfileRepository
+    abstract fun bindLocalAppDataRepository(repository: LocalAppDataRepositoryImpl): LocalAppDataRepository
 }
