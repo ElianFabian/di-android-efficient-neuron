@@ -32,10 +32,10 @@ class ProfileRepositoryImpl @Inject constructor(
             ProfileInfo(
                 username = name,
                 profilePicUrl = profilePicUrl,
-                createdAt = dayMonthYearFormat.format(Date(createdAtInSeconds * 1000L)),
+                createdAt = dayMonthYearFormat.format(Date(createdAtInMillis)),
             )
         }
 
         emit(profileInfo)
-    }
+    }   
 }
