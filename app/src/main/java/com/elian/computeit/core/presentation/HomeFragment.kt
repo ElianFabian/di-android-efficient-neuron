@@ -8,14 +8,11 @@ import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
 import com.elian.computeit.R
 import com.elian.computeit.core.presentation.adapters.LabeledDataAdapter
 import com.elian.computeit.core.presentation.model.LabeledData
 import com.elian.computeit.core.presentation.util.HomeViewModel
-import com.elian.computeit.core.presentation.util.extensions.getColorCompat
-import com.elian.computeit.core.presentation.util.extensions.getThemeColor
-import com.elian.computeit.core.presentation.util.extensions.navigate
+import com.elian.computeit.core.presentation.util.extensions.*
 import com.elian.computeit.core.presentation.util.mp_android_chart.applyDefault
 import com.elian.computeit.core.presentation.util.mp_android_chart.lineDataSet
 import com.elian.computeit.core.presentation.util.mp_android_chart.toEntries
@@ -25,7 +22,6 @@ import com.elian.computeit.core.util.extensions.format
 import com.elian.computeit.databinding.FragmentHomeBinding
 import com.elian.computeit.feature_tests.domain.models.TestListInfo
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class HomeFragment : Fragment()
@@ -33,8 +29,6 @@ class HomeFragment : Fragment()
     private var _isUiFinished = false
     private val viewModel by viewModels<HomeViewModel>()
     private lateinit var binding: FragmentHomeBinding
-
-    private lateinit var _infoFromServer: TestListInfo
 
 
     override fun onCreateView(
@@ -49,6 +43,7 @@ class HomeFragment : Fragment()
     {
         super.onViewCreated(view, savedInstanceState)
 
+        subscribeToEvents()
         initUi()
     }
 
@@ -59,28 +54,18 @@ class HomeFragment : Fragment()
         binding.sivGoToProfile.setOnClickListener { navigate(R.id.action_homeFragment_to_profileFragment) }
 //        binding.sivGoToTips.setOnClickListener { navigate(R.id.action_homeFragment_to_tipsFragment) }
 //        binding.sivGoToSettings.setOnClickListener { navigate(R.id.action_homeFragment_to_settingsFragment) }
+    }
 
-        if (::_infoFromServer.isInitialized)
+    private fun subscribeToEvents() = viewModel.apply2()
+    {
+        collectLatestFlowWhenStarted(infoState)
         {
-            initLineChart(_infoFromServer)
-            initTextInfo(_infoFromServer)
+            if (it == null) return@collectLatestFlowWhenStarted
+
+            initLineChart(it)
+            initTextInfo(it)
         }
-        else lifecycleScope.launch()
-        {
-            binding.lpiIsLoading.isVisible = true
-
-            viewModel.getTestListInfo().collect()
-            {
-                _infoFromServer = it
-
-                initLineChart(it)
-                initTextInfo(it)
-
-                binding.lpiIsLoading.isGone = true
-            }
-
-            _isUiFinished = true
-        }
+        collectFlowWhenStarted(isLoadingState) { binding.lpiIsLoading.isGone = !it }
     }
 
     private fun initLineChart(info: TestListInfo) = info.apply2()
@@ -117,6 +102,7 @@ class HomeFragment : Fragment()
         }
 
         binding.lcOpmPerTest.isVisible = true
+        _isUiFinished = true
     }
 
     private fun initTextInfo(info: TestListInfo) = info.apply2()
