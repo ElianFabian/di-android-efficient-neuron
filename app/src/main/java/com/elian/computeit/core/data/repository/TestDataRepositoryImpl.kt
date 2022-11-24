@@ -25,7 +25,7 @@ class TestDataRepositoryImpl @Inject constructor(
         getUserDataRef().update(UserData::testDataList.name, FieldValue.arrayUnion(testData))
     }
 
-    override suspend fun getTestListInfo() = flow()
+    override fun getTestListInfo() = flow()
     {
         val listFromServer = getTestDataList()
 

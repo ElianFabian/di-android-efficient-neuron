@@ -10,5 +10,5 @@ class PrivateProfileViewModel @Inject constructor(
     private val repository: ProfileRepository,
 ) : ViewModel()
 {
-    suspend fun getProfileInfo() = repository.getProfileInfo()
+    fun getProfileInfo() = repository.getProfileInfo()
 }

@@ -34,9 +34,7 @@ class HomeFragment : Fragment()
     private val viewModel by viewModels<HomeViewModel>()
     private lateinit var binding: FragmentHomeBinding
 
-
-    // This is to avoid doing server calls when navigating up to home
-    private lateinit var _testListInfoFromServer: TestListInfo
+    private lateinit var _infoFromServer: TestListInfo
 
 
     override fun onCreateView(
@@ -62,10 +60,10 @@ class HomeFragment : Fragment()
 //        binding.sivGoToTips.setOnClickListener { navigate(R.id.action_homeFragment_to_tipsFragment) }
 //        binding.sivGoToSettings.setOnClickListener { navigate(R.id.action_homeFragment_to_settingsFragment) }
 
-        if (::_testListInfoFromServer.isInitialized)
+        if (::_infoFromServer.isInitialized)
         {
-            initLineChart(_testListInfoFromServer)
-            initTextInfo(_testListInfoFromServer)
+            initLineChart(_infoFromServer)
+            initTextInfo(_infoFromServer)
         }
         else lifecycleScope.launch()
         {
@@ -73,7 +71,7 @@ class HomeFragment : Fragment()
 
             viewModel.getTestListInfo().collect()
             {
-                _testListInfoFromServer = it
+                _infoFromServer = it
 
                 initLineChart(it)
                 initTextInfo(it)

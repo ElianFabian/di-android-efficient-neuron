@@ -10,5 +10,5 @@ class HomeViewModel @Inject constructor(
     private val getTestListInfoUseCase: GetTestListInfoUseCase,
 ) : ViewModel()
 {
-    suspend fun getTestListInfo() = getTestListInfoUseCase()
+    fun getTestListInfo() = getTestListInfoUseCase()
 }

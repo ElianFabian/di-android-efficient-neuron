@@ -7,5 +7,5 @@ class GetTestListInfoUseCase @Inject constructor(
     private val repository: TestDataRepository,
 )
 {
-    suspend operator fun invoke() = repository.getTestListInfo()
+    operator fun invoke() = repository.getTestListInfo()
 }
