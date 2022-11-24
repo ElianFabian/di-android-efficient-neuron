@@ -61,7 +61,7 @@ class TestEndFragment : Fragment()
 
     private fun initLineChart(testInfo: TestInfo)
     {
-        binding.lcTestGraph.applyDefault(
+        val lineDataSets = arrayOf(
             lineDataSet(
                 labelResId = R.string.generic_raw,
                 lineAndCirclesColorResId = R.color.default_chart_25,
@@ -72,5 +72,7 @@ class TestEndFragment : Fragment()
                 entries = testInfo.opmPerSecond.toEntries(),
             ),
         )
+
+        binding.lcTestGraph.applyDefault(dataSets = lineDataSets)
     }
 }

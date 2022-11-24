@@ -66,6 +66,7 @@ fun LineChart.applyDefaultAnimation(block: (LineChart.() -> Unit)? = null): Line
 }
 
 fun LineChart.applyDefault(
+    animate: Boolean = true,
     vararg dataSets: ILineDataSet,
     block: (LineChart.() -> Unit)? = null,
 ): LineChart
@@ -74,7 +75,7 @@ fun LineChart.applyDefault(
 
     applyDefaultStyle()
     applyDefaultConfiguration()
-    applyDefaultAnimation()
+    if (animate) applyDefaultAnimation()
 
     block?.invoke(this)
 

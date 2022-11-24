@@ -30,10 +30,11 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class HomeFragment : Fragment()
 {
+    private var _isUiFinished = false
     private val viewModel by viewModels<HomeViewModel>()
     private lateinit var binding: FragmentHomeBinding
 
-    
+
     // This is to avoid doing server calls when navigating up to home
     private lateinit var _testListInfoFromServer: TestListInfo
 
@@ -79,6 +80,8 @@ class HomeFragment : Fragment()
 
                 binding.lpiIsLoading.isGone = true
             }
+
+            _isUiFinished = true
         }
     }
 
@@ -86,7 +89,7 @@ class HomeFragment : Fragment()
     {
         if (opmPerTest.isNotEmpty() || rawOpmPerTest.isNotEmpty())
         {
-            binding.lcOpmPerTest.applyDefault(
+            val lineDataSets = arrayOf(
                 lineDataSet(
                     labelResId = R.string.generic_raw,
                     lineAndCirclesColorResId = R.color.default_chart_25,
@@ -102,6 +105,11 @@ class HomeFragment : Fragment()
                     setDrawVerticalHighlightIndicator(true)
                     highLightColor = getColorCompat(R.color.blue_200)
                 },
+            )
+
+            binding.lcOpmPerTest.applyDefault(
+                animate = !_isUiFinished,
+                dataSets = lineDataSets,
             )
         }
         else binding.lcOpmPerTest.apply()
