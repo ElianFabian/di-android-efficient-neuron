@@ -27,6 +27,8 @@
     <string name="frgHomeFragment_operationsCompleted">Operaciones completadas</string>
     <string name="frgHomeFragment_testsCompleted">Tests completados</string>
 
+    <string name="frgPrivateProfile_btnEdit_text">Editar</string>
+
     <string name="frgSettings_category_general">General</string>
     <string name="frgSettings_dark_theme_title">Tema oscuro</string>
     <string name="frgSettings_disable_notifications_title">Desactivar notificaciones</string>
