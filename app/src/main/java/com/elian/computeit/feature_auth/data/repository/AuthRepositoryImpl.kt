@@ -50,7 +50,9 @@ class AuthRepositoryImpl @Inject constructor(
             {
                 appRepository.saveUserUuid(uuid)
 
-                firestore.document("$COLLECTION_USERS/$uuid").set(this).await()
+                firestore.document("$COLLECTION_USERS/$uuid")
+                    .set(this)
+                    .await()
             }
 
             Resource.Success()
