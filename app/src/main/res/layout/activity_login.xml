@@ -73,4 +73,5 @@
         android:layout_marginTop="@dimen/_35sdp"
         android:layout_marginBottom="@dimen/_20sdp"
         android:text="@string/generic_login" />
+
 </androidx.appcompat.widget.LinearLayoutCompat>
