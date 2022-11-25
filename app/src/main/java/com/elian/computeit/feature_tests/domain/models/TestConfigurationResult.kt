@@ -7,5 +7,5 @@ data class TestConfigurationResult(
     val minValueError: TestConfigurationError? = null,
     val maxValueError: TestConfigurationError? = null,
     val timeError: TestConfigurationError? = null,
-    val result: SimpleResource? = null,
+    val resource: SimpleResource? = null,
 )

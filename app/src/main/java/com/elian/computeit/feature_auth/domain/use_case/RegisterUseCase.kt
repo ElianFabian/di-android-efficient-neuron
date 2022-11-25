@@ -27,7 +27,7 @@ class RegisterUseCase @Inject constructor(
                 confirmPasswordError = confirmPasswordError,
             )
         }
-        else RegisterResult(result = repository.register(
+        else RegisterResult(resource = repository.register(
             username = username,
             password = hash(password),
         ))

@@ -9,10 +9,7 @@ import com.elian.computeit.feature_auth.domain.use_case.RegisterUseCase
 import com.elian.computeit.feature_auth.presentation.register.RegisterAction.*
 import com.elian.computeit.feature_auth.presentation.register.RegisterEvent.OnShowErrorMessage
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asSharedFlow
-import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -41,9 +38,9 @@ class RegisterViewModel @Inject constructor(
     {
         when (action)
         {
-            is EnterUsername        -> _usernameState.value = _usernameState.value.copy(text = action.value, error = null)
-            is EnterPassword        -> _passwordState.value = _passwordState.value.copy(text = action.value, error = null)
-            is EnterConfirmPassword -> _confirmPasswordState.value = _confirmPasswordState.value.copy(text = action.value, error = null)
+            is EnterUsername        -> _usernameState.update { it.copy(text = action.value, error = null) }
+            is EnterPassword        -> _passwordState.update { it.copy(text = action.value, error = null) }
+            is EnterConfirmPassword -> _confirmPasswordState.update { it.copy(text = action.value, error = null) }
             is Register             -> viewModelScope.launch()
             {
                 _loadingState.value = true
@@ -52,17 +49,16 @@ class RegisterViewModel @Inject constructor(
                     username = _usernameState.value.text,
                     password = _passwordState.value.text,
                     confirmPassword = _confirmPasswordState.value.text
-                ).also()
-                {
-                    _usernameState.value = _usernameState.value.copy(error = it.usernameError)
-                    _passwordState.value = _passwordState.value.copy(error = it.passwordError)
-                    _confirmPasswordState.value = _confirmPasswordState.value.copy(error = it.confirmPasswordError)
+                ).also { result ->
 
-                    when (it.result)
+                    _usernameState.update { it.copy(error = result.usernameError) }
+                    _passwordState.update { it.copy(error = result.passwordError) }
+                    _confirmPasswordState.update { it.copy(error = result.confirmPasswordError) }
+
+                    when (result.resource)
                     {
-                        is Resource.Error   -> _eventFlow.emit(OnShowErrorMessage(it.result.uiText ?: UiText.unknownError()))
+                        is Resource.Error   -> _eventFlow.emit(OnShowErrorMessage(result.resource.uiText ?: UiText.unknownError()))
                         is Resource.Success -> _eventFlow.emit(RegisterEvent.OnRegister)
-
                         else                -> Unit
                     }
                 }

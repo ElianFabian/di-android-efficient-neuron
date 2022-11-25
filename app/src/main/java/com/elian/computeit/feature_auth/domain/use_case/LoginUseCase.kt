@@ -23,7 +23,7 @@ class LoginUseCase @Inject constructor(
                 passwordError = passwordError,
             )
         }
-        else LoginResult(result = repository.login(
+        else LoginResult(resource = repository.login(
             username = username,
             password = hash(password),
         ))

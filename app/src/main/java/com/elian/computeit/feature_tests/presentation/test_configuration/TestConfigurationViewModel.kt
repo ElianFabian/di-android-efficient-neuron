@@ -19,6 +19,7 @@ import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -47,9 +48,9 @@ class TestConfigurationViewModel @Inject constructor(
         when (action)
         {
             is SelectOperationType -> _selectedOperation = Operation.from(action.symbol)
-            is EnterTime           -> _timeState.value = _timeState.value.copy(number = action.value, error = null)
-            is EnterMinValue       -> _minValueState.value = _minValueState.value.copy(number = action.value, error = null)
-            is EnterMaxValue       -> _maxValueState.value = _maxValueState.value.copy(number = action.value, error = null)
+            is EnterTime           -> _timeState.update { it.copy(number = action.value, error = null) }
+            is EnterMinValue       -> _minValueState.update { it.copy(number = action.value, error = null) }
+            is EnterMaxValue       -> _maxValueState.update { it.copy(number = action.value, error = null) }
             is StartTest           ->
             {
                 validateForm(
@@ -57,15 +58,15 @@ class TestConfigurationViewModel @Inject constructor(
                     minValue = _minValueState.value.number,
                     maxValue = _maxValueState.value.number,
                     time = _timeState.value.number,
-                ).also()
-                {
-                    _minValueState.value = _minValueState.value.copy(error = it.minValueError)
-                    _maxValueState.value = _maxValueState.value.copy(error = it.maxValueError)
-                    _timeState.value = _timeState.value.copy(error = it.timeError)
+                ).also { result ->
 
-                    when (it.result)
+                    _minValueState.update { it.copy(error = result.minValueError) }
+                    _maxValueState.update { it.copy(error = result.maxValueError) }
+                    _timeState.update { it.copy(error = result.timeError) }
+
+                    when (result.resource)
                     {
-                        is Resource.Error   -> _eventFlow.send(OnShowErrorMessage(it.result.uiText ?: UiText.unknownError()))
+                        is Resource.Error   -> _eventFlow.send(OnShowErrorMessage(result.resource.uiText ?: UiText.unknownError()))
                         is Resource.Success ->
                         {
                             val argsToSend = mapOf(

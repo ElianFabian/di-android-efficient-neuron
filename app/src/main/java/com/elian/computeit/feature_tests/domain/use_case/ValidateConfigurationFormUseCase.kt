@@ -40,25 +40,25 @@ class ValidateConfigurationFormUseCase @Inject constructor()
             }
             minValue!! > maxValue!!                                                      ->
             {
-                TestConfigurationResult(result = Resource.Error(R.string.error_range_values_are_inverted))
+                TestConfigurationResult(resource = Resource.Error(R.string.error_range_values_are_inverted))
             }
             maxValue - minValue + 1 < _minRangeLength                                    ->
             {
-                TestConfigurationResult(result = Resource.Error(
+                TestConfigurationResult(resource = Resource.Error(
                     messageResId = R.string.error_range_length_must_be_greater_than,
                     args = arrayOf(_minRangeLength)
                 ))
             }
             operation == Operation.DIVIDE && divisiblePairCount < _minDivisiblePairCount ->
             {
-                TestConfigurationResult(result = Resource.Error(
+                TestConfigurationResult(resource = Resource.Error(
                     messageResId = R.string.error_range_not_enough_divisible_pairs,
                     args = arrayOf(divisiblePairCount, _minDivisiblePairCount)
                 ))
             }
             else                                                                         ->
             {
-                TestConfigurationResult(result = Resource.Success())
+                TestConfigurationResult(resource = Resource.Success())
             }
         }
     }

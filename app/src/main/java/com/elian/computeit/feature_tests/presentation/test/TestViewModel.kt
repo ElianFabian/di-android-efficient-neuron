@@ -21,10 +21,7 @@ import com.elian.computeit.feature_tests.domain.use_case.AddTestDataUseCase
 import com.elian.computeit.feature_tests.domain.use_case.GetRandomNumberPairUseCase
 import com.elian.computeit.feature_tests.presentation.test.TestAction.*
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asSharedFlow
-import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 import kotlin.math.sign
@@ -100,12 +97,7 @@ class TestViewModel @Inject constructor(
     {
         when (action)
         {
-            is EnterNumber ->
-            {
-                _resultState.value = _resultState.value
-                    .append(action.value)
-                    .clampLength(maxLength = 8)
-            }
+            is EnterNumber -> _resultState.update { it.append(action.value).clampLength(maxLength = 8) }
             is ClearInput  -> _resultState.value = 0
             is NextTest    ->
             {

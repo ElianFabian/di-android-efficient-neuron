@@ -6,5 +6,5 @@ import com.elian.computeit.feature_auth.presentation.util.AuthError
 data class LoginResult(
     val usernameError: AuthError? = null,
     val passwordError: AuthError? = null,
-    val result: SimpleResource? = null,
+    val resource: SimpleResource? = null,
 )

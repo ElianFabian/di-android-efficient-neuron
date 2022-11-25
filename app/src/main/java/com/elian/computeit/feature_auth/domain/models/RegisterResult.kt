@@ -7,5 +7,5 @@ data class RegisterResult(
     val usernameError: AuthError? = null,
     val passwordError: AuthError? = null,
     val confirmPasswordError: AuthError? = null,
-    val result: SimpleResource? = null,
+    val resource: SimpleResource? = null,
 )
