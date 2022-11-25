@@ -120,11 +120,8 @@ class TestFragment : Fragment()
                 {
                     val seconds = it.millisUntilFinished / 1000F
 
-                    binding.apply()
-                    {
-                        cpiRemainingSeconds.progress = it.millisUntilFinished.toInt()
-                        mtvRemainingSeconds.text = seconds.format("%.1f")
-                    }
+                    binding.cpiRemainingSeconds.progress = it.millisUntilFinished.toInt()
+                    binding.mtvRemainingSeconds.text = seconds.format("%.1f")
                 }
                 is OnTimerFinish ->
                 {
