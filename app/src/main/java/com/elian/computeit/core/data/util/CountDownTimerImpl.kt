@@ -19,24 +19,21 @@ class CountDownTimerImpl : CountDownTimer
     private val _timerEvent = MutableSharedFlow<TimerEvent>()
     override val timerEvent = _timerEvent.asSharedFlow()
 
-    override val millisInFuture: Long get() = _millisInFuture
-    override val countDownInterval: Long get() = _countDownInterval
-
-
-    override fun setCoroutineScope(coroutineScope: CoroutineScope)
-    {
-        _coroutineScope = coroutineScope
-    }
 
     override fun start() = countDownTimer.start()
     override fun restart() = countDownTimer.restart()
     override fun stop() = countDownTimer.stop()
     override fun resume() = countDownTimer.resume()
 
-    override fun initialize(millisInFuture: Long, countDownInterval: Long)
+    override fun initialize(
+        millisInFuture: Long,
+        countDownInterval: Long,
+        coroutineScope: CoroutineScope,
+    )
     {
         _millisInFuture = millisInFuture
         _countDownInterval = countDownInterval
+        _coroutineScope = coroutineScope
 
         countDownTimer = object : PreciseCountDownTimer(millisInFuture, countDownInterval)
         {

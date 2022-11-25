@@ -5,16 +5,18 @@ import kotlinx.coroutines.flow.SharedFlow
 
 interface CountDownTimer
 {
-    fun initialize(millisInFuture: Long, countDownInterval: Long)
+    fun initialize(
+        millisInFuture: Long,
+        countDownInterval: Long,
+        coroutineScope: CoroutineScope,
+    )
+
     fun start()
     fun restart()
     fun stop()
     fun resume()
-    fun setCoroutineScope(coroutineScope: CoroutineScope)
 
     val timerEvent: SharedFlow<TimerEvent>
-    val millisInFuture: Long
-    val countDownInterval: Long
 }
 
 sealed interface TimerEvent

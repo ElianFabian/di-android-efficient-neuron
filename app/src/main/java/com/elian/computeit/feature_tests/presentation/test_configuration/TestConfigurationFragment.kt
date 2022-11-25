@@ -70,7 +70,7 @@ class TestConfigurationFragment : Fragment()
         tietMaxValue.addTextChangedListener { viewModel.onAction(EnterMaxValue(it.toString().toIntOrNull())) }
         tietTime.addTextChangedListener { viewModel.onAction(EnterTime(it.toString().toIntOrNull())) }
 
-        btnStart.setOnClickListener { viewModel.onAction(Start) }
+        btnStartTest.setOnClickListener { viewModel.onAction(StartTest) }
     }
 
     private fun subscribeToEvents() = viewModel.apply2()

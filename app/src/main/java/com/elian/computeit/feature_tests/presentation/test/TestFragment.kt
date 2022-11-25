@@ -15,6 +15,7 @@ import com.elian.computeit.core.data.Operation
 import com.elian.computeit.core.presentation.util.extensions.*
 import com.elian.computeit.core.presentation.util.isScreenOn
 import com.elian.computeit.core.util.constants.EXTRA_OPERATION_TYPE
+import com.elian.computeit.core.util.constants.EXTRA_TEST_TIME_IN_SECONDS
 import com.elian.computeit.core.util.extensions.apply2
 import com.elian.computeit.core.util.extensions.format
 import com.elian.computeit.databinding.FragmentTestBinding
@@ -63,6 +64,13 @@ class TestFragment : Fragment()
     {
         disableScreenInteraction()
 
+        arguments?.getInt(EXTRA_TEST_TIME_IN_SECONDS)!!.also()
+        {
+            mtvRemainingSeconds.text = "$it"
+
+            cpiRemainingSeconds.max = it * 1_000
+            cpiRemainingSeconds.progress = it * 1_000
+        }
         arguments?.getSerializable(EXTRA_OPERATION_TYPE)!!.let { it as Operation }.also()
         {
             tvOperationSymbol.text = it.symbol
@@ -74,13 +82,6 @@ class TestFragment : Fragment()
             {
                 viewModel.onAction(EnterNumber(button.text.toString().toInt()))
             }
-        }
-
-        mtvRemainingSeconds.text = (viewModel.totalTimeInMillis / 1000F).toString()
-        cpiRemainingSeconds.apply()
-        {
-            max = viewModel.totalTimeInMillis.toInt()
-            progress = viewModel.totalTimeInMillis.toInt()
         }
 
         btnNextTest.setOnClickListener { viewModel.onAction(NextTest) }

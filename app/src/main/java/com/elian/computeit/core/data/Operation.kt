@@ -22,7 +22,12 @@ enum class Operation(
         calculate = { a, b -> a / b },
     );
 
-    operator fun invoke(first: Int, second: Int) = calculate(first, second)
+    companion object
+    {
+        fun from(symbol: String) = symbolToOperation[symbol]!!
+    }
+
+    operator fun invoke(firstNumber: Int, secondNumber: Int) = calculate(firstNumber, secondNumber)
 }
 
-val symbolToOperation = Operation.values().associateBy { it.symbol }
+private val symbolToOperation = Operation.values().associateBy { it.symbol }

@@ -37,13 +37,7 @@ class TestViewModel @Inject constructor(
     private val getRandomNumberPair: GetRandomNumberPairUseCase,
 ) : ViewModel()
 {
-    companion object
-    {
-        private const val COUNT_DOWN_INTERVAL = 1L
-    }
-
-
-    val totalTimeInMillis = savedState.get<Int>(EXTRA_TEST_TIME_IN_SECONDS)!! * 1_000L
+    private val _totalTimeInMillis = savedState.get<Int>(EXTRA_TEST_TIME_IN_SECONDS)!! * 1_000L
     private val _range = savedState.get<Range>(EXTRA_OPERATION_NUMBER_RANGE)!!
     private val _operation = savedState.get<Operation>(EXTRA_OPERATION_TYPE)!!
 
@@ -58,14 +52,16 @@ class TestViewModel @Inject constructor(
     private val _pairOfNumbersState = MutableStateFlow<NumberPair?>(null)
     val pairOfNumbersState = _pairOfNumbersState.asStateFlow()
 
-    private var _millisUntilFinish = totalTimeInMillis
-    private val _millisSinceStart get() = totalTimeInMillis - _millisUntilFinish
+    private var _millisUntilFinish = _totalTimeInMillis
+    private val _millisSinceStart get() = _totalTimeInMillis - _millisUntilFinish
 
     init
     {
-        initializeTimer()
-
-        countDownTimer.setCoroutineScope(viewModelScope)
+        countDownTimer.initialize(
+            millisInFuture = _totalTimeInMillis,
+            countDownInterval = 1L,
+            coroutineScope = viewModelScope,
+        )
 
         viewModelScope.launch()
         {
@@ -73,10 +69,7 @@ class TestViewModel @Inject constructor(
             {
                 when (it)
                 {
-                    is TimerEvent.OnStart  ->
-                    {
-                        _pairOfNumbersState.value = getRandomNumberPair()
-                    }
+                    is TimerEvent.OnStart  -> _pairOfNumbersState.value = getRandomNumberPair()
                     is TimerEvent.OnTick   ->
                     {
                         _millisUntilFinish = it.millisUntilFinished
@@ -117,8 +110,8 @@ class TestViewModel @Inject constructor(
             is NextTest    ->
             {
                 val expectedResult = _operation(
-                    first = _pairOfNumbersState.value!!.first,
-                    second = _pairOfNumbersState.value!!.second
+                    firstNumber = _pairOfNumbersState.value!!.first,
+                    secondNumber = _pairOfNumbersState.value!!.second
                 )
 
                 // As there's no negative sign button even if the answer it's negative you can introduce a positive number
@@ -142,12 +135,4 @@ class TestViewModel @Inject constructor(
     }
 
     fun startTimer() = countDownTimer.start()
-
-    private fun initializeTimer()
-    {
-        countDownTimer.initialize(
-            millisInFuture = totalTimeInMillis,
-            countDownInterval = COUNT_DOWN_INTERVAL
-        )
-    }
 }

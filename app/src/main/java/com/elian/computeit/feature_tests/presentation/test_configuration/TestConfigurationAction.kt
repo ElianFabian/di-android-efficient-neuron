@@ -6,5 +6,5 @@ sealed interface TestConfigurationAction
     data class EnterMinValue(val value: Int?) : TestConfigurationAction
     data class EnterMaxValue(val value: Int?) : TestConfigurationAction
     data class EnterTime(val value: Int?) : TestConfigurationAction
-    object Start : TestConfigurationAction
+    object StartTest : TestConfigurationAction
 }
