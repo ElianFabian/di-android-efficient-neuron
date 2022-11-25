@@ -66,7 +66,7 @@ class TestFragment : Fragment()
 
         arguments?.getInt(EXTRA_TEST_TIME_IN_SECONDS)!!.also()
         {
-            mtvRemainingSeconds.text = "$it"
+            mtvRemainingSeconds.text = it.toFloat().format("%.1f")
 
             cpiRemainingSeconds.max = it * 1_000
             cpiRemainingSeconds.progress = it * 1_000
