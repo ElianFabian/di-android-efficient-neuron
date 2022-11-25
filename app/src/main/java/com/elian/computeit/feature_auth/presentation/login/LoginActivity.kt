@@ -38,16 +38,13 @@ class LoginActivity : AppCompatActivity()
     }
 
 
-    private fun initUi()
+    private fun initUi() = binding.apply2()
     {
-        binding.apply()
-        {
-            tietUsername.addTextChangedListener { viewModel.onAction(EnterUsername(it.toString().trim())) }
-            tietPassword.addTextChangedListener { viewModel.onAction(EnterPassword(it.toString().trim())) }
+        tietUsername.addTextChangedListener { viewModel.onAction(EnterUsername("$it".trim())) }
+        tietPassword.addTextChangedListener { viewModel.onAction(EnterPassword("$it".trim())) }
 
-            btnLogin.setOnClickListener { viewModel.onAction(Login) }
-            btnRegister.setOnClickListener { navigateTo<RegisterActivity>() }
-        }
+        btnLogin.setOnClickListener { viewModel.onAction(Login) }
+        btnRegister.setOnClickListener { navigateTo<RegisterActivity>() }
     }
 
     private fun subscribeToEvents() = viewModel.apply2()

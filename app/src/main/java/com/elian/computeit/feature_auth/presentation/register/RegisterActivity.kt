@@ -42,16 +42,13 @@ class RegisterActivity : AppCompatActivity()
     }
 
 
-    private fun initUi()
+    private fun initUi() = binding.apply2()
     {
-        binding.apply()
-        {
-            tietUsername.addTextChangedListener { viewModel.onAction(EnterUsername(it.toString().trim())) }
-            tietPassword.addTextChangedListener { viewModel.onAction(EnterPassword(it.toString().trim())) }
-            tietConfirmPassword.addTextChangedListener { viewModel.onAction(EnterConfirmPassword(it.toString().trim())) }
+        tietUsername.addTextChangedListener { viewModel.onAction(EnterUsername("$it".trim())) }
+        tietPassword.addTextChangedListener { viewModel.onAction(EnterPassword("$it".trim())) }
+        tietConfirmPassword.addTextChangedListener { viewModel.onAction(EnterConfirmPassword("$it".trim())) }
 
-            btnRegister.setOnClickListener { viewModel.onAction(Register) }
-        }
+        btnRegister.setOnClickListener { viewModel.onAction(Register) }
     }
 
     private fun subscribeToEvents() = viewModel.apply2()
