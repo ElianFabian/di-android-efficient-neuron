@@ -81,9 +81,10 @@ class TestConfigurationFragment : Fragment()
             {
                 is OnStart            ->
                 {
-                    navigate(
+                    navigateSafe(
                         action = R.id.action_testConfigurationFragment_to_testFragment,
                         args = bundleOf(*it.args.toTypedArray()),
+                        currentDestination = R.id.testConfigurationFragment,
                     )
                 }
                 is OnShowErrorMessage -> toast(it.error.asString(context))
