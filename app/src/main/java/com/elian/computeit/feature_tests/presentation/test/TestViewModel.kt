@@ -43,7 +43,7 @@ class TestViewModel @Inject constructor(
     }
 
 
-    val millisInFuture = savedState.get<Int>(EXTRA_TEST_TIME_IN_SECONDS)!! * 1_000L
+    val totalTimeInMillis = savedState.get<Int>(EXTRA_TEST_TIME_IN_SECONDS)!! * 1_000L
     private val _range = savedState.get<Range>(EXTRA_OPERATION_NUMBER_RANGE)!!
     private val _operation = savedState.get<Operation>(EXTRA_OPERATION_TYPE)!!
 
@@ -58,8 +58,8 @@ class TestViewModel @Inject constructor(
     private val _pairOfNumbersState = MutableStateFlow<NumberPair?>(null)
     val pairOfNumbersState = _pairOfNumbersState.asStateFlow()
 
-    private var _millisUntilFinish = millisInFuture
-    private val _millisSinceStart get() = millisInFuture - _millisUntilFinish
+    private var _millisUntilFinish = totalTimeInMillis
+    private val _millisSinceStart get() = totalTimeInMillis - _millisUntilFinish
 
     init
     {
@@ -146,7 +146,7 @@ class TestViewModel @Inject constructor(
     private fun initializeTimer()
     {
         countDownTimer.initialize(
-            millisInFuture = millisInFuture,
+            millisInFuture = totalTimeInMillis,
             countDownInterval = COUNT_DOWN_INTERVAL
         )
     }

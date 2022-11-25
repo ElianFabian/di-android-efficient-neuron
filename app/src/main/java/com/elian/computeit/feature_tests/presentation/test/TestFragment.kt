@@ -76,11 +76,11 @@ class TestFragment : Fragment()
             }
         }
 
-        mtvRemainingSeconds.text = (viewModel.millisInFuture / 1000F).toString()
+        mtvRemainingSeconds.text = (viewModel.totalTimeInMillis / 1000F).toString()
         cpiRemainingSeconds.apply()
         {
-            max = viewModel.millisInFuture.toInt()
-            progress = viewModel.millisInFuture.toInt()
+            max = viewModel.totalTimeInMillis.toInt()
+            progress = viewModel.totalTimeInMillis.toInt()
         }
 
         btnNextTest.setOnClickListener { viewModel.onAction(NextTest) }
