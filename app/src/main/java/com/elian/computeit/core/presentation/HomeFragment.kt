@@ -11,7 +11,6 @@ import androidx.fragment.app.viewModels
 import com.elian.computeit.R
 import com.elian.computeit.core.presentation.adapters.LabeledDataAdapter
 import com.elian.computeit.core.presentation.model.LabeledData
-import com.elian.computeit.core.presentation.util.HomeViewModel
 import com.elian.computeit.core.presentation.util.extensions.*
 import com.elian.computeit.core.presentation.util.mp_android_chart.applyDefault
 import com.elian.computeit.core.presentation.util.mp_android_chart.lineDataSet
@@ -27,9 +26,10 @@ import kotlinx.coroutines.flow.filterNotNull
 @AndroidEntryPoint
 class HomeFragment : Fragment()
 {
-    private var _isUiFinished = false
     private val viewModel by viewModels<HomeViewModel>()
     private lateinit var binding: FragmentHomeBinding
+
+    private var _isUiFinished = false
 
 
     override fun onCreateView(
