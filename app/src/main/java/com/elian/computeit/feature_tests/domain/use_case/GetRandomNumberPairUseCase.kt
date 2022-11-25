@@ -25,6 +25,10 @@ class GetRandomNumberPairUseCase @Inject constructor(
     else emptyList()
 
 
+    /**
+     * Returns a random number pair.
+     * @param oldPair if isn't null the returned pair will be different from the old one.
+     */
     operator fun invoke(oldPair: NumberPair? = null): NumberPair
     {
         if (oldPair == null) return getRandomPair()
@@ -42,19 +46,19 @@ class GetRandomNumberPairUseCase @Inject constructor(
 
     private fun getRandomPair(): NumberPair
     {
-        if (_operation == Operation.DIVIDE) return _divisiblePairs.random(seed)
+        if (_operation == Operation.DIVIDE) return _divisiblePairs.random(randomSeed)
 
         return getRandomNumberPair(_range)
     }
 }
 
 
-private val seed = Random(System.currentTimeMillis())
+private val randomSeed = Random(System.currentTimeMillis())
 
 private fun getRandomNumberPair(range: IntRange): NumberPair
 {
-    val first = range.random(seed)
-    val second = range.random(seed)
+    val first = range.random(randomSeed)
+    val second = range.random(randomSeed)
 
     return NumberPair(first, second)
 }
