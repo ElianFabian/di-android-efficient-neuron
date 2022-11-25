@@ -1,4 +1,4 @@
-package com.elian.computeit.core.presentation.util
+package com.elian.computeit.core.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
