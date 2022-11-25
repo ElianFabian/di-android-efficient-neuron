@@ -17,7 +17,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tilUsername"
-        style="@style/Auth_TextInputLayout"
+        style="@style/Layout_TextInputLayout"
         android:layout_marginTop="@dimen/_70sdp">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -30,8 +30,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tilPassword"
-        style="@style/Auth_TextInputLayout"
-
+        style="@style/Layout_TextInputLayout"
         android:layout_marginTop="@dimen/_15sdp"
         app:passwordToggleEnabled="true">
 
@@ -59,7 +58,7 @@
 
     <ProgressBar
         android:id="@+id/pbLoading"
-        style="@style/Auth_ProgressBar"
+        style="@style/Layout_ProgressBar"
         tools:visibility="visible" />
 
     <View style="@style/Utils_LinearLayoutSeparator" />

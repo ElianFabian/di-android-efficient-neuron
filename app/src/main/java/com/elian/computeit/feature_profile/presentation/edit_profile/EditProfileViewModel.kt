@@ -1,4 +1,4 @@
-package com.elian.computeit.feature_profile.presentation.private_profile
+package com.elian.computeit.feature_profile.presentation.edit_profile
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -11,7 +11,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class PrivateProfileViewModel @Inject constructor(
+class EditProfileViewModel @Inject constructor(
     private val getProfileInfo: GetProfileInfoUseCase,
 ) : ViewModel()
 {

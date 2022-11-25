@@ -4,7 +4,7 @@ import com.elian.computeit.core.data.util.constants.COLLECTION_USERS
 import com.elian.computeit.core.domain.models.User
 import com.elian.computeit.core.domain.repository.LocalAppDataRepository
 import com.elian.computeit.core.util.constants.dayMonthYearFormat
-import com.elian.computeit.feature_profile.domain.model.PrivateProfileInfo
+import com.elian.computeit.feature_profile.domain.model.ProfileInfo
 import com.elian.computeit.feature_profile.domain.repository.ProfileRepository
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.toObject
@@ -29,7 +29,7 @@ class ProfileRepositoryImpl @Inject constructor(
 
         val profileInfo = user.run()
         {
-            PrivateProfileInfo(
+            ProfileInfo(
                 username = name,
                 profilePicUrl = profilePicUrl,
                 createdAt = dayMonthYearFormat.format(Date(createdAtInMillis)),

@@ -77,10 +77,18 @@
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.elian.computeit.feature_profile.presentation.private_profile.PrivateProfileFragment"
-        android:label="ProfileFragment" />
+        android:label="ProfileFragment" >
+        <action
+            android:id="@+id/action_profileFragment_to_editProfileFragment"
+            app:destination="@id/editProfileFragment" />
+    </fragment>
     <fragment
         android:id="@+id/tipsFragment"
         android:name="com.elian.computeit.feature_tips.presentation.tips.TipsFragment"
         android:label="TipsFragment"
         tools:layout="@layout/fragment_tips" />
+    <fragment
+        android:id="@+id/editProfileFragment"
+        android:name="com.elian.computeit.feature_profile.presentation.edit_profile.EditProfileFragment"
+        android:label="EditProfileFragment" />
 </navigation>
