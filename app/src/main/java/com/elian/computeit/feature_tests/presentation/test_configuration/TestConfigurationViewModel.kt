@@ -48,9 +48,9 @@ class TestConfigurationViewModel @Inject constructor(
         when (action)
         {
             is SelectOperationType -> _selectedOperation = Operation.from(action.symbol)
-            is EnterTime           -> _timeState.update { it.copy(number = action.value, error = null) }
             is EnterMinValue       -> _minValueState.update { it.copy(number = action.value, error = null) }
             is EnterMaxValue       -> _maxValueState.update { it.copy(number = action.value, error = null) }
+            is EnterTime           -> _timeState.update { it.copy(number = action.value, error = null) }
             is StartTest           ->
             {
                 validateForm(
@@ -71,8 +71,8 @@ class TestConfigurationViewModel @Inject constructor(
                         {
                             val argsToSend = mapOf(
                                 EXTRA_OPERATION_TYPE to _selectedOperation,
-                                EXTRA_TEST_TIME_IN_SECONDS to _timeState.value.number!!,
                                 EXTRA_OPERATION_NUMBER_RANGE to Range(_minValueState.value.number!!, _maxValueState.value.number!!),
+                                EXTRA_TEST_TIME_IN_SECONDS to _timeState.value.number!!,
                             ).toList()
 
                             _eventFlow.send(OnStart(args = argsToSend))
