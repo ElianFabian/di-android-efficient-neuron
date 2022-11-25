@@ -9,7 +9,6 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
 import com.elian.computeit.R
 import com.elian.computeit.core.data.Operation
 import com.elian.computeit.core.presentation.util.extensions.*
@@ -56,7 +55,7 @@ class TestFragment : Fragment()
     {
         super.onPause()
 
-        if (_hasTestStarted && !isScreenOn(context)) findNavController().navigateUp()
+        if (_hasTestStarted && !isScreenOn(context)) navigateUp()
     }
 
 

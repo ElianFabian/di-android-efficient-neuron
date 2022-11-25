@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 
 fun Fragment.navigate(@IdRes action: Int, args: Bundle? = null) = findNavController().navigate(action, args)
+fun Fragment.navigateUp() = findNavController().navigateUp()
 
 fun Fragment.toast(text: CharSequence, duration: Int = Toast.LENGTH_SHORT)
 {
