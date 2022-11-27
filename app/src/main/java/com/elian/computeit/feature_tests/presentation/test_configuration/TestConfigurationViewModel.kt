@@ -10,7 +10,7 @@ import com.elian.computeit.core.util.UiText
 import com.elian.computeit.core.util.constants.EXTRA_OPERATION_NUMBER_RANGE
 import com.elian.computeit.core.util.constants.EXTRA_OPERATION_TYPE
 import com.elian.computeit.core.util.constants.EXTRA_TEST_TIME_IN_SECONDS
-import com.elian.computeit.feature_tests.domain.use_case.ValidateConfigurationFormUseCase
+import com.elian.computeit.feature_tests.domain.use_case.ValidateConfigurationUseCase
 import com.elian.computeit.feature_tests.presentation.test_configuration.TestConfigurationAction.*
 import com.elian.computeit.feature_tests.presentation.test_configuration.TestConfigurationEvent.OnShowErrorMessage
 import com.elian.computeit.feature_tests.presentation.test_configuration.TestConfigurationEvent.OnStart
@@ -25,7 +25,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class TestConfigurationViewModel @Inject constructor(
-    private val validateForm: ValidateConfigurationFormUseCase,
+    private val validateForm: ValidateConfigurationUseCase,
 ) : ViewModel()
 {
     private val _eventFlow = Channel<TestConfigurationEvent>()
