@@ -5,8 +5,9 @@ import com.elian.computeit.core.domain.util.TimerEvent
 import com.elian.computeit.core.util.PreciseCountDownTimer
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.asSharedFlow
+import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 
 class CountDownTimerImpl : CountDownTimer
@@ -16,8 +17,8 @@ class CountDownTimerImpl : CountDownTimer
     private var _countDownInterval = 0L
     private lateinit var _coroutineScope: CoroutineScope
 
-    private val _timerEvent = MutableSharedFlow<TimerEvent>()
-    override val timerEvent = _timerEvent.asSharedFlow()
+    private val _timerEvent = Channel<TimerEvent>()
+    override val timerEvent = _timerEvent.receiveAsFlow()
 
 
     override fun start() = countDownTimer.start()
@@ -39,32 +40,32 @@ class CountDownTimerImpl : CountDownTimer
         {
             override fun onStart()
             {
-                _coroutineScope.launch(Dispatchers.IO) { _timerEvent.emit(TimerEvent.OnStart) }
+                _coroutineScope.launch(Dispatchers.IO) { _timerEvent.send(TimerEvent.OnStart) }
             }
 
             override fun onTick(millisUntilFinished: Long)
             {
-                _coroutineScope.launch(Dispatchers.IO) { _timerEvent.emit(TimerEvent.OnTick(millisUntilFinished)) }
+                _coroutineScope.launch(Dispatchers.IO) { _timerEvent.send(TimerEvent.OnTick(millisUntilFinished)) }
             }
 
             override fun onRestart()
             {
-                _coroutineScope.launch(Dispatchers.IO) { _timerEvent.emit(TimerEvent.OnRestart) }
+                _coroutineScope.launch(Dispatchers.IO) { _timerEvent.send(TimerEvent.OnRestart) }
             }
 
             override fun onStop()
             {
-                _coroutineScope.launch(Dispatchers.IO) { _timerEvent.emit(TimerEvent.OnStop) }
+                _coroutineScope.launch(Dispatchers.IO) { _timerEvent.send(TimerEvent.OnStop) }
             }
 
             override fun onResume()
             {
-                _coroutineScope.launch(Dispatchers.IO) { _timerEvent.emit(TimerEvent.OnResume) }
+                _coroutineScope.launch(Dispatchers.IO) { _timerEvent.send(TimerEvent.OnResume) }
             }
 
             override fun onFinish()
             {
-                _coroutineScope.launch(Dispatchers.IO) { _timerEvent.emit(TimerEvent.OnFinish) }
+                _coroutineScope.launch(Dispatchers.IO) { _timerEvent.send(TimerEvent.OnFinish) }
             }
         }
     }

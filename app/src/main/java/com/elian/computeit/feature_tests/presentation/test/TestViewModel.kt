@@ -21,7 +21,11 @@ import com.elian.computeit.feature_tests.domain.use_case.AddTestData
 import com.elian.computeit.feature_tests.domain.use_case.GetRandomNumberPair
 import com.elian.computeit.feature_tests.presentation.test.TestAction.*
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.receiveAsFlow
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 import kotlin.math.sign
@@ -40,8 +44,8 @@ class TestViewModel @Inject constructor(
 
     private val _testDataList = mutableListOf<OperationData>()
 
-    private val _eventFlow = MutableSharedFlow<TestEvent>()
-    val eventFlow = _eventFlow.asSharedFlow()
+    private val _eventFlow = Channel<TestEvent>()
+    val eventFlow = _eventFlow.receiveAsFlow()
 
     private val _resultState = MutableStateFlow(0)
     val resultState = _resultState.asStateFlow()
@@ -70,7 +74,7 @@ class TestViewModel @Inject constructor(
                     is TimerEvent.OnTick   ->
                     {
                         _millisUntilFinish = it.millisUntilFinished
-                        _eventFlow.emit(TestEvent.OnTimerTick(it.millisUntilFinished))
+                        _eventFlow.send(TestEvent.OnTimerTick(it.millisUntilFinished))
                     }
                     is TimerEvent.OnFinish ->
                     {
@@ -81,7 +85,7 @@ class TestViewModel @Inject constructor(
                             range = _range
                         )
 
-                        _eventFlow.emit(TestEvent.OnTimerFinish(
+                        _eventFlow.send(TestEvent.OnTimerFinish(
                             args = listOf(EXTRA_TEST_INFO to testData.toTestInfo())
                         ))
 

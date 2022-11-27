@@ -1,7 +1,7 @@
 package com.elian.computeit.core.domain.util
 
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.flow.SharedFlow
+import kotlinx.coroutines.flow.Flow
 
 interface CountDownTimer
 {
@@ -16,7 +16,7 @@ interface CountDownTimer
     fun stop()
     fun resume()
 
-    val timerEvent: SharedFlow<TimerEvent>
+    val timerEvent: Flow<TimerEvent>
 }
 
 sealed interface TimerEvent
