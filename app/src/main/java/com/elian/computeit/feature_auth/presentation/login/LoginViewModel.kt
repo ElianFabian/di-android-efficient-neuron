@@ -5,8 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.elian.computeit.core.domain.states.TextFieldState
 import com.elian.computeit.core.util.Resource
 import com.elian.computeit.core.util.UiText
-import com.elian.computeit.feature_auth.domain.use_case.LoginUseCase
-import com.elian.computeit.feature_auth.presentation.login.LoginAction.*
+import com.elian.computeit.feature_auth.domain.use_case.Login
 import com.elian.computeit.feature_auth.presentation.login.LoginEvent.OnLogin
 import com.elian.computeit.feature_auth.presentation.login.LoginEvent.OnShowErrorMessage
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -16,7 +15,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class LoginViewModel @Inject constructor(
-    private val login: LoginUseCase,
+    private val login: Login,
 ) : ViewModel()
 {
     private val _eventFlow = MutableSharedFlow<LoginEvent>()
@@ -36,9 +35,9 @@ class LoginViewModel @Inject constructor(
     {
         when (action)
         {
-            is EnterUsername -> _usernameState.update { it.copy(text = action.value, error = null) }
-            is EnterPassword -> _passwordState.update { it.copy(text = action.value, error = null) }
-            is Login         -> viewModelScope.launch()
+            is LoginAction.EnterUsername -> _usernameState.update { it.copy(text = action.value, error = null) }
+            is LoginAction.EnterPassword -> _passwordState.update { it.copy(text = action.value, error = null) }
+            is LoginAction.Login         -> viewModelScope.launch()
             {
                 _loadingState.value = true
 

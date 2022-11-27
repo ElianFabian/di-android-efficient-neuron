@@ -5,8 +5,8 @@ import androidx.lifecycle.viewModelScope
 import com.elian.computeit.core.domain.states.TextFieldState
 import com.elian.computeit.core.util.Resource
 import com.elian.computeit.core.util.UiText
-import com.elian.computeit.feature_profile.domain.use_case.GetProfileInfoUseCase
-import com.elian.computeit.feature_profile.domain.use_case.ValidateProfileUseCase
+import com.elian.computeit.feature_profile.domain.use_case.GetProfileInfo
+import com.elian.computeit.feature_profile.domain.use_case.ValidateProfile
 import com.elian.computeit.feature_profile.presentation.edit_profile.EditProfileAction.*
 import com.elian.computeit.feature_profile.presentation.edit_profile.EditProfileEvent.OnSave
 import com.elian.computeit.feature_profile.presentation.edit_profile.EditProfileEvent.OnShowErrorMessage
@@ -21,8 +21,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class EditProfileViewModel @Inject constructor(
-    val getProfileInfo: GetProfileInfoUseCase,
-    private val validateProfile: ValidateProfileUseCase,
+    val getProfileInfo: GetProfileInfo,
+    private val validateProfile: ValidateProfile,
 ) : ViewModel()
 {
     private val _eventFlow = Channel<EditProfileEvent>()

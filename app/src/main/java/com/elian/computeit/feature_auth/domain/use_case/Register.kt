@@ -5,7 +5,7 @@ import com.elian.computeit.feature_auth.domain.model.RegisterResult
 import com.elian.computeit.feature_auth.domain.repository.AuthRepository
 import javax.inject.Inject
 
-class RegisterUseCase @Inject constructor(
+class Register @Inject constructor(
     private val repository: AuthRepository,
 )
 {

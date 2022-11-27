@@ -9,7 +9,7 @@ import com.elian.computeit.core.util.getDivisiblePairsInRange
 import com.elian.computeit.feature_tests.domain.model.TestConfigurationResult
 import javax.inject.Inject
 
-class ValidateConfigurationUseCase @Inject constructor()
+class ValidateConfiguration @Inject constructor()
 {
     private val _minRangeLength = 10
     private val _minDivisiblePairCount = 10

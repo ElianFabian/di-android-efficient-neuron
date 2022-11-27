@@ -3,7 +3,7 @@ package com.elian.computeit.feature_profile.domain.use_case
 import com.elian.computeit.feature_profile.domain.repository.ProfileRepository
 import javax.inject.Inject
 
-class GetProfileInfoUseCase @Inject constructor(
+class GetProfileInfo @Inject constructor(
     private val repository: ProfileRepository
 )
 {

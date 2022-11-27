@@ -7,7 +7,7 @@ import com.elian.computeit.feature_auth.domain.model.LoginResult
 import com.elian.computeit.feature_auth.domain.repository.AuthRepository
 import javax.inject.Inject
 
-class LoginUseCase @Inject constructor(
+class Login @Inject constructor(
     private val repository: AuthRepository,
 )
 {

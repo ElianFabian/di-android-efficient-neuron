@@ -17,8 +17,8 @@ import com.elian.computeit.core.util.constants.EXTRA_TEST_TIME_IN_SECONDS
 import com.elian.computeit.core.util.extensions.append
 import com.elian.computeit.core.util.extensions.clampLength
 import com.elian.computeit.feature_tests.domain.model.toTestInfo
-import com.elian.computeit.feature_tests.domain.use_case.AddTestDataUseCase
-import com.elian.computeit.feature_tests.domain.use_case.GetRandomNumberPairUseCase
+import com.elian.computeit.feature_tests.domain.use_case.AddTestData
+import com.elian.computeit.feature_tests.domain.use_case.GetRandomNumberPair
 import com.elian.computeit.feature_tests.presentation.test.TestAction.*
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
@@ -30,8 +30,8 @@ import kotlin.math.sign
 class TestViewModel @Inject constructor(
     savedState: SavedStateHandle,
     private val countDownTimer: CountDownTimer,
-    private val addTestData: AddTestDataUseCase,
-    private val getRandomNumberPair: GetRandomNumberPairUseCase,
+    private val addTestData: AddTestData,
+    private val getRandomNumberPair: GetRandomNumberPair,
 ) : ViewModel()
 {
     private val _totalTimeInMillis = savedState.get<Int>(EXTRA_TEST_TIME_IN_SECONDS)!! * 1_000L
