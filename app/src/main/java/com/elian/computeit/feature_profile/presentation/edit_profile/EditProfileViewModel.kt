@@ -31,7 +31,7 @@ class EditProfileViewModel @Inject constructor(
     private val _usernameState = MutableStateFlow(TextFieldState())
     val usernameState = _usernameState.asStateFlow()
 
-    private val _biographyState = MutableStateFlow(TextFieldState())
+    private lateinit var _biography: String
 
 
     fun onAction(action: EditProfileAction)
@@ -39,12 +39,12 @@ class EditProfileViewModel @Inject constructor(
         when (action)
         {
             is EnterUsername  -> _usernameState.update { it.copy(text = action.value, error = null) }
-            is EnterBiography -> _biographyState.update { it.copy(text = action.value, error = null) }
+            is EnterBiography -> _biography = action.value
             is Save           -> viewModelScope.launch()
             {
                 validateProfile(
                     username = _usernameState.value.text,
-                    biography = _biographyState.value.text,
+                    biography = _biography,
                 ).also { result ->
 
                     _usernameState.update { it.copy(error = result.usernameError) }
