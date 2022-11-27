@@ -12,6 +12,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import javax.inject.Singleton
 
 val Context.dataStore by preferencesDataStore(name = DATA_STORE_PREFERENCES_NAME)
 
@@ -19,9 +20,11 @@ val Context.dataStore by preferencesDataStore(name = DATA_STORE_PREFERENCES_NAME
 @InstallIn(SingletonComponent::class)
 object AppModule
 {
+    @Singleton
     @Provides
     fun provideDataStore(@ApplicationContext context: Context) = context.dataStore
-    
+
+    @Singleton
     @Provides
     fun provideFirestore() = Firebase.firestore
 
