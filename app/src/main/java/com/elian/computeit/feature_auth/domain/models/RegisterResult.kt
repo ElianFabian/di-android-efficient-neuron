@@ -1,11 +1,11 @@
 package com.elian.computeit.feature_auth.domain.models
 
+import com.elian.computeit.core.util.Error
 import com.elian.computeit.core.util.SimpleResource
-import com.elian.computeit.feature_auth.presentation.util.AuthError
 
 data class RegisterResult(
-    val usernameError: AuthError? = null,
-    val passwordError: AuthError? = null,
-    val confirmPasswordError: AuthError? = null,
+    val usernameError: Error? = null,
+    val passwordError: Error? = null,
+    val confirmPasswordError: Error? = null,
     val resource: SimpleResource? = null,
 )

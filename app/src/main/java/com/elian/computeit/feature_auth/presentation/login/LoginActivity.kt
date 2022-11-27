@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
 import com.elian.computeit.R
+import com.elian.computeit.core.domain.states.TextFieldError
 import com.elian.computeit.core.presentation.MainActivity
 import com.elian.computeit.core.presentation.util.extensions.*
 import com.elian.computeit.core.util.Error
@@ -15,7 +16,6 @@ import com.elian.computeit.feature_auth.presentation.login.LoginAction.*
 import com.elian.computeit.feature_auth.presentation.login.LoginEvent.OnLogin
 import com.elian.computeit.feature_auth.presentation.login.LoginEvent.OnShowErrorMessage
 import com.elian.computeit.feature_auth.presentation.register.RegisterActivity
-import com.elian.computeit.feature_auth.presentation.util.AuthError
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.map
 
@@ -70,7 +70,7 @@ class LoginActivity : AppCompatActivity()
 
     private fun getFieldError(error: Error?) = when (error)
     {
-        is AuthError.Empty -> getString(R.string.error_cant_be_empty)
+        is TextFieldError.Empty -> getString(R.string.error_cant_be_empty)
         else               -> null
     }
 }

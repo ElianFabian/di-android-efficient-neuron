@@ -10,6 +10,7 @@ import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.elian.computeit.R
+import com.elian.computeit.core.domain.states.NumericFieldError
 import com.elian.computeit.core.presentation.util.extensions.*
 import com.elian.computeit.core.util.Error
 import com.elian.computeit.core.util.extensions.apply2
@@ -17,7 +18,6 @@ import com.elian.computeit.databinding.FragmentTestConfigurationBinding
 import com.elian.computeit.feature_tests.presentation.test_configuration.TestConfigurationAction.*
 import com.elian.computeit.feature_tests.presentation.test_configuration.TestConfigurationEvent.OnShowErrorMessage
 import com.elian.computeit.feature_tests.presentation.test_configuration.TestConfigurationEvent.OnStart
-import com.elian.computeit.feature_tests.presentation.util.TestConfigurationError
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.map
 
@@ -97,7 +97,7 @@ class TestConfigurationFragment : Fragment()
 
     private fun getFieldError(error: Error?) = when (error)
     {
-        is TestConfigurationError.Empty -> getString(R.string.error_cant_be_empty)
+        is NumericFieldError.Empty -> getString(R.string.error_cant_be_empty)
         else                            -> null
     }
 }

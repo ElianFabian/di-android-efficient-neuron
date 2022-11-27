@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
 import com.elian.computeit.R
+import com.elian.computeit.core.domain.states.TextFieldError
 import com.elian.computeit.core.presentation.MainActivity
 import com.elian.computeit.core.presentation.util.extensions.*
 import com.elian.computeit.core.util.extensions.apply2
@@ -14,7 +15,6 @@ import com.elian.computeit.feature_auth.presentation.login.LoginActivity
 import com.elian.computeit.feature_auth.presentation.register.RegisterAction.*
 import com.elian.computeit.feature_auth.presentation.register.RegisterEvent.OnRegister
 import com.elian.computeit.feature_auth.presentation.register.RegisterEvent.OnShowErrorMessage
-import com.elian.computeit.feature_auth.presentation.util.AuthError
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.map
 
@@ -65,31 +65,31 @@ class RegisterActivity : AppCompatActivity()
         {
             binding.tilUsername.error2 = when (it)
             {
-                is AuthError.Empty    -> getString(R.string.error_cant_be_empty)
-                is AuthError.Invalid  -> getString(R.string.error_username_invalid).format(it.validCharacters)
-                is AuthError.TooShort -> getString(R.string.error_too_short).format(it.minLength)
-                is AuthError.TooLong  -> getString(R.string.error_too_long).format(it.maxLength)
-                else                  -> null
+                is TextFieldError.Empty    -> getString(R.string.error_cant_be_empty)
+                is TextFieldError.Invalid  -> getString(R.string.error_username_invalid).format(it.validCharacters)
+                is TextFieldError.TooShort -> getString(R.string.error_too_short).format(it.minLength)
+                is TextFieldError.TooLong  -> getString(R.string.error_too_long).format(it.maxLength)
+                else                       -> null
             }
         }
         collectLatestFlowWhenStarted(passwordState.map { it.error })
         {
             binding.tilPassword.error2 = when (it)
             {
-                is AuthError.Empty    -> getString(R.string.error_cant_be_empty)
-                is AuthError.TooShort -> getString(R.string.error_too_short).format(it.minLength)
-                is AuthError.Invalid  -> getString(R.string.error_password_invalid).format(it.minCharacterCount, it.validCharacters)
-                is AuthError.TooLong  -> getString(R.string.error_too_long).format(it.maxLength)
-                else                  -> null
+                is TextFieldError.Empty    -> getString(R.string.error_cant_be_empty)
+                is TextFieldError.TooShort -> getString(R.string.error_too_short).format(it.minLength)
+                is TextFieldError.Invalid  -> getString(R.string.error_password_invalid).format(it.minCharacterCount, it.validCharacters)
+                is TextFieldError.TooLong  -> getString(R.string.error_too_long).format(it.maxLength)
+                else                       -> null
             }
         }
         collectLatestFlowWhenStarted(confirmPasswordState.map { it.error })
         {
             binding.tilConfirmPassword.error2 = when (it)
             {
-                is AuthError.Empty   -> getString(R.string.error_cant_be_empty)
-                is AuthError.Invalid -> getString(R.string.error_passwords_dont_match)
-                else                 -> null
+                is TextFieldError.Empty   -> getString(R.string.error_cant_be_empty)
+                is TextFieldError.Invalid -> getString(R.string.error_passwords_dont_match)
+                else                      -> null
             }
         }
         collectLatestFlowWhenStarted(loadingState) { binding.pbLoading.isVisible = it }

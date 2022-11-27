@@ -6,3 +6,8 @@ data class NumericFieldState<T : Number>(
     val number: T? = null,
     val error: Error? = null,
 )
+
+sealed interface NumericFieldError : Error
+{
+    object Empty : NumericFieldError
+}

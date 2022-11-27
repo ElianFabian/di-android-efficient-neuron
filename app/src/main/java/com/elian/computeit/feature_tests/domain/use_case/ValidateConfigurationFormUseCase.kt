@@ -2,11 +2,11 @@ package com.elian.computeit.feature_tests.domain.use_case
 
 import com.elian.computeit.R
 import com.elian.computeit.core.data.Operation
+import com.elian.computeit.core.domain.states.NumericFieldError
 import com.elian.computeit.core.domain.util.checkIfError
 import com.elian.computeit.core.util.Resource
 import com.elian.computeit.core.util.getDivisiblePairsInRange
 import com.elian.computeit.feature_tests.domain.models.TestConfigurationResult
-import com.elian.computeit.feature_tests.presentation.util.TestConfigurationError
 import javax.inject.Inject
 
 class ValidateConfigurationFormUseCase @Inject constructor()
@@ -66,6 +66,6 @@ class ValidateConfigurationFormUseCase @Inject constructor()
 
 private fun getFieldError(number: Int?) = when (number)
 {
-    null -> TestConfigurationError.Empty
+    null -> NumericFieldError.Empty
     else -> null
 }
