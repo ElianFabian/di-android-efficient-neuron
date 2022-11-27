@@ -1,4 +1,4 @@
-package com.elian.computeit.core.data.models
+package com.elian.computeit.core.data.model
 
 import com.elian.computeit.core.domain.models.TestData
 

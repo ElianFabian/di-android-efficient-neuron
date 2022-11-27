@@ -1,4 +1,4 @@
-package com.elian.computeit.feature_tests.domain.models
+package com.elian.computeit.feature_tests.domain.model
 
 import com.elian.computeit.core.util.Error
 import com.elian.computeit.core.util.SimpleResource

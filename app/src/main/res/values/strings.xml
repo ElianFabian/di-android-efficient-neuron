@@ -54,6 +54,7 @@
 
     <string name="frgTips_tvTitle_text">Tips</string>
 
+    <string name="generic_biography">Biography</string>
     <string name="generic_confirm_password">Confirm password</string>
     <string name="generic_errors">Errors</string>
     <string name="generic_login">Login</string>
@@ -66,6 +67,8 @@
     <string name="generic_start">Start</string>
     <string name="generic_tests">Tests</string>
     <string name="generic_username">Username</string>
+
+    <string name="message_info_successfully_updated">Information successfully updated</string>
 
     <string name="navigation_drawer_close" translatable="false">Close</string>
     <string name="navigation_drawer_open" translatable="false">Open</string>

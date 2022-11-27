@@ -1,4 +1,4 @@
-package com.elian.computeit.feature_tests.domain.models
+package com.elian.computeit.feature_tests.domain.model
 
 import android.os.Parcelable
 import com.elian.computeit.core.domain.models.TestData

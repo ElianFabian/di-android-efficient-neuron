@@ -12,7 +12,7 @@ import com.elian.computeit.core.presentation.util.mp_android_chart.lineDataSet
 import com.elian.computeit.core.presentation.util.mp_android_chart.toEntries
 import com.elian.computeit.core.util.constants.EXTRA_TEST_INFO
 import com.elian.computeit.databinding.FragmentTestEndBinding
-import com.elian.computeit.feature_tests.domain.models.TestInfo
+import com.elian.computeit.feature_tests.domain.model.TestInfo
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

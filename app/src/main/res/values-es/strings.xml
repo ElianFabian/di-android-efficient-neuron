@@ -49,18 +49,22 @@
 
     <string name="frgTips_tvTitle_text">Consejos</string>
 
+    <string name="generic_biography">Biografía</string>
     <string name="generic_confirm_password">Confirmar contraseña</string>
     <string name="generic_errors">Errores</string>
     <string name="generic_login">Iniciar sesión</string>
     <string name="generic_operations">Operaciones</string>
     <string name="generic_opm">OPM</string>
     <string name="generic_password">Contraseña</string>
+    
     <string name="generic_raw">Bruto</string>
     <string name="generic_register">Registrarse</string>
     <string name="generic_seconds">Segundos</string>
     <string name="generic_start">Empezar</string>
     <string name="generic_tests">Tests</string>
     <string name="generic_username">Nombre de usuario</string>
+
+    <string name="message_info_successfully_updated">Información actualizada con éxito</string>
 
     <string name="no_data_available">No hay datos de dispobles</string>
 

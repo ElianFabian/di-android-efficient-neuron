@@ -9,6 +9,7 @@ import com.elian.computeit.R
 import com.elian.computeit.core.domain.states.TextFieldError
 import com.elian.computeit.core.presentation.MainActivity
 import com.elian.computeit.core.presentation.util.extensions.*
+import com.elian.computeit.core.presentation.util.getUsernameErrorMessage
 import com.elian.computeit.core.util.extensions.apply2
 import com.elian.computeit.databinding.ActivityRegisterBinding
 import com.elian.computeit.feature_auth.presentation.login.LoginActivity
@@ -63,14 +64,7 @@ class RegisterActivity : AppCompatActivity()
         }
         collectLatestFlowWhenStarted(usernameState.map { it.error })
         {
-            binding.tilUsername.error2 = when (it)
-            {
-                is TextFieldError.Empty    -> getString(R.string.error_cant_be_empty)
-                is TextFieldError.Invalid  -> getString(R.string.error_username_invalid).format(it.validCharacters)
-                is TextFieldError.TooShort -> getString(R.string.error_too_short).format(it.minLength)
-                is TextFieldError.TooLong  -> getString(R.string.error_too_long).format(it.maxLength)
-                else                       -> null
-            }
+            binding.tilUsername.error2 = getUsernameErrorMessage(this@RegisterActivity, it)
         }
         collectLatestFlowWhenStarted(passwordState.map { it.error })
         {

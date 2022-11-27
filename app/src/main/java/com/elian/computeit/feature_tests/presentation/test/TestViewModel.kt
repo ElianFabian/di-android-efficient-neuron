@@ -16,7 +16,7 @@ import com.elian.computeit.core.util.constants.EXTRA_TEST_INFO
 import com.elian.computeit.core.util.constants.EXTRA_TEST_TIME_IN_SECONDS
 import com.elian.computeit.core.util.extensions.append
 import com.elian.computeit.core.util.extensions.clampLength
-import com.elian.computeit.feature_tests.domain.models.toTestInfo
+import com.elian.computeit.feature_tests.domain.model.toTestInfo
 import com.elian.computeit.feature_tests.domain.use_case.AddTestDataUseCase
 import com.elian.computeit.feature_tests.domain.use_case.GetRandomNumberPairUseCase
 import com.elian.computeit.feature_tests.presentation.test.TestAction.*

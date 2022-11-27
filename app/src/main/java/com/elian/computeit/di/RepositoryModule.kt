@@ -2,8 +2,10 @@ package com.elian.computeit.di
 
 import com.elian.computeit.core.data.repository.LocalAppDataRepositoryImpl
 import com.elian.computeit.core.data.repository.TestDataRepositoryImpl
+import com.elian.computeit.core.data.repository.UtilRepositoryImpl
 import com.elian.computeit.core.domain.repository.LocalAppDataRepository
 import com.elian.computeit.core.domain.repository.TestDataRepository
+import com.elian.computeit.core.domain.repository.UtilRepository
 import com.elian.computeit.feature_auth.data.repository.AuthRepositoryImpl
 import com.elian.computeit.feature_auth.domain.repository.AuthRepository
 import com.elian.computeit.feature_profile.data.repository.ProfileRepositoryImpl
@@ -18,6 +20,10 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 interface RepositoryModule
 {
+    @Binds
+    @Singleton
+    fun bindUtilRepository(repository: UtilRepositoryImpl): UtilRepository
+
     @Binds
     @Singleton
     fun bindAuthRepository(repository: AuthRepositoryImpl): AuthRepository

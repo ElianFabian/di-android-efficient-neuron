@@ -19,7 +19,7 @@ import com.elian.computeit.core.util.constants.DEFAULT_DECIMAL_FORMAT
 import com.elian.computeit.core.util.extensions.apply2
 import com.elian.computeit.core.util.extensions.format
 import com.elian.computeit.databinding.FragmentHomeBinding
-import com.elian.computeit.feature_tests.domain.models.TestListInfo
+import com.elian.computeit.feature_tests.domain.model.TestListInfo
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.filterNotNull
 

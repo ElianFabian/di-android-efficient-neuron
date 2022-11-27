@@ -6,7 +6,7 @@ import com.elian.computeit.core.domain.states.NumericFieldError
 import com.elian.computeit.core.domain.util.checkIfError
 import com.elian.computeit.core.util.Resource
 import com.elian.computeit.core.util.getDivisiblePairsInRange
-import com.elian.computeit.feature_tests.domain.models.TestConfigurationResult
+import com.elian.computeit.feature_tests.domain.model.TestConfigurationResult
 import javax.inject.Inject
 
 class ValidateConfigurationUseCase @Inject constructor()

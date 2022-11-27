@@ -11,8 +11,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:layout_marginBottom="@dimen/_20sdp">
+        android:layout_height="150dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -75,62 +74,69 @@
 
     </androidx.cardview.widget.CardView>
 
-    <androidx.appcompat.widget.LinearLayoutCompat
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginStart="@dimen/_15sdp"
-        android:layout_marginTop="@dimen/_10sdp"
-        android:animateLayoutChanges="true"
-        android:orientation="vertical">
+        android:fillViewport="true">
 
-        <TextView
-            style="@style/TextAppearance_TextView_Label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/_10sdp"
-            android:text="@string/generic_username" />
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:animateLayoutChanges="true"
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/tvUsername"
-            style="@style/TextView_Value"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/_20sdp"
-            tools:text="@string/generic_username"
-            tools:visibility="visible" />
+            <TextView
+                style="@style/TextAppearance_TextView_Label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:text="@string/generic_username" />
 
-        <TextView
-            style="@style/TextAppearance_TextView_Label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/_10sdp"
-            android:text="@string/generic_password" />
+            <TextView
+                android:id="@+id/tvUsername"
+                style="@style/TextView_Value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_20sdp"
+                android:visibility="gone"
+                tools:text="@string/generic_username"
+                tools:visibility="visible" />
 
-        <TextView
-            android:id="@+id/tvPassword"
-            style="@style/TextView_Value"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="**********" />
+            <TextView
+                style="@style/TextAppearance_TextView_Label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:text="@string/generic_biography" />
 
+            <TextView
+                android:id="@+id/tvBiography"
+                style="@style/TextView_Value"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                tools:text="Hello world!"
+                tools:visibility="visible" />
 
-        <View style="@style/Utils_LinearLayoutSeparator" />
+            <View style="@style/Utils_LinearLayoutSeparator" />
 
-        <TextView
-            android:id="@+id/tvCreatedAt"
-            style="@style/TextView_Value"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:layout_marginEnd="@dimen/_10sdp"
-            android:layout_marginBottom="@dimen/_10sdp"
-            android:text="Account created at 11/11/2022"
-            android:textColor="@color/gray_500"
-            android:textSize="@dimen/textSize_medium2"
-            android:visibility="gone"
-            tools:visibility="visible" />
+            <TextView
+                android:id="@+id/tvCreatedAt"
+                style="@style/TextView_Value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginVertical="@dimen/_20sdp"
+                android:textColor="@color/gray_500"
+                android:textSize="@dimen/textSize_medium2"
+                android:visibility="gone"
+                tools:text="Account created at 11/11/2022"
+                tools:visibility="visible" />
 
-    </androidx.appcompat.widget.LinearLayoutCompat>
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
+    </androidx.core.widget.NestedScrollView>
 
 </androidx.appcompat.widget.LinearLayoutCompat>

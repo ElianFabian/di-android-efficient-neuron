@@ -63,18 +63,20 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tilPassword"
+            android:id="@+id/tilBiography"
             style="@style/Layout_TextInputLayout"
-            android:layout_marginTop="@dimen/_15sdp"
-            app:passwordToggleEnabled="true">
+            android:layout_marginTop="@dimen/_15sdp">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/tietPassword"
+                android:id="@+id/tietBiography"
                 style="@style/TextInputEditTextStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/generic_password"
-                android:inputType="textPassword" />
+                android:gravity="top"
+                android:hint="@string/generic_biography"
+                android:inputType="textMultiLine"
+                android:lines="6"
+                android:maxLength="512" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <View style="@style/Utils_LinearLayoutSeparator" />

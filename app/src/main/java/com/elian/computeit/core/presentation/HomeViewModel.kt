@@ -3,7 +3,7 @@ package com.elian.computeit.core.presentation
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.elian.computeit.core.domain.use_case.GetTestListInfoUseCase
-import com.elian.computeit.feature_tests.domain.models.TestListInfo
+import com.elian.computeit.feature_tests.domain.model.TestListInfo
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
