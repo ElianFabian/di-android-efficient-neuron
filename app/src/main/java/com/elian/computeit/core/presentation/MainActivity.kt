@@ -12,9 +12,13 @@ import dagger.hilt.android.AndroidEntryPoint
 class MainActivity : AppCompatActivity()
 {
     private lateinit var binding: ActivityMainBinding
+    private val navController by lazy { findNavController(R.id.navHostFragment) }
 
-    private var currentFragment: Fragment? = null
+    private val _disabledNavigateUpDestinations = setOf(
+        R.id.testEndFragment,
+    )
     private var _isNavigateUpEnable = true
+    private var _currentFragment: Fragment? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?)
@@ -23,36 +27,26 @@ class MainActivity : AppCompatActivity()
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        initUi()
+        initLogic()
     }
 
     override fun onBackPressed()
     {
         when
         {
-            currentFragment is HomeFragment -> finish()
-            _isNavigateUpEnable             -> findNavController(R.id.navHostFragment).navigateUp()
+            _currentFragment is HomeFragment -> finish()
+            _isNavigateUpEnable              -> navController.navigateUp()
         }
     }
 
 
-    private fun initUi()
+    private fun initLogic()
     {
-        findNavController(R.id.navHostFragment).addOnDestinationChangedListener { _, destination, _ ->
+        navController.addOnDestinationChangedListener { _, destination, _ ->
 
-            currentFragment = if (destination.id == R.id.homeFragment)
-            {
-                HomeFragment()
-            }
-            else null
+            _currentFragment = if (destination.id == R.id.homeFragment) HomeFragment() else null
 
-            if (destination.id == R.id.testEndFragment)
-            {
-                _isNavigateUpEnable = false
-                return@addOnDestinationChangedListener
-            }
-
-            _isNavigateUpEnable = true
+            _isNavigateUpEnable = destination.id !in _disabledNavigateUpDestinations
         }
     }
 }
