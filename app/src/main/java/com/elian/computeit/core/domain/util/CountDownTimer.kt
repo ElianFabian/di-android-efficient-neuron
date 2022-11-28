@@ -16,7 +16,7 @@ interface CountDownTimer
     fun stop()
     fun resume()
 
-    val timerEvent: Flow<TimerEvent>
+    val timerEventFlow: Flow<TimerEvent>
 }
 
 sealed interface TimerEvent

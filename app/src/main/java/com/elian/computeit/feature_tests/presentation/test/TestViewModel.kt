@@ -66,7 +66,7 @@ class TestViewModel @Inject constructor(
 
         viewModelScope.launch()
         {
-            countDownTimer.timerEvent.collect()
+            countDownTimer.timerEventFlow.collect()
             {
                 when (it)
                 {
