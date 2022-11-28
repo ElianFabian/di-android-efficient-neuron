@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <resources>
+    <string name="alert_dialog_are_you_sure_you_want_to_log_out">¿Estás seguro de que quieres cerrar sesión?</string>
+
     <string name="arrayTest_modes_tests">Tests</string>
     <string name="arrayTest_modes_time">Tiempo</string>
 
@@ -30,6 +32,7 @@
     <string name="frgHomeFragment_testsCompleted">Tests completados</string>
 
     <string name="frgPrivateProfile_btnEdit_text">Editar</string>
+    <string name="frgPrivateProfile_btnLogout_text">Cerrar sesión</string>
 
     <string name="frgSettings_category_general">General</string>
     <string name="frgSettings_dark_theme_title">Tema oscuro</string>
@@ -56,7 +59,6 @@
     <string name="generic_operations">Operaciones</string>
     <string name="generic_opm">OPM</string>
     <string name="generic_password">Contraseña</string>
-    
     <string name="generic_raw">Bruto</string>
     <string name="generic_register">Registrarse</string>
     <string name="generic_seconds">Segundos</string>

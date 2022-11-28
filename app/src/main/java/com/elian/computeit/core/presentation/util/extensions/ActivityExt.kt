@@ -5,10 +5,13 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 
-inline fun <reified T : Activity> Activity.navigateTo(args: Bundle = Bundle())
+inline fun <reified T : Activity> Activity.navigateTo(
+    args: Bundle = Bundle(),
+    finish: Boolean = true,
+)
 {
     startActivity(Intent(this, T::class.java).putExtras(args))
-    finish()
+    if (finish) finish()
 }
 
 fun Activity.toast(text: CharSequence, duration: Int = Toast.LENGTH_SHORT)

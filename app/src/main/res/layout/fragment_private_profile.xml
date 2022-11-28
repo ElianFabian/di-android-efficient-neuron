@@ -122,6 +122,17 @@
 
             <View style="@style/Utils_LinearLayoutSeparator" />
 
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnLogout"
+                style="@style/ButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/_35sdp"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:backgroundTint="@color/red_700"
+                android:text="@string/frgPrivateProfile_btnLogout_text" />
+
             <TextView
                 android:id="@+id/tvCreatedAt"
                 style="@style/TextView_Value"

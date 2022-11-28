@@ -70,4 +70,9 @@ class ProfileRepositoryImpl @Inject constructor(
 
         return Resource.Success()
     }
+
+    override suspend fun logout()
+    {
+        appRepository.saveUserUuid("")
+    }
 }

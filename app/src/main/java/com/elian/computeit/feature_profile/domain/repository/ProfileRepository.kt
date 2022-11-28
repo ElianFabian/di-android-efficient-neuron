@@ -7,9 +7,12 @@ import kotlinx.coroutines.flow.Flow
 interface ProfileRepository
 {
     fun getProfileInfo(): Flow<ProfileInfo>
+
     suspend fun updateProfileInfo(
-        username: String, 
-        biography: String, 
+        username: String,
+        biography: String,
         //profilePicUrl: Uri
     ): SimpleResource
+
+    suspend fun logout()
 }

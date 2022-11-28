@@ -1,5 +1,7 @@
 package com.elian.computeit.core.presentation.util.extensions
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.annotation.*
@@ -21,6 +23,15 @@ fun Fragment.navigateSafe(
 )
 {
     if (findNavController().currentDestination?.id == currentDestination) navigate(action, args)
+}
+
+inline fun <reified T : Activity> Fragment.navigateTo(
+    args: Bundle = Bundle(),
+    finish: Boolean = true,
+)
+{
+    startActivity(Intent(context, T::class.java).putExtras(args))
+    if (finish) activity?.finish()
 }
 
 fun Fragment.toast(text: CharSequence, duration: Int = Toast.LENGTH_SHORT)

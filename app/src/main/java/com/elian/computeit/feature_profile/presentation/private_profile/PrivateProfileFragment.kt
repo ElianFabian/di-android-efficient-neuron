@@ -4,14 +4,17 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.elian.computeit.R
 import com.elian.computeit.core.presentation.util.extensions.navigate
+import com.elian.computeit.core.presentation.util.extensions.navigateTo
 import com.elian.computeit.core.presentation.util.extensions.text2
 import com.elian.computeit.core.util.extensions.apply2
 import com.elian.computeit.databinding.FragmentPrivateProfileBinding
+import com.elian.computeit.feature_auth.presentation.login.LoginActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -52,5 +55,20 @@ class PrivateProfileFragment : Fragment()
         }
 
         btnEdit.setOnClickListener { navigate(R.id.action_profileFragment_to_editProfileFragment) }
+        btnLogout.setOnClickListener()
+        {
+            AlertDialog.Builder(requireContext())
+                .setMessage(R.string.alert_dialog_are_you_sure_you_want_to_log_out)
+                .setPositiveButton(android.R.string.ok) { _, _ ->
+                    lifecycleScope.launch()
+                    {
+                        viewModel.logout()
+                        navigateTo<LoginActivity>()
+                    }
+                }
+                .setNegativeButton(android.R.string.cancel) { _, _ -> }
+                .create()
+                .show()
+        }
     }
 }

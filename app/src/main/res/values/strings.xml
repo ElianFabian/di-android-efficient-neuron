@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <resources>
+    <string name="alert_dialog_are_you_sure_you_want_to_log_out">Are you sure you want to log out?</string>
+
     <string name="app_name" translatable="false">ComputeIt</string>
 
     <string name="arrayTest_modes_tests">Tests</string>
@@ -35,6 +37,7 @@
     <string name="frgHomeFragment_testsCompleted">Tests completed</string>
 
     <string name="frgPrivateProfile_btnEdit_text">Edit</string>
+    <string name="frgPrivateProfile_btnLogout_text">Logout</string>
 
     <string name="frgSettings_category_general">Dark theme</string>
     <string name="frgSettings_dark_theme_title">Dark Theme</string>
