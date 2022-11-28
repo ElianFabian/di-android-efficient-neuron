@@ -64,9 +64,9 @@ class TestConfigurationViewModel @Inject constructor(
                     _maxValueState.update { it.copy(error = result.maxValueError) }
                     _timeState.update { it.copy(error = result.timeError) }
 
-                    when (result.resource)
+                    when (val resource = result.resource)
                     {
-                        is Resource.Error   -> _eventFlow.send(OnShowErrorMessage(result.resource.uiText ?: UiText.unknownError()))
+                        is Resource.Error   -> _eventFlow.send(OnShowErrorMessage(resource.uiText ?: UiText.unknownError()))
                         is Resource.Success ->
                         {
                             val argsToSend = mapOf(
