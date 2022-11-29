@@ -1,9 +1,7 @@
 package com.elian.computeit.core.presentation
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
@@ -15,6 +13,7 @@ import com.elian.computeit.core.presentation.util.extensions.*
 import com.elian.computeit.core.presentation.util.mp_android_chart.applyDefault
 import com.elian.computeit.core.presentation.util.mp_android_chart.lineDataSet
 import com.elian.computeit.core.presentation.util.mp_android_chart.toEntries
+import com.elian.computeit.core.presentation.util.viewBinding
 import com.elian.computeit.core.util.constants.DEFAULT_DECIMAL_FORMAT
 import com.elian.computeit.core.util.extensions.apply2
 import com.elian.computeit.core.util.extensions.format
@@ -24,21 +23,13 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.filterNotNull
 
 @AndroidEntryPoint
-class HomeFragment : Fragment()
+class HomeFragment : Fragment(R.layout.fragment_home)
 {
     private val viewModel by viewModels<HomeViewModel>()
-    private lateinit var binding: FragmentHomeBinding
+    private val binding by viewBinding(FragmentHomeBinding::bind)
 
     private var _isUiFinished = false
 
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?,
-    ): View
-    {
-        binding = FragmentHomeBinding.inflate(inflater)
-        return binding.root
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?)
     {

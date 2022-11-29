@@ -10,6 +10,7 @@ import com.elian.computeit.core.domain.states.TextFieldError
 import com.elian.computeit.core.presentation.MainActivity
 import com.elian.computeit.core.presentation.util.extensions.*
 import com.elian.computeit.core.presentation.util.getUsernameErrorMessage
+import com.elian.computeit.core.presentation.util.viewBinding
 import com.elian.computeit.core.util.extensions.apply2
 import com.elian.computeit.databinding.ActivityRegisterBinding
 import com.elian.computeit.feature_auth.presentation.login.LoginActivity
@@ -23,14 +24,13 @@ import kotlinx.coroutines.flow.map
 class RegisterActivity : AppCompatActivity()
 {
     private val viewModel by viewModels<RegisterViewModel>()
-    private lateinit var binding: ActivityRegisterBinding
+    private val binding by viewBinding(ActivityRegisterBinding::inflate)
 
 
     override fun onCreate(savedInstanceState: Bundle?)
     {
         super.onCreate(savedInstanceState)
 
-        binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         initUi()

@@ -1,9 +1,7 @@
 package com.elian.computeit.feature_tests.presentation.test_configuration
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.RadioButton
 import androidx.core.os.bundleOf
 import androidx.core.widget.addTextChangedListener
@@ -12,6 +10,7 @@ import androidx.fragment.app.viewModels
 import com.elian.computeit.R
 import com.elian.computeit.core.domain.states.NumericFieldError
 import com.elian.computeit.core.presentation.util.extensions.*
+import com.elian.computeit.core.presentation.util.viewBinding
 import com.elian.computeit.core.util.Error
 import com.elian.computeit.core.util.extensions.apply2
 import com.elian.computeit.databinding.FragmentTestConfigurationBinding
@@ -22,21 +21,13 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.map
 
 @AndroidEntryPoint
-class TestConfigurationFragment : Fragment()
+class TestConfigurationFragment : Fragment(R.layout.fragment_test_configuration)
 {
     private val viewModel by viewModels<TestConfigurationViewModel>()
-    private lateinit var binding: FragmentTestConfigurationBinding
+    private val binding by viewBinding(FragmentTestConfigurationBinding::bind)
 
     private lateinit var _lastCheckedOperationRadioButton: RadioButton
 
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?,
-    ): View
-    {
-        binding = FragmentTestConfigurationBinding.inflate(inflater)
-        return binding.root
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?)
     {
@@ -98,6 +89,6 @@ class TestConfigurationFragment : Fragment()
     private fun getFieldError(error: Error?) = when (error)
     {
         is NumericFieldError.Empty -> getString(R.string.error_cant_be_empty)
-        else                            -> null
+        else                       -> null
     }
 }

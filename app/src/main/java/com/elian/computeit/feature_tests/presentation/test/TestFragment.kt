@@ -1,9 +1,7 @@
 package com.elian.computeit.feature_tests.presentation.test
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Button
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
@@ -13,6 +11,7 @@ import com.elian.computeit.R
 import com.elian.computeit.core.data.Operation
 import com.elian.computeit.core.presentation.util.extensions.*
 import com.elian.computeit.core.presentation.util.isScreenOn
+import com.elian.computeit.core.presentation.util.viewBinding
 import com.elian.computeit.core.util.constants.EXTRA_OPERATION_TYPE
 import com.elian.computeit.core.util.constants.EXTRA_TEST_TIME_IN_SECONDS
 import com.elian.computeit.core.util.extensions.apply2
@@ -27,21 +26,13 @@ import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class TestFragment : Fragment()
+class TestFragment : Fragment(R.layout.fragment_test)
 {
     private val viewModel by viewModels<TestViewModel>()
-    private lateinit var binding: FragmentTestBinding
+    private val binding by viewBinding(FragmentTestBinding::bind)
 
     private var _hasTestStarted = false
 
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?,
-    ): View
-    {
-        binding = FragmentTestBinding.inflate(inflater)
-        return binding.root
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?)
     {

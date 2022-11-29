@@ -1,9 +1,7 @@
 package com.elian.computeit.feature_profile.presentation.private_profile
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -12,6 +10,7 @@ import com.elian.computeit.R
 import com.elian.computeit.core.presentation.util.extensions.navigate
 import com.elian.computeit.core.presentation.util.extensions.navigateTo
 import com.elian.computeit.core.presentation.util.extensions.text2
+import com.elian.computeit.core.presentation.util.viewBinding
 import com.elian.computeit.core.util.extensions.apply2
 import com.elian.computeit.databinding.FragmentPrivateProfileBinding
 import com.elian.computeit.feature_auth.presentation.login.LoginActivity
@@ -19,19 +18,11 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class PrivateProfileFragment : Fragment()
+class PrivateProfileFragment : Fragment(R.layout.fragment_private_profile)
 {
     private val viewModel by viewModels<PrivateProfileViewModel>()
-    private lateinit var binding: FragmentPrivateProfileBinding
+    private val binding by viewBinding(FragmentPrivateProfileBinding::bind)
 
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?,
-    ): View
-    {
-        binding = FragmentPrivateProfileBinding.inflate(inflater)
-        return binding.root
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?)
     {

@@ -1,9 +1,7 @@
 package com.elian.computeit.feature_profile.presentation.edit_profile
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -14,6 +12,7 @@ import com.elian.computeit.core.presentation.util.extensions.collectLatestFlowWh
 import com.elian.computeit.core.presentation.util.extensions.error2
 import com.elian.computeit.core.presentation.util.extensions.toast
 import com.elian.computeit.core.presentation.util.getUsernameErrorMessage
+import com.elian.computeit.core.presentation.util.viewBinding
 import com.elian.computeit.core.util.extensions.apply2
 import com.elian.computeit.core.util.extensions.trimWhitespacesBeforeNewLine
 import com.elian.computeit.databinding.FragmentEditProfileBinding
@@ -25,20 +24,11 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class EditProfileFragment : Fragment()
+class EditProfileFragment : Fragment(R.layout.fragment_edit_profile)
 {
     private val viewModel by viewModels<EditProfileViewModel>()
-    private lateinit var binding: FragmentEditProfileBinding
+    private val binding by viewBinding(FragmentEditProfileBinding::bind)
 
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?,
-    ): View
-    {
-        binding = FragmentEditProfileBinding.inflate(layoutInflater)
-
-        return binding.root
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?)
     {

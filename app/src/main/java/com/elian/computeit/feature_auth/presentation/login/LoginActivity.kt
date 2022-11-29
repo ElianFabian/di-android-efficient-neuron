@@ -9,6 +9,7 @@ import com.elian.computeit.R
 import com.elian.computeit.core.domain.states.TextFieldError
 import com.elian.computeit.core.presentation.MainActivity
 import com.elian.computeit.core.presentation.util.extensions.*
+import com.elian.computeit.core.presentation.util.viewBinding
 import com.elian.computeit.core.util.Error
 import com.elian.computeit.core.util.extensions.apply2
 import com.elian.computeit.databinding.ActivityLoginBinding
@@ -23,14 +24,13 @@ import kotlinx.coroutines.flow.map
 class LoginActivity : AppCompatActivity()
 {
     private val viewModel by viewModels<LoginViewModel>()
-    private lateinit var binding: ActivityLoginBinding
+    private val binding by viewBinding(ActivityLoginBinding::inflate)
 
 
     override fun onCreate(savedInstanceState: Bundle?)
     {
         super.onCreate(savedInstanceState)
 
-        binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         initUi()
@@ -71,6 +71,6 @@ class LoginActivity : AppCompatActivity()
     private fun getFieldError(error: Error?) = when (error)
     {
         is TextFieldError.Empty -> getString(R.string.error_cant_be_empty)
-        else               -> null
+        else                    -> null
     }
 }
