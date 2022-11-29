@@ -38,8 +38,8 @@ class TestFragment : Fragment(R.layout.fragment_test)
 	{
 		super.onViewCreated(view, savedInstanceState)
 
-		initUi()
 		subscribeToEvents()
+		initUi()
 	}
 
 	override fun onPause()

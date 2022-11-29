@@ -33,8 +33,8 @@ class TestConfigurationFragment : Fragment(R.layout.fragment_test_configuration)
 	{
 		super.onViewCreated(view, savedInstanceState)
 
-		initUI()
 		subscribeToEvents()
+		initUI()
 	}
 
 

@@ -33,8 +33,8 @@ class RegisterActivity : AppCompatActivity()
 
 		setContentView(binding.root)
 
-		initUi()
 		subscribeToEvents()
+		initUi()
 	}
 
 	override fun onBackPressed()
