@@ -83,7 +83,6 @@ public abstract class PreciseCountDownTimer extends Timer
 	{
 		return new TimerTask()
 		{
-
 			@Override
 			public void run()
 			{
