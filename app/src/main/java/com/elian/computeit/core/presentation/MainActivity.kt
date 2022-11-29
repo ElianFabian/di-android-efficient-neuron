@@ -5,13 +5,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import com.elian.computeit.R
-import com.elian.computeit.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity()
+class MainActivity : AppCompatActivity(R.layout.activity_main)
 {
-    private lateinit var binding: ActivityMainBinding
     private val navController by lazy { findNavController(R.id.navHostFragment) }
 
     private val _disabledNavigateUpDestinations = setOf(
@@ -25,8 +23,6 @@ class MainActivity : AppCompatActivity()
     {
         super.onCreate(savedInstanceState)
 
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
         initLogic()
     }
 
