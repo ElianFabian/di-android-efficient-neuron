@@ -11,9 +11,9 @@
 	<LinearLayout
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
-		android:padding="10dp"
+		android:background="@color/indigo_200"
 		android:orientation="vertical"
-		android:background="@color/indigo_200">
+		android:padding="10dp">
 
 		<TextView
 			android:id="@+id/tvTitle"
@@ -26,9 +26,9 @@
 			android:id="@+id/tvExample"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
+			android:fontFamily="@font/comfortaa"
 			android:textColor="@color/black"
 			android:textSize="30sp"
-			android:fontFamily="@font/comfortaa"
 			tools:text="35² = (3·4)25 = 1125" />
 	</LinearLayout>
 
