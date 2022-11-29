@@ -100,7 +100,7 @@ class TestFragment : Fragment(R.layout.fragment_test)
 		}
 	}
 
-	private fun subscribeToEvents() = viewModel.apply()
+	private fun subscribeToEvents() = viewModel.apply2()
 	{
 		collectFlowWhenStarted(eventFlow)
 		{
