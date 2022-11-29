@@ -7,7 +7,6 @@ import com.elian.computeit.R
 import com.elian.computeit.core.domain.states.TextFieldError
 import com.elian.computeit.core.util.Error
 
-
 /**
  * Is the screen of the device on.
  * @param context the context
