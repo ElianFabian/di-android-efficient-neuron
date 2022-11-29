@@ -12,30 +12,30 @@ import com.elian.computeit.databinding.ItemLabeledDataBinding
 
 class LabeledDataAdapter : ListAdapter<LabeledData, LabeledDataAdapter.ViewHolder>(callback)
 {
-    class ViewHolder(view: View) : RecyclerView.ViewHolder(view)
+	class ViewHolder(view: View) : RecyclerView.ViewHolder(view)
 
-    companion object
-    {
-        private val callback = object : DiffUtil.ItemCallback<LabeledData>()
-        {
-            override fun areItemsTheSame(oldItem: LabeledData, newItem: LabeledData) = oldItem == newItem
+	companion object
+	{
+		private val callback = object : DiffUtil.ItemCallback<LabeledData>()
+		{
+			override fun areItemsTheSame(oldItem: LabeledData, newItem: LabeledData) = oldItem == newItem
 
-            override fun areContentsTheSame(oldItem: LabeledData, newItem: LabeledData) = oldItem == newItem
-        }
-    }
+			override fun areContentsTheSame(oldItem: LabeledData, newItem: LabeledData) = oldItem == newItem
+		}
+	}
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder
-    {
-        return ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_labeled_data, parent, false))
-    }
+	override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder
+	{
+		return ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_labeled_data, parent, false))
+	}
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int)
-    {
-        val item = getItem(position)
+	override fun onBindViewHolder(holder: ViewHolder, position: Int)
+	{
+		val item = getItem(position)
 
-        val binding = ItemLabeledDataBinding.bind(holder.itemView)
+		val binding = ItemLabeledDataBinding.bind(holder.itemView)
 
-        binding.tvLabel.text = item.label
-        binding.tvValue.text = item.value
-    }
+		binding.tvLabel.text = item.label
+		binding.tvValue.text = item.value
+	}
 }

@@ -15,25 +15,25 @@ import com.elian.computeit.core.util.Error
  */
 fun isScreenOn(context: Context?): Boolean
 {
-    val dm = context!!.getSystemService(Context.DISPLAY_SERVICE) as DisplayManager
-    var screenOn = false
+	val dm = context!!.getSystemService(Context.DISPLAY_SERVICE) as DisplayManager
+	var screenOn = false
 
-    for (display in dm.displays)
-    {
-        if (display.state != Display.STATE_OFF)
-        {
-            screenOn = true
-        }
-    }
+	for (display in dm.displays)
+	{
+		if (display.state != Display.STATE_OFF)
+		{
+			screenOn = true
+		}
+	}
 
-    return screenOn
+	return screenOn
 }
 
 fun getUsernameErrorMessage(context: Context?, error: Error?) = when (error)
 {
-    is TextFieldError.Empty    -> context!!.getString(R.string.error_cant_be_empty)
-    is TextFieldError.Invalid  -> context!!.getString(R.string.error_username_invalid).format(error.validCharacters)
-    is TextFieldError.TooShort -> context!!.getString(R.string.error_too_short).format(error.minLength)
-    is TextFieldError.TooLong  -> context!!.getString(R.string.error_too_long).format(error.maxLength)
-    else                       -> null
+	is TextFieldError.Empty    -> context!!.getString(R.string.error_cant_be_empty)
+	is TextFieldError.Invalid  -> context!!.getString(R.string.error_username_invalid).format(error.validCharacters)
+	is TextFieldError.TooShort -> context!!.getString(R.string.error_too_short).format(error.minLength)
+	is TextFieldError.TooLong  -> context!!.getString(R.string.error_too_long).format(error.maxLength)
+	else                       -> null
 }

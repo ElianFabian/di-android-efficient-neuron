@@ -4,8 +4,8 @@ import com.elian.computeit.feature_profile.domain.repository.ProfileRepository
 import javax.inject.Inject
 
 class GetProfileInfo @Inject constructor(
-    private val repository: ProfileRepository
+	private val repository: ProfileRepository,
 )
 {
-    operator fun invoke() = repository.getProfileInfo()
+	operator fun invoke() = repository.getProfileInfo()
 }

@@ -17,53 +17,53 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class TestEndFragment : Fragment(R.layout.fragment_test_end)
 {
-    private val binding by viewBinding(FragmentTestEndBinding::bind)
+	private val binding by viewBinding(FragmentTestEndBinding::bind)
 
-    private lateinit var testInfo: TestInfo
+	private lateinit var testInfo: TestInfo
 
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?)
-    {
-        super.onViewCreated(view, savedInstanceState)
+	override fun onViewCreated(view: View, savedInstanceState: Bundle?)
+	{
+		super.onViewCreated(view, savedInstanceState)
 
-        initUi()
-    }
+		initUi()
+	}
 
-    private fun initUi()
-    {
-        testInfo = arguments?.getParcelable(EXTRA_TEST_INFO)!!
+	private fun initUi()
+	{
+		testInfo = arguments?.getParcelable(EXTRA_TEST_INFO)!!
 
-        binding.apply()
-        {
-            testInfo.apply()
-            {
-                tvOpm.text = "$opm"
-                tvRawOpm.text = "$rawOpm"
-                tvTime.text = "$timeInSeconds s"
-                tvOperations.text = "$operationCount"
-                tvErrors.text = "$errorCount"
-            }
+		binding.apply()
+		{
+			testInfo.apply()
+			{
+				tvOpm.text = "$opm"
+				tvRawOpm.text = "$rawOpm"
+				tvTime.text = "$timeInSeconds s"
+				tvOperations.text = "$operationCount"
+				tvErrors.text = "$errorCount"
+			}
 
-            btnContinue.setOnClickListener { navigate(R.id.action_testEndFragment_to_homeFragment) }
-        }
+			btnContinue.setOnClickListener { navigate(R.id.action_testEndFragment_to_homeFragment) }
+		}
 
-        initLineChart(testInfo)
-    }
+		initLineChart(testInfo)
+	}
 
-    private fun initLineChart(testInfo: TestInfo)
-    {
-        val lineDataSets = arrayOf(
-            lineDataSet(
-                labelResId = R.string.generic_raw,
-                lineAndCirclesColorResId = R.color.default_chart_25,
-                entries = testInfo.rawOpmPerSecond.toEntries(),
-            ),
-            lineDataSet(
-                labelResId = R.string.generic_opm,
-                entries = testInfo.opmPerSecond.toEntries(),
-            ),
-        )
+	private fun initLineChart(testInfo: TestInfo)
+	{
+		val lineDataSets = arrayOf(
+			lineDataSet(
+				labelResId = R.string.generic_raw,
+				lineAndCirclesColorResId = R.color.default_chart_25,
+				entries = testInfo.rawOpmPerSecond.toEntries(),
+			),
+			lineDataSet(
+				labelResId = R.string.generic_opm,
+				entries = testInfo.opmPerSecond.toEntries(),
+			),
+		)
 
-        binding.lcTestGraph.applyDefault(dataSets = lineDataSets)
-    }
+		binding.lcTestGraph.applyDefault(dataSets = lineDataSets)
+	}
 }

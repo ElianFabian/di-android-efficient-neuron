@@ -9,17 +9,17 @@ import com.elian.computeit.R
 
 class SettingsFragment : PreferenceFragmentCompat()
 {
-    // This is to make sure that the settings fragment is not transparent
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View
-    {
-        val view = super.onCreateView(inflater, container, savedInstanceState)
-        view.setBackgroundColor(resources.getColor(R.color.blue_200))
+	// This is to make sure that the settings fragment is not transparent
+	override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View
+	{
+		val view = super.onCreateView(inflater, container, savedInstanceState)
+		view.setBackgroundColor(resources.getColor(R.color.blue_200))
 
-        return view
-    }
+		return view
+	}
 
-    override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?)
-    {
-        setPreferencesFromResource(R.xml.root_preferences, rootKey)
-    }
+	override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?)
+	{
+		setPreferencesFromResource(R.xml.root_preferences, rootKey)
+	}
 }

@@ -26,49 +26,49 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class EditProfileFragment : Fragment(R.layout.fragment_edit_profile)
 {
-    private val viewModel by viewModels<EditProfileViewModel>()
-    private val binding by viewBinding(FragmentEditProfileBinding::bind)
+	private val viewModel by viewModels<EditProfileViewModel>()
+	private val binding by viewBinding(FragmentEditProfileBinding::bind)
 
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?)
-    {
-        super.onViewCreated(view, savedInstanceState)
+	override fun onViewCreated(view: View, savedInstanceState: Bundle?)
+	{
+		super.onViewCreated(view, savedInstanceState)
 
-        subscribeToEvents()
-        initUi()
-    }
+		subscribeToEvents()
+		initUi()
+	}
 
 
-    private fun initUi() = binding.apply2()
-    {
-        tietUsername.addTextChangedListener { viewModel.onAction(EnterUsername("$it".trim())) }
-        tietBiography.addTextChangedListener { viewModel.onAction(EnterBiography("$it".trim().trimWhitespacesBeforeNewLine())) }
+	private fun initUi() = binding.apply2()
+	{
+		tietUsername.addTextChangedListener { viewModel.onAction(EnterUsername("$it".trim())) }
+		tietBiography.addTextChangedListener { viewModel.onAction(EnterBiography("$it".trim().trimWhitespacesBeforeNewLine())) }
 
-        btnSave.setOnClickListener { viewModel.onAction(Save) }
+		btnSave.setOnClickListener { viewModel.onAction(Save) }
 
-        lifecycleScope.launch()
-        {
-            viewModel.getProfileInfo().collect()
-            {
-                tietUsername.setText(it.username)
-                tietBiography.setText(it.biography)
-            }
-        }
-    }
+		lifecycleScope.launch()
+		{
+			viewModel.getProfileInfo().collect()
+			{
+				tietUsername.setText(it.username)
+				tietBiography.setText(it.biography)
+			}
+		}
+	}
 
-    private fun subscribeToEvents() = viewModel.apply2()
-    {
-        collectFlowWhenStarted(eventFlow)
-        {
-            when (it)
-            {
-                is OnSave             -> toast(R.string.message_info_successfully_updated)
-                is OnShowErrorMessage -> toast(it.error.asString(context))
-            }
-        }
-        collectLatestFlowWhenStarted(usernameState.map { it.error })
-        {
-            binding.tilUsername.error2 = getUsernameErrorMessage(context, it)
-        }
-    }
+	private fun subscribeToEvents() = viewModel.apply2()
+	{
+		collectFlowWhenStarted(eventFlow)
+		{
+			when (it)
+			{
+				is OnSave             -> toast(R.string.message_info_successfully_updated)
+				is OnShowErrorMessage -> toast(it.error.asString(context))
+			}
+		}
+		collectLatestFlowWhenStarted(usernameState.map { it.error })
+		{
+			binding.tilUsername.error2 = getUsernameErrorMessage(context, it)
+		}
+	}
 }

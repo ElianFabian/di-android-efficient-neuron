@@ -23,72 +23,72 @@ import kotlinx.coroutines.flow.map
 @AndroidEntryPoint
 class TestConfigurationFragment : Fragment(R.layout.fragment_test_configuration)
 {
-    private val viewModel by viewModels<TestConfigurationViewModel>()
-    private val binding by viewBinding(FragmentTestConfigurationBinding::bind)
+	private val viewModel by viewModels<TestConfigurationViewModel>()
+	private val binding by viewBinding(FragmentTestConfigurationBinding::bind)
 
-    private lateinit var _lastCheckedOperationRadioButton: RadioButton
-
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?)
-    {
-        super.onViewCreated(view, savedInstanceState)
-
-        initUI()
-        subscribeToEvents()
-    }
+	private lateinit var _lastCheckedOperationRadioButton: RadioButton
 
 
-    private fun initUI() = binding.apply2()
-    {
-        rgOperationType.findViewsWithTagOfType<RadioButton>(R.string.tag_operation_type).forEach { radioButton ->
+	override fun onViewCreated(view: View, savedInstanceState: Bundle?)
+	{
+		super.onViewCreated(view, savedInstanceState)
 
-            radioButton.setOnClickListener()
-            {
-                _lastCheckedOperationRadioButton = radioButton
+		initUI()
+		subscribeToEvents()
+	}
 
-                viewModel.onAction(SelectOperationType(symbol = radioButton.text.toString()))
-            }
-        }
 
-        // This is to avoid problems when saving the RadioButton checked state after navigating up from test to here
-        if (!::_lastCheckedOperationRadioButton.isInitialized)
-        {
-            _lastCheckedOperationRadioButton = rgOperationType.checkedRadioButton!!
-        }
-        _lastCheckedOperationRadioButton.performClick()
+	private fun initUI() = binding.apply2()
+	{
+		rgOperationType.findViewsWithTagOfType<RadioButton>(R.string.tag_operation_type).forEach { radioButton ->
 
-        tietMinValue.addTextChangedListener { viewModel.onAction(EnterMinValue(it.toString().toIntOrNull())) }
-        tietMaxValue.addTextChangedListener { viewModel.onAction(EnterMaxValue(it.toString().toIntOrNull())) }
-        tietTime.addTextChangedListener { viewModel.onAction(EnterTime(it.toString().toIntOrNull())) }
+			radioButton.setOnClickListener()
+			{
+				_lastCheckedOperationRadioButton = radioButton
 
-        btnStartTest.setOnClickListener { viewModel.onAction(StartTest) }
-    }
+				viewModel.onAction(SelectOperationType(symbol = radioButton.text.toString()))
+			}
+		}
 
-    private fun subscribeToEvents() = viewModel.apply2()
-    {
-        collectFlowWhenStarted(eventFlow)
-        {
-            when (it)
-            {
-                is OnStart            ->
-                {
-                    navigateSafe(
-                        action = R.id.action_testConfigurationFragment_to_testFragment,
-                        args = bundleOf(*it.args.toTypedArray()),
-                        currentDestination = R.id.testConfigurationFragment,
-                    )
-                }
-                is OnShowErrorMessage -> toast(it.error.asString(context))
-            }
-        }
-        collectLatestFlowWhenStarted(minValueState.map { it.error }) { binding.tietMinValue.error = getFieldError(it) }
-        collectLatestFlowWhenStarted(maxValueState.map { it.error }) { binding.tietMaxValue.error = getFieldError(it) }
-        collectLatestFlowWhenStarted(timeState.map { it.error }) { binding.tietTime.error = getFieldError(it) }
-    }
+		// This is to avoid problems when saving the RadioButton checked state after navigating up from test to here
+		if (!::_lastCheckedOperationRadioButton.isInitialized)
+		{
+			_lastCheckedOperationRadioButton = rgOperationType.checkedRadioButton!!
+		}
+		_lastCheckedOperationRadioButton.performClick()
 
-    private fun getFieldError(error: Error?) = when (error)
-    {
-        is NumericFieldError.Empty -> getString(R.string.error_cant_be_empty)
-        else                       -> null
-    }
+		tietMinValue.addTextChangedListener { viewModel.onAction(EnterMinValue(it.toString().toIntOrNull())) }
+		tietMaxValue.addTextChangedListener { viewModel.onAction(EnterMaxValue(it.toString().toIntOrNull())) }
+		tietTime.addTextChangedListener { viewModel.onAction(EnterTime(it.toString().toIntOrNull())) }
+
+		btnStartTest.setOnClickListener { viewModel.onAction(StartTest) }
+	}
+
+	private fun subscribeToEvents() = viewModel.apply2()
+	{
+		collectFlowWhenStarted(eventFlow)
+		{
+			when (it)
+			{
+				is OnStart            ->
+				{
+					navigateSafe(
+						action = R.id.action_testConfigurationFragment_to_testFragment,
+						args = bundleOf(*it.args.toTypedArray()),
+						currentDestination = R.id.testConfigurationFragment,
+					)
+				}
+				is OnShowErrorMessage -> toast(it.error.asString(context))
+			}
+		}
+		collectLatestFlowWhenStarted(minValueState.map { it.error }) { binding.tietMinValue.error = getFieldError(it) }
+		collectLatestFlowWhenStarted(maxValueState.map { it.error }) { binding.tietMaxValue.error = getFieldError(it) }
+		collectLatestFlowWhenStarted(timeState.map { it.error }) { binding.tietTime.error = getFieldError(it) }
+	}
+
+	private fun getFieldError(error: Error?) = when (error)
+	{
+		is NumericFieldError.Empty -> getString(R.string.error_cant_be_empty)
+		else                       -> null
+	}
 }

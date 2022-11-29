@@ -4,10 +4,10 @@ import android.widget.TextView
 import androidx.core.view.isGone
 
 var TextView.text2: CharSequence
-    get() = text
-    set(value)
-    {
-        text = value
+	get() = text
+	set(value)
+	{
+		text = value
 
-        isGone = text.isNullOrBlank()
-    }
+		isGone = text.isNullOrBlank()
+	}

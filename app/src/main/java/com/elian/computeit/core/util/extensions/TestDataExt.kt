@@ -4,39 +4,39 @@ import com.elian.computeit.core.domain.models.OperationData
 import com.elian.computeit.core.domain.models.TestData
 
 private fun TestData.getValuePerSecond(
-    getCountSinceStartFromCondition: (testData: OperationData) -> Boolean = { true },
-    getValue: (currentSecond: Int, countSinceStart: Int) -> Float,
+	getCountSinceStartFromCondition: (testData: OperationData) -> Boolean = { true },
+	getValue: (currentSecond: Int, countSinceStart: Int) -> Float,
 ): Map<Int, Int>
 {
-    val start = 1
-    val end = testTimeInSeconds
+	val start = 1
+	val end = testTimeInSeconds
 
-    return (start..end).associateWith { currentSecond ->
+	return (start..end).associateWith { currentSecond ->
 
-        val countSinceStart = operationDataList.count()
-        {
-            getCountSinceStartFromCondition(it) && it.millisSinceStart < currentSecond * 1000
-        }
+		val countSinceStart = operationDataList.count()
+		{
+			getCountSinceStartFromCondition(it) && it.millisSinceStart < currentSecond * 1000
+		}
 
-        val value = getValue(currentSecond, countSinceStart)
+		val value = getValue(currentSecond, countSinceStart)
 
-        value.ifNaNReturnZero().toInt()
-    }
+		value.ifNaNReturnZero().toInt()
+	}
 }
 
 val TestData.opmPerSecond
-    get() = getValuePerSecond(
-        getCountSinceStartFromCondition = { !it.isError },
-        getValue = { currentSecond, testCountSinceStart ->
-            testCountSinceStart / currentSecond.toFloat() * 60
-        },
-    )
+	get() = getValuePerSecond(
+		getCountSinceStartFromCondition = { !it.isError },
+		getValue = { currentSecond, testCountSinceStart ->
+			testCountSinceStart / currentSecond.toFloat() * 60
+		},
+	)
 val TestData.rawOpmPerSecond
-    get() = getValuePerSecond(
-        getValue = { currentSecond, testCountSinceStart ->
-            testCountSinceStart / currentSecond.toFloat() * 60
-        },
-    )
+	get() = getValuePerSecond(
+		getValue = { currentSecond, testCountSinceStart ->
+			testCountSinceStart / currentSecond.toFloat() * 60
+		},
+	)
 val TestData.opm get() = opmPerSecond.values.lastOrNull() ?: 0
 val TestData.rawOpm get() = rawOpmPerSecond.values.lastOrNull() ?: 0
 val TestData.errorCount get() = operationDataList.count { it.isError }

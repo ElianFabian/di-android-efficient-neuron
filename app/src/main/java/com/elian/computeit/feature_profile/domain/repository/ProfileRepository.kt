@@ -6,13 +6,13 @@ import kotlinx.coroutines.flow.Flow
 
 interface ProfileRepository
 {
-    fun getProfileInfo(): Flow<ProfileInfo>
+	fun getProfileInfo(): Flow<ProfileInfo>
 
-    suspend fun updateProfileInfo(
-        username: String,
-        biography: String,
-        //profilePicUrl: Uri
-    ): SimpleResource
+	suspend fun updateProfileInfo(
+		username: String,
+		biography: String,
+		//profilePicUrl: Uri
+	): SimpleResource
 
-    suspend fun logout()
+	suspend fun logout()
 }

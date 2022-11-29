@@ -1,128 +1,128 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.core.widget.NestedScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:animateLayoutChanges="true"
-    android:fillViewport="true">
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:animateLayoutChanges="true"
+	android:fillViewport="true">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:animateLayoutChanges="true"
-        android:background="@color/background_dark"
-        android:gravity="center_horizontal"
-        android:orientation="vertical"
-        android:paddingHorizontal="@dimen/_10sdp"
-        android:paddingVertical="@dimen/_20sdp">
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:animateLayoutChanges="true"
+		android:background="@color/background_dark"
+		android:gravity="center_horizontal"
+		android:orientation="vertical"
+		android:paddingHorizontal="@dimen/_10sdp"
+		android:paddingVertical="@dimen/_20sdp">
 
-        <ProgressBar
-            android:id="@+id/lpiIsLoading"
-            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:indeterminate="true"
-            android:indeterminateTint="?colorPrimary"
-            android:visibility="gone"
-            app:trackCornerRadius="@dimen/_10sdp"
-            tools:visibility="visible" />
+		<ProgressBar
+			android:id="@+id/lpiIsLoading"
+			style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:indeterminate="true"
+			android:indeterminateTint="?colorPrimary"
+			android:visibility="gone"
+			app:trackCornerRadius="@dimen/_10sdp"
+			tools:visibility="visible" />
 
-        <androidx.appcompat.widget.LinearLayoutCompat
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="@dimen/_25sdp"
-            android:gravity="center_horizontal"
-            android:orientation="horizontal">
+		<androidx.appcompat.widget.LinearLayoutCompat
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginVertical="@dimen/_25sdp"
+			android:gravity="center_horizontal"
+			android:orientation="horizontal">
 
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/sivGoToTestConfiguration"
-                android:layout_width="@dimen/_43sdp"
-                android:layout_height="@dimen/_43sdp"
-                android:layout_marginHorizontal="@dimen/_8sdp"
-                android:tint="@color/white"
-                app:srcCompat="@drawable/ic_play_arrow" />
+			<com.google.android.material.imageview.ShapeableImageView
+				android:id="@+id/sivGoToTestConfiguration"
+				android:layout_width="@dimen/_43sdp"
+				android:layout_height="@dimen/_43sdp"
+				android:layout_marginHorizontal="@dimen/_8sdp"
+				android:tint="@color/white"
+				app:srcCompat="@drawable/ic_play_arrow" />
 
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/sivGoToStatistics"
-                android:layout_width="@dimen/_43sdp"
-                android:layout_height="@dimen/_43sdp"
-                android:layout_marginHorizontal="@dimen/_8sdp"
-                android:tint="@color/blue_gray_800"
-                app:srcCompat="@drawable/ic_statistics" />
+			<com.google.android.material.imageview.ShapeableImageView
+				android:id="@+id/sivGoToStatistics"
+				android:layout_width="@dimen/_43sdp"
+				android:layout_height="@dimen/_43sdp"
+				android:layout_marginHorizontal="@dimen/_8sdp"
+				android:tint="@color/blue_gray_800"
+				app:srcCompat="@drawable/ic_statistics" />
 
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/sivGoToTips"
-                android:layout_width="@dimen/_43sdp"
-                android:layout_height="@dimen/_43sdp"
-                android:layout_marginHorizontal="@dimen/_8sdp"
-                android:tint="@color/blue_gray_800"
-                app:srcCompat="@drawable/ic_tips" />
+			<com.google.android.material.imageview.ShapeableImageView
+				android:id="@+id/sivGoToTips"
+				android:layout_width="@dimen/_43sdp"
+				android:layout_height="@dimen/_43sdp"
+				android:layout_marginHorizontal="@dimen/_8sdp"
+				android:tint="@color/blue_gray_800"
+				app:srcCompat="@drawable/ic_tips" />
 
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/sivGoToProfile"
-                android:layout_width="@dimen/_43sdp"
-                android:layout_height="@dimen/_43sdp"
-                android:layout_marginHorizontal="@dimen/_8sdp"
-                android:tint="@color/white"
-                app:srcCompat="@drawable/ic_profile" />
+			<com.google.android.material.imageview.ShapeableImageView
+				android:id="@+id/sivGoToProfile"
+				android:layout_width="@dimen/_43sdp"
+				android:layout_height="@dimen/_43sdp"
+				android:layout_marginHorizontal="@dimen/_8sdp"
+				android:tint="@color/white"
+				app:srcCompat="@drawable/ic_profile" />
 
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/sivGoToSettings"
-                android:layout_width="@dimen/_43sdp"
-                android:layout_height="@dimen/_43sdp"
-                android:layout_marginHorizontal="@dimen/_8sdp"
-                android:tint="@color/blue_gray_800"
-                app:srcCompat="@drawable/ic_settings" />
+			<com.google.android.material.imageview.ShapeableImageView
+				android:id="@+id/sivGoToSettings"
+				android:layout_width="@dimen/_43sdp"
+				android:layout_height="@dimen/_43sdp"
+				android:layout_marginHorizontal="@dimen/_8sdp"
+				android:tint="@color/blue_gray_800"
+				app:srcCompat="@drawable/ic_settings" />
 
-        </androidx.appcompat.widget.LinearLayoutCompat>
+		</androidx.appcompat.widget.LinearLayoutCompat>
 
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:animateLayoutChanges="true"
-            android:backgroundTint="@color/background_card"
-            app:cardCornerRadius="@dimen/_10sdp">
+		<com.google.android.material.card.MaterialCardView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:animateLayoutChanges="true"
+			android:backgroundTint="@color/background_card"
+			app:cardCornerRadius="@dimen/_10sdp">
 
-            <View
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/_150sdp" />
+			<View
+				android:layout_width="wrap_content"
+				android:layout_height="@dimen/_150sdp" />
 
-            <com.github.mikephil.charting.charts.LineChart
-                android:id="@+id/lcOpmPerTest"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_200sdp"
-                android:layout_marginVertical="@dimen/_5sdp"
-                android:background="@color/background_card"
-                android:visibility="gone"
-                tools:visibility="visible" />
+			<com.github.mikephil.charting.charts.LineChart
+				android:id="@+id/lcOpmPerTest"
+				android:layout_width="match_parent"
+				android:layout_height="@dimen/_200sdp"
+				android:layout_marginVertical="@dimen/_5sdp"
+				android:background="@color/background_card"
+				android:visibility="gone"
+				tools:visibility="visible" />
 
-        </com.google.android.material.card.MaterialCardView>
+		</com.google.android.material.card.MaterialCardView>
 
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_15sdp"
-            android:backgroundTint="@color/background_card"
-            app:cardCornerRadius="@dimen/_10sdp">
+		<com.google.android.material.card.MaterialCardView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="@dimen/_15sdp"
+			android:backgroundTint="@color/background_card"
+			app:cardCornerRadius="@dimen/_10sdp">
 
-            <View
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/_150sdp" />
+			<View
+				android:layout_width="wrap_content"
+				android:layout_height="@dimen/_150sdp" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvLabeledData"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/background_card"
-                android:padding="@dimen/_10sdp"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:itemCount="5"
-                tools:listitem="@layout/item_labeled_data" />
+			<androidx.recyclerview.widget.RecyclerView
+				android:id="@+id/rvLabeledData"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:background="@color/background_card"
+				android:padding="@dimen/_10sdp"
+				app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+				tools:itemCount="5"
+				tools:listitem="@layout/item_labeled_data" />
 
-        </com.google.android.material.card.MaterialCardView>
+		</com.google.android.material.card.MaterialCardView>
 
-    </LinearLayout>
+	</LinearLayout>
 
 </androidx.core.widget.NestedScrollView>

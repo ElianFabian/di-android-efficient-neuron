@@ -19,50 +19,50 @@ import javax.inject.Inject
 
 @HiltViewModel
 class LoginViewModel @Inject constructor(
-    private val login: Login,
+	private val login: Login,
 ) : ViewModel()
 {
-    private val _eventFlow = Channel<LoginEvent>()
-    val eventFlow = _eventFlow.receiveAsFlow()
+	private val _eventFlow = Channel<LoginEvent>()
+	val eventFlow = _eventFlow.receiveAsFlow()
 
-    private val _loadingState = MutableStateFlow(false)
-    val loadingState = _loadingState.asStateFlow()
+	private val _loadingState = MutableStateFlow(false)
+	val loadingState = _loadingState.asStateFlow()
 
-    private val _usernameState = MutableStateFlow(TextFieldState())
-    val usernameState = _usernameState.asStateFlow()
+	private val _usernameState = MutableStateFlow(TextFieldState())
+	val usernameState = _usernameState.asStateFlow()
 
-    private val _passwordState = MutableStateFlow(TextFieldState())
-    val passwordState = _passwordState.asStateFlow()
+	private val _passwordState = MutableStateFlow(TextFieldState())
+	val passwordState = _passwordState.asStateFlow()
 
 
-    fun onAction(action: LoginAction)
-    {
-        when (action)
-        {
-            is LoginAction.EnterUsername -> _usernameState.update { it.copy(text = action.value, error = null) }
-            is LoginAction.EnterPassword -> _passwordState.update { it.copy(text = action.value, error = null) }
-            is LoginAction.Login         -> viewModelScope.launch()
-            {
-                _loadingState.value = true
+	fun onAction(action: LoginAction)
+	{
+		when (action)
+		{
+			is LoginAction.EnterUsername -> _usernameState.update { it.copy(text = action.value, error = null) }
+			is LoginAction.EnterPassword -> _passwordState.update { it.copy(text = action.value, error = null) }
+			is LoginAction.Login         -> viewModelScope.launch()
+			{
+				_loadingState.value = true
 
-                login(
-                    username = _usernameState.value.text,
-                    password = _passwordState.value.text,
-                ).also { result ->
+				login(
+					username = _usernameState.value.text,
+					password = _passwordState.value.text,
+				).also { result ->
 
-                    _usernameState.update { it.copy(error = result.usernameError) }
-                    _passwordState.update { it.copy(error = result.passwordError) }
+					_usernameState.update { it.copy(error = result.usernameError) }
+					_passwordState.update { it.copy(error = result.passwordError) }
 
-                    when (val resource = result.resource)
-                    {
-                        is Resource.Error   -> _eventFlow.send(OnShowErrorMessage(resource.uiText ?: UiText.unknownError()))
-                        is Resource.Success -> _eventFlow.send(OnLogin)
-                        else                -> Unit
-                    }
-                }
+					when (val resource = result.resource)
+					{
+						is Resource.Error   -> _eventFlow.send(OnShowErrorMessage(resource.uiText ?: UiText.unknownError()))
+						is Resource.Success -> _eventFlow.send(OnLogin)
+						else                -> Unit
+					}
+				}
 
-                _loadingState.value = false
-            }
-        }
-    }
+				_loadingState.value = false
+			}
+		}
+	}
 }

@@ -16,46 +16,46 @@ import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
 
 class TestDataRepositoryImpl @Inject constructor(
-    private val firestore: FirebaseFirestore,
-    private val appRepository: LocalAppDataRepository,
+	private val firestore: FirebaseFirestore,
+	private val appRepository: LocalAppDataRepository,
 ) : TestDataRepository
 {
-    override suspend fun addTestData(testData: TestData)
-    {
-        getUserDataRef().update(UserData::testDataList.name, FieldValue.arrayUnion(testData))
-    }
+	override suspend fun addTestData(testData: TestData)
+	{
+		getUserDataRef().update(UserData::testDataList.name, FieldValue.arrayUnion(testData))
+	}
 
-    override fun getTestListInfo() = flow()
-    {
-        val listFromServer = getTestDataList()
+	override fun getTestListInfo() = flow()
+	{
+		val listFromServer = getTestDataList()
 
-        emit(listFromServer.toTestListInfo())
-    }
-
-
-    private suspend fun getTestDataList(): List<TestData>
-    {
-        return getUserDataRef()
-            .get()
-            .await()
-            .toObject<UserData>()!!.testDataList!!
-    }
+		emit(listFromServer.toTestListInfo())
+	}
 
 
-    private suspend fun getUserDataRef(): DocumentReference
-    {
-        val userUuid = appRepository.getUserUuid()!!
+	private suspend fun getTestDataList(): List<TestData>
+	{
+		return getUserDataRef()
+			.get()
+			.await()
+			.toObject<UserData>()!!.testDataList!!
+	}
 
-        val documentRef = firestore.document("$COLLECTION_USERS_DATA/$userUuid")
-        val snapShot = documentRef.get().await()
-        val userData = snapShot.toObject<UserData>()
 
-        return documentRef.apply()
-        {
-            if (!snapShot.exists() || userData?.testDataList == null)
-            {
-                set(UserData(emptyList()), SetOptions.merge())
-            }
-        }
-    }
+	private suspend fun getUserDataRef(): DocumentReference
+	{
+		val userUuid = appRepository.getUserUuid()!!
+
+		val documentRef = firestore.document("$COLLECTION_USERS_DATA/$userUuid")
+		val snapShot = documentRef.get().await()
+		val userData = snapShot.toObject<UserData>()
+
+		return documentRef.apply()
+		{
+			if (!snapShot.exists() || userData?.testDataList == null)
+			{
+				set(UserData(emptyList()), SetOptions.merge())
+			}
+		}
+	}
 }

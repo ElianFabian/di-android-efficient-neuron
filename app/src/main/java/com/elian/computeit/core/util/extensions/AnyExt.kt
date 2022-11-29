@@ -4,5 +4,5 @@ fun Any.format(format: String) = String.format(format, this)
 
 fun <T> T.apply2(block: T.() -> Unit)
 {
-    apply(block)
+	apply(block)
 }

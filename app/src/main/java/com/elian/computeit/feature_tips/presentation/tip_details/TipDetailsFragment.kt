@@ -9,14 +9,14 @@ import com.elian.computeit.databinding.FragmentTipDetailsBinding
 
 class TipDetailsFragment : Fragment()
 {
-    private lateinit var binding: FragmentTipDetailsBinding
+	private lateinit var binding: FragmentTipDetailsBinding
 
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?,
-    ): View
-    {
-        binding = FragmentTipDetailsBinding.inflate(inflater)
-        return binding.root
-    }
+	override fun onCreateView(
+		inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?,
+	): View
+	{
+		binding = FragmentTipDetailsBinding.inflate(inflater)
+		return binding.root
+	}
 }

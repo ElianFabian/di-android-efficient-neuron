@@ -9,26 +9,26 @@ import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineDataSet
 
 fun Fragment.lineDataSet(
-    entries: List<Entry>,
-    label: String? = null,
-    @StringRes labelResId: Int = 0,
-    @ColorRes lineAndCirclesColorResId: Int = R.color.default_chart,
-    block: (LineDataSet.() -> Unit)? = null,
+	entries: List<Entry>,
+	label: String? = null,
+	@StringRes labelResId: Int = 0,
+	@ColorRes lineAndCirclesColorResId: Int = R.color.default_chart,
+	block: (LineDataSet.() -> Unit)? = null,
 ): LineDataSet
 {
-    return LineDataSet(entries, label ?: getString(labelResId)).apply()
-    {
-        setDrawValues(false)
-        setDrawHorizontalHighlightIndicator(false)
-        setDrawVerticalHighlightIndicator(false)
+	return LineDataSet(entries, label ?: getString(labelResId)).apply()
+	{
+		setDrawValues(false)
+		setDrawHorizontalHighlightIndicator(false)
+		setDrawVerticalHighlightIndicator(false)
 
-        this.lineAndCirclesColor = getColorCompat(lineAndCirclesColorResId)
+		this.lineAndCirclesColor = getColorCompat(lineAndCirclesColorResId)
 
-        mode = LineDataSet.Mode.CUBIC_BEZIER
-        cubicIntensity = 0.2F
-        lineWidth = 2.2F
-        circleRadius = 3F
+		mode = LineDataSet.Mode.CUBIC_BEZIER
+		cubicIntensity = 0.2F
+		lineWidth = 2.2F
+		circleRadius = 3F
 
-        block?.invoke(this)
-    }
+		block?.invoke(this)
+	}
 }

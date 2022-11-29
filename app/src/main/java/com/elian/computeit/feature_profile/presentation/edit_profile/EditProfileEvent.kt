@@ -4,6 +4,6 @@ import com.elian.computeit.core.util.UiText
 
 sealed interface EditProfileEvent
 {
-    object OnSave : EditProfileEvent
-    data class OnShowErrorMessage(val error: UiText) : EditProfileEvent
+	object OnSave : EditProfileEvent
+	data class OnShowErrorMessage(val error: UiText) : EditProfileEvent
 }

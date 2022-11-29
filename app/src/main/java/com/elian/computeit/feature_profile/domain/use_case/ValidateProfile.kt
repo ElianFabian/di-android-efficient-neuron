@@ -7,27 +7,27 @@ import com.elian.computeit.feature_profile.domain.repository.ProfileRepository
 import javax.inject.Inject
 
 class ValidateProfile @Inject constructor(
-    private val repository: ProfileRepository,
+	private val repository: ProfileRepository,
 )
 {
-    suspend operator fun invoke(
-        username: String,
-        biography: String,
-        //profilePicUrl: Uri,
-    ): EditProfileResult
-    {
-        val usernameError = validateName(username)
+	suspend operator fun invoke(
+		username: String,
+		biography: String,
+		//profilePicUrl: Uri,
+	): EditProfileResult
+	{
+		val usernameError = validateName(username)
 
-        return if (checkIfError(usernameError))
-        {
-            EditProfileResult(
-                usernameError = usernameError,
-            )
-        }
-        else EditProfileResult(resource = repository.updateProfileInfo(
-            username = username,
-            biography = biography,
-            //profilePicUrl = profilePicUrl,
-        ))
-    }
+		return if (checkIfError(usernameError))
+		{
+			EditProfileResult(
+				usernameError = usernameError,
+			)
+		}
+		else EditProfileResult(resource = repository.updateProfileInfo(
+			username = username,
+			biography = biography,
+			//profilePicUrl = profilePicUrl,
+		))
+	}
 }

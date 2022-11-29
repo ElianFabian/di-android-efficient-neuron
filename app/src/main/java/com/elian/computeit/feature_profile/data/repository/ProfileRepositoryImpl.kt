@@ -18,61 +18,61 @@ import java.util.*
 import javax.inject.Inject
 
 class ProfileRepositoryImpl @Inject constructor(
-    private val firestore: FirebaseFirestore,
-    private val utilRepository: UtilRepository,
-    private val appRepository: LocalAppDataRepository,
+	private val firestore: FirebaseFirestore,
+	private val utilRepository: UtilRepository,
+	private val appRepository: LocalAppDataRepository,
 ) : ProfileRepository
 {
-    override fun getProfileInfo() = flow()
-    {
-        val userUuid = appRepository.getUserUuid()
+	override fun getProfileInfo() = flow()
+	{
+		val userUuid = appRepository.getUserUuid()
 
-        val user = firestore.document("$COLLECTION_USERS/$userUuid")
-            .get()
-            .await()
-            .toObject<User>()!!
+		val user = firestore.document("$COLLECTION_USERS/$userUuid")
+			.get()
+			.await()
+			.toObject<User>()!!
 
-        val profileInfo = user.run()
-        {
-            ProfileInfo(
-                username = name,
-                biography = biography,
-                profilePicUrl = profilePicUrl,
-                createdAt = dayMonthYearFormat.format(Date(createdAtInMillis)),
-            )
-        }
+		val profileInfo = user.run()
+		{
+			ProfileInfo(
+				username = name,
+				biography = biography,
+				profilePicUrl = profilePicUrl,
+				createdAt = dayMonthYearFormat.format(Date(createdAtInMillis)),
+			)
+		}
 
-        emit(profileInfo)
-    }
+		emit(profileInfo)
+	}
 
-    override suspend fun updateProfileInfo(
-        username: String,
-        biography: String,
-        //profilePicUrl: String,
-    ): SimpleResource
-    {
-        val userUuid = appRepository.getUserUuid()!!
+	override suspend fun updateProfileInfo(
+		username: String,
+		biography: String,
+		//profilePicUrl: String,
+	): SimpleResource
+	{
+		val userUuid = appRepository.getUserUuid()!!
 
-        val currentUsername = utilRepository.getUserByUuid(userUuid)!!.name
+		val currentUsername = utilRepository.getUserByUuid(userUuid)!!.name
 
-        utilRepository.getUserByName(username).let()
-        {
-            val isUsernameTaken = it != null && it.name != currentUsername && it.name == username
+		utilRepository.getUserByName(username).let()
+		{
+			val isUsernameTaken = it != null && it.name != currentUsername && it.name == username
 
-            if (isUsernameTaken) return Resource.Error(R.string.error_username_is_already_in_use)
-        }
+			if (isUsernameTaken) return Resource.Error(R.string.error_username_is_already_in_use)
+		}
 
-        firestore.document("$COLLECTION_USERS/$userUuid")
-            .update(
-                User::name.name, username,
-                User::biography.name, biography,
-            ).await()
+		firestore.document("$COLLECTION_USERS/$userUuid")
+			.update(
+				User::name.name, username,
+				User::biography.name, biography,
+			).await()
 
-        return Resource.Success()
-    }
+		return Resource.Success()
+	}
 
-    override suspend fun logout()
-    {
-        appRepository.saveUserUuid("")
-    }
+	override suspend fun logout()
+	{
+		appRepository.saveUserUuid("")
+	}
 }

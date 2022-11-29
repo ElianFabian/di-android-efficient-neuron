@@ -12,25 +12,25 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val getTestListInfo: GetTestListInfo,
+	private val getTestListInfo: GetTestListInfo,
 ) : ViewModel()
 {
-    init
-    {
-        viewModelScope.launch()
-        {
-            getTestListInfo().collect()
-            {
-                _infoState.value = it
-                _loadingState.value = false
-            }
-        }
-    }
+	init
+	{
+		viewModelScope.launch()
+		{
+			getTestListInfo().collect()
+			{
+				_infoState.value = it
+				_loadingState.value = false
+			}
+		}
+	}
 
 
-    private val _infoState = MutableStateFlow<TestListInfo?>(null)
-    val infoState = _infoState.asStateFlow()
+	private val _infoState = MutableStateFlow<TestListInfo?>(null)
+	val infoState = _infoState.asStateFlow()
 
-    private val _loadingState = MutableStateFlow(true)
-    val isLoadingState = _loadingState.asStateFlow()
+	private val _loadingState = MutableStateFlow(true)
+	val isLoadingState = _loadingState.asStateFlow()
 }

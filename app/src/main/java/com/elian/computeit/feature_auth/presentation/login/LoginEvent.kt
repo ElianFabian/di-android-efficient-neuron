@@ -4,6 +4,6 @@ import com.elian.computeit.core.util.UiText
 
 sealed interface LoginEvent
 {
-    object OnLogin : LoginEvent
-    data class OnShowErrorMessage(val error: UiText) : LoginEvent
+	object OnLogin : LoginEvent
+	data class OnShowErrorMessage(val error: UiText) : LoginEvent
 }

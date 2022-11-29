@@ -1,84 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
 
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/background_light"
-    android:orientation="vertical">
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:background="@color/background_light"
+	android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/tvTitle"
-        style="@style/Title"
-        android:text="@string/generic_register"
-        android:textColor="@color/black" />
+	<TextView
+		android:id="@+id/tvTitle"
+		style="@style/Title"
+		android:text="@string/generic_register"
+		android:textColor="@color/black" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tilUsername"
-        style="@style/Layout_TextInputLayout"
-        android:layout_marginTop="@dimen/_70sdp">
+	<com.google.android.material.textfield.TextInputLayout
+		android:id="@+id/tilUsername"
+		style="@style/Layout_TextInputLayout"
+		android:layout_marginTop="@dimen/_70sdp">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/tietUsername"
-            style="@style/TextInputEditTextStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/generic_username"
-            android:inputType="textMultiLine"
-            android:maxLines="2" />
-    </com.google.android.material.textfield.TextInputLayout>
+		<com.google.android.material.textfield.TextInputEditText
+			android:id="@+id/tietUsername"
+			style="@style/TextInputEditTextStyle"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:hint="@string/generic_username"
+			android:inputType="textMultiLine"
+			android:maxLines="2" />
+	</com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tilPassword"
-        style="@style/Layout_TextInputLayout"
-        android:layout_marginTop="@dimen/_15sdp"
-        app:passwordToggleEnabled="true">
+	<com.google.android.material.textfield.TextInputLayout
+		android:id="@+id/tilPassword"
+		style="@style/Layout_TextInputLayout"
+		android:layout_marginTop="@dimen/_15sdp"
+		app:passwordToggleEnabled="true">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/tietPassword"
-            style="@style/TextInputEditTextStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/generic_password"
-            android:inputType="textPassword"
-            android:maxLines="1" />
-    </com.google.android.material.textfield.TextInputLayout>
+		<com.google.android.material.textfield.TextInputEditText
+			android:id="@+id/tietPassword"
+			style="@style/TextInputEditTextStyle"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:hint="@string/generic_password"
+			android:inputType="textPassword"
+			android:maxLines="1" />
+	</com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tilConfirmPassword"
-        style="@style/Layout_TextInputLayout"
-        android:layout_marginTop="@dimen/_15sdp"
-        app:passwordToggleEnabled="true">
+	<com.google.android.material.textfield.TextInputLayout
+		android:id="@+id/tilConfirmPassword"
+		style="@style/Layout_TextInputLayout"
+		android:layout_marginTop="@dimen/_15sdp"
+		app:passwordToggleEnabled="true">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/tietConfirmPassword"
-            style="@style/TextInputEditTextStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/generic_confirm_password"
-            android:inputType="textPassword"
-            android:maxLines="1" />
-    </com.google.android.material.textfield.TextInputLayout>
+		<com.google.android.material.textfield.TextInputEditText
+			android:id="@+id/tietConfirmPassword"
+			style="@style/TextInputEditTextStyle"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:hint="@string/generic_confirm_password"
+			android:inputType="textPassword"
+			android:maxLines="1" />
+	</com.google.android.material.textfield.TextInputLayout>
 
-    <ProgressBar
-        android:id="@+id/pbLoading"
-        style="@style/Layout_ProgressBar"
-        android:layout_marginTop="@dimen/_30sdp"
+	<ProgressBar
+		android:id="@+id/pbLoading"
+		style="@style/Layout_ProgressBar"
+		android:layout_marginTop="@dimen/_30sdp"
 
-        tools:visibility="visible" />
+		tools:visibility="visible" />
 
-    <View style="@style/Utils_LinearLayoutSeparator" />
+	<View style="@style/Utils_LinearLayoutSeparator" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnRegister"
-        style="@style/ButtonStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="@dimen/_20sdp"
-        android:text="@string/generic_register" />
+	<com.google.android.material.button.MaterialButton
+		android:id="@+id/btnRegister"
+		style="@style/ButtonStyle"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_gravity="center_horizontal"
+		android:layout_marginBottom="@dimen/_20sdp"
+		android:text="@string/generic_register" />
 
 </LinearLayout>

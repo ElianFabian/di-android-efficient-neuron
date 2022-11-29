@@ -32,103 +32,103 @@ import kotlin.math.sign
 
 @HiltViewModel
 class TestViewModel @Inject constructor(
-    savedState: SavedStateHandle,
-    private val countDownTimer: CountDownTimer,
-    private val addTestData: AddTestData,
-    private val getRandomNumberPair: GetRandomNumberPair,
+	savedState: SavedStateHandle,
+	private val countDownTimer: CountDownTimer,
+	private val addTestData: AddTestData,
+	private val getRandomNumberPair: GetRandomNumberPair,
 ) : ViewModel()
 {
-    private val _totalTimeInMillis = savedState.get<Int>(EXTRA_TEST_TIME_IN_SECONDS)!! * 1_000L
-    private val _range = savedState.get<Range>(EXTRA_OPERATION_NUMBER_RANGE)!!
-    private val _operation = savedState.get<Operation>(EXTRA_OPERATION_TYPE)!!
+	private val _totalTimeInMillis = savedState.get<Int>(EXTRA_TEST_TIME_IN_SECONDS)!! * 1_000L
+	private val _range = savedState.get<Range>(EXTRA_OPERATION_NUMBER_RANGE)!!
+	private val _operation = savedState.get<Operation>(EXTRA_OPERATION_TYPE)!!
 
-    private val _testDataList = mutableListOf<OperationData>()
+	private val _testDataList = mutableListOf<OperationData>()
 
-    private val _eventFlow = Channel<TestEvent>()
-    val eventFlow = _eventFlow.receiveAsFlow()
+	private val _eventFlow = Channel<TestEvent>()
+	val eventFlow = _eventFlow.receiveAsFlow()
 
-    private val _resultState = MutableStateFlow(0)
-    val resultState = _resultState.asStateFlow()
+	private val _resultState = MutableStateFlow(0)
+	val resultState = _resultState.asStateFlow()
 
-    private val _pairOfNumbersState = MutableStateFlow<NumberPair?>(null)
-    val pairOfNumbersState = _pairOfNumbersState.asStateFlow()
+	private val _pairOfNumbersState = MutableStateFlow<NumberPair?>(null)
+	val pairOfNumbersState = _pairOfNumbersState.asStateFlow()
 
-    private var _millisUntilFinish = _totalTimeInMillis
-    private val _millisSinceStart get() = _totalTimeInMillis - _millisUntilFinish
+	private var _millisUntilFinish = _totalTimeInMillis
+	private val _millisSinceStart get() = _totalTimeInMillis - _millisUntilFinish
 
-    init
-    {
-        countDownTimer.initialize(
-            millisInFuture = _totalTimeInMillis,
-            countDownInterval = 1L,
-            coroutineScope = viewModelScope,
-        )
+	init
+	{
+		countDownTimer.initialize(
+			millisInFuture = _totalTimeInMillis,
+			countDownInterval = 1L,
+			coroutineScope = viewModelScope,
+		)
 
-        viewModelScope.launch()
-        {
-            countDownTimer.timerEventFlow.collect()
-            {
-                when (it)
-                {
-                    is TimerEvent.OnStart  -> _pairOfNumbersState.value = getRandomNumberPair()
-                    is TimerEvent.OnTick   ->
-                    {
-                        _millisUntilFinish = it.millisUntilFinished
-                        _eventFlow.send(TestEvent.OnTimerTick(it.millisUntilFinished))
-                    }
-                    is TimerEvent.OnFinish ->
-                    {
-                        val testData = TestData(
-                            dateInSeconds = System.currentTimeMillis() / 1000,
-                            testTimeInSeconds = _millisSinceStart.toInt() / 1000,
-                            operationDataList = _testDataList.toList(),
-                            range = _range
-                        )
+		viewModelScope.launch()
+		{
+			countDownTimer.timerEventFlow.collect()
+			{
+				when (it)
+				{
+					is TimerEvent.OnStart  -> _pairOfNumbersState.value = getRandomNumberPair()
+					is TimerEvent.OnTick   ->
+					{
+						_millisUntilFinish = it.millisUntilFinished
+						_eventFlow.send(TestEvent.OnTimerTick(it.millisUntilFinished))
+					}
+					is TimerEvent.OnFinish ->
+					{
+						val testData = TestData(
+							dateInSeconds = System.currentTimeMillis() / 1000,
+							testTimeInSeconds = _millisSinceStart.toInt() / 1000,
+							operationDataList = _testDataList.toList(),
+							range = _range
+						)
 
-                        _eventFlow.send(TestEvent.OnTimerFinish(
-                            args = listOf(EXTRA_TEST_INFO to testData.toTestInfo())
-                        ))
+						_eventFlow.send(TestEvent.OnTimerFinish(
+							args = listOf(EXTRA_TEST_INFO to testData.toTestInfo())
+						))
 
-                        addTestData(testData)
-                    }
-                    else                   -> Unit
-                }
-            }
-        }
-    }
+						addTestData(testData)
+					}
+					else                   -> Unit
+				}
+			}
+		}
+	}
 
-    fun onAction(action: TestAction)
-    {
-        when (action)
-        {
-            is EnterNumber -> _resultState.update { it.append(action.value).clampLength(maxLength = 8) }
-            is ClearInput  -> _resultState.value = 0
-            is NextTest    ->
-            {
-                val expectedResult = _operation(
-                    firstNumber = _pairOfNumbersState.value!!.first,
-                    secondNumber = _pairOfNumbersState.value!!.second
-                )
+	fun onAction(action: TestAction)
+	{
+		when (action)
+		{
+			is EnterNumber -> _resultState.update { it.append(action.value).clampLength(maxLength = 8) }
+			is ClearInput  -> _resultState.value = 0
+			is NextTest    ->
+			{
+				val expectedResult = _operation(
+					firstNumber = _pairOfNumbersState.value!!.first,
+					secondNumber = _pairOfNumbersState.value!!.second
+				)
 
-                // As there's no negative sign button even if the answer it's negative you can introduce a positive number
-                // but when storing the data we save the value with the correct sign
-                val sign = sign(expectedResult.toFloat()).toInt()
+				// As there's no negative sign button even if the answer it's negative you can introduce a positive number
+				// but when storing the data we save the value with the correct sign
+				val sign = sign(expectedResult.toFloat()).toInt()
 
-                val data = OperationData(
-                    operation = _operation.symbol,
-                    pairOfNumbers = _pairOfNumbersState.value!!,
-                    insertedResult = _resultState.value * sign,
-                    expectedResult = expectedResult,
-                    millisSinceStart = _millisSinceStart
-                )
+				val data = OperationData(
+					operation = _operation.symbol,
+					pairOfNumbers = _pairOfNumbersState.value!!,
+					insertedResult = _resultState.value * sign,
+					expectedResult = expectedResult,
+					millisSinceStart = _millisSinceStart
+				)
 
-                _testDataList.add(data)
+				_testDataList.add(data)
 
-                _pairOfNumbersState.value = getRandomNumberPair(oldPair = _pairOfNumbersState.value)
-                _resultState.value = 0
-            }
-        }
-    }
+				_pairOfNumbersState.value = getRandomNumberPair(oldPair = _pairOfNumbersState.value)
+				_resultState.value = 0
+			}
+		}
+	}
 
-    fun startTimer() = countDownTimer.start()
+	fun startTimer() = countDownTimer.start()
 }

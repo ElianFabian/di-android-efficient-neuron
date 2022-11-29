@@ -7,78 +7,78 @@ import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
 import kotlin.math.ln
 
 var LineChart.isInteractionEnable: Boolean
-    get() = isDoubleTapToZoomEnabled && isScaleXEnabled
-    set(value)
-    {
-        isDoubleTapToZoomEnabled = value
-        setScaleEnabled(value)
-        setTouchEnabled(value)
-    }
+	get() = isDoubleTapToZoomEnabled && isScaleXEnabled
+	set(value)
+	{
+		isDoubleTapToZoomEnabled = value
+		setScaleEnabled(value)
+		setTouchEnabled(value)
+	}
 
 fun LineChart.applyDefaultStyle(block: (LineChart.() -> Unit)? = null): LineChart
 {
-    setDrawGridBackground(false)
-    description.isEnabled = false
-    axisRight.isEnabled = false
+	setDrawGridBackground(false)
+	description.isEnabled = false
+	axisRight.isEnabled = false
 
-    xAxis.apply()
-    {
-        setDrawGridLines(false)
-        granularity = 1F
-        this.textColor = Color.WHITE
-    }
-    axisLeft.apply()
-    {
-        setDrawGridLines(false)
-        granularity = 1F
-        this.textColor = Color.WHITE
-    }
-    legend.apply()
-    {
-        this.textColor = Color.WHITE
-    }
+	xAxis.apply()
+	{
+		setDrawGridLines(false)
+		granularity = 1F
+		this.textColor = Color.WHITE
+	}
+	axisLeft.apply()
+	{
+		setDrawGridLines(false)
+		granularity = 1F
+		this.textColor = Color.WHITE
+	}
+	legend.apply()
+	{
+		this.textColor = Color.WHITE
+	}
 
-    block?.invoke(this)
+	block?.invoke(this)
 
-    return this
+	return this
 }
 
 fun LineChart.applyDefaultConfiguration(block: (LineChart.() -> Unit)? = null): LineChart
 {
-    isDoubleTapToZoomEnabled = false
+	isDoubleTapToZoomEnabled = false
 
-    block?.invoke(this)
+	block?.invoke(this)
 
-    return this
+	return this
 }
 
 fun LineChart.applyDefaultAnimation(block: (LineChart.() -> Unit)? = null): LineChart
 {
-    val largestDataSetCount = this.data.dataSets.maxOfOrNull { it.entryCount } ?: 0
+	val largestDataSetCount = this.data.dataSets.maxOfOrNull { it.entryCount } ?: 0
 
-    val animationTime = ln(largestDataSetCount.toFloat() + 1).toInt() * 150
+	val animationTime = ln(largestDataSetCount.toFloat() + 1).toInt() * 150
 
-    animateX(animationTime)
+	animateX(animationTime)
 
-    block?.invoke(this)
+	block?.invoke(this)
 
-    return this
+	return this
 }
 
 fun LineChart.applyDefault(
-    animate: Boolean = true,
-    vararg dataSets: ILineDataSet,
-    block: (LineChart.() -> Unit)? = null,
+	animate: Boolean = true,
+	vararg dataSets: ILineDataSet,
+	block: (LineChart.() -> Unit)? = null,
 ): LineChart
 {
-    data = LineData(*dataSets)
+	data = LineData(*dataSets)
 
-    applyDefaultStyle()
-    applyDefaultConfiguration()
-    if (animate) applyDefaultAnimation()
+	applyDefaultStyle()
+	applyDefaultConfiguration()
+	if (animate) applyDefaultAnimation()
 
-    block?.invoke(this)
+	block?.invoke(this)
 
-    return this
+	return this
 }
     

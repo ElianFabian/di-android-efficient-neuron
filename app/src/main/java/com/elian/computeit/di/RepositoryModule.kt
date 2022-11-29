@@ -20,23 +20,23 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 interface RepositoryModule
 {
-    @Binds
-    @Singleton
-    fun bindUtilRepository(repository: UtilRepositoryImpl): UtilRepository
+	@Binds
+	@Singleton
+	fun bindUtilRepository(repository: UtilRepositoryImpl): UtilRepository
 
-    @Binds
-    @Singleton
-    fun bindAuthRepository(repository: AuthRepositoryImpl): AuthRepository
+	@Binds
+	@Singleton
+	fun bindAuthRepository(repository: AuthRepositoryImpl): AuthRepository
 
-    @Binds
-    @Singleton
-    fun bindTestDataRepository(repository: TestDataRepositoryImpl): TestDataRepository
+	@Binds
+	@Singleton
+	fun bindTestDataRepository(repository: TestDataRepositoryImpl): TestDataRepository
 
-    @Binds
-    @Singleton
-    fun bindProfileRepository(repository: ProfileRepositoryImpl): ProfileRepository
+	@Binds
+	@Singleton
+	fun bindProfileRepository(repository: ProfileRepositoryImpl): ProfileRepository
 
-    @Binds
-    @Singleton
-    fun bindLocalAppDataRepository(repository: LocalAppDataRepositoryImpl): LocalAppDataRepository
+	@Binds
+	@Singleton
+	fun bindLocalAppDataRepository(repository: LocalAppDataRepositoryImpl): LocalAppDataRepository
 }

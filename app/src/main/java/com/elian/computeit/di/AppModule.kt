@@ -20,14 +20,14 @@ val Context.dataStore by preferencesDataStore(name = DATA_STORE_PREFERENCES_NAME
 @InstallIn(SingletonComponent::class)
 object AppModule
 {
-    @Singleton
-    @Provides
-    fun provideDataStore(@ApplicationContext context: Context) = context.dataStore
+	@Singleton
+	@Provides
+	fun provideDataStore(@ApplicationContext context: Context) = context.dataStore
 
-    @Singleton
-    @Provides
-    fun provideFirestore() = Firebase.firestore
+	@Singleton
+	@Provides
+	fun provideFirestore() = Firebase.firestore
 
-    @Provides
-    fun provideCountDownTimer(): CountDownTimer = CountDownTimerImpl()
+	@Provides
+	fun provideCountDownTimer(): CountDownTimer = CountDownTimerImpl()
 }

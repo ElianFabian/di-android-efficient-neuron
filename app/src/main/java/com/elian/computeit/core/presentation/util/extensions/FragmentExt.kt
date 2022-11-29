@@ -17,31 +17,31 @@ fun Fragment.navigateUp() = findNavController().navigateUp()
  * java.lang.IllegalArgumentException: Navigation action/destination id/action_fromFragment_to_toFragment cannot be found from the current destination Destination(id/toFragment)
  */
 fun Fragment.navigateSafe(
-    @IdRes action: Int,
-    @IdRes currentDestination: Int,
-    args: Bundle? = null,
+	@IdRes action: Int,
+	@IdRes currentDestination: Int,
+	args: Bundle? = null,
 )
 {
-    if (findNavController().currentDestination?.id == currentDestination) navigate(action, args)
+	if (findNavController().currentDestination?.id == currentDestination) navigate(action, args)
 }
 
 inline fun <reified T : Activity> Fragment.navigateTo(
-    args: Bundle = Bundle(),
-    finish: Boolean = true,
+	args: Bundle = Bundle(),
+	finish: Boolean = true,
 )
 {
-    startActivity(Intent(context, T::class.java).putExtras(args))
-    if (finish) activity?.finish()
+	startActivity(Intent(context, T::class.java).putExtras(args))
+	if (finish) activity?.finish()
 }
 
 fun Fragment.toast(text: CharSequence, duration: Int = Toast.LENGTH_SHORT)
 {
-    Toast.makeText(context, text, duration).show()
+	Toast.makeText(context, text, duration).show()
 }
 
 fun Fragment.toast(@StringRes resId: Int, duration: Int = Toast.LENGTH_SHORT)
 {
-    Toast.makeText(context, resId, duration).show()
+	Toast.makeText(context, resId, duration).show()
 }
 
 @ColorInt

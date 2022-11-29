@@ -16,63 +16,63 @@ import com.elian.computeit.databinding.ItemTipBinding
 import com.elian.computeit.feature_tips.data.models.Tip
 
 class TipsFragment : Fragment(),
-    RecyclerViewAdapter.OnBindViewHolderListener<Tip>,
-    RecyclerViewAdapter.OnItemClickListener<Tip>,
-    RecyclerViewAdapter.OnItemLongClickListener<Tip>
+	RecyclerViewAdapter.OnBindViewHolderListener<Tip>,
+	RecyclerViewAdapter.OnItemClickListener<Tip>,
+	RecyclerViewAdapter.OnItemLongClickListener<Tip>
 {
-    private lateinit var binding: FragmentTipsBinding
-    private val tipAdapter = RecyclerViewAdapter<Tip>(itemLayout = R.layout.item_tip)
+	private lateinit var binding: FragmentTipsBinding
+	private val tipAdapter = RecyclerViewAdapter<Tip>(itemLayout = R.layout.item_tip)
 
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?,
-    ): View
-    {
-        binding = FragmentTipsBinding.inflate(inflater)
-        return binding.root
-    }
+	override fun onCreateView(
+		inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?,
+	): View
+	{
+		binding = FragmentTipsBinding.inflate(inflater)
+		return binding.root
+	}
 
-    override fun onStart()
-    {
-        super.onStart()
+	override fun onStart()
+	{
+		super.onStart()
 
-        initUI()
-    }
+		initUI()
+	}
 
 
-    private fun initUI()
-    {
-        initRecyclerViewAdapter()
-    }
+	private fun initUI()
+	{
+		initRecyclerViewAdapter()
+	}
 
-    private fun initRecyclerViewAdapter()
-    {
-        binding.rvTips.adapter = tipAdapter
-        binding.rvTips.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
+	private fun initRecyclerViewAdapter()
+	{
+		binding.rvTips.adapter = tipAdapter
+		binding.rvTips.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
 
-        tipAdapter.setOnBindViewHolderListener(this)
-        tipAdapter.setOnItemClickListener(this)
-        tipAdapter.setOnItemLongClickListener(this)
-    }
+		tipAdapter.setOnBindViewHolderListener(this)
+		tipAdapter.setOnItemClickListener(this)
+		tipAdapter.setOnItemLongClickListener(this)
+	}
 
-    override fun onBindViewHolder(view: View, item: Tip, position: Int)
-    {
-        ItemTipBinding.bind(view).apply()
-        {
-            tvTitle.text = item.title
-            tvExample.text = item.example
-        }
-    }
+	override fun onBindViewHolder(view: View, item: Tip, position: Int)
+	{
+		ItemTipBinding.bind(view).apply()
+		{
+			tvTitle.text = item.title
+			tvExample.text = item.example
+		}
+	}
 
-    override fun onItemClick(v: View?, selectedItem: Tip, position: Int)
-    {
-        // TODO:
-    }
+	override fun onItemClick(v: View?, selectedItem: Tip, position: Int)
+	{
+		// TODO:
+	}
 
-    override fun onItemLongClick(v: View?, selectedItem: Tip, position: Int): Boolean
-    {
-        toast("You long clicked a tip", Toast.LENGTH_SHORT)
+	override fun onItemLongClick(v: View?, selectedItem: Tip, position: Int): Boolean
+	{
+		toast("You long clicked a tip", Toast.LENGTH_SHORT)
 
-        return true
-    }
+		return true
+	}
 }

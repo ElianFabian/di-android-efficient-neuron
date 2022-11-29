@@ -9,5 +9,5 @@ suspend fun <T> DataStore<Preferences>.get(key: Preferences.Key<T>) = data.first
 
 suspend fun <T> DataStore<Preferences>.set(key: Preferences.Key<T>, value: T)
 {
-    edit { it[key] = value }
+	edit { it[key] = value }
 }

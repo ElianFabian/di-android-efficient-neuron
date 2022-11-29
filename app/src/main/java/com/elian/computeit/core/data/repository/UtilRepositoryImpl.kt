@@ -9,21 +9,21 @@ import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
 
 class UtilRepositoryImpl @Inject constructor(
-    private val firestore: FirebaseFirestore,
+	private val firestore: FirebaseFirestore,
 ) : UtilRepository
 {
-    override suspend fun getUserByUuid(uuid: String): User?
-    {
-        return firestore.document("$COLLECTION_USERS/$uuid").get().await().toObject()
-    }
+	override suspend fun getUserByUuid(uuid: String): User?
+	{
+		return firestore.document("$COLLECTION_USERS/$uuid").get().await().toObject()
+	}
 
-    override suspend fun getUserByName(name: String): User?
-    {
-        val users = firestore.collection(COLLECTION_USERS)
-            .whereEqualTo(User::name.name, name)
-            .get()
-            .await()
+	override suspend fun getUserByName(name: String): User?
+	{
+		val users = firestore.collection(COLLECTION_USERS)
+			.whereEqualTo(User::name.name, name)
+			.get()
+			.await()
 
-        return if (users.isEmpty) null else users.first().toObject()
-    }
+		return if (users.isEmpty) null else users.first().toObject()
+	}
 }

@@ -25,111 +25,111 @@ import kotlinx.coroutines.flow.filterNotNull
 @AndroidEntryPoint
 class HomeFragment : Fragment(R.layout.fragment_home)
 {
-    private val viewModel by viewModels<HomeViewModel>()
-    private val binding by viewBinding(FragmentHomeBinding::bind)
+	private val viewModel by viewModels<HomeViewModel>()
+	private val binding by viewBinding(FragmentHomeBinding::bind)
 
-    private var _isUiFinished = false
-
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?)
-    {
-        super.onViewCreated(view, savedInstanceState)
-
-        subscribeToEvents()
-        initUi()
-    }
+	private var _isUiFinished = false
 
 
-    private fun initUi()
-    {
-        binding.sivGoToTestConfiguration.setOnClickListener { navigate(R.id.action_homeFragment_to_testConfigurationFragment) }
-        binding.sivGoToProfile.setOnClickListener { navigate(R.id.action_homeFragment_to_profileFragment) }
+	override fun onViewCreated(view: View, savedInstanceState: Bundle?)
+	{
+		super.onViewCreated(view, savedInstanceState)
+
+		subscribeToEvents()
+		initUi()
+	}
+
+
+	private fun initUi()
+	{
+		binding.sivGoToTestConfiguration.setOnClickListener { navigate(R.id.action_homeFragment_to_testConfigurationFragment) }
+		binding.sivGoToProfile.setOnClickListener { navigate(R.id.action_homeFragment_to_profileFragment) }
 //        binding.sivGoToTips.setOnClickListener { navigate(R.id.action_homeFragment_to_tipsFragment) }
 //        binding.sivGoToSettings.setOnClickListener { navigate(R.id.action_homeFragment_to_settingsFragment) }
-    }
+	}
 
-    private fun subscribeToEvents() = viewModel.apply2()
-    {
-        collectLatestFlowWhenStarted(infoState.filterNotNull())
-        {
-            initLineChart(it)
-            initTextInfo(it)
-        }
-        collectFlowWhenStarted(isLoadingState) { binding.lpiIsLoading.isGone = !it }
-    }
+	private fun subscribeToEvents() = viewModel.apply2()
+	{
+		collectLatestFlowWhenStarted(infoState.filterNotNull())
+		{
+			initLineChart(it)
+			initTextInfo(it)
+		}
+		collectFlowWhenStarted(isLoadingState) { binding.lpiIsLoading.isGone = !it }
+	}
 
-    private fun initLineChart(info: TestListInfo) = info.apply2()
-    {
-        if (opmPerTest.isNotEmpty() || rawOpmPerTest.isNotEmpty())
-        {
-            val lineDataSets = arrayOf(
-                lineDataSet(
-                    labelResId = R.string.generic_raw,
-                    lineAndCirclesColorResId = R.color.default_chart_25,
-                    entries = rawOpmPerTest.toEntries(),
-                ) {
-                    setDrawVerticalHighlightIndicator(true)
-                    highLightColor = getColorCompat(R.color.blue_200)
-                },
-                lineDataSet(
-                    label = getString(R.string.generic_opm),
-                    entries = opmPerTest.toEntries(),
-                ) {
-                    setDrawVerticalHighlightIndicator(true)
-                    highLightColor = getColorCompat(R.color.blue_200)
-                },
-            )
+	private fun initLineChart(info: TestListInfo) = info.apply2()
+	{
+		if (opmPerTest.isNotEmpty() || rawOpmPerTest.isNotEmpty())
+		{
+			val lineDataSets = arrayOf(
+				lineDataSet(
+					labelResId = R.string.generic_raw,
+					lineAndCirclesColorResId = R.color.default_chart_25,
+					entries = rawOpmPerTest.toEntries(),
+				) {
+					setDrawVerticalHighlightIndicator(true)
+					highLightColor = getColorCompat(R.color.blue_200)
+				},
+				lineDataSet(
+					label = getString(R.string.generic_opm),
+					entries = opmPerTest.toEntries(),
+				) {
+					setDrawVerticalHighlightIndicator(true)
+					highLightColor = getColorCompat(R.color.blue_200)
+				},
+			)
 
-            binding.lcOpmPerTest.applyDefault(
-                animate = !_isUiFinished,
-                dataSets = lineDataSets,
-            )
-        }
-        else binding.lcOpmPerTest.apply()
-        {
-            setNoDataText(getString(R.string.no_data_available))
-            setNoDataTextColor(getThemeColor(R.attr.colorSecondary))
-        }
+			binding.lcOpmPerTest.applyDefault(
+				animate = !_isUiFinished,
+				dataSets = lineDataSets,
+			)
+		}
+		else binding.lcOpmPerTest.apply()
+		{
+			setNoDataText(getString(R.string.no_data_available))
+			setNoDataTextColor(getThemeColor(R.attr.colorSecondary))
+		}
 
-        binding.lcOpmPerTest.isVisible = true
-        _isUiFinished = true
-    }
+		binding.lcOpmPerTest.isVisible = true
+		_isUiFinished = true
+	}
 
-    private fun initTextInfo(info: TestListInfo) = info.apply2()
-    {
-        val uiLabeledDataList = listOf(
-            LabeledData(
-                label = getString(R.string.frgHomeFragment_testsCompleted),
-                value = "$testsCompleted",
-            ),
-            LabeledData(
-                label = getString(R.string.frgHomeFragment_operationsCompleted),
-                value = "$operationsCompleted",
-            ),
-            LabeledData(
-                label = getString(R.string.frgHomeFragment_correctOperationsCompleted),
-                value = "$correctOperationsCompleted (${correctOperationsCompletedPercentage.toInt()} %)",
-            ),
-            LabeledData(
-                label = getString(R.string.frgHomeFragment_averageOpm),
-                value = averageOpm.format(DEFAULT_DECIMAL_FORMAT),
-            ),
-            LabeledData(
-                label = getString(R.string.frgHomeFragment_averageRawOpm),
-                value = averageRawOpm.format(DEFAULT_DECIMAL_FORMAT),
-            ),
-            LabeledData(
-                label = getString(R.string.frgHomeFragment_highestOpm),
-                value = "$maxOpm",
-            ),
-            LabeledData(
-                label = getString(R.string.frgHomeFragment_highestRawOpm),
-                value = "$maxRawOpm",
-            ),
-        )
+	private fun initTextInfo(info: TestListInfo) = info.apply2()
+	{
+		val uiLabeledDataList = listOf(
+			LabeledData(
+				label = getString(R.string.frgHomeFragment_testsCompleted),
+				value = "$testsCompleted",
+			),
+			LabeledData(
+				label = getString(R.string.frgHomeFragment_operationsCompleted),
+				value = "$operationsCompleted",
+			),
+			LabeledData(
+				label = getString(R.string.frgHomeFragment_correctOperationsCompleted),
+				value = "$correctOperationsCompleted (${correctOperationsCompletedPercentage.toInt()} %)",
+			),
+			LabeledData(
+				label = getString(R.string.frgHomeFragment_averageOpm),
+				value = averageOpm.format(DEFAULT_DECIMAL_FORMAT),
+			),
+			LabeledData(
+				label = getString(R.string.frgHomeFragment_averageRawOpm),
+				value = averageRawOpm.format(DEFAULT_DECIMAL_FORMAT),
+			),
+			LabeledData(
+				label = getString(R.string.frgHomeFragment_highestOpm),
+				value = "$maxOpm",
+			),
+			LabeledData(
+				label = getString(R.string.frgHomeFragment_highestRawOpm),
+				value = "$maxRawOpm",
+			),
+		)
 
-        val adapter = LabeledDataAdapter()
-        binding.rvLabeledData.adapter = adapter
-        adapter.submitList(uiLabeledDataList)
-    }
+		val adapter = LabeledDataAdapter()
+		binding.rvLabeledData.adapter = adapter
+		adapter.submitList(uiLabeledDataList)
+	}
 }

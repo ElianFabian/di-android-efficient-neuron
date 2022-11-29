@@ -13,12 +13,12 @@ fun Context?.getColorCompat(@ColorRes id: Int) = ContextCompat.getColor(this!!, 
 @ColorInt
 fun Context?.getThemeColor(@AttrRes id: Int): Int
 {
-    val typedValue = TypedValue()
+	val typedValue = TypedValue()
 
-    val typedArray = this!!.obtainStyledAttributes(typedValue.data, intArrayOf(id))
-    val color = typedArray.getColor(0, 0)
+	val typedArray = this!!.obtainStyledAttributes(typedValue.data, intArrayOf(id))
+	val color = typedArray.getColor(0, 0)
 
-    typedArray.recycle()
+	typedArray.recycle()
 
-    return color
+	return color
 }   

@@ -15,21 +15,21 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class InitialActivity : AppCompatActivity()
 {
-    @Inject
-    lateinit var appRepository: LocalAppDataRepository
+	@Inject
+	lateinit var appRepository: LocalAppDataRepository
 
 
-    override fun onCreate(savedInstanceState: Bundle?)
-    {
-        super.onCreate(savedInstanceState)
+	override fun onCreate(savedInstanceState: Bundle?)
+	{
+		super.onCreate(savedInstanceState)
 
-        lifecycleScope.launch()
-        {
-            if (appRepository.isUserLoggedIn())
-            {
-                navigateTo<MainActivity>()
-            }
-            else navigateTo<LoginActivity>()
-        }
-    }
+		lifecycleScope.launch()
+		{
+			if (appRepository.isUserLoggedIn())
+			{
+				navigateTo<MainActivity>()
+			}
+			else navigateTo<LoginActivity>()
+		}
+	}
 }

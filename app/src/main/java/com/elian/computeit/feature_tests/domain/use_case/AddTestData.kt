@@ -5,8 +5,8 @@ import com.elian.computeit.core.domain.repository.TestDataRepository
 import javax.inject.Inject
 
 class AddTestData @Inject constructor(
-    private val repository: TestDataRepository,
+	private val repository: TestDataRepository,
 )
 {
-    suspend operator fun invoke(testData: TestData) = repository.addTestData(testData)
+	suspend operator fun invoke(testData: TestData) = repository.addTestData(testData)
 }

@@ -2,54 +2,54 @@
 
 <resources>
 
-    <!-- Most of the colors here are material colors taken from: https://m2.material.io/resources/color/ -->
-    <!-- For custom colors the name will be get from: https://www.color-blindness.com/color-name-hue/ -->
-    <!--
-    The naming convetion is the same as in the web, but to allow extra colors we use the light and dark versions of the colors.
-    To named you have to add and underscore and then 1 if you took the light version and 0 if dark.
-    In case you choose light or dark again recursively just continue adding 0s or 1s.
-    -->
+	<!-- Most of the colors here are material colors taken from: https://m2.material.io/resources/color/ -->
+	<!-- For custom colors the name will be get from: https://www.color-blindness.com/color-name-hue/ -->
+	<!--
+	The naming convetion is the same as in the web, but to allow extra colors we use the light and dark versions of the colors.
+	To named you have to add and underscore and then 1 if you took the light version and 0 if dark.
+	In case you choose light or dark again recursively just continue adding 0s or 1s.
+	-->
 
-    <color name="transparent">#00000000</color>
-    <color name="black">#000000</color>
-    <color name="white">#ffffff</color>
+	<color name="transparent">#00000000</color>
+	<color name="black">#000000</color>
+	<color name="white">#ffffff</color>
 
-    <color name="red_700">#d32f2f</color>
+	<color name="red_700">#d32f2f</color>
 
-    <color name="indigo_200">#9fa8da</color>
-    <color name="indigo_400">#5c6bc0</color>
-    <color name="indigo_900">#000051</color>
+	<color name="indigo_200">#9fa8da</color>
+	<color name="indigo_400">#5c6bc0</color>
+	<color name="indigo_900">#000051</color>
 
-    <color name="blue_200">#b8dcff</color>
-    <color name="blue_400">#42a5f5</color>
-    <color name="blue_400_00">#005990</color>
-    <color name="blue_800">#1565c0</color>
-    <color name="blue_900">#0d47a1</color>
-    <color name="blue_900_00">#000045</color>
+	<color name="blue_200">#b8dcff</color>
+	<color name="blue_400">#42a5f5</color>
+	<color name="blue_400_00">#005990</color>
+	<color name="blue_800">#1565c0</color>
+	<color name="blue_900">#0d47a1</color>
+	<color name="blue_900_00">#000045</color>
 
-    <color name="light_blue_100">#b3e5fc</color>
-    <color name="light_blue_100_00">#528398</color>
-    <color name="light_blue_300">#4fc3f7</color>
-    <color name="light_blue_800">#427bbc</color>
+	<color name="light_blue_100">#b3e5fc</color>
+	<color name="light_blue_100_00">#528398</color>
+	<color name="light_blue_300">#4fc3f7</color>
+	<color name="light_blue_800">#427bbc</color>
 
-    <color name="teal_200">#03dac5</color>
-    <color name="teal_700">#005851</color>
+	<color name="teal_200">#03dac5</color>
+	<color name="teal_700">#005851</color>
 
-    <color name="green_a400">#00e676</color>
-    <color name="green_a700">#00c853</color>
+	<color name="green_a400">#00e676</color>
+	<color name="green_a700">#00c853</color>
 
-    <color name="gray_400">#bdbdbd</color>
-    <color name="gray_500">#9e9e9e</color>
-    <color name="gray_600">#757575</color>
-    <color name="grey_900">#212121</color>
+	<color name="gray_400">#bdbdbd</color>
+	<color name="gray_500">#9e9e9e</color>
+	<color name="gray_600">#757575</color>
+	<color name="grey_900">#212121</color>
 
-    <color name="blue_gray_300">#90a4ae</color>
-    <color name="blue_gray_600_00">#001c26</color>
-    <color name="blue_gray_800">#37474f</color>
-    <color name="blue_gray_900">#263238</color>
+	<color name="blue_gray_300">#90a4ae</color>
+	<color name="blue_gray_600_00">#001c26</color>
+	<color name="blue_gray_800">#37474f</color>
+	<color name="blue_gray_900">#263238</color>
 
 
-    <!-- Custom colors -->
-    <color name="blue_sapphire">#030925</color>
+	<!-- Custom colors -->
+	<color name="blue_sapphire">#030925</color>
 
 </resources>

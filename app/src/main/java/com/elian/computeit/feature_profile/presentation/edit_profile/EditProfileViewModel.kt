@@ -21,42 +21,42 @@ import javax.inject.Inject
 
 @HiltViewModel
 class EditProfileViewModel @Inject constructor(
-    val getProfileInfo: GetProfileInfo,
-    private val validateProfile: ValidateProfile,
+	val getProfileInfo: GetProfileInfo,
+	private val validateProfile: ValidateProfile,
 ) : ViewModel()
 {
-    private val _eventFlow = Channel<EditProfileEvent>()
-    val eventFlow = _eventFlow.receiveAsFlow()
+	private val _eventFlow = Channel<EditProfileEvent>()
+	val eventFlow = _eventFlow.receiveAsFlow()
 
-    private val _usernameState = MutableStateFlow(TextFieldState())
-    val usernameState = _usernameState.asStateFlow()
+	private val _usernameState = MutableStateFlow(TextFieldState())
+	val usernameState = _usernameState.asStateFlow()
 
-    private lateinit var _biography: String
+	private lateinit var _biography: String
 
 
-    fun onAction(action: EditProfileAction)
-    {
-        when (action)
-        {
-            is EnterUsername  -> _usernameState.update { it.copy(text = action.value, error = null) }
-            is EnterBiography -> _biography = action.value
-            is Save           -> viewModelScope.launch()
-            {
-                validateProfile(
-                    username = _usernameState.value.text,
-                    biography = _biography,
-                ).also { result ->
+	fun onAction(action: EditProfileAction)
+	{
+		when (action)
+		{
+			is EnterUsername  -> _usernameState.update { it.copy(text = action.value, error = null) }
+			is EnterBiography -> _biography = action.value
+			is Save           -> viewModelScope.launch()
+			{
+				validateProfile(
+					username = _usernameState.value.text,
+					biography = _biography,
+				).also { result ->
 
-                    _usernameState.update { it.copy(error = result.usernameError) }
+					_usernameState.update { it.copy(error = result.usernameError) }
 
-                    when (val resource = result.resource)
-                    {
-                        is Resource.Error   -> _eventFlow.send(OnShowErrorMessage(resource.uiText ?: UiText.unknownError()))
-                        is Resource.Success -> _eventFlow.send(OnSave)
-                        else                -> Unit
-                    }
-                }
-            }
-        }
-    }
+					when (val resource = result.resource)
+					{
+						is Resource.Error   -> _eventFlow.send(OnShowErrorMessage(resource.uiText ?: UiText.unknownError()))
+						is Resource.Success -> _eventFlow.send(OnSave)
+						else                -> Unit
+					}
+				}
+			}
+		}
+	}
 }

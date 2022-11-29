@@ -6,15 +6,15 @@ import android.os.Bundle
 import android.widget.Toast
 
 inline fun <reified T : Activity> Activity.navigateTo(
-    args: Bundle = Bundle(),
-    finish: Boolean = true,
+	args: Bundle = Bundle(),
+	finish: Boolean = true,
 )
 {
-    startActivity(Intent(this, T::class.java).putExtras(args))
-    if (finish) finish()
+	startActivity(Intent(this, T::class.java).putExtras(args))
+	if (finish) finish()
 }
 
 fun Activity.toast(text: CharSequence, duration: Int = Toast.LENGTH_SHORT)
 {
-    Toast.makeText(this, text, duration).show()
+	Toast.makeText(this, text, duration).show()
 }

@@ -20,46 +20,46 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class PrivateProfileFragment : Fragment(R.layout.fragment_private_profile)
 {
-    private val viewModel by viewModels<PrivateProfileViewModel>()
-    private val binding by viewBinding(FragmentPrivateProfileBinding::bind)
+	private val viewModel by viewModels<PrivateProfileViewModel>()
+	private val binding by viewBinding(FragmentPrivateProfileBinding::bind)
 
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?)
-    {
-        super.onViewCreated(view, savedInstanceState)
+	override fun onViewCreated(view: View, savedInstanceState: Bundle?)
+	{
+		super.onViewCreated(view, savedInstanceState)
 
-        initUi()
-    }
+		initUi()
+	}
 
 
-    private fun initUi() = binding.apply2()
-    {
-        lifecycleScope.launch()
-        {
-            viewModel.getProfileInfo().collect()
-            {
-                tvMainUsername.text2 = it.username
-                tvUsername.text2 = it.username
-                tvBiography.text2 = it.biography
-                tvCreatedAt.text2 = getString(R.string.profile_account_created_at_ph).format(it.createdAt)
-            }
-        }
+	private fun initUi() = binding.apply2()
+	{
+		lifecycleScope.launch()
+		{
+			viewModel.getProfileInfo().collect()
+			{
+				tvMainUsername.text2 = it.username
+				tvUsername.text2 = it.username
+				tvBiography.text2 = it.biography
+				tvCreatedAt.text2 = getString(R.string.profile_account_created_at_ph).format(it.createdAt)
+			}
+		}
 
-        btnEdit.setOnClickListener { navigate(R.id.action_profileFragment_to_editProfileFragment) }
-        btnLogout.setOnClickListener()
-        {
-            AlertDialog.Builder(requireContext())
-                .setMessage(R.string.alert_dialog_are_you_sure_you_want_to_log_out)
-                .setPositiveButton(android.R.string.ok) { _, _ ->
-                    lifecycleScope.launch()
-                    {
-                        viewModel.logout()
-                        navigateTo<LoginActivity>()
-                    }
-                }
-                .setNegativeButton(android.R.string.cancel) { _, _ -> }
-                .create()
-                .show()
-        }
-    }
+		btnEdit.setOnClickListener { navigate(R.id.action_profileFragment_to_editProfileFragment) }
+		btnLogout.setOnClickListener()
+		{
+			AlertDialog.Builder(requireContext())
+				.setMessage(R.string.alert_dialog_are_you_sure_you_want_to_log_out)
+				.setPositiveButton(android.R.string.ok) { _, _ ->
+					lifecycleScope.launch()
+					{
+						viewModel.logout()
+						navigateTo<LoginActivity>()
+					}
+				}
+				.setNegativeButton(android.R.string.cancel) { _, _ -> }
+				.create()
+				.show()
+		}
+	}
 }

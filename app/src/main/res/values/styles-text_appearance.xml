@@ -1,45 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="TextAppearance_Title">
-        <item name="android:fontFamily">@font/comfortaa_bold</item>
-        <item name="android:textSize">@dimen/textSize_large1</item>
-        <item name="android:textColor">@color/white</item>
-        <item name="android:textAlignment">center</item>
-        <item name="textAllCaps">true</item>
-    </style>
+	<style name="TextAppearance_Title">
+		<item name="android:fontFamily">@font/comfortaa_bold</item>
+		<item name="android:textSize">@dimen/textSize_large1</item>
+		<item name="android:textColor">@color/white</item>
+		<item name="android:textAlignment">center</item>
+		<item name="textAllCaps">true</item>
+	</style>
 
-    <style name="TextAppearance_Button">
-        <item name="fontFamily">@font/comfortaa_bold</item>
-        <item name="android:textSize">@dimen/textSize_medium3</item>
-    </style>
+	<style name="TextAppearance_Button">
+		<item name="fontFamily">@font/comfortaa_bold</item>
+		<item name="android:textSize">@dimen/textSize_medium3</item>
+	</style>
 
-    <style name="TextAppearance_TextButton">
-        <item name="android:textSize">@dimen/textSize_medium2</item>
-        <item name="android:textAllCaps">true</item>
-        <item name="android:textColor">@color/black</item>
-        <item name="android:textStyle">bold</item>
-    </style>
+	<style name="TextAppearance_TextButton">
+		<item name="android:textSize">@dimen/textSize_medium2</item>
+		<item name="android:textAllCaps">true</item>
+		<item name="android:textColor">@color/black</item>
+		<item name="android:textStyle">bold</item>
+	</style>
 
 
-    <style name="TextAppearance_OperationButton">
-        <item name="android:textColor">@color/black</item>
-        <item name="android:fontFamily">@font/noto_sans_bold</item>
-        <item name="android:textSize">@dimen/textSize_large3</item>
-        <item name="android:includeFontPadding">false</item>
-    </style>
+	<style name="TextAppearance_OperationButton">
+		<item name="android:textColor">@color/black</item>
+		<item name="android:fontFamily">@font/noto_sans_bold</item>
+		<item name="android:textSize">@dimen/textSize_large3</item>
+		<item name="android:includeFontPadding">false</item>
+	</style>
 
-    <style name="TextAppearance_TextView_Value">
-        <item name="android:textSize">@dimen/textSize_medium3</item>
-        <item name="android:fontFamily">@font/comfortaa_bold</item>
-        <item name="android:textColor">@color/white</item>
-        <item name="android:includeFontPadding">false</item>
-    </style>
+	<style name="TextAppearance_TextView_Value">
+		<item name="android:textSize">@dimen/textSize_medium3</item>
+		<item name="android:fontFamily">@font/comfortaa_bold</item>
+		<item name="android:textColor">@color/white</item>
+		<item name="android:includeFontPadding">false</item>
+	</style>
 
-    <style name="TextAppearance_TextView_Label">
-        <item name="android:textSize">@dimen/textSize_medium2</item>
-        <item name="android:fontFamily">@font/comfortaa_bold</item>
-        <item name="android:textColor">#546e7a</item>
-    </style>
+	<style name="TextAppearance_TextView_Label">
+		<item name="android:textSize">@dimen/textSize_medium2</item>
+		<item name="android:fontFamily">@font/comfortaa_bold</item>
+		<item name="android:textColor">#546e7a</item>
+	</style>
 
 </resources>

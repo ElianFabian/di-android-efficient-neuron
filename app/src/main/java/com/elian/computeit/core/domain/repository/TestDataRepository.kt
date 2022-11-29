@@ -6,6 +6,6 @@ import kotlinx.coroutines.flow.Flow
 
 interface TestDataRepository
 {
-    suspend fun addTestData(testData: TestData)
-    fun getTestListInfo(): Flow<TestListInfo>
+	suspend fun addTestData(testData: TestData)
+	fun getTestListInfo(): Flow<TestListInfo>
 }

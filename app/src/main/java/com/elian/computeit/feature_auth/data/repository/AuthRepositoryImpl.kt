@@ -13,50 +13,50 @@ import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
 
 class AuthRepositoryImpl @Inject constructor(
-    private val firestore: FirebaseFirestore,
-    private val utilRepository: UtilRepository,
-    private val appRepository: LocalAppDataRepository,
+	private val firestore: FirebaseFirestore,
+	private val utilRepository: UtilRepository,
+	private val appRepository: LocalAppDataRepository,
 ) :
-    AuthRepository
+	AuthRepository
 {
-    override suspend fun login(username: String, password: String): SimpleResource
-    {
-        val user = utilRepository.getUserByName(username)
+	override suspend fun login(username: String, password: String): SimpleResource
+	{
+		val user = utilRepository.getUserByName(username)
 
-        return when
-        {
-            user == null              -> Resource.Error(R.string.error_user_doesnt_exist)
-            user.password != password -> Resource.Error(R.string.error_password_is_wrong)
-            else                      ->
-            {
-                appRepository.saveUserUuid(user.uuid)
+		return when
+		{
+			user == null              -> Resource.Error(R.string.error_user_doesnt_exist)
+			user.password != password -> Resource.Error(R.string.error_password_is_wrong)
+			else                      ->
+			{
+				appRepository.saveUserUuid(user.uuid)
 
-                Resource.Success()
-            }
-        }
-    }
+				Resource.Success()
+			}
+		}
+	}
 
-    override suspend fun register(
-        username: String,
-        password: String,
-    ): SimpleResource = when
-    {
-        utilRepository.getUserByName(username) != null -> Resource.Error(R.string.error_username_is_already_in_use)
-        else                                           ->
-        {
-            User(
-                name = username,
-                password = password,
-            ).apply()
-            {
-                appRepository.saveUserUuid(uuid)
+	override suspend fun register(
+		username: String,
+		password: String,
+	): SimpleResource = when
+	{
+		utilRepository.getUserByName(username) != null -> Resource.Error(R.string.error_username_is_already_in_use)
+		else                                           ->
+		{
+			User(
+				name = username,
+				password = password,
+			).apply()
+			{
+				appRepository.saveUserUuid(uuid)
 
-                firestore.document("$COLLECTION_USERS/$uuid")
-                    .set(this)
-                    .await()
-            }
+				firestore.document("$COLLECTION_USERS/$uuid")
+					.set(this)
+					.await()
+			}
 
-            Resource.Success()
-        }
-    }
+			Resource.Success()
+		}
+	}
 }

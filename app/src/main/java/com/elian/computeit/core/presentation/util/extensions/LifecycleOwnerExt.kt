@@ -7,16 +7,16 @@ import kotlinx.coroutines.flow.collectLatest
 
 fun <T> LifecycleOwner.collectFlowWhenStarted(state: Flow<T>, action: suspend (value: T) -> Unit)
 {
-    lifecycleScope.launchWhenStarted()
-    {
-        state.collect(action)
-    }
+	lifecycleScope.launchWhenStarted()
+	{
+		state.collect(action)
+	}
 }
 
 fun <T> LifecycleOwner.collectLatestFlowWhenStarted(state: Flow<T>, action: suspend (value: T) -> Unit)
 {
-    lifecycleScope.launchWhenStarted()
-    {
-        state.collectLatest(action)
-    }
+	lifecycleScope.launchWhenStarted()
+	{
+		state.collectLatest(action)
+	}
 }

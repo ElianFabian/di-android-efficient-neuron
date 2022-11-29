@@ -23,54 +23,54 @@ import kotlinx.coroutines.flow.map
 @AndroidEntryPoint
 class LoginActivity : AppCompatActivity()
 {
-    private val viewModel by viewModels<LoginViewModel>()
-    private val binding by viewBinding(ActivityLoginBinding::inflate)
+	private val viewModel by viewModels<LoginViewModel>()
+	private val binding by viewBinding(ActivityLoginBinding::inflate)
 
 
-    override fun onCreate(savedInstanceState: Bundle?)
-    {
-        super.onCreate(savedInstanceState)
+	override fun onCreate(savedInstanceState: Bundle?)
+	{
+		super.onCreate(savedInstanceState)
 
-        setContentView(binding.root)
+		setContentView(binding.root)
 
-        initUi()
-        subscribeToEvents()
-    }
+		initUi()
+		subscribeToEvents()
+	}
 
 
-    private fun initUi() = binding.apply2()
-    {
-        tietUsername.addTextChangedListener { viewModel.onAction(EnterUsername("$it".trim())) }
-        tietPassword.addTextChangedListener { viewModel.onAction(EnterPassword("$it".trim())) }
+	private fun initUi() = binding.apply2()
+	{
+		tietUsername.addTextChangedListener { viewModel.onAction(EnterUsername("$it".trim())) }
+		tietPassword.addTextChangedListener { viewModel.onAction(EnterPassword("$it".trim())) }
 
-        btnLogin.setOnClickListener { viewModel.onAction(Login) }
-        btnRegister.setOnClickListener { navigateTo<RegisterActivity>() }
-    }
+		btnLogin.setOnClickListener { viewModel.onAction(Login) }
+		btnRegister.setOnClickListener { navigateTo<RegisterActivity>() }
+	}
 
-    private fun subscribeToEvents() = viewModel.apply2()
-    {
-        collectFlowWhenStarted(eventFlow)
-        {
-            when (it)
-            {
-                is OnLogin            -> navigateTo<MainActivity>()
-                is OnShowErrorMessage -> toast(it.error.asString(this@LoginActivity))
-            }
-        }
-        collectLatestFlowWhenStarted(usernameState.map { it.error })
-        {
-            binding.tilUsername.error2 = getFieldError(it)
-        }
-        collectLatestFlowWhenStarted(passwordState.map { it.error })
-        {
-            binding.tilPassword.error2 = getFieldError(it)
-        }
-        collectLatestFlowWhenStarted(loadingState) { binding.pbLoading.isVisible = it }
-    }
+	private fun subscribeToEvents() = viewModel.apply2()
+	{
+		collectFlowWhenStarted(eventFlow)
+		{
+			when (it)
+			{
+				is OnLogin            -> navigateTo<MainActivity>()
+				is OnShowErrorMessage -> toast(it.error.asString(this@LoginActivity))
+			}
+		}
+		collectLatestFlowWhenStarted(usernameState.map { it.error })
+		{
+			binding.tilUsername.error2 = getFieldError(it)
+		}
+		collectLatestFlowWhenStarted(passwordState.map { it.error })
+		{
+			binding.tilPassword.error2 = getFieldError(it)
+		}
+		collectLatestFlowWhenStarted(loadingState) { binding.pbLoading.isVisible = it }
+	}
 
-    private fun getFieldError(error: Error?) = when (error)
-    {
-        is TextFieldError.Empty -> getString(R.string.error_cant_be_empty)
-        else                    -> null
-    }
+	private fun getFieldError(error: Error?) = when (error)
+	{
+		is TextFieldError.Empty -> getString(R.string.error_cant_be_empty)
+		else                    -> null
+	}
 }

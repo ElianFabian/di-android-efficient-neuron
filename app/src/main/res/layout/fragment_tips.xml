@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/background_light"
-    android:orientation="vertical"
-    tools:context=".feature_tips.presentation.tips.TipsFragment">
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:background="@color/background_light"
+	android:orientation="vertical"
+	tools:context=".feature_tips.presentation.tips.TipsFragment">
 
-    <TextView
-        android:id="@+id/tvTitle"
-        style="@style/Title"
-        android:text="@string/frgTips_tvTitle_text" />
+	<TextView
+		android:id="@+id/tvTitle"
+		style="@style/Title"
+		android:text="@string/frgTips_tvTitle_text" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvTips"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="20dp"
-        tools:listitem="@layout/item_tip" />
+	<androidx.recyclerview.widget.RecyclerView
+		android:id="@+id/rvTips"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:layout_marginTop="20dp"
+		tools:listitem="@layout/item_tip" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
