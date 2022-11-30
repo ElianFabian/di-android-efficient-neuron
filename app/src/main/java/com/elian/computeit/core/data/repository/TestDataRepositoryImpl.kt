@@ -22,23 +22,23 @@ class TestDataRepositoryImpl @Inject constructor(
 {
 	override suspend fun addTestData(testData: TestData)
 	{
-		getUserDataRef().update(UserData::testDataList.name, FieldValue.arrayUnion(testData))
+		getUserDataRef().update(UserData::listOfTestData.name, FieldValue.arrayUnion(testData))
 	}
 
 	override fun getTestListInfo() = flow()
 	{
-		val listFromServer = getTestDataList()
+		val listFromServer = getListOfTestData()
 
 		emit(listFromServer.toTestListInfo())
 	}
 
 
-	private suspend fun getTestDataList(): List<TestData>
+	private suspend fun getListOfTestData(): List<TestData>
 	{
 		return getUserDataRef()
 			.get()
 			.await()
-			.toObject<UserData>()!!.testDataList!!
+			.toObject<UserData>()!!.listOfTestData!!
 	}
 
 
@@ -52,7 +52,7 @@ class TestDataRepositoryImpl @Inject constructor(
 
 		return documentRef.apply()
 		{
-			if (!snapShot.exists() || userData?.testDataList == null)
+			if (!snapShot.exists() || userData?.listOfTestData == null)
 			{
 				set(UserData(emptyList()), SetOptions.merge())
 			}

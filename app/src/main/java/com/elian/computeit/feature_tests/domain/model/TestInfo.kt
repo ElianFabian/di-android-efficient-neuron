@@ -22,8 +22,8 @@ fun TestData.toTestInfo() = run()
 	TestInfo(
 		opm = opm,
 		rawOpm = rawOpm,
-		timeInSeconds = testTimeInSeconds,
-		operationCount = operationDataList.size,
+		timeInSeconds = timeInSeconds,
+		operationCount = listOfOperationData.size,
 		errorCount = errorCount,
 		opmPerSecond = opmPerSecond,
 		rawOpmPerSecond = rawOpmPerSecond,

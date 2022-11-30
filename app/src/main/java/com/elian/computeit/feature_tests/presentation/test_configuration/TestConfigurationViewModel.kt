@@ -47,7 +47,7 @@ class TestConfigurationViewModel @Inject constructor(
 	{
 		when (action)
 		{
-			is SelectOperationType -> _selectedOperation = Operation.from(action.symbol)
+			is SelectOperationType -> _selectedOperation = Operation.fromSymbol(action.symbol)
 			is EnterMinValue       -> _minValueState.update { it.copy(number = action.value, error = null) }
 			is EnterMaxValue       -> _maxValueState.update { it.copy(number = action.value, error = null) }
 			is EnterTime           -> _timeState.update { it.copy(number = action.value, error = null) }

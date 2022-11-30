@@ -5,28 +5,31 @@ enum class Operation(
 	val calculate: (a: Int, b: Int) -> Int,
 )
 {
-	SUM(
+	Addition(
 		symbol = "+",
 		calculate = { a, b -> a + b },
 	),
-	SUBTRACT(
+	Subtraction(
 		symbol = "−",
 		calculate = { a, b -> a - b },
 	),
-	MULTIPLY(
+	Multiplication(
 		symbol = "×",
 		calculate = { a, b -> a * b },
 	),
-	DIVIDE(
+	Division(
 		symbol = "÷",
 		calculate = { a, b -> a / b },
 	);
 
 	companion object
 	{
-		fun from(symbol: String) = symbolToOperation[symbol]!!
+		fun fromSymbol(symbol: String) = symbolToOperation[symbol]!!
 
 		private val symbolToOperation = values().associateBy { it.symbol }
+		val nameToSymbol = values().associate { it.name to it.symbol }
+		val symbolToName = values().associate { it.symbol to it.name }
+		val symbols = values().map { it.symbol }
 	}
 
 	operator fun invoke(firstNumber: Int, secondNumber: Int) = calculate(firstNumber, secondNumber)

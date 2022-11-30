@@ -42,7 +42,7 @@ class TestViewModel @Inject constructor(
 	private val _range = savedState.get<Range>(EXTRA_OPERATION_NUMBER_RANGE)!!
 	private val _operation = savedState.get<Operation>(EXTRA_OPERATION_TYPE)!!
 
-	private val _testDataList = mutableListOf<OperationData>()
+	private val _listOfOperationData = mutableListOf<OperationData>()
 
 	private val _eventFlow = Channel<TestEvent>()
 	val eventFlow = _eventFlow.receiveAsFlow()
@@ -79,9 +79,9 @@ class TestViewModel @Inject constructor(
 					is TimerEvent.OnFinish ->
 					{
 						val testData = TestData(
-							dateInSeconds = System.currentTimeMillis() / 1000,
-							testTimeInSeconds = _millisSinceStart.toInt() / 1000,
-							operationDataList = _testDataList.toList(),
+							dateUnix = System.currentTimeMillis() / 1000,
+							timeInSeconds = _millisSinceStart.toInt() / 1000,
+							listOfOperationData = _listOfOperationData.toList(),
 							range = _range
 						)
 
@@ -115,14 +115,14 @@ class TestViewModel @Inject constructor(
 				val sign = sign(expectedResult.toFloat()).toInt()
 
 				val data = OperationData(
-					operation = _operation.symbol,
+					operationName = _operation.name,
 					pairOfNumbers = _pairOfNumbersState.value!!,
 					insertedResult = _resultState.value * sign,
 					expectedResult = expectedResult,
 					millisSinceStart = _millisSinceStart
 				)
 
-				_testDataList.add(data)
+				_listOfOperationData.add(data)
 
 				_pairOfNumbersState.value = getRandomNumberPair(oldPair = _pairOfNumbersState.value)
 				_resultState.value = 0

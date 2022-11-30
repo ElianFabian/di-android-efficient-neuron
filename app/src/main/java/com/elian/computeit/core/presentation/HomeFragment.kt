@@ -97,7 +97,7 @@ class HomeFragment : Fragment(R.layout.fragment_home)
 
 	private fun initTextInfo(info: TestListInfo) = info.apply2()
 	{
-		val uiLabeledDataList = listOf(
+		val listOfUiLabeledData = listOf(
 			LabeledData(
 				label = getString(R.string.frgHomeFragment_testsCompleted),
 				value = "$testsCompleted",
@@ -130,6 +130,6 @@ class HomeFragment : Fragment(R.layout.fragment_home)
 
 		val adapter = LabeledDataAdapter()
 		binding.rvLabeledData.adapter = adapter
-		adapter.submitList(uiLabeledDataList)
+		adapter.submitList(listOfUiLabeledData)
 	}
 }

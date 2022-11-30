@@ -38,7 +38,7 @@ class ProfileRepositoryImpl @Inject constructor(
 				username = name,
 				biography = biography,
 				profilePicUrl = profilePicUrl,
-				createdAt = dayMonthYearFormat.format(Date(createdAtInMillis)),
+				createdAt = dayMonthYearFormat.format(Date(createdAtUnix)),
 			)
 		}
 
