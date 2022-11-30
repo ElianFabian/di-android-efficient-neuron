@@ -25,9 +25,9 @@ enum class Operation(
 	companion object
 	{
 		fun from(symbol: String) = symbolToOperation[symbol]!!
+
+		private val symbolToOperation = values().associateBy { it.symbol }
 	}
 
 	operator fun invoke(firstNumber: Int, secondNumber: Int) = calculate(firstNumber, secondNumber)
 }
-
-private val symbolToOperation = Operation.values().associateBy { it.symbol }
