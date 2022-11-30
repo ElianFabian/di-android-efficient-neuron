@@ -38,7 +38,6 @@ class PrivateProfileFragment : Fragment(R.layout.fragment_private_profile)
 		{
 			viewModel.getProfileInfo().collect()
 			{
-				tvMainUsername.text2 = it.username
 				tvUsername.text2 = it.username
 				tvBiography.text2 = it.biography
 				tvCreatedAt.text2 = getString(R.string.profile_account_created_at_ph).format(it.createdAt)
