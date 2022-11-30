@@ -7,6 +7,6 @@ data class User(
 	val password: String = "",
 	val biography: String = "",
 	val profilePicUrl: String? = null,
-	val createdAtInMillis: Long = System.currentTimeMillis() / 1000,
+	val createdAtInMillis: Long = System.currentTimeMillis(),
 	val uuid: String = UUID.randomUUID().toString(),
 )
