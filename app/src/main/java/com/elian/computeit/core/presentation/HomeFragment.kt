@@ -129,13 +129,14 @@ class HomeFragment : Fragment(R.layout.fragment_home)
 			),
 		)
 
-		val adapter = GenericAdapter<LabeledData, ItemLabeledDataBinding>(ItemLabeledDataBinding::inflate)
-		{
+		val adapter = GenericAdapter(
+			list = listOfUiLabeledData,
+			inflate = ItemLabeledDataBinding::inflate,
+		) {
 			tvLabel.text = it.label
 			tvValue.text = it.value
 		}
 
 		binding.rvLabeledData.adapter = adapter
-		adapter.submitList(listOfUiLabeledData)
 	}
 }

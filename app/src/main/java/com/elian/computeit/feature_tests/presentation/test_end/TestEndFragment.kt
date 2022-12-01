@@ -15,7 +15,6 @@ import com.elian.computeit.core.util.constants.EXTRA_TEST_INFO
 import com.elian.computeit.core.util.extensions.apply2
 import com.elian.computeit.databinding.FragmentTestEndBinding
 import com.elian.computeit.databinding.ItemFailedOperationBinding
-import com.elian.computeit.feature_tests.domain.model.OperationInfo
 import com.elian.computeit.feature_tests.domain.model.TestInfo
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -81,8 +80,10 @@ class TestEndFragment : Fragment(R.layout.fragment_test_end)
 
 	private fun initRecyclerView(info: TestInfo)
 	{
-		val adapter = GenericAdapter<OperationInfo, ItemFailedOperationBinding>(ItemFailedOperationBinding::inflate)
-		{
+		val adapter = GenericAdapter(
+			list = info.listOfFailedOperationInfo,
+			inflate = ItemFailedOperationBinding::inflate,
+		) {
 			tvFirstNumber.text = "${it.pairOfNumbers.first}"
 			tvOperationSymbol.text = it.operationSymbol
 			tvSecondNumber.text = "${it.pairOfNumbers.second}"
@@ -91,7 +92,5 @@ class TestEndFragment : Fragment(R.layout.fragment_test_end)
 		}
 
 		binding.rvFailedOperations.adapter = adapter
-
-		adapter.submitList(info.listOfFailedOperationInfo)
 	}
 }

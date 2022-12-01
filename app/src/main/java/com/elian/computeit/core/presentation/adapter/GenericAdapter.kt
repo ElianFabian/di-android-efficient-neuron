@@ -11,6 +11,7 @@ import androidx.viewbinding.ViewBinding
 
 class GenericAdapter<ItemT : Any, VB : ViewBinding>(
 	private val inflate: (LayoutInflater, ViewGroup, Boolean) -> VB,
+	list: List<ItemT> = emptyList(),
 	private val onBind: VB.(ItemT) -> Unit,
 ) : ListAdapter<ItemT, GenericAdapter<ItemT, VB>.ViewHolder>(
 	object : DiffUtil.ItemCallback<ItemT>()
@@ -22,6 +23,12 @@ class GenericAdapter<ItemT : Any, VB : ViewBinding>(
 	}
 )
 {
+	init
+	{
+		submitList(list)
+	}
+
+
 	inner class ViewHolder(view: View, val binding: VB) : RecyclerView.ViewHolder(view)
 
 
