@@ -60,7 +60,6 @@ class TestEndFragment : Fragment(R.layout.fragment_test_end)
 		btnContinue.setOnClickListener { navigate(R.id.action_testEndFragment_to_homeFragment) }
 	}
 
-
 	private fun initLineChart(info: TestInfo)
 	{
 		val lineDataSets = arrayOf(
