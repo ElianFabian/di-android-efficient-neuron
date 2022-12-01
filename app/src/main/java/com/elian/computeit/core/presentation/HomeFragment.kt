@@ -129,7 +129,6 @@ class HomeFragment : Fragment(R.layout.fragment_home)
 			),
 		)
 
-		//val adapter = LabeledDataAdapter()
 		val adapter = GenericAdapter<LabeledData, ItemLabeledDataBinding>(ItemLabeledDataBinding::inflate)
 		{
 			tvLabel.text = it.label
