@@ -20,7 +20,7 @@ class GetRandomNumberPair @Inject constructor(
 	private val _operation = savedState.get<Operation>(EXTRA_OPERATION_TYPE)!!
 	private var _divisiblePairs: List<NumberPair> = if (_operation == Operation.Division)
 	{
-		getDivisiblePairsInRange(_range).map { NumberPair(it.first, it.second) }
+		getDivisiblePairsInRange(_rangeBounds.min, _rangeBounds.max).map { NumberPair(it.first, it.second) }
 	}
 	else emptyList()
 
@@ -50,15 +50,15 @@ class GetRandomNumberPair @Inject constructor(
 
 		return getRandomNumberPair(_range)
 	}
+
+	private fun getRandomNumberPair(range: IntRange): NumberPair
+	{
+		val first = range.random(randomSeed)
+		val second = range.random(randomSeed)
+
+		return NumberPair(first, second)
+	}
 }
 
 
 private val randomSeed = Random(System.currentTimeMillis())
-
-private fun getRandomNumberPair(range: IntRange): NumberPair
-{
-	val first = range.random(randomSeed)
-	val second = range.random(randomSeed)
-
-	return NumberPair(first, second)
-}

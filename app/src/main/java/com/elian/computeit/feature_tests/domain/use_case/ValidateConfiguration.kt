@@ -26,7 +26,7 @@ class ValidateConfiguration @Inject constructor()
 		val maxValueError = getFieldError(maxValue)
 		val timeError = getFieldError(time)
 
-		val divisiblePairCount = getDivisiblePairsInRange((minValue ?: 0)..(maxValue ?: 0)).size
+		val divisiblePairCount = getDivisiblePairsInRange((minValue ?: 0), (maxValue ?: 0)).size
 
 		return when
 		{

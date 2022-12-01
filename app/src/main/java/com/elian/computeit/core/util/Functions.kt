@@ -1,8 +1,10 @@
 package com.elian.computeit.core.util
 
-fun getDivisiblePairsInRange(range: IntRange): List<Pair<Int, Int>>
+fun getDivisiblePairsInRange(minValue: Int, maxValue: Int): List<Pair<Int, Int>>
 {
 	val divisiblePairs = mutableListOf<Pair<Int, Int>>()
+
+	val range = minValue..maxValue
 
 	val reversedRange = range.reversed()
 
