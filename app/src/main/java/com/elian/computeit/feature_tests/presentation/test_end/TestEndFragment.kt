@@ -45,17 +45,17 @@ class TestEndFragment : Fragment(R.layout.fragment_test_end)
 				tvTime.text = "$timeInSeconds s"
 				tvOperations.text = "$operationCount"
 				tvErrors.text = "$errorCount"
-
-				if (listOfFailedOperationInfo.isEmpty())
-				{
-					tvFailedOperations.isGone = true
-					rvFailedOperations.isGone = true
-				}
 			}
 		}
 
 		initLineChart(info)
-		initRecyclerView(info)
+
+		if (info.listOfFailedOperationInfo.isEmpty())
+		{
+			tvFailedOperations.isGone = true
+			rvFailedOperations.isGone = true
+		}
+		else initRecyclerView(info)
 
 		btnContinue.setOnClickListener { navigate(R.id.action_testEndFragment_to_homeFragment) }
 	}
