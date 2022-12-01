@@ -14,6 +14,7 @@ data class TestInfo(
 	val errorCount: Int,
 	val opmPerSecond: Map<Int, Int>,
 	val rawOpmPerSecond: Map<Int, Int>,
+	val listOfFailedOperationInfo: List<OperationInfo>,
 ) : Parcelable
 
 
@@ -27,5 +28,6 @@ fun TestData.toTestInfo() = run()
 		errorCount = errorCount,
 		opmPerSecond = opmPerSecond,
 		rawOpmPerSecond = rawOpmPerSecond,
+		listOfFailedOperationInfo = listOfOperationData.filter { it.isError }.map { it.toOperationInfo() }
 	)
 }
