@@ -10,7 +10,7 @@ fun getDivisiblePairsInRange(range: IntRange): List<Pair<Int, Int>>
 	{
 		for (b in reversedRange)
 		{
-			if (a == b || a % b != 0) continue
+			if (b == 0 || a == b || a % b != 0) continue
 
 			divisiblePairs.add(a to b)
 		}

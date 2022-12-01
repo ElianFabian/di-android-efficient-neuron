@@ -30,7 +30,7 @@ class ValidateConfiguration @Inject constructor()
 
 		return when
 		{
-			checkIfError(minValueError, maxValueError, timeError)                        ->
+			checkIfError(minValueError, maxValueError, timeError)                          ->
 			{
 				TestConfigurationResult(
 					minValueError = minValueError,
@@ -38,7 +38,7 @@ class ValidateConfiguration @Inject constructor()
 					timeError = timeError,
 				)
 			}
-			minValue!! > maxValue!!                                                      ->
+			minValue!! > maxValue!!                                                        ->
 			{
 				TestConfigurationResult(resource = Resource.Error(R.string.error_range_values_are_inverted))
 			}
@@ -55,6 +55,10 @@ class ValidateConfiguration @Inject constructor()
 					messageResId = R.string.error_range_not_enough_divisible_pairs,
 					args = arrayOf(divisiblePairCount, _minDivisiblePairCount)
 				))
+			}
+			operation == Operation.Division && minValue == 0                               ->
+			{
+				TestConfigurationResult(resource = Resource.Error(R.string.error_division_by_zero_is_not_allow))
 			}
 			else                                                                           ->
 			{

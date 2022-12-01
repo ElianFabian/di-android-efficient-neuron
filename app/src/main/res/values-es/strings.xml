@@ -6,6 +6,7 @@
     <string name="arrayTest_modes_time">Tiempo</string>
 
     <string name="error_cant_be_empty">No puede estar vacío</string>
+    <string name="error_division_by_zero_is_not_allow">La división entre 0 no está permitida</string>
     <string name="error_password_invalid">Contraseña inválida, debería contener al menos %d de estos caracteres: %s</string>
     <string name="error_password_is_wrong">La contraseña es incorrecta</string>
     <string name="error_passwords_dont_match">Las contraseñas no coinciden</string>
