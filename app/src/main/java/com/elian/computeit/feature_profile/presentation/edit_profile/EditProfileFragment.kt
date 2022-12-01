@@ -48,11 +48,10 @@ class EditProfileFragment : Fragment(R.layout.fragment_edit_profile)
 
 		lifecycleScope.launch()
 		{
-			viewModel.getProfileInfo().collect()
-			{
-				tietUsername.setText(it.username)
-				tietBiography.setText(it.biography)
-			}
+			val info = viewModel.getProfileInfo()
+
+			tietUsername.setText(info.username)
+			tietBiography.setText(info.biography)
 		}
 	}
 

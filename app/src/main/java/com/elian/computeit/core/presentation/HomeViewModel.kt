@@ -19,11 +19,10 @@ class HomeViewModel @Inject constructor(
 	{
 		viewModelScope.launch()
 		{
-			getTestListInfo().collect()
-			{
-				_infoState.value = it
-				_loadingState.value = false
-			}
+			val listInfo = getTestListInfo()
+
+			_infoState.value = listInfo
+			_loadingState.value = false
 		}
 	}
 

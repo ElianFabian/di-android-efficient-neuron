@@ -9,7 +9,9 @@ import com.elian.computeit.core.util.Resource
 import com.elian.computeit.core.util.SimpleResource
 import com.elian.computeit.feature_auth.domain.repository.AuthRepository
 import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.tasks.await
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class AuthRepositoryImpl @Inject constructor(
@@ -19,11 +21,11 @@ class AuthRepositoryImpl @Inject constructor(
 ) :
 	AuthRepository
 {
-	override suspend fun login(username: String, password: String): SimpleResource
+	override suspend fun login(username: String, password: String): SimpleResource = withContext(Dispatchers.IO)
 	{
 		val user = utilRepository.getUserByName(username)
 
-		return when
+		when
 		{
 			user == null              -> Resource.Error(R.string.error_user_doesnt_exist)
 			user.password != password -> Resource.Error(R.string.error_password_is_wrong)
@@ -39,24 +41,27 @@ class AuthRepositoryImpl @Inject constructor(
 	override suspend fun register(
 		username: String,
 		password: String,
-	): SimpleResource = when
+	): SimpleResource = withContext(Dispatchers.IO)
 	{
-		utilRepository.getUserByName(username) != null -> Resource.Error(R.string.error_username_is_already_in_use)
-		else                                           ->
+		when
 		{
-			User(
-				name = username,
-				password = password,
-			).apply()
+			utilRepository.getUserByName(username) != null -> Resource.Error(R.string.error_username_is_already_in_use)
+			else                                           ->
 			{
-				appRepository.saveUserUuid(uuid)
+				User(
+					name = username,
+					password = password,
+				).apply()
+				{
+					appRepository.saveUserUuid(uuid)
 
-				firestore.document("$COLLECTION_USERS/$uuid")
-					.set(this)
-					.await()
+					firestore.document("$COLLECTION_USERS/$uuid")
+						.set(this)
+						.await()
+				}
+
+				Resource.Success()
 			}
-
-			Resource.Success()
 		}
 	}
 }

@@ -2,7 +2,6 @@ package com.elian.computeit.feature_profile.presentation.private_profile
 
 import android.os.Bundle
 import android.view.View
-import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -10,6 +9,7 @@ import com.elian.computeit.R
 import com.elian.computeit.core.presentation.util.extensions.navigate
 import com.elian.computeit.core.presentation.util.extensions.navigateTo
 import com.elian.computeit.core.presentation.util.extensions.text2
+import com.elian.computeit.core.presentation.util.showAlertDialog
 import com.elian.computeit.core.presentation.util.viewBinding
 import com.elian.computeit.core.util.extensions.apply2
 import com.elian.computeit.databinding.FragmentPrivateProfileBinding
@@ -36,29 +36,26 @@ class PrivateProfileFragment : Fragment(R.layout.fragment_private_profile)
 	{
 		lifecycleScope.launch()
 		{
-			viewModel.getProfileInfo().collect()
-			{
-				tvUsername.text2 = it.username
-				tvBiography.text2 = it.biography
-				tvCreatedAt.text2 = getString(R.string.profile_account_created_at_ph).format(it.createdAt)
-			}
+			val info = viewModel.getProfileInfo()
+
+			tvUsername.text2 = info.username
+			tvBiography.text2 = info.biography
+			tvCreatedAt.text2 = getString(R.string.profile_account_created_at_ph).format(info.createdAt)
 		}
 
 		btnEdit.setOnClickListener { navigate(R.id.action_profileFragment_to_editProfileFragment) }
 		btnLogout.setOnClickListener()
 		{
-			AlertDialog.Builder(requireContext())
-				.setMessage(R.string.alert_dialog_are_you_sure_you_want_to_log_out)
-				.setPositiveButton(android.R.string.ok) { _, _ ->
+			showAlertDialog(
+				messageResId = R.string.alert_dialog_are_you_sure_you_want_to_log_out,
+				onPositiveClick = {
 					lifecycleScope.launch()
 					{
 						viewModel.logout()
 						navigateTo<LoginActivity>()
 					}
 				}
-				.setNegativeButton(android.R.string.cancel) { _, _ -> }
-				.create()
-				.show()
+			)
 		}
 	}
 }

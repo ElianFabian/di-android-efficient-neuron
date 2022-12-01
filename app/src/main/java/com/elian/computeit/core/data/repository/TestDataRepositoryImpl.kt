@@ -6,13 +6,13 @@ import com.elian.computeit.core.domain.models.TestData
 import com.elian.computeit.core.domain.repository.LocalAppDataRepository
 import com.elian.computeit.core.domain.repository.TestDataRepository
 import com.elian.computeit.feature_tests.domain.model.toTestListInfo
-import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
 import com.google.firebase.firestore.ktx.toObject
-import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.tasks.await
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class TestDataRepositoryImpl @Inject constructor(
@@ -25,24 +25,18 @@ class TestDataRepositoryImpl @Inject constructor(
 		getUserDataRef().update(UserData::listOfTestData.name, FieldValue.arrayUnion(testData))
 	}
 
-	override fun getTestListInfo() = flow()
+	override suspend fun getTestListInfo() = getListOfTestData().toTestListInfo()
+
+	private suspend fun getListOfTestData(): List<TestData> = withContext(Dispatchers.IO)
 	{
-		val listFromServer = getListOfTestData()
-
-		emit(listFromServer.toTestListInfo())
-	}
-
-
-	private suspend fun getListOfTestData(): List<TestData>
-	{
-		return getUserDataRef()
+		getUserDataRef()
 			.get()
 			.await()
 			.toObject<UserData>()!!.listOfTestData!!
 	}
 
 
-	private suspend fun getUserDataRef(): DocumentReference
+	private suspend fun getUserDataRef() = withContext(Dispatchers.IO)
 	{
 		val userUuid = appRepository.getUserUuid()!!
 
@@ -50,7 +44,7 @@ class TestDataRepositoryImpl @Inject constructor(
 		val snapShot = documentRef.get().await()
 		val userData = snapShot.toObject<UserData>()
 
-		return documentRef.apply()
+		documentRef.apply()
 		{
 			if (!snapShot.exists() || userData?.listOfTestData == null)
 			{
