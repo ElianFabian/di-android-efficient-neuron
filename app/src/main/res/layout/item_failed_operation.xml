@@ -33,6 +33,7 @@
 				style="@style/TextView_Value"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
+				android:textColor="@color/blue_400"
 				android:layout_marginHorizontal="@dimen/_5sdp"
 				tools:text="+" />
 
@@ -55,6 +56,7 @@
 				style="@style/TextView_Value"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
+				android:alpha="0.4"
 				android:text="4"
 				android:textColor="@color/red_700" />
 
