@@ -85,11 +85,11 @@ class TestViewModel @Inject constructor(
 							range = _range
 						)
 
+						addTestData(testData)
+
 						_eventFlow.send(TestEvent.OnTimerFinish(
 							args = listOf(EXTRA_TEST_INFO to testData.toTestInfo())
 						))
-
-						addTestData(testData)
 					}
 					else                   -> Unit
 				}

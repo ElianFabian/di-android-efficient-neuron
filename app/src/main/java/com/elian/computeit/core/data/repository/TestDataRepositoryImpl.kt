@@ -20,7 +20,7 @@ class TestDataRepositoryImpl @Inject constructor(
 	private val appRepository: LocalAppDataRepository,
 ) : TestDataRepository
 {
-	override suspend fun addTestData(testData: TestData)
+	override suspend fun addTestData(testData: TestData): Unit = withContext(Dispatchers.IO)
 	{
 		getUserDataRef().update(UserData::listOfTestData.name, FieldValue.arrayUnion(testData))
 	}
