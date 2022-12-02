@@ -79,7 +79,7 @@ class TestEndFragment : Fragment(R.layout.fragment_test_end)
 
 	private fun initRecyclerView(info: TestInfo)
 	{
-		val adapter = GenericAdapter(
+		binding.rvFailedOperations.adapter = GenericAdapter(
 			list = info.listOfFailedOperationInfo,
 			inflate = ItemFailedOperationBinding::inflate,
 		) {
@@ -89,7 +89,5 @@ class TestEndFragment : Fragment(R.layout.fragment_test_end)
 			tvInsertedResult.text = "${it.insertedResult}"
 			tvExpectedResult.text = "${it.expectedResult}"
 		}
-
-		binding.rvFailedOperations.adapter = adapter
 	}
 }
