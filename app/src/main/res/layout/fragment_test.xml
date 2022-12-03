@@ -47,12 +47,11 @@
 			android:id="@+id/mTimer"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			app:layout_constraintBottom_toTopOf="@+id/mLlOperation"
+			app:layout_constraintBottom_toTopOf="@id/mGlBottom"
 			app:layout_constraintEnd_toStartOf="@+id/mGlEnd"
-			app:layout_constraintHorizontal_bias="0.5"
 			app:layout_constraintStart_toStartOf="@+id/mGlStart"
 			app:layout_constraintTop_toTopOf="@id/mGlTop"
-			app:layout_constraintVertical_bias="0">
+			app:layout_constraintVertical_bias="0.01">
 
 			<com.google.android.material.progressindicator.CircularProgressIndicator
 				android:id="@+id/cpiRemainingSeconds"
@@ -69,6 +68,8 @@
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_gravity="center"
+				android:gravity="center"
+				android:includeFontPadding="false"
 				android:textColor="@color/white"
 				android:textSize="@dimen/textSize_large1"
 				android:textStyle="bold"
@@ -86,8 +87,8 @@
 			app:layout_constraintBottom_toBottomOf="parent"
 			app:layout_constraintEnd_toStartOf="@+id/mGlEnd"
 			app:layout_constraintStart_toStartOf="@+id/mGlStart"
-			app:layout_constraintTop_toTopOf="@+id/mGlTop"
-			app:layout_constraintVertical_bias="0.17">
+			app:layout_constraintTop_toBottomOf="@+id/mTimer"
+			app:layout_constraintVertical_bias="0">
 
 			<com.google.android.material.textview.MaterialTextView
 				android:id="@+id/tvFirstNumber"
@@ -171,10 +172,18 @@
 			<androidx.appcompat.widget.LinearLayoutCompat
 				style="@style/CalculatorButton_Row"
 				android:theme="@style/FragmentTestTheme_CalculatorButtonRow">
+
+				<com.google.android.material.button.MaterialButton
+					android:id="@+id/btnRemoveLastDigit"
+					style="@style/CalculatorButton.Action"
+					android:layout_weight="1"
+					android:backgroundTint="@color/deep_orange_400"
+					android:text="&lt;" />
+
 				<com.google.android.material.button.MaterialButton
 					android:id="@+id/btnNextTest"
 					style="@style/CalculatorButton.Action"
-					android:layout_span="3"
+					android:layout_weight="2"
 					android:backgroundTint="@color/green_a400"
 					android:text="&gt;" />
 			</androidx.appcompat.widget.LinearLayoutCompat>
@@ -246,16 +255,16 @@
 				android:theme="@style/FragmentTestTheme_CalculatorButtonRow">
 
 				<com.google.android.material.button.MaterialButton
-					style="@style/FragmentTest_CalculatorButton.Numeric"
+					android:id="@+id/btnClearInput"
+					style="@style/CalculatorButton.Action"
+					android:backgroundTint="@color/red_700"
+					android:text="AC" />
+
+				<com.google.android.material.button.MaterialButton
+					style="@style/CalculatorButton.Numeric"
 					android:layout_weight="2"
 					android:tag="@string/tag_numeric_button"
 					android:text="0" />
-
-				<com.google.android.material.button.MaterialButton
-					android:id="@+id/btn_clear_input"
-					style="@style/FragmentTest_CalculatorButton.Action"
-					android:backgroundTint="@color/red_700"
-					android:text="&lt;" />
 
 			</androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -269,7 +278,8 @@
 		android:layout_height="match_parent"
 		android:alpha="0.9"
 		android:background="@color/blue_sapphire"
-		android:gravity="center">
+		android:gravity="center"
+		tools:visibility="gone">
 
 		<com.google.android.material.textview.MaterialTextView
 			android:layout_width="wrap_content"

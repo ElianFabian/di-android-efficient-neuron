@@ -11,3 +11,10 @@ var TextView.text2: CharSequence
 
 		isGone = text.isNullOrBlank()
 	}
+
+var TextView.textSizeScaleDensity: Float
+	get() = textSize / resources.displayMetrics.density
+	set(value)
+	{
+		textSize = value / resources.displayMetrics.density
+	}

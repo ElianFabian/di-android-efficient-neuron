@@ -41,4 +41,9 @@ fun Long.append(number: Long): Long
 
 fun Int.append(number: Int) = this.toLong().append(number.toLong()).toInt()
 
+
+fun Long.dropLast(n: Int = 1): Long = (this * 10.0.pow(-n)).toLong()
+fun Int.dropLast(n: Int = 1): Int = this.toLong().dropLast(n).toInt()
+
+
 fun Float.ifNaNReturnZero() = if (isNaN()) 0F else this

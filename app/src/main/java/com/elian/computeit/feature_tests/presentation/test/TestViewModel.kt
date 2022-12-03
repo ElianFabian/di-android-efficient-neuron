@@ -16,6 +16,7 @@ import com.elian.computeit.core.util.constants.EXTRA_TEST_INFO
 import com.elian.computeit.core.util.constants.EXTRA_TEST_TIME_IN_SECONDS
 import com.elian.computeit.core.util.extensions.append
 import com.elian.computeit.core.util.extensions.clampLength
+import com.elian.computeit.core.util.extensions.dropLast
 import com.elian.computeit.feature_tests.domain.model.toTestInfo
 import com.elian.computeit.feature_tests.domain.use_case.AddTestData
 import com.elian.computeit.feature_tests.domain.use_case.GetRandomNumberPair
@@ -44,6 +45,8 @@ class TestViewModel @Inject constructor(
 
 	private val _listOfOperationData = mutableListOf<OperationData>()
 
+	val isInfiniteMode = _totalTimeInMillis == 0L
+
 	private val _eventFlow = Channel<TestEvent>()
 	val eventFlow = _eventFlow.receiveAsFlow()
 
@@ -53,22 +56,23 @@ class TestViewModel @Inject constructor(
 	private val _pairOfNumbersState = MutableStateFlow<NumberPair?>(null)
 	val pairOfNumbersState = _pairOfNumbersState.asStateFlow()
 
-	private var _millisUntilFinish = _totalTimeInMillis
-	private val _millisSinceStart get() = _totalTimeInMillis - _millisUntilFinish
+	private var _millisSinceStart = 0L
+
 
 	init
 	{
-		// When time is 0 then we enter the infinite mode
-		if (_totalTimeInMillis != 0L) initialize()
+		initialize()
 	}
+
 
 	fun onAction(action: TestAction)
 	{
 		when (action)
 		{
-			is EnterNumber -> _resultState.update { it.append(action.value).clampLength(maxLength = 8) }
-			is ClearInput  -> _resultState.value = 0
-			is NextTest    ->
+			is EnterNumber     -> _resultState.update { it.append(action.value).clampLength(maxLength = 8) }
+			is RemoveLastDigit -> _resultState.update { it.dropLast() }
+			is ClearInput      -> _resultState.value = 0
+			is NextTest        ->
 			{
 				val expectedResult = _operation(
 					firstNumber = _pairOfNumbersState.value!!.first,
@@ -92,6 +96,7 @@ class TestViewModel @Inject constructor(
 				_pairOfNumbersState.value = getRandomNumberPair(oldPair = _pairOfNumbersState.value)
 				_resultState.value = 0
 			}
+			is ForceFinish     -> viewModelScope.launch { finish(saveData = false) }
 		}
 	}
 
@@ -102,14 +107,31 @@ class TestViewModel @Inject constructor(
 		countDownTimer.start()
 	}
 
+	private suspend fun finish(saveData: Boolean = true)
+	{
+		val testData = TestData(
+			dateUnix = System.currentTimeMillis(),
+			timeInSeconds = _millisSinceStart.toInt() / 1000,
+			listOfOperationData = _listOfOperationData.toList(),
+			range = _range
+		)
+
+		if (saveData) addTestData(testData)
+
+		_eventFlow.send(TestEvent.OnTimerFinish(
+			args = listOf(EXTRA_TEST_INFO to testData.toTestInfo())
+		))
+	}
 
 	private fun initialize()
 	{
 		countDownTimer.initialize(
-			millisInFuture = _totalTimeInMillis,
+			millisInFuture = if (isInfiniteMode) Long.MAX_VALUE else _totalTimeInMillis,
 			countDownInterval = 1L,
 			coroutineScope = viewModelScope,
 		)
+
+		var startTime = 0L
 
 		viewModelScope.launch()
 		{
@@ -117,26 +139,14 @@ class TestViewModel @Inject constructor(
 			{
 				when (it)
 				{
+					is TimerEvent.OnStart  -> startTime = System.currentTimeMillis()
 					is TimerEvent.OnTick   ->
 					{
-						_millisUntilFinish = it.millisUntilFinished
+						_millisSinceStart = System.currentTimeMillis() - startTime
+
 						_eventFlow.send(TestEvent.OnTimerTick(it.millisUntilFinished))
 					}
-					is TimerEvent.OnFinish ->
-					{
-						val testData = TestData(
-							dateUnix = System.currentTimeMillis(),
-							timeInSeconds = _millisSinceStart.toInt() / 1000,
-							listOfOperationData = _listOfOperationData.toList(),
-							range = _range
-						)
-
-						addTestData(testData)
-
-						_eventFlow.send(TestEvent.OnTimerFinish(
-							args = listOf(EXTRA_TEST_INFO to testData.toTestInfo())
-						))
-					}
+					is TimerEvent.OnFinish -> finish()
 					else                   -> Unit
 				}
 			}

@@ -56,7 +56,15 @@ class TestFragment : Fragment(R.layout.fragment_test)
 
 		arguments?.getInt(EXTRA_TEST_TIME_IN_SECONDS)!!.also()
 		{
-			mtvRemainingSeconds.text = if (it == 0) "∞" else it.toFloat().format("%.1f")
+			mtvRemainingSeconds.text = if (it == 0)
+			{
+				mtvRemainingSeconds.textSizeScaleDensity = resources.getDimension(R.dimen.textSize_xlarge1)
+
+				mtvRemainingSeconds.setOnClickListener { viewModel.onAction(ForceFinish) }
+
+				"∞"
+			}
+			else it.toFloat().format("%.1f")
 
 			val initialProgress = if (it == 0) 1 else it * 1_000
 
@@ -76,6 +84,7 @@ class TestFragment : Fragment(R.layout.fragment_test)
 			}
 		}
 
+		btnRemoveLastDigit.setOnClickListener { viewModel.onAction(RemoveLastDigit) }
 		btnNextTest.setOnClickListener { viewModel.onAction(NextTest) }
 		btnClearInput.setOnClickListener { viewModel.onAction(ClearInput) }
 
@@ -108,7 +117,7 @@ class TestFragment : Fragment(R.layout.fragment_test)
 		{
 			when (it)
 			{
-				is OnTimerTick   ->
+				is OnTimerTick   -> if (!viewModel.isInfiniteMode)
 				{
 					val seconds = it.millisUntilFinished / 1000F
 
