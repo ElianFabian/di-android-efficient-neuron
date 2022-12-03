@@ -58,43 +58,8 @@ class TestViewModel @Inject constructor(
 
 	init
 	{
-		countDownTimer.initialize(
-			millisInFuture = _totalTimeInMillis,
-			countDownInterval = 1L,
-			coroutineScope = viewModelScope,
-		)
-
-		viewModelScope.launch()
-		{
-			countDownTimer.timerEventFlow.collect()
-			{
-				when (it)
-				{
-					is TimerEvent.OnStart  -> _pairOfNumbersState.value = getRandomNumberPair()
-					is TimerEvent.OnTick   ->
-					{
-						_millisUntilFinish = it.millisUntilFinished
-						_eventFlow.send(TestEvent.OnTimerTick(it.millisUntilFinished))
-					}
-					is TimerEvent.OnFinish ->
-					{
-						val testData = TestData(
-							dateUnix = System.currentTimeMillis(),
-							timeInSeconds = _millisSinceStart.toInt() / 1000,
-							listOfOperationData = _listOfOperationData.toList(),
-							range = _range
-						)
-
-						addTestData(testData)
-
-						_eventFlow.send(TestEvent.OnTimerFinish(
-							args = listOf(EXTRA_TEST_INFO to testData.toTestInfo())
-						))
-					}
-					else                   -> Unit
-				}
-			}
-		}
+		// When time is 0 then we enter the infinite mode
+		if (_totalTimeInMillis != 0L) initialize()
 	}
 
 	fun onAction(action: TestAction)
@@ -130,5 +95,51 @@ class TestViewModel @Inject constructor(
 		}
 	}
 
-	fun startTimer() = countDownTimer.start()
+	fun startTimer()
+	{
+		_pairOfNumbersState.value = getRandomNumberPair()
+
+		countDownTimer.start()
+	}
+
+
+	private fun initialize()
+	{
+		countDownTimer.initialize(
+			millisInFuture = _totalTimeInMillis,
+			countDownInterval = 1L,
+			coroutineScope = viewModelScope,
+		)
+
+		viewModelScope.launch()
+		{
+			countDownTimer.timerEventFlow.collect()
+			{
+				when (it)
+				{
+					is TimerEvent.OnTick   ->
+					{
+						_millisUntilFinish = it.millisUntilFinished
+						_eventFlow.send(TestEvent.OnTimerTick(it.millisUntilFinished))
+					}
+					is TimerEvent.OnFinish ->
+					{
+						val testData = TestData(
+							dateUnix = System.currentTimeMillis(),
+							timeInSeconds = _millisSinceStart.toInt() / 1000,
+							listOfOperationData = _listOfOperationData.toList(),
+							range = _range
+						)
+
+						addTestData(testData)
+
+						_eventFlow.send(TestEvent.OnTimerFinish(
+							args = listOf(EXTRA_TEST_INFO to testData.toTestInfo())
+						))
+					}
+					else                   -> Unit
+				}
+			}
+		}
+	}
 }

@@ -11,7 +11,7 @@ import kotlinx.coroutines.launch
 
 class CountDownTimerImpl : CountDownTimer
 {
-	private lateinit var countDownTimer: PreciseCountDownTimer
+	private var countDownTimer: PreciseCountDownTimer? = null
 	private var _millisInFuture = 0L
 	private var _countDownInterval = 0L
 	private lateinit var _coroutineScope: CoroutineScope
@@ -20,10 +20,25 @@ class CountDownTimerImpl : CountDownTimer
 	override val timerEventFlow = _timerEventFlow.receiveAsFlow()
 
 
-	override fun start() = countDownTimer.start()
-	override fun restart() = countDownTimer.restart()
-	override fun stop() = countDownTimer.stop()
-	override fun resume() = countDownTimer.resume()
+	override fun start()
+	{
+		countDownTimer?.start()
+	}
+
+	override fun restart()
+	{
+		countDownTimer?.restart()
+	}
+
+	override fun stop()
+	{
+		countDownTimer?.stop()
+	}
+
+	override fun resume()
+	{
+		countDownTimer?.resume()
+	}
 
 	override fun initialize(
 		millisInFuture: Long,

@@ -56,10 +56,12 @@ class TestFragment : Fragment(R.layout.fragment_test)
 
 		arguments?.getInt(EXTRA_TEST_TIME_IN_SECONDS)!!.also()
 		{
-			mtvRemainingSeconds.text = it.toFloat().format("%.1f")
+			mtvRemainingSeconds.text = if (it == 0) "∞" else it.toFloat().format("%.1f")
 
-			cpiRemainingSeconds.max = it * 1_000
-			cpiRemainingSeconds.progress = it * 1_000
+			val initialProgress = if (it == 0) 1 else it * 1_000
+
+			cpiRemainingSeconds.max = initialProgress
+			cpiRemainingSeconds.progress = initialProgress
 		}
 		arguments?.getSerializable(EXTRA_OPERATION_TYPE)!!.let { it as Operation }.also()
 		{
