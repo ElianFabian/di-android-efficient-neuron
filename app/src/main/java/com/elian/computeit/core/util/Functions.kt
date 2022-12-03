@@ -1,17 +1,22 @@
 package com.elian.computeit.core.util
 
-fun getDivisiblePairsInRange(start: Int, end: Int): List<Pair<Int, Int>>
+fun getDivisiblePairsInRange(
+	start: Int,
+	end: Int,
+	ignoreSelfDivision: Boolean = false,
+): List<Pair<Int, Int>>
 {
 	if (start == 0) throw IllegalArgumentException("start parameter can't be 0")
-	if (end > start) throw IllegalArgumentException("end ($end) can't be greater than start ($start)")
+
+	val oneOrZero = if (ignoreSelfDivision) 1 else 0
 
 	val divisiblePairs = mutableListOf<Pair<Int, Int>>()
 
-	val reversedRange = end downTo start
+	val range = start..end
 
-	for (a in reversedRange)
+	for (a in range)
 	{
-		for (b in (a - 1) downTo start)
+		for (b in start..(a - oneOrZero))
 		{
 			if (a % b != 0) continue
 
@@ -19,5 +24,5 @@ fun getDivisiblePairsInRange(start: Int, end: Int): List<Pair<Int, Int>>
 		}
 	}
 
-	return divisiblePairs.reversed()
+	return divisiblePairs
 }
