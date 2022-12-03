@@ -162,6 +162,7 @@
 			style="@style/TextView_Label"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
+			android:layout_marginTop="@dimen/_10sdp"
 			android:layout_marginBottom="@dimen/_5sdp"
 			android:text="@string/frgTestEnd_LabelFor_rvFailedOperations_text" />
 
@@ -169,8 +170,9 @@
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:backgroundTint="@color/background_card"
+			app:cardCornerRadius="@dimen/_6sdp"
 			app:strokeColor="@color/background_card"
-			app:strokeWidth="@dimen/_5sdp">
+			app:strokeWidth="@dimen/_6sdp">
 
 			<androidx.recyclerview.widget.RecyclerView
 				android:id="@+id/rvFailedOperations"
