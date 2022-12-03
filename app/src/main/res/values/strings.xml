@@ -11,7 +11,7 @@
 	<string name="bundleKey_selectedTip_position" translatable="false">selectedTipPosition</string>
 
 	<string name="error_cant_be_empty">Can\'t be empty</string>
-	<string name="error_division_by_zero_is_not_allow">Division by 0 is not allow</string>
+	<string name="error_division_by_zero_is_not_allowed">Division by 0 is not allowed</string>
 	<string name="error_password_invalid">Invalid password, it should contain at least %d of these characters: %s</string>
 	<string name="error_password_is_wrong">Password is wrong</string>
 	<string name="error_passwords_dont_match">Passwords don\'t match</string>

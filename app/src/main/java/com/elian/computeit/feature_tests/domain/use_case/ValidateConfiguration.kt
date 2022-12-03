@@ -49,7 +49,7 @@ class ValidateConfiguration @Inject constructor()
 		{
 			if (minValue == 0)
 			{
-				return TestConfigurationResult(resource = Resource.Error(R.string.error_division_by_zero_is_not_allow))
+				return TestConfigurationResult(resource = Resource.Error(R.string.error_division_by_zero_is_not_allowed))
 			}
 
 			getDivisiblePairsInRange(minValue, maxValue, ignoreSelfDivision = true).size.also()
