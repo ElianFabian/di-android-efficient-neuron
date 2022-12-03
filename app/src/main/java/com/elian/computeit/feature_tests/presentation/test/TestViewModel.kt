@@ -79,7 +79,7 @@ class TestViewModel @Inject constructor(
 					is TimerEvent.OnFinish ->
 					{
 						val testData = TestData(
-							dateUnix = System.currentTimeMillis() / 1000,
+							dateUnix = System.currentTimeMillis(),
 							timeInSeconds = _millisSinceStart.toInt() / 1000,
 							listOfOperationData = _listOfOperationData.toList(),
 							range = _range
