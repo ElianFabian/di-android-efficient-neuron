@@ -21,21 +21,18 @@ class AuthRepositoryImpl @Inject constructor(
 ) :
 	AuthRepository
 {
-	override suspend fun login(username: String, password: String): SimpleResource = withContext(Dispatchers.IO)
+	override suspend fun login(
+		username: String,
+		password: String,
+	): SimpleResource = withContext(Dispatchers.IO)
 	{
-		val user = utilRepository.getUserByName(username)
+		val user = utilRepository.getUserByName(username) ?: return@withContext Resource.Error(R.string.error_user_doesnt_exist)
 
-		when
-		{
-			user == null              -> Resource.Error(R.string.error_user_doesnt_exist)
-			user.password != password -> Resource.Error(R.string.error_password_is_wrong)
-			else                      ->
-			{
-				appRepository.saveUserUuid(user.uuid)
+		if (user.password != password) return@withContext Resource.Error(R.string.error_password_is_wrong)
 
-				Resource.Success()
-			}
-		}
+		appRepository.saveUserUuid(user.uuid)
+
+		Resource.Success()
 	}
 
 	override suspend fun register(
@@ -43,25 +40,20 @@ class AuthRepositoryImpl @Inject constructor(
 		password: String,
 	): SimpleResource = withContext(Dispatchers.IO)
 	{
-		when
+		if (utilRepository.getUserByName(username) != null) return@withContext Resource.Error(R.string.error_username_is_already_in_use)
+
+		User(
+			name = username,
+			password = password,
+		).apply()
 		{
-			utilRepository.getUserByName(username) != null -> Resource.Error(R.string.error_username_is_already_in_use)
-			else                                           ->
-			{
-				User(
-					name = username,
-					password = password,
-				).apply()
-				{
-					appRepository.saveUserUuid(uuid)
+			appRepository.saveUserUuid(uuid)
 
-					firestore.document("$COLLECTION_USERS/$uuid")
-						.set(this)
-						.await()
-				}
-
-				Resource.Success()
-			}
+			firestore.document("$COLLECTION_USERS/$uuid")
+				.set(this)
+				.await()
 		}
+
+		return@withContext Resource.Success()
 	}
 }
