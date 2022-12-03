@@ -26,7 +26,7 @@ class ValidateConfiguration @Inject constructor()
 		val maxValueError = getFieldError(maxValue)
 		val timeError = getFieldError(time)
 
-		// We only calculate it if the selected operation is Division
+		// We only need to calculate it if the selected operation is Division
 		val divisiblePairCount = if (operation == Operation.Division)
 		{
 			getDivisiblePairsInRange(
