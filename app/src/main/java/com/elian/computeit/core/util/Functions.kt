@@ -1,16 +1,16 @@
 package com.elian.computeit.core.util
 
-fun getDivisiblePairsInRange(minValue: Int, maxValue: Int): List<Pair<Int, Int>>
+fun getDivisiblePairsInRange(start: Int, end: Int): List<Pair<Int, Int>>
 {
 	val divisiblePairs = mutableListOf<Pair<Int, Int>>()
 
-	val reversedRange = maxValue downTo minValue
+	val reversedRange = end downTo start
 
 	for (a in reversedRange)
 	{
-		for (b in a downTo minValue)
+		for (b in (a - 1) downTo start)
 		{
-			if (b == 0 || a % b != 0 || a == b) continue
+			if (b == 0 || a % b != 0) continue
 
 			divisiblePairs += a to b
 		}
