@@ -33,7 +33,6 @@
 		<item name="android:textSize">@dimen/textSize_medium3</item>
 		<item name="android:fontFamily">@font/comfortaa_bold</item>
 		<item name="android:textColor">@color/white</item>
-		<item name="android:includeFontPadding">false</item>
 	</style>
 
 	<style name="TextAppearance_TextView_Label">

@@ -10,10 +10,6 @@
 		<item name="autoSizeTextType">uniform</item>
 	</style>
 
-	<style name="FragmentTest_CalculatorButton.Numeric" parent="CalculatorButton.Numeric" />
-
-	<style name="FragmentTest_CalculatorButton.Action" parent="CalculatorButton.Action" />
-
 	<style name="CalculatorButton_Row">
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">0dp</item>

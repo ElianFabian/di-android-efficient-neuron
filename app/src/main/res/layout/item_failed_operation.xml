@@ -6,6 +6,7 @@
 	android:layout_width="match_parent"
 	android:layout_height="wrap_content"
 	android:layout_marginVertical="@dimen/_3sdp"
+	android:backgroundTint="@color/transparent"
 	app:cardCornerRadius="@dimen/_3sdp">
 
 	<HorizontalScrollView
@@ -13,66 +14,74 @@
 		android:layout_height="wrap_content"
 		android:fillViewport="true">
 
-		<androidx.appcompat.widget.LinearLayoutCompat
+		<com.google.android.material.card.MaterialCardView
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:background="@color/blue_gray_800"
-			android:orientation="horizontal"
-			android:paddingHorizontal="@dimen/_10sdp"
-			android:paddingVertical="@dimen/_5sdp">
+			android:layout_margin="@dimen/_3sdp"
+			app:cardCornerRadius="@dimen/_5sdp">
 
-			<com.google.android.material.textview.MaterialTextView
-				android:id="@+id/tvFirstNumber"
-				style="@style/TextView_Value"
+			<androidx.appcompat.widget.LinearLayoutCompat
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				tools:text="1" />
+				android:background="@color/blue_gray_800"
+				android:orientation="horizontal"
+				android:paddingHorizontal="@dimen/_10sdp"
+				android:paddingVertical="@dimen/_6sdp">
 
-			<com.google.android.material.textview.MaterialTextView
-				android:id="@+id/tvOperationSymbol"
-				style="@style/TextView_Value"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_marginHorizontal="@dimen/_5sdp"
-				android:textColor="@color/blue_400"
-				tools:text="+" />
+				<com.google.android.material.textview.MaterialTextView
+					android:id="@+id/tvFirstNumber"
+					style="@style/TextView_Value"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					tools:text="1" />
 
-			<com.google.android.material.textview.MaterialTextView
-				android:id="@+id/tvSecondNumber"
-				style="@style/TextView_Value"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				tools:text="2" />
+				<com.google.android.material.textview.MaterialTextView
+					android:id="@+id/tvOperationSymbol"
+					style="@style/TextView_Value"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_marginHorizontal="@dimen/_5sdp"
+					android:textColor="@color/blue_400"
+					tools:text="+" />
 
-			<com.google.android.material.textview.MaterialTextView
-				style="@style/TextView_Value"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_marginHorizontal="@dimen/_5sdp"
-				android:text="=" />
+				<com.google.android.material.textview.MaterialTextView
+					android:id="@+id/tvSecondNumber"
+					style="@style/TextView_Value"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					tools:text="2" />
 
-			<com.google.android.material.textview.MaterialTextView
-				android:id="@+id/tvInsertedResult"
-				style="@style/TextView_Value"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:alpha="0.4"
-				android:text="4"
-				android:textColor="@color/red_700" />
+				<com.google.android.material.textview.MaterialTextView
+					style="@style/TextView_Value"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_marginHorizontal="@dimen/_5sdp"
+					android:text="=" />
 
-			<View
-				style="@style/Utils_LinearLayoutSeparator"
-				android:layout_marginHorizontal="@dimen/_20sdp" />
+				<com.google.android.material.textview.MaterialTextView
+					android:id="@+id/tvExpectedResult"
+					style="@style/TextView_Value"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="4"
+					android:textColor="@color/green_a400" />
 
-			<com.google.android.material.textview.MaterialTextView
-				android:id="@+id/tvExpectedResult"
-				style="@style/TextView_Value"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:text="3"
-				android:textColor="@color/green_a400" />
+				<View
+					style="@style/Utils_LinearLayoutSeparator"
+					android:layout_marginHorizontal="@dimen/_20sdp" />
 
-		</androidx.appcompat.widget.LinearLayoutCompat>
+				<com.google.android.material.textview.MaterialTextView
+					android:id="@+id/tvInsertedResult"
+					style="@style/TextView_Value"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:alpha="0.6"
+					android:text="3"
+					android:textColor="@color/red_700" />
+
+			</androidx.appcompat.widget.LinearLayoutCompat>
+
+		</com.google.android.material.card.MaterialCardView>
 
 	</HorizontalScrollView>
 
