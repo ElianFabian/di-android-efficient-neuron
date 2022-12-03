@@ -12,15 +12,13 @@ fun getDivisiblePairsInRange(
 
 	val divisiblePairs = mutableListOf<Pair<Int, Int>>()
 
-	val range = start..end
-
-	for (a in range)
+	for (numerator in start..end)
 	{
-		for (b in start..(a - oneOrZero))
+		for (denominator in start..(numerator - oneOrZero))
 		{
-			if (a % b != 0) continue
+			if (numerator % denominator != 0) continue
 
-			divisiblePairs += a to b
+			divisiblePairs += numerator to denominator
 		}
 	}
 
