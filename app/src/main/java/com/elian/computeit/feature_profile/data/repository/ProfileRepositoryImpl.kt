@@ -33,7 +33,7 @@ class ProfileRepositoryImpl @Inject constructor(
 			.await()
 			.toObject<User>()!!
 
-		user.run()
+		return@withContext user.run()
 		{
 			ProfileInfo(
 				username = name,
@@ -67,7 +67,7 @@ class ProfileRepositoryImpl @Inject constructor(
 				User::biography.name, biography,
 			).await()
 
-		Resource.Success()
+		return@withContext Resource.Success()
 	}
 
 	override suspend fun logout()
