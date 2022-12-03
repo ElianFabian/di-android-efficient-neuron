@@ -12,9 +12,9 @@ fun getDivisiblePairsInRange(minValue: Int, maxValue: Int): List<Pair<Int, Int>>
 	{
 		for (b in reversedRange)
 		{
-			if (b == 0 || a == b || a % b != 0) continue
+			if (b == 0 || a % b != 0 || a == b) continue
 
-			divisiblePairs.add(a to b)
+			divisiblePairs += a to b
 		}
 	}
 
