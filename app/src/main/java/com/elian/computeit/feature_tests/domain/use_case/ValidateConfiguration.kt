@@ -29,7 +29,7 @@ class ValidateConfiguration @Inject constructor()
 		// We only calculate it if the selected operation is Division
 		val divisiblePairCount = if (operation == Operation.Division)
 		{
-			getDivisiblePairsInRange((minValue ?: 0), (maxValue ?: 0)).size
+			getDivisiblePairsInRange((minValue ?: 1), (maxValue ?: 1)).size
 		}
 		else -1
 
