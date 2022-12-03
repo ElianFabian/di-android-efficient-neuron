@@ -4,13 +4,11 @@ fun getDivisiblePairsInRange(minValue: Int, maxValue: Int): List<Pair<Int, Int>>
 {
 	val divisiblePairs = mutableListOf<Pair<Int, Int>>()
 
-	val range = minValue..maxValue
-
-	val reversedRange = range.reversed()
+	val reversedRange = maxValue downTo minValue
 
 	for (a in reversedRange)
 	{
-		for (b in reversedRange)
+		for (b in a downTo minValue)
 		{
 			if (b == 0 || a % b != 0 || a == b) continue
 
