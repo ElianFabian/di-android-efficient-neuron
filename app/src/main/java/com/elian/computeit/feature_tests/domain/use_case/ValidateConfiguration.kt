@@ -26,54 +26,45 @@ class ValidateConfiguration @Inject constructor()
 		val maxValueError = getFieldError(maxValue)
 		val timeError = getFieldError(time)
 
-		// We only need to calculate it if the selected operation is Division
-		val divisiblePairCount = if (operation == Operation.Division)
+		if (checkIfError(minValueError, maxValueError, timeError))
 		{
-			getDivisiblePairsInRange(
-				start = (minValue ?: 1),
-				end = (maxValue ?: 1),
-				ignoreSelfDivision = true,
-			).size
+			return TestConfigurationResult(
+				minValueError = minValueError,
+				maxValueError = maxValueError,
+				timeError = timeError,
+			)
 		}
-		else -1
+		if (minValue!! > maxValue!!)
+		{
+			return TestConfigurationResult(resource = Resource.Error(R.string.error_range_values_are_inverted))
+		}
+		if (maxValue - minValue + 1 < _minRangeLength)
+		{
+			return TestConfigurationResult(resource = Resource.Error(
+				messageResId = R.string.error_range_length_must_be_greater_than,
+				args = arrayOf(_minRangeLength)
+			))
+		}
+		if (operation == Operation.Division)
+		{
+			if (minValue == 0)
+			{
+				return TestConfigurationResult(resource = Resource.Error(R.string.error_division_by_zero_is_not_allow))
+			}
 
-		return when
-		{
-			checkIfError(minValueError, maxValueError, timeError)                          ->
+			getDivisiblePairsInRange(minValue, maxValue, ignoreSelfDivision = true).size.also()
 			{
-				TestConfigurationResult(
-					minValueError = minValueError,
-					maxValueError = maxValueError,
-					timeError = timeError,
-				)
-			}
-			minValue!! > maxValue!!                                                        ->
-			{
-				TestConfigurationResult(resource = Resource.Error(R.string.error_range_values_are_inverted))
-			}
-			maxValue - minValue + 1 < _minRangeLength                                      ->
-			{
-				TestConfigurationResult(resource = Resource.Error(
-					messageResId = R.string.error_range_length_must_be_greater_than,
-					args = arrayOf(_minRangeLength)
-				))
-			}
-			operation == Operation.Division && divisiblePairCount < _minDivisiblePairCount ->
-			{
-				TestConfigurationResult(resource = Resource.Error(
-					messageResId = R.string.error_range_not_enough_divisible_pairs,
-					args = arrayOf(divisiblePairCount, _minDivisiblePairCount)
-				))
-			}
-			operation == Operation.Division && minValue == 0                               ->
-			{
-				TestConfigurationResult(resource = Resource.Error(R.string.error_division_by_zero_is_not_allow))
-			}
-			else                                                                           ->
-			{
-				TestConfigurationResult(resource = Resource.Success())
+				if (it < _minDivisiblePairCount)
+				{
+					return TestConfigurationResult(resource = Resource.Error(
+						messageResId = R.string.error_range_not_enough_divisible_pairs,
+						args = arrayOf(it, _minDivisiblePairCount)
+					))
+				}
 			}
 		}
+
+		return TestConfigurationResult(resource = Resource.Success())
 	}
 }
 
