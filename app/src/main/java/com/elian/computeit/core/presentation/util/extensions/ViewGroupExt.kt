@@ -50,7 +50,7 @@ inline fun <reified T : View> findViewsOfTypeFromRoot(root: ViewGroup): List<T>
 			childIndex = 0
 			continue
 		}
-		if (!(child is T || child is ViewGroup))
+		if (child !is T && child !is ViewGroup)
 		{
 			childIndex++
 			continue
@@ -89,16 +89,18 @@ inline fun <reified T : View> findViewsWithTagOfType(tag: String, root: ViewGrou
 			childIndex = 0
 			continue
 		}
-		if (!(child is T || child is ViewGroup || child.tag == tag))
+		if ((child !is T || child.tag != tag) && child !is ViewGroup)
 		{
 			childIndex++
 			continue
 		}
+
 		when (child)
 		{
 			is ViewGroup -> parentList.add(child)
 			else         -> views.add(child)
 		}
+
 
 		childIndex++
 	}
