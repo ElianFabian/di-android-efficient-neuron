@@ -24,13 +24,13 @@
 
 	<string name="frgEndGame_btnContinue_text">Continuar</string>
 
-	<string name="frgHomeFragment_averageOpm">OPM promedio</string>
-	<string name="frgHomeFragment_averageRawOpm">OPM bruto promedio</string>
-	<string name="frgHomeFragment_correctOperationsCompleted">Operaciones completadas correctas</string>
-	<string name="frgHomeFragment_highestOpm">OPM más alto</string>
-	<string name="frgHomeFragment_highestRawOpm">OPM bruto más alto</string>
-	<string name="frgHomeFragment_operationsCompleted">Operaciones completadas</string>
-	<string name="frgHomeFragment_testsCompleted">Tests completados</string>
+	<string name="frgHome_averageOpm">OPM promedio</string>
+	<string name="frgHome_averageRawOpm">OPM bruto promedio</string>
+	<string name="frgHome_correctOperationsCompleted">Operaciones completadas correctas</string>
+	<string name="frgHome_highestOpm">OPM más alto</string>
+	<string name="frgHome_highestRawOpm">OPM bruto más alto</string>
+	<string name="frgHome_operationsCompleted">Operaciones completadas</string>
+	<string name="frgHome_testsCompleted">Tests completados</string>
 
 	<string name="frgPrivateProfile_btnEdit_text">Editar</string>
 	<string name="frgPrivateProfile_btnLogout_text">Cerrar sesión</string>

@@ -100,31 +100,31 @@ class HomeFragment : Fragment(R.layout.fragment_home)
 	{
 		val listOfUiLabeledData = listOf(
 			LabeledData(
-				label = getString(R.string.frgHomeFragment_testsCompleted),
+				label = getString(R.string.frgHome_testsCompleted),
 				value = "$testsCompleted",
 			),
 			LabeledData(
-				label = getString(R.string.frgHomeFragment_operationsCompleted),
+				label = getString(R.string.frgHome_operationsCompleted),
 				value = "$operationsCompleted",
 			),
 			LabeledData(
-				label = getString(R.string.frgHomeFragment_correctOperationsCompleted),
+				label = getString(R.string.frgHome_correctOperationsCompleted),
 				value = "$correctOperationsCompleted (${correctOperationsCompletedPercentage.toInt()} %)",
 			),
 			LabeledData(
-				label = getString(R.string.frgHomeFragment_averageOpm),
+				label = getString(R.string.frgHome_averageOpm),
 				value = averageOpm.format(DEFAULT_DECIMAL_FORMAT),
 			),
 			LabeledData(
-				label = getString(R.string.frgHomeFragment_averageRawOpm),
+				label = getString(R.string.frgHome_averageRawOpm),
 				value = averageRawOpm.format(DEFAULT_DECIMAL_FORMAT),
 			),
 			LabeledData(
-				label = getString(R.string.frgHomeFragment_highestOpm),
+				label = getString(R.string.frgHome_highestOpm),
 				value = "$maxOpm",
 			),
 			LabeledData(
-				label = getString(R.string.frgHomeFragment_highestRawOpm),
+				label = getString(R.string.frgHome_highestRawOpm),
 				value = "$maxRawOpm",
 			),
 		)
