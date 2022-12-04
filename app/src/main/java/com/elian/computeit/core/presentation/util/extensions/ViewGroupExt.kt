@@ -101,7 +101,6 @@ inline fun <reified T : View> findViewsWithTagOfType(tag: String, root: ViewGrou
 			else         -> views.add(child)
 		}
 
-
 		currentChildIndexFromCurrentParent++
 	}
 	@Suppress("UNCHECKED_CAST")
