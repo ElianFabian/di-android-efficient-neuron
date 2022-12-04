@@ -35,7 +35,7 @@
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_marginHorizontal="@dimen/_5sdp"
-				android:textColor="@color/blue_400"
+				android:textColor="@color/operation_symbol"
 				tools:text="+" />
 
 			<com.google.android.material.textview.MaterialTextView

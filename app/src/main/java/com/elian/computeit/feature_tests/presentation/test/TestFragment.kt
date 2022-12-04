@@ -4,13 +4,14 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import androidx.core.os.bundleOf
+import androidx.core.view.isGone
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.elian.computeit.R
 import com.elian.computeit.core.data.Operation
 import com.elian.computeit.core.presentation.util.extensions.*
-import com.elian.computeit.core.presentation.util.isScreenOn
 import com.elian.computeit.core.presentation.util.viewBinding
 import com.elian.computeit.core.util.constants.EXTRA_OPERATION_TYPE
 import com.elian.computeit.core.util.constants.EXTRA_TEST_TIME_IN_SECONDS
@@ -31,7 +32,49 @@ class TestFragment : Fragment(R.layout.fragment_test)
 	private val viewModel by viewModels<TestViewModel>()
 	private val binding by viewBinding(FragmentTestBinding::bind)
 
-	private var _hasTestStarted = false
+	private val operationView by lazy {
+		object
+		{
+			private val horizontalOperation = binding.lytHorizontalOperation
+			private val verticalOperation = binding.lytVerticalOperation
+
+			var firstNumber: String
+				get() = horizontalOperation.tvFirstNumber.text.toString()
+				set(value)
+				{
+					horizontalOperation.tvFirstNumber.text = value
+					verticalOperation.tvFirstNumber.text = value
+				}
+			var secondNumber: String
+				get() = horizontalOperation.tvSecondNumber.text.toString()
+				set(value)
+				{
+					horizontalOperation.tvSecondNumber.text = value
+					verticalOperation.tvSecondNumber.text = value
+				}
+			var symbol: String
+				get() = horizontalOperation.tvSymbol.text.toString()
+				set(value)
+				{
+					horizontalOperation.tvSymbol.text = value
+					verticalOperation.tvSymbol.text = value
+				}
+
+			fun toggleDistribution()
+			{
+				if (horizontalOperation.root.isGone)
+				{
+					horizontalOperation.root.isVisible = true
+					verticalOperation.root.isGone = true
+				}
+				else
+				{
+					verticalOperation.root.isVisible = true
+					horizontalOperation.root.isGone = true
+				}
+			}
+		}
+	}
 
 
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?)
@@ -40,13 +83,6 @@ class TestFragment : Fragment(R.layout.fragment_test)
 
 		subscribeToEvents()
 		initUi()
-	}
-
-	override fun onPause()
-	{
-		super.onPause()
-
-		if (_hasTestStarted && !isScreenOn(context)) navigateUp()
 	}
 
 
@@ -73,7 +109,7 @@ class TestFragment : Fragment(R.layout.fragment_test)
 		}
 		arguments?.getSerializable(EXTRA_OPERATION_TYPE)!!.let { it as Operation }.also()
 		{
-			tvOperationSymbol.text = it.symbol
+			operationView.symbol = it.symbol
 		}
 
 		llKeyBoard.findViewsWithTagOfType<Button>(R.string.tag_numeric_button).forEach { button ->
@@ -84,14 +120,14 @@ class TestFragment : Fragment(R.layout.fragment_test)
 			}
 		}
 
+		mFlOperation.setOnClickListener { operationView.toggleDistribution() }
+
 		btnRemoveLastDigit.setOnClickListener { viewModel.onAction(RemoveLastDigit) }
 		btnNextTest.setOnClickListener { viewModel.onAction(NextTest) }
 		btnClearInput.setOnClickListener { viewModel.onAction(ClearInput) }
 
 		clTouchToStart.setOnClickListenerOnlyOnce()
 		{
-			_hasTestStarted = true
-
 			val transitionDuration = 600L
 
 			clTouchToStart.startAlphaAnimation(
@@ -138,9 +174,10 @@ class TestFragment : Fragment(R.layout.fragment_test)
 		}
 		collectLatestFlowWhenStarted(pairOfNumbersState.filterNotNull())
 		{
-			binding.tvFirstNumber.text = it.first.toString()
-			binding.tvSecondNumber.text = it.second.toString()
+			operationView.firstNumber = it.first.toString()
+			operationView.secondNumber = it.second.toString()
 		}
+		collectLatestFlowWhenStarted(operationSymbolState) { operationView.symbol = it }
 	}
 
 	private fun enableScreenInteraction()

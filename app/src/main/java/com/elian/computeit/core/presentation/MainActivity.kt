@@ -3,6 +3,7 @@ package com.elian.computeit.core.presentation
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.navigation.NavDestination
 import androidx.navigation.findNavController
 import com.elian.computeit.R
 import dagger.hilt.android.AndroidEntryPoint
@@ -15,8 +16,12 @@ class MainActivity : AppCompatActivity(R.layout.activity_main)
 	private val _disabledNavigateUpDestinations = setOf(
 		R.id.testEndFragment,
 	)
+	private val _onBackgroundedNavigateUpDestinations = setOf(
+		R.id.testFragment,
+	)
 	private var _isNavigateUpEnable = true
 	private var _currentFragment: Fragment? = null
+	private lateinit var _currentDestination: NavDestination
 
 
 	override fun onCreate(savedInstanceState: Bundle?)
@@ -24,6 +29,13 @@ class MainActivity : AppCompatActivity(R.layout.activity_main)
 		super.onCreate(savedInstanceState)
 
 		initLogic()
+	}
+
+	override fun onPause()
+	{
+		super.onPause()
+
+		onBackgrounded()
 	}
 
 	override fun onBackPressed()
@@ -40,9 +52,16 @@ class MainActivity : AppCompatActivity(R.layout.activity_main)
 	{
 		navController.addOnDestinationChangedListener { _, destination, _ ->
 
+			_currentDestination = destination
+
 			_currentFragment = if (destination.id == R.id.homeFragment) HomeFragment() else null
 
 			_isNavigateUpEnable = destination.id !in _disabledNavigateUpDestinations
 		}
+	}
+
+	private fun onBackgrounded()
+	{
+		if (_currentDestination.id in _onBackgroundedNavigateUpDestinations) navController.navigateUp()
 	}
 }

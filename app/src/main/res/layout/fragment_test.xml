@@ -40,7 +40,15 @@
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:orientation="horizontal"
-			app:layout_constraintGuide_end="@dimen/_10sdp" />
+			app:layout_constraintGuide_end="@dimen/_5sdp" />
+
+		<androidx.constraintlayout.widget.Guideline
+			android:id="@+id/mGlKeyboardHeight"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:orientation="horizontal"
+			app:layout_constraintGuide_begin="@dimen/_295sdp" />
+
 		<!--endregion-->
 
 		<FrameLayout
@@ -77,64 +85,35 @@
 
 		</FrameLayout>
 
-		<androidx.constraintlayout.widget.ConstraintLayout
-			android:id="@+id/mLlOperation"
-			android:layout_width="0dp"
-			android:layout_height="wrap_content"
-			android:layout_marginHorizontal="@dimen/_26sdp"
-			android:gravity="center"
-			android:orientation="horizontal"
+		<!--This layout contains the vertical and horizontal layout versions of an operation-->
+		<!--that will be toggle through code when it's clicked-->
+		<FrameLayout
+			android:id="@+id/mFlOperation"
+			android:layout_width="wrap_content"
+			android:layout_height="@dimen/_90sdp"
 			app:layout_constraintBottom_toBottomOf="parent"
 			app:layout_constraintEnd_toStartOf="@+id/mGlEnd"
 			app:layout_constraintStart_toStartOf="@+id/mGlStart"
 			app:layout_constraintTop_toBottomOf="@+id/mTimer"
 			app:layout_constraintVertical_bias="0">
 
-			<com.google.android.material.textview.MaterialTextView
-				android:id="@+id/tvFirstNumber"
+			<include
+				android:id="@+id/lytHorizontalOperation"
+				layout="@layout/layout_horizontal_operation"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:layout_gravity="center|top"
-				android:text="\?"
-				android:textColor="@color/white"
-				android:textSize="@dimen/textSize_xlarge1"
-				android:textStyle="bold"
-				app:layout_constraintBottom_toBottomOf="parent"
-				app:layout_constraintEnd_toStartOf="@id/tvOperationSymbol"
-				app:layout_constraintHorizontal_bias="0.95"
-				app:layout_constraintStart_toStartOf="parent"
-				app:layout_constraintTop_toTopOf="parent" />
+				android:layout_marginHorizontal="@dimen/_26sdp"
+				android:visibility="visible" />
 
-			<com.google.android.material.textview.MaterialTextView
-				android:id="@+id/tvOperationSymbol"
+			<include
+				android:id="@+id/lytVerticalOperation"
+				layout="@layout/layout_vertical_operation"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:layout_gravity="center|top"
-				android:textColor="@color/blue_400"
-				android:textSize="@dimen/textSize_large2"
-				android:textStyle="bold"
-				app:layout_constraintBottom_toBottomOf="parent"
-				app:layout_constraintEnd_toEndOf="parent"
-				app:layout_constraintStart_toStartOf="parent"
-				app:layout_constraintTop_toTopOf="parent"
-				tools:text="+" />
+				android:layout_marginHorizontal="@dimen/_26sdp"
+				android:visibility="gone" />
 
-			<com.google.android.material.textview.MaterialTextView
-				android:id="@+id/tvSecondNumber"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_gravity="center|top"
-				android:text="\?"
-				android:textColor="@color/white"
-				android:textSize="@dimen/textSize_xlarge1"
-				android:textStyle="bold"
-				app:layout_constraintBottom_toBottomOf="parent"
-				app:layout_constraintEnd_toEndOf="parent"
-				app:layout_constraintHorizontal_bias="0.05"
-				app:layout_constraintStart_toEndOf="@id/tvOperationSymbol"
-				app:layout_constraintTop_toTopOf="parent" />
-
-		</androidx.constraintlayout.widget.ConstraintLayout>
+		</FrameLayout>
 
 		<com.google.android.material.textfield.TextInputEditText
 			android:id="@+id/tietInput"
@@ -151,23 +130,22 @@
 			android:textAlignment="center"
 			android:textColor="@color/white"
 			android:textSize="@dimen/textSize_large2"
-			app:layout_constraintBottom_toTopOf="@+id/mGlBottom"
-			app:layout_constraintEnd_toEndOf="@+id/mLlOperation"
-			app:layout_constraintStart_toStartOf="@+id/mLlOperation"
-			app:layout_constraintTop_toBottomOf="@+id/mLlOperation"
-			app:layout_constraintVertical_bias="0.2" />
+			app:layout_constraintBottom_toTopOf="@+id/llKeyBoard"
+			app:layout_constraintEnd_toStartOf="@+id/mGlEnd"
+			app:layout_constraintStart_toStartOf="@+id/mGlStart"
+			app:layout_constraintTop_toTopOf="@+id/mGlTop"
+			app:layout_constraintVertical_bias="0.97" />
 
 		<androidx.appcompat.widget.LinearLayoutCompat
 			android:id="@+id/llKeyBoard"
 			android:layout_width="0dp"
 			android:layout_height="0dp"
-			android:layout_marginTop="@dimen/_20sdp"
 			android:orientation="vertical"
 			app:layout_constraintBottom_toTopOf="@+id/mGlBottom"
 			app:layout_constraintEnd_toStartOf="@+id/mGlEnd"
 			app:layout_constraintStart_toStartOf="@+id/mGlStart"
-			app:layout_constraintTop_toBottomOf="@+id/tietInput"
-			app:layout_constraintVertical_bias="0.53">
+			app:layout_constraintTop_toBottomOf="@id/mGlKeyboardHeight"
+			app:layout_constraintVertical_bias="0.24000001">
 
 			<androidx.appcompat.widget.LinearLayoutCompat
 				style="@style/CalculatorButton_Row"

@@ -55,6 +55,9 @@ class TestViewModel @Inject constructor(
 
 	private val _pairOfNumbersState = MutableStateFlow<NumberPair?>(null)
 	val pairOfNumbersState = _pairOfNumbersState.asStateFlow()
+	
+	private val _operationSymbolState = MutableStateFlow(_operation.symbol)
+	val operationSymbolState = _operationSymbolState.asStateFlow()
 
 	private var _millisSinceStart = 0L
 
@@ -76,7 +79,7 @@ class TestViewModel @Inject constructor(
 			{
 				val expectedResult = _operation(
 					firstNumber = _pairOfNumbersState.value!!.first,
-					secondNumber = _pairOfNumbersState.value!!.second
+					secondNumber = _pairOfNumbersState.value!!.second,
 				)
 
 				// As there's no negative sign button even if the answer it's negative you can introduce a positive number
