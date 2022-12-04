@@ -36,10 +36,27 @@ fun Fragment.showAlertDialog(
 	onNegativeClick: (() -> Unit)? = null,
 )
 {
+	showAlertDialog(
+		message = getString(messageResId),
+		positiveText = getString(positiveTextResId),
+		negativeText = getString(negativeTextResId),
+		onPositiveClick = onPositiveClick,
+		onNegativeClick = onNegativeClick,
+	)
+}
+
+fun Fragment.showAlertDialog(
+	message: String,
+	positiveText: String,
+	negativeText: String,
+	onPositiveClick: (() -> Unit)? = null,
+	onNegativeClick: (() -> Unit)? = null,
+)
+{
 	AlertDialog.Builder(requireContext())
-		.setMessage(messageResId)
-		.setPositiveButton(positiveTextResId) { _, _ -> onPositiveClick?.invoke() }
-		.setNegativeButton(negativeTextResId) { _, _ -> onNegativeClick?.invoke() }
+		.setMessage(message)
+		.setPositiveButton(positiveText) { _, _ -> onPositiveClick?.invoke() }
+		.setNegativeButton(negativeText) { _, _ -> onNegativeClick?.invoke() }
 		.create()
 		.show()
 }
