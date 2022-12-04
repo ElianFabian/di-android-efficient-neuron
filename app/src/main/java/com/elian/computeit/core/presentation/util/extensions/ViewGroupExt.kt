@@ -38,26 +38,26 @@ inline fun <reified T : View> findViewsOfTypeFromRoot(root: ViewGroup): List<T>
 	var currentParent: ViewGroup? = root
 	val viewGroupList = ArrayDeque<ViewGroup>()
 
-	var childIndex = 0
+	var currentChildIndexFromCurrentParent = 0
 
 	while (currentParent != null)
 	{
-		val child = currentParent.getChildAt(childIndex)
+		val child = currentParent.getChildAt(currentChildIndexFromCurrentParent)
 
 		if (child == null)
 		{
 			currentParent = viewGroupList.removeFirstOrNull()
-			childIndex = 0
+			currentChildIndexFromCurrentParent = 0
 			continue
 		}
 		if (child !is T && child !is ViewGroup)
 		{
-			childIndex++
+			currentChildIndexFromCurrentParent++
 			continue
 		}
 		if (child is ViewGroup) viewGroupList.add(child)
 
-		childIndex++
+		currentChildIndexFromCurrentParent++
 	}
 	@Suppress("UNCHECKED_CAST")
 	return views as List<T>
@@ -77,21 +77,21 @@ inline fun <reified T : View> findViewsWithTagOfType(tag: String, root: ViewGrou
 	var currentParent: ViewGroup? = root
 	val parentList = ArrayDeque<ViewGroup>()
 
-	var childIndex = 0
+	var currentChildIndexFromCurrentParent = 0
 
 	while (currentParent != null)
 	{
-		val child = currentParent.getChildAt(childIndex)
+		val child = currentParent.getChildAt(currentChildIndexFromCurrentParent)
 
 		if (child == null)
 		{
 			currentParent = parentList.removeFirstOrNull()
-			childIndex = 0
+			currentChildIndexFromCurrentParent = 0
 			continue
 		}
 		if ((child !is T || child.tag != tag) && child !is ViewGroup)
 		{
-			childIndex++
+			currentChildIndexFromCurrentParent++
 			continue
 		}
 
@@ -102,7 +102,7 @@ inline fun <reified T : View> findViewsWithTagOfType(tag: String, root: ViewGrou
 		}
 
 
-		childIndex++
+		currentChildIndexFromCurrentParent++
 	}
 	@Suppress("UNCHECKED_CAST")
 	return views as List<T>
