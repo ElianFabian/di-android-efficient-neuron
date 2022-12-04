@@ -4,8 +4,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.StringRes
 
-// https://stackoverflow.com/questions/8817377/android-how-to-find-multiple-views-with-common-attribute
-
 private fun findViewsWithTag(tag: String, root: ViewGroup): List<View>
 {
 	val views = mutableListOf<View>()
