@@ -7,9 +7,6 @@
 	<string name="arrayTest_modes_tests">Tests</string>
 	<string name="arrayTest_modes_time">Time</string>
 
-	<string name="bundleKey_selectedTip" translatable="false">selectedTip</string>
-	<string name="bundleKey_selectedTip_position" translatable="false">selectedTipPosition</string>
-
 	<string name="error_cant_be_empty">Can\'t be empty</string>
 	<string name="error_division_by_zero_is_not_allowed">Division by 0 is not allowed</string>
 	<string name="error_password_invalid">Invalid password, it should contain at least %d of these characters: %s</string>
