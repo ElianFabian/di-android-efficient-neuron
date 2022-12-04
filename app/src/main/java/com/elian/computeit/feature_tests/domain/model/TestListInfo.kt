@@ -1,10 +1,12 @@
 package com.elian.computeit.feature_tests.domain.model
 
 import com.elian.computeit.core.domain.models.TestData
+import com.elian.computeit.core.util.constants.secondsToDHHMMSS
 import com.elian.computeit.core.util.extensions.*
 
 data class TestListInfo(
 	val testsCompleted: Int,
+	val totalTime: String,
 	val operationsCompleted: Int,
 	val correctOperationsCompleted: Int,
 	val correctOperationsCompletedPercentage: Float,
@@ -21,6 +23,7 @@ fun List<TestData>.toTestListInfo() = run()
 {
 	TestListInfo(
 		testsCompleted = size,
+		totalTime = secondsToDHHMMSS(totalTimeInSeconds),
 		operationsCompleted = operationsCompleted,
 		correctOperationsCompleted = correctOperationsCompleted,
 		correctOperationsCompletedPercentage = correctOperationsCompletedPercentage,

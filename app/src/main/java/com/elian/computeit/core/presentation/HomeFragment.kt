@@ -104,6 +104,10 @@ class HomeFragment : Fragment(R.layout.fragment_home)
 				value = "$testsCompleted",
 			),
 			LabeledData(
+				label = getString(R.string.frgHome_totalTime),
+				value = totalTime,
+			),
+			LabeledData(
 				label = getString(R.string.frgHome_operationsCompleted),
 				value = "$operationsCompleted",
 			),
