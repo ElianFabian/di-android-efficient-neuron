@@ -156,7 +156,7 @@
 					style="@style/CalculatorButton.Action"
 					android:layout_weight="1"
 					android:backgroundTint="@color/deep_orange_400"
-					android:text="&lt;" />
+					android:text="DEL" />
 
 				<com.google.android.material.button.MaterialButton
 					android:id="@+id/btnNextTest"
