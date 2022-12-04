@@ -65,7 +65,7 @@ class TestEndFragment : Fragment(R.layout.fragment_test_end)
 		val lineDataSets = arrayOf(
 			lineDataSet(
 				labelResId = R.string.generic_raw,
-				lineAndCirclesColorResId = R.color.default_chart_25,
+				lineAndCirclesColorResId = R.color.chart_secondary,
 				entries = info.rawOpmPerSecond.toEntries(),
 			),
 			lineDataSet(

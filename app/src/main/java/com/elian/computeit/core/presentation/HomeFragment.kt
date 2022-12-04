@@ -66,7 +66,7 @@ class HomeFragment : Fragment(R.layout.fragment_home)
 			val lineDataSets = arrayOf(
 				lineDataSet(
 					labelResId = R.string.generic_raw,
-					lineAndCirclesColorResId = R.color.default_chart_25,
+					lineAndCirclesColorResId = R.color.chart_secondary,
 					entries = rawOpmPerTest.toEntries(),
 				) {
 					setDrawVerticalHighlightIndicator(true)
