@@ -22,6 +22,9 @@
 	<string name="error_username_invalid">Invalid username, it can only contain letters, digits and these characters: %s</string>
 	<string name="error_username_is_already_in_use">The username is already in use</string>
 
+	<string name="feature_profile_account_created_at_PH">The account was created at: %s</string>
+	<string name="feature_profile_biography">Biography</string>
+
 	<string name="frgEditProfile_btnSave_text">Save</string>
 
 	<string name="frgEndGame_btnContinue_text">Continue</string>
@@ -57,7 +60,6 @@
 
 	<string name="frgTips_tvTitle_text">Tips</string>
 
-	<string name="generic_biography">Biography</string>
 	<string name="generic_confirm_password">Confirm password</string>
 	<string name="generic_errors">Errors</string>
 	<string name="generic_login">Login</string>
@@ -77,6 +79,4 @@
 	<string name="navigation_drawer_open" translatable="false">Open</string>
 
 	<string name="no_data_available">No data available</string>
-
-	<string name="profile_account_created_at_ph">The account was created at: %s</string>
 </resources>

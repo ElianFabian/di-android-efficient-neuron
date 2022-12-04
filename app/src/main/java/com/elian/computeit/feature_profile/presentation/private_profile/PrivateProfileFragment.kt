@@ -40,7 +40,7 @@ class PrivateProfileFragment : Fragment(R.layout.fragment_private_profile)
 
 			tvUsername.text2 = info.username
 			tvBiography.text2 = info.biography
-			tvCreatedAt.text2 = getString(R.string.profile_account_created_at_ph).format(info.createdAt)
+			tvCreatedAt.text2 = getString(R.string.feature_profile_account_created_at_PH).format(info.createdAt)
 		}
 
 		btnEdit.setOnClickListener { navigate(R.id.action_profileFragment_to_editProfileFragment) }

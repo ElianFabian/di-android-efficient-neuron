@@ -78,7 +78,7 @@
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
 					android:gravity="top"
-					android:hint="@string/generic_biography"
+					android:hint="@string/feature_profile_biography"
 					android:inputType="textMultiLine"
 					android:lines="12"
 					android:maxLength="512" />
