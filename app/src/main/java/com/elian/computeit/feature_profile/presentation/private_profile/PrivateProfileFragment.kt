@@ -2,6 +2,7 @@ package com.elian.computeit.feature_profile.presentation.private_profile
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -41,9 +42,12 @@ class PrivateProfileFragment : Fragment(R.layout.fragment_private_profile)
 			tvUsername.text2 = info.username
 			tvBiography.text2 = info.biography
 			tvCreatedAt.text2 = getString(R.string.feature_profile_account_created_at_PH).format(info.createdAt)
+
+			// This is to avoid weird visual behaviours when transitioning from Home to PrivateProfile
+			btnLogout.isVisible = true
 		}
 
-		btnEdit.setOnClickListener { navigate(R.id.action_profileFragment_to_editProfileFragment) }
+		btnEdit.setOnClickListener { navigate(R.id.action_privateProfileFragment_to_editProfileFragment) }
 		btnLogout.setOnClickListener()
 		{
 			showAlertDialog(

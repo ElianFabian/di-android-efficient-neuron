@@ -22,8 +22,12 @@
 			android:id="@+id/action_homeFragment_to_settingsFragment"
 			app:destination="@id/settingsFragment" />
 		<action
-			android:id="@+id/action_homeFragment_to_profileFragment"
-			app:destination="@id/profileFragment" />
+			android:id="@+id/action_homeFragment_to_privateProfileFragment"
+			app:destination="@id/privateProfileFragment"
+			app:enterAnim="@anim/enter_from_bottom"
+			app:exitAnim="@anim/exit_to_top"
+			app:popEnterAnim="@anim/enter_from_top"
+			app:popExitAnim="@anim/exit_to_bottom" />
 		<action
 			android:id="@+id/action_homeFragment_to_tipsFragment"
 			app:destination="@id/tipsFragment" />
@@ -75,11 +79,11 @@
 		android:name="com.elian.computeit.feature_settings.presentation.SettingsFragment"
 		android:label="SettingsFragment" />
 	<fragment
-		android:id="@+id/profileFragment"
+		android:id="@+id/privateProfileFragment"
 		android:name="com.elian.computeit.feature_profile.presentation.private_profile.PrivateProfileFragment"
-		android:label="ProfileFragment">
+		android:label="PrivateProfileFragment">
 		<action
-			android:id="@+id/action_profileFragment_to_editProfileFragment"
+			android:id="@+id/action_privateProfileFragment_to_editProfileFragment"
 			app:destination="@id/editProfileFragment" />
 	</fragment>
 	<fragment

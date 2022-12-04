@@ -114,7 +114,9 @@
 				android:layout_marginTop="@dimen/_35sdp"
 				android:layout_marginBottom="@dimen/_5sdp"
 				android:backgroundTint="@color/red_700"
-				android:text="@string/frgPrivateProfile_btnLogout_text" />
+				android:text="@string/frgPrivateProfile_btnLogout_text"
+				android:visibility="gone"
+				tools:visibility="visible" />
 
 			<TextView
 				android:id="@+id/tvCreatedAt"
