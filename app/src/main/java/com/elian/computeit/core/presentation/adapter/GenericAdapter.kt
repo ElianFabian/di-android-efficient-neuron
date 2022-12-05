@@ -1,5 +1,6 @@
 package com.elian.computeit.core.presentation.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,15 +12,16 @@ import androidx.viewbinding.ViewBinding
 class GenericAdapter<ItemT : Any, VB : ViewBinding>(
 	private val inflate: (LayoutInflater, ViewGroup, Boolean) -> VB,
 	list: List<ItemT> = emptyList(),
-	private val areItemsTheSame: (oldItem: ItemT, newItem: ItemT) -> Boolean = { oldItem, newItem -> oldItem == newItem },
-	private val areContentsTheSame: (oldItem: ItemT, newItem: ItemT) -> Boolean = { oldItem, newItem -> oldItem == newItem },
+	areItemsTheSame: ((oldItem: ItemT, newItem: ItemT) -> Boolean)? = null,
+	areContentsTheSame: ((oldItem: ItemT, newItem: ItemT) -> Boolean)? = null,
 	private val onBind: VB.(item: ItemT) -> Unit,
 ) : ListAdapter<ItemT, GenericAdapter<ItemT, VB>.ViewHolder>(
 	object : DiffUtil.ItemCallback<ItemT>()
 	{
-		override fun areItemsTheSame(oldItem: ItemT, newItem: ItemT) = areItemsTheSame(oldItem, newItem)
+		override fun areItemsTheSame(oldItem: ItemT, newItem: ItemT) = areItemsTheSame?.invoke(oldItem, newItem) ?: (oldItem == newItem)
 
-		override fun areContentsTheSame(oldItem: ItemT, newItem: ItemT) = areContentsTheSame(oldItem, newItem)
+		@SuppressLint("DiffUtilEquals")
+		override fun areContentsTheSame(oldItem: ItemT, newItem: ItemT) = areContentsTheSame?.invoke(oldItem, newItem) ?: (oldItem == newItem)
 	}
 )
 {
@@ -27,7 +29,6 @@ class GenericAdapter<ItemT : Any, VB : ViewBinding>(
 	{
 		submitList(list)
 	}
-
 
 	inner class ViewHolder(view: View, val binding: VB) : RecyclerView.ViewHolder(view)
 
