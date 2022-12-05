@@ -44,8 +44,8 @@
     <string name="frgSettings_disable_notifications_title">Desactivar notificaciones</string>
     <string name="frgSettings_use_inverted_numeric_keyboard_title">Usar teclado numérico invertido</string>
 
-    <string name="frgTestConfiguration_tietMaxValue_hint">Máximo</string>
-    <string name="frgTestConfiguration_tietMinValue_hint">Mínimo</string>
+    <string name="frgTestConfiguration_tietEnd_hint">Final</string>
+    <string name="frgTestConfiguration_tietStart_hint">Principio</string>
     <string name="frgTestConfiguration_tvMode_text">Modo:</string>
     <string name="frgTestConfiguration_tvNumberRange_text">Intervalo:</string>
     <string name="frgTestConfiguration_tvTitle_text">Configuración de test</string>

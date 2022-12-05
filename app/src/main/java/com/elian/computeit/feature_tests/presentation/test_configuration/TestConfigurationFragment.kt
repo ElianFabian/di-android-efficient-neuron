@@ -57,8 +57,8 @@ class TestConfigurationFragment : Fragment(R.layout.fragment_test_configuration)
 		}
 		_lastCheckedOperationRadioButton.performClick()
 
-		tietMinValue.addTextChangedListener { viewModel.onAction(EnterMinValue(it.toString().toIntOrNull())) }
-		tietMaxValue.addTextChangedListener { viewModel.onAction(EnterMaxValue(it.toString().toIntOrNull())) }
+		tietStart.addTextChangedListener { viewModel.onAction(EnterStart(it.toString().toIntOrNull())) }
+		tietEnd.addTextChangedListener { viewModel.onAction(EnterEnd(it.toString().toIntOrNull())) }
 		tietTime.addTextChangedListener { viewModel.onAction(EnterTime(it.toString().toIntOrNull())) }
 
 		btnStartTest.setOnClickListener { viewModel.onAction(StartTest) }
@@ -81,8 +81,8 @@ class TestConfigurationFragment : Fragment(R.layout.fragment_test_configuration)
 				is OnShowErrorMessage -> toast(it.error.asString(context))
 			}
 		}
-		collectLatestFlowWhenStarted(minValueState.map { it.error }) { binding.tietMinValue.error = getFieldError(it) }
-		collectLatestFlowWhenStarted(maxValueState.map { it.error }) { binding.tietMaxValue.error = getFieldError(it) }
+		collectLatestFlowWhenStarted(startState.map { it.error }) { binding.tietStart.error = getFieldError(it) }
+		collectLatestFlowWhenStarted(endState.map { it.error }) { binding.tietEnd.error = getFieldError(it) }
 		collectLatestFlowWhenStarted(timeState.map { it.error }) { binding.tietTime.error = getFieldError(it) }
 	}
 

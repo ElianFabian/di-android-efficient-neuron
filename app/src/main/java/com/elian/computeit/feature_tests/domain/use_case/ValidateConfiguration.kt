@@ -17,28 +17,28 @@ class ValidateConfiguration @Inject constructor()
 
 	operator fun invoke(
 		operation: Operation,
-		minValue: Int?,
-		maxValue: Int?,
+		start: Int?,
+		end: Int?,
 		time: Int?,
 	): TestConfigurationResult
 	{
-		val minValueError = getFieldError(minValue)
-		val maxValueError = getFieldError(maxValue)
+		val startError = getFieldError(start)
+		val endError = getFieldError(end)
 		val timeError = getFieldError(time)
 
-		if (checkIfError(minValueError, maxValueError, timeError))
+		if (checkIfError(startError, endError, timeError))
 		{
 			return TestConfigurationResult(
-				minValueError = minValueError,
-				maxValueError = maxValueError,
+				startError = startError,
+				endError = endError,
 				timeError = timeError,
 			)
 		}
-		if (minValue!! > maxValue!!)
+		if (start!! > end!!)
 		{
 			return TestConfigurationResult(resource = Resource.Error(R.string.error_range_values_are_inverted))
 		}
-		if (maxValue - minValue + 1 < _minRangeLength)
+		if (end - start + 1 < _minRangeLength)
 		{
 			return TestConfigurationResult(resource = Resource.Error(
 				messageResId = R.string.error_range_length_must_be_greater_than,
@@ -47,12 +47,12 @@ class ValidateConfiguration @Inject constructor()
 		}
 		if (operation == Operation.Division)
 		{
-			if (minValue == 0)
+			if (start == 0)
 			{
 				return TestConfigurationResult(resource = Resource.Error(R.string.error_division_by_zero_is_not_allowed))
 			}
 
-			getDivisiblePairsInRange(minValue, maxValue, ignoreSelfDivision = true).size.also()
+			getDivisiblePairsInRange(start, end, ignoreSelfDivision = true).size.also()
 			{
 				if (it < _minDivisiblePairCount)
 				{

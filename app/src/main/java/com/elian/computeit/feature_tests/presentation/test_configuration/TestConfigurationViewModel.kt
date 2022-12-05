@@ -33,11 +33,11 @@ class TestConfigurationViewModel @Inject constructor(
 
 	private lateinit var _selectedOperation: Operation
 
-	private val _minValueState = MutableStateFlow(NumericFieldState<Int>())
-	val minValueState = _minValueState.asStateFlow()
+	private val _startState = MutableStateFlow(NumericFieldState<Int>())
+	val startState = _startState.asStateFlow()
 
-	private val _maxValueState = MutableStateFlow(NumericFieldState<Int>())
-	val maxValueState = _maxValueState.asStateFlow()
+	private val _endState = MutableStateFlow(NumericFieldState<Int>())
+	val endState = _endState.asStateFlow()
 
 	private val _timeState = MutableStateFlow(NumericFieldState<Int>())
 	val timeState = _timeState.asStateFlow()
@@ -48,20 +48,20 @@ class TestConfigurationViewModel @Inject constructor(
 		when (action)
 		{
 			is SelectOperationType -> _selectedOperation = Operation.fromSymbol(action.symbol)
-			is EnterMinValue       -> _minValueState.update { it.copy(number = action.value, error = null) }
-			is EnterMaxValue       -> _maxValueState.update { it.copy(number = action.value, error = null) }
-			is EnterTime           -> _timeState.update { it.copy(number = action.value, error = null) }
+			is EnterStart -> _startState.update { it.copy(number = action.value, error = null) }
+			is EnterEnd   -> _endState.update { it.copy(number = action.value, error = null) }
+			is EnterTime  -> _timeState.update { it.copy(number = action.value, error = null) }
 			is StartTest           ->
 			{
 				validateConfiguration(
 					operation = _selectedOperation,
-					minValue = _minValueState.value.number,
-					maxValue = _maxValueState.value.number,
+					start = _startState.value.number,
+					end = _endState.value.number,
 					time = _timeState.value.number,
 				).also { result ->
 
-					_minValueState.update { it.copy(error = result.minValueError) }
-					_maxValueState.update { it.copy(error = result.maxValueError) }
+					_startState.update { it.copy(error = result.startError) }
+					_endState.update { it.copy(error = result.endError) }
 					_timeState.update { it.copy(error = result.timeError) }
 
 					when (val resource = result.resource)
@@ -71,7 +71,7 @@ class TestConfigurationViewModel @Inject constructor(
 						{
 							val argsToSend = mapOf(
 								EXTRA_OPERATION_TYPE to _selectedOperation,
-								EXTRA_OPERATION_NUMBER_RANGE to Range(_minValueState.value.number!!, _maxValueState.value.number!!),
+								EXTRA_OPERATION_NUMBER_RANGE to Range(_startState.value.number!!, _endState.value.number!!),
 								EXTRA_TEST_TIME_IN_SECONDS to _timeState.value.number!!,
 							).toList()
 

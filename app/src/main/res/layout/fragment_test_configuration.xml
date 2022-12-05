@@ -111,11 +111,11 @@
 			android:orientation="horizontal">
 
 			<com.google.android.material.textfield.TextInputEditText
-				android:id="@+id/tietMinValue"
+				android:id="@+id/tietStart"
 				android:layout_width="@dimen/_100sdp"
 				android:layout_height="wrap_content"
 				android:gravity="center"
-				android:hint="@string/frgTestConfiguration_tietMinValue_hint"
+				android:hint="@string/frgTestConfiguration_tietStart_hint"
 				android:inputType="number"
 				android:maxLength="4"
 				android:minHeight="48dp"
@@ -123,11 +123,11 @@
 				android:theme="@style/Theme_frgTestConfiguration_TextInputEditText" />
 
 			<com.google.android.material.textfield.TextInputEditText
-				android:id="@+id/tietMaxValue"
+				android:id="@+id/tietEnd"
 				android:layout_width="@dimen/_100sdp"
 				android:layout_height="wrap_content"
 				android:gravity="center"
-				android:hint="@string/frgTestConfiguration_tietMaxValue_hint"
+				android:hint="@string/frgTestConfiguration_tietEnd_hint"
 				android:inputType="number"
 				android:maxLength="4"
 				android:minHeight="48dp"
@@ -149,7 +149,7 @@
 		<androidx.appcompat.widget.LinearLayoutCompat
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:orientation="horizontal">
+			android:orientation="vertical">
 
 			<com.google.android.material.textfield.TextInputEditText
 				android:id="@+id/tietTime"
