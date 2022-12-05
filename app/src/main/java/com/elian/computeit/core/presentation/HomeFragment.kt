@@ -23,6 +23,7 @@ import com.elian.computeit.feature_tests.domain.model.TestListInfo
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.filterNotNull
 
+
 @AndroidEntryPoint
 class HomeFragment : Fragment(R.layout.fragment_home)
 {
@@ -94,6 +95,8 @@ class HomeFragment : Fragment(R.layout.fragment_home)
 
 		binding.lcOpmPerTest.isVisible = true
 		_isUiFinished = true
+
+		binding.lcOpmPerTest.avoidConflictsWithScroll(binding.root)
 	}
 
 	private fun initTextInfo(info: TestListInfo) = info.apply2()

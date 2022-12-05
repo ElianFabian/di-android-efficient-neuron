@@ -6,6 +6,7 @@ import androidx.core.view.isGone
 import androidx.fragment.app.Fragment
 import com.elian.computeit.R
 import com.elian.computeit.core.presentation.adapter.GenericAdapter
+import com.elian.computeit.core.presentation.util.extensions.avoidConflictsWithScroll
 import com.elian.computeit.core.presentation.util.extensions.navigate
 import com.elian.computeit.core.presentation.util.mp_android_chart.applyDefault
 import com.elian.computeit.core.presentation.util.mp_android_chart.lineDataSet
@@ -75,6 +76,8 @@ class TestEndFragment : Fragment(R.layout.fragment_test_end)
 		)
 
 		binding.lcTestGraph.applyDefault(dataSets = lineDataSets)
+
+		binding.lcTestGraph.avoidConflictsWithScroll(binding.root)
 	}
 
 	private fun initRecyclerView(info: TestInfo)
