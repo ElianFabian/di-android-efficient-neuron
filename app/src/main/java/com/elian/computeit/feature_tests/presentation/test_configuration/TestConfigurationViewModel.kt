@@ -7,9 +7,7 @@ import com.elian.computeit.core.domain.models.Range
 import com.elian.computeit.core.domain.states.NumericFieldState
 import com.elian.computeit.core.util.Resource
 import com.elian.computeit.core.util.UiText
-import com.elian.computeit.core.util.constants.EXTRA_OPERATION_NUMBER_RANGE
-import com.elian.computeit.core.util.constants.EXTRA_OPERATION_TYPE
-import com.elian.computeit.core.util.constants.EXTRA_TEST_TIME_IN_SECONDS
+import com.elian.computeit.core.util.constants.TestArgKeys
 import com.elian.computeit.feature_tests.domain.use_case.ValidateConfiguration
 import com.elian.computeit.feature_tests.presentation.test_configuration.TestConfigurationAction.*
 import com.elian.computeit.feature_tests.presentation.test_configuration.TestConfigurationEvent.OnShowErrorMessage
@@ -70,9 +68,9 @@ class TestConfigurationViewModel @Inject constructor(
 						is Resource.Success ->
 						{
 							val argsToSend = mapOf(
-								EXTRA_OPERATION_TYPE to _selectedOperation,
-								EXTRA_OPERATION_NUMBER_RANGE to Range(_startState.value.number!!, _endState.value.number!!),
-								EXTRA_TEST_TIME_IN_SECONDS to _timeState.value.number!!,
+								TestArgKeys.OperationType to _selectedOperation,
+								TestArgKeys.OperationRange to Range(_startState.value.number!!, _endState.value.number!!),
+								TestArgKeys.TestTimeInSeconds to _timeState.value.number!!,
 							).toList()
 
 							_eventFlow.send(OnStart(args = argsToSend))

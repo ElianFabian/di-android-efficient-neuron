@@ -11,10 +11,8 @@ import com.elian.computeit.core.domain.models.Range
 import com.elian.computeit.core.domain.models.TestData
 import com.elian.computeit.core.domain.util.CountDownTimer
 import com.elian.computeit.core.domain.util.TimerEvent
-import com.elian.computeit.core.util.constants.EXTRA_OPERATION_NUMBER_RANGE
-import com.elian.computeit.core.util.constants.EXTRA_OPERATION_TYPE
-import com.elian.computeit.core.util.constants.EXTRA_TEST_INFO
-import com.elian.computeit.core.util.constants.EXTRA_TEST_TIME_IN_SECONDS
+import com.elian.computeit.core.util.constants.TestArgKeys
+import com.elian.computeit.core.util.constants.TestDetailsArgKeys
 import com.elian.computeit.core.util.extensions.append
 import com.elian.computeit.core.util.extensions.clampLength
 import com.elian.computeit.core.util.extensions.dropLast
@@ -41,9 +39,9 @@ class TestViewModel @Inject constructor(
 	private val getRandomNumberPair: GetRandomNumberPair,
 ) : ViewModel()
 {
-	private val _totalTimeInMillis = savedState.get<Int>(EXTRA_TEST_TIME_IN_SECONDS)!! * 1_000L
-	private val _range = savedState.get<Range>(EXTRA_OPERATION_NUMBER_RANGE)!!
-	private val _operation = savedState.get<Operation>(EXTRA_OPERATION_TYPE)!!
+	private val _totalTimeInMillis = savedState.get<Int>(TestArgKeys.TestTimeInSeconds)!! * 1_000L
+	private val _range = savedState.get<Range>(TestArgKeys.OperationRange)!!
+	private val _operation = savedState.get<Operation>(TestArgKeys.OperationType)!!
 
 	private val _listOfOperationData = mutableListOf<OperationData>()
 
@@ -125,7 +123,7 @@ class TestViewModel @Inject constructor(
 		if (saveData) addTestData(testData)
 
 		_eventFlow.send(OnGoToTestDetails(
-			args = listOf(EXTRA_TEST_INFO to testData.toTestInfo())
+			args = listOf(TestDetailsArgKeys.TestInfo to testData.toTestInfo())
 		))
 	}
 

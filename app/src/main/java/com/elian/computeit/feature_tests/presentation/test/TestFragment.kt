@@ -13,8 +13,7 @@ import com.elian.computeit.R
 import com.elian.computeit.core.data.Operation
 import com.elian.computeit.core.presentation.util.extensions.*
 import com.elian.computeit.core.presentation.util.viewBinding
-import com.elian.computeit.core.util.constants.EXTRA_OPERATION_TYPE
-import com.elian.computeit.core.util.constants.EXTRA_TEST_TIME_IN_SECONDS
+import com.elian.computeit.core.util.constants.TestArgKeys
 import com.elian.computeit.core.util.extensions.apply2
 import com.elian.computeit.core.util.extensions.format
 import com.elian.computeit.databinding.FragmentTestBinding
@@ -89,7 +88,7 @@ class TestFragment : Fragment(R.layout.fragment_test)
 	{
 		disableScreenInteraction()
 
-		arguments?.getInt(EXTRA_TEST_TIME_IN_SECONDS)!!.also()
+		arguments?.getInt(TestArgKeys.TestTimeInSeconds)!!.also()
 		{
 			mtvRemainingSeconds.text = if (it == 0)
 			{
@@ -106,7 +105,7 @@ class TestFragment : Fragment(R.layout.fragment_test)
 			cpiRemainingSeconds.max = initialProgress
 			cpiRemainingSeconds.progress = initialProgress
 		}
-		arguments?.getSerializable(EXTRA_OPERATION_TYPE)!!.let { it as Operation }.also()
+		arguments?.getSerializable(TestArgKeys.OperationType)!!.let { it as Operation }.also()
 		{
 			operationView.symbol = it.symbol
 		}
@@ -152,7 +151,7 @@ class TestFragment : Fragment(R.layout.fragment_test)
 		{
 			when (it)
 			{
-				is OnTimerTick   -> if (!viewModel.isInfiniteMode)
+				is OnTimerTick       -> if (!viewModel.isInfiniteMode)
 				{
 					val seconds = it.millisUntilFinished / 1000F
 

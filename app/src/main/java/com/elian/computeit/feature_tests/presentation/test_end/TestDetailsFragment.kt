@@ -14,7 +14,7 @@ import com.elian.computeit.core.presentation.util.mp_android_chart.lineDataSet
 import com.elian.computeit.core.presentation.util.mp_android_chart.toEntries
 import com.elian.computeit.core.presentation.util.mp_android_chart.valuesToEntriesWithYValue
 import com.elian.computeit.core.presentation.util.viewBinding
-import com.elian.computeit.core.util.constants.EXTRA_TEST_INFO
+import com.elian.computeit.core.util.constants.TestDetailsArgKeys
 import com.elian.computeit.core.util.extensions.apply2
 import com.elian.computeit.databinding.FragmentTestDetailsBinding
 import com.elian.computeit.feature_tests.domain.model.TestInfo
@@ -37,7 +37,7 @@ class TestDetailsFragment : Fragment(R.layout.fragment_test_details)
 
 	private fun initUi() = binding.apply2()
 	{
-		val info = arguments?.getParcelable<TestInfo>(EXTRA_TEST_INFO)!!
+		val info = arguments?.getParcelable<TestInfo>(TestDetailsArgKeys.TestInfo)!!
 
 		initLineChart(info)
 		initTextInfo(info)
