@@ -5,7 +5,6 @@ import android.view.View
 import androidx.core.view.isGone
 import androidx.fragment.app.Fragment
 import com.elian.computeit.R
-import com.elian.computeit.core.presentation.adapter.GenericAdapter
 import com.elian.computeit.core.presentation.util.extensions.avoidConflictsWithScroll
 import com.elian.computeit.core.presentation.util.extensions.navigate
 import com.elian.computeit.core.presentation.util.mp_android_chart.applyDefault
@@ -15,8 +14,8 @@ import com.elian.computeit.core.presentation.util.viewBinding
 import com.elian.computeit.core.util.constants.EXTRA_TEST_INFO
 import com.elian.computeit.core.util.extensions.apply2
 import com.elian.computeit.databinding.FragmentTestEndBinding
-import com.elian.computeit.databinding.ItemFailedOperationBinding
 import com.elian.computeit.feature_tests.domain.model.TestInfo
+import com.elian.computeit.feature_tests.presentation.test_end.adapter.FailedOperationAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -82,15 +81,6 @@ class TestEndFragment : Fragment(R.layout.fragment_test_end)
 
 	private fun initRecyclerView(info: TestInfo)
 	{
-		binding.rvFailedOperations.adapter = GenericAdapter(
-			list = info.listOfFailedOperationInfo,
-			inflate = ItemFailedOperationBinding::inflate,
-		) {
-			tvFirstNumber.text = "${it.pairOfNumbers.first}"
-			tvOperationSymbol.text = it.operationSymbol
-			tvSecondNumber.text = "${it.pairOfNumbers.second}"
-			tvInsertedResult.text = "${it.insertedResult}"
-			tvExpectedResult.text = "${it.expectedResult}"
-		}
+		binding.rvFailedOperations.adapter = FailedOperationAdapter(info.listOfFailedOperationInfo)
 	}
 }

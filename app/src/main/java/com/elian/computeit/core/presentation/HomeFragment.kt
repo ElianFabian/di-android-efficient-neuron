@@ -7,7 +7,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.elian.computeit.R
-import com.elian.computeit.core.presentation.adapter.GenericAdapter
+import com.elian.computeit.core.presentation.adapter.LabeledDataAdapter
 import com.elian.computeit.core.presentation.model.LabeledData
 import com.elian.computeit.core.presentation.util.extensions.*
 import com.elian.computeit.core.presentation.util.mp_android_chart.applyDefault
@@ -18,7 +18,6 @@ import com.elian.computeit.core.util.constants.DEFAULT_DECIMAL_FORMAT
 import com.elian.computeit.core.util.extensions.apply2
 import com.elian.computeit.core.util.extensions.format
 import com.elian.computeit.databinding.FragmentHomeBinding
-import com.elian.computeit.databinding.ItemLabeledDataBinding
 import com.elian.computeit.feature_tests.domain.model.TestListInfo
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.filterNotNull
@@ -136,12 +135,6 @@ class HomeFragment : Fragment(R.layout.fragment_home)
 			),
 		)
 
-		binding.rvLabeledData.adapter = GenericAdapter(
-			list = listOfUiLabeledData,
-			inflate = ItemLabeledDataBinding::inflate,
-		) {
-			tvLabel.text = it.label
-			tvValue.text = it.value
-		}
+		binding.rvLabeledData.adapter = LabeledDataAdapter(listOfUiLabeledData)
 	}
 }
