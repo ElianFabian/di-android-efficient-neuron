@@ -90,7 +90,7 @@ class TestViewModel @Inject constructor(
 					operationName = _operation.name,
 					pairOfNumbers = _pairOfNumbersState.value!!,
 					insertedResult = _resultState.value * sign,
-					millisSinceStart = _millisSinceStart
+					millisSinceStart = _millisSinceStart,
 				)
 
 				_listOfOperationData.add(data)
