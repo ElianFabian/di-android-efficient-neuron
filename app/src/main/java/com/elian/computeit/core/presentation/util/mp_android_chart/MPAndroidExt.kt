@@ -7,3 +7,5 @@ fun Map<out Number, Number>.toEntries() = this.map { Entry(it.key.toFloat(), it.
 fun List<Number>.toEntries(firstValue: Int = 1) = this.mapIndexed { index, number ->
 	Entry(index.toFloat() + firstValue, number.toFloat())
 }
+
+fun List<Number>.valuesToEntriesWithHeight(height: Float) = this.map { Entry(it.toFloat(), height) }

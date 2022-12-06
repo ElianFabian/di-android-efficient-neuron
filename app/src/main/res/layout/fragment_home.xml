@@ -78,51 +78,16 @@
 
 		</androidx.appcompat.widget.LinearLayoutCompat>
 
-		<com.google.android.material.card.MaterialCardView
-			android:layout_width="match_parent"
+		<include
+			android:id="@+id/lytTestListChart"
+			layout="@layout/layout_line_chart" />
+
+		<include
+			android:id="@+id/lytTextInfoList"
+			layout="@layout/layout_list_labeled_data"
+			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:animateLayoutChanges="true"
-			android:backgroundTint="@color/background_card"
-			app:cardCornerRadius="@dimen/_10sdp">
-
-			<View
-				android:layout_width="wrap_content"
-				android:layout_height="@dimen/_150sdp" />
-
-			<com.github.mikephil.charting.charts.LineChart
-				android:id="@+id/lcOpmPerTest"
-				android:layout_width="match_parent"
-				android:layout_height="@dimen/_200sdp"
-				android:layout_marginVertical="@dimen/_5sdp"
-				android:background="@color/background_card"
-				android:visibility="gone"
-				tools:visibility="visible" />
-
-		</com.google.android.material.card.MaterialCardView>
-
-		<com.google.android.material.card.MaterialCardView
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:layout_marginTop="@dimen/_15sdp"
-			android:backgroundTint="@color/background_card"
-			app:cardCornerRadius="@dimen/_10sdp">
-
-			<View
-				android:layout_width="wrap_content"
-				android:layout_height="@dimen/_150sdp" />
-
-			<androidx.recyclerview.widget.RecyclerView
-				android:id="@+id/rvLabeledData"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:background="@color/background_card"
-				android:nestedScrollingEnabled="false"
-				android:padding="@dimen/_10sdp"
-				app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-				tools:itemCount="5"
-				tools:listitem="@layout/item_labeled_data" />
-
-		</com.google.android.material.card.MaterialCardView>
+			android:layout_marginTop="@dimen/_15sdp" />
 
 	</LinearLayout>
 

@@ -48,9 +48,9 @@ class TestConfigurationViewModel @Inject constructor(
 		when (action)
 		{
 			is SelectOperationType -> _selectedOperation = Operation.fromSymbol(action.symbol)
-			is EnterStart -> _startState.update { it.copy(number = action.value, error = null) }
-			is EnterEnd   -> _endState.update { it.copy(number = action.value, error = null) }
-			is EnterTime  -> _timeState.update { it.copy(number = action.value, error = null) }
+			is EnterStart          -> _startState.update { it.copy(number = action.value, error = null) }
+			is EnterEnd            -> _endState.update { it.copy(number = action.value, error = null) }
+			is EnterTime           -> _timeState.update { it.copy(number = action.value, error = null) }
 			is StartTest           ->
 			{
 				validateConfiguration(

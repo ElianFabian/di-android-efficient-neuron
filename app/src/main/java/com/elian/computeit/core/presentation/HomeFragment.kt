@@ -47,6 +47,8 @@ class HomeFragment : Fragment(R.layout.fragment_home)
 		binding.sivGoToProfile.setOnClickListener { navigate(R.id.action_homeFragment_to_privateProfileFragment) }
 //        binding.sivGoToTips.setOnClickListener { navigate(R.id.action_homeFragment_to_tipsFragment) }
 //        binding.sivGoToSettings.setOnClickListener { navigate(R.id.action_homeFragment_to_settingsFragment) }
+
+		binding.lytTestListChart.lineChart.isGone = true
 	}
 
 	private fun subscribeToEvents() = viewModel.apply2()
@@ -81,21 +83,21 @@ class HomeFragment : Fragment(R.layout.fragment_home)
 				},
 			)
 
-			binding.lcOpmPerTest.applyDefault(
+			binding.lytTestListChart.lineChart.applyDefault(
 				animate = !_isUiFinished,
 				dataSets = lineDataSets,
 			)
 		}
-		else binding.lcOpmPerTest.apply()
+		else binding.lytTestListChart.lineChart.apply()
 		{
 			setNoDataText(getString(R.string.no_data_available))
 			setNoDataTextColor(getThemeColor(R.attr.colorSecondary))
 		}
 
-		binding.lcOpmPerTest.isVisible = true
+		binding.lytTestListChart.lineChart.isVisible = true
 		_isUiFinished = true
 
-		binding.lcOpmPerTest.avoidConflictsWithScroll(binding.root)
+		binding.lytTestListChart.lineChart.avoidConflictsWithScroll(binding.root)
 	}
 
 	private fun initTextInfo(info: TestListInfo) = info.apply2()
@@ -106,7 +108,7 @@ class HomeFragment : Fragment(R.layout.fragment_home)
 				value = "$testsCompleted",
 			),
 			LabeledData(
-				label = getString(R.string.frgHome_totalTime),
+				label = getString(R.string.generic_totalTime),
 				value = totalTime,
 			),
 			LabeledData(
@@ -135,6 +137,6 @@ class HomeFragment : Fragment(R.layout.fragment_home)
 			),
 		)
 
-		binding.rvLabeledData.adapter = LabeledDataAdapter(listOfUiLabeledData)
+		binding.lytTextInfoList.rvLabeledData.adapter = LabeledDataAdapter(listOfUiLabeledData)
 	}
 }

@@ -1,11 +1,11 @@
 package com.elian.computeit.core.data.repository
 
 import com.elian.computeit.core.data.model.UserData
+import com.elian.computeit.core.data.toTestListInfo
 import com.elian.computeit.core.data.util.constants.COLLECTION_USERS_DATA
 import com.elian.computeit.core.domain.models.TestData
 import com.elian.computeit.core.domain.repository.LocalAppDataRepository
 import com.elian.computeit.core.domain.repository.TestDataRepository
-import com.elian.computeit.feature_tests.domain.model.toTestListInfo
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions

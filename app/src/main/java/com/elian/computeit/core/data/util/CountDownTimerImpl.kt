@@ -4,7 +4,6 @@ import com.elian.computeit.core.domain.util.CountDownTimer
 import com.elian.computeit.core.domain.util.TimerEvent
 import com.elian.computeit.core.util.PreciseCountDownTimer
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
@@ -54,32 +53,32 @@ class CountDownTimerImpl : CountDownTimer
 		{
 			override fun onStart()
 			{
-				_coroutineScope.launch(Dispatchers.IO) { _timerEventFlow.send(TimerEvent.OnStart) }
+				_coroutineScope.launch { _timerEventFlow.send(TimerEvent.OnStart) }
 			}
 
 			override fun onTick(millisUntilFinished: Long)
 			{
-				_coroutineScope.launch(Dispatchers.IO) { _timerEventFlow.send(TimerEvent.OnTick(millisUntilFinished)) }
+				_coroutineScope.launch { _timerEventFlow.send(TimerEvent.OnTick(millisUntilFinished)) }
 			}
 
 			override fun onRestart()
 			{
-				_coroutineScope.launch(Dispatchers.IO) { _timerEventFlow.send(TimerEvent.OnRestart) }
+				_coroutineScope.launch { _timerEventFlow.send(TimerEvent.OnRestart) }
 			}
 
 			override fun onStop()
 			{
-				_coroutineScope.launch(Dispatchers.IO) { _timerEventFlow.send(TimerEvent.OnStop) }
+				_coroutineScope.launch { _timerEventFlow.send(TimerEvent.OnStop) }
 			}
 
 			override fun onResume()
 			{
-				_coroutineScope.launch(Dispatchers.IO) { _timerEventFlow.send(TimerEvent.OnResume) }
+				_coroutineScope.launch { _timerEventFlow.send(TimerEvent.OnResume) }
 			}
 
 			override fun onFinish()
 			{
-				_coroutineScope.launch(Dispatchers.IO) { _timerEventFlow.send(TimerEvent.OnFinish) }
+				_coroutineScope.launch { _timerEventFlow.send(TimerEvent.OnFinish) }
 			}
 		}
 	}

@@ -13,11 +13,14 @@ fun Fragment.lineDataSet(
 	label: String? = null,
 	@StringRes labelResId: Int = 0,
 	@ColorRes lineAndCirclesColorResId: Int = R.color.default_chart,
+	isDashedLineEnable: Boolean = true,
 	block: (LineDataSet.() -> Unit)? = null,
 ): LineDataSet
 {
 	return LineDataSet(entries, label ?: getString(labelResId)).apply()
 	{
+		if (!isDashedLineEnable) enableDashedLine(0F, 1F, 0F)
+
 		setDrawValues(false)
 		setDrawHorizontalHighlightIndicator(false)
 		setDrawVerticalHighlightIndicator(false)

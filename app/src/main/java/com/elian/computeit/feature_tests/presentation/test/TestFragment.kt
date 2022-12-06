@@ -19,8 +19,7 @@ import com.elian.computeit.core.util.extensions.apply2
 import com.elian.computeit.core.util.extensions.format
 import com.elian.computeit.databinding.FragmentTestBinding
 import com.elian.computeit.feature_tests.presentation.test.TestAction.*
-import com.elian.computeit.feature_tests.presentation.test.TestEvent.OnTimerFinish
-import com.elian.computeit.feature_tests.presentation.test.TestEvent.OnTimerTick
+import com.elian.computeit.feature_tests.presentation.test.TestEvent.*
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.filterNotNull
@@ -163,7 +162,9 @@ class TestFragment : Fragment(R.layout.fragment_test)
 				is OnTimerFinish ->
 				{
 					disableScreenInteraction()
-
+				}
+				is OnGoToTestEnd ->
+				{
 					navigate(R.id.action_testFragment_to_testEndFragment, bundleOf(*it.args.toTypedArray()))
 				}
 			}

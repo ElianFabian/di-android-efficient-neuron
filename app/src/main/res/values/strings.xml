@@ -1,83 +1,83 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <resources>
-    <string name="alert_dialog_are_you_sure_you_want_to_log_out">Are you sure you want to log out?</string>
+	<string name="alert_dialog_are_you_sure_you_want_to_log_out">Are you sure you want to log out?</string>
 
-    <string name="app_name" translatable="false">ComputeIt</string>
+	<string name="app_name" translatable="false">ComputeIt</string>
 
-    <string name="arrayTest_modes_tests">Tests</string>
-    <string name="arrayTest_modes_time">Time</string>
+	<string name="arrayTest_modes_tests">Tests</string>
+	<string name="arrayTest_modes_time">Time</string>
 
-    <string name="error_cant_be_empty">Can\'t be empty</string>
-    <string name="error_division_by_zero_is_not_allowed">Division by 0 is not allowed</string>
-    <string name="error_password_invalid">Invalid password, it should contain at least %d of these characters: %s</string>
-    <string name="error_password_is_wrong">Password is wrong</string>
-    <string name="error_passwords_dont_match">Passwords don\'t match</string>
-    <string name="error_range_length_must_be_greater_than">Range length must be greater than %d</string>
-    <string name="error_range_not_enough_divisible_pairs">Not enough divisible pairs (%d/%d), try a wider range</string>
-    <string name="error_range_values_are_inverted">Range values are inverted</string>
-    <string name="error_too_long">Too long, the maximum length is %d</string>
-    <string name="error_too_short">Too short, the minimum length is %d</string>
-    <string name="error_unknown">Unknown error</string>
-    <string name="error_user_doesnt_exist">The user doesn\'t exist</string>
-    <string name="error_username_invalid">Invalid username, it can only contain letters, digits and these characters: %s</string>
-    <string name="error_username_is_already_in_use">The username is already in use</string>
+	<string name="error_cant_be_empty">Can\'t be empty</string>
+	<string name="error_division_by_zero_is_not_allowed">Division by 0 is not allowed</string>
+	<string name="error_password_invalid">Invalid password, it should contain at least %d of these characters: %s</string>
+	<string name="error_password_is_wrong">Password is wrong</string>
+	<string name="error_passwords_dont_match">Passwords don\'t match</string>
+	<string name="error_range_length_must_be_greater_than">Range length must be greater than %d</string>
+	<string name="error_range_not_enough_divisible_pairs">Not enough divisible pairs (%d/%d), try a wider range</string>
+	<string name="error_range_values_are_inverted">Range values are inverted</string>
+	<string name="error_too_long">Too long, the maximum length is %d</string>
+	<string name="error_too_short">Too short, the minimum length is %d</string>
+	<string name="error_unknown">Unknown error</string>
+	<string name="error_user_doesnt_exist">The user doesn\'t exist</string>
+	<string name="error_username_invalid">Invalid username, it can only contain letters, digits and these characters: %s</string>
+	<string name="error_username_is_already_in_use">The username is already in use</string>
 
-    <string name="feature_profile_account_created_at_PH">The account was created at: %s</string>
-    <string name="feature_profile_biography">Biography</string>
+	<string name="feature_profile_account_created_at_PH">The account was created at: %s</string>
+	<string name="feature_profile_biography">Biography</string>
 
-    <string name="frgEditProfile_btnSave_text">Save</string>
+	<string name="frgEditProfile_btnSave_text">Save</string>
 
-    <string name="frgEndGame_btnContinue_text">Continue</string>
+	<string name="frgEndGame_btnContinue_text">Continue</string>
 
-    <string name="frgHome_averageOpm">Average OPM</string>
-    <string name="frgHome_averageRawOpm">Average raw OPM</string>
-    <string name="frgHome_correctOperationsCompleted">Correct operations completed</string>
-    <string name="frgHome_highestOpm">Highest OPM</string>
-    <string name="frgHome_highestRawOpm">Highest raw OPM</string>
-    <string name="frgHome_operationsCompleted">Operations completed</string>
-    <string name="frgHome_testsCompleted">Tests completed</string>
-    <string name="frgHome_totalTime">Total time</string>
+	<string name="frgHome_averageOpm">Average OPM</string>
+	<string name="frgHome_averageRawOpm">Average raw OPM</string>
+	<string name="frgHome_correctOperationsCompleted">Correct operations completed</string>
+	<string name="frgHome_highestOpm">Highest OPM</string>
+	<string name="frgHome_highestRawOpm">Highest raw OPM</string>
+	<string name="frgHome_operationsCompleted">Operations completed</string>
+	<string name="frgHome_testsCompleted">Tests completed</string>
+	<string name="generic_totalTime">Total time</string>
 
-    <string name="frgPrivateProfile_btnEdit_text">Edit</string>
-    <string name="frgPrivateProfile_btnLogout_text">Logout</string>
+	<string name="frgPrivateProfile_btnEdit_text">Edit</string>
+	<string name="frgPrivateProfile_btnLogout_text">Logout</string>
 
-    <string name="frgSettings_category_general">Dark theme</string>
-    <string name="frgSettings_dark_theme_title">Dark Theme</string>
-    <string name="frgSettings_disable_notifications_title">Disable notifications</string>
-    <string name="frgSettings_use_inverted_numeric_keyboard_title">Use inverted numeric keyboard</string>
+	<string name="frgSettings_category_general">Dark theme</string>
+	<string name="frgSettings_dark_theme_title">Dark Theme</string>
+	<string name="frgSettings_disable_notifications_title">Disable notifications</string>
+	<string name="frgSettings_use_inverted_numeric_keyboard_title">Use inverted numeric keyboard</string>
 
-    <string name="frgTestConfiguration_tietEnd_hint">End</string>
-    <string name="frgTestConfiguration_tietStart_hint">Start</string>
-    <string name="frgTestConfiguration_tvMode_text">Mode:</string>
-    <string name="frgTestConfiguration_tvNumberRange_text">Range:</string>
-    <string name="frgTestConfiguration_tvTitle_text">Test configuration</string>
+	<string name="frgTestConfiguration_tietEnd_hint">End</string>
+	<string name="frgTestConfiguration_tietStart_hint">Start</string>
+	<string name="frgTestConfiguration_tvMode_text">Mode:</string>
+	<string name="frgTestConfiguration_tvNumberRange_text">Range:</string>
+	<string name="frgTestConfiguration_tvTitle_text">Test configuration</string>
 
-    <string name="frgTestEnd_LabelFor_rvFailedOperations_text">Failed operations</string>
+	<string name="frgTestEnd_LabelFor_rvFailedOperations_text">Failed operations</string>
 
-    <string name="frgTestFragment_touch_to_start">Touch to start</string>
+	<string name="frgTestFragment_touch_to_start">Touch to start</string>
 
-    <string name="frgTipManager_tieExample_hint">Example</string>
-    <string name="frgTipManager_tieTitle_hint">Title</string>
+	<string name="frgTipManager_tieExample_hint">Example</string>
+	<string name="frgTipManager_tieTitle_hint">Title</string>
 
-    <string name="frgTips_tvTitle_text">Tips</string>
+	<string name="frgTips_tvTitle_text">Tips</string>
 
-    <string name="generic_confirm_password">Confirm password</string>
-    <string name="generic_errors">Errors</string>
-    <string name="generic_login">Login</string>
-    <string name="generic_operations">Operations</string>
-    <string name="generic_opm">OPM</string>
-    <string name="generic_password">Password</string>
-    <string name="generic_raw">Raw</string>
-    <string name="generic_register">Register</string>
-    <string name="generic_seconds">Seconds</string>
-    <string name="generic_start">Start</string>
-    <string name="generic_tests">Tests</string>
-    <string name="generic_username">Username</string>
+	<string name="generic_confirm_password">Confirm password</string>
+	<string name="generic_errors">Errors</string>
+	<string name="generic_login">Login</string>
+	<string name="generic_operations">Operations</string>
+	<string name="generic_opm">OPM</string>
+	<string name="generic_password">Password</string>
+	<string name="generic_raw">Raw</string>
+	<string name="generic_register">Register</string>
+	<string name="generic_seconds">Seconds</string>
+	<string name="generic_start">Start</string>
+	<string name="generic_tests">Tests</string>
+	<string name="generic_username">Username</string>
 
-    <string name="message_info_successfully_updated">Information successfully updated</string>
+	<string name="message_info_successfully_updated">Information successfully updated</string>
 
-    <string name="navigation_drawer_close" translatable="false">Close</string>
-    <string name="navigation_drawer_open" translatable="false">Open</string>
+	<string name="navigation_drawer_close" translatable="false">Close</string>
+	<string name="navigation_drawer_open" translatable="false">Open</string>
 
-    <string name="no_data_available">No data available</string>
+	<string name="no_data_available">No data available</string>
 </resources>

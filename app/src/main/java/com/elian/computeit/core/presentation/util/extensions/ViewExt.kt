@@ -33,7 +33,7 @@ fun View.avoidConflictsWithScroll(scrollView: NestedScrollView)
 	setOnTouchListener { _, event ->
 		when (event.action)
 		{
-			MotionEvent.ACTION_DOWN                          -> scrollView.requestDisallowInterceptTouchEvent(true)
+			MotionEvent.ACTION_DOWN, MotionEvent.ACTION_MOVE -> scrollView.requestDisallowInterceptTouchEvent(true)
 
 			MotionEvent.ACTION_CANCEL, MotionEvent.ACTION_UP -> scrollView.requestDisallowInterceptTouchEvent(false)
 		}

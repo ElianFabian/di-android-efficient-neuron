@@ -4,6 +4,7 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.elian.computeit.core.data.Operation
+import com.elian.computeit.core.data.toTestInfo
 import com.elian.computeit.core.domain.models.NumberPair
 import com.elian.computeit.core.domain.models.OperationData
 import com.elian.computeit.core.domain.models.Range
@@ -17,10 +18,11 @@ import com.elian.computeit.core.util.constants.EXTRA_TEST_TIME_IN_SECONDS
 import com.elian.computeit.core.util.extensions.append
 import com.elian.computeit.core.util.extensions.clampLength
 import com.elian.computeit.core.util.extensions.dropLast
-import com.elian.computeit.feature_tests.domain.model.toTestInfo
 import com.elian.computeit.feature_tests.domain.use_case.AddTestData
 import com.elian.computeit.feature_tests.domain.use_case.GetRandomNumberPair
 import com.elian.computeit.feature_tests.presentation.test.TestAction.*
+import com.elian.computeit.feature_tests.presentation.test.TestEvent.OnGoToTestEnd
+import com.elian.computeit.feature_tests.presentation.test.TestEvent.OnTimerFinish
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -55,7 +57,7 @@ class TestViewModel @Inject constructor(
 
 	private val _pairOfNumbersState = MutableStateFlow<NumberPair?>(null)
 	val pairOfNumbersState = _pairOfNumbersState.asStateFlow()
-	
+
 	private val _operationSymbolState = MutableStateFlow(_operation.symbol)
 	val operationSymbolState = _operationSymbolState.asStateFlow()
 
@@ -90,7 +92,6 @@ class TestViewModel @Inject constructor(
 					operationName = _operation.name,
 					pairOfNumbers = _pairOfNumbersState.value!!,
 					insertedResult = _resultState.value * sign,
-					expectedResult = expectedResult,
 					millisSinceStart = _millisSinceStart
 				)
 
@@ -112,6 +113,8 @@ class TestViewModel @Inject constructor(
 
 	private suspend fun finish(saveData: Boolean = true)
 	{
+		_eventFlow.send(OnTimerFinish)
+
 		val testData = TestData(
 			dateUnix = System.currentTimeMillis(),
 			timeInSeconds = _millisSinceStart.toInt() / 1000,
@@ -121,7 +124,7 @@ class TestViewModel @Inject constructor(
 
 		if (saveData) addTestData(testData)
 
-		_eventFlow.send(TestEvent.OnTimerFinish(
+		_eventFlow.send(OnGoToTestEnd(
 			args = listOf(EXTRA_TEST_INFO to testData.toTestInfo())
 		))
 	}

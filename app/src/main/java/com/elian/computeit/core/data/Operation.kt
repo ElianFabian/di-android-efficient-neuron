@@ -25,11 +25,11 @@ enum class Operation(
 	companion object
 	{
 		fun fromSymbol(symbol: String) = symbolToOperation[symbol]!!
+		fun fromName(name: String) = nameToOperation[name]!!
 
 		private val symbolToOperation = values().associateBy { it.symbol }
+		private val nameToOperation = values().associateBy { it.name }
 		val nameToSymbol = values().associate { it.name to it.symbol }
-		val symbolToName = values().associate { it.symbol to it.name }
-		val symbols = values().map { it.symbol }
 	}
 
 	operator fun invoke(firstNumber: Int, secondNumber: Int) = calculate(firstNumber, secondNumber)
