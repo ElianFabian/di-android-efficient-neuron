@@ -47,10 +47,7 @@ class ValidateConfiguration @Inject constructor()
 		}
 		if (operation == Operation.Division)
 		{
-			if (start == 0)
-			{
-				return TestConfigurationResult(resource = Resource.Error(R.string.error_division_by_zero_is_not_allowed))
-			}
+			if (start == 0) return TestConfigurationResult(resource = Resource.Error(R.string.error_division_by_zero_is_not_allowed))
 
 			getDivisiblePairsInRange(start, end, ignoreSelfDivision = true).size.also()
 			{
