@@ -159,13 +159,13 @@ class TestFragment : Fragment(R.layout.fragment_test)
 					binding.cpiRemainingSeconds.progress = it.millisUntilFinished.toInt()
 					binding.mtvRemainingSeconds.text = seconds.format("%.1f")
 				}
-				is OnTimerFinish ->
+				is OnTimerFinish     ->
 				{
 					disableScreenInteraction()
 				}
-				is OnGoToTestEnd ->
+				is OnGoToTestDetails ->
 				{
-					navigate(R.id.action_testFragment_to_testEndFragment, bundleOf(*it.args.toTypedArray()))
+					navigate(R.id.action_testFragment_to_testDetailsFragment, bundleOf(*it.args.toTypedArray()))
 				}
 			}
 		}

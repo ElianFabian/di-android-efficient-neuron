@@ -12,19 +12,19 @@ import com.elian.computeit.core.presentation.util.extensions.navigate
 import com.elian.computeit.core.presentation.util.mp_android_chart.applyDefault
 import com.elian.computeit.core.presentation.util.mp_android_chart.lineDataSet
 import com.elian.computeit.core.presentation.util.mp_android_chart.toEntries
-import com.elian.computeit.core.presentation.util.mp_android_chart.valuesToEntriesWithHeight
+import com.elian.computeit.core.presentation.util.mp_android_chart.valuesToEntriesWithYValue
 import com.elian.computeit.core.presentation.util.viewBinding
 import com.elian.computeit.core.util.constants.EXTRA_TEST_INFO
 import com.elian.computeit.core.util.extensions.apply2
-import com.elian.computeit.databinding.FragmentTestEndBinding
+import com.elian.computeit.databinding.FragmentTestDetailsBinding
 import com.elian.computeit.feature_tests.domain.model.TestInfo
 import com.elian.computeit.feature_tests.presentation.test_end.adapter.FailedOperationAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class TestEndFragment : Fragment(R.layout.fragment_test_end)
+class TestDetailsFragment : Fragment(R.layout.fragment_test_details)
 {
-	private val binding by viewBinding(FragmentTestEndBinding::bind)
+	private val binding by viewBinding(FragmentTestDetailsBinding::bind)
 
 
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?)
@@ -49,7 +49,7 @@ class TestEndFragment : Fragment(R.layout.fragment_test_end)
 		}
 		else initFailedOperationsAdapter(info)
 
-		btnContinue.setOnClickListener { navigate(R.id.action_testEndFragment_to_homeFragment) }
+		btnContinue.setOnClickListener { navigate(R.id.action_testDetailsFragment_to_homeFragment) }
 	}
 
 	private fun initLineChart(info: TestInfo)
@@ -67,7 +67,7 @@ class TestEndFragment : Fragment(R.layout.fragment_test_end)
 			lineDataSet(
 				labelResId = R.string.generic_errors,
 				lineAndCirclesColorResId = R.color.red_300,
-				entries = info.errorsAtSecond.valuesToEntriesWithHeight(info.errorsYValue.toFloat()),
+				entries = info.errorsAtSecond.valuesToEntriesWithYValue(info.errorsYValue.toFloat()),
 				isDashedLineEnable = false,
 			)
 			{

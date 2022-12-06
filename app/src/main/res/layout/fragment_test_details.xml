@@ -33,7 +33,7 @@
 			android:layout_height="wrap_content"
 			android:layout_marginTop="@dimen/_10sdp"
 			android:layout_marginBottom="@dimen/_5sdp"
-			android:text="@string/frgTestEnd_LabelFor_rvFailedOperations_text" />
+			android:text="@string/frgTestDetails_LabelFor_rvFailedOperations_text" />
 
 		<com.google.android.material.card.MaterialCardView
 			android:layout_width="match_parent"

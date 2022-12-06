@@ -50,7 +50,7 @@
 	<string name="frgTestConfiguration_tvNumberRange_text">Intervalo:</string>
 	<string name="frgTestConfiguration_tvTitle_text">Configuración de test</string>
 
-	<string name="frgTestEnd_LabelFor_rvFailedOperations_text">Operaciones fallidas</string>
+	<string name="frgTestDetails_LabelFor_rvFailedOperations_text">Operaciones fallidas</string>
 
 	<string name="frgTestFragment_touch_to_start">Toca para empezar</string>
 

@@ -8,4 +8,4 @@ fun List<Number>.toEntries(firstValue: Int = 1) = this.mapIndexed { index, numbe
 	Entry(index.toFloat() + firstValue, number.toFloat())
 }
 
-fun List<Number>.valuesToEntriesWithHeight(height: Float) = this.map { Entry(it.toFloat(), height) }
+fun List<Number>.valuesToEntriesWithYValue(yValue: Float) = this.map { Entry(it.toFloat(), yValue) }

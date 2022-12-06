@@ -14,7 +14,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main)
 	private val navController by lazy { findNavController(R.id.navHostFragment) }
 
 	private val _disabledNavigateUpDestinations = setOf(
-		R.id.testEndFragment,
+		R.id.testDetailsFragment,
 	)
 	private val _onBackgroundedNavigateUpDestinations = setOf(
 		R.id.testFragment,

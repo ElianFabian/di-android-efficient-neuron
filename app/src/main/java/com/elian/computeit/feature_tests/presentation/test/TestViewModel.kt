@@ -21,7 +21,7 @@ import com.elian.computeit.core.util.extensions.dropLast
 import com.elian.computeit.feature_tests.domain.use_case.AddTestData
 import com.elian.computeit.feature_tests.domain.use_case.GetRandomNumberPair
 import com.elian.computeit.feature_tests.presentation.test.TestAction.*
-import com.elian.computeit.feature_tests.presentation.test.TestEvent.OnGoToTestEnd
+import com.elian.computeit.feature_tests.presentation.test.TestEvent.OnGoToTestDetails
 import com.elian.computeit.feature_tests.presentation.test.TestEvent.OnTimerFinish
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
@@ -124,7 +124,7 @@ class TestViewModel @Inject constructor(
 
 		if (saveData) addTestData(testData)
 
-		_eventFlow.send(OnGoToTestEnd(
+		_eventFlow.send(OnGoToTestDetails(
 			args = listOf(EXTRA_TEST_INFO to testData.toTestInfo())
 		))
 	}

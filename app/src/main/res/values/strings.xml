@@ -52,7 +52,7 @@
 	<string name="frgTestConfiguration_tvNumberRange_text">Range:</string>
 	<string name="frgTestConfiguration_tvTitle_text">Test configuration</string>
 
-	<string name="frgTestEnd_LabelFor_rvFailedOperations_text">Failed operations</string>
+	<string name="frgTestDetails_LabelFor_rvFailedOperations_text">Failed operations</string>
 
 	<string name="frgTestFragment_touch_to_start">Touch to start</string>
 
