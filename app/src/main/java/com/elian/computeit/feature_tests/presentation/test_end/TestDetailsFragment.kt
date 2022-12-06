@@ -66,7 +66,7 @@ class TestDetailsFragment : Fragment(R.layout.fragment_test_details)
 			),
 			lineDataSet(
 				labelResId = R.string.generic_errors,
-				lineAndCirclesColorResId = R.color.red_300,
+				lineAndCirclesColorResId = R.color.red_500,
 				entries = info.errorsAtSecond.valuesToEntriesWithYValue(info.errorsYValue.toFloat()),
 				isDashedLineEnable = false,
 			)
