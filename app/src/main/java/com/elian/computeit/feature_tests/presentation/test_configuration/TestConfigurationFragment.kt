@@ -17,6 +17,7 @@ import com.elian.computeit.databinding.FragmentTestConfigurationBinding
 import com.elian.computeit.feature_tests.presentation.test_configuration.TestConfigurationAction.*
 import com.elian.computeit.feature_tests.presentation.test_configuration.TestConfigurationEvent.OnShowErrorMessage
 import com.elian.computeit.feature_tests.presentation.test_configuration.TestConfigurationEvent.OnStart
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.map
 
@@ -78,7 +79,23 @@ class TestConfigurationFragment : Fragment(R.layout.fragment_test_configuration)
 						currentDestination = R.id.testConfigurationFragment,
 					)
 				}
-				is OnShowErrorMessage -> showToast(it.error.asString(context))
+				is OnShowErrorMessage -> when (val errorMessage = it.error.asString(context))
+				{
+					getString(R.string.error_range_values_are_inverted) ->
+					{
+						Snackbar.make(requireView(), errorMessage, Snackbar.LENGTH_LONG).setAction(R.string.action_fix)
+						{
+							val temp = binding.tietStart.text
+
+							binding.tietStart.text = binding.tietEnd.text
+							binding.tietEnd.text = temp
+						}.show()
+					}
+					else                                                ->
+					{
+						showToast(errorMessage)
+					}
+				}
 			}
 		}
 		collectLatestFlowWhenStarted(startState.map { it.error }) { binding.tietStart.error = getFieldError(it) }
