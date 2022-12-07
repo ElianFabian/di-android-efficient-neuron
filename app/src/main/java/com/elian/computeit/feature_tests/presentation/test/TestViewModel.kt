@@ -43,11 +43,9 @@ class TestViewModel @Inject constructor(
 	private val _range = savedState.get<Range>(TestArgKeys.OperationRange)!!
 	private val _operation = savedState.get<Operation>(TestArgKeys.OperationType)!!
 
-	private val _listOfOperationData = mutableListOf<OperationData>()
-
-	val isInfiniteMode = _totalTimeInMillis == 0L
-
+	private val _isInfiniteMode = _totalTimeInMillis == 0L
 	private var _millisSinceStart = 0L
+	private val _listOfOperationData = mutableListOf<OperationData>()
 
 	private val _eventFlow = Channel<TestEvent>()
 	val eventFlow = _eventFlow.receiveAsFlow()
@@ -113,7 +111,7 @@ class TestViewModel @Inject constructor(
 	{
 		_eventFlow.send(OnTimerFinish)
 
-		val totalTime = if (isInfiniteMode) _millisSinceStart else _totalTimeInMillis
+		val totalTime = if (_isInfiniteMode) _millisSinceStart else _totalTimeInMillis
 
 		val testData = TestData(
 			dateUnix = System.currentTimeMillis(),
@@ -134,7 +132,7 @@ class TestViewModel @Inject constructor(
 		val countDownInterval = 1L
 
 		countDownTimer.initialize(
-			millisInFuture = if (isInfiniteMode) Long.MAX_VALUE else _totalTimeInMillis,
+			millisInFuture = if (_isInfiniteMode) Long.MAX_VALUE else _totalTimeInMillis,
 			countDownInterval = countDownInterval,
 			coroutineScope = viewModelScope,
 		)
@@ -149,7 +147,7 @@ class TestViewModel @Inject constructor(
 					{
 						_millisSinceStart += countDownInterval
 
-						if (!isInfiniteMode)
+						if (!_isInfiniteMode)
 						{
 							_eventFlow.send(TestEvent.OnTimerTickInNormalMode(
 								millisSinceStart = it.millisSinceStart,
