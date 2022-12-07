@@ -70,32 +70,15 @@ class TestViewModel @Inject constructor(
 	{
 		when (action)
 		{
-			is EnterNumber     -> _resultState.update { it.append(action.value).clampLength(maxLength = 8) }
+			is EnterNumber     ->
+			{
+				_resultState.update { it.append(action.value).clampLength(maxLength = 8) }
+
+				addResultAndNextOperation(result = _resultState.value)
+			}
 			is RemoveLastDigit -> _resultState.update { it.dropLast() }
 			is ClearInput      -> _resultState.value = 0
-			is NextTest        ->
-			{
-				val expectedResult = _operation(
-					firstNumber = _pairOfNumbersState.value!!.first,
-					secondNumber = _pairOfNumbersState.value!!.second,
-				)
-
-				// As there's no negative sign button even if the answer it's negative you can introduce a positive number
-				// but when storing the data we save the value with the correct sign
-				val sign = sign(expectedResult.toFloat()).toInt()
-
-				val data = OperationData(
-					operationName = _operation.name,
-					pairOfNumbers = _pairOfNumbersState.value!!,
-					insertedResult = _resultState.value * sign,
-					millisSinceStart = _millisSinceStart,
-				)
-
-				_listOfOperationData.add(data)
-
-				_pairOfNumbersState.value = getRandomNumberPair(oldPair = _pairOfNumbersState.value)
-				_resultState.value = 0
-			}
+			is NextTest        -> addResultAndNextOperation()
 			is ForceFinish     -> viewModelScope.launch { finish(saveData = false) }
 		}
 	}
@@ -105,6 +88,33 @@ class TestViewModel @Inject constructor(
 		_pairOfNumbersState.value = getRandomNumberPair()
 
 		countDownTimer.start()
+	}
+
+
+	private fun addResultAndNextOperation(result: Int? = null)
+	{
+		val expectedResult = _operation(
+			firstNumber = _pairOfNumbersState.value!!.first,
+			secondNumber = _pairOfNumbersState.value!!.second,
+		)
+
+		// As there's no negative sign button even if the answer it's negative you can introduce a positive number
+		// but when storing the data we save the value with the correct sign
+		val sign = sign(expectedResult.toFloat()).toInt()
+
+		if (result != null && result * sign != expectedResult) return
+
+		val data = OperationData(
+			operationName = _operation.name,
+			pairOfNumbers = _pairOfNumbersState.value!!,
+			insertedResult = _resultState.value * sign,
+			millisSinceStart = _millisSinceStart,
+		)
+
+		_listOfOperationData.add(data)
+
+		_pairOfNumbersState.value = getRandomNumberPair(oldPair = _pairOfNumbersState.value)
+		_resultState.value = 0
 	}
 
 	private suspend fun finish(saveData: Boolean = true)
