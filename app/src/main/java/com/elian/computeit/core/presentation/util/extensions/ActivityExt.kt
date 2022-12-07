@@ -14,7 +14,7 @@ inline fun <reified T : Activity> Activity.navigateTo(
 	if (finish) finish()
 }
 
-fun Activity.toast(text: CharSequence, duration: Int = Toast.LENGTH_SHORT)
+fun Activity.showToast(text: CharSequence, duration: Int = Toast.LENGTH_SHORT)
 {
 	Toast.makeText(this, text, duration).show()
 }

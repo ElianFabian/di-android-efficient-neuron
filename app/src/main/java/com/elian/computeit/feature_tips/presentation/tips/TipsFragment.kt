@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.elian.computeit.R
-import com.elian.computeit.core.presentation.util.extensions.toast
+import com.elian.computeit.core.presentation.util.extensions.showToast
 import com.elian.computeit.core.util.RecyclerViewAdapter
 import com.elian.computeit.databinding.FragmentTipsBinding
 import com.elian.computeit.databinding.ItemTipBinding
@@ -71,7 +71,7 @@ class TipsFragment : Fragment(),
 
 	override fun onItemLongClick(v: View?, selectedItem: Tip, position: Int): Boolean
 	{
-		toast("You long clicked a tip", Toast.LENGTH_SHORT)
+		showToast("You long clicked a tip", Toast.LENGTH_SHORT)
 
 		return true
 	}

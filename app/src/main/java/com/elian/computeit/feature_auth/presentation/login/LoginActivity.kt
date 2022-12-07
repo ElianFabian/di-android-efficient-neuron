@@ -54,7 +54,7 @@ class LoginActivity : AppCompatActivity()
 			when (it)
 			{
 				is OnLogin            -> navigateTo<MainActivity>()
-				is OnShowErrorMessage -> toast(it.error.asString(this@LoginActivity))
+				is OnShowErrorMessage -> showToast(it.error.asString(this@LoginActivity))
 			}
 		}
 		collectLatestFlowWhenStarted(usernameState.map { it.error })

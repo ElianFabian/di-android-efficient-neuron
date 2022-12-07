@@ -78,7 +78,7 @@ class TestConfigurationFragment : Fragment(R.layout.fragment_test_configuration)
 						currentDestination = R.id.testConfigurationFragment,
 					)
 				}
-				is OnShowErrorMessage -> toast(it.error.asString(context))
+				is OnShowErrorMessage -> showToast(it.error.asString(context))
 			}
 		}
 		collectLatestFlowWhenStarted(startState.map { it.error }) { binding.tietStart.error = getFieldError(it) }

@@ -59,7 +59,7 @@ class RegisterActivity : AppCompatActivity()
 			when (it)
 			{
 				is OnRegister         -> navigateTo<MainActivity>()
-				is OnShowErrorMessage -> toast(it.error.asString(this@RegisterActivity))
+				is OnShowErrorMessage -> showToast(it.error.asString(this@RegisterActivity))
 			}
 		}
 		collectLatestFlowWhenStarted(usernameState.map { it.error })

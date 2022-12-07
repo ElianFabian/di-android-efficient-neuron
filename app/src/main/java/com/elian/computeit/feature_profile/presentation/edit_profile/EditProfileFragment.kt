@@ -10,7 +10,7 @@ import com.elian.computeit.R
 import com.elian.computeit.core.presentation.util.extensions.collectFlowWhenStarted
 import com.elian.computeit.core.presentation.util.extensions.collectLatestFlowWhenStarted
 import com.elian.computeit.core.presentation.util.extensions.error2
-import com.elian.computeit.core.presentation.util.extensions.toast
+import com.elian.computeit.core.presentation.util.extensions.showToast
 import com.elian.computeit.core.presentation.util.getUsernameErrorMessage
 import com.elian.computeit.core.presentation.util.viewBinding
 import com.elian.computeit.core.util.extensions.apply2
@@ -61,8 +61,8 @@ class EditProfileFragment : Fragment(R.layout.fragment_edit_profile)
 		{
 			when (it)
 			{
-				is OnSave             -> toast(R.string.message_info_successfully_updated)
-				is OnShowErrorMessage -> toast(it.error.asString(context))
+				is OnSave             -> showToast(R.string.message_info_successfully_updated)
+				is OnShowErrorMessage -> showToast(it.error.asString(context))
 			}
 		}
 		collectLatestFlowWhenStarted(usernameState.map { it.error })
