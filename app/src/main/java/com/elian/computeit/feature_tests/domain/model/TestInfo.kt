@@ -5,6 +5,7 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class TestInfo(
+	val date: String,
 	val opm: Int,
 	val rawOpm: Int,
 	val maxOpm: Int,

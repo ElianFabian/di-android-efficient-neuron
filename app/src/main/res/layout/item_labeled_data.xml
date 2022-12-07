@@ -1,26 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<!--This view is used when labeled data is needed-->
+<!--To give style you can do it programmatically with TextAppearance-->
 <androidx.appcompat.widget.LinearLayoutCompat
-	xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:tools="http://schemas.android.com/tools"
-	android:layout_width="match_parent"
-	android:layout_height="wrap_content"
-	android:layout_marginVertical="@dimen/_5sdp"
-	android:background="@color/transparent"
-	android:orientation="vertical"
-	tools:background="@color/background_card">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/transparent"
+    android:orientation="vertical">
 
-	<com.google.android.material.textview.MaterialTextView
-		android:id="@+id/tvLabel"
-		style="@style/TextView_Label"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		tools:text="Label" />
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tvLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:includeFontPadding="false"
+        tools:text="Label"
+        tools:textColor="@color/black" />
 
-	<com.google.android.material.textview.MaterialTextView
-		android:id="@+id/tvValue"
-		style="@style/TextView_Value"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		tools:text="60" />
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tvValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:includeFontPadding="false"
+        tools:text="60"
+        tools:textColor="@color/black" />
 
 </androidx.appcompat.widget.LinearLayoutCompat>

@@ -12,4 +12,5 @@ data class TestListInfo(
 	val maxRawOpm: Int,
 	val opmPerTest: List<Int>,
 	val rawOpmPerTest: List<Int>,
+	val listOfTestInfo: List<TestInfo>,
 )

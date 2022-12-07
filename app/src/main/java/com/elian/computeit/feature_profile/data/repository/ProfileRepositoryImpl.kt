@@ -7,7 +7,7 @@ import com.elian.computeit.core.domain.repository.LocalAppDataRepository
 import com.elian.computeit.core.domain.repository.UtilRepository
 import com.elian.computeit.core.util.Resource
 import com.elian.computeit.core.util.SimpleResource
-import com.elian.computeit.core.util.constants.profileDateFormat
+import com.elian.computeit.core.util.constants.defaultDateFormat
 import com.elian.computeit.feature_profile.domain.model.ProfileInfo
 import com.elian.computeit.feature_profile.domain.repository.ProfileRepository
 import com.google.firebase.firestore.FirebaseFirestore
@@ -39,7 +39,7 @@ class ProfileRepositoryImpl @Inject constructor(
 				username = name,
 				biography = biography,
 				profilePicUrl = profilePicUrl,
-				createdAt = profileDateFormat.format(Date(createdAtUnix)),
+				createdAt = defaultDateFormat.format(Date(createdAtUnix)),
 			)
 		}
 	}

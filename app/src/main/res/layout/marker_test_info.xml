@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:backgroundTint="@color/blue_400"
+    app:cardCornerRadius="@dimen/_8sdp">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvLabeledData"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/blue_400"
+        android:nestedScrollingEnabled="false"
+        android:layout_margin="@dimen/_10sdp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:itemCount="5"
+        tools:listitem="@layout/item_labeled_data" />
+
+</com.google.android.material.card.MaterialCardView>

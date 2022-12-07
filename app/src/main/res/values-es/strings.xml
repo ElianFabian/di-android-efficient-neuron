@@ -61,6 +61,7 @@
     <string name="frgTips_tvTitle_text">Consejos</string>
 
     <string name="generic_confirm_password">Confirmar contraseña</string>
+    <string name="generic_date">Fecha</string>
     <string name="generic_errors">Errores</string>
     <string name="generic_login">Iniciar sesión</string>
     <string name="generic_operations">Operaciones</string>

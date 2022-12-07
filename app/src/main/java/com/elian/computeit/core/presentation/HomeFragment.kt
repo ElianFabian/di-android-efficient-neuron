@@ -8,10 +8,12 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.elian.computeit.R
 import com.elian.computeit.core.presentation.adapter.LabeledDataAdapter
+import com.elian.computeit.core.presentation.adapter.TestInfoMarker
 import com.elian.computeit.core.presentation.model.LabeledData
 import com.elian.computeit.core.presentation.util.extensions.*
 import com.elian.computeit.core.presentation.util.mp_android_chart.applyDefault
 import com.elian.computeit.core.presentation.util.mp_android_chart.lineDataSet
+import com.elian.computeit.core.presentation.util.mp_android_chart.marker2
 import com.elian.computeit.core.presentation.util.mp_android_chart.toEntries
 import com.elian.computeit.core.presentation.util.viewBinding
 import com.elian.computeit.core.util.constants.DEFAULT_DECIMAL_FORMAT
@@ -69,14 +71,14 @@ class HomeFragment : Fragment(R.layout.fragment_home)
 				lineDataSet(
 					labelResId = R.string.generic_raw,
 					lineAndCirclesColorResId = R.color.chart_secondary,
-					entries = rawOpmPerTest.toEntries(),
+					entries = rawOpmPerTest.toEntries(listOfData = info.listOfTestInfo),
 				) {
 					setDrawVerticalHighlightIndicator(true)
 					highLightColor = getColorCompat(R.color.blue_200)
 				},
 				lineDataSet(
 					label = getString(R.string.generic_opm),
-					entries = opmPerTest.toEntries(),
+					entries = opmPerTest.toEntries(listOfData = info.listOfTestInfo),
 				) {
 					setDrawVerticalHighlightIndicator(true)
 					highLightColor = getColorCompat(R.color.blue_200)
@@ -95,6 +97,9 @@ class HomeFragment : Fragment(R.layout.fragment_home)
 		}
 
 		binding.lytTestListChart.lineChart.isVisible = true
+
+		binding.lytTestListChart.lineChart.marker2 = TestInfoMarker(context)
+
 		_isUiFinished = true
 
 		binding.lytTestListChart.lineChart.avoidConflictsWithScroll(binding.root)
@@ -105,7 +110,7 @@ class HomeFragment : Fragment(R.layout.fragment_home)
 		val listOfUiLabeledData = listOf(
 			LabeledData(
 				label = getString(R.string.frgHome_testsCompleted),
-				value = "$testsCompleted",
+				value = testsCompleted,
 			),
 			LabeledData(
 				label = getString(R.string.generic_totalTime),
@@ -113,7 +118,7 @@ class HomeFragment : Fragment(R.layout.fragment_home)
 			),
 			LabeledData(
 				label = getString(R.string.frgHome_operationsCompleted),
-				value = "$operationsCompleted",
+				value = operationsCompleted,
 			),
 			LabeledData(
 				label = getString(R.string.frgHome_correctOperationsCompleted),
@@ -129,11 +134,15 @@ class HomeFragment : Fragment(R.layout.fragment_home)
 			),
 			LabeledData(
 				label = getString(R.string.frgHome_highestOpm),
-				value = "$maxOpm",
+				value = maxOpm,
 			),
 			LabeledData(
 				label = getString(R.string.frgHome_highestRawOpm),
-				value = "$maxRawOpm",
+				value = maxRawOpm,
+			),
+			LabeledData(
+				label = getString(R.string.frgHome_highestRawOpm),
+				value = maxRawOpm,
 			),
 		)
 

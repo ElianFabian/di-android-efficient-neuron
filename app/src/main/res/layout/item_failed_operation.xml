@@ -24,14 +24,14 @@
 
 			<com.google.android.material.textview.MaterialTextView
 				android:id="@+id/tvFirstNumber"
-				style="@style/TextView_Value"
+				style="@style/Value_Main"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				tools:text="1" />
 
 			<com.google.android.material.textview.MaterialTextView
 				android:id="@+id/tvOperationSymbol"
-				style="@style/TextView_Value"
+				style="@style/Value_Main"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_marginHorizontal="@dimen/_5sdp"
@@ -40,13 +40,13 @@
 
 			<com.google.android.material.textview.MaterialTextView
 				android:id="@+id/tvSecondNumber"
-				style="@style/TextView_Value"
+				style="@style/Value_Main"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				tools:text="2" />
 
 			<com.google.android.material.textview.MaterialTextView
-				style="@style/TextView_Value"
+				style="@style/Value_Main"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_marginHorizontal="@dimen/_5sdp"
@@ -54,7 +54,7 @@
 
 			<com.google.android.material.textview.MaterialTextView
 				android:id="@+id/tvExpectedResult"
-				style="@style/TextView_Value"
+				style="@style/Value_Main"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:textColor="@color/green_a400"
@@ -66,7 +66,7 @@
 
 			<com.google.android.material.textview.MaterialTextView
 				android:id="@+id/tvInsertedResult"
-				style="@style/TextView_Value"
+				style="@style/Value_Main"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:alpha="0.7"

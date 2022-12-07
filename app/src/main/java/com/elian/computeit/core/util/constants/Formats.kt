@@ -7,7 +7,7 @@ import java.util.*
 private fun dateFormat(pattern: String) = SimpleDateFormat(pattern, Locale.getDefault())
 
 
-val profileDateFormat = dateFormat("dd/MM/yyyy")
+val defaultDateFormat = dateFormat("dd/MM/yyyy")
 
 
 const val DEFAULT_DECIMAL_FORMAT = "%.2f"

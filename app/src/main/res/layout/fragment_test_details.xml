@@ -1,72 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.core.widget.NestedScrollView
-	xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:app="http://schemas.android.com/apk/res-auto"
-	xmlns:tools="http://schemas.android.com/tools"
-	android:layout_width="match_parent"
-	android:layout_height="match_parent"
-	android:fillViewport="true">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
 
-	<androidx.appcompat.widget.LinearLayoutCompat
-		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		android:background="@color/background_dark"
-		android:orientation="vertical"
-		android:paddingHorizontal="@dimen/_12sdp"
-		android:paddingTop="@dimen/_32sdp">
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background_dark"
+        android:orientation="vertical"
+        android:paddingHorizontal="@dimen/_12sdp"
+        android:paddingTop="@dimen/_32sdp">
 
-		<include
-			android:id="@+id/lytTestChart"
-			layout="@layout/layout_line_chart" />
+        <include
+            android:id="@+id/lytTestChart"
+            layout="@layout/layout_line_chart" />
 
-		<include
-			android:id="@+id/lytTextInfoList"
-			layout="@layout/layout_list_labeled_data"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_marginTop="@dimen/_15sdp" />
+        <include
+            android:id="@+id/lytTextInfoList"
+            layout="@layout/layout_list_labeled_data"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_15sdp" />
 
-		<com.google.android.material.textview.MaterialTextView
-			android:id="@+id/tvFailedOperations"
-			style="@style/TextView_Label"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_marginTop="@dimen/_10sdp"
-			android:layout_marginBottom="@dimen/_5sdp"
-			android:text="@string/frgTestDetails_LabelFor_rvFailedOperations_text" />
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvFailedOperations"
+            style="@style/TextView_Label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginBottom="@dimen/_5sdp"
+            android:text="@string/frgTestDetails_LabelFor_rvFailedOperations_text" />
 
-		<com.google.android.material.card.MaterialCardView
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:backgroundTint="@color/background_card"
-			app:cardCornerRadius="@dimen/_6sdp"
-			app:strokeColor="@color/background_card"
-			app:strokeWidth="@dimen/_6sdp">
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/background_card"
+            app:cardCornerRadius="@dimen/_6sdp"
+            app:strokeColor="@color/background_card"
+            app:strokeWidth="@dimen/_6sdp">
 
-			<androidx.recyclerview.widget.RecyclerView
-				android:id="@+id/rvFailedOperations"
-				android:layout_width="match_parent"
-				android:layout_height="@dimen/_280sdp"
-				android:layout_marginHorizontal="@dimen/_6sdp"
-				android:layout_marginVertical="@dimen/_3sdp"
-				android:scrollbars="vertical"
-				app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-				tools:itemCount="8"
-				tools:listitem="@layout/item_failed_operation" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvFailedOperations"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_280sdp"
+                android:layout_marginHorizontal="@dimen/_6sdp"
+                android:layout_marginVertical="@dimen/_3sdp"
+                android:scrollbars="vertical"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:itemCount="8"
+                tools:listitem="@layout/item_failed_operation" />
 
-		</com.google.android.material.card.MaterialCardView>
+        </com.google.android.material.card.MaterialCardView>
 
-		<View style="@style/Utils_LinearLayoutSeparator" />
+        <View style="@style/Utils_LinearLayoutSeparator" />
 
-		<com.google.android.material.button.MaterialButton
-			android:id="@+id/btnContinue"
-			style="@style/ButtonStyle"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_gravity="center_horizontal"
-			android:layout_marginVertical="@dimen/_18sdp"
-			android:text="@string/frgEndGame_btnContinue_text" />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnContinue"
+            style="@style/ButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginVertical="@dimen/_18sdp"
+            android:text="@string/frgEndGame_btnContinue_text" />
 
-	</androidx.appcompat.widget.LinearLayoutCompat>
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
 </androidx.core.widget.NestedScrollView>

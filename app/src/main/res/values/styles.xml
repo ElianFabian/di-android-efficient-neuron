@@ -1,117 +1,118 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-	<style name="TextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.FilledBox">
-		<item name="android:textColorHint">@color/gray_400</item>
-		<item name="boxBackgroundColor">@color/white</item>
-		<item name="boxStrokeWidth">0dp</item>
-		<item name="boxCornerRadiusBottomEnd">8dp</item>
-		<item name="boxCornerRadiusTopEnd">8dp</item>
-		<item name="boxCornerRadiusBottomStart">8dp</item>
-		<item name="boxCornerRadiusTopStart">8dp</item>
-		<item name="passwordToggleTint">@color/gray_600</item>
-	</style>
+    <style name="TextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.FilledBox">
+        <item name="android:textColorHint">@color/gray_400</item>
+        <item name="boxBackgroundColor">@color/white</item>
+        <item name="boxStrokeWidth">0dp</item>
+        <item name="boxCornerRadiusBottomEnd">8dp</item>
+        <item name="boxCornerRadiusTopEnd">8dp</item>
+        <item name="boxCornerRadiusBottomStart">8dp</item>
+        <item name="boxCornerRadiusTopStart">8dp</item>
+        <item name="passwordToggleTint">@color/gray_600</item>
+    </style>
 
-	<style name="TextInputEditTextStyle">
-		<item name="android:textSize">@dimen/textSize_textInput</item>
-		<item name="android:textColor">@color/black</item>
-	</style>
+    <style name="TextInputEditTextStyle">
+        <item name="android:textSize">@dimen/textSize_textInput</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
 
-	<style name="Layout_TextInputLayout" parent="@style/TextInputLayoutStyle">
-		<item name="android:layout_width">match_parent</item>
-		<item name="android:layout_height">wrap_content</item>
-		<item name="android:layout_gravity">center</item>
-		<item name="android:layout_marginStart">@dimen/_20sdp</item>
-		<item name="android:layout_marginEnd">@dimen/_20sdp</item>
-	</style>
+    <style name="Layout_TextInputLayout" parent="@style/TextInputLayoutStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_marginStart">@dimen/_20sdp</item>
+        <item name="android:layout_marginEnd">@dimen/_20sdp</item>
+    </style>
 
-	<style name="Layout_ProgressBar">
-		<item name="android:layout_width">@dimen/_70sdp</item>
-		<item name="android:layout_height">@dimen/_70sdp</item>
-		<item name="android:layout_gravity">center_horizontal</item>
-		<item name="android:layout_marginTop">@dimen/_15sdp</item>
-		<item name="android:visibility">invisible</item>
-		<item name="android:indeterminateTint">?colorPrimary</item>
-	</style>
+    <style name="Layout_ProgressBar">
+        <item name="android:layout_width">@dimen/_70sdp</item>
+        <item name="android:layout_height">@dimen/_70sdp</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:layout_marginTop">@dimen/_15sdp</item>
+        <item name="android:visibility">invisible</item>
+        <item name="android:indeterminateTint">?colorPrimary</item>
+    </style>
 
-	<style name="Title">
-		<item name="android:layout_width">wrap_content</item>
-		<item name="android:layout_height">wrap_content</item>
-		<item name="android:layout_gravity">center_horizontal</item>
-		<item name="android:layout_marginTop">@dimen/_20sdp</item>
-		<item name="android:textAppearance">@style/TextAppearance_Title</item>
-	</style>
+    <style name="Title">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:layout_marginTop">@dimen/_20sdp</item>
+        <item name="android:textAppearance">@style/TextAppearance_Title</item>
+    </style>
 
-	<style name="ButtonStyle" parent="Widget.MaterialComponents.Button">
-		<item name="cornerRadius">@dimen/_18sdp</item>
-		<item name="android:textAppearance">@style/TextAppearance_Button</item>
+    <style name="ButtonStyle" parent="Widget.MaterialComponents.Button">
+        <item name="cornerRadius">@dimen/_18sdp</item>
+        <item name="android:textAppearance">@style/TextAppearance_Button</item>
 
-	</style>
+    </style>
 
-	<style name="TextButtonStyle" parent="Widget.MaterialComponents.Button.TextButton">
-		<item name="android:textAppearance">@style/TextAppearance_TextButton</item>
-		<item name="android:textColor">@null</item>
-	</style>
+    <style name="TextButtonStyle" parent="Widget.MaterialComponents.Button.TextButton">
+        <item name="android:textAppearance">@style/TextAppearance_TextButton</item>
+        <item name="android:textColor">@null</item>
+    </style>
 
-	<style name="OperationButton">
-		<item name="android:textAppearance">@style/TextAppearance_OperationButton</item>
-		<item name="android:backgroundTint">@color/blue_400</item>
-		<item name="cornerRadius">@dimen/_15sdp</item>
-		<item name="strokeWidth">@dimen/_3sdp</item>
-		<item name="strokeColor">@color/indigo_900</item>
-		<item name="android:textColor">@null</item>
-	</style>
+    <style name="OperationButton">
+        <item name="android:textAppearance">@style/TextAppearance_OperationButton</item>
+        <item name="android:backgroundTint">@color/blue_400</item>
+        <item name="cornerRadius">@dimen/_15sdp</item>
+        <item name="strokeWidth">@dimen/_3sdp</item>
+        <item name="strokeColor">@color/indigo_900</item>
+        <item name="android:textColor">@null</item>
+    </style>
 
-	<style name="CalculatorButton">
-		<item name="android:maxLines">1</item>
-		<item name="cornerRadius">@dimen/_10sdp</item>
-	</style>
+    <style name="CalculatorButton">
+        <item name="android:maxLines">1</item>
+        <item name="cornerRadius">@dimen/_10sdp</item>
+    </style>
 
-	<style name="CalculatorButton.Numeric">
-		<item name="android:backgroundTint">@color/indigo_400</item>
-		<item name="android:fontFamily">@font/noto_sans_bold</item>
-	</style>
+    <style name="CalculatorButton.Numeric">
+        <item name="android:backgroundTint">@color/indigo_400</item>
+        <item name="android:fontFamily">@font/noto_sans_bold</item>
+    </style>
 
-	<style name="CalculatorButton.Action" />
+    <style name="CalculatorButton.Action" />
 
-	<style name="frgGameConfiguration_TextView">
-		<item name="android:layout_width">wrap_content</item>
-		<item name="android:layout_height">wrap_content</item>
-		<item name="android:fontFamily">@font/comfortaa</item>
-		<item name="android:textColor">@color/teal_200</item>
-		<item name="android:textSize">@dimen/textSize_medium3</item>
-	</style>
+    <style name="frgGameConfiguration_TextView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">@font/comfortaa</item>
+        <item name="android:textColor">@color/teal_200</item>
+        <item name="android:textSize">@dimen/textSize_medium3</item>
+    </style>
 
-	<style name="TextView_Label">
-		<item name="android:textAppearance">@style/TextAppearance_TextView_Label</item>
-	</style>
+    <style name="TextView_Label">
+        <item name="android:textAppearance">@style/TextAppearance_Label_Main</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
 
-	<style name="TextView_Value">
-		<item name="android:textAppearance">@style/TextAppearance_TextView_Value</item>
-		<item name="android:includeFontPadding">false</item>
-	</style>
+    <style name="Value_Main">
+        <item name="android:textAppearance">@style/TextAppearance_Value_Main</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
 
-	<style name="frgTip_Text">
-		<item name="android:layout_width">wrap_content</item>
-		<item name="android:layout_height">wrap_content</item>
-		<item name="android:layout_marginTop">20dp</item>
-		<item name="android:layout_marginStart">10dp</item>
-		<item name="android:layout_marginEnd">10dp</item>
-		<item name="android:textColor">@color/light_blue_800</item>
-		<item name="android:textSize">22sp</item>
-	</style>
+    <style name="frgTip_Text">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">20dp</item>
+        <item name="android:layout_marginStart">10dp</item>
+        <item name="android:layout_marginEnd">10dp</item>
+        <item name="android:textColor">@color/light_blue_800</item>
+        <item name="android:textSize">22sp</item>
+    </style>
 
-	<style name="frgTip_Number">
-		<item name="android:layout_width">wrap_content</item>
-		<item name="android:layout_height">wrap_content</item>
-		<item name="android:layout_marginTop">10dp</item>
-		<item name="android:textColor">@color/grey_900</item>
-		<item name="android:textSize">35sp</item>
-	</style>
+    <style name="frgTip_Number">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:textColor">@color/grey_900</item>
+        <item name="android:textSize">35sp</item>
+    </style>
 
-	<style name="Theme_frgTestConfiguration_TextInputEditText">
-		<item name="colorControlNormal">@color/gray_400</item>
-		<item name="android:textColorHint">@color/gray_400</item>
-	</style>
+    <style name="Theme_frgTestConfiguration_TextInputEditText">
+        <item name="colorControlNormal">@color/gray_400</item>
+        <item name="android:textColorHint">@color/gray_400</item>
+    </style>
 
 </resources>

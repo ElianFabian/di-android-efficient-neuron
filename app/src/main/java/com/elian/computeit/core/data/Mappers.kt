@@ -2,6 +2,7 @@ package com.elian.computeit.core.data
 
 import com.elian.computeit.core.domain.models.OperationData
 import com.elian.computeit.core.domain.models.TestData
+import com.elian.computeit.core.util.constants.defaultDateFormat
 import com.elian.computeit.core.util.constants.secondsToDHHMMSS
 import com.elian.computeit.core.util.extensions.getValuePerSecond
 import com.elian.computeit.core.util.extensions.ifNaNReturnZero
@@ -10,6 +11,7 @@ import com.elian.computeit.core.util.extensions.result
 import com.elian.computeit.feature_tests.domain.model.OperationInfo
 import com.elian.computeit.feature_tests.domain.model.TestInfo
 import com.elian.computeit.feature_tests.domain.model.TestListInfo
+import java.util.*
 
 fun OperationData.toOperationInfo() = OperationInfo(
 	pairOfNumbers = pairOfNumbers,
@@ -38,6 +40,7 @@ fun TestData.toTestInfo(): TestInfo
 	val minRawOpm = rawOpmPerSecond.values.minOrNull() ?: 0
 
 	return TestInfo(
+		date = defaultDateFormat.format(Date(dateUnix)),
 		opm = opmPerSecond.values.lastOrNull() ?: 0,
 		rawOpm = rawOpmPerSecond.values.lastOrNull() ?: 0,
 		maxOpm = opmPerSecond.values.maxOfOrNull { it } ?: 0,
@@ -81,5 +84,6 @@ fun List<TestData>.toTestListInfo(): TestListInfo
 		maxRawOpm = rawOpmPerTest.maxOrNull() ?: 0,
 		opmPerTest = opmPerTest,
 		rawOpmPerTest = rawOpmPerTest,
+		listOfTestInfo = this.map { it.toTestInfo() },
 	)
 }
