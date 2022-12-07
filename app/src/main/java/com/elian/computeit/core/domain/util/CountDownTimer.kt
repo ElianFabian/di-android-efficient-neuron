@@ -22,7 +22,12 @@ interface CountDownTimer
 sealed interface TimerEvent
 {
 	object OnStart : TimerEvent
-	data class OnTick(val millisUntilFinished: Long) : TimerEvent
+
+	data class OnTick(
+		val millisSinceStart: Long,
+		val millisUntilFinished: Long,
+	) : TimerEvent
+
 	object OnRestart : TimerEvent
 	object OnStop : TimerEvent
 	object OnResume : TimerEvent

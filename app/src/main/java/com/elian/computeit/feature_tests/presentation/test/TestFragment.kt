@@ -151,18 +151,21 @@ class TestFragment : Fragment(R.layout.fragment_test)
 		{
 			when (it)
 			{
-				is OnTimerTick       -> if (!viewModel.isInfiniteMode)
+				is OnTimerTickInNormalMode   ->
 				{
 					val seconds = it.millisUntilFinished / 1000F
 
 					binding.cpiRemainingSeconds.progress = it.millisUntilFinished.toInt()
 					binding.mtvRemainingSeconds.text = seconds.format("%.1f")
 				}
-				is OnTimerFinish     ->
+				is OnTimerTickInInfiniteMode ->
+				{
+				}
+				is OnTimerFinish             ->
 				{
 					disableScreenInteraction()
 				}
-				is OnGoToTestDetails ->
+				is OnGoToTestDetails         ->
 				{
 					navigate(R.id.action_testFragment_to_testDetailsFragment, bundleOf(*it.args.toTypedArray()))
 				}

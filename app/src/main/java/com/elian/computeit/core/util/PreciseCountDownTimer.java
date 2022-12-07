@@ -105,13 +105,13 @@ public abstract class PreciseCountDownTimer extends Timer
 					}
 				}
 
-				onTick(timeLeft);
+				onTick(timeLeft, totalTime - timeLeft);
 			}
 		};
 	}
 
 	public abstract void onStart();
-	public abstract void onTick(long timeLeft);
+	public abstract void onTick(long timeLeft, long timeSinceStart);
 	public abstract void onRestart();
 	public abstract void onStop();
 	public abstract void onResume();

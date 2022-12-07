@@ -56,9 +56,14 @@ class CountDownTimerImpl : CountDownTimer
 				_coroutineScope.launch { _timerEventFlow.send(TimerEvent.OnStart) }
 			}
 
-			override fun onTick(millisUntilFinished: Long)
+			override fun onTick(millisUntilFinished: Long, millisSinceStart: Long)
 			{
-				_coroutineScope.launch { _timerEventFlow.send(TimerEvent.OnTick(millisUntilFinished)) }
+				_coroutineScope.launch {
+					_timerEventFlow.send(TimerEvent.OnTick(
+						millisSinceStart = millisSinceStart,
+						millisUntilFinished = millisUntilFinished,
+					))
+				}
 			}
 
 			override fun onRestart()

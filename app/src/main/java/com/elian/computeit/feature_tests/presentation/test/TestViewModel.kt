@@ -47,6 +47,8 @@ class TestViewModel @Inject constructor(
 
 	val isInfiniteMode = _totalTimeInMillis == 0L
 
+	private var _millisSinceStart = 0L
+
 	private val _eventFlow = Channel<TestEvent>()
 	val eventFlow = _eventFlow.receiveAsFlow()
 
@@ -58,8 +60,6 @@ class TestViewModel @Inject constructor(
 
 	private val _operationSymbolState = MutableStateFlow(_operation.symbol)
 	val operationSymbolState = _operationSymbolState.asStateFlow()
-
-	private var _millisSinceStart = 0L
 
 
 	init
@@ -113,9 +113,11 @@ class TestViewModel @Inject constructor(
 	{
 		_eventFlow.send(OnTimerFinish)
 
+		val totalTime = if (isInfiniteMode) _millisSinceStart else _totalTimeInMillis
+
 		val testData = TestData(
 			dateUnix = System.currentTimeMillis(),
-			timeInSeconds = _millisSinceStart.toInt() / 1000,
+			timeInSeconds = totalTime.toInt() / 1000,
 			listOfOperationData = _listOfOperationData.toList(),
 			range = _range
 		)
@@ -129,13 +131,13 @@ class TestViewModel @Inject constructor(
 
 	private fun initialize()
 	{
+		val countDownInterval = 1L
+
 		countDownTimer.initialize(
 			millisInFuture = if (isInfiniteMode) Long.MAX_VALUE else _totalTimeInMillis,
-			countDownInterval = 1L,
+			countDownInterval = countDownInterval,
 			coroutineScope = viewModelScope,
 		)
-
-		var startTime = 0L
 
 		viewModelScope.launch()
 		{
@@ -143,12 +145,20 @@ class TestViewModel @Inject constructor(
 			{
 				when (it)
 				{
-					is TimerEvent.OnStart  -> startTime = System.currentTimeMillis()
 					is TimerEvent.OnTick   ->
 					{
-						_millisSinceStart = System.currentTimeMillis() - startTime
+						_millisSinceStart += countDownInterval
 
-						_eventFlow.send(TestEvent.OnTimerTick(it.millisUntilFinished))
+						if (!isInfiniteMode)
+						{
+							_eventFlow.send(TestEvent.OnTimerTickInNormalMode(
+								millisSinceStart = it.millisSinceStart,
+								millisUntilFinished = it.millisUntilFinished,
+							))
+						}
+						else _eventFlow.send(TestEvent.OnTimerTickInInfiniteMode(
+							millisSinceStart = _millisSinceStart,
+						))
 					}
 					is TimerEvent.OnFinish -> finish()
 					else                   -> Unit
