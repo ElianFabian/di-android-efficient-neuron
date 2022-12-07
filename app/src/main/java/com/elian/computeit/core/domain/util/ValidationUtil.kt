@@ -13,7 +13,7 @@ private val NAME_REGEX = NAME_PATTERN.toRegex()
 
 private const val PASSWORD_MIN_LENGTH = 8
 private const val PASSWORD_MAX_LENGTH = 20
-private const val PASSWORD_SPECIAL_CHARACTERS = """!?/\$€%&#.=+-"""
+private const val PASSWORD_SPECIAL_CHARACTERS = """@!?/\$€%&#.=+-"""
 
 
 fun validateName(name: String): Error?
