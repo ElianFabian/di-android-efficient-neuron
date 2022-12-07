@@ -12,16 +12,16 @@ import androidx.viewbinding.ViewBinding
 class GenericAdapter<ItemT : Any, VB : ViewBinding>(
 	private val inflate: (LayoutInflater, ViewGroup, Boolean) -> VB,
 	list: List<ItemT> = emptyList(),
-	areItemsTheSame: ((oldItem: ItemT, newItem: ItemT) -> Boolean)? = null,
-	areContentsTheSame: ((oldItem: ItemT, newItem: ItemT) -> Boolean)? = null,
+	areItemsTheSame: (oldItem: ItemT, newItem: ItemT) -> Boolean = { oldItem, newItem -> oldItem == newItem },
+	areContentsTheSame: (oldItem: ItemT, newItem: ItemT) -> Boolean = { oldItem, newItem -> oldItem == newItem },
 	private val onBind: VB.(item: ItemT) -> Unit,
 ) : ListAdapter<ItemT, GenericAdapter<ItemT, VB>.ViewHolder>(
 	object : DiffUtil.ItemCallback<ItemT>()
 	{
-		override fun areItemsTheSame(oldItem: ItemT, newItem: ItemT) = areItemsTheSame?.invoke(oldItem, newItem) ?: (oldItem == newItem)
+		override fun areItemsTheSame(oldItem: ItemT, newItem: ItemT) = areItemsTheSame(oldItem, newItem)
 
 		@SuppressLint("DiffUtilEquals")
-		override fun areContentsTheSame(oldItem: ItemT, newItem: ItemT) = areContentsTheSame?.invoke(oldItem, newItem) ?: (oldItem == newItem)
+		override fun areContentsTheSame(oldItem: ItemT, newItem: ItemT) = areContentsTheSame(oldItem, newItem)
 	}
 )
 {
