@@ -140,10 +140,6 @@ class HomeFragment : Fragment(R.layout.fragment_home)
 				label = getString(R.string.frgHome_highestRawOpm),
 				value = maxRawOpm,
 			),
-			LabeledData(
-				label = getString(R.string.frgHome_highestRawOpm),
-				value = maxRawOpm,
-			),
 		)
 
 		binding.lytTextInfoList.rvLabeledData.adapter = LabeledDataAdapter(listOfUiLabeledData)
