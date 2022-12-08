@@ -16,4 +16,6 @@ object TestDetailsArgKeys
 {
 	/** @see com.elian.computeit.feature_tests.domain.model.TestInfo */
 	const val TestInfo = "TestInfo"
+
+	const val HideContinueButton = "HideContinueButton"
 }

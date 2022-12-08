@@ -2,6 +2,7 @@ package com.elian.computeit.core.presentation
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.os.bundleOf
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
@@ -17,10 +18,15 @@ import com.elian.computeit.core.presentation.util.mp_android_chart.marker2
 import com.elian.computeit.core.presentation.util.mp_android_chart.toEntries
 import com.elian.computeit.core.presentation.util.viewBinding
 import com.elian.computeit.core.util.constants.DEFAULT_DECIMAL_FORMAT
+import com.elian.computeit.core.util.constants.TestDetailsArgKeys
 import com.elian.computeit.core.util.extensions.apply2
 import com.elian.computeit.core.util.extensions.format
 import com.elian.computeit.databinding.FragmentHomeBinding
+import com.elian.computeit.feature_tests.domain.model.TestInfo
 import com.elian.computeit.feature_tests.domain.model.TestListInfo
+import com.github.mikephil.charting.data.Entry
+import com.github.mikephil.charting.highlight.Highlight
+import com.github.mikephil.charting.listener.OnChartValueSelectedListener
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.filterNotNull
 
@@ -103,6 +109,28 @@ class HomeFragment : Fragment(R.layout.fragment_home)
 		_isUiFinished = true
 
 		binding.lytTestListChart.lineChart.avoidConflictsWithScroll(binding.root)
+
+		binding.lytTestListChart.lineChart.setOnChartValueSelectedListener(object : OnChartValueSelectedListener
+		{
+			var currentSelectedEntry: Entry? = null
+
+			override fun onValueSelected(e: Entry, h: Highlight)
+			{
+				if (currentSelectedEntry == e)
+				{
+					navigate(R.id.action_homeFragment_to_testDetailsFragment, bundleOf(
+						TestDetailsArgKeys.TestInfo to e.data as TestInfo,
+						TestDetailsArgKeys.HideContinueButton to true,
+					))
+				}
+
+				currentSelectedEntry = e
+			}
+
+			override fun onNothingSelected()
+			{
+			}
+		})
 	}
 
 	private fun initTextInfo(info: TestListInfo) = info.apply2()

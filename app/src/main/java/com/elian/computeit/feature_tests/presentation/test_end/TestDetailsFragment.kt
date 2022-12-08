@@ -50,6 +50,7 @@ class TestDetailsFragment : Fragment(R.layout.fragment_test_details)
 		else initFailedOperationsAdapter(info)
 
 		btnContinue.setOnClickListener { navigate(R.id.action_testDetailsFragment_to_homeFragment) }
+		btnContinue.isGone = arguments?.getBoolean(TestDetailsArgKeys.HideContinueButton) ?: false
 	}
 
 	private fun initLineChart(info: TestInfo)

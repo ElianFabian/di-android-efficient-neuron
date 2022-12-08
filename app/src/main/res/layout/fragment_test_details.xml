@@ -24,20 +24,21 @@
             layout="@layout/layout_list_labeled_data"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_15sdp" />
+            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_marginBottom="@dimen/_18sdp" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tvFailedOperations"
             style="@style/TextView_Label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_10sdp"
             android:layout_marginBottom="@dimen/_5sdp"
             android:text="@string/frgTestDetails_LabelFor_rvFailedOperations_text" />
 
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_18sdp"
             android:backgroundTint="@color/background_card"
             app:cardCornerRadius="@dimen/_6sdp"
             app:strokeColor="@color/background_card"
@@ -64,7 +65,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginVertical="@dimen/_18sdp"
+            android:layout_marginBottom="@dimen/_18sdp"
             android:text="@string/frgEndGame_btnContinue_text" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>

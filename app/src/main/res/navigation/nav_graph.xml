@@ -31,6 +31,9 @@
 		<action
 			android:id="@+id/action_homeFragment_to_tipsFragment"
 			app:destination="@id/tipsFragment" />
+		<action
+			android:id="@+id/action_homeFragment_to_testDetailsFragment"
+			app:destination="@id/testDetailsFragment" />
 	</fragment>
 	<fragment
 		android:id="@+id/testConfigurationFragment"
