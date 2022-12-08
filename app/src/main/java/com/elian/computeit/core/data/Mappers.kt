@@ -34,10 +34,10 @@ fun TestData.toTestInfo(): TestInfo
 		},
 	)
 
-	val maxOpm = opmPerSecond.values.maxOrNull() ?: 0
-	val maxRawOpm = rawOpmPerSecond.values.maxOrNull() ?: 0
 	val minOpm = opmPerSecond.values.minOrNull() ?: 0
 	val minRawOpm = rawOpmPerSecond.values.minOrNull() ?: 0
+	val maxOpm = opmPerSecond.values.maxOrNull() ?: 0
+	val maxRawOpm = rawOpmPerSecond.values.maxOrNull() ?: 0
 
 	return TestInfo(
 		date = defaultDateFormat.format(Date(dateUnix)),
@@ -51,7 +51,7 @@ fun TestData.toTestInfo(): TestInfo
 		opmPerSecond = opmPerSecond,
 		rawOpmPerSecond = rawOpmPerSecond,
 		errorsAtSecond = listOfOperationData.filter { it.millisSinceStart >= 1000 && it.isError }.map { it.millisSinceStart / 1000F },
-		errorsYValue = (maxOf(maxOpm, maxRawOpm) + minOf(minOpm, minRawOpm)) / 2,
+		errorsYValue = (minOf(minOpm, minRawOpm) + maxOf(maxOpm, maxRawOpm)) / 2,
 		listOfFailedOperationInfo = listOfOperationData.filter { it.isError }.map { it.toOperationInfo() },
 	)
 }
@@ -59,12 +59,9 @@ fun TestData.toTestInfo(): TestInfo
 fun List<TestData>.toTestListInfo(): TestListInfo
 {
 	val totalTimeInSeconds = sumOf { it.timeInSeconds }
-
 	val operationsCompleted = sumOf { it.listOfOperationData.size }
 	val correctOperationsCompleted = sumOf { it.listOfOperationData.count { data -> !data.isError } }
-
 	val listOfTestInfo = map { it.toTestInfo() }
-
 	val opmPerTest = listOfTestInfo.map { it.opm }
 	val rawOpmPerTest = listOfTestInfo.map { it.rawOpm }
 
