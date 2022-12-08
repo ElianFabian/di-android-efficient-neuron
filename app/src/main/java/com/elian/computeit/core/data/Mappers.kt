@@ -63,14 +63,10 @@ fun List<TestData>.toTestListInfo(): TestListInfo
 	val operationsCompleted = sumOf { it.listOfOperationData.size }
 	val correctOperationsCompleted = sumOf { it.listOfOperationData.count { data -> !data.isError } }
 
-	val opmPerTest = map()
-	{
-		(it.listOfOperationData.count { operation -> !operation.isError } / it.timeInSeconds.toFloat() * 60F).ifNaNReturnZero().toInt()
-	}
-	val rawOpmPerTest = map()
-	{
-		(it.listOfOperationData.size / it.timeInSeconds.toFloat() * 60F).ifNaNReturnZero().toInt()
-	}
+	val listOfTestInfo = map { it.toTestInfo() }
+
+	val opmPerTest = listOfTestInfo.map { it.opm }
+	val rawOpmPerTest = listOfTestInfo.map { it.rawOpm }
 
 	return TestListInfo(
 		testsCompleted = size,
@@ -84,6 +80,6 @@ fun List<TestData>.toTestListInfo(): TestListInfo
 		maxRawOpm = rawOpmPerTest.maxOrNull() ?: 0,
 		opmPerTest = opmPerTest,
 		rawOpmPerTest = rawOpmPerTest,
-		listOfTestInfo = this.map { it.toTestInfo() },
+		listOfTestInfo = listOfTestInfo,
 	)
 }
