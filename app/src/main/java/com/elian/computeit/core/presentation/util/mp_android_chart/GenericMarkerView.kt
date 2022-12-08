@@ -28,7 +28,9 @@ class GenericMarkerView<VB : ViewBinding>(
 	private var mOffset = MPPointF()
 	private val mOffset2 = MPPointF()
 	private var mWeakChart: WeakReference<Chart<*>>? = null
-	private lateinit var binding: VB
+	private lateinit var _binding: VB
+	
+	val binding get() = _binding
 
 	var chartView: Chart<*>?
 		get() = if (mWeakChart == null) null else mWeakChart!!.get()
@@ -51,9 +53,9 @@ class GenericMarkerView<VB : ViewBinding>(
 
 	private fun setupLayoutResource(inflate: (LayoutInflater, ViewGroup, Boolean) -> VB)
 	{
-		binding = inflate(LayoutInflater.from(context), this, true)
+		_binding = inflate(LayoutInflater.from(context), this, true)
 
-		val root = binding.root
+		val root = _binding.root
 
 		root.layoutParams = LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT)
 		root.measure(MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED), MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED))
@@ -104,7 +106,7 @@ class GenericMarkerView<VB : ViewBinding>(
 
 	override fun refreshContent(entry: Entry, highlight: Highlight)
 	{
-		onBind(binding, entry, highlight)
+		onBind(_binding, entry, highlight)
 
 		measure(
 			MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED),
