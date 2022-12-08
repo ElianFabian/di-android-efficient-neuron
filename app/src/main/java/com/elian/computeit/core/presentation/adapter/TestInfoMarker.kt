@@ -9,6 +9,7 @@ import com.elian.computeit.core.presentation.model.LabeledData
 import com.elian.computeit.core.presentation.util.mp_android_chart.GenericMarkerView
 import com.elian.computeit.databinding.MarkerTestInfoBinding
 import com.elian.computeit.feature_tests.domain.model.TestInfo
+import com.github.mikephil.charting.utils.Utils
 
 
 @Suppress("FunctionName", "UNCHECKED_CAST")
@@ -63,4 +64,7 @@ fun TestInfoMarker(context: Context?) = GenericMarkerView(
 			tvLabel.text = "${tvLabel.text}: "
 		},
 	)
+}.apply()
+{
+	offset.y -= Utils.convertDpToPixel(binding.root.measuredHeight.toFloat() * 2)
 }
