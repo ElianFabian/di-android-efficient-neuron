@@ -115,4 +115,14 @@
         <item name="android:textColorHint">@color/gray_400</item>
     </style>
 
+    <style name="CircularAppearanceOverlay">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
+
+    <style name="CircularImage">
+        <item name="android:scaleType">centerCrop</item>
+        <item name="shapeAppearanceOverlay">@style/CircularAppearanceOverlay</item>
+    </style>
+
 </resources>

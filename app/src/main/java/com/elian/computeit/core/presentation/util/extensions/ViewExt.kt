@@ -4,18 +4,36 @@ import android.annotation.SuppressLint
 import android.view.MotionEvent
 import android.view.View
 import android.view.animation.AlphaAnimation
+import android.view.animation.Animation
 import androidx.core.widget.NestedScrollView
 
 fun View.startAlphaAnimation(
 	fromAlpha: Float,
 	toAlpha: Float,
-	duration: Long,
+	durationMillis: Long,
+	onAnimationEnd: (() -> Unit)? = null,
 )
 {
 	val fadeAnimation = AlphaAnimation(fromAlpha, toAlpha).also()
 	{
-		it.duration = duration
+		it.duration = durationMillis
 		it.fillAfter = true
+
+		it.setAnimationListener(object : Animation.AnimationListener
+		{
+			override fun onAnimationStart(p0: Animation?)
+			{
+			}
+
+			override fun onAnimationEnd(p0: Animation?)
+			{
+				onAnimationEnd?.invoke()
+			}
+
+			override fun onAnimationRepeat(p0: Animation?)
+			{
+			}
+		})
 	}
 
 	startAnimation(fadeAnimation)

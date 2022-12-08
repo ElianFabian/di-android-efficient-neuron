@@ -12,7 +12,7 @@ sealed class Resource<T>(
 	class Success<T>(data: T? = null) : Resource<T>(data)
 	class Error<T> : Resource<T>
 	{
-		constructor(message: String, data: T? = null) : super(data, UiText.DynamicString(message))
+		constructor(message: String?, data: T? = null) : super(data, if (message == null) null else UiText.DynamicString(message))
 		constructor(
 			@StringRes messageResId: Int,
 			vararg args: Any?,

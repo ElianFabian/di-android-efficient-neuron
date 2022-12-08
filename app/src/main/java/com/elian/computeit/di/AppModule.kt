@@ -7,6 +7,7 @@ import com.elian.computeit.core.domain.util.CountDownTimer
 import com.elian.computeit.core.presentation.util.constants.DATA_STORE_PREFERENCES_NAME
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -27,6 +28,10 @@ object AppModule
 	@Singleton
 	@Provides
 	fun provideFirestore() = Firebase.firestore
+
+	@Singleton
+	@Provides
+	fun provideFirebaseStorage() = Firebase.storage
 
 	@Provides
 	fun provideCountDownTimer(): CountDownTimer = CountDownTimerImpl()

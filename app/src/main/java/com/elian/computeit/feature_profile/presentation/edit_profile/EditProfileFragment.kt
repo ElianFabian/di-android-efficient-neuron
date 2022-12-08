@@ -1,16 +1,16 @@
 package com.elian.computeit.feature_profile.presentation.edit_profile
 
+import android.Manifest
 import android.os.Bundle
 import android.view.View
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.elian.computeit.R
-import com.elian.computeit.core.presentation.util.extensions.collectFlowWhenStarted
-import com.elian.computeit.core.presentation.util.extensions.collectLatestFlowWhenStarted
-import com.elian.computeit.core.presentation.util.extensions.error2
-import com.elian.computeit.core.presentation.util.extensions.showToast
+import com.elian.computeit.core.presentation.util.extensions.*
 import com.elian.computeit.core.presentation.util.getUsernameErrorMessage
 import com.elian.computeit.core.presentation.util.viewBinding
 import com.elian.computeit.core.util.extensions.apply2
@@ -29,6 +29,20 @@ class EditProfileFragment : Fragment(R.layout.fragment_edit_profile)
 	private val viewModel by viewModels<EditProfileViewModel>()
 	private val binding by viewBinding(FragmentEditProfileBinding::bind)
 
+	private val getContent = registerForActivityResult(ActivityResultContracts.GetContent())
+	{
+		viewModel.onAction(EnterProfilePic(it))
+
+		binding.sivProfilePic.setImageURI(null)
+		binding.sivProfilePic.setImageURI(it)
+	}
+	private val requestPermission = registerForActivityResult(ActivityResultContracts.RequestPermission())
+	{
+		if (!it) return@registerForActivityResult
+
+		getContent.launch("image/*")
+	}
+
 
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?)
 	{
@@ -44,6 +58,11 @@ class EditProfileFragment : Fragment(R.layout.fragment_edit_profile)
 		tietUsername.addTextChangedListener { viewModel.onAction(EnterUsername("$it".trim())) }
 		tietBiography.addTextChangedListener { viewModel.onAction(EnterBiography("$it".trim().trimWhitespacesBeforeNewLine())) }
 
+		sivProfilePic.setOnClickListener()
+		{
+			requestPermission.launch(Manifest.permission.READ_EXTERNAL_STORAGE)
+		}
+
 		btnSave.setOnClickListener { viewModel.onAction(Save) }
 
 		lifecycleScope.launch()
@@ -52,6 +71,19 @@ class EditProfileFragment : Fragment(R.layout.fragment_edit_profile)
 
 			tietUsername.setText(info.username)
 			tietBiography.setText(info.biography)
+
+			if (info.profilePicBytes.isNotEmpty())
+			{
+				binding.sivProfilePic.startAlphaAnimation(
+					fromAlpha = 0F,
+					toAlpha = 1F,
+					durationMillis = 200,
+				) {
+					binding.sivProfilePic.isVisible = true
+				}
+				
+				sivProfilePic.setImageBytes(info.profilePicBytes.toTypedArray().toByteArray())
+			}
 		}
 	}
 

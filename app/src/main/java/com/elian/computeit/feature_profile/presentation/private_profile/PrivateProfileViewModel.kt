@@ -8,6 +8,10 @@ import javax.inject.Inject
 
 @HiltViewModel
 class PrivateProfileViewModel @Inject constructor(
-	val getProfileInfo: GetProfileInfo,
-	val logout: Logout,
+	private val getProfileInfoUseCase: GetProfileInfo,
+	private val logoutUseCase: Logout,
 ) : ViewModel()
+{
+	suspend fun getProfileInfo() = getProfileInfoUseCase()
+	suspend fun logout() = logoutUseCase()
+}

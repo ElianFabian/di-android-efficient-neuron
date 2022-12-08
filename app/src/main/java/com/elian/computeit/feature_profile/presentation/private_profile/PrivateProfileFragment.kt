@@ -7,9 +7,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.elian.computeit.R
-import com.elian.computeit.core.presentation.util.extensions.navigate
-import com.elian.computeit.core.presentation.util.extensions.navigateTo
-import com.elian.computeit.core.presentation.util.extensions.text2
+import com.elian.computeit.core.presentation.util.extensions.*
 import com.elian.computeit.core.presentation.util.showAlertDialog
 import com.elian.computeit.core.presentation.util.viewBinding
 import com.elian.computeit.core.util.extensions.apply2
@@ -42,6 +40,19 @@ class PrivateProfileFragment : Fragment(R.layout.fragment_private_profile)
 			tvUsername.text2 = info.username
 			tvBiography.text2 = info.biography
 			tvCreatedAt.text2 = getString(R.string.feature_profile_account_created_at_PH).format(info.createdAt)
+
+			if (info.profilePicBytes.isNotEmpty())
+			{
+				sivProfilePic.setImageBytes(info.profilePicBytes.toTypedArray().toByteArray())
+			}
+
+			binding.sivProfilePic.startAlphaAnimation(
+				fromAlpha = 0F,
+				toAlpha = 1F,
+				durationMillis = 200,
+			) {
+				binding.sivProfilePic.isVisible = true
+			}
 
 			// This is to avoid weird visual behaviours when transitioning from Home to PrivateProfile
 			btnLogout.isVisible = true

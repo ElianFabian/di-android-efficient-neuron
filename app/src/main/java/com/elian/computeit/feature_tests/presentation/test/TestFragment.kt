@@ -131,7 +131,7 @@ class TestFragment : Fragment(R.layout.fragment_test)
 			clTouchToStart.startAlphaAnimation(
 				fromAlpha = 1F,
 				toAlpha = 0F,
-				duration = transitionDuration,
+				durationMillis = transitionDuration,
 			)
 
 			lifecycleScope.launch()

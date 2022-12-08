@@ -1,103 +1,126 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.appcompat.widget.LinearLayoutCompat
-	xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:app="http://schemas.android.com/apk/res-auto"
-	xmlns:tools="http://schemas.android.com/tools"
-	android:layout_width="match_parent"
-	android:layout_height="match_parent"
-	android:background="@color/background_dark"
-	android:orientation="vertical">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_dark"
+    android:orientation="vertical">
 
-	<androidx.cardview.widget.CardView
-		android:id="@+id/cardView"
-		android:layout_width="match_parent"
-		android:layout_height="150dp"
-		android:layout_marginBottom="@dimen/_20sdp">
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_marginBottom="@dimen/_20sdp">
 
-		<LinearLayout
-			android:layout_width="match_parent"
-			android:layout_height="match_parent"
-			android:background="@color/blue_sapphire"
-			android:gravity="center"
-			android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/blue_sapphire"
+            android:gravity="center"
+            android:orientation="horizontal">
 
-			<androidx.cardview.widget.CardView
-				android:layout_width="@dimen/_90sdp"
-				android:layout_height="@dimen/_90sdp"
-				android:layout_margin="20dp"
-				app:cardBackgroundColor="@color/white"
-				app:cardCornerRadius="100dp">
+            <FrameLayout
+                android:layout_width="@dimen/_90sdp"
+                android:layout_height="@dimen/_90sdp"
+                android:layout_margin="20dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="100dp"
+                tools:ignore="UselessParent">
 
-				<com.google.android.material.imageview.ShapeableImageView
-					android:id="@+id/sivProfilePic"
-					android:layout_width="match_parent"
-					android:layout_height="match_parent"
-					android:layout_gravity="center"
-					app:srcCompat="@drawable/ic_blank_user_profile_pic" />
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/sivProfilePic"
+                    style="@style/CircularImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:padding="@dimen/_2sdp"
+                    android:visibility="invisible"
+                    app:srcCompat="@drawable/ic_blank_user_profile_pic"
+                    app:strokeColor="@color/white"
+                    app:strokeWidth="@dimen/_2sdp"
+                    tools:src="@tools:sample/avatars"
+                    tools:visibility="visible" />
 
-			</androidx.cardview.widget.CardView>
+                <com.google.android.material.imageview.ShapeableImageView
+                    style="@style/CircularImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:alpha="0.4"
+                    android:background="@color/grey_900" />
 
-		</LinearLayout>
+                <com.google.android.material.imageview.ShapeableImageView
+                    style="@style/CircularImage"
+                    android:layout_width="@dimen/_50sdp"
+                    android:layout_height="@dimen/_50sdp"
+                    android:layout_gravity="center"
+                    android:alpha="0.8"
+                    app:srcCompat="@drawable/ic_camera" />
 
-	</androidx.cardview.widget.CardView>
+            </FrameLayout>
 
-	<androidx.core.widget.NestedScrollView
-		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		android:fillViewport="true">
+        </LinearLayout>
 
-		<androidx.appcompat.widget.LinearLayoutCompat
-			android:layout_width="match_parent"
-			android:layout_height="match_parent"
-			android:layout_marginTop="@dimen/_10sdp"
-			android:animateLayoutChanges="true"
-			android:orientation="vertical">
+    </androidx.cardview.widget.CardView>
 
-			<com.google.android.material.textfield.TextInputLayout
-				android:id="@+id/tilUsername"
-				style="@style/Layout_TextInputLayout"
-				android:layout_marginTop="@dimen/_20sdp">
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
 
-				<com.google.android.material.textfield.TextInputEditText
-					android:id="@+id/tietUsername"
-					style="@style/TextInputEditTextStyle"
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:hint="@string/generic_username"
-					tools:text="@string/generic_username" />
-			</com.google.android.material.textfield.TextInputLayout>
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:animateLayoutChanges="true"
+            android:orientation="vertical">
 
-			<com.google.android.material.textfield.TextInputLayout
-				android:id="@+id/tilBiography"
-				style="@style/Layout_TextInputLayout"
-				android:layout_marginTop="@dimen/_15sdp">
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilUsername"
+                style="@style/Layout_TextInputLayout"
+                android:layout_marginTop="@dimen/_20sdp">
 
-				<com.google.android.material.textfield.TextInputEditText
-					android:id="@+id/tietBiography"
-					style="@style/TextInputEditTextStyle"
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:gravity="top"
-					android:hint="@string/feature_profile_biography"
-					android:inputType="textMultiLine"
-					android:lines="12"
-					android:maxLength="512" />
-			</com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tietUsername"
+                    style="@style/TextInputEditTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/generic_username"
+                    tools:text="@string/generic_username" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-			<View style="@style/Utils_LinearLayoutSeparator" />
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilBiography"
+                style="@style/Layout_TextInputLayout"
+                android:layout_marginTop="@dimen/_15sdp">
 
-			<com.google.android.material.button.MaterialButton
-				android:id="@+id/btnSave"
-				style="@style/ButtonStyle"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_gravity="center_horizontal"
-				android:layout_marginTop="@dimen/_35sdp"
-				android:layout_marginBottom="@dimen/_20sdp"
-				android:text="@string/frgEditProfile_btnSave_text" />
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tietBiography"
+                    style="@style/TextInputEditTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="top"
+                    android:hint="@string/feature_profile_biography"
+                    android:inputType="textMultiLine"
+                    android:lines="12"
+                    android:maxLength="512" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-		</androidx.appcompat.widget.LinearLayoutCompat>
+            <View style="@style/Utils_LinearLayoutSeparator" />
 
-	</androidx.core.widget.NestedScrollView>
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnSave"
+                style="@style/ButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/_35sdp"
+                android:layout_marginBottom="@dimen/_20sdp"
+                android:text="@string/frgEditProfile_btnSave_text" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.core.widget.NestedScrollView>
 
 </androidx.appcompat.widget.LinearLayoutCompat>

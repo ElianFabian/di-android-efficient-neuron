@@ -1,5 +1,6 @@
 package com.elian.computeit.feature_profile.presentation.edit_profile
 
+import android.net.Uri
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.elian.computeit.core.domain.states.TextFieldState
@@ -21,7 +22,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class EditProfileViewModel @Inject constructor(
-	val getProfileInfo: GetProfileInfo,
+	private val getProfileInfoUseCase: GetProfileInfo,
 	private val validateProfile: ValidateProfile,
 ) : ViewModel()
 {
@@ -32,19 +33,22 @@ class EditProfileViewModel @Inject constructor(
 	val usernameState = _usernameState.asStateFlow()
 
 	private lateinit var _biography: String
+	private var _profilePicUri: Uri? = null
 
 
 	fun onAction(action: EditProfileAction)
 	{
 		when (action)
 		{
-			is EnterUsername  -> _usernameState.update { it.copy(text = action.value, error = null) }
-			is EnterBiography -> _biography = action.value
-			is Save           -> viewModelScope.launch()
+			is EnterUsername   -> _usernameState.update { it.copy(text = action.value, error = null) }
+			is EnterBiography  -> _biography = action.value
+			is EnterProfilePic -> _profilePicUri = action.value
+			is Save            -> viewModelScope.launch()
 			{
 				validateProfile(
 					username = _usernameState.value.text,
 					biography = _biography,
+					profilePicUri = _profilePicUri,
 				).also { result ->
 
 					_usernameState.update { it.copy(error = result.usernameError) }
@@ -59,4 +63,6 @@ class EditProfileViewModel @Inject constructor(
 			}
 		}
 	}
+
+	suspend fun getProfileInfo() = getProfileInfoUseCase()
 }

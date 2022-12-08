@@ -20,21 +20,19 @@
             android:gravity="start|center_vertical"
             android:orientation="horizontal">
 
-            <androidx.cardview.widget.CardView
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/sivProfilePic"
+                style="@style/CircularImage"
                 android:layout_width="@dimen/_80sdp"
                 android:layout_height="@dimen/_80sdp"
+                android:layout_gravity="center"
                 android:layout_margin="20dp"
-                app:cardBackgroundColor="@color/white"
-                app:cardCornerRadius="100dp">
-
-                <com.google.android.material.imageview.ShapeableImageView
-                    android:id="@+id/sivProfilePic"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    app:srcCompat="@drawable/ic_blank_user_profile_pic" />
-
-            </androidx.cardview.widget.CardView>
+                android:padding="@dimen/_2sdp"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/ic_blank_user_profile_pic"
+                app:strokeColor="@color/white"
+                app:strokeWidth="@dimen/_2sdp"
+                tools:visibility="visible" />
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
