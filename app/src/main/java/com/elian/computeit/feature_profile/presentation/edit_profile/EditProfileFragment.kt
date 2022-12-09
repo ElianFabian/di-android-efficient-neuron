@@ -4,34 +4,36 @@ import android.Manifest
 import android.os.Bundle
 import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.view.isVisible
+import androidx.core.view.isGone
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
+import androidx.fragment.app.activityViewModels
 import com.elian.computeit.R
 import com.elian.computeit.core.presentation.util.extensions.*
 import com.elian.computeit.core.presentation.util.getUsernameErrorMessage
 import com.elian.computeit.core.presentation.util.viewBinding
 import com.elian.computeit.core.util.extensions.apply2
+import com.elian.computeit.core.util.extensions.toBytes
 import com.elian.computeit.core.util.extensions.trimWhitespacesBeforeNewLine
 import com.elian.computeit.databinding.FragmentEditProfileBinding
-import com.elian.computeit.feature_profile.presentation.edit_profile.EditProfileAction.*
+import com.elian.computeit.feature_profile.presentation.ProfileAction.*
+import com.elian.computeit.feature_profile.presentation.ProfileViewModel
 import com.elian.computeit.feature_profile.presentation.edit_profile.EditProfileEvent.OnSave
 import com.elian.computeit.feature_profile.presentation.edit_profile.EditProfileEvent.OnShowErrorMessage
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class EditProfileFragment : Fragment(R.layout.fragment_edit_profile)
 {
-	private val viewModel by viewModels<EditProfileViewModel>()
+	private val viewModel by activityViewModels<ProfileViewModel>()
 	private val binding by viewBinding(FragmentEditProfileBinding::bind)
 
 	private val getContent = registerForActivityResult(ActivityResultContracts.GetContent())
 	{
-		viewModel.onAction(EnterProfilePic(it))
+		val imageBytes = it?.toBytes(context) ?: byteArrayOf()
+
+		viewModel.onAction(EnterProfilePic(imageBytes.toList()))
 
 		binding.sivProfilePic.setImageURI(null)
 		binding.sivProfilePic.setImageURI(it)
@@ -55,6 +57,13 @@ class EditProfileFragment : Fragment(R.layout.fragment_edit_profile)
 
 	private fun initUi() = binding.apply2()
 	{
+		tietUsername.setText(viewModel.usernameState.value.text)
+		tietBiography.setText(viewModel.biographyState.value)
+		viewModel.profilePicState.value.also()
+		{
+			if (it.isNotEmpty()) sivProfilePic.setImageBytes(it.toByteArray())
+		}
+
 		tietUsername.addTextChangedListener { viewModel.onAction(EnterUsername("$it".trim())) }
 		tietBiography.addTextChangedListener { viewModel.onAction(EnterBiography("$it".trim().trimWhitespacesBeforeNewLine())) }
 
@@ -64,32 +73,11 @@ class EditProfileFragment : Fragment(R.layout.fragment_edit_profile)
 		}
 
 		btnSave.setOnClickListener { viewModel.onAction(Save) }
-
-		lifecycleScope.launch()
-		{
-			val info = viewModel.getProfileInfo()
-
-			tietUsername.setText(info.username)
-			tietBiography.setText(info.biography)
-
-			if (info.profilePicBytes.isNotEmpty())
-			{
-				binding.sivProfilePic.startAlphaAnimation(
-					fromAlpha = 0F,
-					toAlpha = 1F,
-					durationMillis = 200,
-				) {
-					binding.sivProfilePic.isVisible = true
-				}
-				
-				sivProfilePic.setImageBytes(info.profilePicBytes.toTypedArray().toByteArray())
-			}
-		}
 	}
 
 	private fun subscribeToEvents() = viewModel.apply2()
 	{
-		collectFlowWhenStarted(eventFlow)
+		collectFlowWhenStarted(editProfileEventFlow)
 		{
 			when (it)
 			{
@@ -101,5 +89,6 @@ class EditProfileFragment : Fragment(R.layout.fragment_edit_profile)
 		{
 			binding.tilUsername.error2 = getUsernameErrorMessage(context, it)
 		}
+		collectLatestFlowWhenStarted(editProfileIsLoadingState) { binding.lpiIsLoading.isGone = !it }
 	}
 }

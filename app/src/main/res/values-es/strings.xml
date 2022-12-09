@@ -22,7 +22,7 @@
     <string name="error_username_invalid">Nombre de usuario inválido, sólo puede contener letras, dígitos o estos caracteres: %s</string>
     <string name="error_username_is_already_in_use">El nombre de usario ya está en uso</string>
 
-    <string name="feature_profile_account_created_at_PH">La cuenta fue creada el: %s</string>
+    <string name="feature_profile_account_created_at_PH">La cuenta fue creada el %s</string>
     <string name="feature_profile_biography">Biografía</string>
 
     <string name="frgEditProfile_btnSave_text">Guardar</string>
@@ -37,7 +37,7 @@
     <string name="frgHome_operationsCompleted">Operaciones completadas</string>
     <string name="frgHome_testsCompleted">Tests completados</string>
 
-    <string name="frgPrivateProfile_btnEdit_text">Editar</string>
+    <string name="frgPrivateProfile_btnEdit_text">Editar perfil</string>
     <string name="frgPrivateProfile_btnLogout_text">Cerrar sesión</string>
 
     <string name="frgSettings_category_general">General</string>

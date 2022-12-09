@@ -21,4 +21,4 @@ fun Context?.getThemeColor(@AttrRes id: Int): Int
 	typedArray.recycle()
 
 	return color
-}   
+}

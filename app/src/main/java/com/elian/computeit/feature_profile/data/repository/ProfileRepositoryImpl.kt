@@ -1,6 +1,5 @@
 package com.elian.computeit.feature_profile.data.repository
 
-import android.net.Uri
 import com.elian.computeit.R
 import com.elian.computeit.core.data.util.constants.COLLECTION_USERS
 import com.elian.computeit.core.data.util.constants.FOLDER_USERS_PROFILE_PICS
@@ -61,7 +60,7 @@ class ProfileRepositoryImpl @Inject constructor(
 	override suspend fun updateProfileInfo(
 		username: String,
 		biography: String,
-		profilePicUri: Uri?,
+		profilePicBytes: List<Byte>,
 	): SimpleResource = withContext(Dispatchers.IO)
 	{
 		val userUuid = appRepository.getUserUuid()!!
@@ -78,11 +77,11 @@ class ProfileRepositoryImpl @Inject constructor(
 
 		try
 		{
-			profilePicUri?.also()
+			if (profilePicBytes.isNotEmpty())
 			{
 				profilePicUuid = profilePicUuid ?: UUID.randomUUID().toString()
 
-				storage.reference.child("$FOLDER_USERS_PROFILE_PICS/$profilePicUuid").putFile(it).await()
+				storage.reference.child("$FOLDER_USERS_PROFILE_PICS/$profilePicUuid").putBytes(profilePicBytes.toByteArray()).await()
 			}
 		}
 		catch (e: Exception)
