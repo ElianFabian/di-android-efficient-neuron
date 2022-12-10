@@ -8,6 +8,8 @@ import com.elian.computeit.core.domain.util.constants.Settings
 import com.elian.computeit.core.util.Resource
 import com.elian.computeit.core.util.getDivisiblePairsInRange
 import com.elian.computeit.feature_tests.domain.model.TestConfigurationResult
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class ValidateConfiguration @Inject constructor()
@@ -16,7 +18,7 @@ class ValidateConfiguration @Inject constructor()
 	private val _minDivisiblePairCount = 10
 
 
-	operator fun invoke(
+	suspend operator fun invoke(
 		operation: Operation,
 		start: Int?,
 		end: Int?,
@@ -46,15 +48,15 @@ class ValidateConfiguration @Inject constructor()
 				args = arrayOf(_minRangeLength)
 			))
 		}
-		if (operation == Operation.Division)
+		if (operation == Operation.Division) withContext(Dispatchers.Default)
 		{
-			if (start == 0) return TestConfigurationResult(resource = Resource.Error(R.string.error_division_by_zero_is_not_allowed))
+			if (start == 0) return@withContext TestConfigurationResult(resource = Resource.Error(R.string.error_division_by_zero_is_not_allowed))
 
 			getDivisiblePairsInRange(start, end, ignoreSelfDivision = Settings.IgnoreSelfDivision).size.also()
 			{
 				if (it < _minDivisiblePairCount)
 				{
-					return TestConfigurationResult(resource = Resource.Error(
+					return@withContext TestConfigurationResult(resource = Resource.Error(
 						messageResId = R.string.error_range_not_enough_divisible_pairs,
 						args = arrayOf(it, _minDivisiblePairCount)
 					))

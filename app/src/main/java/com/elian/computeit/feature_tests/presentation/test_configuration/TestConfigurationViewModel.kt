@@ -41,7 +41,7 @@ class TestConfigurationViewModel @Inject constructor(
 	val timeState = _timeState.asStateFlow()
 
 
-	fun onAction(action: TestConfigurationAction) = viewModelScope.launch()
+	fun onAction(action: TestConfigurationAction)
 	{
 		when (action)
 		{
@@ -49,7 +49,7 @@ class TestConfigurationViewModel @Inject constructor(
 			is EnterStart          -> _startState.update { it.copy(number = action.value, error = null) }
 			is EnterEnd            -> _endState.update { it.copy(number = action.value, error = null) }
 			is EnterTime           -> _timeState.update { it.copy(number = action.value, error = null) }
-			is StartTest           ->
+			is StartTest           -> viewModelScope.launch()
 			{
 				validateConfiguration(
 					operation = _selectedOperation,
