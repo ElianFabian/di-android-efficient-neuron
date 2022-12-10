@@ -84,22 +84,30 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/tilUsername"
-                    style="@style/Layout_TextInputLayout"
-                    android:layout_marginTop="@dimen/_20sdp">
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_20sdp"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:textColorHint="@color/white">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/tietUsername"
-                        style="@style/TextInputEditTextStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/generic_username"
+                        android:textColor="@color/white"
                         tools:text="@string/generic_username" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/tilBiography"
-                    style="@style/Layout_TextInputLayout"
-                    android:layout_marginTop="@dimen/_15sdp">
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_20sdp"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:textColorHint="@color/white">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/tietBiography"
@@ -110,7 +118,8 @@
                         android:hint="@string/feature_profile_biography"
                         android:inputType="textMultiLine"
                         android:lines="12"
-                        android:maxLength="512" />
+                        android:maxLength="512"
+                        android:textColor="@color/white" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <View style="@style/Utils_LinearLayoutSeparator" />
