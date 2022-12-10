@@ -16,7 +16,6 @@ import com.elian.computeit.feature_auth.presentation.login.LoginActivity
 import com.elian.computeit.feature_profile.presentation.ProfileViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.filter
-import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -67,7 +66,7 @@ class PrivateProfileFragment : Fragment(R.layout.fragment_private_profile)
 		{
 			binding.tvCreatedAt.text2 = getString(R.string.feature_profile_account_created_at_PH).format(it)
 		}
-		collectLatestFlowWhenStarted(usernameState.map { it.text })
+		collectLatestFlowWhenStarted(usernameState)
 		{
 			binding.tvUsername.text2 = it
 		}

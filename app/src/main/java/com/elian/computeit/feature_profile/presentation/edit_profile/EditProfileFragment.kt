@@ -16,12 +16,11 @@ import com.elian.computeit.core.util.extensions.apply2
 import com.elian.computeit.core.util.extensions.toBytes
 import com.elian.computeit.core.util.extensions.trimWhitespacesBeforeNewLine
 import com.elian.computeit.databinding.FragmentEditProfileBinding
-import com.elian.computeit.feature_profile.presentation.ProfileAction.*
 import com.elian.computeit.feature_profile.presentation.ProfileViewModel
+import com.elian.computeit.feature_profile.presentation.edit_profile.EditProfileAction.*
 import com.elian.computeit.feature_profile.presentation.edit_profile.EditProfileEvent.OnSave
 import com.elian.computeit.feature_profile.presentation.edit_profile.EditProfileEvent.OnShowErrorMessage
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.map
 
 @AndroidEntryPoint
 class EditProfileFragment : Fragment(R.layout.fragment_edit_profile)
@@ -57,15 +56,10 @@ class EditProfileFragment : Fragment(R.layout.fragment_edit_profile)
 
 	private fun initUi() = binding.apply2()
 	{
-		tietUsername.setText(viewModel.usernameState.value.text)
-		tietBiography.setText(viewModel.biographyState.value)
-		viewModel.profilePicState.value.also()
-		{
-			if (it.isNotEmpty()) sivProfilePic.setImageBytes(it.toByteArray())
-		}
-
 		tietUsername.addTextChangedListener { viewModel.onAction(EnterUsername("$it".trim())) }
 		tietBiography.addTextChangedListener { viewModel.onAction(EnterBiography("$it".trim().trimWhitespacesBeforeNewLine())) }
+
+		viewModel.profilePicState.value.also { if (it.isNotEmpty()) viewModel.onAction(EnterProfilePic(it)) }
 
 		sivProfilePic.setOnClickListener()
 		{
@@ -85,10 +79,14 @@ class EditProfileFragment : Fragment(R.layout.fragment_edit_profile)
 				is OnShowErrorMessage -> showToast(it.error.asString(context))
 			}
 		}
-		collectLatestFlowWhenStarted(usernameState.map { it.error })
+		collectFlowWhenStarted(profilePicState) { binding.sivProfilePic.setImageBytes(it.toByteArray()) }
+		collectFlowWhenStarted(usernameState) { binding.tietUsername.setText(it) }
+		collectFlowWhenStarted(biographyState) { binding.tietBiography.setText(it) }
+		collectLatestFlowWhenStarted(editProfileState)
 		{
-			binding.tilUsername.error2 = getUsernameErrorMessage(context, it)
+			binding.tilUsername.error2 = getUsernameErrorMessage(context, it.usernameField.error)
+
+			binding.lpiIsLoading.isGone = !it.isLoading
 		}
-		collectLatestFlowWhenStarted(editProfileIsLoadingState) { binding.lpiIsLoading.isGone = !it }
 	}
 }
