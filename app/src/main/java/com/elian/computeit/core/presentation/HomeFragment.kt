@@ -114,17 +114,17 @@ class HomeFragment : Fragment(R.layout.fragment_home)
 		{
 			var currentSelectedEntry: Entry? = null
 
-			override fun onValueSelected(e: Entry, h: Highlight)
+			override fun onValueSelected(entry: Entry, highlight: Highlight)
 			{
-				if (currentSelectedEntry == e)
+				if (currentSelectedEntry == entry)
 				{
 					navigate(R.id.action_homeFragment_to_testDetailsFragment, bundleOf(
-						TestDetailsArgKeys.TestInfo to e.data as TestInfo,
+						TestDetailsArgKeys.TestInfo to entry.data as TestInfo,
 						TestDetailsArgKeys.HideContinueButton to true,
 					))
 				}
 
-				currentSelectedEntry = e
+				currentSelectedEntry = entry
 			}
 
 			override fun onNothingSelected()
