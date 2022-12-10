@@ -26,7 +26,7 @@ class TestDataRepositoryImpl @Inject constructor(
 	{
 		_listOfTestData.add(testData)
 
-		getUserDataRef().update(UserData::listOfTestData.name, FieldValue.arrayUnion(testData))
+		getUserDataRef().update(UserData::listOfTestData.name, FieldValue.arrayUnion(testData)).await()
 	}
 
 	override suspend fun getListOfTestData(): List<TestData> = withContext(Dispatchers.IO)
