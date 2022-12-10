@@ -79,8 +79,12 @@ class ProfileRepositoryImpl @Inject constructor(
 			if (profilePicBytes.isNotEmpty())
 			{
 				profilePicUuid = profilePicUuid ?: UUID.randomUUID().toString()
-
 				storage.reference.child("$FOLDER_USERS_PROFILE_PICS/$profilePicUuid").putBytes(profilePicBytes.toByteArray()).await()
+			}
+			else
+			{
+				storage.reference.child("$FOLDER_USERS_PROFILE_PICS/$profilePicUuid").delete().await()
+				profilePicUuid = null
 			}
 		}
 		catch (e: Exception)

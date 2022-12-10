@@ -4,9 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.elian.computeit.core.util.Resource
 import com.elian.computeit.core.util.UiText
-import com.elian.computeit.feature_profile.domain.use_case.GetProfileInfo
-import com.elian.computeit.feature_profile.domain.use_case.Logout
-import com.elian.computeit.feature_profile.domain.use_case.ValidateProfile
+import com.elian.computeit.feature_profile.domain.use_case.ProfileUseCases
 import com.elian.computeit.feature_profile.presentation.edit_profile.EditProfileAction
 import com.elian.computeit.feature_profile.presentation.edit_profile.EditProfileAction.*
 import com.elian.computeit.feature_profile.presentation.edit_profile.EditProfileEvent
@@ -21,9 +19,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ProfileViewModel @Inject constructor(
-	private val getProfileInfoUseCase: GetProfileInfo,
-	private val logoutUseCase: Logout,
-	private val validateProfile: ValidateProfile,
+	private val useCases: ProfileUseCases,
 ) : ViewModel()
 {
 	private val _profilePicState = MutableStateFlow(emptyList<Byte>())
@@ -60,9 +56,9 @@ class ProfileViewModel @Inject constructor(
 	{
 		when (action)
 		{
-			is EnterProfilePic -> if (action.value.isNotEmpty())
+			is EnterProfilePic -> _editProfileState.update()
 			{
-				_editProfileState.update { it.copy(profilePicBytes = action.value) }
+				it.copy(profilePicBytes = action.value)
 			}
 			is EnterUsername   -> _editProfileState.update()
 			{
@@ -76,7 +72,7 @@ class ProfileViewModel @Inject constructor(
 			{
 				_editProfileState.update { it.copy(isLoading = true) }
 
-				validateProfile(
+				useCases.updateProfile(
 					username = _editProfileState.value.usernameField.text,
 					biography = _editProfileState.value.biography,
 					profilePicBytes = _editProfileState.value.profilePicBytes,
@@ -110,7 +106,7 @@ class ProfileViewModel @Inject constructor(
 		}
 	}
 
-	suspend fun logout() = logoutUseCase()
+	suspend fun logout() = useCases.logout()
 
 
 	private fun initialize()
@@ -131,7 +127,7 @@ class ProfileViewModel @Inject constructor(
 		}
 		viewModelScope.launch()
 		{
-			getProfileInfoUseCase().apply()
+			useCases.getProfileInfo().apply()
 			{
 				_usernameState.value = username
 				_biographyState.value = biography

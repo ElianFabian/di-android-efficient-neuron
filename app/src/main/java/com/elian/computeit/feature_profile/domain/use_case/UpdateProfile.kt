@@ -6,7 +6,7 @@ import com.elian.computeit.feature_profile.domain.model.EditProfileResult
 import com.elian.computeit.feature_profile.domain.repository.ProfileRepository
 import javax.inject.Inject
 
-class ValidateProfile @Inject constructor(
+class UpdateProfile @Inject constructor(
 	private val repository: ProfileRepository,
 )
 {

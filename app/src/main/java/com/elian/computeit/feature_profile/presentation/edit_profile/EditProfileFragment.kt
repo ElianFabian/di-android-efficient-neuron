@@ -1,9 +1,7 @@
 package com.elian.computeit.feature_profile.presentation.edit_profile
 
-import android.Manifest
 import android.os.Bundle
 import android.view.View
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.view.isGone
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
@@ -28,25 +26,6 @@ class EditProfileFragment : Fragment(R.layout.fragment_edit_profile)
 	private val viewModel by activityViewModels<ProfileViewModel>()
 	private val binding by viewBinding(FragmentEditProfileBinding::bind)
 
-	private val getContent = registerForActivityResult(ActivityResultContracts.GetContent())
-	{
-		val compressedImageBytes = it?.toBitmap(context)
-			?.reduceSize(102400)
-			?.cropToSquare()
-			?.toBytes() ?: byteArrayOf()
-
-		viewModel.onAction(EnterProfilePic(compressedImageBytes.toList()))
-
-		binding.sivProfilePic.setImageURI(null)
-		binding.sivProfilePic.setImageURI(it)
-	}
-	private val requestPermission = registerForActivityResult(ActivityResultContracts.RequestPermission())
-	{
-		if (!it) return@registerForActivityResult
-
-		getContent.launch("image/*")
-	}
-
 
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?)
 	{
@@ -66,7 +45,23 @@ class EditProfileFragment : Fragment(R.layout.fragment_edit_profile)
 
 		sivProfilePic.setOnClickListener()
 		{
-			requestPermission.launch(Manifest.permission.READ_EXTERNAL_STORAGE)
+			ChooseOrDeleteProfilePictureBottomDialog(
+				onPictureSelected = {
+					val compressedImageBytes = it?.toBitmap(context)
+						?.reduceSize(102400)
+						?.cropToSquare()
+						?.toBytes() ?: byteArrayOf()
+
+					viewModel.onAction(EnterProfilePic(compressedImageBytes.toList()))
+
+					binding.sivProfilePic.setImageURI(null)
+					binding.sivProfilePic.setImageURI(it)
+				},
+				onDeleteImage = {
+					sivProfilePic.setImageResource(R.drawable.ic_blank_user_profile_pic)
+					viewModel.onAction(EnterProfilePic(emptyList()))
+				},
+			).show(requireActivity().supportFragmentManager, "this::class.java.simpleName")
 		}
 
 		btnSave.setOnClickListener { viewModel.onAction(Save) }

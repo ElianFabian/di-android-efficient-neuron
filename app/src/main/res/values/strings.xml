@@ -62,6 +62,9 @@
 
     <string name="frgTips_tvTitle_text">Tips</string>
 
+    <string name="frgbdChooseOrDeleteProfilePic_btnDeleteCurrentPicture_text">Delete current picture</string>
+    <string name="frgbdChooseOrDeleteProfilePic_btnSelectAPicture_text">Select a picture</string>
+
     <string name="generic_confirm_password">Confirm password</string>
     <string name="generic_date">Date</string>
     <string name="generic_errors">Errors</string>
