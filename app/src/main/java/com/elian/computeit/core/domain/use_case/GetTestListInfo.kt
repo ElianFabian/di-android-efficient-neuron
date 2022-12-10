@@ -1,5 +1,6 @@
 package com.elian.computeit.core.domain.use_case
 
+import com.elian.computeit.core.data.toTestListInfo
 import com.elian.computeit.core.domain.repository.TestDataRepository
 import javax.inject.Inject
 
@@ -7,5 +8,5 @@ class GetTestListInfo @Inject constructor(
 	private val repository: TestDataRepository,
 )
 {
-	suspend operator fun invoke() = repository.getTestListInfo()
+	suspend operator fun invoke() = repository.getListOfTestData().toTestListInfo()
 }

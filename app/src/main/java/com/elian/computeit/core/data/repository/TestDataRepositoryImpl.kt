@@ -1,7 +1,6 @@
 package com.elian.computeit.core.data.repository
 
 import com.elian.computeit.core.data.model.UserData
-import com.elian.computeit.core.data.toTestListInfo
 import com.elian.computeit.core.data.util.constants.COLLECTION_USERS_DATA
 import com.elian.computeit.core.domain.models.TestData
 import com.elian.computeit.core.domain.repository.LocalAppDataRepository
@@ -20,19 +19,30 @@ class TestDataRepositoryImpl @Inject constructor(
 	private val appRepository: LocalAppDataRepository,
 ) : TestDataRepository
 {
+	private val _listOfTestData = mutableListOf<TestData>()
+
+
 	override suspend fun addTestData(testData: TestData): Unit = withContext(Dispatchers.IO)
 	{
+		_listOfTestData.add(testData)
+
 		getUserDataRef().update(UserData::listOfTestData.name, FieldValue.arrayUnion(testData))
 	}
 
-	override suspend fun getTestListInfo() = getListOfTestData().toTestListInfo()
-
-	private suspend fun getListOfTestData(): List<TestData> = withContext(Dispatchers.IO)
+	override suspend fun getListOfTestData(): List<TestData> = withContext(Dispatchers.IO)
 	{
-		getUserDataRef()
-			.get()
-			.await()
-			.toObject<UserData>()!!.listOfTestData!!
+		return@withContext if (_listOfTestData.isEmpty())
+		{
+			val listFromServer = getUserDataRef()
+				.get()
+				.await()
+				.toObject<UserData>()!!.listOfTestData!!
+
+			_listOfTestData.addAll(listFromServer)
+
+			listFromServer
+		}
+		else _listOfTestData
 	}
 
 
