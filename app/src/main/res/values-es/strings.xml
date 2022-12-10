@@ -19,7 +19,7 @@
     <string name="error_too_short">Demasiado corto, la longitud mínima es %d</string>
     <string name="error_unknown">Error desconocido</string>
     <string name="error_user_doesnt_exist">El usuario no existe</string>
-    <string name="error_username_invalid">Nombre de usuario inválido, sólo puede contener letras, dígitos o estos caracteres: %s</string>
+    <string name="error_username_invalid">Nombre de usuario inválido, sólo puede contener letras en minúsculas sin acentos, dígitos o estos caracteres: %s</string>
     <string name="error_username_is_already_in_use">El nombre de usario ya está en uso</string>
 
     <string name="feature_profile_account_created_at_PH">La cuenta fue creada el %s</string>

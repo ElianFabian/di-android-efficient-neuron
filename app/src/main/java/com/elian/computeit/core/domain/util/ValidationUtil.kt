@@ -8,8 +8,7 @@ private const val SET_OF_DIGITS = "0123456789"
 private const val NAME_MIN_LENGTH = 2
 private const val NAME_MAX_LENGTH = 30
 private const val NAME_VALID_CHARACTERS = "!?$&#._-"
-private const val NAME_PATTERN = """[\w$NAME_VALID_CHARACTERS]+"""
-private val NAME_REGEX = NAME_PATTERN.toRegex()
+private val NAME_REGEX = """[a-z$NAME_VALID_CHARACTERS]+""".toRegex()
 
 private const val PASSWORD_MIN_LENGTH = 8
 private const val PASSWORD_MAX_LENGTH = 20
