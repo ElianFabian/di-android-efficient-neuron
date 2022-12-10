@@ -13,7 +13,7 @@ import com.elian.computeit.core.presentation.util.extensions.*
 import com.elian.computeit.core.presentation.util.getUsernameErrorMessage
 import com.elian.computeit.core.presentation.util.viewBinding
 import com.elian.computeit.core.util.extensions.apply2
-import com.elian.computeit.core.util.extensions.toBytes
+import com.elian.computeit.core.util.extensions.toBitmap
 import com.elian.computeit.core.util.extensions.trimWhitespacesBeforeNewLine
 import com.elian.computeit.databinding.FragmentEditProfileBinding
 import com.elian.computeit.feature_profile.presentation.ProfileViewModel
@@ -30,9 +30,12 @@ class EditProfileFragment : Fragment(R.layout.fragment_edit_profile)
 
 	private val getContent = registerForActivityResult(ActivityResultContracts.GetContent())
 	{
-		val imageBytes = it?.toBytes(context) ?: byteArrayOf()
+		val compressedImageBytes = it?.toBitmap(context)
+			?.reduceSize(102400)
+			?.cropToSquare()
+			?.toBytes() ?: byteArrayOf()
 
-		viewModel.onAction(EnterProfilePic(imageBytes.toList()))
+		viewModel.onAction(EnterProfilePic(compressedImageBytes.toList()))
 
 		binding.sivProfilePic.setImageURI(null)
 		binding.sivProfilePic.setImageURI(it)

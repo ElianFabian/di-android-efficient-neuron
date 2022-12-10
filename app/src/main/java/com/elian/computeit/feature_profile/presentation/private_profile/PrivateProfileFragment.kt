@@ -3,12 +3,12 @@ package com.elian.computeit.feature_profile.presentation.private_profile
 import android.os.Bundle
 import android.view.View
 import androidx.core.view.isGone
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import com.elian.computeit.R
 import com.elian.computeit.core.presentation.util.extensions.*
-import com.elian.computeit.core.presentation.util.showAlertDialog
 import com.elian.computeit.core.presentation.util.viewBinding
 import com.elian.computeit.core.util.extensions.apply2
 import com.elian.computeit.databinding.FragmentPrivateProfileBinding
@@ -75,12 +75,7 @@ class PrivateProfileFragment : Fragment(R.layout.fragment_private_profile)
 			binding.btnEdit.isGone = it
 			binding.tvLabelBiography.isGone = it
 			binding.btnLogout.isGone = it
-
-			if (!it) binding.sivProfilePic.startAlphaAnimation(
-				fromAlpha = 0F,
-				toAlpha = 1F,
-				durationMillis = 200,
-			)
+			binding.sivProfilePic.isVisible = !it
 		}
 		collectLatestFlowWhenStarted(biographyState) { binding.tvBiography.text2 = it }
 	}

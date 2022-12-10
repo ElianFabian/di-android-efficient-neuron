@@ -13,16 +13,17 @@
         android:background="@color/background_dark"
         android:orientation="vertical">
 
-        <androidx.cardview.widget.CardView
+        <com.google.android.material.card.MaterialCardView
             android:id="@+id/cardView"
             android:layout_width="match_parent"
+            android:backgroundTint="@color/blue_sapphire"
+            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlayRoundBottom"
             android:layout_height="320dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:animateLayoutChanges="true"
-                android:background="@color/blue_sapphire"
                 android:gravity="start|center_vertical"
                 android:orientation="vertical"
                 android:paddingHorizontal="@dimen/_10sdp">
@@ -43,8 +44,8 @@
                 <com.google.android.material.imageview.ShapeableImageView
                     android:id="@+id/sivProfilePic"
                     style="@style/CircularImage"
-                    android:layout_width="@dimen/_120sdp"
-                    android:layout_height="@dimen/_120sdp"
+                    android:layout_width="@dimen/_125sdp"
+                    android:layout_height="@dimen/_125sdp"
                     android:layout_gravity="center"
                     android:layout_marginTop="@dimen/_5sdp"
                     android:layout_marginBottom="@dimen/_8sdp"
@@ -87,7 +88,7 @@
 
             </LinearLayout>
 
-        </androidx.cardview.widget.CardView>
+        </com.google.android.material.card.MaterialCardView>
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
