@@ -7,4 +7,6 @@ interface UtilRepository
 {
 	suspend fun getUserByUuid(uuid: String): User?
 	suspend fun getUserByName(name: String): User?
+	suspend fun isUsernameTaken(currentName: String, newName: String): Boolean
+	suspend fun isUsernameTaken(name: String): Boolean
 }

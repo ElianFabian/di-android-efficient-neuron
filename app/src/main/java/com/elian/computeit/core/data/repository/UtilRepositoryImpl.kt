@@ -28,4 +28,19 @@ class UtilRepositoryImpl @Inject constructor(
 
 		if (users.isEmpty) null else users.first().toObject()
 	}
+
+	override suspend fun isUsernameTaken(currentName: String, newName: String): Boolean = withContext(Dispatchers.IO)
+	{
+		getUserByName(newName).let()
+		{
+			(it != null)
+					&& !currentName.equals(it.name, ignoreCase = true)
+					&& newName.equals(it.name, ignoreCase = true)
+		}
+	}
+
+	override suspend fun isUsernameTaken(name: String): Boolean = withContext(Dispatchers.IO)
+	{
+		getUserByName(name) != null
+	}
 }

@@ -66,12 +66,11 @@ class ProfileRepositoryImpl @Inject constructor(
 		val userUuid = appRepository.getUserUuid()!!
 		val currentUser = utilRepository.getUserByUuid(userUuid)!!
 
-		utilRepository.getUserByName(username).let()
-		{
-			val isUsernameInUse = (it != null) && (it.name != currentUser.name) && (it.name == username)
-
-			if (isUsernameInUse) return@withContext Resource.Error(R.string.error_username_is_already_in_use)
-		}
+		if (utilRepository.isUsernameTaken(
+				currentName = currentUser.name,
+				newName = username,
+			)
+		) return@withContext Resource.Error(R.string.error_username_is_already_in_use)
 
 		var profilePicUuid: String? = currentUser.profilePicUuid
 

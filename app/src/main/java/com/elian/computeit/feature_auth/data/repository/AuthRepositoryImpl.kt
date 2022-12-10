@@ -40,7 +40,7 @@ class AuthRepositoryImpl @Inject constructor(
 		password: String,
 	): SimpleResource = withContext(Dispatchers.IO)
 	{
-		if (utilRepository.getUserByName(username) != null) return@withContext Resource.Error(R.string.error_username_is_already_in_use)
+		if (utilRepository.isUsernameTaken(username)) return@withContext Resource.Error(R.string.error_username_is_already_in_use)
 
 		User(
 			name = username,
