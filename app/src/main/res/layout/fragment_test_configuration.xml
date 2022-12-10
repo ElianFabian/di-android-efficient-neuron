@@ -1,180 +1,181 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.appcompat.widget.LinearLayoutCompat
-	xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:android="http://schemas.android.com/apk/res/android"
 
-	android:id="@+id/frameLayout"
-	android:layout_width="match_parent"
-	android:layout_height="match_parent"
-	android:background="@color/background_dark"
-	android:orientation="vertical">
+    android:id="@+id/frameLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_dark"
+    android:orientation="vertical">
 
-	<TextView
-		android:id="@+id/tvTitle"
-		style="@style/Title"
-		android:layout_marginBottom="@dimen/_20sdp"
-		android:text="@string/frgTestConfiguration_tvTitle_text"
-		android:textAlignment="center" />
+    <TextView
+        android:id="@+id/tvTitle"
+        style="@style/Title"
+        android:layout_marginBottom="@dimen/_20sdp"
+        android:text="@string/frgTestConfiguration_tvTitle_text"
+        android:textAlignment="center" />
 
-	<RadioGroup
-		android:id="@+id/rgOperationType"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:layout_margin="@dimen/_15sdp"
-		android:checkedButton="@id/mRbAddition"
-		android:gravity="center"
-		android:orientation="horizontal">
+    <RadioGroup
+        android:id="@+id/rgOperationType"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_15sdp"
+        android:checkedButton="@id/mRbAddition"
+        android:gravity="center"
+        android:orientation="horizontal">
 
-		<com.google.android.material.radiobutton.MaterialRadioButton
-			android:id="@+id/mRbAddition"
-			android:layout_width="@dimen/_60sdp"
-			android:layout_height="@dimen/_60sdp"
-			android:background="@drawable/selector_radio_button_operation_background"
-			android:button="@color/transparent"
-			android:gravity="center"
-			android:tag="@string/tag_operation_type"
-			android:text="+"
-			android:textAppearance="@style/TextAppearance_OperationButton"
-			android:textColor="@drawable/selector_radio_button_operation_text_color" />
+        <com.google.android.material.radiobutton.MaterialRadioButton
+            android:id="@+id/mRbAddition"
+            android:layout_width="@dimen/_60sdp"
+            android:layout_height="@dimen/_60sdp"
+            android:background="@drawable/selector_radio_button_operation_background"
+            android:button="@color/transparent"
+            android:gravity="center"
+            android:tag="@string/tag_operation_type"
+            android:text="+"
+            android:textAppearance="@style/TextAppearance_OperationButton"
+            android:textColor="@drawable/selector_radio_button_operation_text_color" />
 
-		<androidx.legacy.widget.Space
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_weight="1" />
+        <androidx.legacy.widget.Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
 
-		<com.google.android.material.radiobutton.MaterialRadioButton
-			android:id="@+id/mRbSubtraction"
-			android:layout_width="@dimen/_60sdp"
-			android:layout_height="@dimen/_60sdp"
-			android:background="@drawable/selector_radio_button_operation_background"
-			android:button="@color/transparent"
-			android:gravity="center"
-			android:tag="@string/tag_operation_type"
-			android:text="−"
-			android:textAppearance="@style/TextAppearance_OperationButton"
-			android:textColor="@drawable/selector_radio_button_operation_text_color" />
+        <com.google.android.material.radiobutton.MaterialRadioButton
+            android:id="@+id/mRbSubtraction"
+            android:layout_width="@dimen/_60sdp"
+            android:layout_height="@dimen/_60sdp"
+            android:background="@drawable/selector_radio_button_operation_background"
+            android:button="@color/transparent"
+            android:gravity="center"
+            android:tag="@string/tag_operation_type"
+            android:text="−"
+            android:textAppearance="@style/TextAppearance_OperationButton"
+            android:textColor="@drawable/selector_radio_button_operation_text_color" />
 
-		<androidx.legacy.widget.Space
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_weight="1" />
+        <androidx.legacy.widget.Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
 
-		<com.google.android.material.radiobutton.MaterialRadioButton
-			android:id="@+id/mRbMultiplication"
-			android:layout_width="@dimen/_60sdp"
-			android:layout_height="@dimen/_60sdp"
-			android:background="@drawable/selector_radio_button_operation_background"
-			android:button="@color/transparent"
-			android:gravity="center"
-			android:tag="@string/tag_operation_type"
-			android:text="×"
-			android:textAppearance="@style/TextAppearance_OperationButton"
-			android:textColor="@drawable/selector_radio_button_operation_text_color" />
+        <com.google.android.material.radiobutton.MaterialRadioButton
+            android:id="@+id/mRbMultiplication"
+            android:layout_width="@dimen/_60sdp"
+            android:layout_height="@dimen/_60sdp"
+            android:background="@drawable/selector_radio_button_operation_background"
+            android:button="@color/transparent"
+            android:gravity="center"
+            android:tag="@string/tag_operation_type"
+            android:text="×"
+            android:textAppearance="@style/TextAppearance_OperationButton"
+            android:textColor="@drawable/selector_radio_button_operation_text_color" />
 
-		<androidx.legacy.widget.Space
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_weight="1" />
+        <androidx.legacy.widget.Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
 
-		<com.google.android.material.radiobutton.MaterialRadioButton
-			android:id="@+id/mRbDivision"
-			android:layout_width="@dimen/_60sdp"
-			android:layout_height="@dimen/_60sdp"
-			android:background="@drawable/selector_radio_button_operation_background"
-			android:button="@color/transparent"
-			android:gravity="center"
-			android:tag="@string/tag_operation_type"
-			android:text="÷"
-			android:textAppearance="@style/TextAppearance_OperationButton"
-			android:textColor="@drawable/selector_radio_button_operation_text_color" />
+        <com.google.android.material.radiobutton.MaterialRadioButton
+            android:id="@+id/mRbDivision"
+            android:layout_width="@dimen/_60sdp"
+            android:layout_height="@dimen/_60sdp"
+            android:background="@drawable/selector_radio_button_operation_background"
+            android:button="@color/transparent"
+            android:gravity="center"
+            android:tag="@string/tag_operation_type"
+            android:text="÷"
+            android:textAppearance="@style/TextAppearance_OperationButton"
+            android:textColor="@drawable/selector_radio_button_operation_text_color" />
 
-	</RadioGroup>
+    </RadioGroup>
 
-	<androidx.legacy.widget.Space
-		android:layout_width="match_parent"
-		android:layout_height="@dimen/_20sdp" />
+    <androidx.legacy.widget.Space
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_20sdp" />
 
-	<androidx.appcompat.widget.LinearLayoutCompat
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:layout_marginStart="@dimen/_10sdp"
-		android:orientation="vertical">
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:orientation="vertical">
 
-		<TextView
-			android:id="@+id/mTvNumberRange"
-			style="@style/frgGameConfiguration_TextView"
-			android:layout_marginBottom="@dimen/_5sdp"
-			android:text="@string/frgTestConfiguration_tvNumberRange_text" />
+        <TextView
+            android:id="@+id/mTvNumberRange"
+            style="@style/frgGameConfiguration_TextView"
+            android:layout_marginBottom="@dimen/_5sdp"
+            android:text="@string/frgTestConfiguration_tvNumberRange_text" />
 
-		<androidx.appcompat.widget.LinearLayoutCompat
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:orientation="horizontal">
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
-			<com.google.android.material.textfield.TextInputEditText
-				android:id="@+id/tietStart"
-				android:layout_width="@dimen/_100sdp"
-				android:layout_height="wrap_content"
-				android:gravity="center"
-				android:hint="@string/frgTestConfiguration_tietStart_hint"
-				android:inputType="number"
-				android:maxLength="4"
-				android:minHeight="48dp"
-				android:textColor="@color/white"
-				android:theme="@style/Theme_frgTestConfiguration_TextInputEditText" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tietStart"
+                android:layout_width="@dimen/_100sdp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:hint="@string/frgTestConfiguration_tietStart_hint"
+                android:inputType="number"
+                android:maxLength="4"
+                android:minHeight="48dp"
+                android:textColor="@color/white"
+                android:theme="@style/Theme_frgTestConfiguration_TextInputEditText" />
 
-			<com.google.android.material.textfield.TextInputEditText
-				android:id="@+id/tietEnd"
-				android:layout_width="@dimen/_100sdp"
-				android:layout_height="wrap_content"
-				android:gravity="center"
-				android:hint="@string/frgTestConfiguration_tietEnd_hint"
-				android:inputType="number"
-				android:maxLength="4"
-				android:minHeight="48dp"
-				android:textColor="@color/white"
-				android:theme="@style/Theme_frgTestConfiguration_TextInputEditText" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tietEnd"
+                android:layout_width="@dimen/_100sdp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:hint="@string/frgTestConfiguration_tietEnd_hint"
+                android:inputType="number"
+                android:maxLength="4"
+                android:minHeight="48dp"
+                android:textColor="@color/white"
+                android:theme="@style/Theme_frgTestConfiguration_TextInputEditText" />
 
-		</androidx.appcompat.widget.LinearLayoutCompat>
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
-		<androidx.legacy.widget.Space
-			android:layout_width="match_parent"
-			android:layout_height="@dimen/_20sdp" />
+        <androidx.legacy.widget.Space
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_20sdp" />
 
-		<TextView
-			android:id="@+id/tvMode"
-			style="@style/frgGameConfiguration_TextView"
-			android:layout_marginBottom="@dimen/_5sdp"
-			android:text="@string/frgTestConfiguration_tvMode_text" />
+        <TextView
+            android:id="@+id/tvMode"
+            style="@style/frgGameConfiguration_TextView"
+            android:layout_marginBottom="@dimen/_5sdp"
+            android:text="@string/frgTestConfiguration_tvMode_text" />
 
-		<androidx.appcompat.widget.LinearLayoutCompat
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:orientation="vertical">
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-			<com.google.android.material.textfield.TextInputEditText
-				android:id="@+id/tietTime"
-				android:layout_width="@dimen/_100sdp"
-				android:layout_height="wrap_content"
-				android:gravity="center"
-				android:hint="@string/generic_seconds"
-				android:inputType="number"
-				android:maxLength="3"
-				android:textColor="@color/white"
-				android:theme="@style/Theme_frgTestConfiguration_TextInputEditText" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tietTime"
+                android:layout_width="@dimen/_100sdp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:hint="@string/generic_seconds"
+                android:inputType="number"
+                android:maxLength="3"
+                android:textColor="@color/white"
+                android:theme="@style/Theme_frgTestConfiguration_TextInputEditText" />
 
-		</androidx.appcompat.widget.LinearLayoutCompat>
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
-	</androidx.appcompat.widget.LinearLayoutCompat>
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
-	<View style="@style/Utils_LinearLayoutSeparator" />
+    <View style="@style/Utils_LinearLayoutSeparator" />
 
-	<com.google.android.material.button.MaterialButton
-		android:id="@+id/btnStartTest"
-		style="@style/ButtonStyle"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_gravity="center_horizontal"
-		android:layout_marginBottom="@dimen/_20sdp"
-		android:text="@string/generic_start" />
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnStartTest"
+        style="@style/ButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginHorizontal="@dimen/_20sdp"
+        android:layout_marginBottom="@dimen/_20sdp"
+        android:text="@string/generic_start" />
 
 </androidx.appcompat.widget.LinearLayoutCompat>

@@ -128,9 +128,10 @@
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnSave"
                     style="@style/ButtonStyle"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
+                    android:layout_marginHorizontal="@dimen/_20sdp"
                     android:layout_marginVertical="@dimen/_20sdp"
                     android:text="@string/frgEditProfile_btnSave_text" />
 
