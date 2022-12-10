@@ -16,9 +16,9 @@
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/cardView"
             android:layout_width="match_parent"
+            android:layout_height="320dp"
             android:backgroundTint="@color/blue_sapphire"
-            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlayRoundBottom"
-            android:layout_height="320dp">
+            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlayRoundBottom">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -35,7 +35,7 @@
                     android:layout_gravity="end"
                     android:layout_marginVertical="@dimen/_10sdp"
                     android:includeFontPadding="false"
-                    android:textColor="@color/gray_500"
+                    android:textColor="@color/gray_600"
                     android:textSize="@dimen/textSize_medium2"
                     android:visibility="invisible"
                     tools:text="Account created at 11/11/2022"
@@ -102,19 +102,18 @@
                 android:id="@+id/tvLabelBiography"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/textSize_medium1"
+                android:layout_marginBottom="@dimen/_5sdp"
                 android:text="@string/feature_profile_biography"
                 android:textAppearance="@style/TextAppearance_Label_Main"
                 android:visibility="gone"
                 tools:visibility="visible" />
 
             <TextView
-
                 android:id="@+id/tvBiography"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textAppearance="@style/TextAppearance_Value_Main"
                 android:textSize="@dimen/textSize_medium2"
+                android:textColor="@color/white"
                 android:visibility="gone"
                 tools:text="Hello world!"
                 tools:visibility="visible" />
@@ -130,6 +129,7 @@
                 android:layout_marginTop="@dimen/_25sdp"
                 android:layout_marginBottom="@dimen/_10sdp"
                 android:backgroundTint="@color/red_600_00"
+                android:paddingVertical="@dimen/_1sdp"
                 android:text="@string/frgPrivateProfile_btnLogout_text"
                 android:visibility="gone"
                 tools:visibility="visible" />
