@@ -85,12 +85,13 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/tilUsername"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/_20sdp"
                     android:layout_marginTop="@dimen/_20sdp"
-                    android:textColorHint="@color/white">
+                    android:textColorHint="@color/white"
+                    app:boxStrokeColor="@color/text_input_layout_outline">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/tietUsername"
@@ -103,12 +104,13 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/tilBiography"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/_20sdp"
                     android:layout_marginTop="@dimen/_15sdp"
-                    android:textColorHint="@color/white">
+                    android:textColorHint="@color/white"
+                    app:boxStrokeColor="@color/text_input_layout_outline">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/tietBiography"
