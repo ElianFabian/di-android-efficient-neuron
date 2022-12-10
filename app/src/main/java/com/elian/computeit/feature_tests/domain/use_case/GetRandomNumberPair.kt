@@ -4,6 +4,7 @@ import androidx.lifecycle.SavedStateHandle
 import com.elian.computeit.core.data.Operation
 import com.elian.computeit.core.domain.models.NumberPair
 import com.elian.computeit.core.domain.models.Range
+import com.elian.computeit.core.domain.util.constants.Settings
 import com.elian.computeit.core.util.constants.TestArgKeys
 
 import com.elian.computeit.core.util.getDivisiblePairsInRange
@@ -20,7 +21,11 @@ class GetRandomNumberPair @Inject constructor(
 	private val _operation = savedState.get<Operation>(TestArgKeys.OperationType)!!
 	private var _divisiblePairs: List<NumberPair> = if (_operation == Operation.Division)
 	{
-		getDivisiblePairsInRange(_rangeBounds.min, _rangeBounds.max).map { NumberPair(it.first, it.second) }
+		getDivisiblePairsInRange(
+			start = _rangeBounds.min,
+			end = _rangeBounds.max,
+			ignoreSelfDivision = Settings.IgnoreSelfDivision,
+		).map { NumberPair(it.first, it.second) }
 	}
 	else emptyList()
 

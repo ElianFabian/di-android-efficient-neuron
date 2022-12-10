@@ -4,6 +4,7 @@ import com.elian.computeit.R
 import com.elian.computeit.core.data.Operation
 import com.elian.computeit.core.domain.states.NumericFieldError
 import com.elian.computeit.core.domain.util.checkIfError
+import com.elian.computeit.core.domain.util.constants.Settings
 import com.elian.computeit.core.util.Resource
 import com.elian.computeit.core.util.getDivisiblePairsInRange
 import com.elian.computeit.feature_tests.domain.model.TestConfigurationResult
@@ -49,7 +50,7 @@ class ValidateConfiguration @Inject constructor()
 		{
 			if (start == 0) return TestConfigurationResult(resource = Resource.Error(R.string.error_division_by_zero_is_not_allowed))
 
-			getDivisiblePairsInRange(start, end, ignoreSelfDivision = true).size.also()
+			getDivisiblePairsInRange(start, end, ignoreSelfDivision = Settings.IgnoreSelfDivision).size.also()
 			{
 				if (it < _minDivisiblePairCount)
 				{
