@@ -22,6 +22,8 @@ import com.elian.computeit.feature_tests.presentation.test.TestAction.*
 import com.elian.computeit.feature_tests.presentation.test.TestEvent.OnGoToTestDetails
 import com.elian.computeit.feature_tests.presentation.test.TestEvent.OnTimerFinish
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -130,11 +132,15 @@ class TestViewModel @Inject constructor(
 			range = _range
 		)
 
-		if (saveData) addTestData(testData)
-
 		_eventFlow.send(OnGoToTestDetails(
 			args = listOf(TestDetailsArgKeys.TestInfo to testData.toTestInfo())
 		))
+		
+		// This is to avoid the cancellation of the viewModelScope
+		MainScope().launch(Dispatchers.IO)
+		{
+			if (saveData) addTestData(testData)
+		}
 	}
 
 	private fun initialize()
