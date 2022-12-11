@@ -10,6 +10,7 @@ import com.elian.computeit.core.util.Resource
 import com.elian.computeit.core.util.SimpleResource
 import com.elian.computeit.core.util.constants.defaultDateFormat
 import com.elian.computeit.feature_profile.domain.model.ProfileInfo
+import com.elian.computeit.feature_profile.domain.params.UpdateProfileParams
 import com.elian.computeit.feature_profile.domain.repository.ProfileRepository
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.toObject
@@ -57,18 +58,14 @@ class ProfileRepositoryImpl @Inject constructor(
 		}
 	}
 
-	override suspend fun updateProfileInfo(
-		username: String,
-		biography: String,
-		profilePicBytes: List<Byte>,
-	): SimpleResource = withContext(Dispatchers.IO)
+	override suspend fun updateProfileInfo(params: UpdateProfileParams): SimpleResource = withContext(Dispatchers.IO)
 	{
 		val userUuid = appRepository.getUserUuid()!!
 		val currentUser = utilRepository.getUserByUuid(userUuid)!!
 
 		if (utilRepository.isUsernameTaken(
 				currentName = currentUser.name,
-				newName = username,
+				newName = params.username,
 			)
 		) return@withContext Resource.Error(R.string.error_username_is_already_in_use)
 
@@ -76,10 +73,13 @@ class ProfileRepositoryImpl @Inject constructor(
 
 		try
 		{
-			if (profilePicBytes.isNotEmpty())
+			if (params.profilePicBytes.isNotEmpty())
 			{
 				profilePicUuid = profilePicUuid ?: UUID.randomUUID().toString()
-				storage.reference.child("$FOLDER_USERS_PROFILE_PICS/$profilePicUuid").putBytes(profilePicBytes.toByteArray()).await()
+
+				storage.reference.child("$FOLDER_USERS_PROFILE_PICS/$profilePicUuid")
+					.putBytes(params.profilePicBytes.toByteArray())
+					.await()
 			}
 			else
 			{
@@ -94,8 +94,8 @@ class ProfileRepositoryImpl @Inject constructor(
 
 		firestore.document("$COLLECTION_USERS/$userUuid")
 			.update(
-				User::name.name, username,
-				User::biography.name, biography,
+				User::name.name, params.username,
+				User::biography.name, params.biography,
 				User::profilePicUuid.name, profilePicUuid,
 			).await()
 

@@ -8,6 +8,7 @@ import com.elian.computeit.core.domain.util.constants.Settings
 import com.elian.computeit.core.util.Resource
 import com.elian.computeit.core.util.getDivisiblePairsInRange
 import com.elian.computeit.feature_tests.domain.model.TestConfigurationResult
+import com.elian.computeit.feature_tests.domain.params.ValidateConfigurationParams
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
@@ -18,16 +19,11 @@ class ValidateConfiguration @Inject constructor()
 	private val _minDivisiblePairCount = 10
 
 
-	suspend operator fun invoke(
-		operation: Operation,
-		start: Int?,
-		end: Int?,
-		time: Int?,
-	): TestConfigurationResult
+	suspend operator fun invoke(params: ValidateConfigurationParams): TestConfigurationResult
 	{
-		val startError = getFieldError(start)
-		val endError = getFieldError(end)
-		val timeError = getFieldError(time)
+		val startError = getFieldError(params.start)
+		val endError = getFieldError(params.end)
+		val timeError = getFieldError(params.time)
 
 		if (checkIfError(startError, endError, timeError))
 		{
@@ -37,22 +33,26 @@ class ValidateConfiguration @Inject constructor()
 				timeError = timeError,
 			)
 		}
-		if (start!! > end!!)
+		if (params.start!! > params.end!!)
 		{
 			return TestConfigurationResult(resource = Resource.Error(R.string.error_range_values_are_inverted))
 		}
-		if (end - start + 1 < _minRangeLength)
+		if (params.end - params.start + 1 < _minRangeLength)
 		{
 			return TestConfigurationResult(resource = Resource.Error(
 				messageResId = R.string.error_range_length_must_be_greater_than,
 				args = arrayOf(_minRangeLength)
 			))
 		}
-		if (operation == Operation.Division) withContext(Dispatchers.Default)
+		if (params.operation == Operation.Division) withContext(Dispatchers.Default)
 		{
-			if (start == 0) return@withContext TestConfigurationResult(resource = Resource.Error(R.string.error_division_by_zero_is_not_allowed))
+			if (params.start == 0) return@withContext TestConfigurationResult(resource = Resource.Error(R.string.error_division_by_zero_is_not_allowed))
 
-			getDivisiblePairsInRange(start, end, ignoreSelfDivision = Settings.IgnoreSelfDivision).size.also()
+			getDivisiblePairsInRange(
+				start = params.start,
+				end = params.end,
+				ignoreSelfDivision = Settings.IgnoreSelfDivision,
+			).size.also()
 			{
 				if (it < _minDivisiblePairCount)
 				{

@@ -7,7 +7,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
-class GetTestListInfo @Inject constructor(
+class GetTestListInfoUseCase @Inject constructor(
 	private val repository: TestDataRepository,
 )
 {

@@ -4,17 +4,18 @@ import com.elian.computeit.core.domain.states.TextFieldError
 import com.elian.computeit.core.domain.util.checkIfError
 import com.elian.computeit.core.domain.util.hash
 import com.elian.computeit.feature_auth.domain.model.LoginResult
+import com.elian.computeit.feature_auth.domain.params.LoginParams
 import com.elian.computeit.feature_auth.domain.repository.AuthRepository
 import javax.inject.Inject
 
-class Login @Inject constructor(
+class LoginUseCase @Inject constructor(
 	private val repository: AuthRepository,
 )
 {
-	suspend operator fun invoke(username: String, password: String): LoginResult
+	suspend operator fun invoke(params: LoginParams): LoginResult
 	{
-		val usernameError = if (username.isBlank()) TextFieldError.Empty else null
-		val passwordError = if (password.isBlank()) TextFieldError.Empty else null
+		val usernameError = if (params.username.isBlank()) TextFieldError.Empty else null
+		val passwordError = if (params.password.isBlank()) TextFieldError.Empty else null
 
 		return if (checkIfError(usernameError, passwordError))
 		{
@@ -23,9 +24,8 @@ class Login @Inject constructor(
 				passwordError = passwordError,
 			)
 		}
-		else LoginResult(resource = repository.login(
-			username = username,
-			password = hash(password),
-		))
+		else LoginResult(resource = repository.login(params.copy(
+			password = hash(params.password),
+		)))
 	}
 }

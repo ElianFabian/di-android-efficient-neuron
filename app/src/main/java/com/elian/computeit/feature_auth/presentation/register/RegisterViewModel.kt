@@ -5,7 +5,8 @@ import androidx.lifecycle.viewModelScope
 import com.elian.computeit.core.domain.states.TextFieldState
 import com.elian.computeit.core.util.Resource
 import com.elian.computeit.core.util.UiText
-import com.elian.computeit.feature_auth.domain.use_case.Register
+import com.elian.computeit.feature_auth.domain.params.RegisterParams
+import com.elian.computeit.feature_auth.domain.use_case.RegisterUseCase
 import com.elian.computeit.feature_auth.presentation.register.RegisterEvent.OnShowErrorMessage
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
@@ -18,7 +19,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class RegisterViewModel @Inject constructor(
-	private val register: Register,
+	private val register: RegisterUseCase,
 ) : ViewModel()
 {
 	private val _eventFlow = Channel<RegisterEvent>()
@@ -48,11 +49,11 @@ class RegisterViewModel @Inject constructor(
 			{
 				_loadingState.value = true
 
-				register(
+				register(RegisterParams(
 					username = _usernameState.value.text,
 					password = _passwordState.value.text,
-					confirmPassword = _confirmPasswordState.value.text
-				).also { result ->
+					confirmPassword = _confirmPasswordState.value.text,
+				)).also { result ->
 
 					_usernameState.update { it.copy(error = result.usernameError) }
 					_passwordState.update { it.copy(error = result.passwordError) }

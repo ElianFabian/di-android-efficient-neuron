@@ -2,7 +2,7 @@ package com.elian.computeit.core.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.elian.computeit.core.domain.use_case.GetTestListInfo
+import com.elian.computeit.core.domain.use_case.GetTestListInfoUseCase
 import com.elian.computeit.feature_tests.domain.model.TestListInfo
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -12,7 +12,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-	private val getTestListInfo: GetTestListInfo,
+	private val getTestListInfo: GetTestListInfoUseCase,
 ) : ViewModel()
 {
 	init

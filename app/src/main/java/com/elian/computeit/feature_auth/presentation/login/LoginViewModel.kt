@@ -5,7 +5,8 @@ import androidx.lifecycle.viewModelScope
 import com.elian.computeit.core.domain.states.TextFieldState
 import com.elian.computeit.core.util.Resource
 import com.elian.computeit.core.util.UiText
-import com.elian.computeit.feature_auth.domain.use_case.Login
+import com.elian.computeit.feature_auth.domain.params.LoginParams
+import com.elian.computeit.feature_auth.domain.use_case.LoginUseCase
 import com.elian.computeit.feature_auth.presentation.login.LoginEvent.OnLogin
 import com.elian.computeit.feature_auth.presentation.login.LoginEvent.OnShowErrorMessage
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -19,7 +20,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class LoginViewModel @Inject constructor(
-	private val login: Login,
+	private val login: LoginUseCase,
 ) : ViewModel()
 {
 	private val _eventFlow = Channel<LoginEvent>()
@@ -45,10 +46,10 @@ class LoginViewModel @Inject constructor(
 			{
 				_loadingState.value = true
 
-				login(
+				login(LoginParams(
 					username = _usernameState.value.text,
 					password = _passwordState.value.text,
-				).also { result ->
+				)).also { result ->
 
 					_usernameState.update { it.copy(error = result.usernameError) }
 					_passwordState.update { it.copy(error = result.passwordError) }

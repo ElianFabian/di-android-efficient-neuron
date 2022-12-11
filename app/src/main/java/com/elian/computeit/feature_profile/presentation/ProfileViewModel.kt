@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.elian.computeit.core.util.Resource
 import com.elian.computeit.core.util.UiText
+import com.elian.computeit.feature_profile.domain.params.UpdateProfileParams
 import com.elian.computeit.feature_profile.domain.use_case.ProfileUseCases
 import com.elian.computeit.feature_profile.presentation.edit_profile.EditProfileAction
 import com.elian.computeit.feature_profile.presentation.edit_profile.EditProfileAction.*
@@ -72,11 +73,11 @@ class ProfileViewModel @Inject constructor(
 			{
 				_editProfileState.update { it.copy(isLoading = true) }
 
-				useCases.updateProfile(
+				useCases.updateProfile(UpdateProfileParams(
 					username = _editProfileState.value.usernameField.text,
 					biography = _editProfileState.value.biography,
 					profilePicBytes = _editProfileState.value.profilePicBytes,
-				).also { result ->
+				)).also { result ->
 
 					_editProfileState.update()
 					{

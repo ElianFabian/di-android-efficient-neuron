@@ -8,6 +8,7 @@ import com.elian.computeit.core.domain.states.NumericFieldState
 import com.elian.computeit.core.util.Resource
 import com.elian.computeit.core.util.UiText
 import com.elian.computeit.core.util.constants.TestArgKeys
+import com.elian.computeit.feature_tests.domain.params.ValidateConfigurationParams
 import com.elian.computeit.feature_tests.domain.use_case.ValidateConfiguration
 import com.elian.computeit.feature_tests.presentation.test_configuration.TestConfigurationAction.*
 import com.elian.computeit.feature_tests.presentation.test_configuration.TestConfigurationEvent.OnShowErrorMessage
@@ -51,12 +52,12 @@ class TestConfigurationViewModel @Inject constructor(
 			is EnterTime           -> _timeState.update { it.copy(number = action.value, error = null) }
 			is StartTest           -> viewModelScope.launch()
 			{
-				validateConfiguration(
+				validateConfiguration(ValidateConfigurationParams(
 					operation = _selectedOperation,
 					start = _startState.value.number,
 					end = _endState.value.number,
 					time = _timeState.value.number,
-				).also { result ->
+				)).also { result ->
 
 					_startState.update { it.copy(error = result.startError) }
 					_endState.update { it.copy(error = result.endError) }

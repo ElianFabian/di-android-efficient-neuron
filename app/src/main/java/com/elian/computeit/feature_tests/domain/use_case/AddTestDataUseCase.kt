@@ -4,7 +4,7 @@ import com.elian.computeit.core.domain.models.TestData
 import com.elian.computeit.core.domain.repository.TestDataRepository
 import javax.inject.Inject
 
-class AddTestData @Inject constructor(
+class AddTestDataUseCase @Inject constructor(
 	private val repository: TestDataRepository,
 )
 {

@@ -7,6 +7,8 @@ import com.elian.computeit.core.domain.repository.LocalAppDataRepository
 import com.elian.computeit.core.domain.repository.UtilRepository
 import com.elian.computeit.core.util.Resource
 import com.elian.computeit.core.util.SimpleResource
+import com.elian.computeit.feature_auth.domain.params.LoginParams
+import com.elian.computeit.feature_auth.domain.params.RegisterParams
 import com.elian.computeit.feature_auth.domain.repository.AuthRepository
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.Dispatchers
@@ -21,30 +23,24 @@ class AuthRepositoryImpl @Inject constructor(
 ) :
 	AuthRepository
 {
-	override suspend fun login(
-		username: String,
-		password: String,
-	): SimpleResource = withContext(Dispatchers.IO)
+	override suspend fun login(params: LoginParams): SimpleResource = withContext(Dispatchers.IO)
 	{
-		val user = utilRepository.getUserByName(username) ?: return@withContext Resource.Error(R.string.error_user_doesnt_exist)
+		val user = utilRepository.getUserByName(params.username) ?: return@withContext Resource.Error(R.string.error_user_doesnt_exist)
 
-		if (user.password != password) return@withContext Resource.Error(R.string.error_password_is_wrong)
+		if (user.password != params.password) return@withContext Resource.Error(R.string.error_password_is_wrong)
 
 		appRepository.saveUserUuid(user.uuid)
 
 		Resource.Success()
 	}
 
-	override suspend fun register(
-		username: String,
-		password: String,
-	): SimpleResource = withContext(Dispatchers.IO)
+	override suspend fun register(params: RegisterParams): SimpleResource = withContext(Dispatchers.IO)
 	{
-		if (utilRepository.isUsernameTaken(username)) return@withContext Resource.Error(R.string.error_username_is_already_in_use)
+		if (utilRepository.isUsernameTaken(params.username)) return@withContext Resource.Error(R.string.error_username_is_already_in_use)
 
 		User(
-			name = username,
-			password = password,
+			name = params.username,
+			password = params.password,
 		).apply()
 		{
 			appRepository.saveUserUuid(uuid)
