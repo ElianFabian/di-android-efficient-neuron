@@ -1,6 +1,7 @@
 package com.elian.computeit.feature_profile.presentation.edit_profile
 
 import android.os.Bundle
+import android.text.InputType
 import android.view.View
 import androidx.core.view.isGone
 import androidx.core.widget.addTextChangedListener
@@ -40,6 +41,9 @@ class EditProfileFragment : Fragment(R.layout.fragment_edit_profile)
 	{
 		tietUsername.addTextChangedListener { viewModel.onAction(EnterUsername("$it".trim())) }
 		tietBiography.addTextChangedListener { viewModel.onAction(EnterBiography("$it".trim().trimWhitespacesBeforeNewLine())) }
+
+		// This is to set the desired behaviour when typing
+		tietUsername.setRawInputType(InputType.TYPE_CLASS_TEXT)
 
 		viewModel.profilePicState.value.also { if (it.isNotEmpty()) viewModel.onAction(EnterProfilePic(it)) }
 
