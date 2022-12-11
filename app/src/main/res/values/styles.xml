@@ -127,8 +127,8 @@
 
     <style name="ShapeAppearanceOverlayRoundBottom">
         <item name="cornerFamily">rounded</item>
-        <item name="cornerSizeBottomLeft">8%</item>
-        <item name="cornerSizeBottomRight">8%</item>
+        <item name="cornerSizeBottomLeft">10%</item>
+        <item name="cornerSizeBottomRight">10%</item>
     </style>
 
 </resources>
