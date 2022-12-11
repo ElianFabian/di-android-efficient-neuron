@@ -58,7 +58,6 @@ class EditProfileFragment : Fragment(R.layout.fragment_edit_profile)
 
 					viewModel.onAction(EnterProfilePic(compressedImageBytes.toList()))
 
-					binding.sivProfilePic.setImageURI(null)
 					binding.sivProfilePic.setImageURI(it)
 				},
 				onDeleteImage = {
