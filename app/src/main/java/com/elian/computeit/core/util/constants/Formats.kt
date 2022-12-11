@@ -8,6 +8,7 @@ private fun dateFormat(pattern: String) = SimpleDateFormat(pattern, Locale.getDe
 
 
 val defaultDateFormat = dateFormat("dd/MM/yyyy")
+val defaultFullDateFormat = dateFormat("dd/MM/yyyy HH:mm")
 
 
 const val DEFAULT_DECIMAL_FORMAT = "%.2f"

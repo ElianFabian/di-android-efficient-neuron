@@ -3,6 +3,7 @@ package com.elian.computeit.core.data
 import com.elian.computeit.core.domain.models.OperationData
 import com.elian.computeit.core.domain.models.TestData
 import com.elian.computeit.core.util.constants.defaultDateFormat
+import com.elian.computeit.core.util.constants.defaultFullDateFormat
 import com.elian.computeit.core.util.constants.secondsToDHHMMSS
 import com.elian.computeit.core.util.extensions.getValuePerSecond
 import com.elian.computeit.core.util.extensions.ifNaNReturnZero
@@ -40,7 +41,7 @@ fun TestData.toTestInfo(): TestInfo
 	val maxRawOpm = rawOpmPerSecond.values.maxOrNull() ?: 0
 
 	return TestInfo(
-		date = defaultDateFormat.format(Date(dateUnix)),
+		date = defaultFullDateFormat.format(Date(dateUnix)),
 		opm = opmPerSecond.values.lastOrNull() ?: 0,
 		rawOpm = rawOpmPerSecond.values.lastOrNull() ?: 0,
 		maxOpm = opmPerSecond.values.maxOfOrNull { it } ?: 0,
