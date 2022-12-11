@@ -3,10 +3,11 @@ package com.elian.computeit.core.presentation
 import android.os.Bundle
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.NavController
-import androidx.navigation.NavDestination
 import androidx.navigation.findNavController
 import com.elian.computeit.R
+import com.elian.computeit.core.presentation.util.ActionBehaviour
+import com.elian.computeit.core.presentation.util.DestinationBehaviour
+import com.elian.computeit.core.presentation.util.NavigationManager
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -14,21 +15,38 @@ class MainActivity : AppCompatActivity(R.layout.activity_main)
 {
 	private val navController by lazy { findNavController(R.id.navHostFragment) }
 
-	private val _disabledNavigateUpDestinations = setOf(
-		R.id.testFragment to R.id.testDetailsFragment,
-	)
-	private val _onBackgroundedNavigateUpDestinations = setOf(
-		R.id.testFragment,
-	)
-	private val _adjustResizeDestinations = setOf(
-		R.id.editProfileFragment
-	)
-
-	private var _isNavigateUpEnable = true
-	private var _previousDestination: NavDestination? = null
-	private lateinit var _currentDestination: NavDestination
-
+	private var _isNavigateUpEnabled = true
 	private var _defaultSoftInputMode: Int? = null
+
+	private val _navigationManager = NavigationManager(
+		onDestinationChangedBehaviours = setOf(
+			// Adjust layout when keyboard is open
+			DestinationBehaviour(
+				destinations = setOf(
+					R.id.editProfileFragment
+				),
+				ifCurrentDestinationIsInList = { window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE) },
+				ifCurrentDestinationIsNotInList = { window.setSoftInputMode(_defaultSoftInputMode!!) },
+			),
+			// Disable navigate up
+			ActionBehaviour(
+				actions = setOf(
+					R.id.testFragment to R.id.testDetailsFragment,
+				),
+				ifCurrentActionIsInList = { _isNavigateUpEnabled = false },
+				ifCurrentActionIsNotInList = { _isNavigateUpEnabled = true }
+			),
+		),
+		onBackgroundedBehaviours = setOf(
+			// Navigate up
+			DestinationBehaviour(
+				destinations = setOf(
+					R.id.testFragment,
+				),
+				ifCurrentDestinationIsInList = { navController.navigateUp() },
+			),
+		),
+	)
 
 
 	override fun onCreate(savedInstanceState: Bundle?)
@@ -43,15 +61,15 @@ class MainActivity : AppCompatActivity(R.layout.activity_main)
 	{
 		super.onPause()
 
-		onBackgrounded()
+		_navigationManager.onBackgrounded()
 	}
 
 	override fun onBackPressed()
 	{
 		when
 		{
-			_currentDestination.id == R.id.homeFragment -> finish()
-			_isNavigateUpEnable                         -> navController.navigateUp()
+			navController.currentDestination?.id == R.id.homeFragment -> finish()
+			_isNavigateUpEnabled                                      -> navController.navigateUp()
 		}
 	}
 
@@ -63,30 +81,9 @@ class MainActivity : AppCompatActivity(R.layout.activity_main)
 
 	private fun initLogic()
 	{
-		navController.addOnDestinationChangedListener { controller, destination, arguments ->
+		navController.addOnDestinationChangedListener { _, destination, _ ->
 
-			_currentDestination = destination
-
-			onDestinationChangedListener(controller, destination, arguments)
-
-			_previousDestination = destination
+			_navigationManager.onDestinationChanged(destination)
 		}
-	}
-
-	private fun onDestinationChangedListener(controller: NavController, destination: NavDestination, arguments: Bundle?)
-	{
-		_isNavigateUpEnable = !_disabledNavigateUpDestinations.any { it.first == _previousDestination?.id && it.second == destination.id }
-
-		if (destination.id in _adjustResizeDestinations)
-		{
-			// Adjust layout when keyboard is open
-			window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
-		}
-		else window.setSoftInputMode(_defaultSoftInputMode!!)
-	}
-
-	private fun onBackgrounded()
-	{
-		if (_currentDestination.id in _onBackgroundedNavigateUpDestinations) navController.navigateUp()
 	}
 }
