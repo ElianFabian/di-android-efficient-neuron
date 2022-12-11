@@ -1,94 +1,117 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.core.widget.NestedScrollView
-	xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:app="http://schemas.android.com/apk/res-auto"
-	xmlns:tools="http://schemas.android.com/tools"
-	android:layout_width="match_parent"
-	android:layout_height="match_parent"
-	android:animateLayoutChanges="true"
-	android:fillViewport="true">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
+    android:fillViewport="true">
 
-	<LinearLayout
-		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		android:animateLayoutChanges="true"
-		android:background="@color/background_dark"
-		android:gravity="center_horizontal"
-		android:orientation="vertical"
-		android:paddingHorizontal="@dimen/_10sdp"
-		android:paddingVertical="@dimen/_20sdp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:animateLayoutChanges="true"
+        android:background="@color/background_dark"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:paddingHorizontal="@dimen/_10sdp"
+        android:paddingVertical="@dimen/_20sdp">
 
-		<ProgressBar
-			android:id="@+id/lpiIsLoading"
-			style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:indeterminate="true"
-			android:indeterminateTint="?colorPrimary"
-			android:visibility="gone"
-			app:trackCornerRadius="@dimen/_10sdp"
-			tools:visibility="visible" />
+        <ProgressBar
+            android:id="@+id/lpiIsLoading"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            android:indeterminateTint="?colorPrimary"
+            android:visibility="gone"
+            app:trackCornerRadius="@dimen/_10sdp"
+            tools:visibility="visible" />
 
-		<androidx.appcompat.widget.LinearLayoutCompat
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_marginVertical="@dimen/_25sdp"
-			android:gravity="center_horizontal"
-			android:orientation="horizontal">
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/_25sdp"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
 
-			<com.google.android.material.imageview.ShapeableImageView
-				android:id="@+id/sivGoToTestConfiguration"
-				android:layout_width="@dimen/_43sdp"
-				android:layout_height="@dimen/_43sdp"
-				android:layout_marginHorizontal="@dimen/_8sdp"
-				android:tint="@color/white"
-				app:srcCompat="@drawable/ic_play_arrow" />
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/sivGoToTestConfiguration"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="@dimen/_55sdp"
+                android:layout_height="@dimen/_55sdp"
+                android:backgroundTint="@color/background_dark"
+                app:icon="@drawable/ic_play_arrow"
+                app:iconGravity="textStart"
+                app:iconPadding="0dp"
+                app:iconSize="@dimen/_40sdp"
+                app:iconTint="@color/white" />
 
-			<com.google.android.material.imageview.ShapeableImageView
-				android:id="@+id/sivGoToStatistics"
-				android:layout_width="@dimen/_43sdp"
-				android:layout_height="@dimen/_43sdp"
-				android:layout_marginHorizontal="@dimen/_8sdp"
-				android:tint="@color/blue_gray_800"
-				app:srcCompat="@drawable/ic_statistics" />
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/sivGoToStatistics"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="@dimen/_55sdp"
+                android:layout_height="@dimen/_55sdp"
+                android:backgroundTint="@color/background_dark"
+                android:enabled="false"
+                app:icon="@drawable/ic_statistics"
+                app:iconGravity="textStart"
+                app:iconPadding="0dp"
+                app:iconSize="@dimen/_40sdp"
+                app:iconTint="@color/blue_gray_800" />
 
-			<com.google.android.material.imageview.ShapeableImageView
-				android:id="@+id/sivGoToTips"
-				android:layout_width="@dimen/_43sdp"
-				android:layout_height="@dimen/_43sdp"
-				android:layout_marginHorizontal="@dimen/_8sdp"
-				android:tint="@color/blue_gray_800"
-				app:srcCompat="@drawable/ic_tips" />
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/sivGoToTips"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="@dimen/_55sdp"
+                android:layout_height="@dimen/_55sdp"
+                android:backgroundTint="@color/background_dark"
+                android:enabled="false"
+                app:icon="@drawable/ic_tips"
+                app:iconGravity="textStart"
+                app:iconPadding="0dp"
+                app:iconSize="@dimen/_40sdp"
+                app:iconTint="@color/blue_gray_800" />
 
-			<com.google.android.material.imageview.ShapeableImageView
-				android:id="@+id/sivGoToProfile"
-				android:layout_width="@dimen/_43sdp"
-				android:layout_height="@dimen/_43sdp"
-				android:layout_marginHorizontal="@dimen/_8sdp"
-				android:tint="@color/white"
-				app:srcCompat="@drawable/ic_profile" />
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/sivGoToProfile"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="@dimen/_55sdp"
+                android:layout_height="@dimen/_55sdp"
+                android:backgroundTint="@color/background_dark"
+                app:icon="@drawable/ic_profile"
+                app:iconGravity="textStart"
+                app:iconPadding="0dp"
+                app:iconSize="@dimen/_40sdp"
+                app:iconTint="@color/white" />
 
-			<com.google.android.material.imageview.ShapeableImageView
-				android:id="@+id/sivGoToSettings"
-				android:layout_width="@dimen/_43sdp"
-				android:layout_height="@dimen/_43sdp"
-				android:layout_marginHorizontal="@dimen/_8sdp"
-				android:tint="@color/blue_gray_800"
-				app:srcCompat="@drawable/ic_settings" />
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/sivGoToSettings"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="@dimen/_55sdp"
+                android:layout_height="@dimen/_55sdp"
+                android:backgroundTint="@color/background_dark"
+                android:enabled="false"
+                app:icon="@drawable/ic_settings"
+                app:iconGravity="textStart"
+                app:iconPadding="0dp"
+                app:iconSize="@dimen/_40sdp"
+                app:iconTint="@color/blue_gray_800" />
 
-		</androidx.appcompat.widget.LinearLayoutCompat>
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
-		<include
-			android:id="@+id/lytTestListChart"
-			layout="@layout/layout_line_chart" />
+        <include
+            android:id="@+id/lytTestListChart"
+            layout="@layout/layout_line_chart" />
 
-		<include
-			android:id="@+id/lytTextInfoList"
-			layout="@layout/layout_list_labeled_data"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_marginTop="@dimen/_15sdp" />
+        <include
+            android:id="@+id/lytTextInfoList"
+            layout="@layout/layout_list_labeled_data"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_15sdp" />
 
-	</LinearLayout>
+    </LinearLayout>
 
 </androidx.core.widget.NestedScrollView>
