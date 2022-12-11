@@ -85,10 +85,17 @@ class TestConfigurationFragment : Fragment(R.layout.fragment_test_configuration)
 					{
 						Snackbar.make(requireView(), errorMessage, Snackbar.LENGTH_LONG).setAction(R.string.action_fix)
 						{
-							val temp = binding.tietStart.text
+							val min = minOf(
+								binding.tietStart.text.toString().toInt(),
+								binding.tietEnd.text.toString().toInt(),
+							)
+							val max = maxOf(
+								binding.tietStart.text.toString().toInt(),
+								binding.tietEnd.text.toString().toInt(),
+							)
 
-							binding.tietStart.text = binding.tietEnd.text
-							binding.tietEnd.text = temp
+							binding.tietStart.setText("$min")
+							binding.tietEnd.setText("$max")
 						}.show()
 					}
 					else                                                ->
