@@ -1,6 +1,7 @@
 package com.elian.computeit.feature_auth.presentation.login
 
 import android.os.Bundle
+import android.text.InputType
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
@@ -42,6 +43,9 @@ class LoginActivity : AppCompatActivity()
 	{
 		tietUsername.addTextChangedListener { viewModel.onAction(EnterUsername("$it".trim())) }
 		tietPassword.addTextChangedListener { viewModel.onAction(EnterPassword("$it".trim())) }
+
+		// This is to set the desired behaviour when typing
+		tietUsername.setRawInputType(InputType.TYPE_CLASS_TEXT)
 
 		btnLogin.setOnClickListener { viewModel.onAction(Login) }
 		btnRegister.setOnClickListener { navigateTo<RegisterActivity>() }

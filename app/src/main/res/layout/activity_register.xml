@@ -19,7 +19,7 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tilUsername"
         style="@style/Layout_TextInputLayout"
-        android:layout_marginTop="@dimen/_70sdp">
+        android:layout_marginTop="@dimen/_60sdp">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/tietUsername"
@@ -28,6 +28,7 @@
             android:layout_height="wrap_content"
             android:hint="@string/generic_username"
             android:inputType="textMultiLine"
+            android:maxLength="30"
             android:maxLines="2" />
     </com.google.android.material.textfield.TextInputLayout>
 
