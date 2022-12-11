@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <resources>
+    <string name="actLogin_create_an_account">Create an account</string>
+
     <string name="action_fix">Fix</string>
 
     <string name="alert_dialog_are_you_sure_you_want_to_log_out">Are you sure you want to log out?</string>
@@ -81,9 +83,6 @@
     <string name="generic_username">Username</string>
 
     <string name="message_info_successfully_updated">Information successfully updated</string>
-
-    <string name="navigation_drawer_close" translatable="false">Close</string>
-    <string name="navigation_drawer_open" translatable="false">Open</string>
 
     <string name="no_data_available">No data available</string>
 </resources>

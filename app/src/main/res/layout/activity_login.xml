@@ -55,7 +55,7 @@
         android:layout_marginTop="@dimen/_10sdp"
         android:layout_marginEnd="@dimen/_16sdp"
         android:maxLines="1"
-        android:text="@string/generic_register" />
+        android:text="@string/actLogin_create_an_account" />
 
     <View style="@style/Utils_LinearLayoutSeparator" />
 
