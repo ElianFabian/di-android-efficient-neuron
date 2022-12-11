@@ -88,6 +88,7 @@ class EditProfileFragment : Fragment(R.layout.fragment_edit_profile)
 			binding.tilUsername.error2 = getUsernameErrorMessage(context, it.usernameField.error)
 
 			binding.lpiIsLoading.isGone = !it.isLoading
+			binding.btnSave.isEnabled = !it.isLoading
 		}
 	}
 }
