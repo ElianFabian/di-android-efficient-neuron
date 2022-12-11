@@ -2,7 +2,6 @@ package com.elian.computeit.core.data
 
 import com.elian.computeit.core.domain.models.OperationData
 import com.elian.computeit.core.domain.models.TestData
-import com.elian.computeit.core.util.constants.defaultDateFormat
 import com.elian.computeit.core.util.constants.defaultFullDateFormat
 import com.elian.computeit.core.util.constants.secondsToDHHMMSS
 import com.elian.computeit.core.util.extensions.getValuePerSecond
@@ -39,6 +38,8 @@ fun TestData.toTestInfo(): TestInfo
 	val minRawOpm = rawOpmPerSecond.values.minOrNull() ?: 0
 	val maxOpm = opmPerSecond.values.maxOrNull() ?: 0
 	val maxRawOpm = rawOpmPerSecond.values.maxOrNull() ?: 0
+	
+	val errorYValuePercentage = 0.5F
 
 	return TestInfo(
 		date = defaultFullDateFormat.format(Date(dateUnix)),
@@ -52,7 +53,7 @@ fun TestData.toTestInfo(): TestInfo
 		opmPerSecond = opmPerSecond,
 		rawOpmPerSecond = rawOpmPerSecond,
 		errorsAtSecond = listOfOperationData.filter { it.millisSinceStart >= 1000 && it.isError }.map { it.millisSinceStart / 1000F },
-		errorsYValue = (minOf(minOpm, minRawOpm) + maxOf(maxOpm, maxRawOpm)) / 2,
+		errorsYValue = (errorYValuePercentage * (minOf(minOpm, minRawOpm) + maxOf(maxOpm, maxRawOpm))).toInt(),
 		listOfFailedOperationInfo = listOfOperationData.filter { it.isError }.map { it.toOperationInfo() },
 	)
 }
