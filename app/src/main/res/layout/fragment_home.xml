@@ -102,15 +102,36 @@
         </androidx.appcompat.widget.LinearLayoutCompat>
 
         <include
-            android:id="@+id/lytTestListChart"
+            android:id="@+id/lytTestHistory"
             layout="@layout/layout_line_chart" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/_35sdp"
+            android:animateLayoutChanges="true"
+            android:backgroundTint="@color/background_card"
+            app:cardCornerRadius="@dimen/_10sdp"
+            tools:layout_gravity="center">
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_150sdp" />
+
+            <com.github.mikephil.charting.charts.BarChart
+                android:id="@+id/bcSpeedHistogram"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_260sdp"
+                android:layout_margin="@dimen/_8sdp"
+                android:background="@color/background_card" />
+
+        </com.google.android.material.card.MaterialCardView>
 
         <include
             android:id="@+id/lytTextInfoList"
             layout="@layout/layout_list_labeled_data"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_15sdp" />
+            android:layout_height="wrap_content" />
 
     </LinearLayout>
 

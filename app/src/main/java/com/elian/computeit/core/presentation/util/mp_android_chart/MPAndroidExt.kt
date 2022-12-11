@@ -1,5 +1,6 @@
 package com.elian.computeit.core.presentation.util.mp_android_chart
 
+import com.github.mikephil.charting.data.BarEntry
 import com.github.mikephil.charting.data.Entry
 
 fun Map<out Number, Number>.toEntries() = this.map { Entry(it.key.toFloat(), it.value.toFloat()) }
@@ -13,3 +14,9 @@ fun List<Number>.toEntries(firstValue: Int = 1, listOfData: List<Any>? = null) =
 }
 
 fun List<Number>.valuesToEntriesWithYValue(yValue: Float) = this.map { Entry(it.toFloat(), yValue) }
+
+
+fun List<Number>.toBarEntries(firstValue: Int = 0) = this.mapIndexed { index, number ->
+
+	BarEntry(index.toFloat() + firstValue, number.toFloat())
+}

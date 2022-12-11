@@ -12,10 +12,7 @@ import com.elian.computeit.core.presentation.adapter.LabeledDataAdapter
 import com.elian.computeit.core.presentation.adapter.TestInfoMarker
 import com.elian.computeit.core.presentation.model.LabeledData
 import com.elian.computeit.core.presentation.util.extensions.*
-import com.elian.computeit.core.presentation.util.mp_android_chart.applyDefault
-import com.elian.computeit.core.presentation.util.mp_android_chart.lineDataSet
-import com.elian.computeit.core.presentation.util.mp_android_chart.marker2
-import com.elian.computeit.core.presentation.util.mp_android_chart.toEntries
+import com.elian.computeit.core.presentation.util.mp_android_chart.*
 import com.elian.computeit.core.presentation.util.viewBinding
 import com.elian.computeit.core.util.constants.DEFAULT_DECIMAL_FORMAT
 import com.elian.computeit.core.util.constants.TestDetailsArgKeys
@@ -24,12 +21,14 @@ import com.elian.computeit.core.util.extensions.format
 import com.elian.computeit.databinding.FragmentHomeBinding
 import com.elian.computeit.feature_tests.domain.model.TestInfo
 import com.elian.computeit.feature_tests.domain.model.TestListInfo
+import com.github.mikephil.charting.data.BarData
+import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.Entry
+import com.github.mikephil.charting.formatter.ValueFormatter
 import com.github.mikephil.charting.highlight.Highlight
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.filterNotNull
-
 
 @AndroidEntryPoint
 class HomeFragment : Fragment(R.layout.fragment_home)
@@ -56,20 +55,22 @@ class HomeFragment : Fragment(R.layout.fragment_home)
 //        binding.sivGoToTips.setOnClickListener { navigate(R.id.action_homeFragment_to_tipsFragment) }
 //        binding.sivGoToSettings.setOnClickListener { navigate(R.id.action_homeFragment_to_settingsFragment) }
 
-		binding.lytTestListChart.lineChart.isGone = true
+		binding.lytTestHistory.lineChart.isGone = true
+		binding.bcSpeedHistogram.isGone = true
 	}
 
 	private fun subscribeToEvents() = viewModel.apply2()
 	{
 		collectLatestFlowWhenStarted(infoState.filterNotNull())
 		{
-			initLineChart(it)
+			initTestHistoryChart(it)
+			initSpeedHistogramChart(it)
 			initTextInfo(it)
 		}
 		collectFlowWhenStarted(isLoadingState) { binding.lpiIsLoading.isGone = !it }
 	}
 
-	private fun initLineChart(info: TestListInfo) = info.apply2()
+	private fun initTestHistoryChart(info: TestListInfo) = info.apply2()
 	{
 		if (opmPerTest.isNotEmpty() || rawOpmPerTest.isNotEmpty())
 		{
@@ -91,26 +92,26 @@ class HomeFragment : Fragment(R.layout.fragment_home)
 				},
 			)
 
-			binding.lytTestListChart.lineChart.applyDefault(
+			binding.lytTestHistory.lineChart.applyDefault(
 				animate = !_isUiFinished,
 				dataSets = lineDataSets,
 			)
 		}
-		else binding.lytTestListChart.lineChart.apply()
+		else binding.lytTestHistory.lineChart.apply()
 		{
 			setNoDataText(getString(R.string.no_data_available))
 			setNoDataTextColor(getThemeColor(R.attr.colorSecondary))
 		}
 
-		binding.lytTestListChart.lineChart.isVisible = true
+		binding.lytTestHistory.lineChart.isVisible = true
 
-		binding.lytTestListChart.lineChart.marker2 = TestInfoMarker(context)
+		binding.lytTestHistory.lineChart.marker2 = TestInfoMarker(context)
 
 		_isUiFinished = true
 
-		binding.lytTestListChart.lineChart.avoidConflictsWithScroll(binding.root)
+		binding.lytTestHistory.lineChart.avoidConflictsWithScroll(binding.root)
 
-		binding.lytTestListChart.lineChart.setOnChartValueSelectedListener(object : OnChartValueSelectedListener
+		binding.lytTestHistory.lineChart.setOnChartValueSelectedListener(object : OnChartValueSelectedListener
 		{
 			var currentSelectedEntry: Entry? = null
 
@@ -131,6 +132,42 @@ class HomeFragment : Fragment(R.layout.fragment_home)
 			{
 			}
 		})
+	}
+
+	private fun initSpeedHistogramChart(info: TestListInfo) = info.apply2()
+	{
+		if (info.testsPerSpeedRange.isNotEmpty())
+		{
+			binding.bcSpeedHistogram.avoidConflictsWithScroll(binding.root)
+			binding.bcSpeedHistogram.applyDefault()
+
+			binding.bcSpeedHistogram.xAxis.valueFormatter = object : ValueFormatter()
+			{
+				override fun getFormattedValue(value: Float): String
+				{
+					val valueToInt = value.toInt()
+
+					val start = valueToInt * info.speedRangeLength
+					val end = (valueToInt + 1) * info.speedRangeLength
+
+					return "$start−$end"
+				}
+			}
+
+			binding.bcSpeedHistogram.data = BarData(
+				BarDataSet(
+					info.testsPerSpeedRange.toBarEntries(),
+					getString(R.string.generic_tests),
+				).apply { color = getColorCompat(R.color.teal_200) }
+			)
+		}
+		else binding.bcSpeedHistogram.apply()
+		{
+			setNoDataText(getString(R.string.no_data_available))
+			setNoDataTextColor(getThemeColor(R.attr.colorSecondary))
+		}
+
+		binding.bcSpeedHistogram.isVisible = true
 	}
 
 	private fun initTextInfo(info: TestListInfo) = info.apply2()

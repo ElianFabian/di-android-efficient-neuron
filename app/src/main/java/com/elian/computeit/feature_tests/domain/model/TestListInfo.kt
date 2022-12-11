@@ -13,4 +13,6 @@ data class TestListInfo(
 	val opmPerTest: List<Int>,
 	val rawOpmPerTest: List<Int>,
 	val listOfTestInfo: List<TestInfo>,
+	val speedRangeLength: Int,
+	val testsPerSpeedRange: List<Int>,
 )

@@ -38,7 +38,7 @@ fun TestData.toTestInfo(): TestInfo
 	val minRawOpm = rawOpmPerSecond.values.minOrNull() ?: 0
 	val maxOpm = opmPerSecond.values.maxOrNull() ?: 0
 	val maxRawOpm = rawOpmPerSecond.values.maxOrNull() ?: 0
-	
+
 	val errorYValuePercentage = 0.5F
 
 	return TestInfo(
@@ -63,9 +63,20 @@ fun List<TestData>.toTestListInfo(): TestListInfo
 	val totalTimeInSeconds = sumOf { it.timeInSeconds }
 	val operationsCompleted = sumOf { it.listOfOperationData.size }
 	val correctOperationsCompleted = sumOf { it.listOfOperationData.count { data -> !data.isError } }
+
 	val listOfTestInfo = map { it.toTestInfo() }
 	val opmPerTest = listOfTestInfo.map { it.opm }
 	val rawOpmPerTest = listOfTestInfo.map { it.rawOpm }
+
+	val maxOpm = opmPerTest.maxOrNull() ?: 0
+	val rangeLength = 10 // In future I will try to make this more dynamic to make the user choose the length in real time
+
+	val speedRanges = Array(maxOpm / rangeLength + 1) { 0 }
+	opmPerTest.forEach()
+	{
+		val position = it / rangeLength
+		speedRanges[position]++
+	}
 
 	return TestListInfo(
 		testsCompleted = size,
@@ -80,5 +91,7 @@ fun List<TestData>.toTestListInfo(): TestListInfo
 		opmPerTest = opmPerTest,
 		rawOpmPerTest = rawOpmPerTest,
 		listOfTestInfo = listOfTestInfo,
+		speedRangeLength = rangeLength,
+		testsPerSpeedRange = speedRanges.toList(),
 	)
 }
