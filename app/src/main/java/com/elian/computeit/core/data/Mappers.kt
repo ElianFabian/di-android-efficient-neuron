@@ -10,6 +10,7 @@ import com.elian.computeit.core.util.extensions.isError
 import com.elian.computeit.core.util.extensions.result
 import com.elian.computeit.feature_tests.domain.model.*
 import java.util.*
+import kotlin.math.ceil
 
 fun OperationData.toOperationInfo() = OperationInfo(
 	pairOfNumbers = pairOfNumbers,
@@ -71,7 +72,13 @@ fun List<TestData>.toTestListInfo(): TestListInfo
 	val rawOpmPerTest = listOfTestInfo.map { it.statsInfo.rawOpm }
 
 	val maxOpm = opmPerTest.maxOrNull() ?: 0
-	val defaultRangeLength = 10
+
+	val defaultRangeLength = when
+	{
+		maxOpm > 10 -> 10
+		maxOpm == 0 -> 1
+		else        -> ceil(maxOpm / 2F).toInt()
+	}
 
 	val speedRanges = Array(maxOpm / defaultRangeLength + 1) { 0 }
 	opmPerTest.forEach()
