@@ -146,7 +146,11 @@ class HomeFragment : Fragment(R.layout.fragment_home)
 				avoidConflictsWithScroll(binding.root)
 				applyDefault()
 
-				xAxis.valueFormatter = rangeFormatter.apply { rangeLength = speedHistogramInfo.speedRangeLength }
+				xAxis.valueFormatter = rangeFormatter.apply()
+				{
+					rangeLength = speedHistogramInfo.speedRangeLength
+					maxLength = statsInfo.maxOpm
+				}
 
 				data = BarData(
 					BarDataSet(
@@ -155,6 +159,7 @@ class HomeFragment : Fragment(R.layout.fragment_home)
 					).apply { color = getColorCompat(R.color.teal_200) }
 				)
 			}
+
 			binding.sldRangeLength.apply()
 			{
 				valueTo = statsInfo.maxOpm.toFloat()
