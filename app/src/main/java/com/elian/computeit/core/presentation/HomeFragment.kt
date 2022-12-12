@@ -10,7 +10,7 @@ import androidx.fragment.app.viewModels
 import com.elian.computeit.R
 import com.elian.computeit.core.presentation.adapter.MainLabeledDataAdapter
 import com.elian.computeit.core.presentation.adapter.TestInfoMarker
-import com.elian.computeit.core.presentation.model.withLabel
+import com.elian.computeit.core.presentation.model.labelOf
 import com.elian.computeit.core.presentation.util.extensions.*
 import com.elian.computeit.core.presentation.util.mp_android_chart.*
 import com.elian.computeit.core.presentation.util.viewBinding
@@ -173,14 +173,14 @@ class HomeFragment : Fragment(R.layout.fragment_home)
 	private fun initTextInfo(info: TestListStatsInfo) = info.apply2()
 	{
 		val listOfUiLabeledData = listOf(
-			testsCompleted withLabel R.string.frgHome_testsCompleted,
-			totalTime withLabel R.string.generic_totalTime,
-			operationsCompleted withLabel R.string.frgHome_operationsCompleted,
-			"$correctOperationsCompleted (${correctOperationsCompletedPercentage.toInt()} %)" withLabel R.string.frgHome_correctOperationsCompleted,
-			averageOpm.toInt() withLabel R.string.frgHome_averageOpm,
-			averageRawOpm.toInt() withLabel R.string.frgHome_averageRawOpm,
-			maxOpm withLabel R.string.frgHome_highestOpm,
-			maxRawOpm withLabel R.string.frgHome_highestRawOpm,
+			R.string.frgHome_testsCompleted labelOf testsCompleted,
+			R.string.generic_totalTime labelOf totalTime,
+			R.string.frgHome_operationsCompleted labelOf operationsCompleted,
+			R.string.frgHome_correctOperationsCompleted labelOf "$correctOperationsCompleted (${correctOperationsCompletedPercentage.toInt()} %)",
+			R.string.frgHome_averageOpm labelOf averageOpm.toInt(),
+			R.string.frgHome_averageRawOpm labelOf averageRawOpm.toInt(),
+			R.string.frgHome_highestOpm labelOf maxOpm,
+			R.string.frgHome_highestRawOpm labelOf maxRawOpm,
 		)
 
 		binding.lytTextInfoList.rvLabeledData.adapter = MainLabeledDataAdapter(listOfUiLabeledData)

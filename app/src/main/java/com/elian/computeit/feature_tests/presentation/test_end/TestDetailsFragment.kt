@@ -6,7 +6,7 @@ import androidx.core.view.isGone
 import androidx.fragment.app.Fragment
 import com.elian.computeit.R
 import com.elian.computeit.core.presentation.adapter.MainLabeledDataAdapter
-import com.elian.computeit.core.presentation.model.withLabel
+import com.elian.computeit.core.presentation.model.labelOf
 import com.elian.computeit.core.presentation.util.extensions.avoidConflictsWithScroll
 import com.elian.computeit.core.presentation.util.extensions.navigate
 import com.elian.computeit.core.presentation.util.mp_android_chart.applyDefault
@@ -88,13 +88,13 @@ class TestDetailsFragment : Fragment(R.layout.fragment_test_details)
 	private fun initStats(info: TestStatsInfo) = info.apply2()
 	{
 		val listOfUiLabeledData = listOf(
-			operationCount withLabel R.string.generic_operations,
-			timeInSeconds withLabel R.string.generic_totalTime,
-			opm withLabel R.string.generic_opm,
-			rawOpm withLabel R.string.generic_raw,
-			maxOpm withLabel R.string.frgHome_highestOpm,
-			maxRawOpm withLabel R.string.frgHome_highestRawOpm,
-			errorCount withLabel R.string.generic_errors,
+			R.string.generic_operations labelOf operationCount,
+			R.string.generic_totalTime labelOf timeInSeconds,
+			R.string.generic_opm labelOf opm,
+			R.string.generic_raw labelOf rawOpm,
+			R.string.frgHome_highestOpm labelOf maxOpm,
+			R.string.frgHome_highestRawOpm labelOf maxRawOpm,
+			R.string.generic_errors labelOf errorCount,
 		)
 
 		binding.lytTextInfoList.rvLabeledData.adapter = MainLabeledDataAdapter(listOfUiLabeledData)

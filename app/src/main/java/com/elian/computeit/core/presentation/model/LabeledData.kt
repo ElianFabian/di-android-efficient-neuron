@@ -8,7 +8,8 @@ data class LabeledData(
 	val value: Any,
 )
 
-infix fun Any.withLabel(@StringRes resId: Int) = LabeledData(
-	labelResId = resId,
-	value = this,
+
+infix fun @receiver:StringRes Int.labelOf(value: Any) = LabeledData(
+	labelResId = this,
+	value = value,
 )
