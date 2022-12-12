@@ -17,14 +17,13 @@ import com.elian.computeit.core.presentation.util.viewBinding
 import com.elian.computeit.core.util.constants.TestDetailsArgKeys
 import com.elian.computeit.core.util.extensions.apply2
 import com.elian.computeit.databinding.FragmentHomeBinding
-import com.elian.computeit.feature_tests.domain.model.SpeedHistogramInfo
 import com.elian.computeit.feature_tests.domain.model.TestHistoryInfo
 import com.elian.computeit.feature_tests.domain.model.TestInfo
+import com.elian.computeit.feature_tests.domain.model.TestListInfo
 import com.elian.computeit.feature_tests.domain.model.TestListStatsInfo
 import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.Entry
-import com.github.mikephil.charting.formatter.ValueFormatter
 import com.github.mikephil.charting.highlight.Highlight
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener
 import dagger.hilt.android.AndroidEntryPoint
@@ -37,6 +36,8 @@ class HomeFragment : Fragment(R.layout.fragment_home)
 	private val binding by viewBinding(FragmentHomeBinding::bind)
 
 	private var _isUiFinished = false
+
+	private val rangeFormatter = RangeValueFormatter()
 
 
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?)
@@ -57,6 +58,7 @@ class HomeFragment : Fragment(R.layout.fragment_home)
 
 		binding.lytTestHistory.lineChart.isGone = true
 		binding.bcSpeedHistogram.isGone = true
+		binding.sldRangeLength.isGone = true
 	}
 
 	private fun subscribeToEvents() = viewModel.apply2()
@@ -64,7 +66,7 @@ class HomeFragment : Fragment(R.layout.fragment_home)
 		collectLatestFlowWhenStarted(infoState.filterNotNull())
 		{
 			initTestHistoryChart(it.historyInfo)
-			initSpeedHistogramChart(it.speedHistogramInfo)
+			initSpeedHistogramChart(it)
 			initTextInfo(it.statsInfo)
 		}
 		collectFlowWhenStarted(isLoadingState) { binding.lpiIsLoading.isGone = !it }
@@ -133,34 +135,48 @@ class HomeFragment : Fragment(R.layout.fragment_home)
 		_isUiFinished = true
 	}
 
-	private fun initSpeedHistogramChart(info: SpeedHistogramInfo) = info.apply2()
+	private fun initSpeedHistogramChart(info: TestListInfo) = info.apply2()
 	{
 		val chartView = binding.bcSpeedHistogram
 
-		if (testsPerSpeedRange.isNotEmpty())
+		if (speedHistogramInfo.testsPerSpeedRange.isNotEmpty())
 		{
-			chartView.avoidConflictsWithScroll(binding.root)
-			chartView.applyDefault()
-
-			chartView.xAxis.valueFormatter = object : ValueFormatter()
+			chartView.apply()
 			{
-				override fun getFormattedValue(value: Float): String
-				{
-					val valueToInt = value.toInt()
+				avoidConflictsWithScroll(binding.root)
+				applyDefault()
 
-					val start = valueToInt * speedRangeLength
-					val end = (valueToInt + 1) * speedRangeLength - 1
+				xAxis.valueFormatter = rangeFormatter.apply { rangeLength = speedHistogramInfo.speedRangeLength }
 
-					return "$start−$end"
-				}
+				data = BarData(
+					BarDataSet(
+						speedHistogramInfo.testsPerSpeedRange.toBarEntries(),
+						getString(R.string.generic_tests),
+					).apply { color = getColorCompat(R.color.teal_200) }
+				)
 			}
+			binding.sldRangeLength.apply()
+			{
+				valueTo = statsInfo.maxOpm.toFloat()
+				binding.sldRangeLength.value = speedHistogramInfo.speedRangeLength.toFloat()
 
-			chartView.data = BarData(
-				BarDataSet(
-					testsPerSpeedRange.toBarEntries(),
-					getString(R.string.generic_tests),
-				).apply { color = getColorCompat(R.color.teal_200) }
-			)
+				addOnChangeListener { _, value, _ ->
+
+					val newInfo = viewModel.getSpeedHistogram(value.toInt())
+
+					rangeFormatter.rangeLength = value.toInt()
+
+					chartView.data = BarData(
+						BarDataSet(
+							newInfo.testsPerSpeedRange.toBarEntries(),
+							getString(R.string.generic_tests),
+						).apply { color = getColorCompat(R.color.teal_200) }
+					)
+					chartView.invalidate()
+				}
+
+				isVisible = true
+			}
 		}
 		else chartView.apply()
 		{

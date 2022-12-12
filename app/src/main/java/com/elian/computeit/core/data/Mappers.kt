@@ -71,12 +71,12 @@ fun List<TestData>.toTestListInfo(): TestListInfo
 	val rawOpmPerTest = listOfTestInfo.map { it.statsInfo.rawOpm }
 
 	val maxOpm = opmPerTest.maxOrNull() ?: 0
-	val rangeLength = 10 // In future I will try to make this more dynamic to make the user choose the length in real time
+	val defaultRangeLength = 10
 
-	val speedRanges = Array(maxOpm / rangeLength + 1) { 0 }
+	val speedRanges = Array(maxOpm / defaultRangeLength + 1) { 0 }
 	opmPerTest.forEach()
 	{
-		val position = it / rangeLength
+		val position = it / defaultRangeLength
 		speedRanges[position]++
 	}
 
@@ -87,7 +87,7 @@ fun List<TestData>.toTestListInfo(): TestListInfo
 			listOfTestInfo = listOfTestInfo,
 		),
 		speedHistogramInfo = SpeedHistogramInfo(
-			speedRangeLength = rangeLength,
+			speedRangeLength = defaultRangeLength,
 			testsPerSpeedRange = speedRanges.toList(),
 		),
 		statsInfo = TestListStatsInfo(
@@ -101,5 +101,31 @@ fun List<TestData>.toTestListInfo(): TestListInfo
 			maxOpm = opmPerTest.maxOrNull() ?: 0,
 			maxRawOpm = rawOpmPerTest.maxOrNull() ?: 0,
 		),
+	)
+}
+
+fun List<TestData>.toSpeedHistogramData(rangeLength: Int): SpeedHistogramInfo
+{
+	val opmPerTest = map()
+	{
+		val correctOperations = it.listOfOperationData.count { operation -> !operation.isError }
+
+		val opm = (correctOperations / it.timeInSeconds.toFloat() * 60).ifNaNReturnZero().toInt()
+
+		opm
+	}
+
+	val maxOpm = opmPerTest.maxOrNull() ?: 0
+
+	val speedRanges = Array(maxOpm / rangeLength + 1) { 0 }
+	opmPerTest.forEach()
+	{
+		val position = it / rangeLength
+		speedRanges[position]++
+	}
+
+	return SpeedHistogramInfo(
+		speedRangeLength = rangeLength,
+		testsPerSpeedRange = speedRanges.toList(),
 	)
 }

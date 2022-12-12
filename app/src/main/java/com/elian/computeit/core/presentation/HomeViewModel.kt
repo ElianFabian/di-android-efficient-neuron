@@ -2,6 +2,7 @@ package com.elian.computeit.core.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.elian.computeit.core.domain.use_case.GetSpeedHistogramInfoUseCase
 import com.elian.computeit.core.domain.use_case.GetTestListInfoUseCase
 import com.elian.computeit.feature_tests.domain.model.TestListInfo
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -13,6 +14,7 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(
 	private val getTestListInfo: GetTestListInfoUseCase,
+	private val getSpeedHistogramUseCase: GetSpeedHistogramInfoUseCase,
 ) : ViewModel()
 {
 	init
@@ -32,4 +34,7 @@ class HomeViewModel @Inject constructor(
 
 	private val _loadingState = MutableStateFlow(true)
 	val isLoadingState = _loadingState.asStateFlow()
+
+
+	fun getSpeedHistogram(rangeLength: Int) = getSpeedHistogramUseCase(rangeLength)
 }

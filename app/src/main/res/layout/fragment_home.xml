@@ -54,7 +54,7 @@
                 android:layout_width="@dimen/_55sdp"
                 android:layout_height="@dimen/_55sdp"
                 android:backgroundTint="@color/background_dark"
-                android:enabled="false"
+                android:enabled="true"
                 app:icon="@drawable/ic_statistics"
                 app:iconGravity="textStart"
                 app:iconPadding="0dp"
@@ -118,12 +118,28 @@
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/_150sdp" />
 
-            <com.github.mikephil.charting.charts.BarChart
-                android:id="@+id/bcSpeedHistogram"
+            <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_260sdp"
-                android:layout_margin="@dimen/_8sdp"
-                android:background="@color/background_card" />
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginHorizontal="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:orientation="vertical">
+
+                <com.github.mikephil.charting.charts.BarChart
+                    android:id="@+id/bcSpeedHistogram"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_260sdp"
+                    android:background="@color/background_card" />
+
+                <com.google.android.material.slider.Slider
+                    android:id="@+id/sldRangeLength"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:stepSize="1"
+                    android:valueFrom="1" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
 
         </com.google.android.material.card.MaterialCardView>
 
