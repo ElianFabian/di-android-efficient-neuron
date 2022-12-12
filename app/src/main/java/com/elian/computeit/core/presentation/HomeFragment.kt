@@ -72,6 +72,8 @@ class HomeFragment : Fragment(R.layout.fragment_home)
 
 	private fun initTestHistoryChart(info: TestHistoryInfo) = info.apply2()
 	{
+		val chartView = binding.lytTestHistory.lineChart
+
 		if (opmPerTest.isNotEmpty() || rawOpmPerTest.isNotEmpty())
 		{
 			val lineDataSets = arrayOf(
@@ -92,26 +94,21 @@ class HomeFragment : Fragment(R.layout.fragment_home)
 				},
 			)
 
-			binding.lytTestHistory.lineChart.applyDefault(
+			chartView.applyDefault(
 				animate = !_isUiFinished,
 				dataSets = lineDataSets,
 			)
 		}
-		else binding.lytTestHistory.lineChart.apply()
+		else chartView.apply()
 		{
 			setNoDataText(getString(R.string.no_data_available))
 			setNoDataTextColor(getThemeColor(R.attr.colorSecondary))
 		}
 
-		binding.lytTestHistory.lineChart.isVisible = true
-
-		binding.lytTestHistory.lineChart.marker2 = TestInfoMarker(context)
-
-		_isUiFinished = true
-
-		binding.lytTestHistory.lineChart.avoidConflictsWithScroll(binding.root)
-
-		binding.lytTestHistory.lineChart.setOnChartValueSelectedListener(object : OnChartValueSelectedListener
+		chartView.isVisible = true
+		chartView.marker2 = TestInfoMarker(context)
+		chartView.avoidConflictsWithScroll(binding.root)
+		chartView.setOnChartValueSelectedListener(object : OnChartValueSelectedListener
 		{
 			var currentSelectedEntry: Entry? = null
 
@@ -132,16 +129,20 @@ class HomeFragment : Fragment(R.layout.fragment_home)
 			{
 			}
 		})
+
+		_isUiFinished = true
 	}
 
 	private fun initSpeedHistogramChart(info: SpeedHistogramInfo) = info.apply2()
 	{
+		val chartView = binding.bcSpeedHistogram
+
 		if (testsPerSpeedRange.isNotEmpty())
 		{
-			binding.bcSpeedHistogram.avoidConflictsWithScroll(binding.root)
-			binding.bcSpeedHistogram.applyDefault()
+			chartView.avoidConflictsWithScroll(binding.root)
+			chartView.applyDefault()
 
-			binding.bcSpeedHistogram.xAxis.valueFormatter = object : ValueFormatter()
+			chartView.xAxis.valueFormatter = object : ValueFormatter()
 			{
 				override fun getFormattedValue(value: Float): String
 				{
@@ -154,20 +155,20 @@ class HomeFragment : Fragment(R.layout.fragment_home)
 				}
 			}
 
-			binding.bcSpeedHistogram.data = BarData(
+			chartView.data = BarData(
 				BarDataSet(
 					testsPerSpeedRange.toBarEntries(),
 					getString(R.string.generic_tests),
 				).apply { color = getColorCompat(R.color.teal_200) }
 			)
 		}
-		else binding.bcSpeedHistogram.apply()
+		else chartView.apply()
 		{
 			setNoDataText(getString(R.string.no_data_available))
 			setNoDataTextColor(getThemeColor(R.attr.colorSecondary))
 		}
 
-		binding.bcSpeedHistogram.isVisible = true
+		chartView.isVisible = true
 	}
 
 	private fun initTextInfo(info: TestListStatsInfo) = info.apply2()
