@@ -11,8 +11,6 @@ val defaultDateFormat = dateFormat("dd/MM/yyyy")
 val defaultFullDateFormat = dateFormat("dd/MM/yyyy HH:mm")
 
 
-const val DEFAULT_DECIMAL_FORMAT = "%.2f"
-
 
 fun secondsToDHHMMSS(seconds: Int): String
 {

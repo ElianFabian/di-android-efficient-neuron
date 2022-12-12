@@ -14,10 +14,8 @@ import com.elian.computeit.core.presentation.model.LabeledData
 import com.elian.computeit.core.presentation.util.extensions.*
 import com.elian.computeit.core.presentation.util.mp_android_chart.*
 import com.elian.computeit.core.presentation.util.viewBinding
-import com.elian.computeit.core.util.constants.DEFAULT_DECIMAL_FORMAT
 import com.elian.computeit.core.util.constants.TestDetailsArgKeys
 import com.elian.computeit.core.util.extensions.apply2
-import com.elian.computeit.core.util.extensions.format
 import com.elian.computeit.databinding.FragmentHomeBinding
 import com.elian.computeit.feature_tests.domain.model.TestInfo
 import com.elian.computeit.feature_tests.domain.model.TestListInfo
@@ -191,11 +189,11 @@ class HomeFragment : Fragment(R.layout.fragment_home)
 			),
 			LabeledData(
 				label = getString(R.string.frgHome_averageOpm),
-				value = averageOpm.format(DEFAULT_DECIMAL_FORMAT),
+				value = averageOpm.toInt(),
 			),
 			LabeledData(
 				label = getString(R.string.frgHome_averageRawOpm),
-				value = averageRawOpm.format(DEFAULT_DECIMAL_FORMAT),
+				value = averageRawOpm.toInt(),
 			),
 			LabeledData(
 				label = getString(R.string.frgHome_highestOpm),
