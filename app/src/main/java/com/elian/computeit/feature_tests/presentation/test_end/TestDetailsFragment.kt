@@ -6,7 +6,7 @@ import androidx.core.view.isGone
 import androidx.fragment.app.Fragment
 import com.elian.computeit.R
 import com.elian.computeit.core.presentation.adapter.LabeledDataAdapter
-import com.elian.computeit.core.presentation.model.LabeledData
+import com.elian.computeit.core.presentation.model.withLabel
 import com.elian.computeit.core.presentation.util.extensions.avoidConflictsWithScroll
 import com.elian.computeit.core.presentation.util.extensions.navigate
 import com.elian.computeit.core.presentation.util.mp_android_chart.applyDefault
@@ -72,8 +72,7 @@ class TestDetailsFragment : Fragment(R.layout.fragment_test_details)
 				lineAndCirclesColorResId = R.color.red_500,
 				entries = info.errorsAtSecond.valuesToEntriesWithYValue(info.errorsYValue.toFloat()),
 				isDashedLineEnable = false,
-			)
-			{
+			) {
 				circleRadius = 2F
 			}
 		)
@@ -89,34 +88,13 @@ class TestDetailsFragment : Fragment(R.layout.fragment_test_details)
 	private fun initStats(info: TestStatsInfo) = info.apply2()
 	{
 		val listOfUiLabeledData = listOf(
-			LabeledData(
-				label = getString(R.string.generic_operations),
-				value = "$operationCount",
-			),
-			LabeledData(
-				label = getString(R.string.generic_totalTime),
-				value = timeInSeconds,
-			),
-			LabeledData(
-				label = getString(R.string.generic_opm),
-				value = "$opm",
-			),
-			LabeledData(
-				label = getString(R.string.generic_raw),
-				value = "$rawOpm",
-			),
-			LabeledData(
-				label = getString(R.string.frgHome_highestOpm),
-				value = "$maxOpm",
-			),
-			LabeledData(
-				label = getString(R.string.frgHome_highestRawOpm),
-				value = "$maxRawOpm",
-			),
-			LabeledData(
-				label = getString(R.string.generic_errors),
-				value = "$errorCount",
-			),
+			operationCount withLabel R.string.generic_operations,
+			timeInSeconds withLabel R.string.generic_totalTime,
+			opm withLabel R.string.generic_opm,
+			rawOpm withLabel R.string.generic_raw,
+			maxOpm withLabel R.string.frgHome_highestOpm,
+			maxRawOpm withLabel R.string.frgHome_highestRawOpm,
+			errorCount withLabel R.string.generic_errors,
 		)
 
 		binding.lytTextInfoList.rvLabeledData.adapter = LabeledDataAdapter(listOfUiLabeledData)

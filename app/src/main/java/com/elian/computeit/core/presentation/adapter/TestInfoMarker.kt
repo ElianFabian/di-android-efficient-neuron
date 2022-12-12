@@ -5,7 +5,7 @@ import android.graphics.Typeface
 import android.view.ViewGroup
 import androidx.appcompat.widget.LinearLayoutCompat
 import com.elian.computeit.R
-import com.elian.computeit.core.presentation.model.LabeledData
+import com.elian.computeit.core.presentation.model.withLabel
 import com.elian.computeit.core.presentation.util.mp_android_chart.GenericMarkerView
 import com.elian.computeit.databinding.MarkerTestInfoBinding
 import com.elian.computeit.feature_tests.domain.model.TestInfo
@@ -21,30 +21,12 @@ fun TestInfoMarker(context: Context?) = GenericMarkerView(
 	val uiLabeledData = (entry.data as? TestInfo)?.statsInfo?.run()
 	{
 		listOf(
-			LabeledData(
-				label = context!!.getString(R.string.generic_date),
-				value = date,
-			),
-			LabeledData(
-				label = context.getString(R.string.generic_operations),
-				value = operationCount,
-			),
-			LabeledData(
-				label = context.getString(R.string.arrayTest_modes_time),
-				value = timeInSeconds,
-			),
-			LabeledData(
-				label = context.getString(R.string.generic_opm),
-				value = opm,
-			),
-			LabeledData(
-				label = context.getString(R.string.generic_raw),
-				value = rawOpm,
-			),
-			LabeledData(
-				label = context.getString(R.string.generic_errors),
-				value = errorCount,
-			),
+			date withLabel R.string.generic_date,
+			operationCount withLabel R.string.generic_operations,
+			timeInSeconds withLabel R.string.arrayTest_modes_time,
+			opm withLabel R.string.generic_opm,
+			rawOpm withLabel R.string.generic_raw,
+			errorCount withLabel R.string.generic_errors,
 		)
 	} ?: emptyList()
 

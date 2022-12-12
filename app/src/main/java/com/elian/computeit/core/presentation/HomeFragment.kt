@@ -10,7 +10,7 @@ import androidx.fragment.app.viewModels
 import com.elian.computeit.R
 import com.elian.computeit.core.presentation.adapter.LabeledDataAdapter
 import com.elian.computeit.core.presentation.adapter.TestInfoMarker
-import com.elian.computeit.core.presentation.model.LabeledData
+import com.elian.computeit.core.presentation.model.withLabel
 import com.elian.computeit.core.presentation.util.extensions.*
 import com.elian.computeit.core.presentation.util.mp_android_chart.*
 import com.elian.computeit.core.presentation.util.viewBinding
@@ -173,38 +173,14 @@ class HomeFragment : Fragment(R.layout.fragment_home)
 	private fun initTextInfo(info: TestListStatsInfo) = info.apply2()
 	{
 		val listOfUiLabeledData = listOf(
-			LabeledData(
-				label = getString(R.string.frgHome_testsCompleted),
-				value = testsCompleted,
-			),
-			LabeledData(
-				label = getString(R.string.generic_totalTime),
-				value = totalTime,
-			),
-			LabeledData(
-				label = getString(R.string.frgHome_operationsCompleted),
-				value = operationsCompleted,
-			),
-			LabeledData(
-				label = getString(R.string.frgHome_correctOperationsCompleted),
-				value = "$correctOperationsCompleted (${correctOperationsCompletedPercentage.toInt()} %)",
-			),
-			LabeledData(
-				label = getString(R.string.frgHome_averageOpm),
-				value = averageOpm.toInt(),
-			),
-			LabeledData(
-				label = getString(R.string.frgHome_averageRawOpm),
-				value = averageRawOpm.toInt(),
-			),
-			LabeledData(
-				label = getString(R.string.frgHome_highestOpm),
-				value = maxOpm,
-			),
-			LabeledData(
-				label = getString(R.string.frgHome_highestRawOpm),
-				value = maxRawOpm,
-			),
+			testsCompleted withLabel R.string.frgHome_testsCompleted,
+			totalTime withLabel R.string.generic_totalTime,
+			operationsCompleted withLabel R.string.frgHome_operationsCompleted,
+			"$correctOperationsCompleted (${correctOperationsCompletedPercentage.toInt()} %)" withLabel R.string.frgHome_correctOperationsCompleted,
+			averageOpm.toInt() withLabel R.string.frgHome_averageOpm,
+			averageRawOpm.toInt() withLabel R.string.frgHome_averageRawOpm,
+			maxOpm withLabel R.string.frgHome_highestOpm,
+			maxRawOpm withLabel R.string.frgHome_highestRawOpm,
 		)
 
 		binding.lytTextInfoList.rvLabeledData.adapter = LabeledDataAdapter(listOfUiLabeledData)

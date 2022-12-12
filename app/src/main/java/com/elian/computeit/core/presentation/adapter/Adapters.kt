@@ -30,7 +30,7 @@ fun LabeledDataAdapter(
 ) {
 	beforeBind?.invoke(this)
 
-	tvLabel.text = it.label
+	tvLabel.text = root.context!!.getString(it.labelResId)
 	tvValue.text = "${it.value}"
 
 	afterBind?.invoke(this)
