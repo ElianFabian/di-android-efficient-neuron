@@ -5,9 +5,9 @@ import com.elian.computeit.databinding.ItemFailedOperationBinding
 import com.elian.computeit.feature_tests.domain.model.OperationInfo
 
 @Suppress("FunctionName", "UNCHECKED_CAST")
-fun FailedOperationAdapter(list: List<OperationInfo>) = GenericAdapter(
+fun FailedOperationAdapter(items: List<OperationInfo>) = GenericAdapter(
 	inflate = ItemFailedOperationBinding::inflate,
-	list = list,
+	items = items,
 ) {
 	tvFirstNumber.text = "${it.pairOfNumbers.first}"
 	tvOperationSymbol.text = it.operationSymbol

@@ -20,13 +20,13 @@ private fun bindBaseStyle(binding: ItemLabeledDataBinding) = binding.apply2()
 
 @Suppress("FunctionName", "UNCHECKED_CAST")
 fun LabeledDataAdapter(
-	list: List<LabeledData>,
+	items: List<LabeledData>,
 	setStyle: ItemLabeledDataBinding.() -> Unit = ::bindBaseStyle,
 	beforeBind: (ItemLabeledDataBinding.() -> Unit)? = null,
 	afterBind: (ItemLabeledDataBinding.() -> Unit)? = null,
 ) = GenericAdapter(
 	inflate = ItemLabeledDataBinding::inflate,
-	list = list,
+	items = items,
 ) {
 	beforeBind?.invoke(this)
 

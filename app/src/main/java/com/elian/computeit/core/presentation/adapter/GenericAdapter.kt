@@ -11,7 +11,7 @@ import androidx.viewbinding.ViewBinding
 
 class GenericAdapter<ItemT : Any, VB : ViewBinding>(
 	private val inflate: (LayoutInflater, ViewGroup, Boolean) -> VB,
-	list: List<ItemT> = emptyList(),
+	items: List<ItemT> = emptyList(),
 	areItemsTheSame: (oldItem: ItemT, newItem: ItemT) -> Boolean = { oldItem, newItem -> oldItem == newItem },
 	areContentsTheSame: (oldItem: ItemT, newItem: ItemT) -> Boolean = { oldItem, newItem -> oldItem == newItem },
 	private val onBind: VB.(item: ItemT) -> Unit,
@@ -27,7 +27,7 @@ class GenericAdapter<ItemT : Any, VB : ViewBinding>(
 {
 	init
 	{
-		submitList(list)
+		submitList(items)
 	}
 
 	inner class ViewHolder(view: View, val binding: VB) : RecyclerView.ViewHolder(view)

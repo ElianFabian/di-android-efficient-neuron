@@ -31,7 +31,7 @@ fun TestInfoMarker(context: Context?) = GenericMarkerView(
 	} ?: emptyList()
 
 	rvLabeledData.adapter = LabeledDataAdapter(
-		list = uiLabeledData,
+		items = uiLabeledData,
 		setStyle = {
 			root.orientation = LinearLayoutCompat.HORIZONTAL
 			root.layoutParams = ViewGroup.MarginLayoutParams(root.layoutParams).apply()
