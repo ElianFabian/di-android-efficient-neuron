@@ -66,9 +66,9 @@ class PrivateProfileFragment : Fragment(R.layout.fragment_private_profile)
 		{
 			binding.tvCreatedAt.text2 = getString(R.string.feature_profile_account_created_at_PH).format(it)
 		}
-		collectLatestFlowWhenStarted(usernameState)
+		collectLatestFlowWhenStarted(usernameState.filter { it.isNotBlank() })
 		{
-			binding.tvUsername.text2 = it
+			binding.tvUsername.text2 = "@$it"
 		}
 		collectLatestFlowWhenStarted(privateProfileViewsAreGoneState)
 		{

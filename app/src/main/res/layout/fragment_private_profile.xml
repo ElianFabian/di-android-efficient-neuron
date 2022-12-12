@@ -68,7 +68,7 @@
                     android:textColor="@color/white"
                     android:textSize="@dimen/_17sdp"
                     android:visibility="gone"
-                    tools:text="User-Name"
+                    tools:text="\@User-Name"
                     tools:visibility="visible" />
 
                 <View style="@style/Utils_LinearLayoutSeparator" />
