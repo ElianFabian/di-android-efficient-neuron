@@ -148,7 +148,7 @@ class HomeFragment : Fragment(R.layout.fragment_home)
 					val valueToInt = value.toInt()
 
 					val start = valueToInt * info.speedRangeLength
-					val end = (valueToInt + 1) * info.speedRangeLength
+					val end = (valueToInt + 1) * info.speedRangeLength - 1
 
 					return "$start−$end"
 				}
