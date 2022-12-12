@@ -1,6 +1,24 @@
 package com.elian.computeit.feature_tests.domain.model
 
 data class TestListInfo(
+	val historyInfo: TestHistoryInfo,
+	val speedHistogramInfo: SpeedHistogramInfo,
+	val statsInfo: TestListStatsInfo,
+)
+
+
+data class TestHistoryInfo(
+	val opmPerTest: List<Int>,
+	val rawOpmPerTest: List<Int>,
+	val listOfTestInfo: List<TestInfo>,
+)
+
+data class SpeedHistogramInfo(
+	val speedRangeLength: Int,
+	val testsPerSpeedRange: List<Int>,
+)
+
+data class TestListStatsInfo(
 	val testsCompleted: Int,
 	val totalTime: String,
 	val operationsCompleted: Int,
@@ -10,9 +28,4 @@ data class TestListInfo(
 	val averageRawOpm: Float,
 	val maxOpm: Int,
 	val maxRawOpm: Int,
-	val opmPerTest: List<Int>,
-	val rawOpmPerTest: List<Int>,
-	val listOfTestInfo: List<TestInfo>,
-	val speedRangeLength: Int,
-	val testsPerSpeedRange: List<Int>,
 )

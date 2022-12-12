@@ -8,9 +8,7 @@ import com.elian.computeit.core.util.extensions.getValuePerSecond
 import com.elian.computeit.core.util.extensions.ifNaNReturnZero
 import com.elian.computeit.core.util.extensions.isError
 import com.elian.computeit.core.util.extensions.result
-import com.elian.computeit.feature_tests.domain.model.OperationInfo
-import com.elian.computeit.feature_tests.domain.model.TestInfo
-import com.elian.computeit.feature_tests.domain.model.TestListInfo
+import com.elian.computeit.feature_tests.domain.model.*
 import java.util.*
 
 fun OperationData.toOperationInfo() = OperationInfo(
@@ -79,19 +77,25 @@ fun List<TestData>.toTestListInfo(): TestListInfo
 	}
 
 	return TestListInfo(
-		testsCompleted = size,
-		totalTime = secondsToDHHMMSS(totalTimeInSeconds),
-		operationsCompleted = operationsCompleted,
-		correctOperationsCompleted = correctOperationsCompleted,
-		correctOperationsCompletedPercentage = (100F * correctOperationsCompleted / operationsCompleted).ifNaNReturnZero(),
-		averageOpm = opmPerTest.average().toFloat().ifNaNReturnZero(),
-		averageRawOpm = rawOpmPerTest.average().toFloat().ifNaNReturnZero(),
-		maxOpm = opmPerTest.maxOrNull() ?: 0,
-		maxRawOpm = rawOpmPerTest.maxOrNull() ?: 0,
-		opmPerTest = opmPerTest,
-		rawOpmPerTest = rawOpmPerTest,
-		listOfTestInfo = listOfTestInfo,
-		speedRangeLength = rangeLength,
-		testsPerSpeedRange = speedRanges.toList(),
+		historyInfo = TestHistoryInfo(
+			opmPerTest = opmPerTest,
+			rawOpmPerTest = rawOpmPerTest,
+			listOfTestInfo = listOfTestInfo,
+		),
+		speedHistogramInfo = SpeedHistogramInfo(
+			speedRangeLength = rangeLength,
+			testsPerSpeedRange = speedRanges.toList(),
+		),
+		statsInfo = TestListStatsInfo(
+			testsCompleted = size,
+			totalTime = secondsToDHHMMSS(totalTimeInSeconds),
+			operationsCompleted = operationsCompleted,
+			correctOperationsCompleted = correctOperationsCompleted,
+			correctOperationsCompletedPercentage = (100F * correctOperationsCompleted / operationsCompleted).ifNaNReturnZero(),
+			averageOpm = opmPerTest.average().toFloat().ifNaNReturnZero(),
+			averageRawOpm = rawOpmPerTest.average().toFloat().ifNaNReturnZero(),
+			maxOpm = opmPerTest.maxOrNull() ?: 0,
+			maxRawOpm = rawOpmPerTest.maxOrNull() ?: 0,
+		),
 	)
 }

@@ -17,8 +17,10 @@ import com.elian.computeit.core.presentation.util.viewBinding
 import com.elian.computeit.core.util.constants.TestDetailsArgKeys
 import com.elian.computeit.core.util.extensions.apply2
 import com.elian.computeit.databinding.FragmentHomeBinding
+import com.elian.computeit.feature_tests.domain.model.SpeedHistogramInfo
+import com.elian.computeit.feature_tests.domain.model.TestHistoryInfo
 import com.elian.computeit.feature_tests.domain.model.TestInfo
-import com.elian.computeit.feature_tests.domain.model.TestListInfo
+import com.elian.computeit.feature_tests.domain.model.TestListStatsInfo
 import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.Entry
@@ -61,14 +63,14 @@ class HomeFragment : Fragment(R.layout.fragment_home)
 	{
 		collectLatestFlowWhenStarted(infoState.filterNotNull())
 		{
-			initTestHistoryChart(it)
-			initSpeedHistogramChart(it)
-			initTextInfo(it)
+			initTestHistoryChart(it.historyInfo)
+			initSpeedHistogramChart(it.speedHistogramInfo)
+			initTextInfo(it.statsInfo)
 		}
 		collectFlowWhenStarted(isLoadingState) { binding.lpiIsLoading.isGone = !it }
 	}
 
-	private fun initTestHistoryChart(info: TestListInfo) = info.apply2()
+	private fun initTestHistoryChart(info: TestHistoryInfo) = info.apply2()
 	{
 		if (opmPerTest.isNotEmpty() || rawOpmPerTest.isNotEmpty())
 		{
@@ -76,14 +78,14 @@ class HomeFragment : Fragment(R.layout.fragment_home)
 				lineDataSet(
 					labelResId = R.string.generic_raw,
 					lineAndCirclesColorResId = R.color.chart_secondary,
-					entries = rawOpmPerTest.toEntries(listOfData = info.listOfTestInfo),
+					entries = rawOpmPerTest.toEntries(listOfData = listOfTestInfo),
 				) {
 					setDrawVerticalHighlightIndicator(true)
 					highLightColor = getColorCompat(R.color.blue_200)
 				},
 				lineDataSet(
 					label = getString(R.string.generic_opm),
-					entries = opmPerTest.toEntries(listOfData = info.listOfTestInfo),
+					entries = opmPerTest.toEntries(listOfData = listOfTestInfo),
 				) {
 					setDrawVerticalHighlightIndicator(true)
 					highLightColor = getColorCompat(R.color.blue_200)
@@ -132,7 +134,7 @@ class HomeFragment : Fragment(R.layout.fragment_home)
 		})
 	}
 
-	private fun initSpeedHistogramChart(info: TestListInfo) = info.apply2()
+	private fun initSpeedHistogramChart(info: SpeedHistogramInfo) = info.apply2()
 	{
 		if (info.testsPerSpeedRange.isNotEmpty())
 		{
@@ -168,7 +170,7 @@ class HomeFragment : Fragment(R.layout.fragment_home)
 		binding.bcSpeedHistogram.isVisible = true
 	}
 
-	private fun initTextInfo(info: TestListInfo) = info.apply2()
+	private fun initTextInfo(info: TestListStatsInfo) = info.apply2()
 	{
 		val listOfUiLabeledData = listOf(
 			LabeledData(
