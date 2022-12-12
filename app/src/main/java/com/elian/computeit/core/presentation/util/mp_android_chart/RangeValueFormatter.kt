@@ -11,8 +11,8 @@ class RangeValueFormatter(
 	{
 		val valueToInt = value.toInt()
 
-		val start = valueToInt * rangeLength
-		val end = (valueToInt + 1) * rangeLength - 1
+		val start = rangeLength * valueToInt
+		val end = rangeLength * (valueToInt + 1) - 1
 
 		return when
 		{
