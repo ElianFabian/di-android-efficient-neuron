@@ -40,18 +40,22 @@ fun TestData.toTestInfo(): TestInfo
 	val errorYValuePercentage = 0.5F
 
 	return TestInfo(
-		date = defaultFullDateFormat.format(Date(dateUnix)),
-		opm = opmPerSecond.values.lastOrNull() ?: 0,
-		rawOpm = rawOpmPerSecond.values.lastOrNull() ?: 0,
-		maxOpm = opmPerSecond.values.maxOfOrNull { it } ?: 0,
-		maxRawOpm = rawOpmPerSecond.values.maxOfOrNull { it } ?: 0,
-		timeInSeconds = "$timeInSeconds s",
-		operationCount = listOfOperationData.size,
-		errorCount = listOfOperationData.count { it.isError },
-		opmPerSecond = opmPerSecond,
-		rawOpmPerSecond = rawOpmPerSecond,
-		errorsAtSecond = listOfOperationData.filter { it.millisSinceStart >= 1000 && it.isError }.map { it.millisSinceStart / 1000F },
-		errorsYValue = (errorYValuePercentage * (minOf(minOpm, minRawOpm) + maxOf(maxOpm, maxRawOpm))).toInt(),
+		chartInfo = TestChartInfo(
+			opmPerSecond = opmPerSecond,
+			rawOpmPerSecond = rawOpmPerSecond,
+			errorsAtSecond = listOfOperationData.filter { it.millisSinceStart >= 1000 && it.isError }.map { it.millisSinceStart / 1000F },
+			errorsYValue = (errorYValuePercentage * (minOf(minOpm, minRawOpm) + maxOf(maxOpm, maxRawOpm))).toInt(),
+		),
+		statsInfo = TestStatsInfo(
+			date = defaultFullDateFormat.format(Date(dateUnix)),
+			opm = opmPerSecond.values.lastOrNull() ?: 0,
+			rawOpm = rawOpmPerSecond.values.lastOrNull() ?: 0,
+			maxOpm = opmPerSecond.values.maxOfOrNull { it } ?: 0,
+			maxRawOpm = rawOpmPerSecond.values.maxOfOrNull { it } ?: 0,
+			timeInSeconds = "$timeInSeconds s",
+			operationCount = listOfOperationData.size,
+			errorCount = listOfOperationData.count { it.isError },
+		),
 		listOfFailedOperationInfo = listOfOperationData.filter { it.isError }.map { it.toOperationInfo() },
 	)
 }
@@ -63,8 +67,8 @@ fun List<TestData>.toTestListInfo(): TestListInfo
 	val correctOperationsCompleted = sumOf { it.listOfOperationData.count { data -> !data.isError } }
 
 	val listOfTestInfo = map { it.toTestInfo() }
-	val opmPerTest = listOfTestInfo.map { it.opm }
-	val rawOpmPerTest = listOfTestInfo.map { it.rawOpm }
+	val opmPerTest = listOfTestInfo.map { it.statsInfo.opm }
+	val rawOpmPerTest = listOfTestInfo.map { it.statsInfo.rawOpm }
 
 	val maxOpm = opmPerTest.maxOrNull() ?: 0
 	val rangeLength = 10 // In future I will try to make this more dynamic to make the user choose the length in real time

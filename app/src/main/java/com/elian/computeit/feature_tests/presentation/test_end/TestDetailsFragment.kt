@@ -17,7 +17,9 @@ import com.elian.computeit.core.presentation.util.viewBinding
 import com.elian.computeit.core.util.constants.TestDetailsArgKeys
 import com.elian.computeit.core.util.extensions.apply2
 import com.elian.computeit.databinding.FragmentTestDetailsBinding
+import com.elian.computeit.feature_tests.domain.model.TestChartInfo
 import com.elian.computeit.feature_tests.domain.model.TestInfo
+import com.elian.computeit.feature_tests.domain.model.TestStatsInfo
 import com.elian.computeit.feature_tests.presentation.test_end.adapter.FailedOperationAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -39,8 +41,8 @@ class TestDetailsFragment : Fragment(R.layout.fragment_test_details)
 	{
 		val info = arguments?.getParcelable<TestInfo>(TestDetailsArgKeys.TestInfo)!!
 
-		initLineChart(info)
-		initTextInfo(info)
+		initTestChart(info.chartInfo)
+		initStats(info.statsInfo)
 
 		if (info.listOfFailedOperationInfo.isEmpty())
 		{
@@ -53,7 +55,7 @@ class TestDetailsFragment : Fragment(R.layout.fragment_test_details)
 		btnContinue.isGone = arguments?.getBoolean(TestDetailsArgKeys.HideContinueButton) ?: false
 	}
 
-	private fun initLineChart(info: TestInfo)
+	private fun initTestChart(info: TestChartInfo)
 	{
 		val lineDataSets = arrayOf(
 			lineDataSet(
@@ -84,7 +86,7 @@ class TestDetailsFragment : Fragment(R.layout.fragment_test_details)
 		binding.lytTestChart.lineChart.avoidConflictsWithScroll(binding.root)
 	}
 
-	private fun initTextInfo(info: TestInfo) = info.apply2()
+	private fun initStats(info: TestStatsInfo) = info.apply2()
 	{
 		val listOfUiLabeledData = listOf(
 			LabeledData(

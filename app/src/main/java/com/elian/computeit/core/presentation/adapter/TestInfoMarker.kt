@@ -18,7 +18,7 @@ fun TestInfoMarker(context: Context?) = GenericMarkerView(
 	inflate = MarkerTestInfoBinding::inflate,
 ) { entry, _ ->
 
-	val uiLabeledData = (entry.data as? TestInfo)?.run()
+	val uiLabeledData = (entry.data as? TestInfo)?.statsInfo?.run()
 	{
 		listOf(
 			LabeledData(
