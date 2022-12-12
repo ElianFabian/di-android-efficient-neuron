@@ -5,7 +5,7 @@ import android.view.View
 import androidx.core.view.isGone
 import androidx.fragment.app.Fragment
 import com.elian.computeit.R
-import com.elian.computeit.core.presentation.adapter.LabeledDataAdapter
+import com.elian.computeit.core.presentation.adapter.MainLabeledDataAdapter
 import com.elian.computeit.core.presentation.model.withLabel
 import com.elian.computeit.core.presentation.util.extensions.avoidConflictsWithScroll
 import com.elian.computeit.core.presentation.util.extensions.navigate
@@ -97,7 +97,7 @@ class TestDetailsFragment : Fragment(R.layout.fragment_test_details)
 			errorCount withLabel R.string.generic_errors,
 		)
 
-		binding.lytTextInfoList.rvLabeledData.adapter = LabeledDataAdapter(listOfUiLabeledData)
+		binding.lytTextInfoList.rvLabeledData.adapter = MainLabeledDataAdapter(listOfUiLabeledData)
 	}
 
 	private fun initFailedOperationsAdapter(info: TestInfo)

@@ -8,7 +8,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.elian.computeit.R
-import com.elian.computeit.core.presentation.adapter.LabeledDataAdapter
+import com.elian.computeit.core.presentation.adapter.MainLabeledDataAdapter
 import com.elian.computeit.core.presentation.adapter.TestInfoMarker
 import com.elian.computeit.core.presentation.model.withLabel
 import com.elian.computeit.core.presentation.util.extensions.*
@@ -183,6 +183,6 @@ class HomeFragment : Fragment(R.layout.fragment_home)
 			maxRawOpm withLabel R.string.frgHome_highestRawOpm,
 		)
 
-		binding.lytTextInfoList.rvLabeledData.adapter = LabeledDataAdapter(listOfUiLabeledData)
+		binding.lytTextInfoList.rvLabeledData.adapter = MainLabeledDataAdapter(listOfUiLabeledData)
 	}
 }

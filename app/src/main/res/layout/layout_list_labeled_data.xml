@@ -21,6 +21,6 @@
 		android:padding="@dimen/_10sdp"
 		app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
 		tools:itemCount="5"
-		tools:listitem="@layout/item_labeled_data" />
+		tools:listitem="@layout/item_main_labeled_data" />
 
 </com.google.android.material.card.MaterialCardView>

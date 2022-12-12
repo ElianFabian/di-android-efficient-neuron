@@ -1,29 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<!--This view is used when labeled data is needed-->
-<!--To give style you can do it programmatically with TextAppearance-->
 <androidx.appcompat.widget.LinearLayoutCompat
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginVertical="@dimen/_5sdp"
     android:background="@color/transparent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:background="@color/background_card">
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tvLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:includeFontPadding="false"
-        tools:text="Label"
-        tools:textColor="@color/black" />
+        android:textAppearance="@style/TextAppearance_Label_Main"
+        tools:text="Label" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tvValue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:includeFontPadding="false"
-        tools:text="60"
-        tools:textColor="@color/black" />
+        android:textAppearance="@style/TextAppearance_Value_Main"
+        tools:text="60" />
 
 </androidx.appcompat.widget.LinearLayoutCompat>

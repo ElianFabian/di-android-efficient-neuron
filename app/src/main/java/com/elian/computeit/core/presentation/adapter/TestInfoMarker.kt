@@ -1,12 +1,10 @@
 package com.elian.computeit.core.presentation.adapter
 
 import android.content.Context
-import android.graphics.Typeface
-import android.view.ViewGroup
-import androidx.appcompat.widget.LinearLayoutCompat
 import com.elian.computeit.R
 import com.elian.computeit.core.presentation.model.withLabel
 import com.elian.computeit.core.presentation.util.mp_android_chart.GenericMarkerView
+import com.elian.computeit.databinding.ItemLabeledDataOfTestInfoMarkerBinding
 import com.elian.computeit.databinding.MarkerTestInfoBinding
 import com.elian.computeit.feature_tests.domain.model.TestInfo
 import com.github.mikephil.charting.utils.Utils
@@ -30,21 +28,12 @@ fun TestInfoMarker(context: Context?) = GenericMarkerView(
 		)
 	} ?: emptyList()
 
-	rvLabeledData.adapter = LabeledDataAdapter(
+	rvLabeledData.adapter = BaseLabeledDataAdapter(
 		items = uiLabeledData,
-		setStyle = {
-			root.orientation = LinearLayoutCompat.HORIZONTAL
-			root.layoutParams = ViewGroup.MarginLayoutParams(root.layoutParams).apply()
-			{
-				topMargin = 5
-				bottomMargin = 5
-			}
-
-			tvLabel.setTypeface(null, Typeface.BOLD)
-		},
-		afterBind = {
-			tvLabel.text = "${tvLabel.text}: "
-		},
+		inflate = ItemLabeledDataOfTestInfoMarkerBinding::inflate,
+		getLabel = { tvLabel },
+		getValue = { tvValue },
+		afterBind = { tvLabel.text = "${tvLabel.text}: " },
 	)
 }.apply()
 {
