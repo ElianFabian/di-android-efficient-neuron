@@ -136,7 +136,7 @@ class HomeFragment : Fragment(R.layout.fragment_home)
 
 	private fun initSpeedHistogramChart(info: SpeedHistogramInfo) = info.apply2()
 	{
-		if (info.testsPerSpeedRange.isNotEmpty())
+		if (testsPerSpeedRange.isNotEmpty())
 		{
 			binding.bcSpeedHistogram.avoidConflictsWithScroll(binding.root)
 			binding.bcSpeedHistogram.applyDefault()
@@ -147,8 +147,8 @@ class HomeFragment : Fragment(R.layout.fragment_home)
 				{
 					val valueToInt = value.toInt()
 
-					val start = valueToInt * info.speedRangeLength
-					val end = (valueToInt + 1) * info.speedRangeLength - 1
+					val start = valueToInt * speedRangeLength
+					val end = (valueToInt + 1) * speedRangeLength - 1
 
 					return "$start−$end"
 				}
@@ -156,7 +156,7 @@ class HomeFragment : Fragment(R.layout.fragment_home)
 
 			binding.bcSpeedHistogram.data = BarData(
 				BarDataSet(
-					info.testsPerSpeedRange.toBarEntries(),
+					testsPerSpeedRange.toBarEntries(),
 					getString(R.string.generic_tests),
 				).apply { color = getColorCompat(R.color.teal_200) }
 			)
