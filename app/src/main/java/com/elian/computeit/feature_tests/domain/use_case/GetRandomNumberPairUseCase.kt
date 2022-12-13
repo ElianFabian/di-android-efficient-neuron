@@ -34,11 +34,11 @@ class GetRandomNumberPair @Inject constructor(
 	 */
 	operator fun invoke(oldPair: NumberPair? = null): NumberPair
 	{
-		if (oldPair == null) return getRandomPair()
+		if (oldPair == null) return getSpecificRandomPair()
 
 		while (true)
 		{
-			val newPair = getRandomPair()
+			val newPair = getSpecificRandomPair()
 
 			val isDifferent = newPair.first != oldPair.first || newPair.second != oldPair.second
 			val isDifferentInReverse = newPair.first != oldPair.second || newPair.second != oldPair.first
@@ -47,7 +47,7 @@ class GetRandomNumberPair @Inject constructor(
 		}
 	}
 
-	private fun getRandomPair(): NumberPair
+	private fun getSpecificRandomPair(): NumberPair
 	{
 		if (_operation == Operation.Division) return _divisiblePairs.random(randomSeed)
 
@@ -60,15 +60,15 @@ class GetRandomNumberPair @Inject constructor(
 
 		return getRandomNumberPair(_range)
 	}
-
-	private fun getRandomNumberPair(range: IntRange): NumberPair
-	{
-		val first = range.random(randomSeed)
-		val second = range.random(randomSeed)
-
-		return NumberPair(first, second)
-	}
 }
 
 
 private val randomSeed = Random(System.currentTimeMillis())
+
+private fun getRandomNumberPair(range: IntRange): NumberPair
+{
+	val first = range.random(randomSeed)
+	val second = range.random(randomSeed)
+
+	return NumberPair(first, second)
+}
