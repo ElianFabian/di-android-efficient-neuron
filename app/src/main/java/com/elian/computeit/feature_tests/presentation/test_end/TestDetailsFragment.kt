@@ -87,7 +87,7 @@ class TestDetailsFragment : Fragment(R.layout.fragment_test_details)
 
 	private fun initStats(info: TestStatsInfo) = info.apply2()
 	{
-		val listOfUiLabeledData = listOf(
+		val listOfLabeledData = listOf(
 			R.string.generic_operations labelOf operationCount,
 			R.string.generic_totalTime labelOf timeInSeconds,
 			R.string.generic_opm labelOf opm,
@@ -97,7 +97,7 @@ class TestDetailsFragment : Fragment(R.layout.fragment_test_details)
 			R.string.generic_errors labelOf errorCount,
 		)
 
-		binding.lytTextInfoList.rvLabeledData.adapter = MainLabeledDataAdapter(listOfUiLabeledData)
+		binding.lytTextInfoList.rvLabeledData.adapter = MainLabeledDataAdapter(listOfLabeledData)
 	}
 
 	private fun initFailedOperationsAdapter(info: TestInfo)

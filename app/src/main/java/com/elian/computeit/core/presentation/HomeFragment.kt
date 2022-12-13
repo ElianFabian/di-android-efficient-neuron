@@ -194,7 +194,7 @@ class HomeFragment : Fragment(R.layout.fragment_home)
 
 	private fun initTextInfo(info: TestListStatsInfo) = info.apply2()
 	{
-		val listOfUiLabeledData = listOf(
+		val listOfLabeledData = listOf(
 			R.string.frgHome_testsCompleted labelOf testsCompleted,
 			R.string.generic_totalTime labelOf totalTime,
 			R.string.frgHome_operationsCompleted labelOf operationsCompleted,
@@ -205,6 +205,6 @@ class HomeFragment : Fragment(R.layout.fragment_home)
 			R.string.frgHome_highestRawOpm labelOf maxRawOpm,
 		)
 
-		binding.lytTextInfoList.rvLabeledData.adapter = MainLabeledDataAdapter(listOfUiLabeledData)
+		binding.lytTextInfoList.rvLabeledData.adapter = MainLabeledDataAdapter(listOfLabeledData)
 	}
 }
