@@ -1,4 +1,4 @@
-package com.elian.computeit.feature_tests.presentation.test_end
+package com.elian.computeit.feature_tests.presentation.test_details
 
 import android.os.Bundle
 import android.view.View
@@ -20,7 +20,7 @@ import com.elian.computeit.databinding.FragmentTestDetailsBinding
 import com.elian.computeit.feature_tests.domain.model.TestChartInfo
 import com.elian.computeit.feature_tests.domain.model.TestInfo
 import com.elian.computeit.feature_tests.domain.model.TestStatsInfo
-import com.elian.computeit.feature_tests.presentation.test_end.adapter.FailedOperationAdapter
+import com.elian.computeit.feature_tests.presentation.test_details.adapter.FailedOperationAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

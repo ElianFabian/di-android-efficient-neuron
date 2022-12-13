@@ -1,4 +1,4 @@
-package com.elian.computeit.feature_tests.presentation.test_end.adapter
+package com.elian.computeit.feature_tests.presentation.test_details.adapter
 
 import com.elian.computeit.core.presentation.adapter.GenericAdapter
 import com.elian.computeit.databinding.ItemFailedOperationBinding

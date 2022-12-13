@@ -70,7 +70,7 @@
 	</fragment>
 	<fragment
 		android:id="@+id/testDetailsFragment"
-		android:name="com.elian.computeit.feature_tests.presentation.test_end.TestDetailsFragment"
+		android:name="com.elian.computeit.feature_tests.presentation.test_details.TestDetailsFragment"
 		android:label="fragment_test_end"
 		tools:layout="@layout/fragment_test_details">
 		<action
