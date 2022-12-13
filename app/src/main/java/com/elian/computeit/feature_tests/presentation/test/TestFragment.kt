@@ -160,6 +160,7 @@ class TestFragment : Fragment(R.layout.fragment_test)
 				}
 				is OnTimerTickInInfiniteMode ->
 				{
+					// this may be used in future
 				}
 				is OnTimerFinish             ->
 				{
