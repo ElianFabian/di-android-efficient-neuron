@@ -53,6 +53,13 @@ class GetRandomNumberPair @Inject constructor(
 	{
 		if (_operation == Operation.Division) return _divisiblePairs.random(randomSeed)
 
+		if (_operation == Operation.Subtraction) while (true)
+		{
+			val newPair = getRandomNumberPair(_range)
+
+			if (newPair.first != newPair.second) return newPair
+		}
+
 		return getRandomNumberPair(_range)
 	}
 
