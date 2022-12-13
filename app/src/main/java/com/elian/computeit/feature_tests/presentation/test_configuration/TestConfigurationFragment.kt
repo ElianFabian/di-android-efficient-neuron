@@ -51,18 +51,18 @@ class TestConfigurationFragment : Fragment(R.layout.fragment_test_configuration)
 			}
 		}
 
+		tietStart.addTextChangedListener { viewModel.onAction(EnterStart(it.toString().toIntOrNull())) }
+		tietEnd.addTextChangedListener { viewModel.onAction(EnterEnd(it.toString().toIntOrNull())) }
+		tietTime.addTextChangedListener { viewModel.onAction(EnterTime(it.toString().toIntOrNull())) }
+
+		btnStartTest.setOnClickListener { viewModel.onAction(StartTest) }
+
 		// This is to avoid problems when saving the RadioButton checked state after navigating up from test to here
 		if (!::_lastCheckedOperationRadioButton.isInitialized)
 		{
 			_lastCheckedOperationRadioButton = rgOperationType.checkedRadioButton!!
 		}
 		_lastCheckedOperationRadioButton.performClick()
-
-		tietStart.addTextChangedListener { viewModel.onAction(EnterStart(it.toString().toIntOrNull())) }
-		tietEnd.addTextChangedListener { viewModel.onAction(EnterEnd(it.toString().toIntOrNull())) }
-		tietTime.addTextChangedListener { viewModel.onAction(EnterTime(it.toString().toIntOrNull())) }
-
-		btnStartTest.setOnClickListener { viewModel.onAction(StartTest) }
 	}
 
 	private fun subscribeToEvents() = viewModel.apply2()
