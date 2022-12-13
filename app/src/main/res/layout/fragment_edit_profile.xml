@@ -94,7 +94,6 @@
                     android:imeOptions="actionDone"
                     android:inputType="text"
                     android:maxLength="30"
-                    android:maxLines="2"
                     android:textColor="@color/white"
                     tools:text="@string/generic_username" />
             </com.google.android.material.textfield.TextInputLayout>
