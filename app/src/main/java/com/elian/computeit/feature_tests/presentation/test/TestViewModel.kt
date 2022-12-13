@@ -135,7 +135,7 @@ class TestViewModel @Inject constructor(
 		_eventFlow.send(OnGoToTestDetails(
 			args = listOf(TestDetailsArgKeys.TestInfo to testData.toTestInfo())
 		))
-		
+
 		// This is to avoid the cancellation of the viewModelScope
 		MainScope().launch(Dispatchers.IO)
 		{

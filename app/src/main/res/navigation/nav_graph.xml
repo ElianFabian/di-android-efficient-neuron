@@ -1,109 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation
-	xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:app="http://schemas.android.com/apk/res-auto"
-	xmlns:tools="http://schemas.android.com/tools"
-	android:id="@+id/nav_graph"
-	app:startDestination="@id/homeFragment">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment">
 
-	<fragment
-		android:id="@+id/homeFragment"
-		android:name="com.elian.computeit.core.presentation.HomeFragment"
-		android:label="fragment_home"
-		tools:layout="@layout/fragment_home">
-		<action
-			android:id="@+id/action_homeFragment_to_testConfigurationFragment"
-			app:destination="@id/testConfigurationFragment"
-			app:enterAnim="@anim/enter_from_end"
-			app:exitAnim="@anim/exit_to_start"
-			app:popEnterAnim="@anim/enter_from_start"
-			app:popExitAnim="@anim/exit_to_end" />
-		<action
-			android:id="@+id/action_homeFragment_to_settingsFragment"
-			app:destination="@id/settingsFragment" />
-		<action
-			android:id="@+id/action_homeFragment_to_privateProfileFragment"
-			app:destination="@id/privateProfileFragment"
-			app:enterAnim="@anim/enter_from_bottom"
-			app:exitAnim="@anim/exit_to_top"
-			app:popEnterAnim="@anim/enter_from_top"
-			app:popExitAnim="@anim/exit_to_bottom" />
-		<action
-			android:id="@+id/action_homeFragment_to_tipsFragment"
-			app:destination="@id/tipsFragment" />
-		<action
-			android:id="@+id/action_homeFragment_to_testDetailsFragment"
-			app:destination="@id/testDetailsFragment"
-			app:enterAnim="@android:anim/fade_in"
-			app:exitAnim="@android:anim/fade_out"
-			app:popEnterAnim="@android:anim/fade_in"
-			app:popExitAnim="@android:anim/fade_out" />
-	</fragment>
-	<fragment
-		android:id="@+id/testConfigurationFragment"
-		android:name="com.elian.computeit.feature_tests.presentation.test_configuration.TestConfigurationFragment"
-		android:label="fragment_test_configuration"
-		tools:layout="@layout/fragment_test_configuration">
-		<action
-			android:id="@+id/action_testConfigurationFragment_to_testFragment"
-			app:destination="@id/testFragment"
-			app:enterAnim="@anim/enter_from_end"
-			app:exitAnim="@anim/exit_to_start"
-			app:popEnterAnim="@anim/enter_from_start"
-			app:popExitAnim="@anim/exit_to_end" />
-	</fragment>
-	<fragment
-		android:id="@+id/testFragment"
-		android:name="com.elian.computeit.feature_tests.presentation.test.TestFragment"
-		android:label="fragment_test"
-		tools:layout="@layout/fragment_test">
-		<action
-			android:id="@+id/action_testFragment_to_testDetailsFragment"
-			app:destination="@id/testDetailsFragment"
-			app:enterAnim="@android:anim/fade_in"
-			app:exitAnim="@android:anim/fade_out"
-			app:launchSingleTop="false"
-			app:popEnterAnim="@android:anim/fade_out"
-			app:popExitAnim="@android:anim/fade_in"
-			app:popUpTo="@id/homeFragment"
-			app:popUpToInclusive="true" />
-	</fragment>
-	<fragment
-		android:id="@+id/testDetailsFragment"
-		android:name="com.elian.computeit.feature_tests.presentation.test_details.TestDetailsFragment"
-		android:label="fragment_test_end"
-		tools:layout="@layout/fragment_test_details">
-		<action
-			android:id="@+id/action_testDetailsFragment_to_homeFragment"
-			app:destination="@id/homeFragment"
-			app:enterAnim="@android:anim/fade_in"
-			app:exitAnim="@android:anim/fade_out"
-			app:popUpTo="@id/homeFragment"
-			app:popUpToInclusive="true" />
-	</fragment>
-	<fragment
-		android:id="@+id/settingsFragment"
-		android:name="com.elian.computeit.feature_settings.presentation.SettingsFragment"
-		android:label="SettingsFragment" />
-	<fragment
-		android:id="@+id/privateProfileFragment"
-		android:name="com.elian.computeit.feature_profile.presentation.private_profile.PrivateProfileFragment"
-		android:label="PrivateProfileFragment">
-		<action
-			android:id="@+id/action_privateProfileFragment_to_editProfileFragment"
-			app:destination="@id/editProfileFragment"
-			app:enterAnim="@anim/enter_from_end"
-			app:exitAnim="@anim/exit_to_start"
-			app:popEnterAnim="@anim/enter_from_start"
-			app:popExitAnim="@anim/exit_to_end" />
-	</fragment>
-	<fragment
-		android:id="@+id/tipsFragment"
-		android:name="com.elian.computeit.feature_tips.presentation.tips.TipsFragment"
-		android:label="TipsFragment"
-		tools:layout="@layout/fragment_tips" />
-	<fragment
-		android:id="@+id/editProfileFragment"
-		android:name="com.elian.computeit.feature_profile.presentation.edit_profile.EditProfileFragment"
-		android:label="EditProfileFragment" />
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.elian.computeit.core.presentation.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_homeFragment_to_testConfigurationFragment"
+            app:destination="@id/testConfigurationFragment"
+            app:enterAnim="@anim/enter_from_end"
+            app:exitAnim="@anim/exit_to_start"
+            app:popEnterAnim="@anim/enter_from_start"
+            app:popExitAnim="@anim/exit_to_end" />
+        <action
+            android:id="@+id/action_homeFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_privateProfileFragment"
+            app:destination="@id/privateProfileFragment"
+            app:enterAnim="@anim/enter_from_bottom"
+            app:exitAnim="@anim/exit_to_top"
+            app:popEnterAnim="@anim/enter_from_top"
+            app:popExitAnim="@anim/exit_to_bottom" />
+        <action
+            android:id="@+id/action_homeFragment_to_tipsFragment"
+            app:destination="@id/tipsFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_testDetailsFragment"
+            app:destination="@id/testDetailsFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
+    </fragment>
+    <fragment
+        android:id="@+id/testConfigurationFragment"
+        android:name="com.elian.computeit.feature_tests.presentation.test_configuration.TestConfigurationFragment"
+        android:label="fragment_test_configuration"
+        tools:layout="@layout/fragment_test_configuration">
+        <action
+            android:id="@+id/action_testConfigurationFragment_to_testFragment"
+            app:destination="@id/testFragment"
+            app:enterAnim="@anim/enter_from_end"
+            app:exitAnim="@anim/exit_to_start"
+            app:popEnterAnim="@anim/enter_from_start"
+            app:popExitAnim="@anim/exit_to_end" />
+    </fragment>
+    <fragment
+        android:id="@+id/testFragment"
+        android:name="com.elian.computeit.feature_tests.presentation.test.TestFragment"
+        android:label="fragment_test"
+        tools:layout="@layout/fragment_test">
+        <action
+            android:id="@+id/action_testFragment_to_testDetailsFragment"
+            app:destination="@id/testDetailsFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:launchSingleTop="false"
+            app:popEnterAnim="@android:anim/fade_out"
+            app:popExitAnim="@android:anim/fade_in"
+            app:popUpTo="@id/homeFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/testDetailsFragment"
+        android:name="com.elian.computeit.feature_tests.presentation.test_details.TestDetailsFragment"
+        android:label="fragment_test_end"
+        tools:layout="@layout/fragment_test_details">
+        <action
+            android:id="@+id/action_testDetailsFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popUpTo="@id/homeFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.elian.computeit.feature_settings.presentation.SettingsFragment"
+        android:label="SettingsFragment" />
+    <fragment
+        android:id="@+id/privateProfileFragment"
+        android:name="com.elian.computeit.feature_profile.presentation.private_profile.PrivateProfileFragment"
+        android:label="PrivateProfileFragment">
+        <action
+            android:id="@+id/action_privateProfileFragment_to_editProfileFragment"
+            app:destination="@id/editProfileFragment"
+            app:enterAnim="@anim/enter_from_end"
+            app:exitAnim="@anim/exit_to_start"
+            app:popEnterAnim="@anim/enter_from_start"
+            app:popExitAnim="@anim/exit_to_end" />
+    </fragment>
+    <fragment
+        android:id="@+id/tipsFragment"
+        android:name="com.elian.computeit.feature_tips.presentation.tips.TipsFragment"
+        android:label="TipsFragment"
+        tools:layout="@layout/fragment_tips" />
+    <fragment
+        android:id="@+id/editProfileFragment"
+        android:name="com.elian.computeit.feature_profile.presentation.edit_profile.EditProfileFragment"
+        android:label="EditProfileFragment" />
 </navigation>

@@ -37,7 +37,7 @@ fun BarChart.applyDefaultStyle(block: (BarChart.() -> Unit)? = null): BarChart
 	{
 		this.textColor = Color.WHITE
 	}
-	
+
 	axisLeft.axisMinimum = 0F
 
 	block?.invoke(this)

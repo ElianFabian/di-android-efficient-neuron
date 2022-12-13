@@ -112,8 +112,8 @@
                 android:id="@+id/tvBiography"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/textSize_medium2"
                 android:textColor="@color/white"
+                android:textSize="@dimen/textSize_medium2"
                 android:visibility="gone"
                 tools:text="Hello world!"
                 tools:visibility="visible" />

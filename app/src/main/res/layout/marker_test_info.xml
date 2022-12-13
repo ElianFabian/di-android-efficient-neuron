@@ -12,9 +12,9 @@
         android:id="@+id/rvLabeledData"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_10sdp"
         android:background="@color/blue_400"
         android:nestedScrollingEnabled="false"
-        android:layout_margin="@dimen/_10sdp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:itemCount="5"
         tools:listitem="@layout/item_labeled_data_of_test_info_marker" />

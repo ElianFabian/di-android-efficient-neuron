@@ -29,7 +29,7 @@ class GenericMarkerView<VB : ViewBinding>(
 	private val mOffset2 = MPPointF()
 	private var mWeakChart: WeakReference<Chart<*>>? = null
 	private lateinit var _binding: VB
-	
+
 	val binding get() = _binding
 
 	var chartView: Chart<*>?

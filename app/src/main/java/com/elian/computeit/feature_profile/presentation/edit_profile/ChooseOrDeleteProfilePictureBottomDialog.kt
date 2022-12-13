@@ -21,7 +21,7 @@ class ChooseOrDeleteProfilePictureBottomDialog(
 	private val getContent = registerForActivityResult(ActivityResultContracts.GetContent())
 	{
 		onPictureSelected(it)
-		
+
 		dismiss()
 	}
 	private val requestPermission = registerForActivityResult(ActivityResultContracts.RequestPermission())

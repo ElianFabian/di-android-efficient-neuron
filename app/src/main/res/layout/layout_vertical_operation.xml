@@ -1,54 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <androidx.appcompat.widget.LinearLayoutCompat
-	xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:tools="http://schemas.android.com/tools"
-	android:layout_width="wrap_content"
-	android:layout_height="wrap_content"
-	android:orientation="horizontal">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
 
-	<com.google.android.material.textview.MaterialTextView
-		android:id="@+id/tvSymbol"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_gravity="center"
-		android:includeFontPadding="false"
-		android:textColor="@color/operation_symbol"
-		android:textSize="@dimen/textSize_large2"
-		android:textStyle="bold"
-		tools:text="+" />
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tvSymbol"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:includeFontPadding="false"
+        android:textColor="@color/operation_symbol"
+        android:textSize="@dimen/textSize_large2"
+        android:textStyle="bold"
+        tools:text="+" />
 
-	<androidx.appcompat.widget.LinearLayoutCompat
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:orientation="vertical">
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-		<com.google.android.material.textview.MaterialTextView
-			android:id="@+id/tvFirstNumber"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_gravity="end"
-			android:includeFontPadding="false"
-			android:minEms="2"
-			android:text="\?"
-			android:textAlignment="textEnd"
-			android:textColor="@color/white"
-			android:textSize="@dimen/textSize_xlarge1"
-			android:textStyle="bold" />
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvFirstNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:includeFontPadding="false"
+            android:minEms="2"
+            android:text="\?"
+            android:textAlignment="textEnd"
+            android:textColor="@color/white"
+            android:textSize="@dimen/textSize_xlarge1"
+            android:textStyle="bold" />
 
-		<com.google.android.material.textview.MaterialTextView
-			android:id="@+id/tvSecondNumber"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_gravity="end"
-			android:includeFontPadding="false"
-			android:minEms="2"
-			android:text="\?"
-			android:textAlignment="textEnd"
-			android:textColor="@color/white"
-			android:textSize="@dimen/textSize_xlarge1"
-			android:textStyle="bold" />
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvSecondNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:includeFontPadding="false"
+            android:minEms="2"
+            android:text="\?"
+            android:textAlignment="textEnd"
+            android:textColor="@color/white"
+            android:textSize="@dimen/textSize_xlarge1"
+            android:textStyle="bold" />
 
-	</androidx.appcompat.widget.LinearLayoutCompat>
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
 </androidx.appcompat.widget.LinearLayoutCompat>
