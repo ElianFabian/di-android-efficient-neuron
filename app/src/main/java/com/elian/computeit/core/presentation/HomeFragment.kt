@@ -22,7 +22,6 @@ import com.elian.computeit.feature_tests.domain.model.TestInfo
 import com.elian.computeit.feature_tests.domain.model.TestListInfo
 import com.elian.computeit.feature_tests.domain.model.TestListStatsInfo
 import com.github.mikephil.charting.data.BarData
-import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.highlight.Highlight
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener
@@ -135,8 +134,6 @@ class HomeFragment : Fragment(R.layout.fragment_home)
 	{
 		val chartView = binding.bcSpeedHistogram
 
-		println("$$$$ ${speedHistogramInfo.testsPerSpeedRange}")
-		
 		if (speedHistogramInfo.testsPerSpeedRange.isNotEmpty())
 		{
 			chartView.apply()
@@ -151,10 +148,10 @@ class HomeFragment : Fragment(R.layout.fragment_home)
 				}
 
 				data = BarData(
-					BarDataSet(
-						speedHistogramInfo.testsPerSpeedRange.toBarEntries(),
-						getString(R.string.generic_tests),
-					).apply { color = getColorCompat(R.color.teal_200) }
+					barDataSet(
+						entries = speedHistogramInfo.testsPerSpeedRange.toBarEntries(),
+						labelResId = R.string.generic_tests,
+					),
 				)
 			}
 
@@ -176,15 +173,15 @@ class HomeFragment : Fragment(R.layout.fragment_home)
 
 				addOnChangeListener { _, value, _ ->
 
-					val newInfo = viewModel.getSpeedHistogram(value.toInt())
+					val newInfo = viewModel.getSpeedHistogramInfo(value.toInt())
 
 					rangeFormatter.rangeLength = value.toInt()
 
 					chartView.data = BarData(
-						BarDataSet(
-							newInfo.testsPerSpeedRange.toBarEntries(),
-							getString(R.string.generic_tests),
-						).apply { color = getColorCompat(R.color.teal_200) }
+						barDataSet(
+							entries = newInfo.testsPerSpeedRange.toBarEntries(),
+							labelResId = R.string.generic_tests,
+						),
 					)
 					chartView.invalidate()
 				}

@@ -14,7 +14,7 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(
 	private val getTestListInfo: GetTestListInfoUseCase,
-	private val getSpeedHistogramUseCase: GetSpeedHistogramInfoUseCase,
+	private val getSpeedHistogramInfoUseCase: GetSpeedHistogramInfoUseCase,
 ) : ViewModel()
 {
 	init
@@ -36,5 +36,5 @@ class HomeViewModel @Inject constructor(
 	val isLoadingState = _loadingState.asStateFlow()
 
 
-	fun getSpeedHistogram(rangeLength: Int) = getSpeedHistogramUseCase(rangeLength)
+	fun getSpeedHistogramInfo(rangeLength: Int) = getSpeedHistogramInfoUseCase(rangeLength)
 }
