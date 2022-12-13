@@ -71,20 +71,21 @@ fun List<TestData>.toTestListInfo(): TestListInfo
 	val opmPerTest = listOfTestInfo.map { it.statsInfo.opm }
 	val rawOpmPerTest = listOfTestInfo.map { it.statsInfo.rawOpm }
 
-	val maxOpm = opmPerTest.maxOrNull() ?: 0
+	val maxOpm = opmPerTest.maxOrNull()
 
 	val defaultRangeLength = when
 	{
-		maxOpm > 10 -> 10
-		maxOpm == 0 -> 1
-		else        -> ceil(maxOpm / 2F).toInt()
+		(maxOpm ?: 0) > 10 -> 10
+		maxOpm == 0        -> 1
+		else               -> ceil((maxOpm ?: 0) / 2F).toInt()
 	}
 
-	val speedRanges = Array(maxOpm / defaultRangeLength + 1) { 0 }
+	val rangeCount = if (maxOpm != null) maxOpm / defaultRangeLength + 1 else 0
+	val speedRanges = Array(rangeCount) { 0 }
 	opmPerTest.forEach()
 	{
 		val position = it / defaultRangeLength
-		speedRanges[position]++
+		speedRanges.getOrNull(position)?.also { speedRanges[position]++ }
 	}
 
 	return TestListInfo(
@@ -105,7 +106,7 @@ fun List<TestData>.toTestListInfo(): TestListInfo
 			correctOperationsCompletedPercentage = (100F * correctOperationsCompleted / operationsCompleted).ifNaNReturnZero(),
 			averageOpm = opmPerTest.average().toFloat().ifNaNReturnZero(),
 			averageRawOpm = rawOpmPerTest.average().toFloat().ifNaNReturnZero(),
-			maxOpm = opmPerTest.maxOrNull() ?: 0,
+			maxOpm = maxOpm ?: 0,
 			maxRawOpm = rawOpmPerTest.maxOrNull() ?: 0,
 		),
 	)

@@ -101,11 +101,7 @@ class HomeFragment : Fragment(R.layout.fragment_home)
 				dataSets = lineDataSets,
 			)
 		}
-		else chartView.apply()
-		{
-			setNoDataText(getString(R.string.no_data_available))
-			setNoDataTextColor(getThemeColor(R.attr.colorSecondary))
-		}
+		else chartView.showNoDataText()
 
 		chartView.isVisible = true
 		chartView.marker2 = TestInfoMarker(context)
@@ -139,6 +135,8 @@ class HomeFragment : Fragment(R.layout.fragment_home)
 	{
 		val chartView = binding.bcSpeedHistogram
 
+		println("$$$$ ${speedHistogramInfo.testsPerSpeedRange}")
+		
 		if (speedHistogramInfo.testsPerSpeedRange.isNotEmpty())
 		{
 			chartView.apply()
@@ -162,8 +160,19 @@ class HomeFragment : Fragment(R.layout.fragment_home)
 
 			binding.sldRangeLength.apply()
 			{
-				valueTo = statsInfo.maxOpm.toFloat()
-				binding.sldRangeLength.value = speedHistogramInfo.speedRangeLength.toFloat()
+				if (statsInfo.maxOpm < 1)
+				{
+					valueFrom = 0F
+					valueTo = 1F
+				}
+				else
+				{
+					valueFrom = 1F
+					valueTo = statsInfo.maxOpm.toFloat()
+
+					isVisible = true
+				}
+				value = speedHistogramInfo.speedRangeLength.toFloat()
 
 				addOnChangeListener { _, value, _ ->
 
@@ -179,15 +188,9 @@ class HomeFragment : Fragment(R.layout.fragment_home)
 					)
 					chartView.invalidate()
 				}
-
-				isVisible = true
 			}
 		}
-		else chartView.apply()
-		{
-			setNoDataText(getString(R.string.no_data_available))
-			setNoDataTextColor(getThemeColor(R.attr.colorSecondary))
-		}
+		else chartView.showNoDataText()
 
 		chartView.isVisible = true
 	}
