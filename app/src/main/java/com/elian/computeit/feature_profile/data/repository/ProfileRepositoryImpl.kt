@@ -84,6 +84,7 @@ class ProfileRepositoryImpl @Inject constructor(
 			else if (profilePicUuid != null)
 			{
 				storage.reference.child("$FOLDER_USERS_PROFILE_PICS/$profilePicUuid").delete().await()
+				profilePicUuid = null
 			}
 		}
 		catch (e: Exception)
