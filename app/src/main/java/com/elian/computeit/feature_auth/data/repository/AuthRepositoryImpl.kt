@@ -19,7 +19,7 @@ import javax.inject.Inject
 class AuthRepositoryImpl @Inject constructor(
 	private val firestore: FirebaseFirestore,
 	private val utilRepository: UtilRepository,
-	private val appRepository: LocalAppDataRepository,
+	private val appData: LocalAppDataRepository,
 ) :
 	AuthRepository
 {
@@ -29,7 +29,7 @@ class AuthRepositoryImpl @Inject constructor(
 
 		if (user.password != params.password) return@withContext Resource.Error(R.string.error_password_is_wrong)
 
-		appRepository.saveUserUuid(user.uuid)
+		appData.saveUserUuid(user.uuid)
 
 		Resource.Success()
 	}
@@ -43,7 +43,7 @@ class AuthRepositoryImpl @Inject constructor(
 			password = params.password,
 		).apply()
 		{
-			appRepository.saveUserUuid(uuid)
+			appData.saveUserUuid(uuid)
 
 			firestore.document("$COLLECTION_USERS/$uuid")
 				.set(this)

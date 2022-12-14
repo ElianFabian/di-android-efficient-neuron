@@ -16,7 +16,7 @@ import javax.inject.Inject
 class InitialActivity : AppCompatActivity()
 {
 	@Inject
-	lateinit var appRepository: LocalAppDataRepository
+	lateinit var appData: LocalAppDataRepository
 
 
 	override fun onCreate(savedInstanceState: Bundle?)
@@ -25,7 +25,7 @@ class InitialActivity : AppCompatActivity()
 
 		lifecycleScope.launch()
 		{
-			if (appRepository.isUserLoggedIn())
+			if (appData.isUserLoggedIn())
 			{
 				navigateTo<MainActivity>()
 			}

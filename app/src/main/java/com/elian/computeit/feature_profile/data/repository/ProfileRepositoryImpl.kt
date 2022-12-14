@@ -25,12 +25,12 @@ class ProfileRepositoryImpl @Inject constructor(
 	private val firestore: FirebaseFirestore,
 	private val storage: FirebaseStorage,
 	private val utilRepository: UtilRepository,
-	private val appRepository: LocalAppDataRepository,
+	private val appData: LocalAppDataRepository,
 ) : ProfileRepository
 {
 	override suspend fun getProfileInfo() = withContext(Dispatchers.IO)
 	{
-		val userUuid = appRepository.getUserUuid()
+		val userUuid = appData.getUserUuid()
 
 		val user = firestore.document("$COLLECTION_USERS/$userUuid")
 			.get()
@@ -60,7 +60,7 @@ class ProfileRepositoryImpl @Inject constructor(
 
 	override suspend fun updateProfileInfo(params: UpdateProfileParams): SimpleResource = withContext(Dispatchers.IO)
 	{
-		val userUuid = appRepository.getUserUuid()!!
+		val userUuid = appData.getUserUuid()!!
 		val currentUser = utilRepository.getUserByUuid(userUuid)!!
 
 		if (utilRepository.isUsernameTaken(
@@ -103,6 +103,6 @@ class ProfileRepositoryImpl @Inject constructor(
 
 	override suspend fun logout()
 	{
-		appRepository.saveUserUuid("")
+		appData.saveUserUuid("")
 	}
 }

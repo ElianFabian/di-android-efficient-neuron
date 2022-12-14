@@ -50,12 +50,12 @@ class RepositoryModuleActivityRetainedScoped
 	@ActivityRetainedScoped
 	fun provideTestDataRepository(
 		firestore: FirebaseFirestore,
-		appRepository: LocalAppDataRepository,
+		appData: LocalAppDataRepository,
 	): TestDataRepository
 	{
 		return TestDataRepositoryImpl(
 			firestore = firestore,
-			appRepository = appRepository,
+			appData = appData,
 		)
 	}
 }

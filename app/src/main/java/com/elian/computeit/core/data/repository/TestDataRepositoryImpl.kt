@@ -17,7 +17,7 @@ import javax.inject.Inject
 
 class TestDataRepositoryImpl @Inject constructor(
 	private val firestore: FirebaseFirestore,
-	private val appRepository: LocalAppDataRepository,
+	private val appData: LocalAppDataRepository,
 ) : TestDataRepository
 {
 	private val _listOfTestData = mutableListOf<TestData>()
@@ -50,7 +50,7 @@ class TestDataRepositoryImpl @Inject constructor(
 
 	private suspend fun getUserDataRef() = withContext(Dispatchers.IO)
 	{
-		val userUuid = appRepository.getUserUuid()!!
+		val userUuid = appData.getUserUuid()!!
 
 		val documentRef = firestore.document("$COLLECTION_USERS_DATA/$userUuid")
 		val snapShot = documentRef.get().await()
