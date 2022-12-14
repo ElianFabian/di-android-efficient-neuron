@@ -48,6 +48,7 @@ class TestDataRepositoryImpl @Inject constructor(
 
 	override fun getSpeedHistogramInfo(rangeLength: Int) = _listOfTestData.toSpeedHistogramData(rangeLength)
 
+
 	private suspend fun getUserDataRef() = withContext(Dispatchers.IO)
 	{
 		val userUuid = appData.getUserUuid()!!
