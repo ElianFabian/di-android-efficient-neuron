@@ -58,6 +58,7 @@ class ProfileRepositoryImpl @Inject constructor(
 		}
 	}
 
+	// TODO-low: avoid uploading profile pic or info if it wasn't updated
 	override suspend fun updateProfileInfo(params: UpdateProfileParams): SimpleResource = withContext(Dispatchers.IO)
 	{
 		val userUuid = appData.getUserUuid()!!
