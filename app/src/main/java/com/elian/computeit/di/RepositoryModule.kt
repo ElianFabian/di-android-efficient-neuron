@@ -10,10 +10,8 @@ import com.elian.computeit.feature_auth.data.repository.AuthRepositoryImpl
 import com.elian.computeit.feature_auth.domain.repository.AuthRepository
 import com.elian.computeit.feature_profile.data.repository.ProfileRepositoryImpl
 import com.elian.computeit.feature_profile.domain.repository.ProfileRepository
-import com.google.firebase.firestore.FirebaseFirestore
 import dagger.Binds
 import dagger.Module
-import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ActivityRetainedComponent
 import dagger.hilt.android.scopes.ActivityRetainedScoped
@@ -26,36 +24,26 @@ interface RepositoryModule
 {
 	@Binds
 	@Singleton
-	fun bindUtilRepository(repository: UtilRepositoryImpl): UtilRepository
+	fun bindUtilRepository(impl: UtilRepositoryImpl): UtilRepository
 
 	@Binds
 	@Singleton
-	fun bindAuthRepository(repository: AuthRepositoryImpl): AuthRepository
+	fun bindProfileRepository(impl: ProfileRepositoryImpl): ProfileRepository
 
 	@Binds
 	@Singleton
-	fun bindProfileRepository(repository: ProfileRepositoryImpl): ProfileRepository
-
-	@Binds
-	@Singleton
-	fun bindLocalAppDataRepository(repository: LocalAppDataRepositoryImpl): LocalAppDataRepository
+	fun bindLocalAppDataRepository(impl: LocalAppDataRepositoryImpl): LocalAppDataRepository
 }
 
-// I would like to limit the scope of this Repository with a @Binds but I haven't found any way to do it
 @Module
 @InstallIn(ActivityRetainedComponent::class)
-class RepositoryModuleActivityRetainedScoped
+interface RepositoryModuleActivityRetainedScoped
 {
-	@Provides
+	@Binds
 	@ActivityRetainedScoped
-	fun provideTestDataRepository(
-		firestore: FirebaseFirestore,
-		appData: LocalAppDataRepository,
-	): TestDataRepository
-	{
-		return TestDataRepositoryImpl(
-			firestore = firestore,
-			appData = appData,
-		)
-	}
+	fun bindAuthRepository(impl: AuthRepositoryImpl): AuthRepository
+
+	@Binds
+	@ActivityRetainedScoped
+	fun provideTestDataRepository(impl: TestDataRepositoryImpl): TestDataRepository
 }
