@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main)
 			// Adjust layout when keyboard is open
 			DestinationBehaviour(
 				destinations = setOf(
-					R.id.editProfileFragment
+					R.id.editProfileFragment, R.id.testConfigurationFragment,
 				),
 				ifCurrentDestinationIsInList = { window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE) },
 				ifCurrentDestinationIsNotInList = { window.setSoftInputMode(_defaultSoftInputMode!!) },
