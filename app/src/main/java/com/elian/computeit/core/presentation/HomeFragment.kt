@@ -67,6 +67,8 @@ class HomeFragment : Fragment(R.layout.fragment_home)
 			initTestHistoryChart(it.historyInfo)
 			initSpeedHistogramChart(it)
 			initTextInfo(it.statsInfo)
+
+			_isUiFinished = true
 		}
 		collectFlowWhenStarted(isLoadingState) { binding.lpiIsLoading.isGone = !it }
 	}
@@ -99,35 +101,34 @@ class HomeFragment : Fragment(R.layout.fragment_home)
 				animate = !_isUiFinished,
 				dataSets = lineDataSets,
 			)
+
+			chartView.marker2 = TestInfoMarker(context)
+			chartView.avoidConflictsWithScroll(binding.root)
+			chartView.setOnChartValueSelectedListener(object : OnChartValueSelectedListener
+			{
+				var currentSelectedEntry: Entry? = null
+
+				override fun onValueSelected(entry: Entry, highlight: Highlight)
+				{
+					if (currentSelectedEntry == entry)
+					{
+						navigate(R.id.action_homeFragment_to_testDetailsFragment, bundleOf(
+							TestDetailsArgKeys.TestInfo to entry.data as TestInfo,
+							TestDetailsArgKeys.HideContinueButton to true,
+						))
+					}
+
+					currentSelectedEntry = entry
+				}
+
+				override fun onNothingSelected()
+				{
+				}
+			})
 		}
 		else chartView.showNoDataText()
 
 		chartView.isVisible = true
-		chartView.marker2 = TestInfoMarker(context)
-		chartView.avoidConflictsWithScroll(binding.root)
-		chartView.setOnChartValueSelectedListener(object : OnChartValueSelectedListener
-		{
-			var currentSelectedEntry: Entry? = null
-
-			override fun onValueSelected(entry: Entry, highlight: Highlight)
-			{
-				if (currentSelectedEntry == entry)
-				{
-					navigate(R.id.action_homeFragment_to_testDetailsFragment, bundleOf(
-						TestDetailsArgKeys.TestInfo to entry.data as TestInfo,
-						TestDetailsArgKeys.HideContinueButton to true,
-					))
-				}
-
-				currentSelectedEntry = entry
-			}
-
-			override fun onNothingSelected()
-			{
-			}
-		})
-
-		_isUiFinished = true
 	}
 
 	private fun initSpeedHistogramChart(info: TestListInfo) = info.apply2()
