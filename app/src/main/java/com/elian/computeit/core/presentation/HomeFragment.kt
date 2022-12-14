@@ -158,19 +158,13 @@ class HomeFragment : Fragment(R.layout.fragment_home)
 
 			binding.sldRangeLength.apply()
 			{
-				if (statsInfo.maxOpm < 1)
+				speedHistogramInfo.also()
 				{
-					valueFrom = 0F
-					valueTo = 1F
+					valueFrom = it.sliderValueFrom.toFloat()
+					valueTo = it.sliderValueTo.toFloat()
+					value = it.speedRangeLength.toFloat()
+					isVisible = it.isSliderVisible
 				}
-				else
-				{
-					valueFrom = 1F
-					valueTo = statsInfo.maxOpm.toFloat()
-
-					isVisible = true
-				}
-				value = speedHistogramInfo.speedRangeLength.toFloat()
 
 				addOnChangeListener { _, value, _ ->
 

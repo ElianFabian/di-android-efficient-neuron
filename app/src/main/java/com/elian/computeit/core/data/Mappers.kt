@@ -72,12 +72,13 @@ fun List<TestData>.toTestListInfo(): TestListInfo
 	val rawOpmPerTest = listOfTestInfo.map { it.statsInfo.rawOpm }
 
 	val maxOpm = opmPerTest.maxOrNull()
+	val normalizedMaxOpm = maxOpm ?: 0
 
 	val defaultRangeLength = when
 	{
-		(maxOpm ?: 0) > 10 -> 10
-		maxOpm == 0        -> 1
-		else               -> ceil((maxOpm ?: 0) / 2F).toInt()
+		normalizedMaxOpm > 10 -> 10
+		normalizedMaxOpm == 0 -> 1
+		else                  -> ceil(normalizedMaxOpm / 2F).toInt()
 	}
 
 	val rangeCount = if (maxOpm != null) maxOpm / defaultRangeLength + 1 else 0
@@ -97,6 +98,9 @@ fun List<TestData>.toTestListInfo(): TestListInfo
 		speedHistogramInfo = SpeedHistogramInfo(
 			speedRangeLength = defaultRangeLength,
 			testsPerSpeedRange = speedRanges.toList(),
+			sliderValueFrom = if (normalizedMaxOpm < 1) 0 else 1,
+			sliderValueTo = if (normalizedMaxOpm < 1) 1 else normalizedMaxOpm,
+			isSliderVisible = normalizedMaxOpm > 0,
 		),
 		statsInfo = TestListStatsInfo(
 			testsCompleted = size,
@@ -135,5 +139,8 @@ fun List<TestData>.toSpeedHistogramData(rangeLength: Int): SpeedHistogramInfo
 	return SpeedHistogramInfo(
 		speedRangeLength = rangeLength,
 		testsPerSpeedRange = speedRanges.toList(),
+		sliderValueFrom = 1,
+		sliderValueTo = maxOpm,
+		isSliderVisible = true,
 	)
 }
