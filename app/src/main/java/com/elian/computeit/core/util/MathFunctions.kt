@@ -4,7 +4,6 @@ import kotlin.math.ceil
 import kotlin.math.sqrt
 
 // This function has been optimized thanks to this article: https://www.math.uh.edu/~minru/web/divis2.html#:~:text=The%20most%20basic%20method%20for,of%20positive%20divisors%20for%20n
-
 fun getDivisiblePairsInRange(
 	start: Int,
 	end: Int,
