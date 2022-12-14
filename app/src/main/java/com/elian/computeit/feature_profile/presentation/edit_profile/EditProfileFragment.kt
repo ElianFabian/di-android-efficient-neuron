@@ -61,10 +61,10 @@ class EditProfileFragment : Fragment(R.layout.fragment_edit_profile)
 					binding.sivProfilePic.setImageURI(it)
 				},
 				onDeleteImage = {
-					sivProfilePic.setImageResource(R.drawable.ic_blank_user_profile_pic)
+					sivProfilePic.setImageBytes(byteArrayOf())
 					viewModel.onAction(EnterProfilePic(emptyList()))
 				},
-			).show(requireActivity().supportFragmentManager, "this::class.java.simpleName")
+			).show(requireActivity().supportFragmentManager, "")
 		}
 
 		btnSave.setOnClickListener { viewModel.onAction(Save) }
