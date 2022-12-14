@@ -7,7 +7,7 @@ import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
 import com.elian.computeit.R
 import com.elian.computeit.core.presentation.util.viewBinding
-import com.elian.computeit.core.util.extensions.apply2
+import com.elian.computeit.core.util.using
 import com.elian.computeit.databinding.BottomDialogChooseOrDeleteProfilePicBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
@@ -40,7 +40,7 @@ class ChooseOrDeleteProfilePictureBottomDialog(
 	}
 
 
-	private fun initUi() = binding.apply2()
+	private fun initUi() = using(binding)
 	{
 		btnSelectAPicture.setOnClickListener { requestPermission.launch(Manifest.permission.READ_EXTERNAL_STORAGE) }
 		btnDeleteCurrentPicture.setOnClickListener()

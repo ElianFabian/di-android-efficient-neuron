@@ -15,7 +15,7 @@ import com.elian.computeit.core.presentation.util.extensions.*
 import com.elian.computeit.core.presentation.util.mp_android_chart.*
 import com.elian.computeit.core.presentation.util.viewBinding
 import com.elian.computeit.core.util.constants.TestDetailsArgKeys
-import com.elian.computeit.core.util.extensions.apply2
+import com.elian.computeit.core.util.using
 import com.elian.computeit.databinding.FragmentHomeBinding
 import com.elian.computeit.feature_tests.domain.model.TestHistoryInfo
 import com.elian.computeit.feature_tests.domain.model.TestInfo
@@ -60,7 +60,7 @@ class HomeFragment : Fragment(R.layout.fragment_home)
 		binding.sldRangeLength.isGone = true
 	}
 
-	private fun subscribeToEvents() = viewModel.apply2()
+	private fun subscribeToEvents() = using(viewModel)
 	{
 		collectLatestFlowWhenStarted(infoState.filterNotNull())
 		{
@@ -73,7 +73,7 @@ class HomeFragment : Fragment(R.layout.fragment_home)
 		collectFlowWhenStarted(isLoadingState) { binding.lpiIsLoading.isGone = !it }
 	}
 
-	private fun initTestHistoryChart(info: TestHistoryInfo) = info.apply2()
+	private fun initTestHistoryChart(info: TestHistoryInfo) = using(info)
 	{
 		val chartView = binding.lytTestHistory.lineChart
 
@@ -131,7 +131,7 @@ class HomeFragment : Fragment(R.layout.fragment_home)
 		chartView.isVisible = true
 	}
 
-	private fun initSpeedHistogramChart(info: TestListInfo) = info.apply2()
+	private fun initSpeedHistogramChart(info: TestListInfo) = using(info)
 	{
 		val chartView = binding.bcSpeedHistogram
 
@@ -187,7 +187,7 @@ class HomeFragment : Fragment(R.layout.fragment_home)
 		chartView.isVisible = true
 	}
 
-	private fun initTextInfo(info: TestListStatsInfo) = info.apply2()
+	private fun initTextInfo(info: TestListStatsInfo) = using(info)
 	{
 		val listOfLabeledData = listOf(
 			R.string.frgHome_testsCompleted labelOf testsCompleted,

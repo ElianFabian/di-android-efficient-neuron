@@ -15,7 +15,7 @@ import com.elian.computeit.core.presentation.util.mp_android_chart.toEntries
 import com.elian.computeit.core.presentation.util.mp_android_chart.valuesToEntriesWithYValue
 import com.elian.computeit.core.presentation.util.viewBinding
 import com.elian.computeit.core.util.constants.TestDetailsArgKeys
-import com.elian.computeit.core.util.extensions.apply2
+import com.elian.computeit.core.util.using
 import com.elian.computeit.databinding.FragmentTestDetailsBinding
 import com.elian.computeit.feature_tests.domain.model.TestChartInfo
 import com.elian.computeit.feature_tests.domain.model.TestInfo
@@ -37,7 +37,7 @@ class TestDetailsFragment : Fragment(R.layout.fragment_test_details)
 	}
 
 
-	private fun initUi() = binding.apply2()
+	private fun initUi() = using(binding)
 	{
 		val info = arguments?.getParcelable<TestInfo>(TestDetailsArgKeys.TestInfo)!!
 
@@ -85,7 +85,7 @@ class TestDetailsFragment : Fragment(R.layout.fragment_test_details)
 		binding.lytTestChart.lineChart.avoidConflictsWithScroll(binding.root)
 	}
 
-	private fun initStats(info: TestStatsInfo) = info.apply2()
+	private fun initStats(info: TestStatsInfo) = using(info)
 	{
 		val listOfLabeledData = listOf(
 			R.string.generic_operations labelOf operationCount,

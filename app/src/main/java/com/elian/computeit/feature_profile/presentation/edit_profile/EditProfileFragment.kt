@@ -11,9 +11,9 @@ import com.elian.computeit.R
 import com.elian.computeit.core.presentation.util.extensions.*
 import com.elian.computeit.core.presentation.util.getUsernameErrorMessage
 import com.elian.computeit.core.presentation.util.viewBinding
-import com.elian.computeit.core.util.extensions.apply2
 import com.elian.computeit.core.util.extensions.toBitmap
 import com.elian.computeit.core.util.extensions.trimWhitespacesBeforeNewLine
+import com.elian.computeit.core.util.using
 import com.elian.computeit.databinding.FragmentEditProfileBinding
 import com.elian.computeit.feature_profile.presentation.ProfileViewModel
 import com.elian.computeit.feature_profile.presentation.edit_profile.EditProfileAction.*
@@ -37,7 +37,7 @@ class EditProfileFragment : Fragment(R.layout.fragment_edit_profile)
 	}
 
 
-	private fun initUi() = binding.apply2()
+	private fun initUi() = using(binding)
 	{
 		tietUsername.addTextChangedListener { viewModel.onAction(EnterUsername("$it".trim())) }
 		tietBiography.addTextChangedListener { viewModel.onAction(EnterBiography("$it".trim().trimWhitespacesBeforeNewLine())) }
@@ -70,7 +70,7 @@ class EditProfileFragment : Fragment(R.layout.fragment_edit_profile)
 		btnSave.setOnClickListener { viewModel.onAction(Save) }
 	}
 
-	private fun subscribeToEvents() = viewModel.apply2()
+	private fun subscribeToEvents() = using(viewModel)
 	{
 		collectFlowWhenStarted(editProfileEventFlow)
 		{

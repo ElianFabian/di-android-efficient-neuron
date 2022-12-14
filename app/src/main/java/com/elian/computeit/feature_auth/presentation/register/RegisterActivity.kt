@@ -12,7 +12,7 @@ import com.elian.computeit.core.presentation.MainActivity
 import com.elian.computeit.core.presentation.util.extensions.*
 import com.elian.computeit.core.presentation.util.getUsernameErrorMessage
 import com.elian.computeit.core.presentation.util.viewBinding
-import com.elian.computeit.core.util.extensions.apply2
+import com.elian.computeit.core.util.using
 import com.elian.computeit.databinding.ActivityRegisterBinding
 import com.elian.computeit.feature_auth.presentation.login.LoginActivity
 import com.elian.computeit.feature_auth.presentation.register.RegisterAction.*
@@ -44,7 +44,7 @@ class RegisterActivity : AppCompatActivity()
 	}
 
 
-	private fun initUi() = binding.apply2()
+	private fun initUi() = using(binding)
 	{
 		tietUsername.addTextChangedListener { viewModel.onAction(EnterUsername("$it".trim())) }
 		tietPassword.addTextChangedListener { viewModel.onAction(EnterPassword("$it".trim())) }
@@ -56,7 +56,7 @@ class RegisterActivity : AppCompatActivity()
 		btnRegister.setOnClickListener { viewModel.onAction(Register) }
 	}
 
-	private fun subscribeToEvents() = viewModel.apply2()
+	private fun subscribeToEvents() = using(viewModel)
 	{
 		collectFlowWhenStarted(eventFlow)
 		{

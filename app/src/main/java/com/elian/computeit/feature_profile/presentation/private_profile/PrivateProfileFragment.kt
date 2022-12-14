@@ -10,7 +10,7 @@ import androidx.lifecycle.lifecycleScope
 import com.elian.computeit.R
 import com.elian.computeit.core.presentation.util.extensions.*
 import com.elian.computeit.core.presentation.util.viewBinding
-import com.elian.computeit.core.util.extensions.apply2
+import com.elian.computeit.core.util.using
 import com.elian.computeit.databinding.FragmentPrivateProfileBinding
 import com.elian.computeit.feature_auth.presentation.login.LoginActivity
 import com.elian.computeit.feature_profile.presentation.ProfileViewModel
@@ -34,7 +34,7 @@ class PrivateProfileFragment : Fragment(R.layout.fragment_private_profile)
 	}
 
 
-	private fun initUi() = binding.apply2()
+	private fun initUi() = using(binding)
 	{
 		btnEdit.setOnClickListener()
 		{
@@ -56,7 +56,7 @@ class PrivateProfileFragment : Fragment(R.layout.fragment_private_profile)
 		}
 	}
 
-	private fun subscribeToEvents() = viewModel.apply2()
+	private fun subscribeToEvents() = using(viewModel)
 	{
 		collectLatestFlowWhenStarted(profilePicState.filter { it.isNotEmpty() })
 		{

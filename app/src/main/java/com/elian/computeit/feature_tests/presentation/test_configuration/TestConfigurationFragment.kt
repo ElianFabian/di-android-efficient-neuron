@@ -12,7 +12,7 @@ import com.elian.computeit.core.domain.states.NumericFieldError
 import com.elian.computeit.core.presentation.util.extensions.*
 import com.elian.computeit.core.presentation.util.viewBinding
 import com.elian.computeit.core.util.Error
-import com.elian.computeit.core.util.extensions.apply2
+import com.elian.computeit.core.util.using
 import com.elian.computeit.databinding.FragmentTestConfigurationBinding
 import com.elian.computeit.feature_tests.presentation.test_configuration.TestConfigurationAction.*
 import com.elian.computeit.feature_tests.presentation.test_configuration.TestConfigurationEvent.OnShowErrorMessage
@@ -39,7 +39,7 @@ class TestConfigurationFragment : Fragment(R.layout.fragment_test_configuration)
 	}
 
 
-	private fun initUI() = binding.apply2()
+	private fun initUI() = using(binding)
 	{
 		rgOperationType.findViewsWithTagOfType<RadioButton>(R.string.tag_operation_type).forEach { radioButton ->
 
@@ -65,7 +65,7 @@ class TestConfigurationFragment : Fragment(R.layout.fragment_test_configuration)
 		_lastCheckedOperationRadioButton.performClick()
 	}
 
-	private fun subscribeToEvents() = viewModel.apply2()
+	private fun subscribeToEvents() = using(viewModel)
 	{
 		collectFlowWhenStarted(eventFlow)
 		{

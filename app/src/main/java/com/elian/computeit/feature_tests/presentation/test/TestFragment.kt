@@ -14,8 +14,8 @@ import com.elian.computeit.core.data.Operation
 import com.elian.computeit.core.presentation.util.extensions.*
 import com.elian.computeit.core.presentation.util.viewBinding
 import com.elian.computeit.core.util.constants.TestArgKeys
-import com.elian.computeit.core.util.extensions.apply2
 import com.elian.computeit.core.util.extensions.format
+import com.elian.computeit.core.util.using
 import com.elian.computeit.databinding.FragmentTestBinding
 import com.elian.computeit.feature_tests.presentation.test.TestAction.*
 import com.elian.computeit.feature_tests.presentation.test.TestEvent.*
@@ -84,7 +84,7 @@ class TestFragment : Fragment(R.layout.fragment_test)
 	}
 
 
-	private fun initUi() = binding.apply2()
+	private fun initUi() = using(binding)
 	{
 		disableScreenInteraction()
 
@@ -145,7 +145,7 @@ class TestFragment : Fragment(R.layout.fragment_test)
 		}
 	}
 
-	private fun subscribeToEvents() = viewModel.apply2()
+	private fun subscribeToEvents() = using(viewModel)
 	{
 		collectFlowWhenStarted(eventFlow)
 		{
