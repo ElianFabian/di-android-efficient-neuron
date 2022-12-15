@@ -10,13 +10,13 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.elian.computeit.R
-import com.elian.computeit.core.data.Operation
 import com.elian.computeit.core.presentation.util.extensions.*
 import com.elian.computeit.core.presentation.util.viewBinding
-import com.elian.computeit.core.util.constants.TestArgKeys
+import com.elian.computeit.core.util.constants.receiveArgs
 import com.elian.computeit.core.util.extensions.format
 import com.elian.computeit.core.util.using
 import com.elian.computeit.databinding.FragmentTestBinding
+import com.elian.computeit.feature_tests.domain.args.TestArgs
 import com.elian.computeit.feature_tests.presentation.test.TestAction.*
 import com.elian.computeit.feature_tests.presentation.test.TestEvent.*
 import dagger.hilt.android.AndroidEntryPoint
@@ -29,6 +29,7 @@ class TestFragment : Fragment(R.layout.fragment_test)
 {
 	private val viewModel by viewModels<TestViewModel>()
 	private val binding by viewBinding(FragmentTestBinding::bind)
+	private val args by lazy { receiveArgs<TestArgs>()!! }
 
 	private val operationView by lazy {
 		object
@@ -88,7 +89,7 @@ class TestFragment : Fragment(R.layout.fragment_test)
 	{
 		disableScreenInteraction()
 
-		arguments?.getInt(TestArgKeys.TestTimeInSeconds)!!.also()
+		args.totalTimeInSeconds.also()
 		{
 			mtvRemainingSeconds.text = if (it == 0)
 			{
@@ -105,10 +106,8 @@ class TestFragment : Fragment(R.layout.fragment_test)
 			cpiRemainingSeconds.max = initialProgress
 			cpiRemainingSeconds.progress = initialProgress
 		}
-		arguments?.getSerializable(TestArgKeys.OperationType)!!.let { it as Operation }.also()
-		{
-			operationView.symbol = it.symbol
-		}
+
+		operationView.symbol = args.operation.symbol
 
 		llKeyBoard.findViewsWithTagOfType<Button>(R.string.tag_numeric_button).forEach { button ->
 
@@ -172,15 +171,12 @@ class TestFragment : Fragment(R.layout.fragment_test)
 				}
 			}
 		}
-		collectLatestFlowWhenStarted(resultState)
-		{
-			binding.tietInput.setText(it.toString())
-		}
 		collectLatestFlowWhenStarted(pairOfNumbersState.filterNotNull())
 		{
 			operationView.firstNumber = it.first.toString()
 			operationView.secondNumber = it.second.toString()
 		}
+		collectLatestFlowWhenStarted(resultState) { binding.tietInput.setText(it.toString()) }
 		collectLatestFlowWhenStarted(operationSymbolState) { operationView.symbol = it }
 	}
 

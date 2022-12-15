@@ -2,7 +2,6 @@ package com.elian.computeit.core.presentation
 
 import android.os.Bundle
 import android.view.View
-import androidx.core.os.bundleOf
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
@@ -14,9 +13,10 @@ import com.elian.computeit.core.presentation.model.labelOf
 import com.elian.computeit.core.presentation.util.extensions.*
 import com.elian.computeit.core.presentation.util.mp_android_chart.*
 import com.elian.computeit.core.presentation.util.viewBinding
-import com.elian.computeit.core.util.constants.TestDetailsArgKeys
+import com.elian.computeit.core.util.constants.toBundle
 import com.elian.computeit.core.util.using
 import com.elian.computeit.databinding.FragmentHomeBinding
+import com.elian.computeit.feature_tests.domain.args.TestDetailsArgs
 import com.elian.computeit.feature_tests.domain.model.TestHistoryInfo
 import com.elian.computeit.feature_tests.domain.model.TestInfo
 import com.elian.computeit.feature_tests.domain.model.TestListInfo
@@ -112,10 +112,12 @@ class HomeFragment : Fragment(R.layout.fragment_home)
 				{
 					if (currentSelectedEntry == entry)
 					{
-						navigate(R.id.action_homeFragment_to_testDetailsFragment, bundleOf(
-							TestDetailsArgKeys.TestInfo to entry.data as TestInfo,
-							TestDetailsArgKeys.HideContinueButton to true,
-						))
+						navigate(R.id.action_homeFragment_to_testDetailsFragment,
+							TestDetailsArgs(
+								sender = TestDetailsArgs.Sender.Home,
+								testInfo = entry.data as TestInfo,
+							).toBundle()
+						)
 					}
 
 					currentSelectedEntry = entry

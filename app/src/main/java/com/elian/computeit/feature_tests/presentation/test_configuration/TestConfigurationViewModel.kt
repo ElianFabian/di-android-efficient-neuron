@@ -7,7 +7,8 @@ import com.elian.computeit.core.domain.models.Range
 import com.elian.computeit.core.domain.states.NumericFieldState
 import com.elian.computeit.core.util.Resource
 import com.elian.computeit.core.util.UiText
-import com.elian.computeit.core.util.constants.TestArgKeys
+import com.elian.computeit.core.util.constants.toList
+import com.elian.computeit.feature_tests.domain.args.TestArgs
 import com.elian.computeit.feature_tests.domain.params.ValidateConfigurationParams
 import com.elian.computeit.feature_tests.domain.use_case.ValidateConfiguration
 import com.elian.computeit.feature_tests.presentation.test_configuration.TestConfigurationAction.*
@@ -68,13 +69,13 @@ class TestConfigurationViewModel @Inject constructor(
 						is Resource.Error   -> _eventFlow.send(OnShowErrorMessage(resource.uiText ?: UiText.unknownError()))
 						is Resource.Success ->
 						{
-							val argsToSend = mapOf(
-								TestArgKeys.OperationType to _selectedOperation,
-								TestArgKeys.OperationRange to Range(_startState.value.number!!, _endState.value.number!!),
-								TestArgKeys.TestTimeInSeconds to _timeState.value.number!!,
-							).toList()
-
-							_eventFlow.send(OnStart(args = argsToSend))
+							_eventFlow.send(OnStart(
+								args = TestArgs(
+									operation = _selectedOperation,
+									range = Range(_startState.value.number!!, _endState.value.number!!),
+									totalTimeInSeconds = _timeState.value.number!!,
+								).toList()
+							))
 						}
 						else                -> Unit
 					}

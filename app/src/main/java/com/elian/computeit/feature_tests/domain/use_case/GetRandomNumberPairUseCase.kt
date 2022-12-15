@@ -3,9 +3,9 @@ package com.elian.computeit.feature_tests.domain.use_case
 import androidx.lifecycle.SavedStateHandle
 import com.elian.computeit.core.data.Operation
 import com.elian.computeit.core.domain.models.NumberPair
-import com.elian.computeit.core.domain.models.Range
-import com.elian.computeit.core.util.constants.TestArgKeys
+import com.elian.computeit.core.util.constants.receiveArgs
 import com.elian.computeit.core.util.getDivisiblePairsInRange
+import com.elian.computeit.feature_tests.domain.args.TestArgs
 import javax.inject.Inject
 import kotlin.random.Random
 
@@ -13,15 +13,14 @@ class GetRandomNumberPair @Inject constructor(
 	savedState: SavedStateHandle,
 )
 {
-	private val _rangeBounds = savedState.get<Range>(TestArgKeys.OperationRange)!!
-	private val _operation = savedState.get<Operation>(TestArgKeys.OperationType)!!
+	private val args = savedState.receiveArgs<TestArgs>()!!
 
-	private val _range = _rangeBounds.min.._rangeBounds.max
-	private val _divisiblePairs: List<NumberPair> = if (_operation == Operation.Division)
+	private val _range = args.range.let { it.min..it.max }
+	private val _divisiblePairs: List<NumberPair> = if (args.operation == Operation.Division)
 	{
 		getDivisiblePairsInRange(
-			start = _rangeBounds.min,
-			end = _rangeBounds.max,
+			start = _range.first,
+			end = _range.last,
 			ignoreSelfDivision = true,
 		).map { NumberPair(it.first, it.second) }
 	}
@@ -49,9 +48,9 @@ class GetRandomNumberPair @Inject constructor(
 
 	private fun getRandomPairByOperation(): NumberPair
 	{
-		if (_operation == Operation.Division) return _divisiblePairs.random(randomSeed)
+		if (args.operation == Operation.Division) return _divisiblePairs.random(randomSeed)
 
-		if (_operation == Operation.Subtraction) while (true)
+		if (args.operation == Operation.Subtraction) while (true)
 		{
 			val newPair = getRandomNumberPair(_range)
 
