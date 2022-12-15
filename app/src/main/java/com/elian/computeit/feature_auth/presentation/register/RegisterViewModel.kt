@@ -7,6 +7,7 @@ import com.elian.computeit.core.util.Resource
 import com.elian.computeit.core.util.UiText
 import com.elian.computeit.feature_auth.domain.params.RegisterParams
 import com.elian.computeit.feature_auth.domain.use_case.RegisterUseCase
+import com.elian.computeit.feature_auth.presentation.register.RegisterEvent.OnRegister
 import com.elian.computeit.feature_auth.presentation.register.RegisterEvent.OnShowErrorMessage
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
@@ -62,7 +63,7 @@ class RegisterViewModel @Inject constructor(
 					when (val resource = result.resource)
 					{
 						is Resource.Error   -> _eventFlow.send(OnShowErrorMessage(resource.uiText ?: UiText.unknownError()))
-						is Resource.Success -> _eventFlow.send(RegisterEvent.OnRegister)
+						is Resource.Success -> _eventFlow.send(OnRegister)
 						else                -> Unit
 					}
 				}
