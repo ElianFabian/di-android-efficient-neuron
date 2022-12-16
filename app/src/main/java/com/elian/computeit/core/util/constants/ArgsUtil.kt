@@ -12,5 +12,5 @@ interface Args : Parcelable
 fun Args.toBundle() = bundleOf(EXTRA_ARGS to this)
 fun Args.toList() = listOf(EXTRA_ARGS to this)
 
-fun <T : Args> Fragment.receiveArgs(key: String = EXTRA_ARGS) = arguments?.getParcelable<T>(key)
-fun <T : Args> SavedStateHandle.receiveArgs(key: String = EXTRA_ARGS) = get<T>(EXTRA_ARGS)
+fun <T : Args> Fragment.receiveArgs() = arguments?.getParcelable<T>(EXTRA_ARGS)
+fun <T : Args> SavedStateHandle.receiveArgs() = get<T>(EXTRA_ARGS)
