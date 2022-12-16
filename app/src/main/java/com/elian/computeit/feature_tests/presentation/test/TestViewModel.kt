@@ -17,7 +17,7 @@ import com.elian.computeit.core.util.extensions.append
 import com.elian.computeit.core.util.extensions.clampLength
 import com.elian.computeit.core.util.extensions.dropLast
 import com.elian.computeit.feature_tests.domain.use_case.AddTestDataUseCase
-import com.elian.computeit.feature_tests.domain.use_case.GetRandomNumberPair
+import com.elian.computeit.feature_tests.domain.use_case.GetRandomNumberPairUseCase
 import com.elian.computeit.feature_tests.presentation.test.TestAction.*
 import com.elian.computeit.feature_tests.presentation.test.TestEvent.OnGoToTestDetails
 import com.elian.computeit.feature_tests.presentation.test.TestEvent.OnTimerFinish
@@ -38,7 +38,7 @@ class TestViewModel @Inject constructor(
 	savedState: SavedStateHandle,
 	private val countDownTimer: CountDownTimer,
 	private val addTestData: AddTestDataUseCase,
-	private val getRandomNumberPair: GetRandomNumberPair,
+	private val getRandomNumberPair: GetRandomNumberPairUseCase,
 ) : ViewModel()
 {
 	private val _totalTimeInMillis = savedState.get<Int>(TestArgKeys.TestTimeInSeconds)!! * 1_000L
