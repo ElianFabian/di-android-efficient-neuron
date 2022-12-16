@@ -54,7 +54,7 @@
                 android:layout_width="@dimen/_55sdp"
                 android:layout_height="@dimen/_55sdp"
                 android:backgroundTint="@color/background_dark"
-                android:enabled="true"
+                android:enabled="false"
                 app:icon="@drawable/ic_statistics"
                 app:iconGravity="textStart"
                 app:iconPadding="0dp"
