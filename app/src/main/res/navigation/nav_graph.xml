@@ -19,18 +19,12 @@
             app:popEnterAnim="@anim/enter_from_start"
             app:popExitAnim="@anim/exit_to_end" />
         <action
-            android:id="@+id/action_homeFragment_to_settingsFragment"
-            app:destination="@id/settingsFragment" />
-        <action
             android:id="@+id/action_homeFragment_to_privateProfileFragment"
             app:destination="@id/privateProfileFragment"
             app:enterAnim="@anim/enter_from_bottom"
             app:exitAnim="@anim/exit_to_top"
             app:popEnterAnim="@anim/enter_from_top"
             app:popExitAnim="@anim/exit_to_bottom" />
-        <action
-            android:id="@+id/action_homeFragment_to_tipsFragment"
-            app:destination="@id/tipsFragment" />
         <action
             android:id="@+id/action_homeFragment_to_testDetailsFragment"
             app:destination="@id/testDetailsFragment"
@@ -82,10 +76,6 @@
             app:popUpToInclusive="true" />
     </fragment>
     <fragment
-        android:id="@+id/settingsFragment"
-        android:name="com.elian.computeit.feature_settings.presentation.SettingsFragment"
-        android:label="SettingsFragment" />
-    <fragment
         android:id="@+id/privateProfileFragment"
         android:name="com.elian.computeit.feature_profile.presentation.private_profile.PrivateProfileFragment"
         android:label="PrivateProfileFragment">
@@ -97,11 +87,6 @@
             app:popEnterAnim="@anim/enter_from_start"
             app:popExitAnim="@anim/exit_to_end" />
     </fragment>
-    <fragment
-        android:id="@+id/tipsFragment"
-        android:name="com.elian.computeit.feature_tips.presentation.tips.TipsFragment"
-        android:label="TipsFragment"
-        tools:layout="@layout/fragment_tips" />
     <fragment
         android:id="@+id/editProfileFragment"
         android:name="com.elian.computeit.feature_profile.presentation.edit_profile.EditProfileFragment"
