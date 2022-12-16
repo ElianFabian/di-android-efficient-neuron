@@ -33,22 +33,13 @@ class TestFragment : Fragment(R.layout.fragment_test)
 	private val operationView by lazy {
 		object
 		{
-			private val tvFirstPair = listOf(
-				binding.lytHorizontalOperation.tvFirstNumber,
-				binding.lytVerticalOperation.tvFirstNumber,
-			)
-			private val tvSecondPair = listOf(
-				binding.lytHorizontalOperation.tvSecondNumber,
-				binding.lytVerticalOperation.tvSecondNumber,
-			)
-			private val tvSymbolPair = listOf(
-				binding.lytHorizontalOperation.tvSymbol,
-				binding.lytVerticalOperation.tvSymbol,
-			)
-			private val rootPair = listOf(
-				binding.lytHorizontalOperation.root,
-				binding.lytVerticalOperation.root,
-			)
+			private val horizontal = binding.lytHorizontalOperation
+			private val vertical = binding.lytVerticalOperation
+
+			private val tvFirstPair = listOf(horizontal.tvFirstNumber, vertical.tvFirstNumber)
+			private val tvSecondPair = listOf(horizontal.tvSecondNumber, vertical.tvSecondNumber)
+			private val tvSymbolPair = listOf(horizontal.tvSymbol, vertical.tvSymbol)
+			private val rootPair = listOf(horizontal.root, vertical.root)
 
 			var firstNumber: String
 				get() = tvFirstPair.first().text.toString()
