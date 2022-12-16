@@ -5,7 +5,6 @@ import android.view.View
 import android.widget.Button
 import androidx.core.os.bundleOf
 import androidx.core.view.isGone
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -34,43 +33,38 @@ class TestFragment : Fragment(R.layout.fragment_test)
 	private val operationView by lazy {
 		object
 		{
-			private val horizontalOperation = binding.lytHorizontalOperation
-			private val verticalOperation = binding.lytVerticalOperation
+			private val tvFirstPair = listOf(
+				binding.lytHorizontalOperation.tvFirstNumber,
+				binding.lytVerticalOperation.tvFirstNumber,
+			)
+			private val tvSecondPair = listOf(
+				binding.lytHorizontalOperation.tvSecondNumber,
+				binding.lytVerticalOperation.tvSecondNumber,
+			)
+			private val tvSymbolPair = listOf(
+				binding.lytHorizontalOperation.tvSymbol,
+				binding.lytVerticalOperation.tvSymbol,
+			)
+			private val rootPair = listOf(
+				binding.lytHorizontalOperation.root,
+				binding.lytVerticalOperation.root,
+			)
 
 			var firstNumber: String
-				get() = horizontalOperation.tvFirstNumber.text.toString()
-				set(value)
-				{
-					horizontalOperation.tvFirstNumber.text = value
-					verticalOperation.tvFirstNumber.text = value
-				}
+				get() = tvFirstPair.first().text.toString()
+				set(value) = tvFirstPair.forEach { it.text = value }
+
 			var secondNumber: String
-				get() = horizontalOperation.tvSecondNumber.text.toString()
-				set(value)
-				{
-					horizontalOperation.tvSecondNumber.text = value
-					verticalOperation.tvSecondNumber.text = value
-				}
+				get() = tvSecondPair.first().text.toString()
+				set(value) = tvSecondPair.forEach { it.text = value }
+
 			var symbol: String
-				get() = horizontalOperation.tvSymbol.text.toString()
-				set(value)
-				{
-					horizontalOperation.tvSymbol.text = value
-					verticalOperation.tvSymbol.text = value
-				}
+				get() = tvSymbolPair.first().text.toString()
+				set(value) = tvSymbolPair.forEach { it.text = value }
 
 			fun toggleDistribution()
 			{
-				if (horizontalOperation.root.isGone)
-				{
-					horizontalOperation.root.isVisible = true
-					verticalOperation.root.isGone = true
-				}
-				else
-				{
-					verticalOperation.root.isVisible = true
-					horizontalOperation.root.isGone = true
-				}
+				rootPair.forEach { it.isGone = !it.isGone }
 			}
 		}
 	}
