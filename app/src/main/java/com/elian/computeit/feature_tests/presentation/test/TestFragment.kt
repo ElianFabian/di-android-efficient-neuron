@@ -5,18 +5,17 @@ import android.view.View
 import android.widget.Button
 import androidx.core.os.bundleOf
 import androidx.core.view.isGone
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.elian.computeit.R
-import com.elian.computeit.core.data.Operation
 import com.elian.computeit.core.presentation.util.extensions.*
 import com.elian.computeit.core.presentation.util.viewBinding
-import com.elian.computeit.core.util.constants.TestArgKeys
+import com.elian.computeit.core.util.constants.receiveArgs
 import com.elian.computeit.core.util.extensions.format
 import com.elian.computeit.core.util.using
 import com.elian.computeit.databinding.FragmentTestBinding
+import com.elian.computeit.feature_tests.domain.args.TestArgs
 import com.elian.computeit.feature_tests.presentation.test.TestAction.*
 import com.elian.computeit.feature_tests.presentation.test.TestEvent.*
 import dagger.hilt.android.AndroidEntryPoint
@@ -29,48 +28,32 @@ class TestFragment : Fragment(R.layout.fragment_test)
 {
 	private val viewModel by viewModels<TestViewModel>()
 	private val binding by viewBinding(FragmentTestBinding::bind)
+	private val args by lazy { receiveArgs<TestArgs>()!! }
 
 	private val operationView by lazy {
 		object
 		{
-			private val horizontalOperation = binding.lytHorizontalOperation
-			private val verticalOperation = binding.lytVerticalOperation
+			private val horizontal = binding.lytHorizontalOperation
+			private val vertical = binding.lytVerticalOperation
+
+			private val tvFirstPair = listOf(horizontal.tvFirstNumber, vertical.tvFirstNumber)
+			private val tvSecondPair = listOf(horizontal.tvSecondNumber, vertical.tvSecondNumber)
+			private val tvSymbolPair = listOf(horizontal.tvSymbol, vertical.tvSymbol)
+			private val rootPair = listOf(horizontal.root, vertical.root)
 
 			var firstNumber: String
-				get() = horizontalOperation.tvFirstNumber.text.toString()
-				set(value)
-				{
-					horizontalOperation.tvFirstNumber.text = value
-					verticalOperation.tvFirstNumber.text = value
-				}
-			var secondNumber: String
-				get() = horizontalOperation.tvSecondNumber.text.toString()
-				set(value)
-				{
-					horizontalOperation.tvSecondNumber.text = value
-					verticalOperation.tvSecondNumber.text = value
-				}
-			var symbol: String
-				get() = horizontalOperation.tvSymbol.text.toString()
-				set(value)
-				{
-					horizontalOperation.tvSymbol.text = value
-					verticalOperation.tvSymbol.text = value
-				}
+				get() = tvFirstPair.first().text.toString()
+				set(value) = tvFirstPair.forEach { it.text = value }
 
-			fun toggleDistribution()
-			{
-				if (horizontalOperation.root.isGone)
-				{
-					horizontalOperation.root.isVisible = true
-					verticalOperation.root.isGone = true
-				}
-				else
-				{
-					verticalOperation.root.isVisible = true
-					horizontalOperation.root.isGone = true
-				}
-			}
+			var secondNumber: String
+				get() = tvSecondPair.first().text.toString()
+				set(value) = tvSecondPair.forEach { it.text = value }
+
+			var symbol: String
+				get() = tvSymbolPair.first().text.toString()
+				set(value) = tvSymbolPair.forEach { it.text = value }
+
+			fun toggleDistribution() = rootPair.forEach { it.isGone = !it.isGone }
 		}
 	}
 
@@ -88,7 +71,7 @@ class TestFragment : Fragment(R.layout.fragment_test)
 	{
 		disableScreenInteraction()
 
-		arguments?.getInt(TestArgKeys.TestTimeInSeconds)!!.also()
+		args.totalTimeInSeconds.also()
 		{
 			mtvRemainingSeconds.text = if (it == 0)
 			{
@@ -105,10 +88,8 @@ class TestFragment : Fragment(R.layout.fragment_test)
 			cpiRemainingSeconds.max = initialProgress
 			cpiRemainingSeconds.progress = initialProgress
 		}
-		arguments?.getSerializable(TestArgKeys.OperationType)!!.let { it as Operation }.also()
-		{
-			operationView.symbol = it.symbol
-		}
+
+		operationView.symbol = args.operation.symbol
 
 		llKeyBoard.findViewsWithTagOfType<Button>(R.string.tag_numeric_button).forEach { button ->
 
@@ -172,15 +153,12 @@ class TestFragment : Fragment(R.layout.fragment_test)
 				}
 			}
 		}
-		collectLatestFlowWhenStarted(resultState)
-		{
-			binding.tietInput.setText(it.toString())
-		}
 		collectLatestFlowWhenStarted(pairOfNumbersState.filterNotNull())
 		{
 			operationView.firstNumber = it.first.toString()
 			operationView.secondNumber = it.second.toString()
 		}
+		collectLatestFlowWhenStarted(resultState) { binding.tietInput.setText(it.toString()) }
 		collectLatestFlowWhenStarted(operationSymbolState) { operationView.symbol = it }
 	}
 

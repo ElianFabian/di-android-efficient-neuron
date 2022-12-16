@@ -14,9 +14,10 @@ import com.elian.computeit.core.presentation.util.mp_android_chart.lineDataSet
 import com.elian.computeit.core.presentation.util.mp_android_chart.toEntries
 import com.elian.computeit.core.presentation.util.mp_android_chart.valuesToEntriesWithYValue
 import com.elian.computeit.core.presentation.util.viewBinding
-import com.elian.computeit.core.util.constants.TestDetailsArgKeys
+import com.elian.computeit.core.util.constants.receiveArgs
 import com.elian.computeit.core.util.using
 import com.elian.computeit.databinding.FragmentTestDetailsBinding
+import com.elian.computeit.feature_tests.domain.args.TestDetailsArgs
 import com.elian.computeit.feature_tests.domain.model.TestChartInfo
 import com.elian.computeit.feature_tests.domain.model.TestInfo
 import com.elian.computeit.feature_tests.domain.model.TestStatsInfo
@@ -27,6 +28,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class TestDetailsFragment : Fragment(R.layout.fragment_test_details)
 {
 	private val binding by viewBinding(FragmentTestDetailsBinding::bind)
+	private val args by lazy { receiveArgs<TestDetailsArgs>()!! }
 
 
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?)
@@ -39,7 +41,9 @@ class TestDetailsFragment : Fragment(R.layout.fragment_test_details)
 
 	private fun initUi() = using(binding)
 	{
-		val info = arguments?.getParcelable<TestInfo>(TestDetailsArgKeys.TestInfo)!!
+		if (args.sender == TestDetailsArgs.Sender.Home) binding.btnContinue.isGone = true
+
+		val info = args.testInfo
 
 		initTestChart(info.chartInfo)
 		initStats(info.statsInfo)
@@ -52,7 +56,6 @@ class TestDetailsFragment : Fragment(R.layout.fragment_test_details)
 		else initFailedOperationsAdapter(info)
 
 		btnContinue.setOnClickListener { navigate(R.id.action_testDetailsFragment_to_homeFragment) }
-		btnContinue.isGone = arguments?.getBoolean(TestDetailsArgKeys.HideContinueButton) ?: false
 	}
 
 	private fun initTestChart(info: TestChartInfo)

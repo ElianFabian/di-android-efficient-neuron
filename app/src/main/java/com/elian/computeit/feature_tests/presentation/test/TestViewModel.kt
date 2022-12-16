@@ -3,19 +3,19 @@ package com.elian.computeit.feature_tests.presentation.test
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.elian.computeit.core.data.Operation
 import com.elian.computeit.core.data.toTestInfo
 import com.elian.computeit.core.domain.models.NumberPair
 import com.elian.computeit.core.domain.models.OperationData
-import com.elian.computeit.core.domain.models.Range
 import com.elian.computeit.core.domain.models.TestData
 import com.elian.computeit.core.domain.util.CountDownTimer
 import com.elian.computeit.core.domain.util.TimerEvent
-import com.elian.computeit.core.util.constants.TestArgKeys
-import com.elian.computeit.core.util.constants.TestDetailsArgKeys
+import com.elian.computeit.core.util.constants.receiveArgs
+import com.elian.computeit.core.util.constants.toList
 import com.elian.computeit.core.util.extensions.append
 import com.elian.computeit.core.util.extensions.clampLength
 import com.elian.computeit.core.util.extensions.dropLast
+import com.elian.computeit.feature_tests.domain.args.TestArgs
+import com.elian.computeit.feature_tests.domain.args.TestDetailsArgs
 import com.elian.computeit.feature_tests.domain.use_case.AddTestDataUseCase
 import com.elian.computeit.feature_tests.domain.use_case.GetRandomNumberPairUseCase
 import com.elian.computeit.feature_tests.presentation.test.TestAction.*
@@ -41,11 +41,9 @@ class TestViewModel @Inject constructor(
 	private val getRandomNumberPair: GetRandomNumberPairUseCase,
 ) : ViewModel()
 {
-	private val _totalTimeInMillis = savedState.get<Int>(TestArgKeys.TestTimeInSeconds)!! * 1_000L
-	private val _range = savedState.get<Range>(TestArgKeys.OperationRange)!!
-	private val _operation = savedState.get<Operation>(TestArgKeys.OperationType)!!
+	private val args = savedState.receiveArgs<TestArgs>()!!
 
-	private val _isInfiniteMode = _totalTimeInMillis == 0L
+	private val _isInfiniteMode = args.totalTimeInSeconds == 0
 	private var _millisSinceStart = 0L
 	private val _listOfOperationData = mutableListOf<OperationData>()
 
@@ -58,7 +56,7 @@ class TestViewModel @Inject constructor(
 	private val _pairOfNumbersState = MutableStateFlow<NumberPair?>(null)
 	val pairOfNumbersState = _pairOfNumbersState.asStateFlow()
 
-	private val _operationSymbolState = MutableStateFlow(_operation.symbol)
+	private val _operationSymbolState = MutableStateFlow(args.operation.symbol)
 	val operationSymbolState = _operationSymbolState.asStateFlow()
 
 
@@ -95,7 +93,7 @@ class TestViewModel @Inject constructor(
 
 	private fun addResultAndNextOperation(result: Int? = null)
 	{
-		val expectedResult = _operation(
+		val expectedResult = args.operation(
 			firstNumber = _pairOfNumbersState.value!!.first,
 			secondNumber = _pairOfNumbersState.value!!.second,
 		)
@@ -107,7 +105,7 @@ class TestViewModel @Inject constructor(
 		if (result != null && result * sign != expectedResult) return
 
 		val data = OperationData(
-			operationName = _operation.name,
+			operationName = args.operation.name,
 			pairOfNumbers = _pairOfNumbersState.value!!,
 			insertedResult = _resultState.value * sign,
 			millisSinceStart = _millisSinceStart,
@@ -123,17 +121,20 @@ class TestViewModel @Inject constructor(
 	{
 		_eventFlow.send(OnTimerFinish)
 
-		val totalTime = if (_isInfiniteMode) _millisSinceStart else _totalTimeInMillis
+		val totalTime = if (_isInfiniteMode) _millisSinceStart else args.totalTimeInSeconds * 1_000L
 
 		val testData = TestData(
 			dateUnix = System.currentTimeMillis(),
 			timeInSeconds = totalTime.toInt() / 1000,
 			listOfOperationData = _listOfOperationData.toList(),
-			range = _range
+			range = args.range
 		)
 
 		_eventFlow.send(OnGoToTestDetails(
-			args = listOf(TestDetailsArgKeys.TestInfo to testData.toTestInfo())
+			args = TestDetailsArgs(
+				sender = TestDetailsArgs.Sender.Test,
+				testInfo = testData.toTestInfo(),
+			).toList()
 		))
 
 		// This is to avoid the cancellation of the viewModelScope
@@ -148,7 +149,7 @@ class TestViewModel @Inject constructor(
 		val countDownInterval = 1L
 
 		countDownTimer.initialize(
-			millisInFuture = if (_isInfiniteMode) Long.MAX_VALUE else _totalTimeInMillis,
+			millisInFuture = if (_isInfiniteMode) Long.MAX_VALUE else args.totalTimeInSeconds * 1_000L,
 			countDownInterval = countDownInterval,
 			coroutineScope = viewModelScope,
 		)
