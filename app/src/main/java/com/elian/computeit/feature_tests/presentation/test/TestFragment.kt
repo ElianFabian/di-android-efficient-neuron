@@ -53,10 +53,7 @@ class TestFragment : Fragment(R.layout.fragment_test)
 				get() = tvSymbolPair.first().text.toString()
 				set(value) = tvSymbolPair.forEach { it.text = value }
 
-			fun toggleDistribution()
-			{
-				rootPair.forEach { it.isGone = !it.isGone }
-			}
+			fun toggleDistribution() = rootPair.forEach { it.isGone = !it.isGone }
 		}
 	}
 
