@@ -43,10 +43,6 @@ class TestViewModel @Inject constructor(
 {
 	private val args = savedState.receiveArgs<TestArgs>()!!
 
-	private val _isInfiniteMode = args.totalTimeInSeconds == 0
-	private var _millisSinceStart = 0L
-	private val _listOfOperationData = mutableListOf<OperationData>()
-
 	private val _eventFlow = Channel<TestEvent>()
 	val eventFlow = _eventFlow.receiveAsFlow()
 
@@ -58,6 +54,18 @@ class TestViewModel @Inject constructor(
 
 	private val _operationSymbolState = MutableStateFlow(args.operation.symbol)
 	val operationSymbolState = _operationSymbolState.asStateFlow()
+
+	private val _isInfiniteMode = args.totalTimeInSeconds == 0
+	private var _millisSinceStart = 0L
+	private val _listOfOperationData = mutableListOf<OperationData>()
+	private val _expectedResult
+		get() = args.operation(
+			firstNumber = _pairOfNumbersState.value?.first ?: 0,
+			secondNumber = _pairOfNumbersState.value?.second ?: 0,
+		)
+	// As there's no negative sign button even if the answer it's negative you insert a positive number
+	// but when storing the data we save the value with the right sign
+	private val _resultSign get() = sign(_expectedResult.toFloat()).toInt()
 
 
 	init
@@ -74,7 +82,13 @@ class TestViewModel @Inject constructor(
 			{
 				_resultState.update { it.append(action.value).clampLength(maxLength = 8) }
 
-				addResult(result = _resultState.value)
+				// We automatically add the result if it is correct
+				val isInsertedResultCorrect = _resultState.value * _resultSign == _expectedResult
+				if (isInsertedResultCorrect)
+				{
+					addResult()
+					nextOperation()
+				}
 			}
 			is RemoveLastDigit -> _resultState.update { it.dropLast() }
 			is ClearInput      -> _resultState.value = 0
@@ -95,23 +109,12 @@ class TestViewModel @Inject constructor(
 	}
 
 
-	private fun addResult(result: Int? = null)
+	private fun addResult()
 	{
-		val expectedResult = args.operation(
-			firstNumber = _pairOfNumbersState.value!!.first,
-			secondNumber = _pairOfNumbersState.value!!.second,
-		)
-
-		// As there's no negative sign button even if the answer it's negative you can introduce a positive number
-		// but when storing the data we save the value with the correct sign
-		val sign = sign(expectedResult.toFloat()).toInt()
-
-		if (result != null && result * sign != expectedResult) return
-
 		val data = OperationData(
 			operationName = args.operation.name,
 			pairOfNumbers = _pairOfNumbersState.value!!,
-			insertedResult = _resultState.value * sign,
+			insertedResult = _resultState.value * _resultSign,
 			millisSinceStart = _millisSinceStart,
 		)
 
