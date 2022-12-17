@@ -124,34 +124,6 @@ class TestViewModel @Inject constructor(
 		_resultState.value = 0
 	}
 
-	private suspend fun finish(saveData: Boolean = true)
-	{
-		_eventFlow.send(OnTimerFinish)
-
-		val totalTime = if (_isInfiniteMode) _millisSinceStart else args.totalTimeInSeconds * 1_000L
-
-		val testData = TestData(
-			dateUnix = System.currentTimeMillis(),
-			timeInSeconds = totalTime.toInt() / 1000,
-			listOfOperationData = _listOfOperationData.toList(),
-			range = args.range
-		)
-
-		_eventFlow.send(OnGoToTestDetails(
-			args = TestDetailsArgs(
-				sender = TestDetailsArgs.Sender.Test,
-				testInfo = testData.toTestInfo(),
-			).toList()
-		))
-
-		// This is to avoid the cancellation of the viewModelScope
-		// I want to find a better way to do this call without being cancelled by the viewModelScope
-		MainScope().launch(Dispatchers.IO)
-		{
-			if (saveData) addTestData(testData)
-		}
-	}
-
 	private fun initialize()
 	{
 		val countDownInterval = 1L
@@ -187,6 +159,34 @@ class TestViewModel @Inject constructor(
 					else                   -> Unit
 				}
 			}
+		}
+	}
+
+	private suspend fun finish(saveData: Boolean = true)
+	{
+		_eventFlow.send(OnTimerFinish)
+
+		val totalTime = if (_isInfiniteMode) _millisSinceStart else args.totalTimeInSeconds * 1_000L
+
+		val testData = TestData(
+			dateUnix = System.currentTimeMillis(),
+			timeInSeconds = totalTime.toInt() / 1000,
+			listOfOperationData = _listOfOperationData.toList(),
+			range = args.range
+		)
+
+		_eventFlow.send(OnGoToTestDetails(
+			args = TestDetailsArgs(
+				sender = TestDetailsArgs.Sender.Test,
+				testInfo = testData.toTestInfo(),
+			).toList()
+		))
+
+		// This is to avoid the cancellation of the viewModelScope
+		// I want to find a better way to do this call without being cancelled by the viewModelScope
+		MainScope().launch(Dispatchers.IO)
+		{
+			if (saveData) addTestData(testData)
 		}
 	}
 }
