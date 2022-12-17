@@ -48,13 +48,13 @@ class GetRandomNumberPairUseCase @Inject constructor(
 
 	private fun getRandomPairByOperation() = when (_args.operation)
 	{
-		Operation.Addition       -> getRandomPairExcept { it.first == 0 && it.second == 0 }
-		Operation.Subtraction    -> getRandomPairExcept { it.first == it.second }
-		Operation.Multiplication -> getRandomPairExcept { it.first == 0 || it.second == 0 }
+		Operation.Addition       -> getRandomPairExceptIf { it.first == 0 && it.second == 0 }
+		Operation.Subtraction    -> getRandomPairExceptIf { it.first == it.second }
+		Operation.Multiplication -> getRandomPairExceptIf { it.first == 0 || it.second == 0 }
 		Operation.Division       -> _divisiblePairs.random(randomSeed)
 	}
 
-	private fun getRandomPairExcept(condition: (pair: NumberPair) -> Boolean): NumberPair
+	private fun getRandomPairExceptIf(condition: (pair: NumberPair) -> Boolean): NumberPair
 	{
 		while (true)
 		{
