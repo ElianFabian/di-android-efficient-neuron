@@ -5,6 +5,6 @@ sealed interface TestAction
 	data class EnterNumber(val value: Int) : TestAction
 	object RemoveLastDigit : TestAction
 	object ClearInput : TestAction
-	object NextTest : TestAction
+	object NextOperation : TestAction
 	object ForceFinish : TestAction
 }

@@ -159,7 +159,7 @@
                     android:text="DEL" />
 
                 <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnNextTest"
+                    android:id="@+id/btnNextOperation"
                     style="@style/CalculatorButton.Action"
                     android:layout_weight="2"
                     android:backgroundTint="@color/green_a400"

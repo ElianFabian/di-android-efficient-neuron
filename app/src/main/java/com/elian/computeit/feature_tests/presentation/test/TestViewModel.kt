@@ -74,11 +74,15 @@ class TestViewModel @Inject constructor(
 			{
 				_resultState.update { it.append(action.value).clampLength(maxLength = 8) }
 
-				addResultAndNextOperation(result = _resultState.value)
+				addResult(result = _resultState.value)
 			}
 			is RemoveLastDigit -> _resultState.update { it.dropLast() }
 			is ClearInput      -> _resultState.value = 0
-			is NextTest        -> addResultAndNextOperation()
+			is NextOperation   ->
+			{
+				addResult()
+				nextOperation()
+			}
 			is ForceFinish     -> viewModelScope.launch { finish(saveData = false) }
 		}
 	}
@@ -91,7 +95,7 @@ class TestViewModel @Inject constructor(
 	}
 
 
-	private fun addResultAndNextOperation(result: Int? = null)
+	private fun addResult(result: Int? = null)
 	{
 		val expectedResult = args.operation(
 			firstNumber = _pairOfNumbersState.value!!.first,
@@ -112,7 +116,10 @@ class TestViewModel @Inject constructor(
 		)
 
 		_listOfOperationData.add(data)
+	}
 
+	private fun nextOperation()
+	{
 		_pairOfNumbersState.value = getRandomNumberPair(oldPair = _pairOfNumbersState.value)
 		_resultState.value = 0
 	}

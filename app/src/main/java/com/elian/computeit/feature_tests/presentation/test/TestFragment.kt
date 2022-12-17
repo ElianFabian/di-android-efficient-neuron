@@ -102,7 +102,7 @@ class TestFragment : Fragment(R.layout.fragment_test)
 		mFlOperation.setOnClickListener { operationView.toggleDistribution() }
 
 		btnRemoveLastDigit.setOnClickListener { viewModel.onAction(RemoveLastDigit) }
-		btnNextTest.setOnClickListener { viewModel.onAction(NextTest) }
+		btnNextOperation.setOnClickListener { viewModel.onAction(NextOperation) }
 		btnClearInput.setOnClickListener { viewModel.onAction(ClearInput) }
 
 		clTouchToStart.setOnClickListenerOnlyOnce()
