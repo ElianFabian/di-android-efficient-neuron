@@ -41,7 +41,7 @@ class TestViewModel @Inject constructor(
 	private val getRandomNumberPair: GetRandomNumberPairUseCase,
 ) : ViewModel()
 {
-	private val args = savedState.receiveArgs<TestArgs>()!!
+	private val _args = savedState.receiveArgs<TestArgs>()!!
 
 	private val _eventFlow = Channel<TestEvent>()
 	val eventFlow = _eventFlow.receiveAsFlow()
@@ -52,14 +52,16 @@ class TestViewModel @Inject constructor(
 	private val _pairOfNumbersState = MutableStateFlow<NumberPair?>(null)
 	val pairOfNumbersState = _pairOfNumbersState.asStateFlow()
 
-	private val _operationSymbolState = MutableStateFlow(args.operation.symbol)
+	private val _operationSymbolState = MutableStateFlow(_args.operation.symbol)
 	val operationSymbolState = _operationSymbolState.asStateFlow()
 
-	private val _isInfiniteMode = args.totalTimeInSeconds == 0
-	private var _millisSinceStart = 0L
 	private val _listOfOperationData = mutableListOf<OperationData>()
+
+	private val _isInfiniteMode = _args.totalTimeInSeconds == 0
+	private var _millisSinceStart = 0L
+
 	private val _expectedResult
-		get() = args.operation(
+		get() = _args.operation(
 			firstNumber = _pairOfNumbersState.value?.first ?: 0,
 			secondNumber = _pairOfNumbersState.value?.second ?: 0,
 		)
@@ -112,7 +114,7 @@ class TestViewModel @Inject constructor(
 	private fun addResult()
 	{
 		val data = OperationData(
-			operationName = args.operation.name,
+			operationName = _args.operation.name,
 			pairOfNumbers = _pairOfNumbersState.value!!,
 			insertedResult = _resultState.value * _resultSign,
 			millisSinceStart = _millisSinceStart,
@@ -132,7 +134,7 @@ class TestViewModel @Inject constructor(
 		val countDownInterval = 1L
 
 		countDownTimer.initialize(
-			millisInFuture = if (_isInfiniteMode) Long.MAX_VALUE else args.totalTimeInSeconds * 1_000L,
+			millisInFuture = if (_isInfiniteMode) Long.MAX_VALUE else _args.totalTimeInSeconds * 1_000L,
 			countDownInterval = countDownInterval,
 			coroutineScope = viewModelScope,
 		)
@@ -169,13 +171,13 @@ class TestViewModel @Inject constructor(
 	{
 		_eventFlow.send(OnTimerFinish)
 
-		val totalTime = if (_isInfiniteMode) _millisSinceStart else args.totalTimeInSeconds * 1_000L
+		val totalTime = if (_isInfiniteMode) _millisSinceStart else _args.totalTimeInSeconds * 1_000L
 
 		val testData = TestData(
 			dateUnix = System.currentTimeMillis(),
 			timeInSeconds = totalTime.toInt() / 1000,
 			listOfOperationData = _listOfOperationData.toList(),
-			range = args.range
+			range = _args.range
 		)
 
 		_eventFlow.send(OnGoToTestDetails(

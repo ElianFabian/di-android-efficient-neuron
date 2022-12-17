@@ -13,10 +13,10 @@ class GetRandomNumberPairUseCase @Inject constructor(
 	savedState: SavedStateHandle,
 )
 {
-	private val args = savedState.receiveArgs<TestArgs>()!!
+	private val _args = savedState.receiveArgs<TestArgs>()!!
 
-	private val _range = args.range.let { it.min..it.max }
-	private val _divisiblePairs: List<NumberPair> = if (args.operation == Operation.Division)
+	private val _range = _args.range.let { it.min..it.max }
+	private val _divisiblePairs: List<NumberPair> = if (_args.operation == Operation.Division)
 	{
 		getDivisiblePairsInRange(
 			start = _range.first,
@@ -48,9 +48,9 @@ class GetRandomNumberPairUseCase @Inject constructor(
 
 	private fun getRandomPairByOperation(): NumberPair
 	{
-		if (args.operation == Operation.Division) return _divisiblePairs.random(randomSeed)
+		if (_args.operation == Operation.Division) return _divisiblePairs.random(randomSeed)
 
-		if (args.operation == Operation.Subtraction) while (true)
+		if (_args.operation == Operation.Subtraction) while (true)
 		{
 			val newPair = getRandomNumberPair(_range)
 
