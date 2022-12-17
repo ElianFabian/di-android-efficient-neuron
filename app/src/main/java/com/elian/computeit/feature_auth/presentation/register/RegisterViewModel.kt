@@ -7,6 +7,7 @@ import com.elian.computeit.core.util.Resource
 import com.elian.computeit.core.util.UiText
 import com.elian.computeit.feature_auth.domain.params.RegisterParams
 import com.elian.computeit.feature_auth.domain.use_case.RegisterUseCase
+import com.elian.computeit.feature_auth.presentation.register.RegisterAction.*
 import com.elian.computeit.feature_auth.presentation.register.RegisterEvent.OnRegister
 import com.elian.computeit.feature_auth.presentation.register.RegisterEvent.OnShowErrorMessage
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -43,10 +44,10 @@ class RegisterViewModel @Inject constructor(
 	{
 		when (action)
 		{
-			is RegisterAction.EnterUsername        -> _usernameState.update { it.copy(text = action.value, error = null) }
-			is RegisterAction.EnterPassword        -> _passwordState.update { it.copy(text = action.value, error = null) }
-			is RegisterAction.EnterConfirmPassword -> _confirmPasswordState.update { it.copy(text = action.value, error = null) }
-			is RegisterAction.Register             -> viewModelScope.launch()
+			is EnterUsername        -> _usernameState.update { it.copy(text = action.value, error = null) }
+			is EnterPassword        -> _passwordState.update { it.copy(text = action.value, error = null) }
+			is EnterConfirmPassword -> _confirmPasswordState.update { it.copy(text = action.value, error = null) }
+			is Register             -> viewModelScope.launch()
 			{
 				_loadingState.value = true
 

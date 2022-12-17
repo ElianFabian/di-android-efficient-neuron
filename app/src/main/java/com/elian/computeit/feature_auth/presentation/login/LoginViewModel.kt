@@ -7,6 +7,7 @@ import com.elian.computeit.core.util.Resource
 import com.elian.computeit.core.util.UiText
 import com.elian.computeit.feature_auth.domain.params.LoginParams
 import com.elian.computeit.feature_auth.domain.use_case.LoginUseCase
+import com.elian.computeit.feature_auth.presentation.login.LoginAction.*
 import com.elian.computeit.feature_auth.presentation.login.LoginEvent.OnLogin
 import com.elian.computeit.feature_auth.presentation.login.LoginEvent.OnShowErrorMessage
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -40,9 +41,9 @@ class LoginViewModel @Inject constructor(
 	{
 		when (action)
 		{
-			is LoginAction.EnterUsername -> _usernameState.update { it.copy(text = action.value, error = null) }
-			is LoginAction.EnterPassword -> _passwordState.update { it.copy(text = action.value, error = null) }
-			is LoginAction.Login         -> viewModelScope.launch()
+			is EnterUsername -> _usernameState.update { it.copy(text = action.value, error = null) }
+			is EnterPassword -> _passwordState.update { it.copy(text = action.value, error = null) }
+			is Login         -> viewModelScope.launch()
 			{
 				_loadingState.value = true
 
