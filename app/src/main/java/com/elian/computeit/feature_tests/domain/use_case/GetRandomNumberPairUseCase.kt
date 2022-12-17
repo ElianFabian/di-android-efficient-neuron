@@ -46,18 +46,24 @@ class GetRandomNumberPairUseCase @Inject constructor(
 		}
 	}
 
-	private fun getRandomPairByOperation(): NumberPair
+	private fun getRandomPairByOperation() = when (_args.operation)
 	{
-		if (_args.operation == Operation.Division) return _divisiblePairs.random(randomSeed)
+		Operation.Addition       -> getRandomPairExcept { it.first == 0 && it.second == 0 }
+		Operation.Subtraction    -> getRandomPairExcept { it.first == it.second }
+		Operation.Multiplication -> getRandomPairExcept { it.first == 0 || it.second == 0 }
+		Operation.Division       -> _divisiblePairs.random(randomSeed)
+	}
 
-		if (_args.operation == Operation.Subtraction) while (true)
+	private fun getRandomPairExcept(condition: (pair: NumberPair) -> Boolean): NumberPair
+	{
+		while (true)
 		{
 			val newPair = getRandomNumberPair(_range)
 
-			if (newPair.first != newPair.second) return newPair
-		}
+			if (condition(newPair)) continue
 
-		return getRandomNumberPair(_range)
+			return newPair
+		}
 	}
 }
 
