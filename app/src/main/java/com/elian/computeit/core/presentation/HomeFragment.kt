@@ -55,7 +55,7 @@ class HomeFragment : Fragment(R.layout.fragment_home)
 //        binding.sivGoToTips.setOnClickListener { navigate(R.id.action_homeFragment_to_tipsFragment) }
 //        binding.sivGoToSettings.setOnClickListener { navigate(R.id.action_homeFragment_to_settingsFragment) }
 
-		binding.lytTestHistory.lineChart.isGone = true
+		binding.viewTestHistory.lineChart.isGone = true
 		binding.bcSpeedHistogram.isGone = true
 		binding.sldRangeLength.isGone = true
 	}
@@ -75,7 +75,7 @@ class HomeFragment : Fragment(R.layout.fragment_home)
 
 	private fun initTestHistoryChart(info: TestHistoryInfo) = using(info)
 	{
-		val chartView = binding.lytTestHistory.lineChart
+		val chartView = binding.viewTestHistory.lineChart
 
 		if (opmPerTest.isNotEmpty() || rawOpmPerTest.isNotEmpty())
 		{
@@ -201,6 +201,6 @@ class HomeFragment : Fragment(R.layout.fragment_home)
 			R.string.frgHome_highestRawOpm labelOf maxRawOpm,
 		)
 
-		binding.lytTextInfoList.rvLabeledData.adapter = MainLabeledDataAdapter(listOfLabeledData)
+		binding.viewTextInfoList.rvLabeledData.adapter = MainLabeledDataAdapter(listOfLabeledData)
 	}
 }

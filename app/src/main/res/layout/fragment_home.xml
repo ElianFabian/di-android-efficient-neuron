@@ -102,8 +102,8 @@
         </androidx.appcompat.widget.LinearLayoutCompat>
 
         <include
-            android:id="@+id/lytTestHistory"
-            layout="@layout/layout_line_chart" />
+            android:id="@+id/viewTestHistory"
+            layout="@layout/view_line_chart" />
 
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
@@ -144,8 +144,8 @@
         </com.google.android.material.card.MaterialCardView>
 
         <include
-            android:id="@+id/lytTextInfoList"
-            layout="@layout/layout_list_labeled_data"
+            android:id="@+id/viewTextInfoList"
+            layout="@layout/view_list_labeled_data"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 

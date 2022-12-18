@@ -84,12 +84,12 @@ class TestDetailsFragment : Fragment(R.layout.fragment_test_details)
 			}
 		)
 
-		binding.lytTestChart.lineChart.applyDefault(dataSets = lineDataSets)
+		binding.viewTestChart.lineChart.applyDefault(dataSets = lineDataSets)
 		{
 			xAxis.granularity = 0.5F
 		}
 
-		binding.lytTestChart.lineChart.avoidConflictsWithScroll(binding.root)
+		binding.viewTestChart.lineChart.avoidConflictsWithScroll(binding.root)
 	}
 
 	private fun initStats(info: TestStatsInfo) = using(info)
@@ -104,7 +104,7 @@ class TestDetailsFragment : Fragment(R.layout.fragment_test_details)
 			R.string.generic_errors labelOf errorCount,
 		)
 
-		binding.lytTextInfoList.rvLabeledData.adapter = MainLabeledDataAdapter(listOfLabeledData)
+		binding.viewTextInfoList.rvLabeledData.adapter = MainLabeledDataAdapter(listOfLabeledData)
 	}
 
 	private fun initFailedOperationsAdapter(listOfFailedOperationInfo: List<OperationInfo>)

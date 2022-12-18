@@ -16,12 +16,12 @@
         android:paddingTop="@dimen/_32sdp">
 
         <include
-            android:id="@+id/lytTestChart"
-            layout="@layout/layout_line_chart" />
+            android:id="@+id/viewTestChart"
+            layout="@layout/view_line_chart" />
 
         <include
-            android:id="@+id/lytTextInfoList"
-            layout="@layout/layout_list_labeled_data"
+            android:id="@+id/viewTextInfoList"
+            layout="@layout/view_list_labeled_data"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_15sdp"

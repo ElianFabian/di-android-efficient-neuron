@@ -98,16 +98,16 @@
             app:layout_constraintVertical_bias="0">
 
             <include
-                android:id="@+id/lytHorizontalOperation"
-                layout="@layout/layout_horizontal_operation"
+                android:id="@+id/viewHorizontalOperation"
+                layout="@layout/view_operation_horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/_26sdp"
                 android:visibility="visible" />
 
             <include
-                android:id="@+id/lytVerticalOperation"
-                layout="@layout/layout_vertical_operation"
+                android:id="@+id/viewVerticalOperation"
+                layout="@layout/view_operation_vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/_26sdp"

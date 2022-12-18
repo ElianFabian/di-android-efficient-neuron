@@ -33,8 +33,8 @@ class TestFragment : Fragment(R.layout.fragment_test)
 	private val operationView by lazy {
 		object
 		{
-			private val horizontal = binding.lytHorizontalOperation
-			private val vertical = binding.lytVerticalOperation
+			private val horizontal = binding.viewHorizontalOperation
+			private val vertical = binding.viewVerticalOperation
 
 			private val tvFirstPair = listOf(horizontal.tvFirstNumber, vertical.tvFirstNumber)
 			private val tvSecondPair = listOf(horizontal.tvSecondNumber, vertical.tvSecondNumber)
