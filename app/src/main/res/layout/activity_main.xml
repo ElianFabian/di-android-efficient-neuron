@@ -8,7 +8,7 @@
     android:layout_gravity="start"
     tools:viewBindingIgnore="true">
 
-    <!--androidx.fragment.app.FragmentContainerView Doesn't work-->
+    <!--androidx.fragment.app.FragmentContainerView doesn't work-->
     <fragment
         android:id="@+id/navHostFragment"
         android:name="androidx.navigation.fragment.NavHostFragment"
