@@ -88,7 +88,7 @@
         <!--This layout contains the vertical and horizontal layout versions of an operation-->
         <!--that will be toggle through code when it's clicked-->
         <FrameLayout
-            android:id="@+id/mFlOperation"
+            android:id="@+id/flOperation"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/_90sdp"
             app:layout_constraintBottom_toBottomOf="parent"

@@ -99,7 +99,7 @@ class TestFragment : Fragment(R.layout.fragment_test)
 			}
 		}
 
-		mFlOperation.setOnClickListener { operationView.toggleDistribution() }
+		flOperation.setOnClickListener { operationView.toggleDistribution() }
 
 		btnRemoveLastDigit.setOnClickListener { viewModel.onAction(RemoveLastDigit) }
 		btnNextOperation.setOnClickListener { viewModel.onAction(NextOperation) }
