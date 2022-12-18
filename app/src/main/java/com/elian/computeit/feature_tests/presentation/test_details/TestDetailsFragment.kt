@@ -19,8 +19,8 @@ import com.elian.computeit.core.util.constants.receiveArgs
 import com.elian.computeit.core.util.using
 import com.elian.computeit.databinding.FragmentTestDetailsBinding
 import com.elian.computeit.feature_tests.domain.args.TestDetailsArgs
+import com.elian.computeit.feature_tests.domain.model.OperationInfo
 import com.elian.computeit.feature_tests.domain.model.TestChartInfo
-import com.elian.computeit.feature_tests.domain.model.TestInfo
 import com.elian.computeit.feature_tests.domain.model.TestStatsInfo
 import com.elian.computeit.feature_tests.presentation.test_details.adapter.FailedOperationAdapter
 import dagger.hilt.android.AndroidEntryPoint
@@ -48,13 +48,16 @@ class TestDetailsFragment : Fragment(R.layout.fragment_test_details)
 
 		initTestChart(info.chartInfo)
 		initStats(info.statsInfo)
-
-		if (info.listOfFailedOperationInfo.isEmpty())
+		
+		info.listOfFailedOperationInfo.also()
 		{
-			tvFailedOperations.isGone = true
-			rvFailedOperations.isGone = true
+			if (it.isEmpty())
+			{
+				tvFailedOperations.isGone = true
+				rvFailedOperations.isGone = true
+			}
+			else initFailedOperationsAdapter(it)
 		}
-		else initFailedOperationsAdapter(info)
 
 		btnContinue.setOnClickListener { navigate(R.id.action_testDetailsFragment_to_homeFragment) }
 	}
@@ -104,8 +107,8 @@ class TestDetailsFragment : Fragment(R.layout.fragment_test_details)
 		binding.lytTextInfoList.rvLabeledData.adapter = MainLabeledDataAdapter(listOfLabeledData)
 	}
 
-	private fun initFailedOperationsAdapter(info: TestInfo)
+	private fun initFailedOperationsAdapter(listOfFailedOperationInfo: List<OperationInfo>)
 	{
-		binding.rvFailedOperations.adapter = FailedOperationAdapter(info.listOfFailedOperationInfo)
+		binding.rvFailedOperations.adapter = FailedOperationAdapter(listOfFailedOperationInfo)
 	}
 }
