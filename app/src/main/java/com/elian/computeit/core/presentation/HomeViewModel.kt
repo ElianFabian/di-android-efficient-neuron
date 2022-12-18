@@ -21,9 +21,9 @@ class HomeViewModel @Inject constructor(
 	{
 		viewModelScope.launch()
 		{
-			val listInfo = getTestListInfo()
+			val info = getTestListInfo()
 
-			_infoState.value = listInfo
+			_infoState.value = info
 			_loadingState.value = false
 		}
 	}
