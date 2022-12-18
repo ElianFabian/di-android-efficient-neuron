@@ -12,6 +12,6 @@ fun FailedOperationAdapter(items: List<OperationInfo>) = GenericAdapter(
 	tvFirstNumber.text = "${it.pairOfNumbers.first}"
 	tvOperationSymbol.text = it.operationSymbol
 	tvSecondNumber.text = "${it.pairOfNumbers.second}"
-	tvInsertedResult.text = "${it.insertedResult}"
 	tvExpectedResult.text = "${it.result}"
+	tvInsertedResult.text = "${it.insertedResult}"
 }
