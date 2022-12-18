@@ -39,10 +39,10 @@ class GetRandomNumberPairUseCase @Inject constructor(
 		{
 			val newPair = getRandomPairByOperation()
 
-			val isDifferent = newPair.first != oldPair.first || newPair.second != oldPair.second
-			val isDifferentInReverse = newPair.first != oldPair.second || newPair.second != oldPair.first
+			val arePairsDifferent = newPair.first != oldPair.first || newPair.second != oldPair.second
+			val arePairsDifferentInReverse = newPair.first != oldPair.second || newPair.second != oldPair.first
 
-			if (isDifferent && isDifferentInReverse) return newPair
+			if (arePairsDifferent && arePairsDifferentInReverse) return newPair
 		}
 	}
 
