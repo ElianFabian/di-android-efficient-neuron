@@ -182,7 +182,6 @@ class TestViewModel @Inject constructor(
 
 		_eventFlow.send(OnGoToTestDetails(
 			args = TestDetailsArgs(
-				sender = TestDetailsArgs.Sender.Test,
 				testInfo = testData.toTestInfo(),
 			).toList()
 		))

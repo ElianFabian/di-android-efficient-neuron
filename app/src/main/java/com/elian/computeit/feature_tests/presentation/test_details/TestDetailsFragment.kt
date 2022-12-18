@@ -5,6 +5,7 @@ import android.view.View
 import androidx.core.view.isGone
 import androidx.fragment.app.Fragment
 import com.elian.computeit.R
+import com.elian.computeit.core.presentation.MainActivity
 import com.elian.computeit.core.presentation.adapter.MainLabeledDataAdapter
 import com.elian.computeit.core.presentation.model.labelOf
 import com.elian.computeit.core.presentation.util.extensions.avoidConflictsWithScroll
@@ -35,14 +36,14 @@ class TestDetailsFragment : Fragment(R.layout.fragment_test_details)
 	{
 		super.onViewCreated(view, savedInstanceState)
 
+		(activity as MainActivity).onFragmentViewCreated(binding)
+
 		initUi()
 	}
 
 
 	private fun initUi() = using(binding)
 	{
-		if (args.sender == TestDetailsArgs.Sender.Home) binding.btnContinue.isGone = true
-
 		val info = args.testInfo
 
 		initTestChart(info.chartInfo)

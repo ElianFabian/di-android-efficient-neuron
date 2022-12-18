@@ -114,7 +114,6 @@ class HomeFragment : Fragment(R.layout.fragment_home)
 					{
 						navigate(R.id.action_homeFragment_to_testDetailsFragment,
 							TestDetailsArgs(
-								sender = TestDetailsArgs.Sender.Home,
 								testInfo = entry.data as TestInfo,
 							).toBundle()
 						)

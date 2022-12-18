@@ -6,13 +6,5 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class TestDetailsArgs(
-	val sender: Sender,
 	val testInfo: TestInfo,
 ) : Args
-{
-	enum class Sender
-	{
-		Test,
-		Home,
-	}
-}
