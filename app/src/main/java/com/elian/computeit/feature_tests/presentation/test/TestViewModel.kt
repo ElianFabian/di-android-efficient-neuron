@@ -187,7 +187,6 @@ class TestViewModel @Inject constructor(
 		))
 
 		// This is to avoid the cancellation of the viewModelScope
-		// I want to find a better way to do this call without being cancelled by the viewModelScope
 		MainScope().launch(Dispatchers.IO)
 		{
 			if (saveData) addTestData(testData)
