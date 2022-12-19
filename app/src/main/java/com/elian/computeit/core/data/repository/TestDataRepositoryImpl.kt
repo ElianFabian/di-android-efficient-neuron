@@ -1,7 +1,7 @@
 package com.elian.computeit.core.data.repository
 
 import com.elian.computeit.core.data.model.UserData
-import com.elian.computeit.core.data.toSpeedHistogramData
+import com.elian.computeit.core.data.toSpeedHistogramInfo
 import com.elian.computeit.core.data.util.constants.COLLECTION_USERS_DATA
 import com.elian.computeit.core.domain.models.TestData
 import com.elian.computeit.core.domain.repository.LocalAppDataRepository
@@ -46,7 +46,7 @@ class TestDataRepositoryImpl @Inject constructor(
 		else _listOfTestData
 	}
 
-	override fun getSpeedHistogramInfo(rangeLength: Int) = _listOfTestData.toSpeedHistogramData(rangeLength)
+	override fun getSpeedHistogramInfo(rangeLength: Int) = _listOfTestData.toSpeedHistogramInfo(rangeLength)
 
 
 	private suspend fun getUserDataRef() = withContext(Dispatchers.IO)

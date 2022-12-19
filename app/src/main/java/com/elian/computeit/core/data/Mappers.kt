@@ -116,7 +116,7 @@ fun List<TestData>.toTestListInfo(): TestListInfo
 	)
 }
 
-fun List<TestData>.toSpeedHistogramData(rangeLength: Int): SpeedHistogramInfo
+fun List<TestData>.toSpeedHistogramInfo(rangeLength: Int): SpeedHistogramInfo
 {
 	val opmPerTest = map()
 	{
