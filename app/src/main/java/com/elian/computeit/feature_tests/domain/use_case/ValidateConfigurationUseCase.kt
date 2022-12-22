@@ -67,6 +67,7 @@ class ValidateConfigurationUseCase @Inject constructor()
 	}
 }
 
+
 private fun getFieldError(number: Int?) = when (number)
 {
 	null -> NumericFieldError.Empty
