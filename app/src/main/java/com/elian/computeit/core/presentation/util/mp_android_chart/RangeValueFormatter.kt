@@ -4,21 +4,22 @@ import com.github.mikephil.charting.formatter.ValueFormatter
 
 class RangeValueFormatter(
 	var rangeLength: Int = 10,
-	var maxLength: Int = Int.MAX_VALUE,
+	var minOpm: Float = 0F,
+	var maxOpm: Float = Float.MAX_VALUE,
 ) : ValueFormatter()
 {
 	override fun getFormattedValue(value: Float): String
 	{
-		val valueToInt = value.toInt()
-
-		val start = rangeLength * valueToInt
-		val end = rangeLength * (valueToInt + 1) - 1
+		val start = (rangeLength * value + minOpm).toInt()
+		val end = (rangeLength * (value + 1) - 1 + minOpm).toInt()
 
 		return when
 		{
-			start == maxLength || rangeLength == 1 -> "$start"
-			end > maxLength                        -> "$start-$maxLength"
-			else                                   -> "$start−$end"
+			start.toFloat() == maxOpm || rangeLength == 1 -> "$start"
+			start < minOpm && end > maxOpm                -> "${minOpm.toInt()}-${maxOpm.toInt()}"
+			start < minOpm                                -> "${minOpm.toInt()}-$end"
+			end > maxOpm                                  -> "$start-${maxOpm.toInt()}"
+			else                                          -> "$start−$end"
 		}
 	}
 }

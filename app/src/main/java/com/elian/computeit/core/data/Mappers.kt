@@ -71,23 +71,20 @@ fun List<TestData>.toTestListInfo(): TestListInfo
 	val opmPerTest = listOfTestInfo.map { it.statsInfo.opm }
 	val rawOpmPerTest = listOfTestInfo.map { it.statsInfo.rawOpm }
 
+	val minOpm = opmPerTest.minOrNull()
 	val maxOpm = opmPerTest.maxOrNull()
+
+	val normalizedMinOpm = minOpm ?: 0
 	val normalizedMaxOpm = maxOpm ?: 0
 
-	val defaultRangeLength = when
-	{
-		normalizedMaxOpm > 10 -> 10
-		normalizedMaxOpm == 0 -> 1
-		else                  -> ceil(normalizedMaxOpm / 2F).toInt()
-	}
+	val defaultRangeLength = ceil((normalizedMaxOpm - normalizedMinOpm) / 2F).toInt()
 
-	val rangeCount = if (maxOpm != null) maxOpm / defaultRangeLength + 1 else 0
-	val speedRanges = Array(rangeCount) { 0 }
-	opmPerTest.forEach()
-	{
-		val position = it / defaultRangeLength
-		speedRanges.getOrNull(position)?.also { speedRanges[position]++ }
-	}
+	val testsPerSpeedRange = getTestsPerSpeedRanges(
+		opmPerTest = opmPerTest,
+		speedRangeLength = defaultRangeLength,
+	)
+
+	val isSliderVisible = normalizedMaxOpm > 0 && minOpm != maxOpm
 
 	return TestListInfo(
 		historyInfo = TestHistoryInfo(
@@ -97,10 +94,10 @@ fun List<TestData>.toTestListInfo(): TestListInfo
 		),
 		speedHistogramInfo = SpeedHistogramInfo(
 			speedRangeLength = defaultRangeLength,
-			testsPerSpeedRange = speedRanges.toList(),
-			sliderValueFrom = if (normalizedMaxOpm < 1) 0 else 1,
-			sliderValueTo = if (normalizedMaxOpm < 1) 1 else normalizedMaxOpm,
-			isSliderVisible = normalizedMaxOpm > 0,
+			testsPerSpeedRange = testsPerSpeedRange.toList(),
+			speedRangeLengthMinValue = 1,
+			speedRangeLengthMaxValue = normalizedMaxOpm - normalizedMinOpm,
+			isSliderVisible = isSliderVisible,
 		),
 		statsInfo = TestListStatsInfo(
 			testsCompleted = size,
@@ -110,7 +107,8 @@ fun List<TestData>.toTestListInfo(): TestListInfo
 			correctOperationsCompletedPercentage = (100F * correctOperationsCompleted / operationsCompleted).ifNaNReturnZero(),
 			averageOpm = opmPerTest.average().toFloat().ifNaNReturnZero(),
 			averageRawOpm = rawOpmPerTest.average().toFloat().ifNaNReturnZero(),
-			maxOpm = maxOpm ?: 0,
+			minOpm = normalizedMinOpm,
+			maxOpm = normalizedMaxOpm,
 			maxRawOpm = rawOpmPerTest.maxOrNull() ?: 0,
 		),
 	)
@@ -127,20 +125,40 @@ fun List<TestData>.toSpeedHistogramInfo(rangeLength: Int): SpeedHistogramInfo
 		opm
 	}
 
+	val minOpm = opmPerTest.minOrNull() ?: 0
 	val maxOpm = opmPerTest.maxOrNull() ?: 0
 
-	val speedRanges = Array(maxOpm / rangeLength + 1) { 0 }
-	opmPerTest.forEach()
-	{
-		val position = it / rangeLength
-		speedRanges[position]++
-	}
+	val testsPerSpeedRange = getTestsPerSpeedRanges(
+		opmPerTest = opmPerTest,
+		speedRangeLength = rangeLength,
+	)
 
 	return SpeedHistogramInfo(
 		speedRangeLength = rangeLength,
-		testsPerSpeedRange = speedRanges.toList(),
-		sliderValueFrom = 1,
-		sliderValueTo = maxOpm,
+		testsPerSpeedRange = testsPerSpeedRange,
+		speedRangeLengthMinValue = 1,
+		speedRangeLengthMaxValue = minOpm - maxOpm,
 		isSliderVisible = true,
 	)
+}
+
+
+private fun getTestsPerSpeedRanges(
+	opmPerTest: List<Int>,
+	speedRangeLength: Int,
+): List<Int>
+{
+	val minOpm = opmPerTest.minOrNull() ?: 0
+	val maxOpm = opmPerTest.maxOrNull() ?: 0
+
+	val rangeCount = if (maxOpm != 0) (maxOpm - minOpm) / speedRangeLength + 1 else 0
+	val speedRanges = Array(rangeCount) { 0 }
+
+	opmPerTest.forEach()
+	{
+		val position = (it - minOpm) / speedRangeLength
+		speedRanges.getOrNull(position)?.also { speedRanges[position]++ }
+	}
+
+	return speedRanges.toList()
 }

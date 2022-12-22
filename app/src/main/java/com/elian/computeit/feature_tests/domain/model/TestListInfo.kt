@@ -16,8 +16,8 @@ data class TestHistoryInfo(
 data class SpeedHistogramInfo(
 	val speedRangeLength: Int,
 	val testsPerSpeedRange: List<Int>,
-	val sliderValueFrom: Int,
-	val sliderValueTo: Int,
+	val speedRangeLengthMinValue: Int,
+	val speedRangeLengthMaxValue: Int,
 	val isSliderVisible: Boolean,
 )
 
@@ -29,6 +29,7 @@ data class TestListStatsInfo(
 	val correctOperationsCompletedPercentage: Float,
 	val averageOpm: Float,
 	val averageRawOpm: Float,
+	val minOpm: Int,
 	val maxOpm: Int,
 	val maxRawOpm: Int,
 )

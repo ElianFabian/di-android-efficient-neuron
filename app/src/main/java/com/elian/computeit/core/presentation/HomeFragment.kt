@@ -146,7 +146,8 @@ class HomeFragment : Fragment(R.layout.fragment_home)
 				xAxis.valueFormatter = rangeFormatter.apply()
 				{
 					rangeLength = speedHistogramInfo.speedRangeLength
-					maxLength = statsInfo.maxOpm
+					minOpm = statsInfo.minOpm.toFloat()
+					maxOpm = statsInfo.maxOpm.toFloat()
 				}
 
 				data = BarData(
@@ -161,8 +162,8 @@ class HomeFragment : Fragment(R.layout.fragment_home)
 			{
 				speedHistogramInfo.also()
 				{
-					valueFrom = it.sliderValueFrom.toFloat()
-					valueTo = it.sliderValueTo.toFloat()
+					valueFrom = it.speedRangeLengthMinValue.toFloat()
+					valueTo = it.speedRangeLengthMaxValue.toFloat()
 					value = it.speedRangeLength.toFloat()
 					isVisible = it.isSliderVisible
 				}
