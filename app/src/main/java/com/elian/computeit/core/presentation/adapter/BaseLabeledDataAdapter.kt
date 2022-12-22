@@ -6,7 +6,7 @@ import android.widget.TextView
 import androidx.viewbinding.ViewBinding
 import com.elian.computeit.core.presentation.model.LabeledData
 
-@Suppress("FunctionName", "UNCHECKED_CAST")
+@Suppress("FunctionName")
 fun <VB : ViewBinding> BaseLabeledDataAdapter(
 	items: List<LabeledData>,
 	inflate: (LayoutInflater, ViewGroup, Boolean) -> VB,

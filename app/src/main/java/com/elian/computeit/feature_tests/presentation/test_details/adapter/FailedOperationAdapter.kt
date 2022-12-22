@@ -4,7 +4,7 @@ import com.elian.computeit.core.presentation.adapter.GenericAdapter
 import com.elian.computeit.databinding.ItemFailedOperationBinding
 import com.elian.computeit.feature_tests.domain.model.OperationInfo
 
-@Suppress("FunctionName", "UNCHECKED_CAST")
+@Suppress("FunctionName")
 fun FailedOperationAdapter(items: List<OperationInfo>) = GenericAdapter(
 	inflate = ItemFailedOperationBinding::inflate,
 	items = items,

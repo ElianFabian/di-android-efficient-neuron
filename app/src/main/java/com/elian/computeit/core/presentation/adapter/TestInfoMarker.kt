@@ -10,7 +10,7 @@ import com.elian.computeit.feature_tests.domain.model.TestInfo
 import com.github.mikephil.charting.utils.Utils
 
 
-@Suppress("FunctionName", "UNCHECKED_CAST")
+@Suppress("FunctionName")
 fun TestInfoMarker(context: Context?) = GenericMarkerView(
 	context = context,
 	inflate = MarkerTestInfoBinding::inflate,
