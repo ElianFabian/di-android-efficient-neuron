@@ -8,10 +8,14 @@ import com.elian.computeit.feature_tests.domain.model.OperationInfo
 fun FailedOperationAdapter(items: List<OperationInfo>) = GenericAdapter(
 	inflate = ItemFailedOperationBinding::inflate,
 	items = items,
-) {
-	tvFirstNumber.text = "${it.pairOfNumbers.first}"
-	tvOperationSymbol.text = it.operationSymbol
-	tvSecondNumber.text = "${it.pairOfNumbers.second}"
-	tvExpectedResult.text = "${it.result}"
-	tvInsertedResult.text = "${it.insertedResult}"
+) { item, _ ->
+
+	item.apply()
+	{
+		tvFirstNumber.text = "${pairOfNumbers.first}"
+		tvOperationSymbol.text = operationSymbol
+		tvSecondNumber.text = "${pairOfNumbers.second}"
+		tvExpectedResult.text = "$result"
+		tvInsertedResult.text = "$insertedResult"
+	}
 }

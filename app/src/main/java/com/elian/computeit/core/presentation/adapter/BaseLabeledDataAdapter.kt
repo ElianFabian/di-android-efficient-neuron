@@ -17,11 +17,12 @@ fun <VB : ViewBinding> BaseLabeledDataAdapter(
 ) = GenericAdapter(
 	inflate = inflate,
 	items = items,
-) {
+) { item, _ ->
+
 	beforeBind?.invoke(this)
 
-	getLabel().text = root.context!!.getString(it.labelResId)
-	getValue().text = "${it.value}"
+	getLabel().text = root.context!!.getString(item.labelResId)
+	getValue().text = "${item.value}"
 
 	afterBind?.invoke(this)
 }
