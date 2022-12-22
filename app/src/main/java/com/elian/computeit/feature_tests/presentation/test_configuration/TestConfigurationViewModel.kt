@@ -10,7 +10,7 @@ import com.elian.computeit.core.util.UiText
 import com.elian.computeit.core.util.constants.toList
 import com.elian.computeit.feature_tests.domain.args.TestArgs
 import com.elian.computeit.feature_tests.domain.params.ValidateConfigurationParams
-import com.elian.computeit.feature_tests.domain.use_case.ValidateConfiguration
+import com.elian.computeit.feature_tests.domain.use_case.ValidateConfigurationUseCase
 import com.elian.computeit.feature_tests.presentation.test_configuration.TestConfigurationAction.*
 import com.elian.computeit.feature_tests.presentation.test_configuration.TestConfigurationEvent.OnShowErrorMessage
 import com.elian.computeit.feature_tests.presentation.test_configuration.TestConfigurationEvent.OnStart
@@ -25,7 +25,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class TestConfigurationViewModel @Inject constructor(
-	private val validateConfiguration: ValidateConfiguration,
+	private val validateConfiguration: ValidateConfigurationUseCase,
 ) : ViewModel()
 {
 	private val _eventFlow = Channel<TestConfigurationEvent>()

@@ -12,7 +12,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
-class ValidateConfiguration @Inject constructor()
+class ValidateConfigurationUseCase @Inject constructor()
 {
 	private val _minRangeLength = 10
 	private val _minDivisiblePairCount = 10
