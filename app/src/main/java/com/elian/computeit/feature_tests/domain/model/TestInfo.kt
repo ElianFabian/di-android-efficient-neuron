@@ -25,7 +25,7 @@ data class TestStatsInfo(
 	val rawOpm: Int,
 	val maxOpm: Int,
 	val maxRawOpm: Int,
-	val timeInSeconds: String,
+	val timeInSeconds: Int,
 	val operationCount: Int,
 	val errorCount: Int,
 ) : Parcelable

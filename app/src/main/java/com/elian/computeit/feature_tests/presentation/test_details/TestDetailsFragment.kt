@@ -96,7 +96,7 @@ class TestDetailsFragment : Fragment(R.layout.fragment_test_details)
 	{
 		val listOfLabeledData = listOf(
 			R.string.generic_operations labelOf operationCount,
-			R.string.generic_totalTime labelOf timeInSeconds,
+			R.string.generic_totalTime labelOf "$timeInSeconds s",
 			R.string.generic_opm labelOf opm,
 			R.string.generic_raw labelOf rawOpm,
 			R.string.frgHome_highestOpm labelOf maxOpm,

@@ -53,7 +53,7 @@ fun TestData.toTestInfo(): TestInfo
 			rawOpm = rawOpmPerSecond.values.lastOrNull() ?: 0,
 			maxOpm = opmPerSecond.values.maxOfOrNull { it } ?: 0,
 			maxRawOpm = rawOpmPerSecond.values.maxOfOrNull { it } ?: 0,
-			timeInSeconds = "$timeInSeconds s",
+			timeInSeconds = timeInSeconds,
 			operationCount = listOfOperationData.size,
 			errorCount = listOfOperationData.count { it.isError },
 		),
