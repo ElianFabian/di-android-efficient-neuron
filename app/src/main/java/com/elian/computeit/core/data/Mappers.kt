@@ -114,31 +114,19 @@ fun List<TestData>.toTestListInfo(): TestListInfo
 	)
 }
 
-fun List<TestData>.toSpeedHistogramInfo(rangeLength: Int): SpeedHistogramInfo
+fun List<TestData>.toTestsPerSpeedRange(rangeLength: Int): List<Int>
 {
 	val opmPerTest = map()
 	{
 		val correctOperations = it.listOfOperationData.count { operation -> !operation.isError }
-
 		val opm = (correctOperations / it.timeInSeconds.toFloat() * 60).ifNaNReturnZero().toInt()
 
 		opm
 	}
 
-	val minOpm = opmPerTest.minOrNull() ?: 0
-	val maxOpm = opmPerTest.maxOrNull() ?: 0
-
-	val testsPerSpeedRange = getTestsPerSpeedRanges(
+	return getTestsPerSpeedRanges(
 		opmPerTest = opmPerTest,
 		speedRangeLength = rangeLength,
-	)
-
-	return SpeedHistogramInfo(
-		speedRangeLength = rangeLength,
-		testsPerSpeedRange = testsPerSpeedRange,
-		speedRangeLengthMinValue = 1,
-		speedRangeLengthMaxValue = minOpm - maxOpm,
-		isSliderVisible = true,
 	)
 }
 

@@ -170,13 +170,13 @@ class HomeFragment : Fragment(R.layout.fragment_home)
 
 				addOnChangeListener { _, value, _ ->
 
-					val newInfo = viewModel.getSpeedHistogramInfo(value.toInt())
+					val newTestsPerSpeedRange = viewModel.getTestsPerSpeedRange(rangeLength = value.toInt())
 
 					rangeFormatter.rangeLength = value.toInt()
 
 					chartView.data = BarData(
 						barDataSet(
-							entries = newInfo.testsPerSpeedRange.toBarEntries(),
+							entries = newTestsPerSpeedRange.toBarEntries(),
 							labelResId = R.string.generic_tests,
 						),
 					)
