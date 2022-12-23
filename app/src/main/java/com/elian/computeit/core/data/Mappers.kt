@@ -84,7 +84,7 @@ fun List<TestData>.toTestListInfo(): TestListInfo
 		speedRangeLength = defaultRangeLength,
 	)
 
-	val isSliderVisible = normalizedMaxOpm > 0 && minOpm != maxOpm
+	val isSliderVisible = normalizedMaxOpm - normalizedMinOpm > 1 && minOpm != maxOpm
 
 	return TestListInfo(
 		historyInfo = TestHistoryInfo(
