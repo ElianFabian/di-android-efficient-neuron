@@ -14,23 +14,27 @@ fun getDivisiblePairsInRange(
 
 	val oneOrZero = if (ignoreSelfDivision) 1.0 else 0.0
 
-	val divisiblePairs = mutableSetOf<Pair<Int, Int>>()
+	val divisiblePairs = mutableListOf<Pair<Int, Int>>()
 
 	for (numerator in start..end)
 	{
 		val optimizedEnd = ceil(sqrt(numerator - oneOrZero)).toInt()
 
+		var divisorFromPreviousIteration = -1
+
 		for (denominator in start..optimizedEnd)
 		{
-			if (numerator % denominator != 0) continue
+			if (numerator % denominator != 0 || denominator == divisorFromPreviousIteration) continue
 
 			divisiblePairs += numerator to denominator
 
 			val secondDivisor = numerator / denominator
 
-			if (!(ignoreSelfDivision && numerator == secondDivisor)) divisiblePairs += numerator to secondDivisor
+			if (!(ignoreSelfDivision && numerator == secondDivisor) && denominator != secondDivisor) divisiblePairs += numerator to secondDivisor
+
+			divisorFromPreviousIteration = secondDivisor
 		}
 	}
 
-	return divisiblePairs.toList()
+	return divisiblePairs
 }
