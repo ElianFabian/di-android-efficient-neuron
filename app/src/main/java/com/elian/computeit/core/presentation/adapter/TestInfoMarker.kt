@@ -9,7 +9,6 @@ import com.elian.computeit.databinding.MarkerTestInfoBinding
 import com.elian.computeit.feature_tests.domain.model.TestInfo
 import com.github.mikephil.charting.utils.Utils
 
-
 @Suppress("FunctionName")
 fun TestInfoMarker(context: Context?) = GenericMarkerView(
 	context = context,
