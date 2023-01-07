@@ -22,7 +22,7 @@ fun OperationData.toOperationInfo() = OperationInfo(
 fun TestData.toTestInfo(): TestInfo
 {
 	val opmPerSecond = getValuePerSecond(
-		getCountSinceStartFromCondition = { !it.isError },
+		countSinceStartCondition = { !it.isError },
 		getValue = { currentSecond, testCountSinceStart ->
 			testCountSinceStart / currentSecond.toFloat() * 60
 		},

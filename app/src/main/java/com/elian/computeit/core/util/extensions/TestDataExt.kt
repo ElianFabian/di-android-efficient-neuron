@@ -4,7 +4,7 @@ import com.elian.computeit.core.domain.models.OperationData
 import com.elian.computeit.core.domain.models.TestData
 
 fun TestData.getValuePerSecond(
-	getCountSinceStartFromCondition: (OperationData) -> Boolean = { true },
+	countSinceStartCondition: (OperationData) -> Boolean = { true },
 	getValue: (currentSecond: Int, countSinceStart: Int) -> Float,
 ): Map<Int, Int>
 {
@@ -15,7 +15,7 @@ fun TestData.getValuePerSecond(
 
 		val countSinceStart = listOfOperationData.count()
 		{
-			getCountSinceStartFromCondition(it) && it.millisSinceStart < currentSecond * 1000
+			countSinceStartCondition(it) && it.millisSinceStart < currentSecond * 1000
 		}
 
 		val value = getValue(currentSecond, countSinceStart)
