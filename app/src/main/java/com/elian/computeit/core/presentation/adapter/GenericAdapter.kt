@@ -2,7 +2,6 @@ package com.elian.computeit.core.presentation.adapter
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -30,7 +29,7 @@ class GenericAdapter<ItemT : Any, VB : ViewBinding>(
 		submitList(items)
 	}
 
-	inner class ViewHolder(view: View, val binding: VB) : RecyclerView.ViewHolder(view)
+	inner class ViewHolder(val binding: VB) : RecyclerView.ViewHolder(binding.root)
 
 
 	override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder
@@ -39,7 +38,7 @@ class GenericAdapter<ItemT : Any, VB : ViewBinding>(
 
 		val binding = inflate(inflater, parent, false)
 
-		return ViewHolder(binding.root, binding)
+		return ViewHolder(binding)
 	}
 
 	override fun onBindViewHolder(holder: ViewHolder, position: Int)
