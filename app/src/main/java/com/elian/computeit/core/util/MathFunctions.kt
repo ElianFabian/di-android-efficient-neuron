@@ -38,3 +38,38 @@ fun getDivisiblePairsInRange(
 
 	return divisiblePairs
 }
+
+fun getDivisiblePairsInRangeCount(
+	start: Int,
+	end: Int,
+	ignoreSelfDivision: Boolean = false,
+): Int
+{
+	if (start == 0) throw IllegalArgumentException("start parameter can't be 0")
+
+	val oneOrZero = if (ignoreSelfDivision) 1.0 else 0.0
+
+	var divisiblePairCount = 0
+
+	for (numerator in start..end)
+	{
+		val optimizedEnd = ceil(sqrt(numerator - oneOrZero)).toInt()
+
+		var divisorFromPreviousIteration = -1
+
+		for (denominator in start..optimizedEnd)
+		{
+			if (numerator % denominator != 0 || denominator == divisorFromPreviousIteration) continue
+
+			divisiblePairCount++
+
+			val secondDivisor = numerator / denominator
+
+			if (!(ignoreSelfDivision && numerator == secondDivisor) && denominator != secondDivisor) divisiblePairCount++
+
+			divisorFromPreviousIteration = secondDivisor
+		}
+	}
+
+	return divisiblePairCount
+}
