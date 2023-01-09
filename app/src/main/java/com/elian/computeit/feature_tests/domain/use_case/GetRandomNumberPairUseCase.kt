@@ -22,7 +22,7 @@ class GetRandomNumberPairUseCase @Inject constructor(
 			start = _range.first,
 			end = _range.last,
 			ignoreSelfDivision = true,
-		).map { NumberPair(it.first, it.second) }
+		).map { NumberPair(it[0], it[1]) }
 	}
 	else emptyList()
 

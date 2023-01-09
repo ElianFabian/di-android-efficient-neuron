@@ -8,13 +8,13 @@ fun getDivisiblePairsInRange(
 	start: Int,
 	end: Int,
 	ignoreSelfDivision: Boolean = false,
-): List<Pair<Int, Int>>
+): List<IntArray>
 {
 	if (start == 0) throw IllegalArgumentException("start parameter can't be 0")
 
 	val oneOrZero = if (ignoreSelfDivision) 1.0 else 0.0
 
-	val divisiblePairs = mutableListOf<Pair<Int, Int>>()
+	val divisiblePairs = mutableListOf<IntArray>()
 
 	for (numerator in start..end)
 	{
@@ -26,11 +26,11 @@ fun getDivisiblePairsInRange(
 		{
 			if (numerator % denominator != 0 || denominator == divisorFromPreviousIteration) continue
 
-			divisiblePairs += numerator to denominator
+			divisiblePairs += intArrayOf(numerator, denominator)
 
 			val secondDivisor = numerator / denominator
 
-			if (!(ignoreSelfDivision && numerator == secondDivisor) && denominator != secondDivisor) divisiblePairs += numerator to secondDivisor
+			if (!(ignoreSelfDivision && numerator == secondDivisor) && denominator != secondDivisor) divisiblePairs += intArrayOf(numerator, secondDivisor)
 
 			divisorFromPreviousIteration = secondDivisor
 		}
