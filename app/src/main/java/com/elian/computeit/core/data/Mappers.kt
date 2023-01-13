@@ -137,12 +137,18 @@ private fun getTestsPerSpeedRange(
 	val minOpm = opmPerTest.minOrNull() ?: 0
 	val maxOpm = opmPerTest.maxOrNull() ?: 0
 
-	val rangeCount = if (maxOpm != 0) (maxOpm - minOpm) / speedRangeLength + 1 else 0
+	val rangeCount = if (maxOpm != 0)
+	{
+		((maxOpm - minOpm) / speedRangeLength.toDouble() + 1).ifNaNReturnZero().toInt()
+	}
+	else 0
+
 	val speedRanges = Array(rangeCount) { 0 }
 
 	opmPerTest.forEach()
 	{
-		val testRangePosition = (it - minOpm) / speedRangeLength
+		val testRangePosition = ((it - minOpm) / speedRangeLength.toDouble()).ifNaNReturnZero().toInt()
+
 		speedRanges.getOrNull(testRangePosition)?.also { speedRanges[testRangePosition]++ }
 	}
 

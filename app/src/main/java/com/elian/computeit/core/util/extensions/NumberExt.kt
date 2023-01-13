@@ -47,3 +47,4 @@ fun Int.dropLast(n: Int = 1): Int = this.toLong().dropLast(n).toInt()
 
 
 fun Float.ifNaNReturnZero() = if (isNaN()) 0F else this
+fun Double.ifNaNReturnZero() = if (isNaN()) 0.0 else this
