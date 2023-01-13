@@ -34,7 +34,7 @@ class HomeFragment : Fragment(R.layout.fragment_home)
 	private val viewModel by viewModels<HomeViewModel>()
 	private val binding by viewBinding(FragmentHomeBinding::bind)
 
-	private var _isUiFinished = false
+	private var _isDataLoadingComplete = false
 
 	private val rangeFormatter = RangeValueFormatter()
 
@@ -68,7 +68,7 @@ class HomeFragment : Fragment(R.layout.fragment_home)
 			initSpeedHistogramChart(it)
 			initTextInfo(it.statsInfo)
 
-			_isUiFinished = true
+			_isDataLoadingComplete = true
 		}
 		collectFlowWhenStarted(isLoadingState) { binding.lpiIsLoading.isGone = !it }
 	}
@@ -98,7 +98,7 @@ class HomeFragment : Fragment(R.layout.fragment_home)
 			)
 
 			chartView.applyDefault(
-				animate = !_isUiFinished,
+				animate = !_isDataLoadingComplete,
 				dataSets = lineDataSets,
 			)
 
