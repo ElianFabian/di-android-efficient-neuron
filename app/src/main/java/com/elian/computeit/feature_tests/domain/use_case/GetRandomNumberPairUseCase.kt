@@ -1,30 +1,21 @@
 package com.elian.computeit.feature_tests.domain.use_case
 
-import androidx.lifecycle.SavedStateHandle
 import com.elian.computeit.core.data.Operation
 import com.elian.computeit.core.domain.models.NumberPair
-import com.elian.computeit.core.util.constants.receiveArgs
+import com.elian.computeit.core.domain.models.Range
 import com.elian.computeit.core.util.getDivisiblePairsInRange
-import com.elian.computeit.feature_tests.domain.args.TestArgs
 import javax.inject.Inject
 import kotlin.random.Random
 
-class GetRandomNumberPairUseCase @Inject constructor(
-	savedState: SavedStateHandle,
-)
+class GetRandomNumberPairUseCase @Inject constructor()
 {
-	private val _args = savedState.receiveArgs<TestArgs>()!!
+	private val randomSeed = Random(System.currentTimeMillis())
 
-	private val _range = _args.range.let { it.min..it.max }
-	private val _divisiblePairs: List<NumberPair> = if (_args.operation == Operation.Division)
-	{
-		getDivisiblePairsInRange(
-			start = _range.first,
-			end = _range.last,
-			ignoreSelfDivision = true,
-		).map { NumberPair(it[0], it[1]) }
-	}
-	else emptyList()
+	private var _isUseCaseInitialized = false
+
+	private lateinit var _range: IntRange
+	private lateinit var _operation: Operation
+	private lateinit var _divisiblePairs: List<NumberPair>
 
 
 	/**
@@ -33,11 +24,13 @@ class GetRandomNumberPairUseCase @Inject constructor(
 	 */
 	operator fun invoke(oldPair: NumberPair? = null): NumberPair
 	{
-		if (oldPair == null) return getRandomPairByOperation()
+		if (!_isUseCaseInitialized) error("You forgot to call the 'initialize' function.")
+
+		if (oldPair == null) return getRandomPairFromCurrentOperation()
 
 		while (true)
 		{
-			val newPair = getRandomPairByOperation()
+			val newPair = getRandomPairFromCurrentOperation()
 
 			val arePairsDifferent = newPair.first != oldPair.first || newPair.second != oldPair.second
 			val arePairsDifferentInReverse = newPair.first != oldPair.second || newPair.second != oldPair.first
@@ -46,7 +39,28 @@ class GetRandomNumberPairUseCase @Inject constructor(
 		}
 	}
 
-	private fun getRandomPairByOperation() = when (_args.operation)
+	fun initialize(
+		range: Range,
+		operation: Operation,
+	)
+	{
+		_range = range.min..range.max
+		_operation = operation
+
+		_divisiblePairs = if (operation == Operation.Division)
+		{
+			getDivisiblePairsInRange(
+				start = _range.first,
+				end = _range.last,
+				ignoreSelfDivision = true,
+			).map { NumberPair(it[0], it[1]) }
+		}
+		else emptyList()
+
+		_isUseCaseInitialized = true
+	}
+
+	private fun getRandomPairFromCurrentOperation() = when (_operation)
 	{
 		Operation.Addition       -> getRandomPairExceptIf { it.first == 0 && it.second == 0 }
 		Operation.Subtraction    -> getRandomPairExceptIf { it.first == it.second }
@@ -65,15 +79,12 @@ class GetRandomNumberPairUseCase @Inject constructor(
 			return newPair
 		}
 	}
-}
 
+	private fun getRandomNumberPair(range: IntRange): NumberPair
+	{
+		val first = range.random(randomSeed)
+		val second = range.random(randomSeed)
 
-private val randomSeed = Random(System.currentTimeMillis())
-
-private fun getRandomNumberPair(range: IntRange): NumberPair
-{
-	val first = range.random(randomSeed)
-	val second = range.random(randomSeed)
-
-	return NumberPair(first, second)
+		return NumberPair(first, second)
+	}
 }

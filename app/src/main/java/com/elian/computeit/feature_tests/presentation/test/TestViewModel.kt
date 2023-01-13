@@ -65,6 +65,7 @@ class TestViewModel @Inject constructor(
 			firstNumber = _pairOfNumbersState.value?.first ?: 0,
 			secondNumber = _pairOfNumbersState.value?.second ?: 0,
 		)
+
 	// As there's no negative sign button even if the answer it's negative you insert a positive number
 	// but when storing the data we save the value with the right sign
 	private val _resultSign get() = sign(_expectedResult.toFloat()).toInt()
@@ -73,6 +74,11 @@ class TestViewModel @Inject constructor(
 	init
 	{
 		initialize()
+
+		getRandomNumberPair.initialize(
+			range = _args.range,
+			operation = _args.operation,
+		)
 	}
 
 
@@ -99,7 +105,7 @@ class TestViewModel @Inject constructor(
 				addResult()
 				nextOperation()
 			}
-			is ForceFinish     -> viewModelScope.launch { finish(saveData = false) }
+			is ForceFinish     -> viewModelScope.launch { finishTest(saveData = false) }
 		}
 	}
 
@@ -110,24 +116,6 @@ class TestViewModel @Inject constructor(
 		countDownTimer.start()
 	}
 
-
-	private fun addResult()
-	{
-		val data = OperationData(
-			operationName = _args.operation.name,
-			pairOfNumbers = _pairOfNumbersState.value!!,
-			insertedResult = _resultState.value * _resultSign,
-			millisSinceStart = _millisSinceStart,
-		)
-
-		_listOfOperationData.add(data)
-	}
-
-	private fun nextOperation()
-	{
-		_pairOfNumbersState.value = getRandomNumberPair(oldPair = _pairOfNumbersState.value)
-		_resultState.value = 0
-	}
 
 	private fun initialize()
 	{
@@ -160,14 +148,32 @@ class TestViewModel @Inject constructor(
 							millisSinceStart = _millisSinceStart,
 						))
 					}
-					is TimerEvent.OnFinish -> finish()
+					is TimerEvent.OnFinish -> finishTest()
 					else                   -> Unit
 				}
 			}
 		}
 	}
 
-	private suspend fun finish(saveData: Boolean = true)
+	private fun addResult()
+	{
+		val data = OperationData(
+			operationName = _args.operation.name,
+			pairOfNumbers = _pairOfNumbersState.value!!,
+			insertedResult = _resultState.value * _resultSign,
+			millisSinceStart = _millisSinceStart,
+		)
+
+		_listOfOperationData.add(data)
+	}
+
+	private fun nextOperation()
+	{
+		_pairOfNumbersState.value = getRandomNumberPair(oldPair = _pairOfNumbersState.value)
+		_resultState.value = 0
+	}
+
+	private suspend fun finishTest(saveData: Boolean = true)
 	{
 		_eventFlow.send(OnTimerFinish)
 
