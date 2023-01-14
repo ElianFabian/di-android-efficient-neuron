@@ -55,6 +55,8 @@ class TestViewModel @Inject constructor(
 	private val _operationSymbolState = MutableStateFlow(_args.operation.symbol)
 	val operationSymbolState = _operationSymbolState.asStateFlow()
 
+	private val _range = _args.run { range.min..range.max }
+
 	private val _listOfOperationData = mutableListOf<OperationData>()
 
 	private val _isInfiniteMode = _args.totalTimeInSeconds == 0
@@ -74,11 +76,6 @@ class TestViewModel @Inject constructor(
 	init
 	{
 		initialize()
-
-		getRandomNumberPair.initialize(
-			range = _args.range,
-			operation = _args.operation,
-		)
 	}
 
 
@@ -111,7 +108,10 @@ class TestViewModel @Inject constructor(
 
 	fun startTimer()
 	{
-		_pairOfNumbersState.value = getRandomNumberPair()
+		_pairOfNumbersState.value = getRandomNumberPair(
+			operation = _args.operation,
+			range = _range,
+		)
 
 		countDownTimer.start()
 	}
@@ -169,7 +169,12 @@ class TestViewModel @Inject constructor(
 
 	private fun nextOperation()
 	{
-		_pairOfNumbersState.value = getRandomNumberPair(oldPair = _pairOfNumbersState.value)
+		_pairOfNumbersState.value = getRandomNumberPair(
+			operation = _args.operation,
+			range = _range,
+			oldPair = _pairOfNumbersState.value,
+		)
+
 		_resultState.value = 0
 	}
 
