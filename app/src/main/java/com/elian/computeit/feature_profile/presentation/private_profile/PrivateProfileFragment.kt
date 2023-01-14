@@ -72,10 +72,14 @@ class PrivateProfileFragment : Fragment(R.layout.fragment_private_profile)
 		}
 		collectLatestFlowWhenStarted(privateProfileIsLoadingState)
 		{
-			binding.btnEdit.isGone = it
-			binding.tvLabelBiography.isGone = it
-			binding.btnLogout.isGone = it
-			binding.sivProfilePic.isVisible = !it
+			binding.apply()
+			{
+				pbIsLoading.isVisible = it
+				btnEdit.isGone = it
+				tvLabelBiography.isGone = it
+				btnLogout.isGone = it
+				sivProfilePic.isVisible = !it
+			}
 		}
 		collectLatestFlowWhenStarted(biographyState) { binding.tvBiography.text2 = it }
 	}
