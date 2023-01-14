@@ -4,7 +4,7 @@ import com.elian.computeit.core.domain.models.TestData
 
 interface TestDataRepository
 {
-	suspend fun addTestData(testData: TestData)
-	suspend fun getListOfTestData(): List<TestData>
+	suspend fun addTestData(userUuid: String, testData: TestData)
+	suspend fun getListOfTestData(userUuid: String): List<TestData>
 	fun getTestsPerSpeedRange(rangeLength: Int): List<Int>
 }

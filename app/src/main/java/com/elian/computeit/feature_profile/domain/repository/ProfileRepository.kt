@@ -6,7 +6,7 @@ import com.elian.computeit.feature_profile.domain.params.UpdateProfileParams
 
 interface ProfileRepository
 {
-	suspend fun getProfileInfo(): ProfileInfo
+	suspend fun getProfileInfo(userUuid: String): ProfileInfo
 
 	suspend fun updateProfileInfo(params: UpdateProfileParams): SimpleResource
 

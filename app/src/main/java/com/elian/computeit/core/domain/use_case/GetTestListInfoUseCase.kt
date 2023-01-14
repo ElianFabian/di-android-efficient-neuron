@@ -11,9 +11,9 @@ class GetTestListInfoUseCase @Inject constructor(
 	private val repository: TestDataRepository,
 )
 {
-	suspend operator fun invoke(): TestListInfo
+	suspend operator fun invoke(userUuid: String): TestListInfo
 	{
-		val listOfData = repository.getListOfTestData()
+		val listOfData = repository.getListOfTestData(userUuid)
 
 		return withContext(Dispatchers.Default)
 		{

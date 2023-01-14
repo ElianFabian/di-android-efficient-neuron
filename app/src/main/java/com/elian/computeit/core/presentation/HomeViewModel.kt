@@ -2,8 +2,7 @@ package com.elian.computeit.core.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.elian.computeit.core.domain.use_case.GetTestListInfoUseCase
-import com.elian.computeit.core.domain.use_case.GetTestsPerSpeedRangeUseCase
+import com.elian.computeit.core.domain.use_case.HomeUseCases
 import com.elian.computeit.feature_tests.domain.model.TestListInfo
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -13,28 +12,28 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-	private val getTestListInfo: GetTestListInfoUseCase,
-	private val getTestsPerSpeedRangeUseCase: GetTestsPerSpeedRangeUseCase,
+	private val useCases: HomeUseCases,
 ) : ViewModel()
 {
+	private val _infoState = MutableStateFlow<TestListInfo?>(null)
+	val infoState = _infoState.asStateFlow()
+
+	private val _isLoadingState = MutableStateFlow(true)
+	val isLoadingState = _isLoadingState.asStateFlow()
+
+
 	init
 	{
 		viewModelScope.launch()
 		{
-			val info = getTestListInfo()
+			_isLoadingState.value = true
 
-			_infoState.value = info
-			_loadingState.value = false
+			_infoState.value = useCases.getTestListInfo(useCases.getOwnUserUuid())
+
+			_isLoadingState.value = false
 		}
 	}
 
 
-	private val _infoState = MutableStateFlow<TestListInfo?>(null)
-	val infoState = _infoState.asStateFlow()
-
-	private val _loadingState = MutableStateFlow(true)
-	val isLoadingState = _loadingState.asStateFlow()
-
-
-	fun getTestsPerSpeedRange(rangeLength: Int) = getTestsPerSpeedRangeUseCase(rangeLength)
+	fun getTestsPerSpeedRange(rangeLength: Int) = useCases.getTestsPerSpeedRange(rangeLength)
 }

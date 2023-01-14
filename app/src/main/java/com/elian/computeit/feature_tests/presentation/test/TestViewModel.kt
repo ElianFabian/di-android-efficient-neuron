@@ -16,8 +16,7 @@ import com.elian.computeit.core.util.extensions.clampLength
 import com.elian.computeit.core.util.extensions.dropLast
 import com.elian.computeit.feature_tests.domain.args.TestArgs
 import com.elian.computeit.feature_tests.domain.args.TestDetailsArgs
-import com.elian.computeit.feature_tests.domain.use_case.AddTestDataUseCase
-import com.elian.computeit.feature_tests.domain.use_case.GetRandomNumberPairFromOperationUseCase
+import com.elian.computeit.feature_tests.domain.use_case.TestUseCases
 import com.elian.computeit.feature_tests.presentation.test.TestAction.*
 import com.elian.computeit.feature_tests.presentation.test.TestEvent.OnGoToTestDetails
 import com.elian.computeit.feature_tests.presentation.test.TestEvent.OnTimerFinish
@@ -37,8 +36,7 @@ import kotlin.math.sign
 class TestViewModel @Inject constructor(
 	savedState: SavedStateHandle,
 	private val countDownTimer: CountDownTimer,
-	private val addTestData: AddTestDataUseCase,
-	private val getRandomNumberPairFromOperation: GetRandomNumberPairFromOperationUseCase,
+	private val useCases: TestUseCases,
 ) : ViewModel()
 {
 	private val _args = savedState.receiveArgs<TestArgs>()!!
@@ -108,7 +106,7 @@ class TestViewModel @Inject constructor(
 
 	fun startTimer()
 	{
-		_pairOfNumbersState.value = getRandomNumberPairFromOperation(
+		_pairOfNumbersState.value = useCases.getRandomNumberPairFromOperation(
 			operation = _args.operation,
 			range = _range,
 		)
@@ -169,7 +167,7 @@ class TestViewModel @Inject constructor(
 
 	private fun nextOperation()
 	{
-		_pairOfNumbersState.value = getRandomNumberPairFromOperation(
+		_pairOfNumbersState.value = useCases.getRandomNumberPairFromOperation(
 			operation = _args.operation,
 			range = _range,
 			oldPair = _pairOfNumbersState.value,
@@ -200,7 +198,10 @@ class TestViewModel @Inject constructor(
 		// This is to avoid the cancellation of the viewModelScope
 		MainScope().launch(Dispatchers.IO)
 		{
-			if (saveData) addTestData(testData)
+			if (saveData) useCases.addTestData(
+				userUuid = useCases.getOwnUserUuid(),
+				testData = testData,
+			)
 		}
 	}
 }

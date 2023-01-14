@@ -28,10 +28,8 @@ class ProfileRepositoryImpl @Inject constructor(
 	private val appData: LocalAppDataRepository,
 ) : ProfileRepository
 {
-	override suspend fun getProfileInfo() = withContext(Dispatchers.IO)
+	override suspend fun getProfileInfo(userUuid: String) = withContext(Dispatchers.IO)
 	{
-		val userUuid = appData.getUserUuid()
-
 		val user = firestore.document("$COLLECTION_USERS/$userUuid")
 			.get()
 			.await()
@@ -61,8 +59,7 @@ class ProfileRepositoryImpl @Inject constructor(
 	// TODO-low: avoid uploading profile pic or info if it wasn't updated
 	override suspend fun updateProfileInfo(params: UpdateProfileParams): SimpleResource = withContext(Dispatchers.IO)
 	{
-		val userUuid = appData.getUserUuid()!!
-		val currentUser = utilRepository.getUserByUuid(userUuid)!!
+		val currentUser = utilRepository.getUserByUuid(params.userUuid)!!
 
 		if (utilRepository.isUsernameTaken(
 				currentName = currentUser.name,
@@ -93,7 +90,7 @@ class ProfileRepositoryImpl @Inject constructor(
 			return@withContext Resource.Error(e.message)
 		}
 
-		firestore.document("$COLLECTION_USERS/$userUuid")
+		firestore.document("$COLLECTION_USERS/${params.userUuid}")
 			.update(
 				User::name.name, params.username,
 				User::biography.name, params.biography,

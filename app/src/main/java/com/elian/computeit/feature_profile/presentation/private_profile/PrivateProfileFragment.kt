@@ -70,7 +70,7 @@ class PrivateProfileFragment : Fragment(R.layout.fragment_private_profile)
 		{
 			binding.tvUsername.text2 = "@$it"
 		}
-		collectLatestFlowWhenStarted(privateProfileViewsAreGoneState)
+		collectLatestFlowWhenStarted(privateProfileIsLoadingState)
 		{
 			binding.btnEdit.isGone = it
 			binding.tvLabelBiography.isGone = it

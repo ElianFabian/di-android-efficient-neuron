@@ -7,5 +7,5 @@ class GetProfileInfoUseCase @Inject constructor(
 	private val repository: ProfileRepository,
 )
 {
-	suspend operator fun invoke() = repository.getProfileInfo()
+	suspend operator fun invoke(userUuid: String) = repository.getProfileInfo(userUuid)
 }

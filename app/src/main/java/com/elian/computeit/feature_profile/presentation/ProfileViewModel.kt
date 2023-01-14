@@ -43,8 +43,8 @@ class ProfileViewModel @Inject constructor(
 	val editProfileState = _editProfileState.asStateFlow()
 
 
-	private val _privateProfileViewsAreGoneState = MutableStateFlow(true)
-	val privateProfileViewsAreGoneState = _privateProfileViewsAreGoneState.asStateFlow()
+	private val _privateProfileIsLoadingState = MutableStateFlow(false)
+	val privateProfileIsLoadingState = _privateProfileIsLoadingState.asStateFlow()
 
 
 	init
@@ -74,6 +74,7 @@ class ProfileViewModel @Inject constructor(
 				_editProfileState.update { it.copy(isLoading = true) }
 
 				useCases.updateProfile(UpdateProfileParams(
+					userUuid = useCases.getOwnUserUuid(),
 					username = _editProfileState.value.usernameField.text,
 					biography = _editProfileState.value.biography,
 					profilePicBytes = _editProfileState.value.profilePicBytes,
@@ -128,7 +129,11 @@ class ProfileViewModel @Inject constructor(
 		}
 		viewModelScope.launch()
 		{
-			useCases.getProfileInfo().apply()
+			_privateProfileIsLoadingState.value = true
+			
+			useCases.getProfileInfo(
+				userUuid = useCases.getOwnUserUuid(),
+			).apply()
 			{
 				_usernameState.value = username
 				_biographyState.value = biography
@@ -136,7 +141,7 @@ class ProfileViewModel @Inject constructor(
 				_createdAtState.value = createdAt
 			}
 
-			_privateProfileViewsAreGoneState.value = false
+			_privateProfileIsLoadingState.value = false
 		}
 	}
 }
