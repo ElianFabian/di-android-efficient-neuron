@@ -67,7 +67,7 @@ class LoginActivity : AppCompatActivity()
 		{
 			binding.tilPassword.error2 = getFieldError(it)
 		}
-		collectLatestFlowWhenStarted(loadingState) { binding.pbLoading.isVisible = it }
+		collectLatestFlowWhenStarted(loadingState) { binding.pbIsLoading.isVisible = it }
 	}
 
 	private fun getFieldError(error: Error?) = when (error)

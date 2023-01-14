@@ -59,7 +59,7 @@
     <View style="@style/Utils_LinearLayoutSeparator" />
 
     <ProgressBar
-        android:id="@+id/pbLoading"
+        android:id="@+id/pbIsLoading"
         style="@style/Layout_ProgressBar"
         tools:visibility="visible" />
 
