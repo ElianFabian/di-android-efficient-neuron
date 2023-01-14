@@ -48,7 +48,7 @@ class RegisterActivity : AppCompatActivity()
 	{
 		// This is to set the desired behaviour when typing
 		tietUsername.setRawInputType(InputType.TYPE_CLASS_TEXT)
-		
+
 		tietUsername.addTextChangedListener { viewModel.onAction(EnterUsername("$it".trim())) }
 		tietPassword.addTextChangedListener { viewModel.onAction(EnterPassword("$it".trim())) }
 		tietConfirmPassword.addTextChangedListener { viewModel.onAction(EnterConfirmPassword("$it".trim())) }
