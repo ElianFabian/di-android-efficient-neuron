@@ -41,7 +41,7 @@ class LoginActivity : AppCompatActivity()
 	private fun initUi() = using(binding)
 	{
 		tietUsername.allowMultilineAndDisableEnterNewLine()
-		
+
 		tietUsername.addTextChangedListener { viewModel.onAction(EnterUsername("$it".trim())) }
 		tietPassword.addTextChangedListener { viewModel.onAction(EnterPassword("$it".trim())) }
 

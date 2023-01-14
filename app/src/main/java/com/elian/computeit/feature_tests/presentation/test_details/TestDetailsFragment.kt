@@ -48,7 +48,7 @@ class TestDetailsFragment : Fragment(R.layout.fragment_test_details)
 
 		initTestChart(info.chartInfo)
 		initStats(info.statsInfo)
-		
+
 		info.listOfFailedOperationInfo.also()
 		{
 			if (it.isEmpty())
