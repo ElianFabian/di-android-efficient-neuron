@@ -3,7 +3,7 @@ package com.elian.computeit.core.data
 import com.elian.computeit.core.domain.models.OperationData
 import com.elian.computeit.core.domain.models.TestData
 import com.elian.computeit.core.util.constants.defaultFullDateFormat
-import com.elian.computeit.core.util.constants.secondsToDHHMMSS
+import com.elian.computeit.core.util.constants.secondsToDhhmmss
 import com.elian.computeit.core.util.extensions.getValuePerSecond
 import com.elian.computeit.core.util.extensions.ifNaNReturnZero
 import com.elian.computeit.core.util.extensions.isError
@@ -100,7 +100,7 @@ fun List<TestData>.toTestListInfo(): TestListInfo
 		),
 		statsInfo = TestListStatsInfo(
 			testsCompleted = size,
-			totalTime = secondsToDHHMMSS(totalTimeInSeconds),
+			totalTime = secondsToDhhmmss(totalTimeInSeconds),
 			operationsCompleted = operationsCompleted,
 			correctOperationsCompleted = correctOperationsCompleted,
 			correctOperationsCompletedPercentage = (100F * correctOperationsCompleted / operationsCompleted).ifNaNReturnZero(),
