@@ -74,11 +74,12 @@ fun List<TestData>.toTestListInfo(): TestListInfo
 	val minOpm = opmPerTest.minOrNull() ?: 0
 	val maxOpm = opmPerTest.maxOrNull() ?: 0
 
-	val maxAndMinDifference = maxOpm - minOpm
+	val maxAndMinOpmDifference = maxOpm - minOpm
 
-	val rangeCount = 4 // It's approximately the range count and it's not always possible to have the desired amount of ranges (depends on the data)
-	val defaultRangeLength = ceil(maxAndMinDifference / rangeCount.toDouble()).toInt()
-
+	val defaultRangeLength = getBarRangeLength(
+		barCount = 5,
+		maxAndMinOpmDifference = maxAndMinOpmDifference,
+	)
 	val testsPerSpeedRange = getTestsPerSpeedRange(
 		opmPerTest = opmPerTest,
 		speedRangeLength = defaultRangeLength,
@@ -94,8 +95,8 @@ fun List<TestData>.toTestListInfo(): TestListInfo
 			speedRangeLength = defaultRangeLength,
 			testsPerSpeedRange = testsPerSpeedRange,
 			speedRangeLengthMinValue = 1,
-			speedRangeLengthMaxValue = maxAndMinDifference,
-			isSliderVisible = (maxAndMinDifference > 1) && (minOpm != maxOpm),
+			speedRangeLengthMaxValue = maxAndMinOpmDifference,
+			isSliderVisible = (maxAndMinOpmDifference > 1) && (minOpm != maxOpm),
 		),
 		statsInfo = TestListStatsInfo(
 			testsCompleted = size,
@@ -104,7 +105,7 @@ fun List<TestData>.toTestListInfo(): TestListInfo
 			correctOperationsCompleted = correctOperationsCompleted,
 			correctOperationsCompletedPercentage = (100F * correctOperationsCompleted / operationsCompleted).ifNaNReturnZero(),
 			averageOpm = opmPerTest.average().toFloat().ifNaNReturnZero(),
-			averageRawOpm = rawOpmPerTest.average().toFloat().ifNaNReturnZero(),
+			averageRawOpm = rawOpmPerTest.average().ifNaNReturnZero().toFloat(),
 			minOpm = minOpm,
 			maxOpm = maxOpm,
 			maxRawOpm = rawOpmPerTest.maxOrNull() ?: 0,
@@ -153,4 +154,9 @@ private fun getTestsPerSpeedRange(
 	}
 
 	return speedRanges.toList()
+}
+
+private fun getBarRangeLength(barCount: Int, maxAndMinOpmDifference: Int): Int
+{
+	return ceil(maxAndMinOpmDifference / barCount.toDouble()).toInt() + 1
 }
