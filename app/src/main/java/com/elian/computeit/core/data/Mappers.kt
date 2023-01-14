@@ -143,13 +143,13 @@ private fun getTestsPerSpeedRange(
 	}
 	else 0
 
-	val speedRanges = Array(rangeCount) { 0 }
+	val speedRanges = IntArray(rangeCount) { 0 }
 
 	opmPerTest.forEach()
 	{
 		val testRangePosition = ((it - minOpm) / speedRangeLength.toDouble()).ifNaNReturnZero().toInt()
 
-		speedRanges.getOrNull(testRangePosition)?.also { speedRanges[testRangePosition]++ }
+		speedRanges[testRangePosition]++
 	}
 
 	return speedRanges.toList()
