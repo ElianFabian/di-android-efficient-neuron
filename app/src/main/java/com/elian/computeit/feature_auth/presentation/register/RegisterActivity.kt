@@ -1,7 +1,6 @@
 package com.elian.computeit.feature_auth.presentation.register
 
 import android.os.Bundle
-import android.text.InputType
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
@@ -46,8 +45,7 @@ class RegisterActivity : AppCompatActivity()
 
 	private fun initUi() = using(binding)
 	{
-		// This is to set the desired behaviour when typing
-		tietUsername.setRawInputType(InputType.TYPE_CLASS_TEXT)
+		tietUsername.allowMultilineAndDisableEnterNewLine()
 
 		tietUsername.addTextChangedListener { viewModel.onAction(EnterUsername("$it".trim())) }
 		tietPassword.addTextChangedListener { viewModel.onAction(EnterPassword("$it".trim())) }

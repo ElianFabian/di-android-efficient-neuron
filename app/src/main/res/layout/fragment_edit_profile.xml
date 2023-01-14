@@ -92,7 +92,6 @@
                     android:layout_height="wrap_content"
                     android:hint="@string/generic_username"
                     android:imeOptions="actionDone"
-                    android:inputType="text"
                     android:maxLength="30"
                     android:textColor="@color/white"
                     tools:text="@string/generic_username" />

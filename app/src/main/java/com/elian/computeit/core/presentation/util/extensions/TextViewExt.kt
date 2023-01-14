@@ -1,5 +1,6 @@
 package com.elian.computeit.core.presentation.util.extensions
 
+import android.text.InputType
 import android.widget.TextView
 import androidx.core.view.isGone
 
@@ -18,3 +19,12 @@ var TextView.textSizeScaleDensity: Float
 	{
 		textSize = value / resources.displayMetrics.density
 	}
+
+/**
+ * Only works if android:inputType is not already set.
+ */
+fun TextView.allowMultilineAndDisableEnterNewLine()
+{
+	setRawInputType(InputType.TYPE_CLASS_TEXT)
+	setRawInputType(InputType.TYPE_TEXT_FLAG_MULTI_LINE)
+}
