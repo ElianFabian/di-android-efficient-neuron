@@ -17,7 +17,7 @@ import com.elian.computeit.core.util.extensions.dropLast
 import com.elian.computeit.feature_tests.domain.args.TestArgs
 import com.elian.computeit.feature_tests.domain.args.TestDetailsArgs
 import com.elian.computeit.feature_tests.domain.use_case.AddTestDataUseCase
-import com.elian.computeit.feature_tests.domain.use_case.GetRandomNumberPairUseCase
+import com.elian.computeit.feature_tests.domain.use_case.GetRandomNumberPairFromOperationUseCase
 import com.elian.computeit.feature_tests.presentation.test.TestAction.*
 import com.elian.computeit.feature_tests.presentation.test.TestEvent.OnGoToTestDetails
 import com.elian.computeit.feature_tests.presentation.test.TestEvent.OnTimerFinish
@@ -38,7 +38,7 @@ class TestViewModel @Inject constructor(
 	savedState: SavedStateHandle,
 	private val countDownTimer: CountDownTimer,
 	private val addTestData: AddTestDataUseCase,
-	private val getRandomNumberPair: GetRandomNumberPairUseCase,
+	private val getRandomNumberPairFromOperation: GetRandomNumberPairFromOperationUseCase,
 ) : ViewModel()
 {
 	private val _args = savedState.receiveArgs<TestArgs>()!!
@@ -108,7 +108,7 @@ class TestViewModel @Inject constructor(
 
 	fun startTimer()
 	{
-		_pairOfNumbersState.value = getRandomNumberPair(
+		_pairOfNumbersState.value = getRandomNumberPairFromOperation(
 			operation = _args.operation,
 			range = _range,
 		)
@@ -169,7 +169,7 @@ class TestViewModel @Inject constructor(
 
 	private fun nextOperation()
 	{
-		_pairOfNumbersState.value = getRandomNumberPair(
+		_pairOfNumbersState.value = getRandomNumberPairFromOperation(
 			operation = _args.operation,
 			range = _range,
 			oldPair = _pairOfNumbersState.value,

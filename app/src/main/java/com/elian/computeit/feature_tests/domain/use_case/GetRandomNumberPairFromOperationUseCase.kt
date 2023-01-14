@@ -6,7 +6,7 @@ import com.elian.computeit.core.util.getDivisiblePairsInRange
 import javax.inject.Inject
 import kotlin.random.Random
 
-class GetRandomNumberPairUseCase @Inject constructor()
+class GetRandomNumberPairFromOperationUseCase @Inject constructor()
 {
 	private val _randomSeed = Random(System.currentTimeMillis())
 
