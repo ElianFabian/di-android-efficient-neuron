@@ -130,7 +130,7 @@ class ProfileViewModel @Inject constructor(
 		viewModelScope.launch()
 		{
 			_privateProfileIsLoadingState.value = true
-			
+
 			useCases.getProfileInfo(
 				userUuid = useCases.getOwnUserUuid(),
 			).apply()
