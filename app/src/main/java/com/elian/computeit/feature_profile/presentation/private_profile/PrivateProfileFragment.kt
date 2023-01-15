@@ -75,7 +75,10 @@ class PrivateProfileFragment : Fragment(R.layout.fragment_private_profile)
 		{
 			binding.apply()
 			{
-				tvCreatedAt.text2 = getString(R.string.feature_profile_account_created_at_PH).format(it.createdAt)
+				it.createdAt?.also { createdAt ->
+
+					tvCreatedAt.text2 = getString(R.string.feature_profile_account_created_at_PH).format(createdAt)
+				}
 
 				pbIsLoading.isVisible = it.isLoading
 				btnEdit.isGone = it.isLoading

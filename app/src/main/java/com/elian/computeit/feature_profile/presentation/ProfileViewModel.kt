@@ -111,7 +111,7 @@ class ProfileViewModel @Inject constructor(
 		}
 		viewModelScope.launch()
 		{
-			_privateProfileState.update { it?.copy(isLoading = true) }
+			_privateProfileState.value = PrivateProfileState(isLoading = true)
 
 			val info = useCases.getProfileInfo(useCases.getOwnUserUuid())
 
@@ -121,7 +121,7 @@ class ProfileViewModel @Inject constructor(
 				profilePicBytes = info.profilePicBytes,
 			)
 
-			_privateProfileState.value = PrivateProfileState(
+			_privateProfileState.value = _privateProfileState.value?.copy(
 				createdAt = info.createdAt,
 				isLoading = false,
 			)
