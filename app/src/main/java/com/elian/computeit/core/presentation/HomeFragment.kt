@@ -97,10 +97,7 @@ class HomeFragment : Fragment(R.layout.fragment_home)
 				},
 			)
 
-			chartView.applyDefault(
-				dataSets = lineDataSets,
-			)
-
+			chartView.applyDefault(dataSets = lineDataSets)
 			chartView.marker2 = TestInfoMarker(context)
 			chartView.avoidConflictsWithScroll(binding.root)
 			chartView.setOnChartValueSelectedListener(object : OnChartValueSelectedListener
