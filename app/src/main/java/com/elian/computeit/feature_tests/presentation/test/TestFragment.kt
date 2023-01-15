@@ -20,7 +20,6 @@ import com.elian.computeit.feature_tests.presentation.test.TestAction.*
 import com.elian.computeit.feature_tests.presentation.test.TestEvent.*
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -128,6 +127,16 @@ class TestFragment : Fragment(R.layout.fragment_test)
 
 	private fun subscribeToEvents() = using(viewModel)
 	{
+		collectLatestFlowWhenStarted(state)
+		{
+			it.pairOfNumbers?.also { pair ->
+
+				operationView.firstNumber = pair.first.toString()
+				operationView.secondNumber = pair.second.toString()
+			}
+			binding.tietInput.setText("${it.insertedResult}")
+			operationView.symbol = it.operationSymbol
+		}
 		collectFlowWhenStarted(eventFlow)
 		{
 			when (it)
@@ -153,13 +162,6 @@ class TestFragment : Fragment(R.layout.fragment_test)
 				}
 			}
 		}
-		collectLatestFlowWhenStarted(pairOfNumbersState.filterNotNull())
-		{
-			operationView.firstNumber = it.first.toString()
-			operationView.secondNumber = it.second.toString()
-		}
-		collectLatestFlowWhenStarted(resultState) { binding.tietInput.setText(it.toString()) }
-		collectLatestFlowWhenStarted(operationSymbolState) { operationView.symbol = it }
 	}
 
 	private fun enableScreenInteraction()

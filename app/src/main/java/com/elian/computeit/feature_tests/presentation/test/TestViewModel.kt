@@ -4,7 +4,6 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.elian.computeit.core.data.toTestInfo
-import com.elian.computeit.core.domain.models.NumberPair
 import com.elian.computeit.core.domain.models.OperationData
 import com.elian.computeit.core.domain.models.TestData
 import com.elian.computeit.core.domain.util.CountDownTimer
@@ -41,34 +40,28 @@ class TestViewModel @Inject constructor(
 {
 	private val _args = savedState.receiveArgs<TestArgs>()!!
 
+	private val _state = MutableStateFlow(TestState(
+		operationSymbol = _args.operation.symbol,
+	))
+	val state = _state.asStateFlow()
+
 	private val _eventFlow = Channel<TestEvent>()
 	val eventFlow = _eventFlow.receiveAsFlow()
 
-	private val _resultState = MutableStateFlow(0)
-	val resultState = _resultState.asStateFlow()
-
-	private val _pairOfNumbersState = MutableStateFlow<NumberPair?>(null)
-	val pairOfNumbersState = _pairOfNumbersState.asStateFlow()
-
-	private val _operationSymbolState = MutableStateFlow(_args.operation.symbol)
-	val operationSymbolState = _operationSymbolState.asStateFlow()
-
 	private val _range = _args.run { range.min..range.max }
-
 	private val _listOfOperationData = mutableListOf<OperationData>()
-
 	private val _isInfiniteMode = _args.totalTimeInSeconds == 0
 	private var _millisSinceStart = 0L
 
 	private val _expectedResult
 		get() = _args.operation(
-			firstNumber = _pairOfNumbersState.value?.first ?: 0,
-			secondNumber = _pairOfNumbersState.value?.second ?: 0,
+			firstNumber = _state.value.pairOfNumbers?.first ?: 0,
+			secondNumber = _state.value.pairOfNumbers?.second ?: 0,
 		)
 
 	// As there's no negative sign button even if the answer it's negative you insert a positive number
 	// but when storing the data we save the value with the right sign
-	private val _resultSign get() = sign(_expectedResult.toFloat()).toInt()
+	private val _insertedResultSign get() = sign(_expectedResult.toFloat()).toInt()
 
 
 	init
@@ -83,18 +76,18 @@ class TestViewModel @Inject constructor(
 		{
 			is EnterNumber     ->
 			{
-				_resultState.update { it.append(action.value).clampLength(maxLength = 8) }
+				_state.update { it.copy(insertedResult = it.insertedResult.append(action.value).clampLength(maxLength = 8)) }
 
 				// We automatically add the result if it is correct
-				val isInsertedResultCorrect = _resultState.value * _resultSign == _expectedResult
+				val isInsertedResultCorrect = _state.value.insertedResult * _insertedResultSign == _expectedResult
 				if (isInsertedResultCorrect)
 				{
 					addResult()
 					nextOperation()
 				}
 			}
-			is RemoveLastDigit -> _resultState.update { it.dropLast() }
-			is ClearInput      -> _resultState.value = 0
+			is RemoveLastDigit -> _state.update { it.copy(insertedResult = _state.value.insertedResult.dropLast()) }
+			is ClearInput      -> _state.update { it.copy(insertedResult = 0) }
 			is NextOperation   ->
 			{
 				addResult()
@@ -106,9 +99,11 @@ class TestViewModel @Inject constructor(
 
 	fun startTimer()
 	{
-		_pairOfNumbersState.value = useCases.getRandomNumberPairFromOperation(
-			operation = _args.operation,
-			range = _range,
+		_state.value = _state.value.copy(
+			pairOfNumbers = useCases.getRandomNumberPairFromOperation(
+				operation = _args.operation,
+				range = _range,
+			)
 		)
 
 		countDownTimer.start()
@@ -157,8 +152,8 @@ class TestViewModel @Inject constructor(
 	{
 		val data = OperationData(
 			operationName = _args.operation.name,
-			pairOfNumbers = _pairOfNumbersState.value!!,
-			insertedResult = _resultState.value * _resultSign,
+			pairOfNumbers = _state.value.pairOfNumbers!!,
+			insertedResult = _state.value.insertedResult * _insertedResultSign,
 			millisSinceStart = _millisSinceStart,
 		)
 
@@ -167,13 +162,14 @@ class TestViewModel @Inject constructor(
 
 	private fun nextOperation()
 	{
-		_pairOfNumbersState.value = useCases.getRandomNumberPairFromOperation(
-			operation = _args.operation,
-			range = _range,
-			oldPair = _pairOfNumbersState.value,
+		_state.value = _state.value.copy(
+			pairOfNumbers = useCases.getRandomNumberPairFromOperation(
+				operation = _args.operation,
+				range = _range,
+				oldPair = _state.value.pairOfNumbers,
+			),
+			insertedResult = 0,
 		)
-
-		_resultState.value = 0
 	}
 
 	private suspend fun finishTest(saveData: Boolean = true)
@@ -184,9 +180,9 @@ class TestViewModel @Inject constructor(
 
 		val testData = TestData(
 			dateUnix = System.currentTimeMillis(),
+			range = _args.range,
 			timeInSeconds = totalTime.toInt() / 1000,
 			listOfOperationData = _listOfOperationData.toList(),
-			range = _args.range
 		)
 
 		_eventFlow.send(OnGoToTestDetails(
