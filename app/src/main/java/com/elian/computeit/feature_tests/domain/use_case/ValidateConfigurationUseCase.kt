@@ -2,7 +2,7 @@ package com.elian.computeit.feature_tests.domain.use_case
 
 import com.elian.computeit.R
 import com.elian.computeit.core.data.Operation
-import com.elian.computeit.core.domain.states.NumericFieldError
+import com.elian.computeit.core.domain.errors.NumericFieldError
 import com.elian.computeit.core.domain.util.checkIfError
 import com.elian.computeit.core.util.Resource
 import com.elian.computeit.core.util.getDivisiblePairsInRangeCount

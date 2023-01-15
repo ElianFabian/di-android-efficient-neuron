@@ -1,6 +1,6 @@
 package com.elian.computeit.core.domain.util
 
-import com.elian.computeit.core.domain.states.TextFieldError
+import com.elian.computeit.core.domain.errors.TextFieldError
 import com.elian.computeit.core.util.Error
 
 private const val SET_OF_DIGITS = "0123456789"

@@ -2,7 +2,7 @@ package com.elian.computeit.core.presentation.util
 
 import android.content.Context
 import com.elian.computeit.R
-import com.elian.computeit.core.domain.states.TextFieldError
+import com.elian.computeit.core.domain.errors.TextFieldError
 import com.elian.computeit.core.util.Error
 
 fun getUsernameErrorMessage(context: Context?, error: Error?) = when (error)

@@ -1,6 +1,6 @@
 package com.elian.computeit.feature_auth.domain.use_case
 
-import com.elian.computeit.core.domain.states.TextFieldError
+import com.elian.computeit.core.domain.errors.TextFieldError
 import com.elian.computeit.core.domain.util.checkIfError
 import com.elian.computeit.core.domain.util.hash
 import com.elian.computeit.feature_auth.domain.model.LoginResult
