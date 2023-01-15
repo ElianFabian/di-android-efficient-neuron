@@ -56,7 +56,6 @@ class ProfileRepositoryImpl @Inject constructor(
 		}
 	}
 
-	// TODO-low: avoid uploading profile pic or info if it wasn't updated
 	override suspend fun updateProfileInfo(params: UpdateProfileParams): SimpleResource = withContext(Dispatchers.IO)
 	{
 		val currentUser = utilRepository.getUserByUuid(params.userUuid)!!
@@ -67,24 +66,22 @@ class ProfileRepositoryImpl @Inject constructor(
 			)
 		) return@withContext Resource.Error(R.string.error_username_is_already_in_use)
 
-		var profilePicUuid: String? = currentUser.profilePicUuid
-
+		var newOrCurrentProfilePicUuid: String? = null
 		try
 		{
 			if (params.profilePicBytes.isNotEmpty())
 			{
-				profilePicUuid = profilePicUuid ?: UUID.randomUUID().toString()
+				newOrCurrentProfilePicUuid = currentUser.profilePicUuid ?: UUID.randomUUID().toString()
 
-				storage.reference.child("$FOLDER_USERS_PROFILE_PICS/$profilePicUuid")
+				storage.reference.child("$FOLDER_USERS_PROFILE_PICS/$newOrCurrentProfilePicUuid")
 					.putBytes(params.profilePicBytes.toByteArray())
 					.await()
 			}
-			else if (profilePicUuid != null)
+			else if (newOrCurrentProfilePicUuid != null)
 			{
-				storage.reference.child("$FOLDER_USERS_PROFILE_PICS/$profilePicUuid")
+				storage.reference.child("$FOLDER_USERS_PROFILE_PICS/$newOrCurrentProfilePicUuid")
 					.delete()
 					.await()
-				profilePicUuid = null
 			}
 		}
 		catch (e: Exception)
@@ -96,7 +93,7 @@ class ProfileRepositoryImpl @Inject constructor(
 			.update(
 				User::name.name, params.username,
 				User::biography.name, params.biography,
-				User::profilePicUuid.name, profilePicUuid,
+				User::profilePicUuid.name, newOrCurrentProfilePicUuid,
 			).await()
 
 		return@withContext Resource.Success()
