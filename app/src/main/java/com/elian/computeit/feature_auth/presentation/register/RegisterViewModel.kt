@@ -2,7 +2,6 @@ package com.elian.computeit.feature_auth.presentation.register
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.elian.computeit.core.domain.states.TextFieldState
 import com.elian.computeit.core.util.Resource
 import com.elian.computeit.core.util.UiText
 import com.elian.computeit.feature_auth.domain.params.RegisterParams
@@ -24,42 +23,35 @@ class RegisterViewModel @Inject constructor(
 	private val register: RegisterUseCase,
 ) : ViewModel()
 {
+	private val _state = MutableStateFlow(RegisterState())
+	val state = _state.asStateFlow()
+
 	private val _eventFlow = Channel<RegisterEvent>()
 	val eventFlow = _eventFlow.receiveAsFlow()
-
-	private val _isLoadingState = MutableStateFlow(false)
-	val isLoadingState = _isLoadingState.asStateFlow()
-
-	private val _usernameState = MutableStateFlow(TextFieldState())
-	val usernameState = _usernameState.asStateFlow()
-
-	private val _passwordState = MutableStateFlow(TextFieldState())
-	val passwordState = _passwordState.asStateFlow()
-
-	private val _confirmPasswordState = MutableStateFlow(TextFieldState())
-	val confirmPasswordState = _confirmPasswordState.asStateFlow()
 
 
 	fun onAction(action: RegisterAction)
 	{
 		when (action)
 		{
-			is EnterUsername        -> _usernameState.update { it.copy(text = action.value, error = null) }
-			is EnterPassword        -> _passwordState.update { it.copy(text = action.value, error = null) }
-			is EnterConfirmPassword -> _confirmPasswordState.update { it.copy(text = action.value, error = null) }
+			is EnterUsername        -> _state.update { it.copy(username = action.value, usernameError = null) }
+			is EnterPassword        -> _state.update { it.copy(password = action.value, passwordError = null) }
+			is EnterConfirmPassword -> _state.update { it.copy(confirmPassword = action.value, confirmPasswordError = null) }
 			is Register             -> viewModelScope.launch()
 			{
-				_isLoadingState.value = true
+				_state.update { it.copy(isLoading = true) }
 
 				register(RegisterParams(
-					username = _usernameState.value.text,
-					password = _passwordState.value.text,
-					confirmPassword = _confirmPasswordState.value.text,
+					username = _state.value.username,
+					password = _state.value.password,
+					confirmPassword = _state.value.confirmPassword,
 				)).also { result ->
 
-					_usernameState.update { it.copy(error = result.usernameError) }
-					_passwordState.update { it.copy(error = result.passwordError) }
-					_confirmPasswordState.update { it.copy(error = result.confirmPasswordError) }
+					_state.value = _state.value.copy(
+						usernameError = result.usernameError,
+						passwordError = result.passwordError,
+						confirmPasswordError = result.confirmPasswordError,
+					)
 
 					when (val resource = result.resource)
 					{
@@ -69,7 +61,7 @@ class RegisterViewModel @Inject constructor(
 					}
 				}
 
-				_isLoadingState.value = false
+				_state.update { it.copy(isLoading = false) }
 			}
 		}
 	}
