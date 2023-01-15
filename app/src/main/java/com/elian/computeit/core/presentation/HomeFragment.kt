@@ -52,10 +52,6 @@ class HomeFragment : Fragment(R.layout.fragment_home)
 	{
 		binding.sivGoToTestConfiguration.setOnClickListener { navigate(R.id.action_homeFragment_to_testConfigurationFragment) }
 		binding.sivGoToProfile.setOnClickListener { navigate(R.id.action_homeFragment_to_privateProfileFragment) }
-
-		binding.viewTestHistory.lineChart.isGone = true
-		binding.bcSpeedHistogram.isGone = true
-		binding.sldRangeLength.isGone = true
 	}
 
 	private fun subscribeToEvents() = using(viewModel)
@@ -68,8 +64,15 @@ class HomeFragment : Fragment(R.layout.fragment_home)
 				initSpeedHistogramChart(info)
 				initTextInfo(info.statsInfo)
 			}
+			
+			binding.apply()
+			{
+				lpiIsLoading.isVisible = it.isLoading
 
-			binding.lpiIsLoading.isVisible = it.isLoading
+				viewTestHistory.lineChart.isGone = it.isLoading
+				bcSpeedHistogram.isGone = it.isLoading
+				sldRangeLength.isGone = it.isLoading
+			}
 		}
 	}
 
@@ -126,8 +129,6 @@ class HomeFragment : Fragment(R.layout.fragment_home)
 			})
 		}
 		else chartView.showNoDataText()
-
-		chartView.isVisible = true
 	}
 
 	private fun initSpeedHistogramChart(info: TestListInfo) = using(info)
@@ -136,10 +137,9 @@ class HomeFragment : Fragment(R.layout.fragment_home)
 
 		if (speedHistogramInfo.testsPerSpeedRange.isNotEmpty())
 		{
-			chartView.apply()
+			chartView.applyDefault()
 			{
 				avoidConflictsWithScroll(binding.root)
-				applyDefault()
 
 				xAxis.valueFormatter = rangeFormatter.apply()
 				{
@@ -182,8 +182,6 @@ class HomeFragment : Fragment(R.layout.fragment_home)
 			}
 		}
 		else chartView.showNoDataText()
-
-		chartView.isVisible = true
 	}
 
 	private fun initTextInfo(info: TestListStatsInfo) = using(info)
