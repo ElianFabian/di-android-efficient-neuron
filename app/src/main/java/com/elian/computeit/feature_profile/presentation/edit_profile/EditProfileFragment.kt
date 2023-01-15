@@ -37,10 +37,10 @@ class EditProfileFragment : Fragment(R.layout.fragment_edit_profile)
 
 	private fun initUi() = using(binding)
 	{
+		tietUsername.allowMultilineAndDisableEnterNewLine()
+
 		tietUsername.addTextChangedListener { viewModel.onAction(EnterUsername("$it".trim())) }
 		tietBiography.addTextChangedListener { viewModel.onAction(EnterBiography("$it".trim().trimWhitespacesBeforeNewLine())) }
-
-		tietUsername.allowMultilineAndDisableEnterNewLine()
 
 		viewModel.sharedState.value?.profilePicBytes?.also { if (it.isNotEmpty()) viewModel.onAction(EnterProfilePic(it)) }
 
