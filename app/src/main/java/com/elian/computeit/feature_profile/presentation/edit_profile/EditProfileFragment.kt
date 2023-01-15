@@ -16,8 +16,6 @@ import com.elian.computeit.core.util.using
 import com.elian.computeit.databinding.FragmentEditProfileBinding
 import com.elian.computeit.feature_profile.presentation.ProfileViewModel
 import com.elian.computeit.feature_profile.presentation.edit_profile.EditProfileAction.*
-import com.elian.computeit.feature_profile.presentation.edit_profile.EditProfileEvent.OnSave
-import com.elian.computeit.feature_profile.presentation.edit_profile.EditProfileEvent.OnShowErrorMessage
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.filterNotNull
 
@@ -71,14 +69,6 @@ class EditProfileFragment : Fragment(R.layout.fragment_edit_profile)
 
 	private fun subscribeToEvents() = using(viewModel)
 	{
-		collectFlowWhenStarted(editProfileEventFlow)
-		{
-			when (it)
-			{
-				is OnSave             -> showToast(R.string.message_info_successfully_updated)
-				is OnShowErrorMessage -> showToast(it.error.asString(context))
-			}
-		}
 		collectLatestFlowWhenStarted(sharedState.filterNotNull())
 		{
 			binding.apply()
@@ -94,6 +84,14 @@ class EditProfileFragment : Fragment(R.layout.fragment_edit_profile)
 
 			binding.lpiIsLoading.isGone = !it.isLoading
 			binding.btnSave.isEnabled = !it.isLoading
+		}
+		collectFlowWhenStarted(editProfileEventFlow)
+		{
+			when (it)
+			{
+				is EditProfileEvent.OnSave             -> showToast(R.string.message_info_successfully_updated)
+				is EditProfileEvent.OnShowErrorMessage -> showToast(it.error.asString(context))
+			}
 		}
 	}
 }
