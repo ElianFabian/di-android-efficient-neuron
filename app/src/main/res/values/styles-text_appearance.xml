@@ -10,7 +10,6 @@
     </style>
 
     <style name="TextAppearance_Button">
-        <item name="fontFamily">@font/comfortaa_bold</item>
         <item name="android:textSize">@dimen/textSize_medium3</item>
     </style>
 
