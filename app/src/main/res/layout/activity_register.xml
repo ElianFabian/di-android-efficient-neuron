@@ -64,7 +64,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <ProgressBar
-        android:id="@+id/pbLoading"
+        android:id="@+id/pbIsLoading"
         style="@style/Layout_ProgressBar"
         android:layout_marginTop="@dimen/_30sdp"
 

@@ -88,6 +88,6 @@ class RegisterActivity : AppCompatActivity()
 				else                      -> null
 			}
 		}
-		collectLatestFlowWhenStarted(loadingState) { binding.pbLoading.isVisible = it }
+		collectLatestFlowWhenStarted(isLoadingState) { binding.pbIsLoading.isVisible = it }
 	}
 }

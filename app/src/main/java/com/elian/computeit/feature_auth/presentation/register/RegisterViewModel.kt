@@ -27,8 +27,8 @@ class RegisterViewModel @Inject constructor(
 	private val _eventFlow = Channel<RegisterEvent>()
 	val eventFlow = _eventFlow.receiveAsFlow()
 
-	private val _loadingState = MutableStateFlow(false)
-	val loadingState = _loadingState.asStateFlow()
+	private val _isLoadingState = MutableStateFlow(false)
+	val isLoadingState = _isLoadingState.asStateFlow()
 
 	private val _usernameState = MutableStateFlow(TextFieldState())
 	val usernameState = _usernameState.asStateFlow()
@@ -49,7 +49,7 @@ class RegisterViewModel @Inject constructor(
 			is EnterConfirmPassword -> _confirmPasswordState.update { it.copy(text = action.value, error = null) }
 			is Register             -> viewModelScope.launch()
 			{
-				_loadingState.value = true
+				_isLoadingState.value = true
 
 				register(RegisterParams(
 					username = _usernameState.value.text,
@@ -69,7 +69,7 @@ class RegisterViewModel @Inject constructor(
 					}
 				}
 
-				_loadingState.value = false
+				_isLoadingState.value = false
 			}
 		}
 	}
