@@ -52,8 +52,6 @@ class HomeFragment : Fragment(R.layout.fragment_home)
 	{
 		binding.sivGoToTestConfiguration.setOnClickListener { navigate(R.id.action_homeFragment_to_testConfigurationFragment) }
 		binding.sivGoToProfile.setOnClickListener { navigate(R.id.action_homeFragment_to_privateProfileFragment) }
-//        binding.sivGoToTips.setOnClickListener { navigate(R.id.action_homeFragment_to_tipsFragment) }
-//        binding.sivGoToSettings.setOnClickListener { navigate(R.id.action_homeFragment_to_settingsFragment) }
 
 		binding.viewTestHistory.lineChart.isGone = true
 		binding.bcSpeedHistogram.isGone = true

@@ -62,19 +62,6 @@
                 app:iconTint="@color/blue_gray_800" />
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/sivGoToTips"
-                style="?android:attr/borderlessButtonStyle"
-                android:layout_width="@dimen/_55sdp"
-                android:layout_height="@dimen/_55sdp"
-                android:backgroundTint="@color/background_dark"
-                android:enabled="false"
-                app:icon="@drawable/ic_tips"
-                app:iconGravity="textStart"
-                app:iconPadding="0dp"
-                app:iconSize="@dimen/_40sdp"
-                app:iconTint="@color/blue_gray_800" />
-
-            <com.google.android.material.button.MaterialButton
                 android:id="@+id/sivGoToProfile"
                 style="?android:attr/borderlessButtonStyle"
                 android:layout_width="@dimen/_55sdp"
