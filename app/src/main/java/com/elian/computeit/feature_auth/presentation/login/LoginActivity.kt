@@ -18,7 +18,6 @@ import com.elian.computeit.feature_auth.presentation.login.LoginEvent.OnLogin
 import com.elian.computeit.feature_auth.presentation.login.LoginEvent.OnShowErrorMessage
 import com.elian.computeit.feature_auth.presentation.register.RegisterActivity
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.map
 
 @AndroidEntryPoint
 class LoginActivity : AppCompatActivity()
@@ -51,6 +50,12 @@ class LoginActivity : AppCompatActivity()
 
 	private fun subscribeToEvents() = using(viewModel)
 	{
+		collectLatestFlowWhenStarted(state)
+		{
+			binding.tilUsername.error2 = getFieldError(it.usernameError)
+			binding.tilPassword.error2 = getFieldError(it.passwordError)
+			binding.pbIsLoading.isVisible = it.isLoading
+		}
 		collectFlowWhenStarted(eventFlow)
 		{
 			when (it)
@@ -59,15 +64,6 @@ class LoginActivity : AppCompatActivity()
 				is OnShowErrorMessage -> showToast(it.error.asString(this@LoginActivity))
 			}
 		}
-		collectLatestFlowWhenStarted(usernameState.map { it.error })
-		{
-			binding.tilUsername.error2 = getFieldError(it)
-		}
-		collectLatestFlowWhenStarted(passwordState.map { it.error })
-		{
-			binding.tilPassword.error2 = getFieldError(it)
-		}
-		collectLatestFlowWhenStarted(loadingState) { binding.pbIsLoading.isVisible = it }
 	}
 
 	private fun getFieldError(error: Error?) = when (error)

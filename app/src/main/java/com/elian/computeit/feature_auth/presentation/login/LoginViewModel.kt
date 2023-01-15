@@ -2,7 +2,6 @@ package com.elian.computeit.feature_auth.presentation.login
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.elian.computeit.core.domain.states.TextFieldState
 import com.elian.computeit.core.util.Resource
 import com.elian.computeit.core.util.UiText
 import com.elian.computeit.feature_auth.domain.params.LoginParams
@@ -24,36 +23,32 @@ class LoginViewModel @Inject constructor(
 	private val login: LoginUseCase,
 ) : ViewModel()
 {
+	private val _state = MutableStateFlow(LoginState())
+	val state = _state.asStateFlow()
+	
 	private val _eventFlow = Channel<LoginEvent>()
 	val eventFlow = _eventFlow.receiveAsFlow()
-
-	private val _loadingState = MutableStateFlow(false)
-	val loadingState = _loadingState.asStateFlow()
-
-	private val _usernameState = MutableStateFlow(TextFieldState())
-	val usernameState = _usernameState.asStateFlow()
-
-	private val _passwordState = MutableStateFlow(TextFieldState())
-	val passwordState = _passwordState.asStateFlow()
 
 
 	fun onAction(action: LoginAction)
 	{
 		when (action)
 		{
-			is EnterUsername -> _usernameState.update { it.copy(text = action.value, error = null) }
-			is EnterPassword -> _passwordState.update { it.copy(text = action.value, error = null) }
+			is EnterUsername -> _state.update { it.copy(username = action.value, usernameError = null) }
+			is EnterPassword -> _state.update { it.copy(password = action.value, passwordError = null) }
 			is Login         -> viewModelScope.launch()
 			{
-				_loadingState.value = true
+				_state.update { it.copy(isLoading = true) }
 
 				login(LoginParams(
-					username = _usernameState.value.text,
-					password = _passwordState.value.text,
+					username = _state.value.username,
+					password = _state.value.password,
 				)).also { result ->
 
-					_usernameState.update { it.copy(error = result.usernameError) }
-					_passwordState.update { it.copy(error = result.passwordError) }
+					_state.value = _state.value.copy(
+						usernameError = result.usernameError,
+						passwordError = result.passwordError,
+					)
 
 					when (val resource = result.resource)
 					{
@@ -63,7 +58,7 @@ class LoginViewModel @Inject constructor(
 					}
 				}
 
-				_loadingState.value = false
+				_state.update { it.copy(isLoading = false) }
 			}
 		}
 	}
