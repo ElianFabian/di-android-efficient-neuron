@@ -147,7 +147,6 @@ class HomeFragment : Fragment(R.layout.fragment_home)
 					minOpm = statsInfo.minOpm.toFloat()
 					maxOpm = statsInfo.maxOpm.toFloat()
 				}
-
 				data = BarData(
 					barDataSet(
 						entries = speedHistogramInfo.testsPerSpeedRange.toBarEntries(),
