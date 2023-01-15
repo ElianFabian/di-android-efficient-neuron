@@ -19,15 +19,12 @@ import com.elian.computeit.feature_tests.presentation.test_configuration.TestCon
 import com.elian.computeit.feature_tests.presentation.test_configuration.TestConfigurationEvent.OnStart
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.map
 
 @AndroidEntryPoint
 class TestConfigurationFragment : Fragment(R.layout.fragment_test_configuration)
 {
 	private val viewModel by viewModels<TestConfigurationViewModel>()
 	private val binding by viewBinding(FragmentTestConfigurationBinding::bind)
-
-	private lateinit var _lastCheckedOperationRadioButton: RadioButton
 
 
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?)
@@ -41,32 +38,33 @@ class TestConfigurationFragment : Fragment(R.layout.fragment_test_configuration)
 
 	private fun initUI() = using(binding)
 	{
-		rgOperationType.findViewsWithTagOfType<RadioButton>(R.string.tag_operation_type).forEach { radioButton ->
+		val operationRadioButtons = binding.rgOperationType.findViewsWithTagOfType<RadioButton>(R.string.tag_operation_type)
+
+		operationRadioButtons.forEach { radioButton ->
 
 			radioButton.setOnClickListener()
 			{
-				_lastCheckedOperationRadioButton = radioButton
-
 				viewModel.onAction(SelectOperationType(symbol = radioButton.text.toString()))
 			}
 		}
+		val selectedOperationRadioButton = operationRadioButtons.first { rb -> rb.text == viewModel.state.value.selectedOperation.symbol }
+		selectedOperationRadioButton.performClick()
 
-		tietStart.addTextChangedListener { viewModel.onAction(EnterStart(it.toString().toIntOrNull())) }
-		tietEnd.addTextChangedListener { viewModel.onAction(EnterEnd(it.toString().toIntOrNull())) }
+		tietStartOrRange.addTextChangedListener { viewModel.onAction(EnterStartOfRange(it.toString().toIntOrNull())) }
+		tietEndOfRange.addTextChangedListener { viewModel.onAction(EnterEndOfRange(it.toString().toIntOrNull())) }
 		tietTime.addTextChangedListener { viewModel.onAction(EnterTime(it.toString().toIntOrNull())) }
 
 		btnStartTest.setOnClickListener { viewModel.onAction(StartTest) }
-
-		// This is to avoid problems when saving the RadioButton checked state after navigating up from test to here
-		if (!::_lastCheckedOperationRadioButton.isInitialized)
-		{
-			_lastCheckedOperationRadioButton = rgOperationType.checkedRadioButton!!
-		}
-		_lastCheckedOperationRadioButton.performClick()
 	}
 
 	private fun subscribeToEvents() = using(viewModel)
 	{
+		collectLatestFlowWhenStarted(state)
+		{
+			binding.tietStartOrRange.error = getFieldError(it.startOfRangeError)
+			binding.tietEndOfRange.error = getFieldError(it.endOfRangeError)
+			binding.tietTime.error = getFieldError(it.timeError)
+		}
 		collectFlowWhenStarted(eventFlow)
 		{
 			when (it)
@@ -86,16 +84,16 @@ class TestConfigurationFragment : Fragment(R.layout.fragment_test_configuration)
 						Snackbar.make(requireView(), errorMessage, Snackbar.LENGTH_LONG).setAction(R.string.action_fix)
 						{
 							val min = minOf(
-								binding.tietStart.text.toString().toInt(),
-								binding.tietEnd.text.toString().toInt(),
+								binding.tietStartOrRange.text.toString().toInt(),
+								binding.tietEndOfRange.text.toString().toInt(),
 							)
 							val max = maxOf(
-								binding.tietStart.text.toString().toInt(),
-								binding.tietEnd.text.toString().toInt(),
+								binding.tietStartOrRange.text.toString().toInt(),
+								binding.tietEndOfRange.text.toString().toInt(),
 							)
 
-							binding.tietStart.setText("$min")
-							binding.tietEnd.setText("$max")
+							binding.tietStartOrRange.setText("$min")
+							binding.tietEndOfRange.setText("$max")
 						}.show()
 					}
 					else                                                ->
@@ -105,9 +103,6 @@ class TestConfigurationFragment : Fragment(R.layout.fragment_test_configuration)
 				}
 			}
 		}
-		collectLatestFlowWhenStarted(startState.map { it.error }) { binding.tietStart.error = getFieldError(it) }
-		collectLatestFlowWhenStarted(endState.map { it.error }) { binding.tietEnd.error = getFieldError(it) }
-		collectLatestFlowWhenStarted(timeState.map { it.error }) { binding.tietTime.error = getFieldError(it) }
 	}
 
 	private fun getFieldError(error: Error?) = when (error)

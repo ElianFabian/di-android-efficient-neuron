@@ -4,7 +4,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.elian.computeit.core.data.Operation
 import com.elian.computeit.core.domain.models.Range
-import com.elian.computeit.core.domain.states.NumericFieldState
 import com.elian.computeit.core.util.Resource
 import com.elian.computeit.core.util.UiText
 import com.elian.computeit.core.util.constants.toList
@@ -28,41 +27,35 @@ class TestConfigurationViewModel @Inject constructor(
 	private val validateConfiguration: ValidateConfigurationUseCase,
 ) : ViewModel()
 {
+	private val _state = MutableStateFlow(TestConfigurationState())
+	val state = _state.asStateFlow()
+
 	private val _eventFlow = Channel<TestConfigurationEvent>()
 	val eventFlow = _eventFlow.receiveAsFlow()
-
-	private lateinit var _selectedOperation: Operation
-
-	private val _startState = MutableStateFlow(NumericFieldState<Int>())
-	val startState = _startState.asStateFlow()
-
-	private val _endState = MutableStateFlow(NumericFieldState<Int>())
-	val endState = _endState.asStateFlow()
-
-	private val _timeState = MutableStateFlow(NumericFieldState<Int>())
-	val timeState = _timeState.asStateFlow()
 
 
 	fun onAction(action: TestConfigurationAction)
 	{
 		when (action)
 		{
-			is SelectOperationType -> _selectedOperation = Operation.fromSymbol(action.symbol)
-			is EnterStart          -> _startState.update { it.copy(number = action.value, error = null) }
-			is EnterEnd            -> _endState.update { it.copy(number = action.value, error = null) }
-			is EnterTime           -> _timeState.update { it.copy(number = action.value, error = null) }
+			is SelectOperationType -> _state.update { it.copy(selectedOperation = Operation.fromSymbol(action.symbol)) }
+			is EnterStartOfRange -> _state.update { it.copy(startOfRange = action.value, startOfRangeError = null) }
+			is EnterEndOfRange   -> _state.update { it.copy(endOfRange = action.value, endOfRangeError = null) }
+			is EnterTime         -> _state.update { it.copy(time = action.value, timeError = null) }
 			is StartTest           -> viewModelScope.launch()
 			{
 				validateConfiguration(ValidateConfigurationParams(
-					operation = _selectedOperation,
-					start = _startState.value.number,
-					end = _endState.value.number,
-					time = _timeState.value.number,
+					operation = _state.value.selectedOperation,
+					startOfRange = _state.value.startOfRange,
+					endOfRange = _state.value.endOfRange,
+					time = _state.value.time,
 				)).also { result ->
 
-					_startState.update { it.copy(error = result.startError) }
-					_endState.update { it.copy(error = result.endError) }
-					_timeState.update { it.copy(error = result.timeError) }
+					_state.value = _state.value.copy(
+						startOfRangeError = result.startOfRangeError,
+						endOfRangeError = result.endOfRangeError,
+						timeError = result.timeError,
+					)
 
 					when (val resource = result.resource)
 					{
@@ -71,9 +64,9 @@ class TestConfigurationViewModel @Inject constructor(
 						{
 							_eventFlow.send(OnStart(
 								args = TestArgs(
-									operation = _selectedOperation,
-									range = Range(_startState.value.number!!, _endState.value.number!!),
-									totalTimeInSeconds = _timeState.value.number!!,
+									operation = _state.value.selectedOperation,
+									range = _state.value.run { Range(startOfRange!!, endOfRange!!) },
+									totalTimeInSeconds = _state.value.time!!,
 								).toList()
 							))
 						}

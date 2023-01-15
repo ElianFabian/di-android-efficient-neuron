@@ -20,23 +20,23 @@ class ValidateConfigurationUseCase @Inject constructor()
 
 	suspend operator fun invoke(params: ValidateConfigurationParams): TestConfigurationResult
 	{
-		val startError = getFieldError(params.start)
-		val endError = getFieldError(params.end)
+		val startError = getFieldError(params.startOfRange)
+		val endError = getFieldError(params.endOfRange)
 		val timeError = getFieldError(params.time)
 
 		if (checkIfError(startError, endError, timeError))
 		{
 			return TestConfigurationResult(
-				startError = startError,
-				endError = endError,
+				startOfRangeError = startError,
+				endOfRangeError = endError,
 				timeError = timeError,
 			)
 		}
-		if (params.start!! > params.end!!)
+		if (params.startOfRange!! > params.endOfRange!!)
 		{
 			return TestConfigurationResult(resource = Resource.Error(R.string.error_range_values_are_inverted))
 		}
-		if (params.end - params.start + 1 < _minRangeLength)
+		if (params.endOfRange - params.startOfRange + 1 < _minRangeLength)
 		{
 			return TestConfigurationResult(resource = Resource.Error(
 				messageResId = R.string.error_range_length_must_be_greater_than,
@@ -45,11 +45,11 @@ class ValidateConfigurationUseCase @Inject constructor()
 		}
 		if (params.operation == Operation.Division) withContext(Dispatchers.Default)
 		{
-			if (params.start == 0) return@withContext TestConfigurationResult(resource = Resource.Error(R.string.error_division_by_zero_is_not_allowed))
+			if (params.startOfRange == 0) return@withContext TestConfigurationResult(resource = Resource.Error(R.string.error_division_by_zero_is_not_allowed))
 
 			getDivisiblePairsInRangeCount(
-				start = params.start,
-				end = params.end,
+				start = params.startOfRange,
+				end = params.endOfRange,
 				ignoreSelfDivision = true,
 			).also()
 			{

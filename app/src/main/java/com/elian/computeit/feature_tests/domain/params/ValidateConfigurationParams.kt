@@ -4,7 +4,7 @@ import com.elian.computeit.core.data.Operation
 
 data class ValidateConfigurationParams(
 	val operation: Operation,
-	val start: Int?,
-	val end: Int?,
+	val startOfRange: Int?,
+	val endOfRange: Int?,
 	val time: Int?,
 )
