@@ -64,7 +64,7 @@ class HomeFragment : Fragment(R.layout.fragment_home)
 				initSpeedHistogramChart(info)
 				initTextInfo(info.statsInfo)
 			}
-			
+
 			binding.apply()
 			{
 				lpiIsLoading.isVisible = it.isLoading
@@ -117,16 +117,20 @@ class HomeFragment : Fragment(R.layout.fragment_home)
 							).toBundle()
 						)
 					}
-					btnGoToTestDetails.text = getString(R.string.frgHome_go_to_test_ph).format(entry.x.toInt())
-					btnGoToTestDetails.isVisible = true
+					btnGoToTestDetails.text = "${getString(R.string.frgHome_go_to_test)} ${entry.x.toInt()}"
+					btnGoToTestDetails.isEnabled = true
 				}
 
 				override fun onNothingSelected()
 				{
 					btnGoToTestDetails.setOnClickListener(null)
-					btnGoToTestDetails.isGone = true
+					btnGoToTestDetails.isEnabled = false
+					btnGoToTestDetails.setText(R.string.frgHome_go_to_test)
 				}
 			})
+
+			binding.viewTestHistory.btnGoToTestDetails.isVisible = true
+			binding.viewTestHistory.btnGoToTestDetails.setText(R.string.frgHome_go_to_test)
 		}
 		else chartView.showNoDataText()
 	}
