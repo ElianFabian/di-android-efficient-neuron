@@ -41,7 +41,6 @@ class PrivateProfileFragment : Fragment(R.layout.fragment_private_profile)
 		{
 			navigate(R.id.action_privateProfileFragment_to_editProfileFragment)
 		}
-
 		btnLogout.setOnClickListener()
 		{
 			showAlertDialog(
