@@ -102,11 +102,11 @@ class HomeFragment : Fragment(R.layout.fragment_home)
 			chartView.avoidConflictsWithScroll(binding.root)
 			chartView.setOnChartValueSelectedListener(object : OnChartValueSelectedListener
 			{
-				var currentSelectedEntry: Entry? = null
+				private val btnGoToTestDetails = binding.viewTestHistory.btnGoToTestDetails
 
 				override fun onValueSelected(entry: Entry, highlight: Highlight)
 				{
-					if (currentSelectedEntry == entry)
+					binding.viewTestHistory.btnGoToTestDetails.setOnClickListener()
 					{
 						navigate(R.id.action_homeFragment_to_testDetailsFragment,
 							TestDetailsArgs(
@@ -114,12 +114,14 @@ class HomeFragment : Fragment(R.layout.fragment_home)
 							).toBundle()
 						)
 					}
-
-					currentSelectedEntry = entry
+					btnGoToTestDetails.text = getString(R.string.frgHome_go_to_test_ph).format(entry.x.toInt())
+					btnGoToTestDetails.isVisible = true
 				}
 
 				override fun onNothingSelected()
 				{
+					btnGoToTestDetails.setOnClickListener(null)
+					btnGoToTestDetails.isGone = true
 				}
 			})
 		}

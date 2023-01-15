@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:animateLayoutChanges="true"
     android:backgroundTint="@color/background_card"
     app:cardCornerRadius="@dimen/_10sdp"
     tools:layout_gravity="center">
@@ -13,12 +12,32 @@
         android:layout_width="wrap_content"
         android:layout_height="@dimen/_150sdp" />
 
-    <com.github.mikephil.charting.charts.LineChart
-        android:id="@+id/lineChart"
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_280sdp"
-        android:layout_marginHorizontal="@dimen/_5sdp"
-        android:layout_marginVertical="@dimen/_8sdp"
-        android:background="@color/background_card" />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/lineChart"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_280sdp"
+            android:layout_marginHorizontal="@dimen/_5sdp"
+            android:layout_marginVertical="@dimen/_8sdp"
+            android:background="@color/background_card" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnGoToTestDetails"
+            style="@style/ButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginBottom="10dp"
+            android:textSize="@dimen/textSize_medium2"
+            android:visibility="gone"
+            tools:text="@string/frgHome_go_to_test_ph"
+            tools:visibility="visible" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
 
 </com.google.android.material.card.MaterialCardView>

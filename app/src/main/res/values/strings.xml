@@ -36,6 +36,7 @@
     <string name="frgHome_averageOpm">Average OPM</string>
     <string name="frgHome_averageRawOpm">Average raw OPM</string>
     <string name="frgHome_correctOperationsCompleted">Correct operations completed</string>
+    <string name="frgHome_go_to_test_ph">Go to test %d</string>
     <string name="frgHome_highestOpm">Highest OPM</string>
     <string name="frgHome_highestRawOpm">Highest raw OPM</string>
     <string name="frgHome_operationsCompleted">Operations completed</string>
