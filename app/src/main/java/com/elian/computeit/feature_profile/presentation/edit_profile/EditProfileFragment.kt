@@ -44,7 +44,7 @@ class EditProfileFragment : Fragment(R.layout.fragment_edit_profile)
 
 		tietUsername.allowMultilineAndDisableEnterNewLine()
 
-		viewModel.profileState.value?.profilePicBytes?.also { if (it.isNotEmpty()) viewModel.onAction(EnterProfilePic(it)) }
+		viewModel.sharedState.value?.profilePicBytes?.also { if (it.isNotEmpty()) viewModel.onAction(EnterProfilePic(it)) }
 
 		sivProfilePic.setOnClickListener()
 		{
@@ -79,7 +79,7 @@ class EditProfileFragment : Fragment(R.layout.fragment_edit_profile)
 				is OnShowErrorMessage -> showToast(it.error.asString(context))
 			}
 		}
-		collectLatestFlowWhenStarted(profileState.filterNotNull())
+		collectLatestFlowWhenStarted(sharedState.filterNotNull())
 		{
 			binding.apply()
 			{
@@ -90,7 +90,7 @@ class EditProfileFragment : Fragment(R.layout.fragment_edit_profile)
 		}
 		collectLatestFlowWhenStarted(editProfileState)
 		{
-			binding.tilUsername.error2 = getUsernameErrorMessage(context, it.usernameField.error)
+			binding.tilUsername.error2 = getUsernameErrorMessage(context, it.usernameError)
 
 			binding.lpiIsLoading.isGone = !it.isLoading
 			binding.btnSave.isEnabled = !it.isLoading

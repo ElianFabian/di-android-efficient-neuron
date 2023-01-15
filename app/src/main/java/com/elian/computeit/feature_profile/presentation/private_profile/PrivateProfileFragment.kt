@@ -3,6 +3,7 @@ package com.elian.computeit.feature_profile.presentation.private_profile
 import android.os.Bundle
 import android.view.View
 import androidx.core.view.isGone
+import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -58,25 +59,26 @@ class PrivateProfileFragment : Fragment(R.layout.fragment_private_profile)
 
 	private fun subscribeToEvents() = using(viewModel)
 	{
-		collectLatestFlowWhenStarted(profileState.filterNotNull())
+		collectLatestFlowWhenStarted(sharedState.filterNotNull())
 		{
 			binding.apply()
 			{
 				tvUsername.text2 = "@${it.username}"
 				tvBiography.text2 = it.biography
-				tvCreatedAt.text2 = getString(R.string.feature_profile_account_created_at_PH).format(it.createdAt)
 				sivProfilePic.setImageBytes(it.profilePicBytes.toByteArray())
 			}
 		}
-		collectLatestFlowWhenStarted(privateProfileIsLoadingState) 
+		collectLatestFlowWhenStarted(privateProfileState.filterNotNull())
 		{
 			binding.apply()
 			{
-				pbIsLoading.isVisible = it
-				btnEdit.isGone = it
-				tvLabelBiography.isGone = it
-				btnLogout.isGone = it
-				sivProfilePic.isVisible = !it
+				tvCreatedAt.text2 = getString(R.string.feature_profile_account_created_at_PH).format(it.createdAt)
+
+				pbIsLoading.isVisible = it.isLoading
+				btnEdit.isGone = it.isLoading
+				tvLabelBiography.isGone = it.isLoading
+				btnLogout.isGone = it.isLoading
+				sivProfilePic.isInvisible = it.isLoading
 			}
 		}
 	}
