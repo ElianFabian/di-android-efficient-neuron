@@ -15,7 +15,7 @@ import com.elian.computeit.databinding.FragmentPrivateProfileBinding
 import com.elian.computeit.feature_auth.presentation.login.LoginActivity
 import com.elian.computeit.feature_profile.presentation.ProfileViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.filter
+import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -58,19 +58,17 @@ class PrivateProfileFragment : Fragment(R.layout.fragment_private_profile)
 
 	private fun subscribeToEvents() = using(viewModel)
 	{
-		collectLatestFlowWhenStarted(profilePicState.filter { it.isNotEmpty() })
+		collectLatestFlowWhenStarted(profileState.filterNotNull())
 		{
-			binding.sivProfilePic.setImageBytes(it.toByteArray())
+			binding.apply()
+			{
+				tvUsername.text2 = "@${it.username}"
+				tvBiography.text2 = it.biography
+				tvCreatedAt.text2 = getString(R.string.feature_profile_account_created_at_PH).format(it.createdAt)
+				sivProfilePic.setImageBytes(it.profilePicBytes.toByteArray())
+			}
 		}
-		collectLatestFlowWhenStarted(createdAtState.filter { it.isNotBlank() })
-		{
-			binding.tvCreatedAt.text2 = getString(R.string.feature_profile_account_created_at_PH).format(it)
-		}
-		collectLatestFlowWhenStarted(usernameState.filter { it.isNotBlank() })
-		{
-			binding.tvUsername.text2 = "@$it"
-		}
-		collectLatestFlowWhenStarted(privateProfileIsLoadingState)
+		collectLatestFlowWhenStarted(privateProfileIsLoadingState) 
 		{
 			binding.apply()
 			{
@@ -81,6 +79,5 @@ class PrivateProfileFragment : Fragment(R.layout.fragment_private_profile)
 				sivProfilePic.isVisible = !it
 			}
 		}
-		collectLatestFlowWhenStarted(biographyState) { binding.tvBiography.text2 = it }
 	}
 }

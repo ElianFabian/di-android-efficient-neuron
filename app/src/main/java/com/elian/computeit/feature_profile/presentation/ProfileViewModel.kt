@@ -23,25 +23,14 @@ class ProfileViewModel @Inject constructor(
 	private val useCases: ProfileUseCases,
 ) : ViewModel()
 {
-	private val _profilePicState = MutableStateFlow(emptyList<Byte>())
-	val profilePicState = _profilePicState.asStateFlow()
-
-	private val _usernameState = MutableStateFlow("")
-	val usernameState = _usernameState.asStateFlow()
-
-	private val _biographyState = MutableStateFlow("")
-	val biographyState = _biographyState.asStateFlow()
-
-	private val _createdAtState = MutableStateFlow("")
-	val createdAtState = _createdAtState.asStateFlow()
-
-
-	private val _editProfileEventFlow = Channel<EditProfileEvent>()
-	val editProfileEventFlow = _editProfileEventFlow.receiveAsFlow()
+	private val _profileState = MutableStateFlow<ProfileState?>(null)
+	val profileState = _profileState.asStateFlow()
 
 	private val _editProfileState = MutableStateFlow(EditProfileState())
 	val editProfileState = _editProfileState.asStateFlow()
 
+	private val _editProfileEventFlow = Channel<EditProfileEvent>()
+	val editProfileEventFlow = _editProfileEventFlow.receiveAsFlow()
 
 	private val _privateProfileIsLoadingState = MutableStateFlow(false)
 	val privateProfileIsLoadingState = _privateProfileIsLoadingState.asStateFlow()
@@ -90,11 +79,14 @@ class ProfileViewModel @Inject constructor(
 						is Resource.Error   -> _editProfileEventFlow.send(OnShowErrorMessage(resource.uiText ?: UiText.unknownError()))
 						is Resource.Success ->
 						{
-							_editProfileState.value.apply()
+							val stateValue = _editProfileState.value
+							_profileState.update()
 							{
-								_profilePicState.value = profilePicBytes
-								_usernameState.value = usernameField.text
-								_biographyState.value = biography
+								it?.copy(
+									profilePicBytes = stateValue.profilePicBytes,
+									username = stateValue.usernameField.text,
+									biography = stateValue.biography,
+								)
 							}
 
 							_editProfileEventFlow.send(OnSave)
@@ -115,12 +107,13 @@ class ProfileViewModel @Inject constructor(
 	{
 		viewModelScope.launch()
 		{
-			combine(_profilePicState, _usernameState, _biographyState) { profileBytes, username, biography ->
-
-				_editProfileState.value.copy(
-					profilePicBytes = profileBytes,
-					usernameField = _editProfileState.value.usernameField.copy(text = username),
-					biography = biography,
+			val stateValue = _editProfileState.value
+			_profileState.filterNotNull().map()
+			{
+				stateValue.copy(
+					profilePicBytes = it.profilePicBytes,
+					usernameField = stateValue.usernameField.copy(text = it.username),
+					biography = it.biography,
 				)
 			}.collect()
 			{
@@ -131,15 +124,14 @@ class ProfileViewModel @Inject constructor(
 		{
 			_privateProfileIsLoadingState.value = true
 
-			useCases.getProfileInfo(
-				userUuid = useCases.getOwnUserUuid(),
-			).apply()
-			{
-				_usernameState.value = username
-				_biographyState.value = biography
-				_profilePicState.value = profilePicBytes
-				_createdAtState.value = createdAt
-			}
+			val info = useCases.getProfileInfo(useCases.getOwnUserUuid())
+
+			_profileState.value = ProfileState(
+				username = info.username,
+				biography = info.biography,
+				profilePicBytes = info.profilePicBytes,
+				createdAt = info.createdAt,
+			)
 
 			_privateProfileIsLoadingState.value = false
 		}

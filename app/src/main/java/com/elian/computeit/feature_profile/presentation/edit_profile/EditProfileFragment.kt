@@ -19,6 +19,7 @@ import com.elian.computeit.feature_profile.presentation.edit_profile.EditProfile
 import com.elian.computeit.feature_profile.presentation.edit_profile.EditProfileEvent.OnSave
 import com.elian.computeit.feature_profile.presentation.edit_profile.EditProfileEvent.OnShowErrorMessage
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.filterNotNull
 
 @AndroidEntryPoint
 class EditProfileFragment : Fragment(R.layout.fragment_edit_profile)
@@ -43,7 +44,7 @@ class EditProfileFragment : Fragment(R.layout.fragment_edit_profile)
 
 		tietUsername.allowMultilineAndDisableEnterNewLine()
 
-		viewModel.profilePicState.value.also { if (it.isNotEmpty()) viewModel.onAction(EnterProfilePic(it)) }
+		viewModel.profileState.value?.profilePicBytes?.also { if (it.isNotEmpty()) viewModel.onAction(EnterProfilePic(it)) }
 
 		sivProfilePic.setOnClickListener()
 		{
@@ -78,9 +79,15 @@ class EditProfileFragment : Fragment(R.layout.fragment_edit_profile)
 				is OnShowErrorMessage -> showToast(it.error.asString(context))
 			}
 		}
-		collectFlowWhenStarted(profilePicState) { binding.sivProfilePic.setImageBytes(it.toByteArray()) }
-		collectFlowWhenStarted(usernameState) { binding.tietUsername.setText(it) }
-		collectFlowWhenStarted(biographyState) { binding.tietBiography.setText(it) }
+		collectLatestFlowWhenStarted(profileState.filterNotNull())
+		{
+			binding.apply()
+			{
+				tietUsername.text2 = it.username
+				tietBiography.text2 = it.biography
+				sivProfilePic.setImageBytes(it.profilePicBytes.toByteArray())
+			}
+		}
 		collectLatestFlowWhenStarted(editProfileState)
 		{
 			binding.tilUsername.error2 = getUsernameErrorMessage(context, it.usernameField.error)
