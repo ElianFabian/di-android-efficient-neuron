@@ -10,7 +10,10 @@ import com.elian.computeit.R
 import com.elian.computeit.core.presentation.adapter.MainLabeledDataAdapter
 import com.elian.computeit.core.presentation.adapter.TestInfoMarker
 import com.elian.computeit.core.presentation.model.labelOf
-import com.elian.computeit.core.presentation.util.extensions.*
+import com.elian.computeit.core.presentation.util.extensions.avoidConflictsWithScroll
+import com.elian.computeit.core.presentation.util.extensions.collectLatestFlowWhenStarted
+import com.elian.computeit.core.presentation.util.extensions.getColorCompat
+import com.elian.computeit.core.presentation.util.extensions.navigate
 import com.elian.computeit.core.presentation.util.mp_android_chart.*
 import com.elian.computeit.core.presentation.util.viewBinding
 import com.elian.computeit.core.util.constants.toBundle
@@ -26,15 +29,12 @@ import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.highlight.Highlight
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.filterNotNull
 
 @AndroidEntryPoint
 class HomeFragment : Fragment(R.layout.fragment_home)
 {
 	private val viewModel by viewModels<HomeViewModel>()
 	private val binding by viewBinding(FragmentHomeBinding::bind)
-
-	private var _isDataLoadingComplete = false
 
 	private val rangeFormatter = RangeValueFormatter()
 
@@ -62,15 +62,17 @@ class HomeFragment : Fragment(R.layout.fragment_home)
 
 	private fun subscribeToEvents() = using(viewModel)
 	{
-		collectLatestFlowWhenStarted(infoState.filterNotNull())
+		collectLatestFlowWhenStarted(state)
 		{
-			initTestHistoryChart(it.historyInfo)
-			initSpeedHistogramChart(it)
-			initTextInfo(it.statsInfo)
+			it.info?.also { info ->
 
-			_isDataLoadingComplete = true
+				initTestHistoryChart(info.historyInfo)
+				initSpeedHistogramChart(info)
+				initTextInfo(info.statsInfo)
+			}
+
+			binding.lpiIsLoading.isVisible = it.isLoading
 		}
-		collectFlowWhenStarted(isLoadingState) { binding.lpiIsLoading.isGone = !it }
 	}
 
 	private fun initTestHistoryChart(info: TestHistoryInfo) = using(info)
@@ -98,7 +100,6 @@ class HomeFragment : Fragment(R.layout.fragment_home)
 			)
 
 			chartView.applyDefault(
-				animate = !_isDataLoadingComplete,
 				dataSets = lineDataSets,
 			)
 
