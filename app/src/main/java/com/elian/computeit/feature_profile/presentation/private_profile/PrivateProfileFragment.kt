@@ -64,7 +64,11 @@ class PrivateProfileFragment : Fragment(R.layout.fragment_private_profile)
 			{
 				tvUsername.text2 = "@${it.username}"
 				tvBiography.text2 = it.biography
-				sivProfilePic.setImageBytes(it.profilePicBytes.toByteArray())
+
+				if (it.profilePicBytes.isNotEmpty())
+				{
+					sivProfilePic.setImageBytes(it.profilePicBytes.toByteArray())
+				}
 			}
 		}
 		collectLatestFlowWhenStarted(privateProfileState.filterNotNull())
