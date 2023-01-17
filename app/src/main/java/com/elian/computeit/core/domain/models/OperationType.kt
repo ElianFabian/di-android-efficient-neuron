@@ -1,6 +1,6 @@
-package com.elian.computeit.core.data
+package com.elian.computeit.core.domain.models
 
-enum class Operation(
+enum class OperationType(
 	val symbol: String,
 	val calculate: (a: Int, b: Int) -> Int,
 )

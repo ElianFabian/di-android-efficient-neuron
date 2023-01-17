@@ -6,7 +6,7 @@ import com.elian.computeit.core.presentation.model.labelOf
 import com.elian.computeit.core.presentation.util.mp_android_chart.GenericMarkerView
 import com.elian.computeit.databinding.ItemLabeledDataOfTestInfoMarkerBinding
 import com.elian.computeit.databinding.MarkerTestInfoBinding
-import com.elian.computeit.feature_tests.domain.model.TestInfo
+import com.elian.computeit.core.domain.models.TestInfo
 import com.github.mikephil.charting.utils.Utils
 
 @Suppress("FunctionName")

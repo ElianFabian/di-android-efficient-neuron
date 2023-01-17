@@ -2,7 +2,7 @@ package com.elian.computeit.feature_tests.presentation.test_configuration
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.elian.computeit.core.data.Operation
+import com.elian.computeit.core.domain.models.OperationType
 import com.elian.computeit.core.domain.models.Range
 import com.elian.computeit.core.util.Resource
 import com.elian.computeit.core.util.UiText
@@ -38,7 +38,7 @@ class TestConfigurationViewModel @Inject constructor(
 	{
 		when (action)
 		{
-			is SelectOperationType -> _state.update { it.copy(selectedOperation = Operation.fromSymbol(action.symbol)) }
+			is SelectOperationType -> _state.update { it.copy(selectedOperation = OperationType.fromSymbol(action.symbol)) }
 			is EnterStartOfRange -> _state.update { it.copy(startOfRange = action.value, startOfRangeError = null) }
 			is EnterEndOfRange   -> _state.update { it.copy(endOfRange = action.value, endOfRangeError = null) }
 			is EnterTime         -> _state.update { it.copy(time = action.value, timeError = null) }

@@ -1,4 +1,4 @@
-package com.elian.computeit.feature_tests.domain.model
+package com.elian.computeit.core.domain.models
 
 data class TestListInfo(
 	val historyInfo: TestHistoryInfo,

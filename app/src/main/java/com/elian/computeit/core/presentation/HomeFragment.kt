@@ -20,10 +20,10 @@ import com.elian.computeit.core.util.constants.toBundle
 import com.elian.computeit.core.util.using
 import com.elian.computeit.databinding.FragmentHomeBinding
 import com.elian.computeit.feature_tests.domain.args.TestDetailsArgs
-import com.elian.computeit.feature_tests.domain.model.TestHistoryInfo
-import com.elian.computeit.feature_tests.domain.model.TestInfo
-import com.elian.computeit.feature_tests.domain.model.TestListInfo
-import com.elian.computeit.feature_tests.domain.model.TestListStatsInfo
+import com.elian.computeit.core.domain.models.TestHistoryInfo
+import com.elian.computeit.core.domain.models.TestInfo
+import com.elian.computeit.core.domain.models.TestListInfo
+import com.elian.computeit.core.domain.models.TestListStatsInfo
 import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.highlight.Highlight

@@ -1,7 +1,6 @@
-package com.elian.computeit.feature_tests.domain.model
+package com.elian.computeit.core.domain.models
 
 import android.os.Parcelable
-import com.elian.computeit.core.domain.models.NumberPair
 import kotlinx.parcelize.Parcelize
 
 @Parcelize

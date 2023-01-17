@@ -1,6 +1,6 @@
 package com.elian.computeit.core.domain.repository
 
-import com.elian.computeit.core.domain.models.TestData
+import com.elian.computeit.core.data.model.TestData
 
 interface TestDataRepository
 {

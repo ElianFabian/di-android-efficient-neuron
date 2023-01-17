@@ -1,8 +1,8 @@
 package com.elian.computeit.core.domain.use_case
 
-import com.elian.computeit.core.data.toTestListInfo
+import com.elian.computeit.core.data.mapper.toTestListInfo
 import com.elian.computeit.core.domain.repository.TestDataRepository
-import com.elian.computeit.feature_tests.domain.model.TestListInfo
+import com.elian.computeit.core.domain.models.TestListInfo
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject

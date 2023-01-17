@@ -1,4 +1,6 @@
-package com.elian.computeit.core.domain.models
+package com.elian.computeit.core.data.model
+
+import com.elian.computeit.core.domain.models.Range
 
 data class TestData(
 	val dateUnix: Long = 0,

@@ -1,6 +1,7 @@
-package com.elian.computeit.core.domain.models
+package com.elian.computeit.core.data.model
 
 import android.os.Parcelable
+import com.elian.computeit.core.domain.models.NumberPair
 import kotlinx.parcelize.Parcelize
 
 @Parcelize

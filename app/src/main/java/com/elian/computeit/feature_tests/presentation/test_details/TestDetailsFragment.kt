@@ -19,9 +19,9 @@ import com.elian.computeit.core.util.constants.receiveArgs
 import com.elian.computeit.core.util.using
 import com.elian.computeit.databinding.FragmentTestDetailsBinding
 import com.elian.computeit.feature_tests.domain.args.TestDetailsArgs
-import com.elian.computeit.feature_tests.domain.model.OperationInfo
-import com.elian.computeit.feature_tests.domain.model.TestChartInfo
-import com.elian.computeit.feature_tests.domain.model.TestStatsInfo
+import com.elian.computeit.core.domain.models.OperationInfo
+import com.elian.computeit.core.domain.models.TestChartInfo
+import com.elian.computeit.core.domain.models.TestStatsInfo
 import com.elian.computeit.feature_tests.presentation.test_details.adapter.FailedOperationAdapter
 import dagger.hilt.android.AndroidEntryPoint
 

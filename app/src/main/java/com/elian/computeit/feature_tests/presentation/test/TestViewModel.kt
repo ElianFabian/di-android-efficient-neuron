@@ -3,9 +3,9 @@ package com.elian.computeit.feature_tests.presentation.test
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.elian.computeit.core.data.toTestInfo
-import com.elian.computeit.core.domain.models.OperationData
-import com.elian.computeit.core.domain.models.TestData
+import com.elian.computeit.core.data.mapper.toTestInfo
+import com.elian.computeit.core.data.model.OperationData
+import com.elian.computeit.core.data.model.TestData
 import com.elian.computeit.core.domain.util.CountDownTimer
 import com.elian.computeit.core.domain.util.TimerEvent
 import com.elian.computeit.core.util.constants.receiveArgs

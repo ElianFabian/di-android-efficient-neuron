@@ -1,6 +1,6 @@
 package com.elian.computeit.core.presentation
 
-import com.elian.computeit.feature_tests.domain.model.TestListInfo
+import com.elian.computeit.core.domain.models.TestListInfo
 
 data class HomeState(
 	val info: TestListInfo? = null,

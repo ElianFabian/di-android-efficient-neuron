@@ -1,6 +1,6 @@
 package com.elian.computeit.feature_tests.domain.use_case
 
-import com.elian.computeit.core.data.Operation
+import com.elian.computeit.core.domain.models.OperationType
 import com.elian.computeit.core.domain.models.NumberPair
 import com.elian.computeit.core.util.getDivisiblePairsInRange
 import javax.inject.Inject
@@ -19,7 +19,7 @@ class GetRandomNumberPairFromOperationUseCase @Inject constructor()
 	 * @param oldPair if isn't null the returned pair will always be different from the old one.
 	 */
 	operator fun invoke(
-		operation: Operation,
+		operation: OperationType,
 		range: IntRange,
 		oldPair: NumberPair? = null,
 	): NumberPair
@@ -39,7 +39,7 @@ class GetRandomNumberPairFromOperationUseCase @Inject constructor()
 
 
 	private fun getRandomPairFromCurrentOperationInRange(
-		operation: Operation,
+		operation: OperationType,
 		range: IntRange,
 	): NumberPair
 	{
@@ -56,10 +56,10 @@ class GetRandomNumberPairFromOperationUseCase @Inject constructor()
 
 		return when (operation)
 		{
-			Operation.Addition       -> getRandomPairExceptIf(range) { it.first == 0 && it.second == 0 }
-			Operation.Subtraction    -> getRandomPairExceptIf(range) { it.first == it.second }
-			Operation.Multiplication -> getRandomPairExceptIf(range) { it.first == 0 || it.second == 0 }
-			Operation.Division       -> _divisiblePairs.random(_randomSeed)
+			OperationType.Addition       -> getRandomPairExceptIf(range) { it.first == 0 && it.second == 0 }
+			OperationType.Subtraction    -> getRandomPairExceptIf(range) { it.first == it.second }
+			OperationType.Multiplication -> getRandomPairExceptIf(range) { it.first == 0 || it.second == 0 }
+			OperationType.Division       -> _divisiblePairs.random(_randomSeed)
 		}
 	}
 
@@ -87,11 +87,11 @@ class GetRandomNumberPairFromOperationUseCase @Inject constructor()
 	}
 
 	private fun getDivisiblePairs(
-		operation: Operation,
+		operation: OperationType,
 		range: IntRange,
 	): List<NumberPair>
 	{
-		return if (operation == Operation.Division)
+		return if (operation == OperationType.Division)
 		{
 			getDivisiblePairsInRange(
 				start = range.first,

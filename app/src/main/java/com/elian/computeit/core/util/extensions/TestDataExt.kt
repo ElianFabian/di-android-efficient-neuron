@@ -1,7 +1,7 @@
 package com.elian.computeit.core.util.extensions
 
-import com.elian.computeit.core.domain.models.OperationData
-import com.elian.computeit.core.domain.models.TestData
+import com.elian.computeit.core.data.model.OperationData
+import com.elian.computeit.core.data.model.TestData
 
 fun TestData.getValuePerSecond(
 	countSinceStartCondition: (OperationData) -> Boolean = { true },

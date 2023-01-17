@@ -1,20 +1,21 @@
-package com.elian.computeit.core.data
+package com.elian.computeit.core.data.mapper
 
-import com.elian.computeit.core.domain.models.OperationData
-import com.elian.computeit.core.domain.models.TestData
+import com.elian.computeit.core.domain.models.OperationType
+import com.elian.computeit.core.data.model.OperationData
+import com.elian.computeit.core.data.model.TestData
+import com.elian.computeit.core.domain.models.*
 import com.elian.computeit.core.util.constants.defaultFullDateFormat
 import com.elian.computeit.core.util.constants.secondsToDhhmmss
 import com.elian.computeit.core.util.extensions.getValuePerSecond
 import com.elian.computeit.core.util.extensions.ifNaNReturnZero
 import com.elian.computeit.core.util.extensions.isError
 import com.elian.computeit.core.util.extensions.result
-import com.elian.computeit.feature_tests.domain.model.*
 import java.util.*
 import kotlin.math.ceil
 
 fun OperationData.toOperationInfo() = OperationInfo(
 	pairOfNumbers = pairOfNumbers,
-	operationSymbol = Operation.nameToSymbol[operationName]!!,
+	operationSymbol = OperationType.nameToSymbol[operationName]!!,
 	result = result,
 	insertedResult = insertedResult,
 )
