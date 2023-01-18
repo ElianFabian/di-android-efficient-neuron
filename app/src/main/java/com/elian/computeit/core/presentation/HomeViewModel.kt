@@ -35,5 +35,5 @@ class HomeViewModel @Inject constructor(
 	}
 
 
-	fun getTestsPerSpeedRange(rangeLength: Int): List<Int> = useCases.getTestsPerSpeedRange(rangeLength)
+	fun getListOfTestsPerSpeedRange(rangeLength: Int): List<Int> = useCases.getListOfTestsPerSpeedRange(rangeLength)
 }

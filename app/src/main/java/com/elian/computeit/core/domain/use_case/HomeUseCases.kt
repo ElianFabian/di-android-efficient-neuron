@@ -4,6 +4,6 @@ import javax.inject.Inject
 
 class HomeUseCases @Inject constructor(
 	val getTestListInfo: GetTestListInfoUseCase,
-	val getTestsPerSpeedRange: GetTestsPerSpeedRangeUseCase,
+	val getListOfTestsPerSpeedRange: GetListOfTestsPerSpeedRangeUseCase,
 	val getOwnUserUuid: GetOwnUserUuidUseCase,
 )

@@ -1,9 +1,9 @@
 package com.elian.computeit.core.data.repository
 
-import com.elian.computeit.core.data.model.UserData
-import com.elian.computeit.core.data.mapper.toTestsPerSpeedRange
-import com.elian.computeit.core.data.util.constants.COLLECTION_USERS_DATA
+import com.elian.computeit.core.data.mapper.toListOfTestsPerSpeedRange
 import com.elian.computeit.core.data.model.TestData
+import com.elian.computeit.core.data.model.UserData
+import com.elian.computeit.core.data.util.constants.COLLECTION_USERS_DATA
 import com.elian.computeit.core.domain.repository.TestDataRepository
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
@@ -47,7 +47,7 @@ class TestDataRepositoryImpl @Inject constructor(
 		else _listOfTestData
 	}
 
-	override fun getTestsPerSpeedRange(rangeLength: Int) = _listOfTestData.toTestsPerSpeedRange(rangeLength)
+	override fun getListOfTestsPerSpeedRange(rangeLength: Int): List<Int> = _listOfTestData.toListOfTestsPerSpeedRange(rangeLength)
 
 
 	private suspend fun getUserDataRef(userUuid: String) = withContext(Dispatchers.IO)

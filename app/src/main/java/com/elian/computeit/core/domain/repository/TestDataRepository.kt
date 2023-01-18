@@ -6,5 +6,5 @@ interface TestDataRepository
 {
 	suspend fun addTestData(userUuid: String, testData: TestData)
 	suspend fun getListOfTestData(userUuid: String): List<TestData>
-	fun getTestsPerSpeedRange(rangeLength: Int): List<Int>
+	fun getListOfTestsPerSpeedRange(rangeLength: Int): List<Int>
 }

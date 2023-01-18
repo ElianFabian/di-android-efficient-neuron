@@ -8,8 +8,8 @@ data class TestListInfo(
 
 
 data class TestHistoryInfo(
-	val opmPerTest: List<Int>,
-	val rawOpmPerTest: List<Int>,
+	val listOfOpmPerTest: List<Int>,
+	val listOfRawOpmPerTest: List<Int>,
 	val listOfTestInfo: List<TestInfo>,
 )
 
@@ -23,7 +23,7 @@ data class SpeedHistogramInfo(
 
 data class TestListStatsInfo(
 	val testsCompleted: Int,
-	val totalTime: String,
+	val formattedTotalTime: String,
 	val operationsCompleted: Int,
 	val correctOperationsCompleted: Int,
 	val correctOperationsCompletedPercentage: Float,

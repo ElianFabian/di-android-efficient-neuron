@@ -7,6 +7,10 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.elian.computeit.R
+import com.elian.computeit.core.domain.models.TestHistoryInfo
+import com.elian.computeit.core.domain.models.TestInfo
+import com.elian.computeit.core.domain.models.TestListInfo
+import com.elian.computeit.core.domain.models.TestListStatsInfo
 import com.elian.computeit.core.presentation.adapter.MainLabeledDataAdapter
 import com.elian.computeit.core.presentation.adapter.TestInfoMarker
 import com.elian.computeit.core.presentation.model.labelOf
@@ -20,10 +24,6 @@ import com.elian.computeit.core.util.constants.toBundle
 import com.elian.computeit.core.util.using
 import com.elian.computeit.databinding.FragmentHomeBinding
 import com.elian.computeit.feature_tests.domain.args.TestDetailsArgs
-import com.elian.computeit.core.domain.models.TestHistoryInfo
-import com.elian.computeit.core.domain.models.TestInfo
-import com.elian.computeit.core.domain.models.TestListInfo
-import com.elian.computeit.core.domain.models.TestListStatsInfo
 import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.highlight.Highlight
@@ -80,20 +80,20 @@ class HomeFragment : Fragment(R.layout.fragment_home)
 	{
 		val chartView = binding.viewTestHistory.lineChart
 
-		if (opmPerTest.isNotEmpty() || rawOpmPerTest.isNotEmpty())
+		if (listOfOpmPerTest.isNotEmpty() || listOfRawOpmPerTest.isNotEmpty())
 		{
 			val lineDataSets = arrayOf(
 				lineDataSet(
 					labelResId = R.string.generic_raw,
 					lineAndCirclesColorResId = R.color.chart_secondary,
-					entries = rawOpmPerTest.toEntries(listOfData = listOfTestInfo),
+					entries = listOfRawOpmPerTest.toEntries(listOfData = listOfTestInfo),
 				) {
 					setDrawVerticalHighlightIndicator(true)
 					highLightColor = getColorCompat(R.color.blue_200)
 				},
 				lineDataSet(
 					label = getString(R.string.generic_opm),
-					entries = opmPerTest.toEntries(listOfData = listOfTestInfo),
+					entries = listOfOpmPerTest.toEntries(listOfData = listOfTestInfo),
 				) {
 					setDrawVerticalHighlightIndicator(true)
 					highLightColor = getColorCompat(R.color.blue_200)
@@ -171,13 +171,13 @@ class HomeFragment : Fragment(R.layout.fragment_home)
 
 				addOnChangeListener { _, value, _ ->
 
-					val newTestsPerSpeedRange = viewModel.getTestsPerSpeedRange(rangeLength = value.toInt())
+					val newListOfTestsPerSpeedRange = viewModel.getListOfTestsPerSpeedRange(rangeLength = value.toInt())
 
 					rangeFormatter.rangeLength = value.toInt()
 
 					chartView.data = BarData(
 						barDataSet(
-							entries = newTestsPerSpeedRange.toBarEntries(),
+							entries = newListOfTestsPerSpeedRange.toBarEntries(),
 							labelResId = R.string.generic_tests,
 						),
 					)
@@ -192,7 +192,7 @@ class HomeFragment : Fragment(R.layout.fragment_home)
 	{
 		val listOfLabeledData = listOf(
 			R.string.frgHome_testsCompleted labelOf testsCompleted,
-			R.string.generic_totalTime labelOf totalTime,
+			R.string.generic_totalTime labelOf formattedTotalTime,
 			R.string.frgHome_operationsCompleted labelOf operationsCompleted,
 			R.string.frgHome_correctOperationsCompleted labelOf "$correctOperationsCompleted (${correctOperationsCompletedPercentage.toInt()} %)",
 			R.string.frgHome_averageOpm labelOf averageOpm.toInt(),

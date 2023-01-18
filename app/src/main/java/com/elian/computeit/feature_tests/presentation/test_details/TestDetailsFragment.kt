@@ -68,16 +68,16 @@ class TestDetailsFragment : Fragment(R.layout.fragment_test_details)
 			lineDataSet(
 				labelResId = R.string.generic_raw,
 				lineAndCirclesColorResId = R.color.chart_secondary,
-				entries = info.rawOpmPerSecond.toEntries(),
+				entries = info.listOfRawOpmPerSecond.toEntries(),
 			),
 			lineDataSet(
 				labelResId = R.string.generic_opm,
-				entries = info.opmPerSecond.toEntries(),
+				entries = info.listOfOpmPerSecond.toEntries(),
 			),
 			lineDataSet(
 				labelResId = R.string.generic_errors,
 				lineAndCirclesColorResId = R.color.red_500,
-				entries = info.errorsAtSecond.valuesToEntriesWithYValue(info.errorsYValue.toFloat()),
+				entries = info.errorSeconds.valuesToEntriesWithYValue(info.errorsYValue.toFloat()),
 				isDashedLineEnable = false,
 			) {
 				circleRadius = 2F

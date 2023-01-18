@@ -12,10 +12,10 @@ data class TestInfo(
 
 @Parcelize
 data class TestChartInfo(
-	val opmPerSecond: Map<Int, Int>,
-	val errorsAtSecond: List<Float>,
+	val listOfOpmPerSecond: Map<Int, Int>,
+	val listOfRawOpmPerSecond: Map<Int, Int>,
+	val errorSeconds: List<Float>,
 	val errorsYValue: Int,
-	val rawOpmPerSecond: Map<Int, Int>,
 ) : Parcelable
 
 @Parcelize
