@@ -31,5 +31,6 @@ data class TestListStatsInfo(
 	val averageRawOpm: Float,
 	val minOpm: Int,
 	val maxOpm: Int,
+	val minRawOpm: Int,
 	val maxRawOpm: Int,
 )
