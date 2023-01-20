@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.elian.computeit.R
 import com.elian.computeit.core.domain.models.TestHistoryInfo
-import com.elian.computeit.core.domain.models.TestInfo
 import com.elian.computeit.core.domain.models.TestListInfo
 import com.elian.computeit.core.domain.models.TestListStatsInfo
 import com.elian.computeit.core.presentation.adapter.MainLabeledDataAdapter
@@ -86,14 +85,14 @@ class HomeFragment : Fragment(R.layout.fragment_home)
 				lineDataSet(
 					labelResId = R.string.generic_raw,
 					lineAndCirclesColorResId = R.color.chart_secondary,
-					entries = listOfRawOpmPerTest.toEntries(listOfData = listOfTestInfo),
+					entries = listOfRawOpmPerTest.toEntries(),
 				) {
 					setDrawVerticalHighlightIndicator(true)
 					highLightColor = getColorCompat(R.color.blue_200)
 				},
 				lineDataSet(
 					label = getString(R.string.generic_opm),
-					entries = listOfOpmPerTest.toEntries(listOfData = listOfTestInfo),
+					entries = listOfOpmPerTest.toEntries(),
 				) {
 					setDrawVerticalHighlightIndicator(true)
 					highLightColor = getColorCompat(R.color.blue_200)
@@ -101,7 +100,10 @@ class HomeFragment : Fragment(R.layout.fragment_home)
 			)
 
 			chartView.applyDefault(dataSets = lineDataSets)
-			chartView.marker2 = TestInfoMarker(context)
+			chartView.marker2 = TestInfoMarker(
+				context = context,
+				items = info.listOfTestInfo,
+			)
 			chartView.avoidConflictsWithScroll(binding.root)
 			chartView.setOnChartValueSelectedListener(object : OnChartValueSelectedListener
 			{
@@ -109,11 +111,14 @@ class HomeFragment : Fragment(R.layout.fragment_home)
 
 				override fun onValueSelected(entry: Entry, highlight: Highlight)
 				{
+					val position = entry.x.toInt() - 1
+					val selectedTestInfo = info.listOfTestInfo[position]
+
 					binding.viewTestHistory.btnGoToTestDetails.setOnClickListener()
 					{
 						navigate(R.id.action_homeFragment_to_testDetailsFragment,
 							TestDetailsArgs(
-								testInfo = entry.data as TestInfo,
+								testInfo = selectedTestInfo,
 							).toBundle()
 						)
 					}

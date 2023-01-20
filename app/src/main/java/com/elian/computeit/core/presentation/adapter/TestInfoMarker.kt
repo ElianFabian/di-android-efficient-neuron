@@ -2,20 +2,25 @@ package com.elian.computeit.core.presentation.adapter
 
 import android.content.Context
 import com.elian.computeit.R
+import com.elian.computeit.core.domain.models.TestInfo
 import com.elian.computeit.core.presentation.model.labelOf
 import com.elian.computeit.core.presentation.util.mp_android_chart.GenericMarkerView
 import com.elian.computeit.databinding.ItemLabeledDataOfTestInfoMarkerBinding
 import com.elian.computeit.databinding.MarkerTestInfoBinding
-import com.elian.computeit.core.domain.models.TestInfo
 import com.github.mikephil.charting.utils.Utils
 
 @Suppress("FunctionName")
-fun TestInfoMarker(context: Context?) = GenericMarkerView(
+fun TestInfoMarker(
+	context: Context?,
+	items: List<TestInfo>,
+) = GenericMarkerView(
 	context = context,
 	inflate = MarkerTestInfoBinding::inflate,
 ) { entry, _ ->
 
-	val uiLabeledData = (entry.data as? TestInfo)?.statsInfo?.run()
+	val position = entry.x.toInt() - 1
+
+	val uiLabeledData = items[position].statsInfo.run()
 	{
 		listOf(
 			R.string.generic_date labelOf date,
@@ -25,7 +30,7 @@ fun TestInfoMarker(context: Context?) = GenericMarkerView(
 			R.string.generic_raw labelOf rawOpm,
 			R.string.generic_errors labelOf errorCount,
 		)
-	} ?: emptyList()
+	}
 
 	rvLabeledData.adapter = BaseLabeledDataAdapter(
 		items = uiLabeledData,
