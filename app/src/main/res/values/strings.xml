@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<!-- The strings are order using the AndroidXmlSorter by roana0229 with the option "Instant Sort Xml By Name"-->
+
 <resources>
     <string name="actLogin_create_an_account">Create an account</string>
 
