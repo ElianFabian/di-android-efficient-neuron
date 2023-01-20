@@ -1,45 +1,43 @@
 package com.elian.computeit.core.util
 
-import kotlin.math.ceil
-import kotlin.math.sqrt
-
-// This function has been optimized thanks to this article: https://www.math.uh.edu/~minru/web/divis2.html#:~:text=The%20most%20basic%20method%20for,of%20positive%20divisors%20for%20n
-fun getDivisiblePairsInRange(
+// https://stackoverflow.com/questions/75062834/how-to-get-all-the-divisible-pairs-in-a-range-faster/
+fun getAllDivisiblePairsInRange(
 	start: Int,
 	end: Int,
 	ignoreSelfDivision: Boolean = false,
-): List<IntArray>
+): Array<IntArray>
 {
 	if (start == 0) throw IllegalArgumentException("start parameter can't be 0")
 
-	val oneOrZero = if (ignoreSelfDivision) 1.0 else 0.0
+	var ratio = end / start
+	var currentDenominator = start
 
-	val divisiblePairs = mutableListOf<IntArray>()
+	val divisiblePairsCount = getAllDivisiblePairsInRangeCount(start, end, ignoreSelfDivision)
 
-	for (numerator in start..end)
+	val divisiblePairs = Array(divisiblePairsCount) { intArrayOf(0, 0) }
+
+	var i = 0
+	while (ratio >= 1)
 	{
-		val optimizedEnd = ceil(sqrt(numerator - oneOrZero)).toInt()
-
-		var divisorFromPreviousIteration = -1
-
-		for (denominator in start..optimizedEnd)
+		for (multiple in 1..ratio)
 		{
-			if (numerator % denominator != 0 || denominator == divisorFromPreviousIteration) continue
+			val numerator = currentDenominator * multiple
 
-			divisiblePairs += intArrayOf(numerator, denominator)
+			if (ignoreSelfDivision && currentDenominator == numerator) continue
 
-			val secondDivisor = numerator / denominator
+			divisiblePairs[i][0] = numerator
+			divisiblePairs[i][1] = currentDenominator
 
-			if (!(ignoreSelfDivision && numerator == secondDivisor) && denominator != secondDivisor) divisiblePairs += intArrayOf(numerator, secondDivisor)
-
-			divisorFromPreviousIteration = secondDivisor
+			i++
 		}
+
+		ratio = end / ++currentDenominator
 	}
 
 	return divisiblePairs
 }
 
-fun getDivisiblePairsInRangeCount(
+fun getAllDivisiblePairsInRangeCount(
 	start: Int,
 	end: Int,
 	ignoreSelfDivision: Boolean = false,
@@ -47,29 +45,24 @@ fun getDivisiblePairsInRangeCount(
 {
 	if (start == 0) throw IllegalArgumentException("start parameter can't be 0")
 
-	val oneOrZero = if (ignoreSelfDivision) 1.0 else 0.0
+	var ratio = end / start
+	var currentDenominator = start
 
-	var divisiblePairCount = 0
+	var count = 0
 
-	for (numerator in start..end)
+	while (ratio >= 1)
 	{
-		val optimizedEnd = ceil(sqrt(numerator - oneOrZero)).toInt()
-
-		var divisorFromPreviousIteration = -1
-
-		for (denominator in start..optimizedEnd)
+		for (multiple in 1..ratio)
 		{
-			if (numerator % denominator != 0 || denominator == divisorFromPreviousIteration) continue
+			val numerator = currentDenominator * multiple
 
-			divisiblePairCount++
+			if (ignoreSelfDivision && currentDenominator == numerator) continue
 
-			val secondDivisor = numerator / denominator
-
-			if (!(ignoreSelfDivision && numerator == secondDivisor) && denominator != secondDivisor) divisiblePairCount++
-
-			divisorFromPreviousIteration = secondDivisor
+			count++
 		}
+
+		ratio = end / ++currentDenominator
 	}
 
-	return divisiblePairCount
+	return count
 }

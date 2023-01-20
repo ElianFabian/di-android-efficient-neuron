@@ -1,8 +1,8 @@
 package com.elian.computeit.feature_tests.domain.use_case
 
-import com.elian.computeit.core.domain.models.OperationType
 import com.elian.computeit.core.domain.models.NumberPair
-import com.elian.computeit.core.util.getDivisiblePairsInRange
+import com.elian.computeit.core.domain.models.OperationType
+import com.elian.computeit.core.util.getAllDivisiblePairsInRange
 import javax.inject.Inject
 import kotlin.random.Random
 
@@ -93,7 +93,7 @@ class GetRandomNumberPairFromOperationUseCase @Inject constructor()
 	{
 		return if (operation == OperationType.Division)
 		{
-			getDivisiblePairsInRange(
+			getAllDivisiblePairsInRange(
 				start = range.first,
 				end = range.last,
 				ignoreSelfDivision = true,
