@@ -33,7 +33,7 @@ class RegisterActivity : AppCompatActivity()
 		setContentView(binding.root)
 
 		subscribeToEvents()
-		initUi()
+		initializeUi()
 	}
 
 	override fun onBackPressed()
@@ -42,7 +42,7 @@ class RegisterActivity : AppCompatActivity()
 	}
 
 
-	private fun initUi() = using(binding)
+	private fun initializeUi() = using(binding)
 	{
 		tietUsername.allowMultilineAndDisableEnterNewLine()
 

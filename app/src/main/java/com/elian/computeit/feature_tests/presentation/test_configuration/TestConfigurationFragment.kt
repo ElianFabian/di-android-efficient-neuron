@@ -32,11 +32,11 @@ class TestConfigurationFragment : Fragment(R.layout.fragment_test_configuration)
 		super.onViewCreated(view, savedInstanceState)
 
 		subscribeToEvents()
-		initUi()
+		initializeUi()
 	}
 
 
-	private fun initUi() = using(binding)
+	private fun initializeUi() = using(binding)
 	{
 		val operationRadioButtons = binding.rgOperationType.findViewsWithTagOfType<RadioButton>(R.string.tag_operation_type)
 

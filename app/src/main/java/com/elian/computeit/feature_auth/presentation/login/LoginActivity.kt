@@ -33,11 +33,11 @@ class LoginActivity : AppCompatActivity()
 		setContentView(binding.root)
 
 		subscribeToEvents()
-		initUi()
+		initializeUi()
 	}
 
 
-	private fun initUi() = using(binding)
+	private fun initializeUi() = using(binding)
 	{
 		tietUsername.allowMultilineAndDisableEnterNewLine()
 

@@ -59,8 +59,8 @@ class MainActivity : AppCompatActivity(R.layout.activity_main)
 	{
 		super.onCreate(savedInstanceState)
 
-		initData()
-		initLogic()
+		initializeData()
+		initializeLogic()
 	}
 
 	override fun onPause()
@@ -94,12 +94,12 @@ class MainActivity : AppCompatActivity(R.layout.activity_main)
 	}
 
 
-	private fun initData()
+	private fun initializeData()
 	{
 		_defaultSoftInputMode = window.attributes.softInputMode
 	}
 
-	private fun initLogic()
+	private fun initializeLogic()
 	{
 		navController.addOnDestinationChangedListener { _, destination, _ ->
 

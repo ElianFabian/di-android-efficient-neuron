@@ -5,7 +5,7 @@ import android.view.View
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
 import com.elian.computeit.R
 import com.elian.computeit.core.domain.models.TestHistoryInfo
 import com.elian.computeit.core.domain.models.TestListInfo
@@ -32,10 +32,10 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class HomeFragment : Fragment(R.layout.fragment_home)
 {
-	private val viewModel by viewModels<HomeViewModel>()
+	private val viewModel by activityViewModels<HomeViewModel>()
 	private val binding by viewBinding(FragmentHomeBinding::bind)
 
-	private val rangeFormatter = RangeValueFormatter()
+	private val _rangeFormatter = RangeValueFormatter()
 
 
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?)
@@ -43,14 +43,16 @@ class HomeFragment : Fragment(R.layout.fragment_home)
 		super.onViewCreated(view, savedInstanceState)
 
 		subscribeToEvents()
-		initUi()
+		initializeUi()
 	}
 
 
-	private fun initUi()
+	private fun initializeUi()
 	{
 		binding.sivGoToTestConfiguration.setOnClickListener { navigate(R.id.action_homeFragment_to_testConfigurationFragment) }
 		binding.sivGoToProfile.setOnClickListener { navigate(R.id.action_homeFragment_to_privateProfileFragment) }
+
+		viewModel.fetchInfo()
 	}
 
 	private fun subscribeToEvents() = using(viewModel)
@@ -59,9 +61,9 @@ class HomeFragment : Fragment(R.layout.fragment_home)
 		{
 			it.info?.also { info ->
 
-				initTestHistoryChart(info.historyInfo)
-				initSpeedHistogramChart(info)
-				initTextInfo(info.statsInfo)
+				initializeTestHistoryChart(info.historyInfo)
+				initializeSpeedHistogramChart(info)
+				initializeTextInfo(info.statsInfo)
 			}
 
 			binding.apply()
@@ -75,7 +77,7 @@ class HomeFragment : Fragment(R.layout.fragment_home)
 		}
 	}
 
-	private fun initTestHistoryChart(info: TestHistoryInfo) = using(info)
+	private fun initializeTestHistoryChart(info: TestHistoryInfo) = using(info)
 	{
 		val chartView = binding.viewTestHistory.lineChart
 
@@ -100,6 +102,8 @@ class HomeFragment : Fragment(R.layout.fragment_home)
 			)
 
 			chartView.applyDefault(dataSets = lineDataSets)
+			chartView.invalidate()
+
 			chartView.marker2 = TestInfoMarker(
 				context = context,
 				items = info.listOfTestInfo,
@@ -140,7 +144,7 @@ class HomeFragment : Fragment(R.layout.fragment_home)
 		else chartView.showNoDataText()
 	}
 
-	private fun initSpeedHistogramChart(info: TestListInfo) = using(info)
+	private fun initializeSpeedHistogramChart(info: TestListInfo) = using(info)
 	{
 		val chartView = binding.bcSpeedHistogram
 
@@ -150,7 +154,7 @@ class HomeFragment : Fragment(R.layout.fragment_home)
 			{
 				avoidConflictsWithScroll(binding.root)
 
-				xAxis.valueFormatter = rangeFormatter.apply()
+				xAxis.valueFormatter = _rangeFormatter.apply()
 				{
 					rangeLength = speedHistogramInfo.speedRangeLength
 					minOpm = statsInfo.minOpm.toFloat()
@@ -178,7 +182,7 @@ class HomeFragment : Fragment(R.layout.fragment_home)
 
 					val newListOfTestsPerSpeedRange = viewModel.getListOfTestsPerSpeedRange(rangeLength = value.toInt())
 
-					rangeFormatter.rangeLength = value.toInt()
+					_rangeFormatter.rangeLength = value.toInt()
 
 					chartView.data = BarData(
 						barDataSet(
@@ -193,7 +197,7 @@ class HomeFragment : Fragment(R.layout.fragment_home)
 		else chartView.showNoDataText()
 	}
 
-	private fun initTextInfo(info: TestListStatsInfo) = using(info)
+	private fun initializeTextInfo(info: TestListStatsInfo) = using(info)
 	{
 		val listOfLabeledData = listOf(
 			R.string.frgHome_testsCompleted labelOf testsCompleted,

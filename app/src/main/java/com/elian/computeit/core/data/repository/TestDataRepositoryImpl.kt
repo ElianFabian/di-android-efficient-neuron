@@ -21,6 +21,10 @@ class TestDataRepositoryImpl @Inject constructor(
 	private val _listOfTestData = mutableListOf<TestData>()
 
 
+	override val isDataCached get() = _isDataCached
+	private var _isDataCached = false
+
+
 	override suspend fun addTestData(
 		userUuid: String,
 		testData: TestData,
@@ -41,6 +45,8 @@ class TestDataRepositoryImpl @Inject constructor(
 				.toObject<UserData>()!!.listOfTestData!!
 
 			_listOfTestData.addAll(listFromServer)
+
+			_isDataCached = true
 
 			listFromServer
 		}

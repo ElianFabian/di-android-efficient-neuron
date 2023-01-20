@@ -62,11 +62,11 @@ class TestFragment : Fragment(R.layout.fragment_test)
 		super.onViewCreated(view, savedInstanceState)
 
 		subscribeToEvents()
-		initUi()
+		initializeUi()
 	}
 
 
-	private fun initUi() = using(binding)
+	private fun initializeUi() = using(binding)
 	{
 		disableScreenInteraction()
 

@@ -5,6 +5,9 @@ import android.view.View
 import androidx.core.view.isGone
 import androidx.fragment.app.Fragment
 import com.elian.computeit.R
+import com.elian.computeit.core.domain.models.OperationInfo
+import com.elian.computeit.core.domain.models.TestChartInfo
+import com.elian.computeit.core.domain.models.TestStatsInfo
 import com.elian.computeit.core.presentation.MainActivity
 import com.elian.computeit.core.presentation.adapter.MainLabeledDataAdapter
 import com.elian.computeit.core.presentation.model.labelOf
@@ -19,9 +22,6 @@ import com.elian.computeit.core.util.constants.receiveArgs
 import com.elian.computeit.core.util.using
 import com.elian.computeit.databinding.FragmentTestDetailsBinding
 import com.elian.computeit.feature_tests.domain.args.TestDetailsArgs
-import com.elian.computeit.core.domain.models.OperationInfo
-import com.elian.computeit.core.domain.models.TestChartInfo
-import com.elian.computeit.core.domain.models.TestStatsInfo
 import com.elian.computeit.feature_tests.presentation.test_details.adapter.FailedOperationAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -38,16 +38,16 @@ class TestDetailsFragment : Fragment(R.layout.fragment_test_details)
 
 		(activity as MainActivity).onFragmentViewCreated(binding)
 
-		initUi()
+		initializeUi()
 	}
 
 
-	private fun initUi() = using(binding)
+	private fun initializeUi() = using(binding)
 	{
 		val info = args.testInfo
 
-		initTestChart(info.chartInfo)
-		initStats(info.statsInfo)
+		initializeTestChart(info.chartInfo)
+		initializeStats(info.statsInfo)
 
 		info.listOfFailedOperationInfo.also()
 		{
@@ -56,13 +56,13 @@ class TestDetailsFragment : Fragment(R.layout.fragment_test_details)
 				tvFailedOperations.isGone = true
 				rvFailedOperations.isGone = true
 			}
-			else initFailedOperationsAdapter(it)
+			else initializeFailedOperationsAdapter(it)
 		}
 
 		btnContinue.setOnClickListener { navigate(R.id.action_testDetailsFragment_to_homeFragment) }
 	}
 
-	private fun initTestChart(info: TestChartInfo)
+	private fun initializeTestChart(info: TestChartInfo)
 	{
 		val lineDataSets = arrayOf(
 			lineDataSet(
@@ -92,7 +92,7 @@ class TestDetailsFragment : Fragment(R.layout.fragment_test_details)
 		binding.viewTestChart.lineChart.avoidConflictsWithScroll(binding.root)
 	}
 
-	private fun initStats(info: TestStatsInfo) = using(info)
+	private fun initializeStats(info: TestStatsInfo) = using(info)
 	{
 		val listOfLabeledData = listOf(
 			R.string.generic_operations labelOf operationCount,
@@ -107,7 +107,7 @@ class TestDetailsFragment : Fragment(R.layout.fragment_test_details)
 		binding.viewTextInfoList.rvLabeledData.adapter = MainLabeledDataAdapter(listOfLabeledData)
 	}
 
-	private fun initFailedOperationsAdapter(listOfFailedOperationInfo: List<OperationInfo>)
+	private fun initializeFailedOperationsAdapter(listOfFailedOperationInfo: List<OperationInfo>)
 	{
 		binding.rvFailedOperations.adapter = FailedOperationAdapter(listOfFailedOperationInfo)
 	}

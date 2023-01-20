@@ -19,11 +19,14 @@ class HomeViewModel @Inject constructor(
 	val state = _state.asStateFlow()
 
 
-	init
+	fun fetchInfo()
 	{
 		viewModelScope.launch()
 		{
-			_state.update { it.copy(isLoading = true) }
+			if (!useCases.getTestListInfo.isDataCached)
+			{
+				_state.update { it.copy(isLoading = true) }
+			}
 
 			val info = useCases.getTestListInfo(useCases.getOwnUserUuid())
 
@@ -33,7 +36,6 @@ class HomeViewModel @Inject constructor(
 			)
 		}
 	}
-
 
 	fun getListOfTestsPerSpeedRange(rangeLength: Int): List<Int> = useCases.getListOfTestsPerSpeedRange(rangeLength)
 }

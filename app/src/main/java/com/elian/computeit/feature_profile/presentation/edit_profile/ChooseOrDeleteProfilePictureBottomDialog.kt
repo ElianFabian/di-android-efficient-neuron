@@ -36,11 +36,11 @@ class ChooseOrDeleteProfilePictureBottomDialog(
 	{
 		super.onViewCreated(view, savedInstanceState)
 
-		initUi()
+		initializeUi()
 	}
 
 
-	private fun initUi() = using(binding)
+	private fun initializeUi() = using(binding)
 	{
 		btnSelectAPicture.setOnClickListener { requestPermission.launch(Manifest.permission.READ_EXTERNAL_STORAGE) }
 		btnDeleteCurrentPicture.setOnClickListener()
