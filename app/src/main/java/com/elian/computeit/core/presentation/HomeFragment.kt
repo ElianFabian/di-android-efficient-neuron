@@ -85,14 +85,14 @@ class HomeFragment : Fragment(R.layout.fragment_home)
 				lineDataSet(
 					labelResId = R.string.generic_raw,
 					lineAndCirclesColorResId = R.color.chart_secondary,
-					entries = listOfRawOpmPerTest.toEntries(),
+					entries = listOfRawOpmPerTest.toEntries(startXValue = 1),
 				) {
 					setDrawVerticalHighlightIndicator(true)
 					highLightColor = getColorCompat(R.color.blue_200)
 				},
 				lineDataSet(
 					label = getString(R.string.generic_opm),
-					entries = listOfOpmPerTest.toEntries(),
+					entries = listOfOpmPerTest.toEntries(startXValue = 1),
 				) {
 					setDrawVerticalHighlightIndicator(true)
 					highLightColor = getColorCompat(R.color.blue_200)

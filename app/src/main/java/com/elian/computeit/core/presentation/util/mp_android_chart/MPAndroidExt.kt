@@ -5,9 +5,9 @@ import com.github.mikephil.charting.data.Entry
 
 fun Map<out Number, Number>.toEntries() = this.map { Entry(it.key.toFloat(), it.value.toFloat()) }
 
-fun List<Number>.toEntries(firstValue: Int = 1, listOfData: List<Any>? = null) = this.mapIndexed { index, number ->
+fun List<Number>.toEntries(startXValue: Int = 0, listOfData: List<Any>? = null) = this.mapIndexed { index, number ->
 
-	Entry(index.toFloat() + firstValue, number.toFloat()).apply()
+	Entry(index.toFloat() + startXValue, number.toFloat()).apply()
 	{
 		this.data = listOfData?.getOrNull(index)
 	}
@@ -16,7 +16,7 @@ fun List<Number>.toEntries(firstValue: Int = 1, listOfData: List<Any>? = null) =
 fun List<Number>.valuesToEntriesWithYValue(yValue: Float) = this.map { Entry(it.toFloat(), yValue) }
 
 
-fun List<Number>.toBarEntries(firstValue: Int = 0) = this.mapIndexed { index, number ->
+fun List<Number>.toBarEntries(startXValue: Int = 0) = this.mapIndexed { index, number ->
 
-	BarEntry(index.toFloat() + firstValue, number.toFloat())
+	BarEntry(index.toFloat() + startXValue, number.toFloat())
 }
