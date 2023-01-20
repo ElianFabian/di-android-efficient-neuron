@@ -10,28 +10,28 @@ fun getAllDivisiblePairsInRange(
 	if (start == 0) throw IllegalArgumentException("start parameter can't be 0")
 
 	var ratio = end / start
-	var currentDenominator = start
+	var denominator = start
 
 	val divisiblePairsCount = getAllDivisiblePairsInRangeCount(start, end, ignoreSelfDivision)
 
 	val divisiblePairs = Array(divisiblePairsCount) { intArrayOf(0, 0) }
 
-	var i = 0
+	var pairIndex = 0
 	while (ratio >= 1)
 	{
 		for (multiple in 1..ratio)
 		{
-			val numerator = currentDenominator * multiple
+			val numerator = denominator * multiple
 
-			if (ignoreSelfDivision && currentDenominator == numerator) continue
+			if (ignoreSelfDivision && denominator == numerator) continue
 
-			divisiblePairs[i][0] = numerator
-			divisiblePairs[i][1] = currentDenominator
+			divisiblePairs[pairIndex][0] = numerator
+			divisiblePairs[pairIndex][1] = denominator
 
-			i++
+			pairIndex++
 		}
 
-		ratio = end / ++currentDenominator
+		ratio = end / ++denominator
 	}
 
 	return divisiblePairs
@@ -46,7 +46,7 @@ fun getAllDivisiblePairsInRangeCount(
 	if (start == 0) throw IllegalArgumentException("start parameter can't be 0")
 
 	var ratio = end / start
-	var currentDenominator = start
+	var denominator = start
 
 	var count = 0
 
@@ -54,14 +54,14 @@ fun getAllDivisiblePairsInRangeCount(
 	{
 		for (multiple in 1..ratio)
 		{
-			val numerator = currentDenominator * multiple
+			val numerator = denominator * multiple
 
-			if (ignoreSelfDivision && currentDenominator == numerator) continue
+			if (ignoreSelfDivision && denominator == numerator) continue
 
 			count++
 		}
 
-		ratio = end / ++currentDenominator
+		ratio = end / ++denominator
 	}
 
 	return count
