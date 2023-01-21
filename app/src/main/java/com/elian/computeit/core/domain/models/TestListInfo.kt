@@ -22,10 +22,12 @@ data class SpeedHistogramInfo(
 )
 
 data class TestListStatsInfo(
-	val testsCompleted: Int,
+	val testsCompletedCount: Int,
+	val testsCompletedWithoutErrorsCount: Int,
+	val testsCompletedWithoutErrorsPercentage: Float,
 	val formattedTotalTime: String,
 	val operationsCompleted: Int,
-	val correctOperationsCompleted: Int,
+	val correctOperationsCompletedCount: Int,
 	val correctOperationsCompletedPercentage: Float,
 	val averageOpm: Float,
 	val averageRawOpm: Float,

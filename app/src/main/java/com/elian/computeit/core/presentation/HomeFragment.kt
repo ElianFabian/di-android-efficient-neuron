@@ -63,7 +63,7 @@ class HomeFragment : Fragment(R.layout.fragment_home)
 
 				initializeTestHistoryChart(info.historyInfo)
 				initializeSpeedHistogramChart(info)
-				initializeTextxtats(info.statsInfo)
+				initializeTextStats(info.statsInfo)
 			}
 
 			binding.apply()
@@ -197,13 +197,14 @@ class HomeFragment : Fragment(R.layout.fragment_home)
 		else chartView.showNoDataText()
 	}
 
-	private fun initializeTextxtats(info: TestListStatsInfo) = using(info)
+	private fun initializeTextStats(info: TestListStatsInfo) = using(info)
 	{
 		val listOfLabeledData = listOf(
-			R.string.frgHome_testsCompleted labelOf testsCompleted,
+			R.string.frgHome_testsCompleted labelOf testsCompletedCount,
+			R.string.frgHome_testsCompletedWithoutErrors labelOf "$testsCompletedWithoutErrorsCount (${testsCompletedWithoutErrorsPercentage.toInt()} %)",
 			R.string.generic_totalTime labelOf formattedTotalTime,
 			R.string.frgHome_operationsCompleted labelOf operationsCompleted,
-			R.string.frgHome_correctOperationsCompleted labelOf "$correctOperationsCompleted (${correctOperationsCompletedPercentage.toInt()} %)",
+			R.string.frgHome_correctOperationsCompleted labelOf "$correctOperationsCompletedCount (${correctOperationsCompletedPercentage.toInt()} %)",
 			R.string.frgHome_averageOpm labelOf averageOpm.toInt(),
 			R.string.frgHome_averageRawOpm labelOf averageRawOpm.toInt(),
 			R.string.frgHome_highestOpm labelOf maxOpm,

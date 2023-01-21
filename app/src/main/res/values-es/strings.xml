@@ -39,6 +39,7 @@
     <string name="frgHome_highestRawOpm">OPM bruto más alto</string>
     <string name="frgHome_operationsCompleted">Operaciones completadas</string>
     <string name="frgHome_testsCompleted">Tests completados</string>
+    <string name="frgHome_testsCompletedWithoutErrors">Tests completados sin errores</string>
 
     <string name="frgPrivateProfile_btnEdit_text">Editar perfil</string>
     <string name="frgPrivateProfile_btnLogout_text">Cerrar sesión</string>

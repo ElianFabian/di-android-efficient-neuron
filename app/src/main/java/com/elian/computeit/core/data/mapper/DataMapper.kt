@@ -66,8 +66,9 @@ fun TestData.toTestInfo(): TestInfo
 fun List<TestData>.toTestListInfo(): TestListInfo
 {
 	val totalTimeInSeconds = sumOf { it.timeInSeconds }
-	val operationsCompleted = sumOf { it.listOfOperationData.size }
-	val correctOperationsCompleted = sumOf { it.listOfOperationData.count { data -> !data.isError } }
+	val operationsCompletedCount = sumOf { it.listOfOperationData.size }
+	val correctOperationsCompletedCount = sumOf { it.listOfOperationData.count { data -> !data.isError } }
+	val testsCompletedWithoutErrorsCount = count { it.listOfOperationData.all { operation -> !operation.isError } }
 
 	val listOfTestInfo = map { it.toTestInfo() }
 	val listOfOpmPerTest = listOfTestInfo.map { it.statsInfo.opm }
@@ -101,11 +102,13 @@ fun List<TestData>.toTestListInfo(): TestListInfo
 			isSliderVisible = (maxAndMinOpmDifference > 1) && (minOpm != maxOpm),
 		),
 		statsInfo = TestListStatsInfo(
-			testsCompleted = this.size,
+			testsCompletedCount = this.size,
+			testsCompletedWithoutErrorsCount = testsCompletedWithoutErrorsCount,
+			testsCompletedWithoutErrorsPercentage = (100F * testsCompletedWithoutErrorsCount / this.size).ifNaNReturnZero(),
 			formattedTotalTime = secondsToDhhmmss(totalTimeInSeconds),
-			operationsCompleted = operationsCompleted,
-			correctOperationsCompleted = correctOperationsCompleted,
-			correctOperationsCompletedPercentage = (100F * correctOperationsCompleted / operationsCompleted).ifNaNReturnZero(),
+			operationsCompleted = operationsCompletedCount,
+			correctOperationsCompletedCount = correctOperationsCompletedCount,
+			correctOperationsCompletedPercentage = (100F * correctOperationsCompletedCount / operationsCompletedCount).ifNaNReturnZero(),
 			averageOpm = listOfOpmPerTest.average().toFloat().ifNaNReturnZero(),
 			averageRawOpm = listOfRawOpmPerTest.average().ifNaNReturnZero().toFloat(),
 			minOpm = minOpm,
