@@ -39,9 +39,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/_18sdp"
-            android:backgroundTint="@color/background_card"
+            android:backgroundTint="@color/cards_background"
             app:cardCornerRadius="@dimen/_6sdp"
-            app:strokeColor="@color/background_card"
+            app:strokeColor="@color/cards_background"
             app:strokeWidth="@dimen/_6sdp">
 
             <androidx.recyclerview.widget.RecyclerView

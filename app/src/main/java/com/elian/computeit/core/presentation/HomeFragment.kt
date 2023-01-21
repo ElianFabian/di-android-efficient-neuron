@@ -70,7 +70,7 @@ class HomeFragment : Fragment(R.layout.fragment_home)
 			{
 				lpiIsLoading.isVisible = it.isLoading
 
-				viewTestHistory.lineChart.isGone = it.isLoading
+				lcTestsHistory.isGone = it.isLoading
 				bcSpeedHistogram.isGone = it.isLoading
 				sldRangeLength.isGone = it.isLoading
 			}
@@ -79,7 +79,7 @@ class HomeFragment : Fragment(R.layout.fragment_home)
 
 	private fun initializeTestHistoryChart(info: TestHistoryInfo) = using(info)
 	{
-		val chartView = binding.viewTestHistory.lineChart
+		val chartView = binding.lcTestsHistory
 
 		if (listOfOpmPerTest.isNotEmpty() || listOfRawOpmPerTest.isNotEmpty())
 		{
@@ -111,14 +111,14 @@ class HomeFragment : Fragment(R.layout.fragment_home)
 			chartView.avoidConflictsWithScroll(binding.root)
 			chartView.setOnChartValueSelectedListener(object : OnChartValueSelectedListener
 			{
-				private val btnGoToTestDetails = binding.viewTestHistory.btnGoToTestDetails
+				private val btnGoToTestDetails = binding.btnGoToTestDetails
 
 				override fun onValueSelected(entry: Entry, highlight: Highlight)
 				{
 					val position = entry.x.toInt() - 1
 					val selectedTestInfo = info.listOfTestInfo[position]
 
-					binding.viewTestHistory.btnGoToTestDetails.setOnClickListener()
+					btnGoToTestDetails.setOnClickListener()
 					{
 						navigate(R.id.action_homeFragment_to_testDetailsFragment,
 							TestDetailsArgs(
@@ -138,8 +138,8 @@ class HomeFragment : Fragment(R.layout.fragment_home)
 				}
 			})
 
-			binding.viewTestHistory.btnGoToTestDetails.isVisible = true
-			binding.viewTestHistory.btnGoToTestDetails.setText(R.string.frgHome_go_to_test)
+			binding.btnGoToTestDetails.isVisible = true
+			binding.btnGoToTestDetails.setText(R.string.frgHome_go_to_test)
 		}
 		else chartView.showNoDataText()
 	}
@@ -211,6 +211,6 @@ class HomeFragment : Fragment(R.layout.fragment_home)
 			R.string.frgHome_highestRawOpm labelOf maxRawOpm,
 		)
 
-		binding.viewTextInfoList.rvLabeledData.adapter = MainLabeledDataAdapter(listOfLabeledData)
+		binding.viewTestListStats.rvLabeledData.adapter = MainLabeledDataAdapter(listOfLabeledData)
 	}
 }

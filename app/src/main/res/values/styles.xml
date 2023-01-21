@@ -45,7 +45,6 @@
     <style name="ButtonStyle" parent="Widget.MaterialComponents.Button">
         <item name="cornerRadius">@dimen/_18sdp</item>
         <item name="android:textAppearance">@style/TextAppearance_Button</item>
-
     </style>
 
     <style name="TextButtonStyle" parent="Widget.MaterialComponents.Button.TextButton">

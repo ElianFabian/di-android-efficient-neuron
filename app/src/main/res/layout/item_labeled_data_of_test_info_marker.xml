@@ -14,14 +14,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:includeFontPadding="false"
+        android:textColor="@color/white"
         android:textStyle="bold"
-        tools:text="Label: " />
+        tools:text="Label: "
+        tools:textColor="@android:color/darker_gray" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tvValue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:includeFontPadding="false"
-        tools:text="60" />
+        android:textColor="@color/white"
+        tools:text="60"
+        tools:textColor="@android:color/darker_gray" />
 
 </androidx.appcompat.widget.LinearLayoutCompat>
