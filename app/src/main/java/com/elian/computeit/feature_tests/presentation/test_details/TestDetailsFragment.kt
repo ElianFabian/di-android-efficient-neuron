@@ -47,7 +47,7 @@ class TestDetailsFragment : Fragment(R.layout.fragment_test_details)
 		val info = args.testInfo
 
 		initializeTestChart(info.chartInfo)
-		initializeStats(info.statsInfo)
+		initializeTextStats(info.statsInfo)
 
 		info.listOfFailedOperationInfo.also()
 		{
@@ -92,7 +92,7 @@ class TestDetailsFragment : Fragment(R.layout.fragment_test_details)
 		binding.viewTestChart.lineChart.avoidConflictsWithScroll(binding.root)
 	}
 
-	private fun initializeStats(info: TestStatsInfo) = using(info)
+	private fun initializeTextStats(info: TestStatsInfo) = using(info)
 	{
 		val listOfLabeledData = listOf(
 			R.string.generic_operations labelOf operationCount,
