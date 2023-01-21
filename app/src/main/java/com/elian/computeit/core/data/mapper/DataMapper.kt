@@ -143,7 +143,7 @@ private fun getListOfTestsPerSpeedRange(
 
 	val rangeCount = if (maxOpm != 0)
 	{
-		((maxOpm - minOpm) / speedRangeLength.toDouble() + 1).ifNaNReturnZero().toInt()
+		((maxOpm - minOpm) / speedRangeLength.toFloat() + 1).ifNaNReturnZero().toInt()
 	}
 	else 0
 
@@ -151,7 +151,7 @@ private fun getListOfTestsPerSpeedRange(
 
 	listOfOpmPerTest.forEach { testOpm ->
 
-		val testRangePosition = ((testOpm - minOpm) / speedRangeLength.toDouble()).ifNaNReturnZero().toInt()
+		val testRangePosition = ((testOpm - minOpm).toFloat() / speedRangeLength).ifNaNReturnZero().toInt()
 
 		listOfTestsPerSpeedRange[testRangePosition]++
 	}
@@ -161,5 +161,5 @@ private fun getListOfTestsPerSpeedRange(
 
 private fun getBarRangeLength(barCount: Int, maxAndMinOpmDifference: Int): Int
 {
-	return ceil(maxAndMinOpmDifference / barCount.toDouble()).toInt() + 1
+	return ceil(maxAndMinOpmDifference / barCount.toFloat()).toInt() + 1
 }
