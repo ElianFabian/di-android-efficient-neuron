@@ -172,8 +172,8 @@ class HomeFragment : Fragment(R.layout.fragment_home)
 			{
 				speedHistogramInfo.also()
 				{
-					valueFrom = it.speedRangeLengthMinValue.toFloat()
-					valueTo = it.speedRangeLengthMaxValue.toFloat()
+					valueFrom = it.speedRangeLengthValueFrom.toFloat()
+					valueTo = it.speedRangeLengthValueTo.toFloat()
 					value = it.speedRangeLength.toFloat()
 					isVisible = it.isSliderVisible
 				}

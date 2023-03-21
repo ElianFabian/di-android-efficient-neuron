@@ -97,8 +97,8 @@ fun List<TestData>.toTestListInfo(): TestListInfo
 		speedHistogramInfo = SpeedHistogramInfo(
 			speedRangeLength = defaultRangeLength,
 			testsPerSpeedRange = testsPerSpeedRange,
-			speedRangeLengthMinValue = 1,
-			speedRangeLengthMaxValue = maxAndMinOpmDifference,
+			speedRangeLengthValueFrom = 1,
+			speedRangeLengthValueTo = maxAndMinOpmDifference.coerceIn(2, Int.MAX_VALUE),
 			isSliderVisible = (maxAndMinOpmDifference > 1) && (minOpm != maxOpm),
 		),
 		statsInfo = TestListStatsInfo(
