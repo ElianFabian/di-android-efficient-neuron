@@ -48,10 +48,10 @@ class EditProfileFragment : Fragment(R.layout.fragment_edit_profile)
 		{
 			ChooseOrDeleteProfilePictureBottomDialog(
 				onPictureSelected = {
-					val compressedImageBytes = it?.toBitmap(context)
-						?.reduceSize(102400)
-						?.cropToSquare()
-						?.toBytes() ?: byteArrayOf()
+					val compressedImageBytes = it.toBitmap(context)
+						.reduceSize(102400)
+						.cropToSquare()
+						.toBytes()
 
 					viewModel.onAction(EnterProfilePic(compressedImageBytes.toList()))
 

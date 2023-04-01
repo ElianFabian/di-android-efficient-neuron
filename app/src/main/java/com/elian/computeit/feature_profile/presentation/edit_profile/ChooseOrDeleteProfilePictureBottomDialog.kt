@@ -12,21 +12,21 @@ import com.elian.computeit.databinding.BottomDialogChooseOrDeleteProfilePicBindi
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 class ChooseOrDeleteProfilePictureBottomDialog(
-	private val onPictureSelected: (Uri?) -> Unit,
+	private val onPictureSelected: (Uri) -> Unit,
 	private val onDeleteImage: () -> Unit,
 ) : BottomSheetDialogFragment(R.layout.bottom_dialog_choose_or_delete_profile_pic)
 {
 	private val binding by viewBinding(BottomDialogChooseOrDeleteProfilePicBinding::bind)
 
-	private val getContent = registerForActivityResult(ActivityResultContracts.GetContent())
-	{
-		onPictureSelected(it)
+	private val getContent = registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
+
+		uri?.also { onPictureSelected(it) }
 
 		dismiss()
 	}
-	private val requestPermission = registerForActivityResult(ActivityResultContracts.RequestPermission())
-	{
-		if (!it) return@registerForActivityResult
+	private val requestPermission = registerForActivityResult(ActivityResultContracts.RequestPermission()) { isPermissionGranted ->
+
+		if (!isPermissionGranted) return@registerForActivityResult
 
 		getContent.launch("image/*")
 	}
