@@ -8,7 +8,7 @@ import com.elian.computeit.core.data.model.OperationData
 import com.elian.computeit.core.data.model.TestData
 import com.elian.computeit.core.domain.util.CountDownTimer
 import com.elian.computeit.core.domain.util.TimerEvent
-import com.elian.computeit.core.util.constants.receiveArgs
+import com.elian.computeit.core.util.constants.arguments
 import com.elian.computeit.core.util.constants.toList
 import com.elian.computeit.core.util.extensions.append
 import com.elian.computeit.core.util.extensions.clampLength
@@ -38,7 +38,7 @@ class TestViewModel @Inject constructor(
 	private val useCases: TestUseCases,
 ) : ViewModel()
 {
-	private val _args = savedState.receiveArgs<TestArgs>()!!
+	private val _args = savedState.arguments<TestArgs>()!!
 
 	private val _state = MutableStateFlow(TestState(
 		operationSymbol = _args.operation.symbol,

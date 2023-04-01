@@ -11,7 +11,7 @@ import androidx.lifecycle.lifecycleScope
 import com.elian.computeit.R
 import com.elian.computeit.core.presentation.util.extensions.*
 import com.elian.computeit.core.presentation.util.viewBinding
-import com.elian.computeit.core.util.constants.receiveArgs
+import com.elian.computeit.core.util.constants.arguments
 import com.elian.computeit.core.util.extensions.format
 import com.elian.computeit.core.util.using
 import com.elian.computeit.databinding.FragmentTestBinding
@@ -27,7 +27,7 @@ class TestFragment : Fragment(R.layout.fragment_test)
 {
 	private val viewModel by viewModels<TestViewModel>()
 	private val binding by viewBinding(FragmentTestBinding::bind)
-	private val args by lazy { receiveArgs<TestArgs>()!! }
+	private val args by arguments<TestArgs>() 
 
 	private val operationView by lazy {
 		object

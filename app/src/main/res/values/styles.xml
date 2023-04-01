@@ -130,4 +130,14 @@
         <item name="cornerSizeBottomRight">10%</item>
     </style>
 
+    <style name="OperationTypeRadioButton">
+        <item name="android:layout_width">@dimen/_60sdp</item>
+        <item name="android:layout_height">@dimen/_60sdp</item>
+        <item name="android:background">@drawable/selector_radio_button_operation_background</item>
+        <item name="android:button">@color/transparent</item>
+        <item name="android:textAppearance">@style/TextAppearance_OperationButton</item>
+        <item name="android:textColor">@drawable/selector_radio_button_operation_text_color</item>
+        <item name="android:gravity">center</item>
+    </style>
+
 </resources>

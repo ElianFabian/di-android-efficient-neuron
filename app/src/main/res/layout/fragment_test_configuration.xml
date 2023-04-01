@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:animateLayoutChanges="true"
@@ -31,15 +30,8 @@
 
             <com.google.android.material.radiobutton.MaterialRadioButton
                 android:id="@+id/mRbAddition"
-                android:layout_width="@dimen/_60sdp"
-                android:layout_height="@dimen/_60sdp"
-                android:background="@drawable/selector_radio_button_operation_background"
-                android:button="@color/transparent"
-                android:gravity="center"
-                android:tag="@string/tag_operation_type"
-                android:text="+"
-                android:textAppearance="@style/TextAppearance_OperationButton"
-                android:textColor="@drawable/selector_radio_button_operation_text_color" />
+                style="@style/OperationTypeRadioButton" android:tag="@string/tag_operation_type"
+                android:text="+" />
 
             <androidx.legacy.widget.Space
                 android:layout_width="wrap_content"
@@ -48,15 +40,9 @@
 
             <com.google.android.material.radiobutton.MaterialRadioButton
                 android:id="@+id/mRbSubtraction"
-                android:layout_width="@dimen/_60sdp"
-                android:layout_height="@dimen/_60sdp"
-                android:background="@drawable/selector_radio_button_operation_background"
-                android:button="@color/transparent"
-                android:gravity="center"
+                style="@style/OperationTypeRadioButton"
                 android:tag="@string/tag_operation_type"
-                android:text="−"
-                android:textAppearance="@style/TextAppearance_OperationButton"
-                android:textColor="@drawable/selector_radio_button_operation_text_color" />
+                android:text="−" />
 
             <androidx.legacy.widget.Space
                 android:layout_width="wrap_content"
@@ -65,15 +51,9 @@
 
             <com.google.android.material.radiobutton.MaterialRadioButton
                 android:id="@+id/mRbMultiplication"
-                android:layout_width="@dimen/_60sdp"
-                android:layout_height="@dimen/_60sdp"
-                android:background="@drawable/selector_radio_button_operation_background"
-                android:button="@color/transparent"
-                android:gravity="center"
+                style="@style/OperationTypeRadioButton"
                 android:tag="@string/tag_operation_type"
-                android:text="×"
-                android:textAppearance="@style/TextAppearance_OperationButton"
-                android:textColor="@drawable/selector_radio_button_operation_text_color" />
+                android:text="×" />
 
             <androidx.legacy.widget.Space
                 android:layout_width="wrap_content"
@@ -82,15 +62,9 @@
 
             <com.google.android.material.radiobutton.MaterialRadioButton
                 android:id="@+id/mRbDivision"
-                android:layout_width="@dimen/_60sdp"
-                android:layout_height="@dimen/_60sdp"
-                android:background="@drawable/selector_radio_button_operation_background"
-                android:button="@color/transparent"
-                android:gravity="center"
+                style="@style/OperationTypeRadioButton"
                 android:tag="@string/tag_operation_type"
-                android:text="÷"
-                android:textAppearance="@style/TextAppearance_OperationButton"
-                android:textColor="@drawable/selector_radio_button_operation_text_color" />
+                android:text="÷" />
 
         </RadioGroup>
 

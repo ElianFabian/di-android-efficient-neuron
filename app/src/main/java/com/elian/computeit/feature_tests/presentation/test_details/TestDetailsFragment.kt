@@ -18,7 +18,7 @@ import com.elian.computeit.core.presentation.util.mp_android_chart.lineDataSet
 import com.elian.computeit.core.presentation.util.mp_android_chart.toEntries
 import com.elian.computeit.core.presentation.util.mp_android_chart.valuesToEntriesWithYValue
 import com.elian.computeit.core.presentation.util.viewBinding
-import com.elian.computeit.core.util.constants.receiveArgs
+import com.elian.computeit.core.util.constants.arguments
 import com.elian.computeit.core.util.using
 import com.elian.computeit.databinding.FragmentTestDetailsBinding
 import com.elian.computeit.feature_tests.domain.args.TestDetailsArgs
@@ -29,7 +29,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class TestDetailsFragment : Fragment(R.layout.fragment_test_details)
 {
 	private val binding by viewBinding(FragmentTestDetailsBinding::bind)
-	private val args by lazy { receiveArgs<TestDetailsArgs>()!! }
+	private val args by arguments<TestDetailsArgs>()
 
 
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?)
