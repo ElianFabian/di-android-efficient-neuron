@@ -3,7 +3,6 @@ package com.elian.computeit.feature_tests.presentation.test
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
-import androidx.core.os.bundleOf
 import androidx.core.view.isGone
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -12,6 +11,7 @@ import com.elian.computeit.R
 import com.elian.computeit.core.presentation.util.extensions.*
 import com.elian.computeit.core.presentation.util.viewBinding
 import com.elian.computeit.core.util.constants.arguments
+import com.elian.computeit.core.util.constants.toBundle
 import com.elian.computeit.core.util.extensions.format
 import com.elian.computeit.core.util.using
 import com.elian.computeit.databinding.FragmentTestBinding
@@ -158,7 +158,7 @@ class TestFragment : Fragment(R.layout.fragment_test)
 				}
 				is OnGoToTestDetails         ->
 				{
-					navigate(R.id.action_testFragment_to_testDetailsFragment, bundleOf(*it.args.toTypedArray()))
+					navigate(R.id.action_testFragment_to_testDetailsFragment, it.args.toBundle())
 				}
 			}
 		}

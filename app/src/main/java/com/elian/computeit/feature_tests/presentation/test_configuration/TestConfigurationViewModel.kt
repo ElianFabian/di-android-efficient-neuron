@@ -6,13 +6,12 @@ import com.elian.computeit.core.domain.models.OperationType
 import com.elian.computeit.core.domain.models.Range
 import com.elian.computeit.core.util.Resource
 import com.elian.computeit.core.util.UiText
-import com.elian.computeit.core.util.constants.toList
 import com.elian.computeit.feature_tests.domain.args.TestArgs
 import com.elian.computeit.feature_tests.domain.params.ValidateConfigurationParams
 import com.elian.computeit.feature_tests.domain.use_case.ValidateConfigurationUseCase
 import com.elian.computeit.feature_tests.presentation.test_configuration.TestConfigurationAction.*
 import com.elian.computeit.feature_tests.presentation.test_configuration.TestConfigurationEvent.OnShowErrorMessage
-import com.elian.computeit.feature_tests.presentation.test_configuration.TestConfigurationEvent.OnStart
+import com.elian.computeit.feature_tests.presentation.test_configuration.TestConfigurationEvent.OnStartTest
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -62,12 +61,12 @@ class TestConfigurationViewModel @Inject constructor(
 						is Resource.Error   -> _eventFlow.send(OnShowErrorMessage(resource.uiText ?: UiText.unknownError()))
 						is Resource.Success ->
 						{
-							_eventFlow.send(OnStart(
+							_eventFlow.send(OnStartTest(
 								args = TestArgs(
 									operation = _state.value.selectedOperation,
 									range = _state.value.run { Range(startOfRange!!, endOfRange!!) },
 									totalTimeInSeconds = _state.value.time!!,
-								).toList()
+								)
 							))
 						}
 						else                -> Unit

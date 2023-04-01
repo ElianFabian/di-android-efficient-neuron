@@ -1,5 +1,7 @@
 package com.elian.computeit.feature_tests.presentation.test
 
+import com.elian.computeit.feature_tests.domain.args.TestDetailsArgs
+
 sealed interface TestEvent
 {
 	data class OnTimerTickInNormalMode(
@@ -10,5 +12,5 @@ sealed interface TestEvent
 	data class OnTimerTickInInfiniteMode(val millisSinceStart: Long) : TestEvent
 
 	object OnTimerFinish : TestEvent
-	data class OnGoToTestDetails(val args: List<Pair<String, Any>>) : TestEvent
+	data class OnGoToTestDetails(val args: TestDetailsArgs) : TestEvent
 }

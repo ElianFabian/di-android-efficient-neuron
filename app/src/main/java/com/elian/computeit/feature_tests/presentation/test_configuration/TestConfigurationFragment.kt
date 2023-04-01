@@ -3,7 +3,6 @@ package com.elian.computeit.feature_tests.presentation.test_configuration
 import android.os.Bundle
 import android.view.View
 import android.widget.RadioButton
-import androidx.core.os.bundleOf
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -12,11 +11,12 @@ import com.elian.computeit.core.domain.errors.NumericFieldError
 import com.elian.computeit.core.presentation.util.extensions.*
 import com.elian.computeit.core.presentation.util.viewBinding
 import com.elian.computeit.core.util.Error
+import com.elian.computeit.core.util.constants.toBundle
 import com.elian.computeit.core.util.using
 import com.elian.computeit.databinding.FragmentTestConfigurationBinding
 import com.elian.computeit.feature_tests.presentation.test_configuration.TestConfigurationAction.*
 import com.elian.computeit.feature_tests.presentation.test_configuration.TestConfigurationEvent.OnShowErrorMessage
-import com.elian.computeit.feature_tests.presentation.test_configuration.TestConfigurationEvent.OnStart
+import com.elian.computeit.feature_tests.presentation.test_configuration.TestConfigurationEvent.OnStartTest
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -69,11 +69,11 @@ class TestConfigurationFragment : Fragment(R.layout.fragment_test_configuration)
 		{
 			when (it)
 			{
-				is OnStart            ->
+				is OnStartTest        ->
 				{
 					navigateSafe(
 						action = R.id.action_testConfigurationFragment_to_testFragment,
-						args = bundleOf(*it.args.toTypedArray()),
+						args = it.args.toBundle(),
 						currentDestination = R.id.testConfigurationFragment,
 					)
 				}

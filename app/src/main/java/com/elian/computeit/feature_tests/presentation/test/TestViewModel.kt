@@ -9,7 +9,6 @@ import com.elian.computeit.core.data.model.TestData
 import com.elian.computeit.core.domain.util.CountDownTimer
 import com.elian.computeit.core.domain.util.TimerEvent
 import com.elian.computeit.core.util.constants.arguments
-import com.elian.computeit.core.util.constants.toList
 import com.elian.computeit.core.util.extensions.append
 import com.elian.computeit.core.util.extensions.clampLength
 import com.elian.computeit.core.util.extensions.dropLast
@@ -188,7 +187,7 @@ class TestViewModel @Inject constructor(
 		_eventFlow.send(OnGoToTestDetails(
 			args = TestDetailsArgs(
 				testInfo = testData.toTestInfo(),
-			).toList()
+			)
 		))
 
 		// This is to avoid the cancellation of the viewModelScope

@@ -35,13 +35,13 @@ class ProfileRepositoryImpl @Inject constructor(
 			.await()
 			.toObject<User>()!!
 
-		val maxDownloadSize = 5L * 1024 * 1024
+		val maxDownloadSizeBytes = 5L * 1024 * 1024
 
 		val profilePicBytes = user.profilePicUuid?.let()
 		{
 			storage.reference
 				.child("$FOLDER_USERS_PROFILE_PICS/${user.profilePicUuid}")
-				.getBytes(maxDownloadSize)
+				.getBytes(maxDownloadSizeBytes)
 				.await()
 		}
 
@@ -50,7 +50,7 @@ class ProfileRepositoryImpl @Inject constructor(
 			ProfileInfo(
 				username = name,
 				biography = biography,
-				profilePicBytes = profilePicBytes?.toList() ?: emptyList(),
+				profilePicBytes = profilePicBytes?.toList().orEmpty(),
 				createdAt = defaultDateFormat.format(Date(createdAtUnix)),
 			)
 		}
@@ -59,27 +59,27 @@ class ProfileRepositoryImpl @Inject constructor(
 	override suspend fun updateProfileInfo(params: UpdateProfileParams): SimpleResource = withContext(Dispatchers.IO)
 	{
 		val currentUser = utilRepository.getUserByUuid(params.userUuid)!!
+		
+		val isUsernameTaken = utilRepository.isUsernameTaken(
+			currentName = currentUser.name,
+			newName = params.username,
+		)
 
-		if (utilRepository.isUsernameTaken(
-				currentName = currentUser.name,
-				newName = params.username,
-			)
-		) return@withContext Resource.Error(R.string.error_username_is_already_in_use)
+		if (isUsernameTaken) return@withContext Resource.Error(R.string.error_username_is_already_in_use)
 
-		var newOrCurrentProfilePicUuid: String? = null
+		val newOrCurrentProfilePicUuid = currentUser.profilePicUuid ?: UUID.randomUUID().toString()
 		try
 		{
-			if (params.profilePicBytes.isNotEmpty())
+			val shouldUpdateOrCreateProfilePic = params.profilePicBytes.isNotEmpty()
+			if (shouldUpdateOrCreateProfilePic)
 			{
-				newOrCurrentProfilePicUuid = currentUser.profilePicUuid ?: UUID.randomUUID().toString()
-
 				storage.reference.child("$FOLDER_USERS_PROFILE_PICS/$newOrCurrentProfilePicUuid")
 					.putBytes(params.profilePicBytes.toByteArray())
 					.await()
 			}
-			else if (newOrCurrentProfilePicUuid != null)
+			else if (currentUser.profilePicUuid != null)
 			{
-				storage.reference.child("$FOLDER_USERS_PROFILE_PICS/$newOrCurrentProfilePicUuid")
+				storage.reference.child("$FOLDER_USERS_PROFILE_PICS/${currentUser.profilePicUuid}")
 					.delete()
 					.await()
 			}
