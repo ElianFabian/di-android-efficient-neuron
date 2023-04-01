@@ -74,7 +74,7 @@ class TestFragment : Fragment(R.layout.fragment_test)
 		{
 			mtvRemainingSeconds.text = if (it == 0)
 			{
-				mtvRemainingSeconds.textSizeScaleDensity = resources.getDimension(R.dimen.textSize_xlarge1)
+				mtvRemainingSeconds.textSizeInSp = resources.getDimension(R.dimen.textSize_xlarge1)
 
 				mtvRemainingSeconds.setOnClickListener { viewModel.onAction(ForceFinish) }
 
