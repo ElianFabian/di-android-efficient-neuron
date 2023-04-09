@@ -7,4 +7,5 @@ sealed interface TestConfigurationAction
 	data class EnterEndOfRange(val value: Int?) : TestConfigurationAction
 	data class EnterTime(val value: Int?) : TestConfigurationAction
 	object StartTest : TestConfigurationAction
+	object SwapToFixRangeBounds : TestConfigurationAction
 }

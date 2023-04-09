@@ -37,18 +37,32 @@ class TestConfigurationViewModel @Inject constructor(
 	{
 		when (action)
 		{
-			is SelectOperationType -> _state.update { it.copy(selectedOperation = OperationType.fromSymbol(action.symbol)) }
-			is EnterStartOfRange -> _state.update { it.copy(startOfRange = action.value, startOfRangeError = null) }
-			is EnterEndOfRange   -> _state.update { it.copy(endOfRange = action.value, endOfRangeError = null) }
-			is EnterTime         -> _state.update { it.copy(time = action.value, timeError = null) }
-			is StartTest           -> viewModelScope.launch()
+			is SelectOperationType  -> _state.update { it.copy(selectedOperation = OperationType.fromSymbol(action.symbol)) }
+			is EnterStartOfRange    -> _state.update { it.copy(startOfRange = action.value, startOfRangeError = null) }
+			is EnterEndOfRange      -> _state.update { it.copy(endOfRange = action.value, endOfRangeError = null) }
+			is SwapToFixRangeBounds ->
 			{
-				validateConfiguration(ValidateConfigurationParams(
-					operation = _state.value.selectedOperation,
-					startOfRange = _state.value.startOfRange,
-					endOfRange = _state.value.endOfRange,
-					time = _state.value.time,
-				)).also { result ->
+				val startOfRange = _state.value.startOfRange ?: 0
+				val endOfRange = _state.value.endOfRange ?: 0
+
+				if (startOfRange < endOfRange) return
+
+				_state.value = _state.value.copy(
+					startOfRange = endOfRange,
+					endOfRange = startOfRange,
+				)
+			}
+			is EnterTime            -> _state.update { it.copy(time = action.value, timeError = null) }
+			is StartTest            -> viewModelScope.launch()
+			{
+				validateConfiguration(
+					ValidateConfigurationParams(
+						operation = _state.value.selectedOperation,
+						startOfRange = _state.value.startOfRange,
+						endOfRange = _state.value.endOfRange,
+						time = _state.value.time,
+					)
+				).also { result ->
 
 					_state.value = _state.value.copy(
 						startOfRangeError = result.startOfRangeError,
@@ -61,13 +75,15 @@ class TestConfigurationViewModel @Inject constructor(
 						is Resource.Error   -> _eventFlow.send(OnShowErrorMessage(resource.uiText ?: UiText.unknownError()))
 						is Resource.Success ->
 						{
-							_eventFlow.send(OnStartTest(
-								args = TestArgs(
-									operation = _state.value.selectedOperation,
-									range = _state.value.run { Range(startOfRange!!, endOfRange!!) },
-									totalTimeInSeconds = _state.value.time!!,
+							_eventFlow.send(
+								OnStartTest(
+									args = TestArgs(
+										operation = _state.value.selectedOperation,
+										range = _state.value.run { Range(startOfRange!!, endOfRange!!) },
+										totalTimeInSeconds = _state.value.time!!,
+									)
 								)
-							))
+							)
 						}
 						else                -> Unit
 					}

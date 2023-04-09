@@ -61,9 +61,15 @@ class TestConfigurationFragment : Fragment(R.layout.fragment_test_configuration)
 	{
 		collectLatestFlowWhenStarted(state)
 		{
-			binding.tietStartOfRange.error = getFieldError(it.startOfRangeError)
-			binding.tietEndOfRange.error = getFieldError(it.endOfRangeError)
-			binding.tietTime.error = getFieldError(it.timeError)
+			binding.apply()
+			{
+				tietStartOfRange.setTextIfDistinct("${it.startOfRange ?: ""}")
+				tietEndOfRange.setTextIfDistinct("${it.endOfRange ?: ""}")
+
+				tietStartOfRange.error = getFieldError(it.startOfRangeError)
+				tietEndOfRange.error = getFieldError(it.endOfRangeError)
+				tietTime.error = getFieldError(it.timeError)
+			}
 		}
 		collectFlowWhenStarted(eventFlow)
 		{
@@ -83,17 +89,7 @@ class TestConfigurationFragment : Fragment(R.layout.fragment_test_configuration)
 					{
 						Snackbar.make(requireView(), errorMessage, Snackbar.LENGTH_LONG).setAction(R.string.action_fix)
 						{
-							val min = minOf(
-								binding.tietStartOfRange.text.toString().toInt(),
-								binding.tietEndOfRange.text.toString().toInt(),
-							)
-							val max = maxOf(
-								binding.tietStartOfRange.text.toString().toInt(),
-								binding.tietEndOfRange.text.toString().toInt(),
-							)
-
-							binding.tietStartOfRange.setText("$min")
-							binding.tietEndOfRange.setText("$max")
+							viewModel.onAction(SwapToFixRangeBounds)
 						}.show()
 					}
 					else                                                ->

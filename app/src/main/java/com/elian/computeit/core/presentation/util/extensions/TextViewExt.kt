@@ -13,6 +13,11 @@ var TextView.text2: CharSequence
 		isGone = text.isNullOrBlank()
 	}
 
+fun TextView.setTextIfDistinct(text: CharSequence)
+{
+	if (this.text.toString() != text.toString()) this.text = text
+}
+
 var TextView.textSizeInSp: Float
 	get() = textSize / resources.displayMetrics.density
 	set(value)
