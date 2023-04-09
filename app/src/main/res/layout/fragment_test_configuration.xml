@@ -90,7 +90,7 @@
                 android:orientation="horizontal">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/tietStartOrRange"
+                    android:id="@+id/tietStartOfRange"
                     android:layout_width="@dimen/_100sdp"
                     android:layout_height="wrap_content"
                     android:gravity="center"

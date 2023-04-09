@@ -50,7 +50,7 @@ class TestConfigurationFragment : Fragment(R.layout.fragment_test_configuration)
 		val selectedOperationRadioButton = operationRadioButtons.first { rb -> rb.text == viewModel.state.value.selectedOperation.symbol }
 		selectedOperationRadioButton.performClick()
 
-		tietStartOrRange.addTextChangedListener { viewModel.onAction(EnterStartOfRange(it.toString().toIntOrNull())) }
+		tietStartOfRange.addTextChangedListener { viewModel.onAction(EnterStartOfRange(it.toString().toIntOrNull())) }
 		tietEndOfRange.addTextChangedListener { viewModel.onAction(EnterEndOfRange(it.toString().toIntOrNull())) }
 		tietTime.addTextChangedListener { viewModel.onAction(EnterTime(it.toString().toIntOrNull())) }
 
@@ -61,7 +61,7 @@ class TestConfigurationFragment : Fragment(R.layout.fragment_test_configuration)
 	{
 		collectLatestFlowWhenStarted(state)
 		{
-			binding.tietStartOrRange.error = getFieldError(it.startOfRangeError)
+			binding.tietStartOfRange.error = getFieldError(it.startOfRangeError)
 			binding.tietEndOfRange.error = getFieldError(it.endOfRangeError)
 			binding.tietTime.error = getFieldError(it.timeError)
 		}
@@ -84,15 +84,15 @@ class TestConfigurationFragment : Fragment(R.layout.fragment_test_configuration)
 						Snackbar.make(requireView(), errorMessage, Snackbar.LENGTH_LONG).setAction(R.string.action_fix)
 						{
 							val min = minOf(
-								binding.tietStartOrRange.text.toString().toInt(),
+								binding.tietStartOfRange.text.toString().toInt(),
 								binding.tietEndOfRange.text.toString().toInt(),
 							)
 							val max = maxOf(
-								binding.tietStartOrRange.text.toString().toInt(),
+								binding.tietStartOfRange.text.toString().toInt(),
 								binding.tietEndOfRange.text.toString().toInt(),
 							)
 
-							binding.tietStartOrRange.setText("$min")
+							binding.tietStartOfRange.setText("$min")
 							binding.tietEndOfRange.setText("$max")
 						}.show()
 					}
