@@ -1,8 +1,8 @@
 package com.elian.computeit.feature_tests.presentation.test_details.adapter
 
+import com.elian.computeit.core.domain.models.OperationInfo
 import com.elian.computeit.core.presentation.adapter.GenericAdapter
 import com.elian.computeit.databinding.ItemFailedOperationBinding
-import com.elian.computeit.core.domain.models.OperationInfo
 
 @Suppress("FunctionName")
 fun FailedOperationAdapter(items: List<OperationInfo>) = GenericAdapter(

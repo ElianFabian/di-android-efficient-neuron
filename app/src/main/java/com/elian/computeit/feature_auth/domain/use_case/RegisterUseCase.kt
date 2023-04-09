@@ -24,8 +24,12 @@ class RegisterUseCase @Inject constructor(
 				confirmPasswordError = confirmPasswordError,
 			)
 		}
-		else RegisterResult(resource = repository.register(params.copy(
-			password = hash(params.password)
-		)))
+		else RegisterResult(
+			resource = repository.register(
+				params.copy(
+					password = hash(params.password)
+				)
+			)
+		)
 	}
 }

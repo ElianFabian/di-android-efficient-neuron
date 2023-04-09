@@ -34,8 +34,8 @@ class UtilRepositoryImpl @Inject constructor(
 		getUserByName(newName).let()
 		{
 			(it != null)
-					&& !currentName.equals(it.name, ignoreCase = true)
-					&& newName.equals(it.name, ignoreCase = true)
+				&& !currentName.equals(it.name, ignoreCase = true)
+				&& newName.equals(it.name, ignoreCase = true)
 		}
 	}
 

@@ -39,9 +39,11 @@ class TestViewModel @Inject constructor(
 {
 	private val _args = savedState.arguments<TestArgs>()!!
 
-	private val _state = MutableStateFlow(TestState(
-		operationSymbol = _args.operation.symbol,
-	))
+	private val _state = MutableStateFlow(
+		TestState(
+			operationSymbol = _args.operation.symbol,
+		)
+	)
 	val state = _state.asStateFlow()
 
 	private val _eventFlow = Channel<TestEvent>()
@@ -131,14 +133,18 @@ class TestViewModel @Inject constructor(
 
 						if (!_isInfiniteMode)
 						{
-							_eventFlow.send(TestEvent.OnTimerTickInNormalMode(
-								millisSinceStart = it.millisSinceStart,
-								millisUntilFinished = it.millisUntilFinished,
-							))
+							_eventFlow.send(
+								TestEvent.OnTimerTickInNormalMode(
+									millisSinceStart = it.millisSinceStart,
+									millisUntilFinished = it.millisUntilFinished,
+								)
+							)
 						}
-						else _eventFlow.send(TestEvent.OnTimerTickInInfiniteMode(
-							millisSinceStart = _millisSinceStart,
-						))
+						else _eventFlow.send(
+							TestEvent.OnTimerTickInInfiniteMode(
+								millisSinceStart = _millisSinceStart,
+							)
+						)
 					}
 					is TimerEvent.OnFinish -> finishTest()
 					else                   -> Unit
@@ -184,11 +190,13 @@ class TestViewModel @Inject constructor(
 			listOfOperationData = _listOfOperationData.toList(),
 		)
 
-		_eventFlow.send(OnGoToTestDetails(
-			args = TestDetailsArgs(
-				testInfo = testData.toTestInfo(),
+		_eventFlow.send(
+			OnGoToTestDetails(
+				args = TestDetailsArgs(
+					testInfo = testData.toTestInfo(),
+				)
 			)
-		))
+		)
 
 		// This is to avoid the cancellation of the viewModelScope
 		MainScope().launch(Dispatchers.IO)

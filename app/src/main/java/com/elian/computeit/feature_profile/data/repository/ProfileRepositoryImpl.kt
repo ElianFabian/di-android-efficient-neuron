@@ -59,7 +59,7 @@ class ProfileRepositoryImpl @Inject constructor(
 	override suspend fun updateProfileInfo(params: UpdateProfileParams): SimpleResource = withContext(Dispatchers.IO)
 	{
 		val currentUser = utilRepository.getUserByUuid(params.userUuid)!!
-		
+
 		val isUsernameTaken = utilRepository.isUsernameTaken(
 			currentName = currentUser.name,
 			newName = params.username,

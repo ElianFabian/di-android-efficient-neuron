@@ -54,12 +54,14 @@ class ProfileViewModel @Inject constructor(
 			{
 				_editProfileState.update { it.copy(isLoading = true) }
 
-				useCases.updateProfile(UpdateProfileParams(
-					userUuid = useCases.getOwnUserUuid(),
-					username = _editProfileState.value.username,
-					biography = _editProfileState.value.biography,
-					profilePicBytes = _editProfileState.value.profilePicBytes,
-				)).also { result ->
+				useCases.updateProfile(
+					UpdateProfileParams(
+						userUuid = useCases.getOwnUserUuid(),
+						username = _editProfileState.value.username,
+						biography = _editProfileState.value.biography,
+						profilePicBytes = _editProfileState.value.profilePicBytes,
+					)
+				).also { result ->
 
 					_editProfileState.value = _editProfileState.value.copy(
 						usernameError = result.usernameError

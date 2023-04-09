@@ -120,7 +120,8 @@ class HomeFragment : Fragment(R.layout.fragment_home)
 
 					btnGoToTestDetails.setOnClickListener()
 					{
-						navigate(R.id.action_homeFragment_to_testDetailsFragment,
+						navigate(
+							R.id.action_homeFragment_to_testDetailsFragment,
 							TestDetailsArgs(
 								testInfo = selectedTestInfo,
 							).toBundle()

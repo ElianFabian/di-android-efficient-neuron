@@ -27,7 +27,7 @@ class TestFragment : Fragment(R.layout.fragment_test)
 {
 	private val viewModel by viewModels<TestViewModel>()
 	private val binding by viewBinding(FragmentTestBinding::bind)
-	private val args by arguments<TestArgs>() 
+	private val args by arguments<TestArgs>()
 
 	private val operationView by lazy {
 		object

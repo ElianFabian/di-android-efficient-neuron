@@ -30,7 +30,8 @@
 
             <com.google.android.material.radiobutton.MaterialRadioButton
                 android:id="@+id/mRbAddition"
-                style="@style/OperationTypeRadioButton" android:tag="@string/tag_operation_type"
+                style="@style/OperationTypeRadioButton"
+                android:tag="@string/tag_operation_type"
                 android:text="+" />
 
             <androidx.legacy.widget.Space

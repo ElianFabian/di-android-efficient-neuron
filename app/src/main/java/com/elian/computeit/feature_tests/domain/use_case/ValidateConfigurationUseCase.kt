@@ -38,10 +38,12 @@ class ValidateConfigurationUseCase @Inject constructor()
 		}
 		if (params.endOfRange - params.startOfRange + 1 < _minRangeLength)
 		{
-			return TestConfigurationResult(resource = Resource.Error(
-				messageResId = R.string.error_range_length_must_be_greater_than,
-				args = arrayOf(_minRangeLength)
-			))
+			return TestConfigurationResult(
+				resource = Resource.Error(
+					messageResId = R.string.error_range_length_must_be_greater_than,
+					args = arrayOf(_minRangeLength)
+				)
+			)
 		}
 		if (params.operation == OperationType.Division) withContext(Dispatchers.Default)
 		{
@@ -55,10 +57,12 @@ class ValidateConfigurationUseCase @Inject constructor()
 			{
 				if (it < _minDivisiblePairCount)
 				{
-					return@withContext TestConfigurationResult(resource = Resource.Error(
-						messageResId = R.string.error_range_not_enough_divisible_pairs,
-						args = arrayOf(it, _minDivisiblePairCount)
-					))
+					return@withContext TestConfigurationResult(
+						resource = Resource.Error(
+							messageResId = R.string.error_range_not_enough_divisible_pairs,
+							args = arrayOf(it, _minDivisiblePairCount)
+						)
+					)
 				}
 			}
 		}

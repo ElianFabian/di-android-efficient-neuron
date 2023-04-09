@@ -25,7 +25,7 @@ class LoginViewModel @Inject constructor(
 {
 	private val _state = MutableStateFlow(LoginState())
 	val state = _state.asStateFlow()
-	
+
 	private val _eventFlow = Channel<LoginEvent>()
 	val eventFlow = _eventFlow.receiveAsFlow()
 
@@ -40,10 +40,12 @@ class LoginViewModel @Inject constructor(
 			{
 				_state.update { it.copy(isLoading = true) }
 
-				login(LoginParams(
-					username = _state.value.username,
-					password = _state.value.password,
-				)).also { result ->
+				login(
+					LoginParams(
+						username = _state.value.username,
+						password = _state.value.password,
+					)
+				).also { result ->
 
 					_state.value = _state.value.copy(
 						usernameError = result.usernameError,

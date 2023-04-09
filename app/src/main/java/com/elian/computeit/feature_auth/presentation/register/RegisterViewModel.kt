@@ -41,11 +41,13 @@ class RegisterViewModel @Inject constructor(
 			{
 				_state.update { it.copy(isLoading = true) }
 
-				register(RegisterParams(
-					username = _state.value.username,
-					password = _state.value.password,
-					confirmPassword = _state.value.confirmPassword,
-				)).also { result ->
+				register(
+					RegisterParams(
+						username = _state.value.username,
+						password = _state.value.password,
+						confirmPassword = _state.value.confirmPassword,
+					)
+				).also { result ->
 
 					_state.value = _state.value.copy(
 						usernameError = result.usernameError,
