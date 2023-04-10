@@ -8,5 +8,5 @@ interface TestDataRepository
 
 	suspend fun addTestData(userUuid: String, testData: TestData)
 	suspend fun getListOfTestData(userUuid: String): List<TestData>
-	fun getListOfTestsPerSpeedRange(rangeLength: Int): List<Int>
+	fun getTestCountPerSpeedRange(rangeLength: Int): List<Int>
 }

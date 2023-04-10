@@ -181,7 +181,7 @@ class HomeFragment : Fragment(R.layout.fragment_home)
 
 				addOnChangeListener { _, value, _ ->
 
-					val newListOfTestsPerSpeedRange = viewModel.getListOfTestsPerSpeedRange(rangeLength = value.toInt())
+					val newListOfTestsPerSpeedRange = viewModel.getTestCountPerSpeedRange(rangeLength = value.toInt())
 
 					_rangeFormatter.rangeLength = value.toInt()
 

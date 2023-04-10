@@ -83,7 +83,7 @@ fun List<TestData>.toTestListInfo(): TestListInfo
 		barCount = 5,
 		maxAndMinOpmDifference = maxAndMinOpmDifference,
 	)
-	val testsPerSpeedRange = getListOfTestsPerSpeedRange(
+	val testsPerSpeedRange = getTestCountPerSpeedRange(
 		listOfOpmPerTest = listOfOpmPerTest,
 		speedRangeLength = defaultRangeLength,
 	)
@@ -119,7 +119,7 @@ fun List<TestData>.toTestListInfo(): TestListInfo
 	)
 }
 
-fun List<TestData>.toListOfTestsPerSpeedRange(rangeLength: Int): List<Int>
+fun List<TestData>.toTestCountPerSpeedRange(rangeLength: Int): List<Int>
 {
 	val listOfOpmPerTest = map()
 	{
@@ -129,14 +129,14 @@ fun List<TestData>.toListOfTestsPerSpeedRange(rangeLength: Int): List<Int>
 		testOpm
 	}
 
-	return getListOfTestsPerSpeedRange(
+	return getTestCountPerSpeedRange(
 		listOfOpmPerTest = listOfOpmPerTest,
 		speedRangeLength = rangeLength,
 	)
 }
 
 
-private fun getListOfTestsPerSpeedRange(
+private fun getTestCountPerSpeedRange(
 	listOfOpmPerTest: List<Int>,
 	speedRangeLength: Int,
 ): List<Int>

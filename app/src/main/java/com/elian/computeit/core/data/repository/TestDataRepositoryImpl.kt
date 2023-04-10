@@ -1,6 +1,6 @@
 package com.elian.computeit.core.data.repository
 
-import com.elian.computeit.core.data.mapper.toListOfTestsPerSpeedRange
+import com.elian.computeit.core.data.mapper.toTestCountPerSpeedRange
 import com.elian.computeit.core.data.model.TestData
 import com.elian.computeit.core.data.model.UserData
 import com.elian.computeit.core.data.util.constants.COLLECTION_USERS_DATA
@@ -53,7 +53,7 @@ class TestDataRepositoryImpl @Inject constructor(
 		else _listOfTestData
 	}
 
-	override fun getListOfTestsPerSpeedRange(rangeLength: Int): List<Int> = _listOfTestData.toListOfTestsPerSpeedRange(rangeLength)
+	override fun getTestCountPerSpeedRange(rangeLength: Int): List<Int> = _listOfTestData.toTestCountPerSpeedRange(rangeLength)
 
 
 	private suspend fun getUserDataRef(userUuid: String) = withContext(Dispatchers.IO)
