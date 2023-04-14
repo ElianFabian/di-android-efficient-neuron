@@ -4,6 +4,8 @@ plugins {
 	// Firebase
 	id("com.google.gms.google-services")
 
+	id("com.google.firebase.crashlytics")
+
 	id("com.android.application")
 	id("kotlin-parcelize")
 	kotlin("android")
@@ -74,6 +76,10 @@ dependencies {
 
 	// Import the Firebase BoM
 	implementation(platform("com.google.firebase:firebase-bom:29.3.1"))
+
+	// Add the dependencies for the Crashlytics and Analytics libraries
+	implementation("com.google.firebase:firebase-crashlytics-ktx")
+	implementation("com.google.firebase:firebase-analytics-ktx")
 
 	// Async / Await
 	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.6.4")
