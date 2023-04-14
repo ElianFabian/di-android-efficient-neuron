@@ -93,7 +93,6 @@ dependencies {
 	implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.5.1")
 	implementation("androidx.lifecycle:lifecycle-common-java8:2.5.1")
 	implementation("androidx.lifecycle:lifecycle-extensions:2.2.0")
-	implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.5.1")
 
 
 	implementation("androidx.activity:activity-ktx:1.5.0") // DON'T UPDATE (1.5.0)
