@@ -8,8 +8,8 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.viewbinding.ViewBinding
 import com.elian.computeit.R
-import com.elian.computeit.core.presentation.util.ActionBehaviour
-import com.elian.computeit.core.presentation.util.DestinationBehaviour
+import com.elian.computeit.core.presentation.util.ActionEvent
+import com.elian.computeit.core.presentation.util.DestinationEvent
 import com.elian.computeit.core.presentation.util.NavigationManager
 import com.elian.computeit.databinding.FragmentTestDetailsBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -25,31 +25,31 @@ class MainActivity : AppCompatActivity(R.layout.activity_main)
 	private var _previousFragment: Fragment? = null
 
 	private val _navigationManager = NavigationManager(
-		onDestinationChangedBehaviours = setOf(
+		onDestinationChangedEvents = setOf(
 			// Adjust layout when keyboard is open
-			DestinationBehaviour(
+			DestinationEvent(
 				destinations = setOf(
 					R.id.editProfileFragment,
 				),
-				ifCurrentDestinationIsInList = { window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE) },
-				ifCurrentDestinationIsNotInList = { window.setSoftInputMode(_defaultSoftInputMode!!) },
+				onEvent = { window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE) },
+				onOtherEvent = { window.setSoftInputMode(_defaultSoftInputMode!!) },
 			),
 			// Disable navigate up
-			ActionBehaviour(
+			ActionEvent(
 				actions = setOf(
 					R.id.testFragment to R.id.testDetailsFragment,
 				),
-				ifCurrentActionIsInList = { _isNavigateUpEnabled = false },
-				ifCurrentActionIsNotInList = { _isNavigateUpEnabled = true },
+				onEvent = { _isNavigateUpEnabled = false },
+				onOtherEvent = { _isNavigateUpEnabled = true },
 			),
 		),
-		onBackgroundedBehaviours = setOf(
+		onBackgroundedEvents = setOf(
 			// Navigate up
-			DestinationBehaviour(
+			DestinationEvent(
 				destinations = setOf(
 					R.id.testFragment,
 				),
-				ifCurrentDestinationIsInList = { navController.navigateUp() },
+				onEvent = { navController.navigateUp() },
 			),
 		),
 	)

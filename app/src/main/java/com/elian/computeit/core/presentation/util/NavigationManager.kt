@@ -3,8 +3,8 @@ package com.elian.computeit.core.presentation.util
 import androidx.navigation.NavDestination
 
 class NavigationManager(
-	private val onDestinationChangedBehaviours: Collection<NavigationBehaviour> = emptyList(),
-	private val onBackgroundedBehaviours: Collection<NavigationBehaviour> = emptyList(),
+	private val onDestinationChangedEvents: Collection<NavigationEvent> = emptyList(),
+	private val onBackgroundedEvents: Collection<NavigationEvent> = emptyList(),
 )
 {
 	private var _currentDestination: NavDestination? = null
@@ -14,48 +14,53 @@ class NavigationManager(
 	{
 		_currentDestination = destination
 
-		executeBehaviours(onDestinationChangedBehaviours)
+		triggerEvents(onDestinationChangedEvents)
 
 		_previousDestination = destination
 	}
 
-	fun onBackgrounded() = executeBehaviours(onBackgroundedBehaviours)
+	fun onBackgrounded() = triggerEvents(onBackgroundedEvents)
 
 
-	private fun executeBehaviours(behaviours: Collection<NavigationBehaviour>)
+	private fun triggerEvents(events: Collection<NavigationEvent>)
 	{
-		for (behaviour in behaviours) when (behaviour)
+		for (navigationEvent in events) when (navigationEvent)
 		{
-			is DestinationBehaviour ->
+			is DestinationEvent ->
 			{
-				if (_currentDestination?.id in behaviour.destinations)
+				if (_currentDestination?.id in navigationEvent.destinations)
 				{
-					behaviour.ifCurrentDestinationIsInList?.invoke()
+					navigationEvent.onEvent()
 				}
-				else behaviour.ifCurrentDestinationIsNotInList?.invoke()
+				else navigationEvent.onOtherEvent?.invoke()
 			}
-			is ActionBehaviour      ->
+
+			is ActionEvent      ->
 			{
-				if (behaviour.actions.any { it.first == _previousDestination?.id && it.second == _currentDestination?.id })
+				if (navigationEvent.actions.any { it.first == _previousDestination?.id && it.second == _currentDestination?.id })
 				{
-					behaviour.ifCurrentActionIsInList?.invoke()
+					navigationEvent.onEvent()
 				}
-				else behaviour.ifCurrentActionIsNotInList?.invoke()
+				else navigationEvent.onOtherEvent?.invoke()
 			}
 		}
 	}
 }
 
-sealed interface NavigationBehaviour
+sealed class NavigationEvent(
+	val onEvent: () -> Unit,
+	val onOtherEvent: (() -> Unit)? = null,
+)
 
-data class DestinationBehaviour(
+
+class DestinationEvent(
 	val destinations: Collection<Int>,
-	val ifCurrentDestinationIsInList: (() -> Unit)? = null,
-	val ifCurrentDestinationIsNotInList: (() -> Unit)? = null,
-) : NavigationBehaviour
+	onEvent: () -> Unit,
+	onOtherEvent: (() -> Unit)? = null,
+) : NavigationEvent(onEvent, onOtherEvent)
 
-data class ActionBehaviour(
+class ActionEvent(
 	val actions: Collection<Pair<Int, Int>>,
-	val ifCurrentActionIsInList: (() -> Unit)? = null,
-	val ifCurrentActionIsNotInList: (() -> Unit)? = null,
-) : NavigationBehaviour
+	onEvent: () -> Unit,
+	onOtherEvent: (() -> Unit)? = null,
+) : NavigationEvent(onEvent, onOtherEvent)
