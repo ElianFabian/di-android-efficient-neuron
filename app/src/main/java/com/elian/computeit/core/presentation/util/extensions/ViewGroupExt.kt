@@ -3,104 +3,34 @@ package com.elian.computeit.core.presentation.util.extensions
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.StringRes
+import androidx.core.view.descendants
 
-private fun findViewsWithTag(tag: String, root: ViewGroup): List<View>
+inline fun <reified T : View> ViewGroup.findViewsOfType(): List<T>
 {
-	val views = mutableListOf<View>()
-	val childCount = root.childCount
+	val views = mutableListOf<T>()
 
-	for (i in 0 until childCount)
+	for (child in descendants)
 	{
-		val child = root.getChildAt(i)
+		if (child !is T) continue
 
-		if (child.tag != tag) continue
-
-		when (child)
-		{
-			is ViewGroup -> views.addAll(findViewsWithTag(tag, child))
-			else         -> views.add(child)
-		}
+		views.add(child)
 	}
+
 	return views
 }
 
-fun ViewGroup.findViewsWithTag(tag: String) = findViewsWithTag(tag, this)
+inline fun <reified T : View> ViewGroup.findViewsWithTagOfType(@StringRes tag: Int) = findViewsWithTagOfType<T>(context.getString(tag))
 
-fun ViewGroup.findViewsWithTag(@StringRes tag: Int) = findViewsWithTag(context.getString(tag), this)
-
-// It's public because of inline limitations
-inline fun <reified T : View> findViewsOfTypeFromRoot(root: ViewGroup): List<T>
+inline fun <reified T : View> ViewGroup.findViewsWithTagOfType(tag: String): List<T>
 {
-	val views = mutableListOf<View>()
+	val views = mutableListOf<T>()
 
-	var currentParent: ViewGroup? = root
-	val viewGroupList = ArrayDeque<ViewGroup>()
-
-	var currentChildIndexFromCurrentParent = 0
-
-	while (currentParent != null)
+	for (child in descendants)
 	{
-		val child = currentParent.getChildAt(currentChildIndexFromCurrentParent)
+		if (child !is T || child.tag != tag) continue
 
-		if (child == null)
-		{
-			currentParent = viewGroupList.removeFirstOrNull()
-			currentChildIndexFromCurrentParent = 0
-			continue
-		}
-		if (child !is T && child !is ViewGroup)
-		{
-			currentChildIndexFromCurrentParent++
-			continue
-		}
-		if (child is ViewGroup) viewGroupList.add(child)
-
-		currentChildIndexFromCurrentParent++
+		views.add(child)
 	}
-	@Suppress("UNCHECKED_CAST")
-	return views as List<T>
-}
 
-inline fun <reified T : View> ViewGroup.findViewsOfType() = findViewsOfTypeFromRoot<T>(this)
-
-inline fun <reified T : View> ViewGroup.findViewsWithTagOfType(tag: String) = findViewsWithTagOfType<T>(tag, this)
-
-inline fun <reified T : View> ViewGroup.findViewsWithTagOfType(@StringRes tag: Int) = findViewsWithTagOfType<T>(context.getString(tag), this)
-
-// It's public because of inline limitations
-inline fun <reified T : View> findViewsWithTagOfType(tag: String, root: ViewGroup): List<T>
-{
-	val views = mutableListOf<View>()
-
-	var currentParent: ViewGroup? = root
-	val parentList = ArrayDeque<ViewGroup>()
-
-	var currentChildIndexFromCurrentParent = 0
-
-	while (currentParent != null)
-	{
-		val child = currentParent.getChildAt(currentChildIndexFromCurrentParent)
-
-		if (child == null)
-		{
-			currentParent = parentList.removeFirstOrNull()
-			currentChildIndexFromCurrentParent = 0
-			continue
-		}
-		if ((child !is T || child.tag != tag) && child !is ViewGroup)
-		{
-			currentChildIndexFromCurrentParent++
-			continue
-		}
-
-		when (child)
-		{
-			is ViewGroup -> parentList.add(child)
-			else         -> views.add(child)
-		}
-
-		currentChildIndexFromCurrentParent++
-	}
-	@Suppress("UNCHECKED_CAST")
-	return views as List<T>
+	return views
 }
