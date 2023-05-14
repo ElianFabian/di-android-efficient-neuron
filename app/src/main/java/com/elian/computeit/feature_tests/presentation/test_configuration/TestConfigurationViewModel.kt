@@ -52,24 +52,27 @@ class TestConfigurationViewModel @Inject constructor(
 					endOfRange = startOfRange,
 				)
 			}
+
 			is EnterTime            -> _state.update { it.copy(time = action.value, timeError = null) }
-			is StartTest            -> viewModelScope.launch()
+			is StartTest            ->
 			{
-				validateConfiguration(
+				val result = validateConfiguration(
 					ValidateConfigurationParams(
 						operation = _state.value.selectedOperation,
 						startOfRange = _state.value.startOfRange,
 						endOfRange = _state.value.endOfRange,
 						time = _state.value.time,
 					)
-				).also { result ->
+				)
 
-					_state.value = _state.value.copy(
-						startOfRangeError = result.startOfRangeError,
-						endOfRangeError = result.endOfRangeError,
-						timeError = result.timeError,
-					)
+				_state.value = _state.value.copy(
+					startOfRangeError = result.startOfRangeError,
+					endOfRangeError = result.endOfRangeError,
+					timeError = result.timeError,
+				)
 
+				viewModelScope.launch()
+				{
 					when (val resource = result.resource)
 					{
 						is Resource.Error   -> _eventFlow.send(OnShowErrorMessage(resource.uiText ?: UiText.unknownError()))
@@ -85,6 +88,7 @@ class TestConfigurationViewModel @Inject constructor(
 								)
 							)
 						}
+
 						else                -> Unit
 					}
 				}

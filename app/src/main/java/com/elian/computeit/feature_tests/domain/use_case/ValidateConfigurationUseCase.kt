@@ -18,7 +18,7 @@ class ValidateConfigurationUseCase @Inject constructor()
 	private val _minDivisiblePairCount = 10
 
 
-	suspend operator fun invoke(params: ValidateConfigurationParams): TestConfigurationResult
+	operator fun invoke(params: ValidateConfigurationParams): TestConfigurationResult
 	{
 		val startError = getFieldError(params.startOfRange)
 		val endError = getFieldError(params.endOfRange)
@@ -45,25 +45,24 @@ class ValidateConfigurationUseCase @Inject constructor()
 				)
 			)
 		}
-		if (params.operation == OperationType.Division) withContext(Dispatchers.Default)
+		if (params.operation == OperationType.Division)
 		{
-			if (params.startOfRange == 0) return@withContext TestConfigurationResult(resource = Resource.Error(R.string.error_division_by_zero_is_not_allowed))
+			if (params.startOfRange == 0) return TestConfigurationResult(resource = Resource.Error(R.string.error_division_by_zero_is_not_allowed))
 
-			getAllDivisiblePairsInRangeCount(
+			val divisiblePairsCount = getAllDivisiblePairsInRangeCount(
 				start = params.startOfRange,
 				end = params.endOfRange,
 				ignoreSelfDivision = true,
-			).also()
+			)
+
+			if (divisiblePairsCount < _minDivisiblePairCount)
 			{
-				if (it < _minDivisiblePairCount)
-				{
-					return@withContext TestConfigurationResult(
-						resource = Resource.Error(
-							messageResId = R.string.error_range_not_enough_divisible_pairs,
-							args = arrayOf(it, _minDivisiblePairCount)
-						)
+				return TestConfigurationResult(
+					resource = Resource.Error(
+						messageResId = R.string.error_range_not_enough_divisible_pairs,
+						args = arrayOf(divisiblePairsCount, _minDivisiblePairCount)
 					)
-				}
+				)
 			}
 		}
 
