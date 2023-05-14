@@ -90,7 +90,7 @@ class TestFragment : Fragment(R.layout.fragment_test)
 
 		operationView.symbol = args.operation.symbol
 
-		llKeyBoard.findViewsWithTagOfType<Button>(R.string.tag_numeric_button).forEach { button ->
+		llKeyBoard.findViewsOfTypeWithTag<Button>(R.string.tag_numeric_button).forEach { button ->
 
 			button.setOnClickListener()
 			{

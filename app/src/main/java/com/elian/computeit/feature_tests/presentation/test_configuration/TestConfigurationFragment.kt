@@ -38,7 +38,7 @@ class TestConfigurationFragment : Fragment(R.layout.fragment_test_configuration)
 
 	private fun initializeUi() = using(binding)
 	{
-		val operationRadioButtons = binding.rgOperationType.findViewsWithTagOfType<RadioButton>(R.string.tag_operation_type)
+		val operationRadioButtons = binding.rgOperationType.findViewsOfTypeWithTag<RadioButton>(R.string.tag_operation_type).toList()
 
 		operationRadioButtons.forEach { radioButton ->
 
