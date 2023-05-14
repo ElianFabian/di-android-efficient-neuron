@@ -1,6 +1,6 @@
 package com.elian.computeit.core.util.constants
 
-import com.elian.computeit.core.util.extensions.format
+import com.elian.computeit.core.util.extensions.formatWith
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -17,9 +17,9 @@ fun secondsToDhhmmss(seconds: Int): String
 	val hours = seconds / (60 * 60)
 	val minutes = seconds / (60)
 
-	val hh = (hours % 24).format("%02d")
-	val mm = (minutes % 60).format("%02d")
-	val ss = (seconds % 60).format("%02d")
+	val hh = (hours % 24).formatWith("%02d")
+	val mm = (minutes % 60).formatWith("%02d")
+	val ss = (seconds % 60).formatWith("%02d")
 
 	return "$days:$hh:$mm:$ss"
 }

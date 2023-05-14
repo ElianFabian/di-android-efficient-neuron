@@ -12,7 +12,7 @@ import com.elian.computeit.core.presentation.util.extensions.*
 import com.elian.computeit.core.presentation.util.viewBinding
 import com.elian.computeit.core.util.constants.arguments
 import com.elian.computeit.core.util.constants.toBundle
-import com.elian.computeit.core.util.extensions.format
+import com.elian.computeit.core.util.extensions.formatWith
 import com.elian.computeit.core.util.using
 import com.elian.computeit.databinding.FragmentTestBinding
 import com.elian.computeit.feature_tests.domain.args.TestArgs
@@ -80,7 +80,7 @@ class TestFragment : Fragment(R.layout.fragment_test)
 
 				"∞"
 			}
-			else it.toFloat().format("%.1f")
+			else it.toFloat().formatWith("%.1f")
 
 			val initialProgress = if (it == 0) 1 else it * 1_000
 
@@ -146,7 +146,7 @@ class TestFragment : Fragment(R.layout.fragment_test)
 					val seconds = it.millisUntilFinished / 1000F
 
 					binding.cpiRemainingSeconds.progress = it.millisUntilFinished.toInt()
-					binding.mtvRemainingSeconds.text = seconds.format("%.1f")
+					binding.mtvRemainingSeconds.text = seconds.formatWith("%.1f")
 				}
 				is OnTimerTickInInfiniteMode ->
 				{
