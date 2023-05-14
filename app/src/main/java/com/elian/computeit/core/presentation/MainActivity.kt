@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main)
 					R.id.testFragment to R.id.testDetailsFragment,
 				),
 				ifCurrentActionIsInList = { _isNavigateUpEnabled = false },
-				ifCurrentActionIsNotInList = { _isNavigateUpEnabled = true }
+				ifCurrentActionIsNotInList = { _isNavigateUpEnabled = true },
 			),
 		),
 		onBackgroundedBehaviours = setOf(
