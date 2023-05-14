@@ -1,12 +1,12 @@
 package com.elian.computeit.core.util.extensions
 
 import android.content.Context
+import android.graphics.Bitmap
 import android.graphics.ImageDecoder
 import android.net.Uri
 import android.os.Build
 import android.provider.MediaStore
 import java.io.ByteArrayOutputStream
-
 
 fun Uri.toBytes(context: Context?): ByteArray
 {
@@ -24,7 +24,7 @@ fun Uri.toBytes(context: Context?): ByteArray
 	return byteBuffer.toByteArray()
 }
 
-fun Uri.toBitmap(context: Context?) = when
+fun Uri.toBitmap(context: Context?): Bitmap = when
 {
 	Build.VERSION.SDK_INT < 28 -> MediaStore.Images.Media.getBitmap(context!!.contentResolver, this)
 	else                       ->
