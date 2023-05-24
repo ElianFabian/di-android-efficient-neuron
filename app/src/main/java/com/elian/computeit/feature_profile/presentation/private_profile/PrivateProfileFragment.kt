@@ -88,4 +88,11 @@ class PrivateProfileFragment : Fragment(R.layout.fragment_private_profile)
 			}
 		}
 	}
+
+	override fun onDestroy()
+	{
+		super.onDestroy()
+
+		requireActivity().viewModelStore.clear()
+	}
 }
