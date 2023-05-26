@@ -46,6 +46,18 @@ class ChooseOrDeleteProfilePictureBottomDialog : BottomSheetDialogFragment(R.lay
 	}
 
 
+	inline fun setOnEventListener(
+		fragment: Fragment,
+		crossinline onEvent: (event: Event) -> Unit,
+	)
+	{
+		fragment.parentFragmentManager.setFragmentResultListener(this::class.qualifiedName!!, fragment.viewLifecycleOwner) { _, bundle ->
+
+			onEvent(bundle.getParcelable("args")!!)
+		}
+	}
+
+
 	private fun initializeUi() = using(binding)
 	{
 		btnSelectAPicture.setOnClickListener { requestPermission.launch(Manifest.permission.READ_EXTERNAL_STORAGE) }
@@ -56,20 +68,9 @@ class ChooseOrDeleteProfilePictureBottomDialog : BottomSheetDialogFragment(R.lay
 		}
 	}
 
-	inline fun <reified T : Event> setOnEventListener(
-		fragment: Fragment,
-		crossinline onEvent: (event: T) -> Unit,
-	)
-	{
-		fragment.parentFragmentManager.setFragmentResultListener(T::class.qualifiedName!!, fragment.viewLifecycleOwner) { _, bundle ->
-
-			onEvent(bundle.getParcelable("args")!!)
-		}
-	}
-
 	private fun onEvent(event: Event)
 	{
-		setFragmentResult(event::class.qualifiedName!!, bundleOf("args" to event))
+		setFragmentResult(this::class.qualifiedName!!, bundleOf("args" to event))
 	}
 
 

@@ -50,16 +50,23 @@ class EditProfileFragment : Fragment(R.layout.fragment_edit_profile)
 
 		val dialog = ChooseOrDeleteProfilePictureBottomDialog()
 
-		dialog.setOnEventListener<ChooseOrDeleteProfilePictureBottomDialog.Event.OnDeleteImage>(this@EditProfileFragment) {
-			viewModel.onAction(EnterProfilePic(emptyList()))
-		}
-		dialog.setOnEventListener(this@EditProfileFragment) { event: ChooseOrDeleteProfilePictureBottomDialog.Event.OnPictureSelected ->
-			val compressedImageBytes = event.pictureUri.toBitmap(context)
-				.reduceSize(102400)
-				.cropToSquare()
-				.toBytes()
+		dialog.setOnEventListener(this@EditProfileFragment) { event ->
+			when (event)
+			{
+				is ChooseOrDeleteProfilePictureBottomDialog.Event.OnDeleteImage     ->
+				{
+					viewModel.onAction(EnterProfilePic(emptyList()))
+				}
+				is ChooseOrDeleteProfilePictureBottomDialog.Event.OnPictureSelected ->
+				{
+					val compressedImageBytes = event.pictureUri.toBitmap(context)
+						.reduceSize(102400)
+						.cropToSquare()
+						.toBytes()
 
-			viewModel.onAction(EnterProfilePic(compressedImageBytes.toList()))
+					viewModel.onAction(EnterProfilePic(compressedImageBytes.toList()))
+				}
+			}
 		}
 
 		sivProfilePic.setOnClickListener()
