@@ -6,6 +6,10 @@ import androidx.core.view.isGone
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.setFragmentResultListener
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.flowWithLifecycle
+import androidx.lifecycle.lifecycleScope
 import com.elian.computeit.R
 import com.elian.computeit.core.presentation.util.extensions.*
 import com.elian.computeit.core.presentation.util.getUsernameErrorMessage
@@ -17,6 +21,7 @@ import com.elian.computeit.databinding.FragmentEditProfileBinding
 import com.elian.computeit.feature_profile.presentation.ProfileViewModel
 import com.elian.computeit.feature_profile.presentation.edit_profile.EditProfileAction.*
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.filterNotNull
 
 @AndroidEntryPoint
@@ -24,7 +29,6 @@ class EditProfileFragment : Fragment(R.layout.fragment_edit_profile)
 {
 	private val viewModel by activityViewModels<ProfileViewModel>()
 	private val binding by viewBinding(FragmentEditProfileBinding::bind)
-
 
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?)
 	{
@@ -44,24 +48,23 @@ class EditProfileFragment : Fragment(R.layout.fragment_edit_profile)
 
 		viewModel.sharedState.value?.profilePicBytes?.also { if (it.isNotEmpty()) viewModel.onAction(EnterProfilePic(it)) }
 
+		val dialog = ChooseOrDeleteProfilePictureBottomDialog()
+
+		dialog.setOnEventListener<ChooseOrDeleteProfilePictureBottomDialog.Event.OnDeleteImage>(this@EditProfileFragment) {
+			viewModel.onAction(EnterProfilePic(emptyList()))
+		}
+		dialog.setOnEventListener(this@EditProfileFragment) { event: ChooseOrDeleteProfilePictureBottomDialog.Event.OnPictureSelected ->
+			val compressedImageBytes = event.pictureUri.toBitmap(context)
+				.reduceSize(102400)
+				.cropToSquare()
+				.toBytes()
+
+			viewModel.onAction(EnterProfilePic(compressedImageBytes.toList()))
+		}
+
 		sivProfilePic.setOnClickListener()
 		{
-			ChooseOrDeleteProfilePictureBottomDialog(
-				onPictureSelected = {
-					val compressedImageBytes = it.toBitmap(context)
-						.reduceSize(102400)
-						.cropToSquare()
-						.toBytes()
-
-					viewModel.onAction(EnterProfilePic(compressedImageBytes.toList()))
-
-					binding.sivProfilePic.setImageURI(it)
-				},
-				onDeleteImage = {
-					sivProfilePic.setImageBytes(byteArrayOf())
-					viewModel.onAction(EnterProfilePic(emptyList()))
-				},
-			).show(requireActivity().supportFragmentManager, "")
+			dialog.show(parentFragmentManager)
 		}
 
 		btnSave.setOnClickListener { viewModel.onAction(Save) }
@@ -80,10 +83,13 @@ class EditProfileFragment : Fragment(R.layout.fragment_edit_profile)
 		}
 		collectLatestFlowWhenStarted(editProfileState)
 		{
-			binding.tilUsername.error2 = getUsernameErrorMessage(context, it.usernameError)
-
-			binding.lpiIsLoading.isGone = !it.isLoading
-			binding.btnSave.isEnabled = !it.isLoading
+			binding.apply()
+			{
+				tilUsername.error2 = getUsernameErrorMessage(context, it.usernameError)
+				lpiIsLoading.isGone = !it.isLoading
+				btnSave.isEnabled = !it.isLoading
+				sivProfilePic.setImageBytes(it.profilePicBytes.toByteArray())
+			}
 		}
 		collectFlowWhenStarted(editProfileEventFlow)
 		{
