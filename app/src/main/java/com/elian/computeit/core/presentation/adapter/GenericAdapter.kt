@@ -15,25 +15,21 @@ class GenericAdapter<ItemT : Any, VB : ViewBinding>(
 	areContentsTheSame: (oldItem: ItemT, newItem: ItemT) -> Boolean = { oldItem, newItem -> oldItem == newItem },
 	private inline val onBind: VB.(item: ItemT, position: Int) -> Unit,
 ) : ListAdapter<ItemT, GenericAdapter<ItemT, VB>.ViewHolder>(
-	object : DiffUtil.ItemCallback<ItemT>()
-	{
+	object : DiffUtil.ItemCallback<ItemT>() {
 		override fun areItemsTheSame(oldItem: ItemT, newItem: ItemT) = areItemsTheSame(oldItem, newItem)
 
 		@SuppressLint("DiffUtilEquals")
 		override fun areContentsTheSame(oldItem: ItemT, newItem: ItemT) = areContentsTheSame(oldItem, newItem)
 	}
-)
-{
-	init
-	{
+) {
+	init {
 		submitList(items)
 	}
 
 	inner class ViewHolder(val binding: VB) : RecyclerView.ViewHolder(binding.root)
 
 
-	override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder
-	{
+	override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 		val inflater = LayoutInflater.from(parent.context)
 
 		val binding = inflate(inflater, parent, false)
@@ -41,8 +37,7 @@ class GenericAdapter<ItemT : Any, VB : ViewBinding>(
 		return ViewHolder(binding)
 	}
 
-	override fun onBindViewHolder(holder: ViewHolder, position: Int)
-	{
+	override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 		val item = getItem(position)
 
 		onBind(holder.binding, item, position)

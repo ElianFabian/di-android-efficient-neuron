@@ -26,10 +26,9 @@ class ProfileRepositoryImpl @Inject constructor(
 	private val storage: FirebaseStorage,
 	private val utilRepository: UtilRepository,
 	private val appData: LocalAppDataRepository,
-) : ProfileRepository
-{
-	override suspend fun getProfileInfo(userUuid: String) = withContext(Dispatchers.IO)
-	{
+) : ProfileRepository {
+
+	override suspend fun getProfileInfo(userUuid: String) = withContext(Dispatchers.IO) {
 		val user = firestore.document("$COLLECTION_USERS/$userUuid")
 			.get()
 			.await()
@@ -37,16 +36,14 @@ class ProfileRepositoryImpl @Inject constructor(
 
 		val maxDownloadSizeBytes = 5L * 1024 * 1024
 
-		val profilePicBytes = user.profilePicUuid?.let()
-		{
+		val profilePicBytes = user.profilePicUuid?.let {
 			storage.reference
 				.child("$FOLDER_USERS_PROFILE_PICS/${user.profilePicUuid}")
 				.getBytes(maxDownloadSizeBytes)
 				.await()
 		}
 
-		return@withContext user.run()
-		{
+		return@withContext user.run {
 			ProfileInfo(
 				username = name,
 				biography = biography,
@@ -56,8 +53,7 @@ class ProfileRepositoryImpl @Inject constructor(
 		}
 	}
 
-	override suspend fun updateProfileInfo(params: UpdateProfileParams): SimpleResource = withContext(Dispatchers.IO)
-	{
+	override suspend fun updateProfileInfo(params: UpdateProfileParams): SimpleResource = withContext(Dispatchers.IO) {
 		val currentUser = utilRepository.getUserByUuid(params.userUuid)!!
 
 		val isUsernameTaken = utilRepository.isUsernameTaken(
@@ -68,24 +64,20 @@ class ProfileRepositoryImpl @Inject constructor(
 		if (isUsernameTaken) return@withContext Resource.Error(R.string.error_username_is_already_in_use)
 
 		val newOrCurrentProfilePicUuid = currentUser.profilePicUuid ?: UUID.randomUUID().toString()
-		try
-		{
+		try {
 			val shouldUpdateOrCreateProfilePic = params.profilePicBytes.isNotEmpty()
-			if (shouldUpdateOrCreateProfilePic)
-			{
+			if (shouldUpdateOrCreateProfilePic) {
 				storage.reference.child("$FOLDER_USERS_PROFILE_PICS/$newOrCurrentProfilePicUuid")
 					.putBytes(params.profilePicBytes.toByteArray())
 					.await()
 			}
-			else if (currentUser.profilePicUuid != null)
-			{
+			else if (currentUser.profilePicUuid != null) {
 				storage.reference.child("$FOLDER_USERS_PROFILE_PICS/${currentUser.profilePicUuid}")
 					.delete()
 					.await()
 			}
 		}
-		catch (e: Exception)
-		{
+		catch (e: Exception) {
 			return@withContext Resource.Error(e.message)
 		}
 
@@ -99,8 +91,7 @@ class ProfileRepositoryImpl @Inject constructor(
 		return@withContext Resource.Success()
 	}
 
-	override suspend fun logout()
-	{
+	override suspend fun logout() {
 		appData.saveUserUuid("")
 	}
 }

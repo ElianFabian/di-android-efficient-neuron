@@ -7,8 +7,7 @@ import com.google.android.material.textfield.TextInputLayout
  */
 var TextInputLayout.error2: CharSequence?
 	get() = this.error
-	set(value)
-	{
+	set(value) {
 		this.error = value
 		if (value == null) this.isErrorEnabled = false
 	}

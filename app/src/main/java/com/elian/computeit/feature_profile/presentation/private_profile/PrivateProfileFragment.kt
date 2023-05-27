@@ -20,14 +20,13 @@ import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class PrivateProfileFragment : Fragment(R.layout.fragment_private_profile)
-{
+class PrivateProfileFragment : Fragment(R.layout.fragment_private_profile) {
+
 	private val viewModel by activityViewModels<ProfileViewModel>()
 	private val binding by viewBinding(FragmentPrivateProfileBinding::bind)
 
 
-	override fun onViewCreated(view: View, savedInstanceState: Bundle?)
-	{
+	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 		super.onViewCreated(view, savedInstanceState)
 
 		subscribeToEvents()
@@ -35,19 +34,15 @@ class PrivateProfileFragment : Fragment(R.layout.fragment_private_profile)
 	}
 
 
-	private fun initializeUi() = using(binding)
-	{
-		btnEdit.setOnClickListener()
-		{
+	private fun initializeUi() = using(binding) {
+		btnEdit.setOnClickListener {
 			navigate(R.id.action_privateProfileFragment_to_editProfileFragment)
 		}
-		btnLogout.setOnClickListener()
-		{
+		btnLogout.setOnClickListener {
 			showAlertDialog(
 				messageResId = R.string.alert_dialog_are_you_sure_you_want_to_log_out,
 				onPositiveClick = {
-					lifecycleScope.launch()
-					{
+					lifecycleScope.launch {
 						viewModel.logout()
 						navigateTo<LoginActivity>()
 					}
@@ -56,27 +51,20 @@ class PrivateProfileFragment : Fragment(R.layout.fragment_private_profile)
 		}
 	}
 
-	private fun subscribeToEvents() = using(viewModel)
-	{
-		collectLatestFlowWhenStarted(sharedState.filterNotNull())
-		{
-			binding.apply()
-			{
+	private fun subscribeToEvents() = using(viewModel) {
+		collectLatestFlowWhenStarted(sharedState.filterNotNull()) {
+			binding.apply {
 				tvUsername.text2 = "@${it.username}"
 				tvBiography.text2 = it.biography
 
-				if (it.profilePicBytes.isNotEmpty())
-				{
+				if (it.profilePicBytes.isNotEmpty()) {
 					sivProfilePic.setImageBytes(it.profilePicBytes.toByteArray())
 				}
 			}
 		}
-		collectLatestFlowWhenStarted(privateProfileState.filterNotNull())
-		{
-			binding.apply()
-			{
+		collectLatestFlowWhenStarted(privateProfileState.filterNotNull()) {
+			binding.apply {
 				it.createdAt?.also { createdAt ->
-
 					tvCreatedAt.text2 = getString(R.string.feature_profile_account_created_at_PH).format(createdAt)
 				}
 
@@ -89,8 +77,7 @@ class PrivateProfileFragment : Fragment(R.layout.fragment_private_profile)
 		}
 	}
 
-	override fun onDestroy()
-	{
+	override fun onDestroy() {
 		super.onDestroy()
 
 		requireActivity().viewModelStore.clear()

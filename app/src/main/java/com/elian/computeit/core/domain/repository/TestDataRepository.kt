@@ -2,8 +2,7 @@ package com.elian.computeit.core.domain.repository
 
 import com.elian.computeit.core.data.model.TestData
 
-interface TestDataRepository
-{
+interface TestDataRepository {
 	val isDataCached: Boolean
 
 	suspend fun addTestData(userUuid: String, testData: TestData)

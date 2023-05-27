@@ -13,18 +13,16 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(
 	private val useCases: HomeUseCases,
-) : ViewModel()
-{
+) : ViewModel() {
+
 	private val _state = MutableStateFlow(HomeState())
 	val state = _state.asStateFlow()
 
 
-	fun fetchInfo()
-	{
-		viewModelScope.launch()
-		{
-			if (!useCases.getTestListInfo.isDataCached)
-			{
+	fun fetchInfo() {
+		viewModelScope.launch {
+
+			if (!useCases.getTestListInfo.isDataCached) {
 				_state.update { it.copy(isLoading = true) }
 			}
 

@@ -13,20 +13,17 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class InitialActivity : AppCompatActivity()
-{
+class InitialActivity : AppCompatActivity() {
+
 	@Inject
 	lateinit var appData: LocalAppDataRepository
 
 
-	override fun onCreate(savedInstanceState: Bundle?)
-	{
+	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 
-		lifecycleScope.launch()
-		{
-			if (appData.isUserLoggedIn())
-			{
+		lifecycleScope.launch {
+			if (appData.isUserLoggedIn()) {
 				navigateTo<MainActivity>()
 			}
 			else navigateTo<LoginActivity>()

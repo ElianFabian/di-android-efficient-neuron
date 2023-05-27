@@ -12,15 +12,13 @@ import javax.inject.Inject
 
 class UtilRepositoryImpl @Inject constructor(
 	private val firestore: FirebaseFirestore,
-) : UtilRepository
-{
-	override suspend fun getUserByUuid(uuid: String): User? = withContext(Dispatchers.IO)
-	{
+) : UtilRepository {
+
+	override suspend fun getUserByUuid(uuid: String): User? = withContext(Dispatchers.IO) {
 		firestore.document("$COLLECTION_USERS/$uuid").get().await().toObject()
 	}
 
-	override suspend fun getUserByName(name: String): User? = withContext(Dispatchers.IO)
-	{
+	override suspend fun getUserByName(name: String): User? = withContext(Dispatchers.IO) {
 		val users = firestore.collection(COLLECTION_USERS)
 			.whereEqualTo(User::name.name, name)
 			.get()
@@ -29,18 +27,15 @@ class UtilRepositoryImpl @Inject constructor(
 		if (users.isEmpty) null else users.first().toObject()
 	}
 
-	override suspend fun isUsernameTaken(currentName: String, newName: String): Boolean = withContext(Dispatchers.IO)
-	{
-		getUserByName(newName).let()
-		{
-			(it != null)
-				&& !currentName.equals(it.name, ignoreCase = true)
-				&& newName.equals(it.name, ignoreCase = true)
-		}
+	override suspend fun isUsernameTaken(currentName: String, newName: String): Boolean = withContext(Dispatchers.IO) {
+		val user = getUserByName(newName)
+
+		return@withContext (user != null)
+			&& !currentName.equals(user.name, ignoreCase = true)
+			&& newName.equals(user.name, ignoreCase = true)
 	}
 
-	override suspend fun isUsernameTaken(name: String): Boolean = withContext(Dispatchers.IO)
-	{
+	override suspend fun isUsernameTaken(name: String): Boolean = withContext(Dispatchers.IO) {
 		getUserByName(name) != null
 	}
 }

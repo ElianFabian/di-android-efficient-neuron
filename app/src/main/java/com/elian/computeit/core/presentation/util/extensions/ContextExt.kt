@@ -11,8 +11,7 @@ import androidx.core.content.ContextCompat
 fun Context?.getColorCompat(@ColorRes id: Int) = ContextCompat.getColor(this!!, id)
 
 @ColorInt
-fun Context?.getThemeColor(@AttrRes id: Int): Int
-{
+fun Context?.getThemeColor(@AttrRes id: Int): Int {
 	val typedValue = TypedValue()
 
 	val typedArray = this!!.obtainStyledAttributes(typedValue.data, intArrayOf(id))

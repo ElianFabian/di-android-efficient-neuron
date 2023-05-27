@@ -19,8 +19,7 @@ fun OperationData.toOperationInfo() = OperationInfo(
 	insertedResult = insertedResult,
 )
 
-fun TestData.toTestInfo(): TestInfo
-{
+fun TestData.toTestInfo(): TestInfo {
 	val listOfOpmPerSecond = this.getListOfValuePerSecond(
 		countCondition = { !it.isError },
 		getValue = { currentSecond, currentOperationCount ->
@@ -63,8 +62,7 @@ fun TestData.toTestInfo(): TestInfo
 	)
 }
 
-fun List<TestData>.toTestListInfo(): TestListInfo
-{
+fun List<TestData>.toTestListInfo(): TestListInfo {
 	val totalTimeInSeconds = sumOf { it.timeInSeconds }
 	val operationsCompletedCount = sumOf { it.listOfOperationData.size }
 	val correctOperationsCompletedCount = sumOf { it.listOfOperationData.count { data -> !data.isError } }
@@ -119,10 +117,8 @@ fun List<TestData>.toTestListInfo(): TestListInfo
 	)
 }
 
-fun List<TestData>.toTestCountPerSpeedRange(rangeLength: Int): List<Int>
-{
-	val listOfOpmPerTest = map()
-	{
+fun List<TestData>.toTestCountPerSpeedRange(rangeLength: Int): List<Int> {
+	val listOfOpmPerTest = map {
 		val correctOperations = it.listOfOperationData.count { operation -> !operation.isError }
 		val testOpm = (correctOperations / it.timeInSeconds.toFloat() * 60).ifNaNReturnZero().toInt()
 
@@ -139,13 +135,11 @@ fun List<TestData>.toTestCountPerSpeedRange(rangeLength: Int): List<Int>
 private fun getTestCountPerSpeedRange(
 	listOfOpmPerTest: List<Int>,
 	speedRangeLength: Int,
-): List<Int>
-{
+): List<Int> {
 	val minOpm = listOfOpmPerTest.minOrNull() ?: 0
 	val maxOpm = listOfOpmPerTest.maxOrNull() ?: 0
 
-	val rangeCount = if (maxOpm != 0)
-	{
+	val rangeCount = if (maxOpm != 0) {
 		((maxOpm - minOpm) / speedRangeLength.toFloat() + 1).ifNaNReturnZero().toInt()
 	}
 	else 0
@@ -162,7 +156,6 @@ private fun getTestCountPerSpeedRange(
 	return listOfTestsPerSpeedRange.toList()
 }
 
-private fun getBarRangeLength(barCount: Int, maxAndMinOpmDifference: Int): Int
-{
+private fun getBarRangeLength(barCount: Int, maxAndMinOpmDifference: Int): Int {
 	return ceil(maxAndMinOpmDifference / barCount.toFloat()).toInt() + 1
 }

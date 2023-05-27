@@ -20,8 +20,8 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-interface RepositoryModule
-{
+interface RepositoryModule {
+
 	@Binds
 	@Singleton
 	fun bindUtilRepository(impl: UtilRepositoryImpl): UtilRepository
@@ -37,8 +37,7 @@ interface RepositoryModule
 
 @Module
 @InstallIn(ActivityRetainedComponent::class)
-interface RepositoryModuleActivityRetainedScoped
-{
+interface RepositoryModuleActivityRetainedScoped {
 	@Binds
 	@ActivityRetainedScoped
 	fun bindAuthRepository(impl: AuthRepositoryImpl): AuthRepository

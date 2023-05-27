@@ -35,8 +35,8 @@ class TestViewModel @Inject constructor(
 	savedState: SavedStateHandle,
 	private val countDownTimer: CountDownTimer,
 	private val useCases: TestUseCases,
-) : ViewModel()
-{
+) : ViewModel() {
+
 	private val _args = savedState.arguments<TestArgs>()!!
 
 	private val _state = MutableStateFlow(
@@ -65,41 +65,36 @@ class TestViewModel @Inject constructor(
 	private val _insertedResultSign get() = sign(_expectedResult.toFloat()).toInt()
 
 
-	init
-	{
+	init {
 		initialize()
 	}
 
 
-	fun onAction(action: TestAction)
-	{
-		when (action)
-		{
-			is EnterNumber     ->
-			{
+	fun onAction(action: TestAction) {
+		when (action) {
+			is EnterNumber     -> {
 				_state.update { it.copy(insertedResult = it.insertedResult.append(action.value).clampLength(maxLength = 8)) }
 
 				// We automatically add the result if it is correct
 				val isInsertedResultCorrect = _state.value.insertedResult * _insertedResultSign == _expectedResult
-				if (isInsertedResultCorrect)
-				{
+				if (isInsertedResultCorrect) {
 					addResult()
 					nextOperation()
 				}
 			}
 			is RemoveLastDigit -> _state.update { it.copy(insertedResult = _state.value.insertedResult.dropLast()) }
 			is ClearInput      -> _state.update { it.copy(insertedResult = 0) }
-			is NextOperation   ->
-			{
+			is NextOperation   -> {
 				addResult()
 				nextOperation()
 			}
-			is ForceFinish     -> viewModelScope.launch { finishTest(saveData = false) }
+			is ForceFinish     -> viewModelScope.launch {
+				finishTest(saveData = false)
+			}
 		}
 	}
 
-	fun startTimer()
-	{
+	fun startTimer() {
 		_state.value = _state.value.copy(
 			pairOfNumbers = useCases.getRandomNumberPairFromOperation(
 				operation = _args.operation,
@@ -111,8 +106,7 @@ class TestViewModel @Inject constructor(
 	}
 
 
-	private fun initialize()
-	{
+	private fun initialize() {
 		val countDownInterval = 1L
 
 		countDownTimer.initialize(
@@ -121,18 +115,13 @@ class TestViewModel @Inject constructor(
 			coroutineScope = viewModelScope,
 		)
 
-		viewModelScope.launch()
-		{
-			countDownTimer.timerEventFlow.collect()
-			{
-				when (it)
-				{
-					is TimerEvent.OnTick   ->
-					{
+		viewModelScope.launch {
+			countDownTimer.timerEventFlow.collect {
+				when (it) {
+					is TimerEvent.OnTick   -> {
 						_millisSinceStart += countDownInterval
 
-						if (!_isInfiniteMode)
-						{
+						if (!_isInfiniteMode) {
 							_eventFlow.send(
 								TestEvent.OnTimerTickInNormalMode(
 									millisSinceStart = it.millisSinceStart,
@@ -140,11 +129,13 @@ class TestViewModel @Inject constructor(
 								)
 							)
 						}
-						else _eventFlow.send(
-							TestEvent.OnTimerTickInInfiniteMode(
-								millisSinceStart = _millisSinceStart,
+						else {
+							_eventFlow.send(
+								TestEvent.OnTimerTickInInfiniteMode(
+									millisSinceStart = _millisSinceStart,
+								)
 							)
-						)
+						}
 					}
 					is TimerEvent.OnFinish -> finishTest()
 					else                   -> Unit
@@ -153,8 +144,7 @@ class TestViewModel @Inject constructor(
 		}
 	}
 
-	private fun addResult()
-	{
+	private fun addResult() {
 		val data = OperationData(
 			operationName = _args.operation.name,
 			pairOfNumbers = _state.value.pairOfNumbers!!,
@@ -165,8 +155,7 @@ class TestViewModel @Inject constructor(
 		_listOfOperationData.add(data)
 	}
 
-	private fun nextOperation()
-	{
+	private fun nextOperation() {
 		_state.value = _state.value.copy(
 			pairOfNumbers = useCases.getRandomNumberPairFromOperation(
 				operation = _args.operation,
@@ -177,8 +166,7 @@ class TestViewModel @Inject constructor(
 		)
 	}
 
-	private suspend fun finishTest(saveData: Boolean = true)
-	{
+	private suspend fun finishTest(saveData: Boolean = true) {
 		_eventFlow.send(OnTimerFinish)
 
 		val totalTime = if (_isInfiniteMode) _millisSinceStart else _args.totalTimeInSeconds * 1_000L
@@ -199,8 +187,7 @@ class TestViewModel @Inject constructor(
 		)
 
 		// This is to avoid the cancellation of the viewModelScope
-		MainScope().launch(Dispatchers.IO)
-		{
+		MainScope().launch(Dispatchers.IO) {
 			if (saveData) useCases.addTestData(
 				userUuid = useCases.getOwnUserUuid(),
 				testData = testData,

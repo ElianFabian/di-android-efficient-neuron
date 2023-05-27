@@ -24,8 +24,8 @@ import javax.inject.Inject
 @HiltViewModel
 class TestConfigurationViewModel @Inject constructor(
 	private val validateConfiguration: ValidateConfigurationUseCase,
-) : ViewModel()
-{
+) : ViewModel() {
+
 	private val _state = MutableStateFlow(TestConfigurationState())
 	val state = _state.asStateFlow()
 
@@ -33,15 +33,12 @@ class TestConfigurationViewModel @Inject constructor(
 	val eventFlow = _eventFlow.receiveAsFlow()
 
 
-	fun onAction(action: TestConfigurationAction)
-	{
-		when (action)
-		{
+	fun onAction(action: TestConfigurationAction) {
+		when (action) {
 			is SelectOperationType  -> _state.update { it.copy(selectedOperation = OperationType.fromSymbol(action.symbol)) }
 			is EnterStartOfRange    -> _state.update { it.copy(startOfRange = action.value, startOfRangeError = null) }
 			is EnterEndOfRange      -> _state.update { it.copy(endOfRange = action.value, endOfRangeError = null) }
-			is SwapToFixRangeBounds ->
-			{
+			is SwapToFixRangeBounds -> {
 				val startOfRange = _state.value.startOfRange ?: 0
 				val endOfRange = _state.value.endOfRange ?: 0
 
@@ -54,8 +51,7 @@ class TestConfigurationViewModel @Inject constructor(
 			}
 
 			is EnterTime            -> _state.update { it.copy(time = action.value, timeError = null) }
-			is StartTest            ->
-			{
+			is StartTest            -> {
 				val result = validateConfiguration(
 					ValidateConfigurationParams(
 						operation = _state.value.selectedOperation,
@@ -71,13 +67,10 @@ class TestConfigurationViewModel @Inject constructor(
 					timeError = result.timeError,
 				)
 
-				viewModelScope.launch()
-				{
-					when (val resource = result.resource)
-					{
+				viewModelScope.launch {
+					when (val resource = result.resource) {
 						is Resource.Error   -> _eventFlow.send(OnShowErrorMessage(resource.uiText ?: UiText.unknownError()))
-						is Resource.Success ->
-						{
+						is Resource.Success -> {
 							_eventFlow.send(
 								OnStartTest(
 									args = TestArgs(
@@ -88,7 +81,6 @@ class TestConfigurationViewModel @Inject constructor(
 								)
 							)
 						}
-
 						else                -> Unit
 					}
 				}

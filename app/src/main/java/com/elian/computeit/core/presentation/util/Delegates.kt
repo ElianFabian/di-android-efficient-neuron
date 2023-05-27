@@ -21,22 +21,19 @@ inline fun <T : ViewBinding> AppCompatActivity.viewBinding(crossinline factory: 
 
 /** Fragment binding delegate, may be used since onViewCreated up to onDestroyView (inclusive) */
 fun <T : ViewBinding> Fragment.viewBinding(factory: (View) -> T): ReadOnlyProperty<Fragment, T> =
-	object : ReadOnlyProperty<Fragment, T>, DefaultLifecycleObserver
-	{
+	object : ReadOnlyProperty<Fragment, T>, DefaultLifecycleObserver {
 		private var binding: T? = null
 
 		override fun getValue(thisRef: Fragment, property: KProperty<*>): T =
 			binding ?: factory(requireView()).also {
 				// if binding is accessed after Lifecycle is DESTROYED, create new instance, but don't cache it
-				if (viewLifecycleOwner.lifecycle.currentState.isAtLeast(Lifecycle.State.INITIALIZED))
-				{
+				if (viewLifecycleOwner.lifecycle.currentState.isAtLeast(Lifecycle.State.INITIALIZED)) {
 					viewLifecycleOwner.lifecycle.addObserver(this)
 					binding = it
 				}
 			}
 
-		override fun onDestroy(owner: LifecycleOwner)
-		{
+		override fun onDestroy(owner: LifecycleOwner) {
 			binding = null
 		}
 	}

@@ -20,14 +20,13 @@ import com.elian.computeit.feature_auth.presentation.register.RegisterActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class LoginActivity : AppCompatActivity()
-{
+class LoginActivity : AppCompatActivity() {
+
 	private val viewModel by viewModels<LoginViewModel>()
 	private val binding by viewBinding(ActivityLoginBinding::inflate)
 
 
-	override fun onCreate(savedInstanceState: Bundle?)
-	{
+	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 
 		setContentView(binding.root)
@@ -37,8 +36,7 @@ class LoginActivity : AppCompatActivity()
 	}
 
 
-	private fun initializeUi() = using(binding)
-	{
+	private fun initializeUi() = using(binding) {
 		tietUsername.allowMultilineAndDisableEnterNewLine()
 
 		tietUsername.addTextChangedListener { viewModel.onAction(EnterUsername("$it".trim())) }
@@ -48,26 +46,21 @@ class LoginActivity : AppCompatActivity()
 		btnRegister.setOnClickListener { navigateTo<RegisterActivity>() }
 	}
 
-	private fun subscribeToEvents() = using(viewModel)
-	{
-		collectLatestFlowWhenStarted(state)
-		{
+	private fun subscribeToEvents() = using(viewModel) {
+		collectLatestFlowWhenStarted(state) {
 			binding.tilUsername.error2 = getFieldError(it.usernameError)
 			binding.tilPassword.error2 = getFieldError(it.passwordError)
 			binding.pbIsLoading.isVisible = it.isLoading
 		}
-		collectFlowWhenStarted(eventFlow)
-		{
-			when (it)
-			{
+		collectFlowWhenStarted(eventFlow) {
+			when (it) {
 				is OnLogin            -> navigateTo<MainActivity>()
 				is OnShowErrorMessage -> showToast(it.error.asString(this@LoginActivity))
 			}
 		}
 	}
 
-	private fun getFieldError(error: Error?) = when (error)
-	{
+	private fun getFieldError(error: Error?) = when (error) {
 		is TextFieldError.Empty -> getString(R.string.error_cant_be_empty)
 		else                    -> null
 	}

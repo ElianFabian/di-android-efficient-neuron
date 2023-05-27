@@ -5,7 +5,6 @@ import javax.inject.Inject
 
 class GetOwnUserUuidUseCase @Inject constructor(
 	private val appData: LocalAppDataRepository,
-)
-{
+) {
 	suspend operator fun invoke(): String = appData.getUserUuid()!!
 }

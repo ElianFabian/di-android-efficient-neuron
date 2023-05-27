@@ -21,8 +21,8 @@ import javax.inject.Inject
 @HiltViewModel
 class RegisterViewModel @Inject constructor(
 	private val register: RegisterUseCase,
-) : ViewModel()
-{
+) : ViewModel() {
+
 	private val _state = MutableStateFlow(RegisterState())
 	val state = _state.asStateFlow()
 
@@ -30,15 +30,12 @@ class RegisterViewModel @Inject constructor(
 	val eventFlow = _eventFlow.receiveAsFlow()
 
 
-	fun onAction(action: RegisterAction)
-	{
-		when (action)
-		{
+	fun onAction(action: RegisterAction) {
+		when (action) {
 			is EnterUsername        -> _state.update { it.copy(username = action.value, usernameError = null) }
 			is EnterPassword        -> _state.update { it.copy(password = action.value, passwordError = null) }
 			is EnterConfirmPassword -> _state.update { it.copy(confirmPassword = action.value, confirmPasswordError = null) }
-			is Register             -> viewModelScope.launch()
-			{
+			is Register             -> viewModelScope.launch {
 				_state.update { it.copy(isLoading = true) }
 
 				register(
@@ -55,8 +52,7 @@ class RegisterViewModel @Inject constructor(
 						confirmPasswordError = result.confirmPasswordError,
 					)
 
-					when (val resource = result.resource)
-					{
+					when (val resource = result.resource) {
 						is Resource.Error   -> _eventFlow.send(OnShowErrorMessage(resource.uiText ?: UiText.unknownError()))
 						is Resource.Success -> _eventFlow.send(OnRegister)
 						else                -> Unit

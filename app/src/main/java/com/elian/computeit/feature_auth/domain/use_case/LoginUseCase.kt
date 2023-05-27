@@ -10,15 +10,12 @@ import javax.inject.Inject
 
 class LoginUseCase @Inject constructor(
 	private val repository: AuthRepository,
-)
-{
-	suspend operator fun invoke(params: LoginParams): LoginResult
-	{
+) {
+	suspend operator fun invoke(params: LoginParams): LoginResult {
 		val usernameError = if (params.username.isBlank()) TextFieldError.Empty else null
 		val passwordError = if (params.password.isBlank()) TextFieldError.Empty else null
 
-		return if (checkIfError(usernameError, passwordError))
-		{
+		return if (checkIfError(usernameError, passwordError)) {
 			LoginResult(
 				usernameError = usernameError,
 				passwordError = passwordError,

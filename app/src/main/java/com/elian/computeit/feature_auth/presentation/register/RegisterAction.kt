@@ -1,7 +1,6 @@
 package com.elian.computeit.feature_auth.presentation.register
 
-sealed interface RegisterAction
-{
+sealed interface RegisterAction {
 	data class EnterUsername(val value: String) : RegisterAction
 	data class EnterPassword(val value: String) : RegisterAction
 	data class EnterConfirmPassword(val value: String) : RegisterAction

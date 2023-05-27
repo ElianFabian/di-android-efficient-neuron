@@ -15,12 +15,10 @@ private const val PASSWORD_MAX_LENGTH = 20
 private const val PASSWORD_SPECIAL_CHARACTERS = """@!?/\$€%&#.=+-"""
 
 
-fun validateName(name: String): Error?
-{
+fun validateName(name: String): Error? {
 	val trimmedName = name.trim()
 
-	return when
-	{
+	return when {
 		trimmedName.isBlank()                -> TextFieldError.Empty
 		!trimmedName.matches(NAME_REGEX)     -> TextFieldError.Invalid(validCharacters = NAME_VALID_CHARACTERS)
 		trimmedName.length < NAME_MIN_LENGTH -> TextFieldError.TooShort(minLength = NAME_MIN_LENGTH)
@@ -30,12 +28,10 @@ fun validateName(name: String): Error?
 	}
 }
 
-fun validatePassword(password: String): Error?
-{
+fun validatePassword(password: String): Error? {
 	val trimmedPassword = password.trim()
 
-	return when
-	{
+	return when {
 		trimmedPassword.isBlank()                                  -> TextFieldError.Empty
 		trimmedPassword.length < PASSWORD_MIN_LENGTH               -> TextFieldError.TooShort(minLength = PASSWORD_MIN_LENGTH)
 		!trimmedPassword.any { it.isDigit() }                      -> TextFieldError.Invalid(validCharacters = SET_OF_DIGITS, minCharacterCount = 1)
@@ -46,13 +42,11 @@ fun validatePassword(password: String): Error?
 	}
 }
 
-fun validateConfirmPassword(confirmPassword: String, password: String): Error?
-{
+fun validateConfirmPassword(confirmPassword: String, password: String): Error? {
 	val trimmedConfirmPassword = confirmPassword.trim()
 	val trimmedPassword = password.trim()
 
-	return when
-	{
+	return when {
 		trimmedConfirmPassword.isBlank()          -> TextFieldError.Empty
 		trimmedConfirmPassword != trimmedPassword -> TextFieldError.Invalid()
 

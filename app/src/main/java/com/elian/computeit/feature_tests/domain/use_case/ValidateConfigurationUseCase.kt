@@ -12,32 +12,27 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
-class ValidateConfigurationUseCase @Inject constructor()
-{
+class ValidateConfigurationUseCase @Inject constructor() {
 	private val _minRangeLength = 10
 	private val _minDivisiblePairCount = 10
 
 
-	operator fun invoke(params: ValidateConfigurationParams): TestConfigurationResult
-	{
+	operator fun invoke(params: ValidateConfigurationParams): TestConfigurationResult {
 		val startError = getFieldError(params.startOfRange)
 		val endError = getFieldError(params.endOfRange)
 		val timeError = getFieldError(params.time)
 
-		if (checkIfError(startError, endError, timeError))
-		{
+		if (checkIfError(startError, endError, timeError)) {
 			return TestConfigurationResult(
 				startOfRangeError = startError,
 				endOfRangeError = endError,
 				timeError = timeError,
 			)
 		}
-		if (params.startOfRange!! > params.endOfRange!!)
-		{
+		if (params.startOfRange!! > params.endOfRange!!) {
 			return TestConfigurationResult(resource = Resource.Error(R.string.error_range_values_are_inverted))
 		}
-		if (params.endOfRange - params.startOfRange + 1 < _minRangeLength)
-		{
+		if (params.endOfRange - params.startOfRange + 1 < _minRangeLength) {
 			return TestConfigurationResult(
 				resource = Resource.Error(
 					messageResId = R.string.error_range_length_must_be_greater_than,
@@ -45,8 +40,7 @@ class ValidateConfigurationUseCase @Inject constructor()
 				)
 			)
 		}
-		if (params.operation == OperationType.Division)
-		{
+		if (params.operation == OperationType.Division) {
 			if (params.startOfRange == 0) return TestConfigurationResult(resource = Resource.Error(R.string.error_division_by_zero_is_not_allowed))
 
 			val divisiblePairsCount = getAllDivisiblePairsInRangeCount(
@@ -55,8 +49,7 @@ class ValidateConfigurationUseCase @Inject constructor()
 				ignoreSelfDivision = true,
 			)
 
-			if (divisiblePairsCount < _minDivisiblePairCount)
-			{
+			if (divisiblePairsCount < _minDivisiblePairCount) {
 				return TestConfigurationResult(
 					resource = Resource.Error(
 						messageResId = R.string.error_range_not_enough_divisible_pairs,
@@ -71,8 +64,7 @@ class ValidateConfigurationUseCase @Inject constructor()
 }
 
 
-private fun getFieldError(number: Int?) = when (number)
-{
+private fun getFieldError(number: Int?) = when (number) {
 	null -> NumericFieldError.Empty
 	else -> null
 }

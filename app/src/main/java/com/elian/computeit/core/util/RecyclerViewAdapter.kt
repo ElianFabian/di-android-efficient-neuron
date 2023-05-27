@@ -5,72 +5,60 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.recyclerview.widget.RecyclerView
-import com.elian.computeit.core.util.RecyclerViewAdapter.*
 
 open class RecyclerViewAdapter<T>(
 	@LayoutRes private val itemLayout: Int,
 	private val list: ArrayList<T> = arrayListOf(),
 ) :
-	RecyclerView.Adapter<RecyclerViewAdapter<T>.ViewHolder>()
-{
+	RecyclerView.Adapter<RecyclerViewAdapter<T>.ViewHolder>() {
 	private var onItemCLickListener = OnItemClickListener<T> { _, _, _ -> }
 	private var onItemLongCLickListener = OnItemLongClickListener<T> { _, _, _ -> false }
 	private var onBindViewHolderListener = OnBindViewHolderListener<T> { _, _, _ -> }
 
-	fun interface OnItemClickListener<T>
-	{
+	fun interface OnItemClickListener<T> {
 		fun onItemClick(v: View?, selectedItem: T, position: Int)
 	}
 
-	fun interface OnItemLongClickListener<T>
-	{
+	fun interface OnItemLongClickListener<T> {
 		fun onItemLongClick(v: View?, selectedItem: T, position: Int): Boolean
 	}
 
-	fun interface OnBindViewHolderListener<T>
-	{
+	fun interface OnBindViewHolderListener<T> {
 		fun onBindViewHolder(view: View, item: T, position: Int)
 	}
 
-	fun clearList()
-	{
+	fun clearList() {
 		list.clear()
 		notifyDataSetChanged()
 	}
 
-	fun replaceList(newList: List<T>)
-	{
+	fun replaceList(newList: List<T>) {
 		this.list.clear()
 		this.list.addAll(newList)
 		notifyDataSetChanged()
 	}
 
-	fun addItem(item: T)
-	{
+	fun addItem(item: T) {
 		list.add(item)
 		notifyItemInserted(itemCount)
 	}
 
-	fun insertItem(position: Int, item: T)
-	{
+	fun insertItem(position: Int, item: T) {
 		list.add(position, item)
 		notifyItemInserted(itemCount)
 	}
 
-	fun insertItems(insertPosition: Int, items: List<T>)
-	{
+	fun insertItems(insertPosition: Int, items: List<T>) {
 		list.addAll(insertPosition, items)
 		notifyItemRangeInserted(insertPosition, items.size)
 	}
 
-	fun updateItem(position: Int, updatedItem: T)
-	{
+	fun updateItem(position: Int, updatedItem: T) {
 		list[position] = updatedItem
 		notifyItemChanged(position)
 	}
 
-	fun moveItem(fromPosition: Int, toPosition: Int, item: T)
-	{
+	fun moveItem(fromPosition: Int, toPosition: Int, item: T) {
 		list.removeAt(fromPosition)
 		list.add(toPosition, item)
 		notifyItemMoved(fromPosition, toPosition)
@@ -79,10 +67,8 @@ open class RecyclerViewAdapter<T>(
 	/**
 	 * @return False if the list doesn't contains the item.
 	 */
-	fun removeItem(item: T): Boolean
-	{
-		if (item in list)
-		{
+	fun removeItem(item: T): Boolean {
+		if (item in list) {
 			val position = list.indexOf(item)
 
 			list.remove(item)
@@ -94,39 +80,33 @@ open class RecyclerViewAdapter<T>(
 		return false
 	}
 
-	fun removeItem(position: Int)
-	{
+	fun removeItem(position: Int) {
 		list.removeAt(position)
 		notifyItemRemoved(position)
 	}
 
-	fun removeItems(fromPosition: Int, count: Int)
-	{
+	fun removeItems(fromPosition: Int, count: Int) {
 		val toPosition = fromPosition + count
 
 		list.subList(fromPosition, toPosition).clear()
 		notifyItemRangeRemoved(fromPosition, toPosition)
 	}
 
-	fun setOnItemClickListener(listener: OnItemClickListener<T>)
-	{
+	fun setOnItemClickListener(listener: OnItemClickListener<T>) {
 		onItemCLickListener = listener
 	}
 
-	fun setOnItemLongClickListener(listener: OnItemLongClickListener<T>)
-	{
+	fun setOnItemLongClickListener(listener: OnItemLongClickListener<T>) {
 		onItemLongCLickListener = listener
 	}
 
-	fun setOnBindViewHolderListener(listener: OnBindViewHolderListener<T>)
-	{
+	fun setOnBindViewHolderListener(listener: OnBindViewHolderListener<T>) {
 		onBindViewHolderListener = listener
 	}
 
 	//region RecyclerView.Adapter
 
-	override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder
-	{
+	override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 		val layoutInflater = LayoutInflater.from(parent.context)
 
 		val view = layoutInflater.inflate(itemLayout, parent, false)
@@ -134,8 +114,7 @@ open class RecyclerViewAdapter<T>(
 		return ViewHolder(view)
 	}
 
-	override fun onBindViewHolder(holder: ViewHolder, position: Int)
-	{
+	override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 		val item = list[position]
 
 		holder.itemView.setOnClickListener(holder)
@@ -150,15 +129,12 @@ open class RecyclerViewAdapter<T>(
 
 	inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view),
 		View.OnClickListener,
-		View.OnLongClickListener
-	{
-		override fun onClick(v: View?)
-		{
+		View.OnLongClickListener {
+		override fun onClick(v: View?) {
 			onItemCLickListener.onItemClick(v, list[layoutPosition], layoutPosition)
 		}
 
-		override fun onLongClick(v: View?): Boolean
-		{
+		override fun onLongClick(v: View?): Boolean {
 			return onItemLongCLickListener.onItemLongClick(v, list[layoutPosition], layoutPosition)
 		}
 	}

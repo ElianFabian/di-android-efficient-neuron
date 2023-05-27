@@ -25,13 +25,12 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.filterNotNull
 
 @AndroidEntryPoint
-class EditProfileFragment : Fragment(R.layout.fragment_edit_profile)
-{
+class EditProfileFragment : Fragment(R.layout.fragment_edit_profile) {
+
 	private val viewModel by activityViewModels<ProfileViewModel>()
 	private val binding by viewBinding(FragmentEditProfileBinding::bind)
 
-	override fun onViewCreated(view: View, savedInstanceState: Bundle?)
-	{
+	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 		super.onViewCreated(view, savedInstanceState)
 
 		subscribeToEvents()
@@ -39,8 +38,7 @@ class EditProfileFragment : Fragment(R.layout.fragment_edit_profile)
 	}
 
 
-	private fun initializeUi() = using(binding)
-	{
+	private fun initializeUi() = using(binding) {
 		tietUsername.allowMultilineAndDisableEnterNewLine()
 
 		tietUsername.addTextChangedListener { viewModel.onAction(EnterUsername("$it".trim())) }
@@ -51,14 +49,11 @@ class EditProfileFragment : Fragment(R.layout.fragment_edit_profile)
 		val dialog = ChooseOrDeleteProfilePictureBottomDialog()
 
 		dialog.setOnEventListener(this@EditProfileFragment) { event ->
-			when (event)
-			{
-				is ChooseOrDeleteProfilePictureBottomDialog.Event.OnDeleteImage     ->
-				{
+			when (event) {
+				is ChooseOrDeleteProfilePictureBottomDialog.Event.OnDeleteImage     -> {
 					viewModel.onAction(EnterProfilePic(emptyList()))
 				}
-				is ChooseOrDeleteProfilePictureBottomDialog.Event.OnPictureSelected ->
-				{
+				is ChooseOrDeleteProfilePictureBottomDialog.Event.OnPictureSelected -> {
 					val compressedImageBytes = event.pictureUri.toBitmap(context)
 						.reduceSize(102400)
 						.cropToSquare()
@@ -69,39 +64,31 @@ class EditProfileFragment : Fragment(R.layout.fragment_edit_profile)
 			}
 		}
 
-		sivProfilePic.setOnClickListener()
-		{
+		sivProfilePic.setOnClickListener() {
 			dialog.show(parentFragmentManager)
 		}
 
 		btnSave.setOnClickListener { viewModel.onAction(Save) }
 	}
 
-	private fun subscribeToEvents() = using(viewModel)
-	{
-		collectLatestFlowWhenStarted(sharedState.filterNotNull())
-		{
-			binding.apply()
-			{
+	private fun subscribeToEvents() = using(viewModel) {
+		collectLatestFlowWhenStarted(sharedState.filterNotNull()) {
+			binding.apply {
 				tietUsername.text2 = it.username
 				tietBiography.text2 = it.biography
 				sivProfilePic.setImageBytes(it.profilePicBytes.toByteArray())
 			}
 		}
-		collectLatestFlowWhenStarted(editProfileState)
-		{
-			binding.apply()
-			{
+		collectLatestFlowWhenStarted(editProfileState) {
+			binding.apply {
 				tilUsername.error2 = getUsernameErrorMessage(context, it.usernameError)
 				lpiIsLoading.isGone = !it.isLoading
 				btnSave.isEnabled = !it.isLoading
 				sivProfilePic.setImageBytes(it.profilePicBytes.toByteArray())
 			}
 		}
-		collectFlowWhenStarted(editProfileEventFlow)
-		{
-			when (it)
-			{
+		collectFlowWhenStarted(editProfileEventFlow) {
+			when (it) {
 				is EditProfileEvent.OnSave             -> showToast(R.string.message_info_successfully_updated)
 				is EditProfileEvent.OnShowErrorMessage -> showToast(it.error.asString(context))
 			}

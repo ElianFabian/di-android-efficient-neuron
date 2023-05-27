@@ -21,8 +21,8 @@ import javax.inject.Inject
 @HiltViewModel
 class LoginViewModel @Inject constructor(
 	private val login: LoginUseCase,
-) : ViewModel()
-{
+) : ViewModel() {
+
 	private val _state = MutableStateFlow(LoginState())
 	val state = _state.asStateFlow()
 
@@ -30,14 +30,11 @@ class LoginViewModel @Inject constructor(
 	val eventFlow = _eventFlow.receiveAsFlow()
 
 
-	fun onAction(action: LoginAction)
-	{
-		when (action)
-		{
+	fun onAction(action: LoginAction) {
+		when (action) {
 			is EnterUsername -> _state.update { it.copy(username = action.value, usernameError = null) }
 			is EnterPassword -> _state.update { it.copy(password = action.value, passwordError = null) }
-			is Login         -> viewModelScope.launch()
-			{
+			is Login         -> viewModelScope.launch {
 				_state.update { it.copy(isLoading = true) }
 
 				login(
@@ -52,8 +49,7 @@ class LoginViewModel @Inject constructor(
 						passwordError = result.passwordError,
 					)
 
-					when (val resource = result.resource)
-					{
+					when (val resource = result.resource) {
 						is Resource.Error   -> _eventFlow.send(OnShowErrorMessage(resource.uiText ?: UiText.unknownError()))
 						is Resource.Success -> _eventFlow.send(OnLogin)
 						else                -> Unit

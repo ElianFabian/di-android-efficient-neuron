@@ -7,7 +7,6 @@ import kotlinx.coroutines.flow.first
 
 suspend fun <T> DataStore<Preferences>.get(key: Preferences.Key<T>) = data.first()[key]
 
-suspend fun <T> DataStore<Preferences>.set(key: Preferences.Key<T>, value: T)
-{
+suspend fun <T> DataStore<Preferences>.set(key: Preferences.Key<T>, value: T) {
 	edit { it[key] = value }
 }

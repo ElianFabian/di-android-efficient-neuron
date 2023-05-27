@@ -3,8 +3,7 @@ package com.elian.computeit.core.domain.util
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
 
-interface CountDownTimer
-{
+interface CountDownTimer {
 	fun initialize(
 		millisInFuture: Long,
 		countDownInterval: Long,
@@ -19,8 +18,7 @@ interface CountDownTimer
 	val timerEventFlow: Flow<TimerEvent>
 }
 
-sealed interface TimerEvent
-{
+sealed interface TimerEvent {
 	object OnStart : TimerEvent
 
 	data class OnTick(

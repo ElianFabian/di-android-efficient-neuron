@@ -21,27 +21,23 @@ fun Fragment.navigateSafe(
 	@IdRes action: Int,
 	@IdRes currentDestination: Int,
 	args: Bundle? = null,
-)
-{
+) {
 	if (findNavController().currentDestination?.id == currentDestination) navigate(action, args)
 }
 
 inline fun <reified T : Activity> Fragment.navigateTo(
 	args: Bundle = Bundle(),
 	finish: Boolean = true,
-)
-{
+) {
 	startActivity(Intent(context, T::class.java).putExtras(args))
 	if (finish) activity?.finish()
 }
 
-fun Fragment.showToast(text: CharSequence, duration: Int = Toast.LENGTH_SHORT)
-{
+fun Fragment.showToast(text: CharSequence, duration: Int = Toast.LENGTH_SHORT) {
 	Toast.makeText(context, text, duration).show()
 }
 
-fun Fragment.showToast(@StringRes resId: Int, duration: Int = Toast.LENGTH_SHORT)
-{
+fun Fragment.showToast(@StringRes resId: Int, duration: Int = Toast.LENGTH_SHORT) {
 	Toast.makeText(context, resId, duration).show()
 }
 
@@ -57,8 +53,7 @@ fun Fragment.showAlertDialog(
 	@StringRes negativeTextResId: Int = android.R.string.cancel,
 	onPositiveClick: (() -> Unit)? = null,
 	onNegativeClick: (() -> Unit)? = null,
-)
-{
+) {
 	showAlertDialog(
 		message = getString(messageResId),
 		positiveText = getString(positiveTextResId),
@@ -74,8 +69,7 @@ fun Fragment.showAlertDialog(
 	negativeText: String,
 	onPositiveClick: (() -> Unit)? = null,
 	onNegativeClick: (() -> Unit)? = null,
-)
-{
+) {
 	AlertDialog.Builder(requireContext())
 		.setMessage(message)
 		.setPositiveButton(positiveText) { _, _ -> onPositiveClick?.invoke() }

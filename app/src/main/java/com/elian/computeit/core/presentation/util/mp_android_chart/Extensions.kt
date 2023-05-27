@@ -17,10 +17,8 @@ fun Fragment.lineDataSet(
 	@ColorRes lineAndCirclesColorResId: Int = R.color.default_chart,
 	isDashedLineEnable: Boolean = true,
 	block: (LineDataSet.() -> Unit)? = null,
-): LineDataSet
-{
-	return LineDataSet(entries, label ?: getString(labelResId)).apply()
-	{
+): LineDataSet {
+	return LineDataSet(entries, label ?: getString(labelResId)).apply {
 		if (!isDashedLineEnable) enableDashedLine(0F, 1F, 0F)
 
 		setDrawValues(false)
@@ -44,10 +42,8 @@ fun Fragment.barDataSet(
 	@StringRes labelResId: Int = 0,
 	@ColorRes colorResId: Int = R.color.teal_200,
 	block: (BarDataSet.() -> Unit)? = null,
-): BarDataSet
-{
-	return BarDataSet(entries, label ?: getString(labelResId)).apply()
-	{
+): BarDataSet {
+	return BarDataSet(entries, label ?: getString(labelResId)).apply {
 		setDrawValues(false)
 
 		color = getColorCompat(colorResId)

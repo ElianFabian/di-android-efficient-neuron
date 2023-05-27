@@ -15,8 +15,8 @@ import com.elian.computeit.databinding.FragmentTestDetailsBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity(R.layout.activity_main)
-{
+class MainActivity : AppCompatActivity(R.layout.activity_main) {
+
 	private val navController by lazy { findNavController(R.id.navHostFragment) }
 
 	private var _isNavigateUpEnabled = true
@@ -55,37 +55,30 @@ class MainActivity : AppCompatActivity(R.layout.activity_main)
 	)
 
 
-	override fun onCreate(savedInstanceState: Bundle?)
-	{
+	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 
 		initializeData()
 		initializeLogic()
 	}
 
-	override fun onPause()
-	{
+	override fun onPause() {
 		super.onPause()
 
 		_navigationManager.onBackgrounded()
 	}
 
-	override fun onBackPressed()
-	{
-		when
-		{
+	override fun onBackPressed() {
+		when {
 			navController.currentDestination?.id == R.id.homeFragment -> finish()
 			_isNavigateUpEnabled                                      -> navController.navigateUp()
 		}
 	}
 
 
-	fun onFragmentViewCreated(fragmentBinding: ViewBinding)
-	{
-		when (fragmentBinding)
-		{
-			is FragmentTestDetailsBinding ->
-			{
+	fun onFragmentViewCreated(fragmentBinding: ViewBinding) {
+		when (fragmentBinding) {
+			is FragmentTestDetailsBinding -> {
 				if (_previousFragment !is HomeFragment) return
 
 				fragmentBinding.btnContinue.isGone = true
@@ -94,13 +87,11 @@ class MainActivity : AppCompatActivity(R.layout.activity_main)
 	}
 
 
-	private fun initializeData()
-	{
+	private fun initializeData() {
 		_defaultSoftInputMode = window.attributes.softInputMode
 	}
 
-	private fun initializeLogic()
-	{
+	private fun initializeLogic() {
 		navController.addOnDestinationChangedListener { _, destination, _ ->
 
 			_navigationManager.onDestinationChanged(destination)

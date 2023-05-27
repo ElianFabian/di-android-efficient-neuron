@@ -21,14 +21,13 @@ import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class TestConfigurationFragment : Fragment(R.layout.fragment_test_configuration)
-{
+class TestConfigurationFragment : Fragment(R.layout.fragment_test_configuration) {
+	
 	private val viewModel by viewModels<TestConfigurationViewModel>()
 	private val binding by viewBinding(FragmentTestConfigurationBinding::bind)
 
 
-	override fun onViewCreated(view: View, savedInstanceState: Bundle?)
-	{
+	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 		super.onViewCreated(view, savedInstanceState)
 
 		subscribeToEvents()
@@ -36,14 +35,12 @@ class TestConfigurationFragment : Fragment(R.layout.fragment_test_configuration)
 	}
 
 
-	private fun initializeUi() = using(binding)
-	{
+	private fun initializeUi() = using(binding) {
 		val operationRadioButtons = binding.rgOperationType.findViewsOfTypeWithTag<RadioButton>(R.string.tag_operation_type).toList()
 
 		operationRadioButtons.forEach { radioButton ->
 
-			radioButton.setOnClickListener()
-			{
+			radioButton.setOnClickListener {
 				viewModel.onAction(SelectOperationType(symbol = radioButton.text.toString()))
 			}
 		}
@@ -57,12 +54,9 @@ class TestConfigurationFragment : Fragment(R.layout.fragment_test_configuration)
 		btnStartTest.setOnClickListener { viewModel.onAction(StartTest) }
 	}
 
-	private fun subscribeToEvents() = using(viewModel)
-	{
-		collectLatestFlowWhenStarted(state)
-		{
-			binding.apply()
-			{
+	private fun subscribeToEvents() = using(viewModel) {
+		collectLatestFlowWhenStarted(state) {
+			binding.apply {
 				tietStartOfRange.setTextIfDistinct("${it.startOfRange ?: ""}")
 				tietEndOfRange.setTextIfDistinct("${it.endOfRange ?: ""}")
 
@@ -71,29 +65,23 @@ class TestConfigurationFragment : Fragment(R.layout.fragment_test_configuration)
 				tietTime.error = getFieldError(it.timeError)
 			}
 		}
-		collectFlowWhenStarted(eventFlow)
-		{
-			when (it)
-			{
-				is OnStartTest        ->
-				{
+		collectFlowWhenStarted(eventFlow) {
+			when (it) {
+				is OnStartTest        -> {
 					navigateSafe(
 						action = R.id.action_testConfigurationFragment_to_testFragment,
 						args = it.args.toBundle(),
 						currentDestination = R.id.testConfigurationFragment,
 					)
 				}
-				is OnShowErrorMessage -> when (val errorMessage = it.error.asString(context))
-				{
-					getString(R.string.error_range_values_are_inverted) ->
-					{
+				is OnShowErrorMessage -> when (val errorMessage = it.error.asString(context)) {
+					getString(R.string.error_range_values_are_inverted) -> {
 						Snackbar.make(requireView(), errorMessage, Snackbar.LENGTH_LONG).setAction(R.string.action_fix)
 						{
 							viewModel.onAction(SwapToFixRangeBounds)
 						}.show()
 					}
-					else                                                ->
-					{
+					else                                                -> {
 						showToast(errorMessage)
 					}
 				}
@@ -101,8 +89,7 @@ class TestConfigurationFragment : Fragment(R.layout.fragment_test_configuration)
 		}
 	}
 
-	private fun getFieldError(error: Error?) = when (error)
-	{
+	private fun getFieldError(error: Error?) = when (error) {
 		is NumericFieldError.Empty -> getString(R.string.error_cant_be_empty)
 		else                       -> null
 	}

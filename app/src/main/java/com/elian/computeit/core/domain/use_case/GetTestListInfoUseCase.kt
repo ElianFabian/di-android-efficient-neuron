@@ -9,17 +9,14 @@ import javax.inject.Inject
 
 class GetTestListInfoUseCase @Inject constructor(
 	private val repository: TestDataRepository,
-)
-{
+) {
 	val isDataCached get() = repository.isDataCached
 
 
-	suspend operator fun invoke(userUuid: String): TestListInfo
-	{
+	suspend operator fun invoke(userUuid: String): TestListInfo {
 		val listOfData = repository.getListOfTestData(userUuid)
 
-		return withContext(Dispatchers.Default)
-		{
+		return withContext(Dispatchers.Default) {
 			listOfData.toTestListInfo()
 		}
 	}

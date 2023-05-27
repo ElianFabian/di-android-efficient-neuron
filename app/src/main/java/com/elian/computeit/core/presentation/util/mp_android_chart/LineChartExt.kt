@@ -8,33 +8,28 @@ import kotlin.math.ln
 
 var LineChart.isInteractionEnable: Boolean
 	get() = isDoubleTapToZoomEnabled && isScaleXEnabled
-	set(value)
-	{
+	set(value) {
 		isDoubleTapToZoomEnabled = value
 		setScaleEnabled(value)
 		setTouchEnabled(value)
 	}
 
-fun LineChart.applyDefaultStyle(block: (LineChart.() -> Unit)? = null): LineChart
-{
+fun LineChart.applyDefaultStyle(block: (LineChart.() -> Unit)? = null): LineChart {
 	setDrawGridBackground(false)
 	description.isEnabled = false
 	axisRight.isEnabled = false
 
-	xAxis.apply()
-	{
+	xAxis.apply {
 		setDrawGridLines(false)
 		granularity = 1F
 		this.textColor = Color.WHITE
 	}
-	axisLeft.apply()
-	{
+	axisLeft.apply {
 		setDrawGridLines(false)
 		granularity = 1F
 		this.textColor = Color.WHITE
 	}
-	legend.apply()
-	{
+	legend.apply {
 		this.textColor = Color.WHITE
 	}
 
@@ -43,8 +38,7 @@ fun LineChart.applyDefaultStyle(block: (LineChart.() -> Unit)? = null): LineChar
 	return this
 }
 
-fun LineChart.applyDefaultConfiguration(block: (LineChart.() -> Unit)? = null): LineChart
-{
+fun LineChart.applyDefaultConfiguration(block: (LineChart.() -> Unit)? = null): LineChart {
 	isDoubleTapToZoomEnabled = false
 
 	block?.invoke(this)
@@ -52,8 +46,7 @@ fun LineChart.applyDefaultConfiguration(block: (LineChart.() -> Unit)? = null): 
 	return this
 }
 
-fun LineChart.applyDefaultAnimation(block: (LineChart.() -> Unit)? = null): LineChart
-{
+fun LineChart.applyDefaultAnimation(block: (LineChart.() -> Unit)? = null): LineChart {
 	val largestDataSetCount = this.data.dataSets.maxOfOrNull { it.entryCount } ?: 0
 
 	val animationTime = ln(largestDataSetCount.toFloat() + 1).toInt() * 150
@@ -69,8 +62,7 @@ fun LineChart.applyDefault(
 	animate: Boolean = false,
 	vararg dataSets: ILineDataSet,
 	block: (LineChart.() -> Unit)? = null,
-): LineChart
-{
+): LineChart {
 	data = LineData(*dataSets)
 
 	applyDefaultStyle()

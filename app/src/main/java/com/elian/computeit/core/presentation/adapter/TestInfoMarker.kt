@@ -4,7 +4,7 @@ import android.content.Context
 import com.elian.computeit.R
 import com.elian.computeit.core.domain.models.TestInfo
 import com.elian.computeit.core.presentation.model.labelOf
-import com.elian.computeit.core.presentation.util.mp_android_chart.GenericMarkerView
+import com.elian.computeit.core.presentation.util.mp_android_chart.SimpleMarkerView
 import com.elian.computeit.databinding.ItemLabeledDataOfTestInfoMarkerBinding
 import com.elian.computeit.databinding.MarkerTestInfoBinding
 import com.github.mikephil.charting.utils.Utils
@@ -13,15 +13,14 @@ import com.github.mikephil.charting.utils.Utils
 fun TestInfoMarker(
 	context: Context?,
 	items: List<TestInfo>,
-) = GenericMarkerView(
+) = SimpleMarkerView(
 	context = context,
 	inflate = MarkerTestInfoBinding::inflate,
 ) { entry, _ ->
 
 	val position = entry.x.toInt() - 1
 
-	val uiLabeledData = items[position].statsInfo.run()
-	{
+	val uiLabeledData = items[position].statsInfo.run {
 		listOf(
 			R.string.generic_date labelOf date,
 			R.string.generic_operations labelOf operationCount,
@@ -39,7 +38,6 @@ fun TestInfoMarker(
 		getValue = { tvValue },
 		afterBind = { tvLabel.text = "${tvLabel.text}: " },
 	)
-}.apply()
-{
+}.apply {
 	offset.y -= Utils.convertDpToPixel(binding.root.measuredHeight.toFloat() * 2)
 }

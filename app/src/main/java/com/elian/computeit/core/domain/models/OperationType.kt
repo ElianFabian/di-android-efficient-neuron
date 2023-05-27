@@ -3,8 +3,7 @@ package com.elian.computeit.core.domain.models
 enum class OperationType(
 	val symbol: String,
 	val calculate: (a: Int, b: Int) -> Int,
-)
-{
+) {
 	Addition(
 		symbol = "+",
 		calculate = { a, b -> a + b },
@@ -22,8 +21,7 @@ enum class OperationType(
 		calculate = { a, b -> a / b },
 	);
 
-	companion object
-	{
+	companion object {
 		fun fromSymbol(symbol: String) = symbolToOperation[symbol]!!
 		fun fromName(name: String) = nameToOperation[name]!!
 

@@ -16,8 +16,8 @@ import javax.inject.Inject
 
 class TestDataRepositoryImpl @Inject constructor(
 	private val firestore: FirebaseFirestore,
-) : TestDataRepository
-{
+) : TestDataRepository {
+
 	private val _listOfTestData = mutableListOf<TestData>()
 
 
@@ -28,17 +28,14 @@ class TestDataRepositoryImpl @Inject constructor(
 	override suspend fun addTestData(
 		userUuid: String,
 		testData: TestData,
-	): Unit = withContext(Dispatchers.IO)
-	{
+	): Unit = withContext(Dispatchers.IO) {
 		_listOfTestData.add(testData)
 
 		getUserDataRef(userUuid).update(UserData::listOfTestData.name, FieldValue.arrayUnion(testData)).await()
 	}
 
-	override suspend fun getListOfTestData(userUuid: String): List<TestData> = withContext(Dispatchers.IO)
-	{
-		return@withContext if (_listOfTestData.isEmpty())
-		{
+	override suspend fun getListOfTestData(userUuid: String): List<TestData> = withContext(Dispatchers.IO) {
+		return@withContext if (_listOfTestData.isEmpty()) {
 			val listFromServer = getUserDataRef(userUuid)
 				.get()
 				.await()
@@ -56,16 +53,13 @@ class TestDataRepositoryImpl @Inject constructor(
 	override fun getTestCountPerSpeedRange(rangeLength: Int): List<Int> = _listOfTestData.toTestCountPerSpeedRange(rangeLength)
 
 
-	private suspend fun getUserDataRef(userUuid: String) = withContext(Dispatchers.IO)
-	{
+	private suspend fun getUserDataRef(userUuid: String) = withContext(Dispatchers.IO) {
 		val documentRef = firestore.document("$COLLECTION_USERS_DATA/$userUuid")
 		val snapShot = documentRef.get().await()
 		val userData = snapShot.toObject<UserData>()
 
-		documentRef.apply()
-		{
-			if (!snapShot.exists() || userData?.listOfTestData == null)
-			{
+		documentRef.apply {
+			if (!snapShot.exists() || userData?.listOfTestData == null) {
 				set(UserData(emptyList()), SetOptions.merge())
 			}
 		}

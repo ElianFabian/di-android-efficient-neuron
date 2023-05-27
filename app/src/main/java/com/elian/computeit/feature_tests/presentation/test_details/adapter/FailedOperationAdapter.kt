@@ -10,8 +10,7 @@ fun FailedOperationAdapter(items: List<OperationInfo>) = GenericAdapter(
 	items = items,
 ) { item, _ ->
 
-	item.apply()
-	{
+	item.apply {
 		tvFirstNumber.text = "${pairOfNumbers.first}"
 		tvOperationSymbol.text = operationSymbol
 		tvSecondNumber.text = "${pairOfNumbers.second}"

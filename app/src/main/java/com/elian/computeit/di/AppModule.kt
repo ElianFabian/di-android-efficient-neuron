@@ -19,8 +19,8 @@ val Context.dataStore by preferencesDataStore(name = DATA_STORE_PREFERENCES_NAME
 
 @Module
 @InstallIn(SingletonComponent::class)
-object AppModule
-{
+object AppModule {
+
 	@Singleton
 	@Provides
 	fun provideDataStore(@ApplicationContext context: Context) = context.dataStore

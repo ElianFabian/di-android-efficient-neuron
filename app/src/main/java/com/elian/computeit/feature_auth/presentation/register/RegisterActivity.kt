@@ -20,14 +20,13 @@ import com.elian.computeit.feature_auth.presentation.register.RegisterEvent.OnSh
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class RegisterActivity : AppCompatActivity()
-{
+class RegisterActivity : AppCompatActivity() {
+
 	private val viewModel by viewModels<RegisterViewModel>()
 	private val binding by viewBinding(ActivityRegisterBinding::inflate)
 
 
-	override fun onCreate(savedInstanceState: Bundle?)
-	{
+	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 
 		setContentView(binding.root)
@@ -36,14 +35,12 @@ class RegisterActivity : AppCompatActivity()
 		initializeUi()
 	}
 
-	override fun onBackPressed()
-	{
+	override fun onBackPressed() {
 		navigateTo<LoginActivity>()
 	}
 
 
-	private fun initializeUi() = using(binding)
-	{
+	private fun initializeUi() = using(binding) {
 		tietUsername.allowMultilineAndDisableEnterNewLine()
 
 		tietUsername.addTextChangedListener { viewModel.onAction(EnterUsername("$it".trim())) }
@@ -53,32 +50,26 @@ class RegisterActivity : AppCompatActivity()
 		btnRegister.setOnClickListener { viewModel.onAction(Register) }
 	}
 
-	private fun subscribeToEvents() = using(viewModel)
-	{
-		collectLatestFlowWhenStarted(state)
-		{
+	private fun subscribeToEvents() = using(viewModel) {
+		collectLatestFlowWhenStarted(state) {
 			binding.tilUsername.error2 = getUsernameErrorMessage(this@RegisterActivity, it.usernameError)
 
-			binding.tilPassword.error2 = when (val error = it.passwordError)
-			{
+			binding.tilPassword.error2 = when (val error = it.passwordError) {
 				is TextFieldError.Empty    -> getString(R.string.error_cant_be_empty)
 				is TextFieldError.TooShort -> getString(R.string.error_too_short).format(error.minLength)
 				is TextFieldError.Invalid  -> getString(R.string.error_password_invalid).format(error.minCharacterCount, error.validCharacters)
 				is TextFieldError.TooLong  -> getString(R.string.error_too_long).format(error.maxLength)
 				else                       -> null
 			}
-			binding.tilConfirmPassword.error2 = when (it.confirmPasswordError)
-			{
+			binding.tilConfirmPassword.error2 = when (it.confirmPasswordError) {
 				is TextFieldError.Empty   -> getString(R.string.error_cant_be_empty)
 				is TextFieldError.Invalid -> getString(R.string.error_passwords_dont_match)
 				else                      -> null
 			}
 			binding.pbIsLoading.isVisible = it.isLoading
 		}
-		collectFlowWhenStarted(eventFlow)
-		{
-			when (it)
-			{
+		collectFlowWhenStarted(eventFlow) {
+			when (it) {
 				is OnRegister         -> navigateTo<MainActivity>()
 				is OnShowErrorMessage -> showToast(it.error.asString(this@RegisterActivity))
 			}

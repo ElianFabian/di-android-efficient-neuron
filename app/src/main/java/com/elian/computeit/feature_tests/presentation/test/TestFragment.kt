@@ -23,15 +23,14 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class TestFragment : Fragment(R.layout.fragment_test)
-{
+class TestFragment : Fragment(R.layout.fragment_test) {
+
 	private val viewModel by viewModels<TestViewModel>()
 	private val binding by viewBinding(FragmentTestBinding::bind)
 	private val args by arguments<TestArgs>()
 
 	private val operationView by lazy {
-		object
-		{
+		object {
 			private val horizontal = binding.viewHorizontalOperation
 			private val vertical = binding.viewVerticalOperation
 
@@ -57,8 +56,7 @@ class TestFragment : Fragment(R.layout.fragment_test)
 	}
 
 
-	override fun onViewCreated(view: View, savedInstanceState: Bundle?)
-	{
+	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 		super.onViewCreated(view, savedInstanceState)
 
 		subscribeToEvents()
@@ -66,14 +64,11 @@ class TestFragment : Fragment(R.layout.fragment_test)
 	}
 
 
-	private fun initializeUi() = using(binding)
-	{
+	private fun initializeUi() = using(binding) {
 		disableScreenInteraction()
 
-		args.totalTimeInSeconds.also()
-		{
-			mtvRemainingSeconds.text = if (it == 0)
-			{
+		args.totalTimeInSeconds.also {
+			mtvRemainingSeconds.text = if (it == 0) {
 				mtvRemainingSeconds.textSizeInSp = resources.getDimension(R.dimen.textSize_xlarge1)
 
 				mtvRemainingSeconds.setOnClickListener { viewModel.onAction(ForceFinish) }
@@ -92,8 +87,7 @@ class TestFragment : Fragment(R.layout.fragment_test)
 
 		llKeyBoard.findViewsOfTypeWithTag<Button>(R.string.tag_numeric_button).forEach { button ->
 
-			button.setOnClickListener()
-			{
+			button.setOnClickListener {
 				viewModel.onAction(EnterNumber(button.text.toString().toInt()))
 			}
 		}
@@ -104,8 +98,7 @@ class TestFragment : Fragment(R.layout.fragment_test)
 		btnNextOperation.setOnClickListener { viewModel.onAction(NextOperation) }
 		btnClearInput.setOnClickListener { viewModel.onAction(ClearInput) }
 
-		clTouchToStart.setOnClickListenerOnlyOnce()
-		{
+		clTouchToStart.setOnClickListenerOnlyOnce {
 			val transitionDuration = 600L
 
 			clTouchToStart.startAlphaAnimation(
@@ -114,8 +107,7 @@ class TestFragment : Fragment(R.layout.fragment_test)
 				durationMillis = transitionDuration,
 			)
 
-			lifecycleScope.launch()
-			{
+			lifecycleScope.launch {
 				delay(transitionDuration + 150L)
 
 				viewModel.startTimer()
@@ -125,10 +117,8 @@ class TestFragment : Fragment(R.layout.fragment_test)
 		}
 	}
 
-	private fun subscribeToEvents() = using(viewModel)
-	{
-		collectLatestFlowWhenStarted(state)
-		{
+	private fun subscribeToEvents() = using(viewModel) {
+		collectLatestFlowWhenStarted(state) {
 			it.pairOfNumbers?.also { pair ->
 
 				operationView.firstNumber = pair.first.toString()
@@ -137,40 +127,32 @@ class TestFragment : Fragment(R.layout.fragment_test)
 			binding.tietInput.setText("${it.insertedResult}")
 			operationView.symbol = it.operationSymbol
 		}
-		collectFlowWhenStarted(eventFlow)
-		{
-			when (it)
-			{
-				is OnTimerTickInNormalMode   ->
-				{
+		collectFlowWhenStarted(eventFlow) {
+			when (it) {
+				is OnTimerTickInNormalMode   -> {
 					val seconds = it.millisUntilFinished / 1000F
 
 					binding.cpiRemainingSeconds.progress = it.millisUntilFinished.toInt()
 					binding.mtvRemainingSeconds.text = seconds.formatWith("%.1f")
 				}
-				is OnTimerTickInInfiniteMode ->
-				{
+				is OnTimerTickInInfiniteMode -> {
 					// this may be used in future
 				}
-				is OnTimerFinish             ->
-				{
+				is OnTimerFinish             -> {
 					disableScreenInteraction()
 				}
-				is OnGoToTestDetails         ->
-				{
+				is OnGoToTestDetails         -> {
 					navigate(R.id.action_testFragment_to_testDetailsFragment, it.args.toBundle())
 				}
 			}
 		}
 	}
 
-	private fun enableScreenInteraction()
-	{
+	private fun enableScreenInteraction() {
 		binding.clTouchToStart.isClickable = false
 	}
 
-	private fun disableScreenInteraction()
-	{
+	private fun disableScreenInteraction() {
 		binding.clTouchToStart.isClickable = true
 	}
 }

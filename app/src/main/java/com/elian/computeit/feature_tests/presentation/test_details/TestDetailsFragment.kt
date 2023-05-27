@@ -26,14 +26,13 @@ import com.elian.computeit.feature_tests.presentation.test_details.adapter.Faile
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class TestDetailsFragment : Fragment(R.layout.fragment_test_details)
-{
+class TestDetailsFragment : Fragment(R.layout.fragment_test_details) {
+
 	private val binding by viewBinding(FragmentTestDetailsBinding::bind)
 	private val args by arguments<TestDetailsArgs>()
 
 
-	override fun onViewCreated(view: View, savedInstanceState: Bundle?)
-	{
+	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 		super.onViewCreated(view, savedInstanceState)
 
 		(activity as MainActivity).onFragmentViewCreated(binding)
@@ -42,17 +41,14 @@ class TestDetailsFragment : Fragment(R.layout.fragment_test_details)
 	}
 
 
-	private fun initializeUi() = using(binding)
-	{
+	private fun initializeUi() = using(binding) {
 		val info = args.testInfo
 
 		initializeTestChart(info.chartInfo)
 		initializeTextStats(info.statsInfo)
 
-		info.listOfFailedOperationInfo.also()
-		{
-			if (it.isEmpty())
-			{
+		info.listOfFailedOperationInfo.also {
+			if (it.isEmpty()) {
 				tvFailedOperations.isGone = true
 				rvFailedOperations.isGone = true
 			}
@@ -62,8 +58,7 @@ class TestDetailsFragment : Fragment(R.layout.fragment_test_details)
 		btnContinue.setOnClickListener { navigate(R.id.action_testDetailsFragment_to_homeFragment) }
 	}
 
-	private fun initializeTestChart(info: TestChartInfo)
-	{
+	private fun initializeTestChart(info: TestChartInfo) {
 		val lineDataSets = arrayOf(
 			lineDataSet(
 				labelResId = R.string.generic_raw,
@@ -84,16 +79,14 @@ class TestDetailsFragment : Fragment(R.layout.fragment_test_details)
 			}
 		)
 
-		binding.viewTestChart.lineChart.applyDefault(dataSets = lineDataSets)
-		{
+		binding.viewTestChart.lineChart.applyDefault(dataSets = lineDataSets) {
 			xAxis.granularity = 0.5F
 		}
 
 		binding.viewTestChart.lineChart.avoidConflictsWithScroll(binding.root)
 	}
 
-	private fun initializeTextStats(info: TestStatsInfo) = using(info)
-	{
+	private fun initializeTextStats(info: TestStatsInfo) = using(info) {
 		val listOfLabeledData = listOf(
 			R.string.generic_operations labelOf operationCount,
 			R.string.generic_totalTime labelOf "$timeInSeconds s",
@@ -107,8 +100,7 @@ class TestDetailsFragment : Fragment(R.layout.fragment_test_details)
 		binding.viewTextInfoList.rvLabeledData.adapter = MainLabeledDataAdapter(listOfLabeledData)
 	}
 
-	private fun initializeFailedOperationsAdapter(listOfFailedOperationInfo: List<OperationInfo>)
-	{
+	private fun initializeFailedOperationsAdapter(listOfFailedOperationInfo: List<OperationInfo>) {
 		binding.rvFailedOperations.adapter = FailedOperationAdapter(listOfFailedOperationInfo)
 	}
 }

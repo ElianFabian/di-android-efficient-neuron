@@ -8,8 +8,8 @@ import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 
-class CountDownTimerImpl : CountDownTimer
-{
+class CountDownTimerImpl : CountDownTimer {
+
 	private var countDownTimer: PreciseCountDownTimer? = null
 	private var _millisInFuture = 0L
 	private var _countDownInterval = 0L
@@ -19,23 +19,19 @@ class CountDownTimerImpl : CountDownTimer
 	override val timerEventFlow = _timerEventFlow.receiveAsFlow()
 
 
-	override fun start()
-	{
+	override fun start() {
 		countDownTimer?.start()
 	}
 
-	override fun restart()
-	{
+	override fun restart() {
 		countDownTimer?.restart()
 	}
 
-	override fun stop()
-	{
+	override fun stop() {
 		countDownTimer?.stop()
 	}
 
-	override fun resume()
-	{
+	override fun resume() {
 		countDownTimer?.resume()
 	}
 
@@ -43,21 +39,17 @@ class CountDownTimerImpl : CountDownTimer
 		millisInFuture: Long,
 		countDownInterval: Long,
 		coroutineScope: CoroutineScope,
-	)
-	{
+	) {
 		_millisInFuture = millisInFuture
 		_countDownInterval = countDownInterval
 		_coroutineScope = coroutineScope
 
-		countDownTimer = object : PreciseCountDownTimer(millisInFuture, countDownInterval)
-		{
-			override fun onStart()
-			{
+		countDownTimer = object : PreciseCountDownTimer(millisInFuture, countDownInterval) {
+			override fun onStart() {
 				_coroutineScope.launch { _timerEventFlow.send(TimerEvent.OnStart) }
 			}
 
-			override fun onTick(millisUntilFinished: Long, millisSinceStart: Long)
-			{
+			override fun onTick(millisUntilFinished: Long, millisSinceStart: Long) {
 				_coroutineScope.launch {
 					_timerEventFlow.send(
 						TimerEvent.OnTick(
@@ -68,23 +60,19 @@ class CountDownTimerImpl : CountDownTimer
 				}
 			}
 
-			override fun onRestart()
-			{
+			override fun onRestart() {
 				_coroutineScope.launch { _timerEventFlow.send(TimerEvent.OnRestart) }
 			}
 
-			override fun onStop()
-			{
+			override fun onStop() {
 				_coroutineScope.launch { _timerEventFlow.send(TimerEvent.OnStop) }
 			}
 
-			override fun onResume()
-			{
+			override fun onResume() {
 				_coroutineScope.launch { _timerEventFlow.send(TimerEvent.OnResume) }
 			}
 
-			override fun onFinish()
-			{
+			override fun onFinish() {
 				_coroutineScope.launch { _timerEventFlow.send(TimerEvent.OnFinish) }
 			}
 		}

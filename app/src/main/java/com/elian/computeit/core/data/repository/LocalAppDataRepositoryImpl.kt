@@ -10,8 +10,7 @@ import javax.inject.Inject
 
 class LocalAppDataRepositoryImpl @Inject constructor(
 	private val dataStore: DataStore<Preferences>,
-) : LocalAppDataRepository
-{
+) : LocalAppDataRepository {
 	override suspend fun getUserUuid() = dataStore.get(KEY_USER_UUID)
 	override suspend fun saveUserUuid(uuid: String) = dataStore.set(KEY_USER_UUID, uuid)
 }

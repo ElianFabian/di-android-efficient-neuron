@@ -7,8 +7,7 @@ fun Map<out Number, Number>.toEntries() = this.map { Entry(it.key.toFloat(), it.
 
 fun List<Number>.toEntries(startXValue: Int = 0, listOfData: List<Any>? = null) = this.mapIndexed { index, number ->
 
-	Entry(index.toFloat() + startXValue, number.toFloat()).apply()
-	{
+	Entry(index.toFloat() + startXValue, number.toFloat()).apply {
 		this.data = listOfData?.getOrNull(index)
 	}
 }

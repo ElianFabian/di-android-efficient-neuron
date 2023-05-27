@@ -6,12 +6,10 @@ import com.elian.computeit.core.data.model.TestData
 fun TestData.getListOfValuePerSecond(
 	countCondition: (OperationData) -> Boolean = { true },
 	getValue: (currentSecond: Int, countSinceStart: Int) -> Float,
-): Map<Int, Int>
-{
+): Map<Int, Int> {
 	return (1..timeInSeconds).associateWith { currentSecond ->
 
-		val countSinceStart = listOfOperationData.count()
-		{
+		val countSinceStart = listOfOperationData.count {
 			countCondition(it) && it.millisSinceStart < currentSecond * 1000
 		}
 

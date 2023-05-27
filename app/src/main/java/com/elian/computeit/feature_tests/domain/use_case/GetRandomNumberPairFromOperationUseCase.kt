@@ -6,8 +6,7 @@ import com.elian.computeit.core.util.getAllDivisiblePairsInRange
 import javax.inject.Inject
 import kotlin.random.Random
 
-class GetRandomNumberPairFromOperationUseCase @Inject constructor()
-{
+class GetRandomNumberPairFromOperationUseCase @Inject constructor() {
 	private val _randomSeed = Random(System.currentTimeMillis())
 
 	private lateinit var _previousRange: IntRange
@@ -22,12 +21,10 @@ class GetRandomNumberPairFromOperationUseCase @Inject constructor()
 		operation: OperationType,
 		range: IntRange,
 		oldPair: NumberPair? = null,
-	): NumberPair
-	{
+	): NumberPair {
 		if (oldPair == null) return getRandomPairFromCurrentOperationInRange(operation, range)
 
-		while (true)
-		{
+		while (true) {
 			val newPair = getRandomPairFromCurrentOperationInRange(operation, range)
 
 			val arePairsDifferent = newPair.first != oldPair.first || newPair.second != oldPair.second
@@ -41,21 +38,17 @@ class GetRandomNumberPairFromOperationUseCase @Inject constructor()
 	private fun getRandomPairFromCurrentOperationInRange(
 		operation: OperationType,
 		range: IntRange,
-	): NumberPair
-	{
-		if (!::_divisiblePairs.isInitialized)
-		{
+	): NumberPair {
+		if (!::_divisiblePairs.isInitialized) {
 			_divisiblePairs = getDivisiblePairs(operation, range)
 
 			_previousRange = range
 		}
-		else if (range != _previousRange)
-		{
+		else if (range != _previousRange) {
 			_divisiblePairs = getDivisiblePairs(operation, range)
 		}
 
-		return when (operation)
-		{
+		return when (operation) {
 			OperationType.Addition       -> getRandomPairExceptIf(range) { it.first == 0 && it.second == 0 }
 			OperationType.Subtraction    -> getRandomPairExceptIf(range) { it.first == it.second }
 			OperationType.Multiplication -> getRandomPairExceptIf(range) { it.first == 0 || it.second == 0 }
@@ -66,10 +59,8 @@ class GetRandomNumberPairFromOperationUseCase @Inject constructor()
 	private fun getRandomPairExceptIf(
 		range: IntRange,
 		condition: (pair: NumberPair) -> Boolean,
-	): NumberPair
-	{
-		while (true)
-		{
+	): NumberPair {
+		while (true) {
 			val newPair = getRandomNumberPair(range)
 
 			if (condition(newPair)) continue
@@ -78,8 +69,7 @@ class GetRandomNumberPairFromOperationUseCase @Inject constructor()
 		}
 	}
 
-	private fun getRandomNumberPair(range: IntRange): NumberPair
-	{
+	private fun getRandomNumberPair(range: IntRange): NumberPair {
 		val first = range.random(_randomSeed)
 		val second = range.random(_randomSeed)
 
@@ -89,10 +79,8 @@ class GetRandomNumberPairFromOperationUseCase @Inject constructor()
 	private fun getDivisiblePairs(
 		operation: OperationType,
 		range: IntRange,
-	): List<NumberPair>
-	{
-		return if (operation == OperationType.Division)
-		{
+	): List<NumberPair> {
+		return if (operation == OperationType.Division) {
 			getAllDivisiblePairsInRange(
 				start = range.first,
 				end = range.last,

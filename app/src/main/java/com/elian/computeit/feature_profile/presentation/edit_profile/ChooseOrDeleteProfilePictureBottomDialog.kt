@@ -20,8 +20,8 @@ import com.elian.computeit.databinding.BottomDialogChooseOrDeleteProfilePicBindi
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.parcelize.Parcelize
 
-class ChooseOrDeleteProfilePictureBottomDialog : BottomSheetDialogFragment(R.layout.bottom_dialog_choose_or_delete_profile_pic)
-{
+class ChooseOrDeleteProfilePictureBottomDialog : BottomSheetDialogFragment(R.layout.bottom_dialog_choose_or_delete_profile_pic) {
+
 	private val binding by viewBinding(BottomDialogChooseOrDeleteProfilePicBinding::bind)
 
 	private val getContent = registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
@@ -38,8 +38,7 @@ class ChooseOrDeleteProfilePictureBottomDialog : BottomSheetDialogFragment(R.lay
 	}
 
 
-	override fun onViewCreated(view: View, savedInstanceState: Bundle?)
-	{
+	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 		super.onViewCreated(view, savedInstanceState)
 
 		initializeUi()
@@ -49,8 +48,7 @@ class ChooseOrDeleteProfilePictureBottomDialog : BottomSheetDialogFragment(R.lay
 	inline fun setOnEventListener(
 		fragment: Fragment,
 		crossinline onEvent: (event: Event) -> Unit,
-	)
-	{
+	) {
 		fragment.parentFragmentManager.setFragmentResultListener(this::class.qualifiedName!!, fragment.viewLifecycleOwner) { _, bundle ->
 
 			onEvent(bundle.getParcelable("args")!!)
@@ -58,24 +56,20 @@ class ChooseOrDeleteProfilePictureBottomDialog : BottomSheetDialogFragment(R.lay
 	}
 
 
-	private fun initializeUi() = using(binding)
-	{
+	private fun initializeUi() = using(binding) {
 		btnSelectAPicture.setOnClickListener { requestPermission.launch(Manifest.permission.READ_EXTERNAL_STORAGE) }
-		btnDeleteCurrentPicture.setOnClickListener()
-		{
+		btnDeleteCurrentPicture.setOnClickListener() {
 			onEvent(Event.OnDeleteImage)
 			dismiss()
 		}
 	}
 
-	private fun onEvent(event: Event)
-	{
+	private fun onEvent(event: Event) {
 		setFragmentResult(this::class.qualifiedName!!, bundleOf("args" to event))
 	}
 
 
-	sealed interface Event : Parcelable
-	{
+	sealed interface Event : Parcelable {
 		@Parcelize
 		class OnPictureSelected(val pictureUri: Uri) : Event
 
@@ -83,8 +77,7 @@ class ChooseOrDeleteProfilePictureBottomDialog : BottomSheetDialogFragment(R.lay
 		object OnDeleteImage : Event
 	}
 
-	companion object
-	{
+	companion object {
 		fun newInstance() = ChooseOrDeleteProfilePictureBottomDialog()
 	}
 }

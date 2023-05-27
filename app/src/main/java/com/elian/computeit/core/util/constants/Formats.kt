@@ -11,8 +11,7 @@ val defaultDateFormat = dateFormat("dd/MM/yyyy")
 val defaultFullDateFormat = dateFormat("dd/MM/yyyy HH:mm")
 
 
-fun secondsToDhhmmss(seconds: Int): String
-{
+fun secondsToDhhmmss(seconds: Int): String {
 	val days = seconds / (60 * 60 * 24)
 	val hours = seconds / (60 * 60)
 	val minutes = seconds / (60)

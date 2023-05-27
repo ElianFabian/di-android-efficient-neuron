@@ -30,16 +30,15 @@ import com.github.mikephil.charting.listener.OnChartValueSelectedListener
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class HomeFragment : Fragment(R.layout.fragment_home)
-{
+class HomeFragment : Fragment(R.layout.fragment_home) {
+
 	private val viewModel by activityViewModels<HomeViewModel>()
 	private val binding by viewBinding(FragmentHomeBinding::bind)
 
 	private val _rangeFormatter = RangeValueFormatter()
 
 
-	override fun onViewCreated(view: View, savedInstanceState: Bundle?)
-	{
+	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 		super.onViewCreated(view, savedInstanceState)
 
 		subscribeToEvents()
@@ -47,18 +46,15 @@ class HomeFragment : Fragment(R.layout.fragment_home)
 	}
 
 
-	private fun initializeUi()
-	{
+	private fun initializeUi() {
 		binding.sivGoToTestConfiguration.setOnClickListener { navigate(R.id.action_homeFragment_to_testConfigurationFragment) }
 		binding.sivGoToProfile.setOnClickListener { navigate(R.id.action_homeFragment_to_privateProfileFragment) }
 
 		viewModel.fetchInfo()
 	}
 
-	private fun subscribeToEvents() = using(viewModel)
-	{
-		collectLatestFlowWhenStarted(state)
-		{
+	private fun subscribeToEvents() = using(viewModel) {
+		collectLatestFlowWhenStarted(state) {
 			it.info?.also { info ->
 
 				initializeTestHistoryChart(info.historyInfo)
@@ -66,8 +62,7 @@ class HomeFragment : Fragment(R.layout.fragment_home)
 				initializeTextStats(info.statsInfo)
 			}
 
-			binding.apply()
-			{
+			binding.apply {
 				lpiIsLoading.isVisible = it.isLoading
 
 				lcTestsHistory.isGone = it.isLoading
@@ -77,12 +72,10 @@ class HomeFragment : Fragment(R.layout.fragment_home)
 		}
 	}
 
-	private fun initializeTestHistoryChart(info: TestHistoryInfo) = using(info)
-	{
+	private fun initializeTestHistoryChart(info: TestHistoryInfo) = using(info) {
 		val chartView = binding.lcTestsHistory
 
-		if (listOfOpmPerTest.isNotEmpty() || listOfRawOpmPerTest.isNotEmpty())
-		{
+		if (listOfOpmPerTest.isNotEmpty() || listOfRawOpmPerTest.isNotEmpty()) {
 			val lineDataSets = arrayOf(
 				lineDataSet(
 					labelResId = R.string.generic_raw,
@@ -109,12 +102,10 @@ class HomeFragment : Fragment(R.layout.fragment_home)
 				items = info.listOfTestInfo,
 			)
 			chartView.avoidConflictsWithScroll(binding.root)
-			chartView.setOnChartValueSelectedListener(object : OnChartValueSelectedListener
-			{
+			chartView.setOnChartValueSelectedListener(object : OnChartValueSelectedListener {
 				private val btnGoToTestDetails = binding.btnGoToTestDetails
 
-				override fun onValueSelected(entry: Entry, highlight: Highlight)
-				{
+				override fun onValueSelected(entry: Entry, highlight: Highlight) {
 					val position = entry.x.toInt() - 1
 					val selectedTestInfo = info.listOfTestInfo[position]
 
@@ -131,8 +122,7 @@ class HomeFragment : Fragment(R.layout.fragment_home)
 					btnGoToTestDetails.isEnabled = true
 				}
 
-				override fun onNothingSelected()
-				{
+				override fun onNothingSelected() {
 					btnGoToTestDetails.setOnClickListener(null)
 					btnGoToTestDetails.isEnabled = false
 					btnGoToTestDetails.setText(R.string.frgHome_go_to_test)
@@ -145,18 +135,14 @@ class HomeFragment : Fragment(R.layout.fragment_home)
 		else chartView.showNoDataText()
 	}
 
-	private fun initializeSpeedHistogramChart(info: TestListInfo) = using(info)
-	{
+	private fun initializeSpeedHistogramChart(info: TestListInfo) = using(info) {
 		val chartView = binding.bcSpeedHistogram
 
-		if (speedHistogramInfo.testsPerSpeedRange.isNotEmpty())
-		{
-			chartView.applyDefault()
-			{
+		if (speedHistogramInfo.testsPerSpeedRange.isNotEmpty()) {
+			chartView.applyDefault {
 				avoidConflictsWithScroll(binding.root)
 
-				xAxis.valueFormatter = _rangeFormatter.apply()
-				{
+				xAxis.valueFormatter = _rangeFormatter.apply {
 					rangeLength = speedHistogramInfo.speedRangeLength
 					minOpm = statsInfo.minOpm.toFloat()
 					maxOpm = statsInfo.maxOpm.toFloat()
@@ -169,10 +155,8 @@ class HomeFragment : Fragment(R.layout.fragment_home)
 				)
 			}
 
-			binding.sldRangeLength.apply()
-			{
-				speedHistogramInfo.also()
-				{
+			binding.sldRangeLength.apply {
+				speedHistogramInfo.also {
 					valueFrom = it.speedRangeLengthValueFrom.toFloat()
 					valueTo = it.speedRangeLengthValueTo.toFloat()
 					value = it.speedRangeLength.toFloat()
@@ -198,8 +182,7 @@ class HomeFragment : Fragment(R.layout.fragment_home)
 		else chartView.showNoDataText()
 	}
 
-	private fun initializeTextStats(info: TestListStatsInfo) = using(info)
-	{
+	private fun initializeTextStats(info: TestListStatsInfo) = using(info) {
 		val listOfLabeledData = listOf(
 			R.string.frgHome_testsCompleted labelOf testsCompletedCount,
 			R.string.frgHome_testsCompletedWithoutErrors labelOf "$testsCompletedWithoutErrorsCount (${testsCompletedWithoutErrorsPercentage.toInt()} %)",

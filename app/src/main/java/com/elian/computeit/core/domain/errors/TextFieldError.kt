@@ -2,8 +2,7 @@ package com.elian.computeit.core.domain.errors
 
 import com.elian.computeit.core.util.Error
 
-sealed interface TextFieldError : Error
-{
+sealed interface TextFieldError : Error {
 	object Empty : TextFieldError
 
 	data class Invalid(

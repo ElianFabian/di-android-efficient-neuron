@@ -8,33 +8,28 @@ import kotlin.math.ln
 
 var BarChart.isInteractionEnable: Boolean
 	get() = isDoubleTapToZoomEnabled && isScaleXEnabled
-	set(value)
-	{
+	set(value) {
 		isDoubleTapToZoomEnabled = value
 		setScaleEnabled(value)
 		setTouchEnabled(value)
 	}
 
-fun BarChart.applyDefaultStyle(block: (BarChart.() -> Unit)? = null): BarChart
-{
+fun BarChart.applyDefaultStyle(block: (BarChart.() -> Unit)? = null): BarChart {
 	setDrawGridBackground(false)
 	description.isEnabled = false
 	axisRight.isEnabled = false
 
-	xAxis.apply()
-	{
+	xAxis.apply {
 		setDrawGridLines(false)
 		granularity = 1F
 		this.textColor = Color.WHITE
 	}
-	axisLeft.apply()
-	{
+	axisLeft.apply {
 		setDrawGridLines(false)
 		granularity = 1F
 		this.textColor = Color.WHITE
 	}
-	legend.apply()
-	{
+	legend.apply {
 		this.textColor = Color.WHITE
 	}
 
@@ -45,8 +40,7 @@ fun BarChart.applyDefaultStyle(block: (BarChart.() -> Unit)? = null): BarChart
 	return this
 }
 
-fun BarChart.applyDefaultConfiguration(block: (BarChart.() -> Unit)? = null): BarChart
-{
+fun BarChart.applyDefaultConfiguration(block: (BarChart.() -> Unit)? = null): BarChart {
 	isDoubleTapToZoomEnabled = false
 
 	block?.invoke(this)
@@ -54,8 +48,7 @@ fun BarChart.applyDefaultConfiguration(block: (BarChart.() -> Unit)? = null): Ba
 	return this
 }
 
-fun BarChart.applyDefaultAnimation(block: (BarChart.() -> Unit)? = null): BarChart
-{
+fun BarChart.applyDefaultAnimation(block: (BarChart.() -> Unit)? = null): BarChart {
 	val largestDataSetCount = this.data.dataSets.maxOfOrNull { it.entryCount } ?: 0
 
 	val animationTime = ln(largestDataSetCount.toFloat() + 1).toInt() * 150
@@ -71,8 +64,7 @@ fun BarChart.applyDefault(
 	animate: Boolean = true,
 	vararg dataSets: IBarDataSet,
 	block: (BarChart.() -> Unit)? = null,
-): BarChart
-{
+): BarChart {
 	data = BarData(*dataSets)
 
 	applyDefaultStyle()

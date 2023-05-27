@@ -6,13 +6,11 @@ import javax.inject.Inject
 
 class AddTestDataUseCase @Inject constructor(
 	private val repository: TestDataRepository,
-)
-{
+) {
 	suspend operator fun invoke(
 		userUuid: String,
 		testData: TestData,
-	)
-	{
+	) {
 		return repository.addTestData(
 			userUuid = userUuid,
 			testData = testData

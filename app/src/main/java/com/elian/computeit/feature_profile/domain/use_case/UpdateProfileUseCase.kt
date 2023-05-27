@@ -9,14 +9,11 @@ import javax.inject.Inject
 
 class UpdateProfileUseCase @Inject constructor(
 	private val repository: ProfileRepository,
-)
-{
-	suspend operator fun invoke(params: UpdateProfileParams): EditProfileResult
-	{
+) {
+	suspend operator fun invoke(params: UpdateProfileParams): EditProfileResult {
 		val usernameError = validateName(params.username)
 
-		return if (checkIfError(usernameError))
-		{
+		return if (checkIfError(usernameError)) {
 			EditProfileResult(
 				usernameError = usernameError,
 			)
