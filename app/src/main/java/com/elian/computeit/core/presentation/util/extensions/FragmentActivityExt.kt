@@ -6,8 +6,7 @@ import androidx.fragment.app.FragmentActivity
 import com.elian.computeit.R
 
 
-fun FragmentActivity.goToFragment(fragment: Fragment, args: Bundle? = null): Fragment
-{
+fun FragmentActivity.goToFragment(fragment: Fragment, args: Bundle? = null): Fragment {
 	fragment.arguments = args
 
 	supportFragmentManager
