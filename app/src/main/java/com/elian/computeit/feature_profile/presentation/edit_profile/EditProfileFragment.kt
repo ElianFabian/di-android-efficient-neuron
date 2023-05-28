@@ -6,12 +6,17 @@ import androidx.core.view.isGone
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.setFragmentResultListener
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.flowWithLifecycle
-import androidx.lifecycle.lifecycleScope
 import com.elian.computeit.R
-import com.elian.computeit.core.presentation.util.extensions.*
+import com.elian.computeit.core.presentation.util.extensions.allowMultilineAndDisableEnterNewLine
+import com.elian.computeit.core.presentation.util.extensions.collectFlowWhenStarted
+import com.elian.computeit.core.presentation.util.extensions.collectLatestFlowWhenStarted
+import com.elian.computeit.core.presentation.util.extensions.cropToSquare
+import com.elian.computeit.core.presentation.util.extensions.error2
+import com.elian.computeit.core.presentation.util.extensions.reduceSize
+import com.elian.computeit.core.presentation.util.extensions.setImageBytes
+import com.elian.computeit.core.presentation.util.extensions.showToast
+import com.elian.computeit.core.presentation.util.extensions.text2
+import com.elian.computeit.core.presentation.util.extensions.toBytes
 import com.elian.computeit.core.presentation.util.getUsernameErrorMessage
 import com.elian.computeit.core.presentation.util.viewBinding
 import com.elian.computeit.core.util.extensions.toBitmap
@@ -19,9 +24,11 @@ import com.elian.computeit.core.util.extensions.trimWhitespacesBeforeNewLine
 import com.elian.computeit.core.util.using
 import com.elian.computeit.databinding.FragmentEditProfileBinding
 import com.elian.computeit.feature_profile.presentation.ProfileViewModel
-import com.elian.computeit.feature_profile.presentation.edit_profile.EditProfileAction.*
+import com.elian.computeit.feature_profile.presentation.edit_profile.EditProfileAction.EnterBiography
+import com.elian.computeit.feature_profile.presentation.edit_profile.EditProfileAction.EnterProfilePic
+import com.elian.computeit.feature_profile.presentation.edit_profile.EditProfileAction.EnterUsername
+import com.elian.computeit.feature_profile.presentation.edit_profile.EditProfileAction.Save
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.filterNotNull
 
 @AndroidEntryPoint
@@ -46,7 +53,7 @@ class EditProfileFragment : Fragment(R.layout.fragment_edit_profile) {
 
 		viewModel.sharedState.value?.profilePicBytes?.also { if (it.isNotEmpty()) viewModel.onAction(EnterProfilePic(it)) }
 
-		val dialog = ChooseOrDeleteProfilePictureBottomDialog()
+		val dialog = ChooseOrDeleteProfilePictureBottomDialog.newInstance()
 
 		dialog.setOnEventListener(this@EditProfileFragment) { event ->
 			when (event) {
@@ -64,8 +71,8 @@ class EditProfileFragment : Fragment(R.layout.fragment_edit_profile) {
 			}
 		}
 
-		sivProfilePic.setOnClickListener() {
-			dialog.show(parentFragmentManager)
+		sivProfilePic.setOnClickListener {
+			dialog.show(this@EditProfileFragment)
 		}
 
 		btnSave.setOnClickListener { viewModel.onAction(Save) }

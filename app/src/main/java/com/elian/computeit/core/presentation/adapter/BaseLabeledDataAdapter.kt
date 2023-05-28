@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.viewbinding.ViewBinding
 import com.elian.computeit.core.presentation.model.LabeledData
+import com.elian.computeit.core.presentation.util.simple_list_adapter.SimpleListAdapter
 
 @Suppress("FunctionName")
 fun <VB : ViewBinding> BaseLabeledDataAdapter(
@@ -14,15 +15,16 @@ fun <VB : ViewBinding> BaseLabeledDataAdapter(
 	getValue: VB.() -> TextView,
 	beforeBind: (VB.() -> Unit)? = null,
 	afterBind: (VB.() -> Unit)? = null,
-) = GenericAdapter(
+) = SimpleListAdapter(
 	inflate = inflate,
-	items = items,
-) { item, _ ->
+) { binding, item: LabeledData, _ ->
 
-	beforeBind?.invoke(this)
+	binding.apply {
+		beforeBind?.invoke(this)
 
-	getLabel().text = root.context!!.getString(item.labelResId)
-	getValue().text = "${item.value}"
+		getLabel().text = root.context!!.getString(item.labelResId)
+		getValue().text = "${item.value}"
 
-	afterBind?.invoke(this)
-}
+		afterBind?.invoke(this)
+	}
+}.apply { submitList(items) }
