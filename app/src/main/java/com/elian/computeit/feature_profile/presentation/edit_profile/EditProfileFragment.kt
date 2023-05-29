@@ -55,7 +55,7 @@ class EditProfileFragment : Fragment(R.layout.fragment_edit_profile) {
 
 		val dialog = ChooseOrDeleteProfilePictureBottomDialog.newInstance()
 
-		dialog.setOnEventListener(this@EditProfileFragment) { event ->
+		dialog.setEventListener(this@EditProfileFragment) { event ->
 			when (event) {
 				is ChooseOrDeleteProfilePictureBottomDialog.Event.OnDeleteImage     -> {
 					viewModel.onAction(EnterProfilePic(emptyList()))

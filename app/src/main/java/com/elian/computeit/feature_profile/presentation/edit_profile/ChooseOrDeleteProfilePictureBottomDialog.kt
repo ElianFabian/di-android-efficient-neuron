@@ -8,12 +8,13 @@ import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
 import com.elian.computeit.R
 import com.elian.computeit.core.presentation.util.SimpleBottomSheetDialogFragment
+import com.elian.computeit.core.presentation.util.extensions.showToast
 import com.elian.computeit.core.presentation.util.viewBinding
 import com.elian.computeit.core.util.using
 import com.elian.computeit.databinding.BottomDialogChooseOrDeleteProfilePicBinding
 import kotlinx.parcelize.Parcelize
 
-class ChooseOrDeleteProfilePictureBottomDialog : SimpleBottomSheetDialogFragment<Nothing, ChooseOrDeleteProfilePictureBottomDialog.Event>(
+class ChooseOrDeleteProfilePictureBottomDialog : SimpleBottomSheetDialogFragment<ChooseOrDeleteProfilePictureBottomDialog.Args, ChooseOrDeleteProfilePictureBottomDialog.Event>(
 	R.layout.bottom_dialog_choose_or_delete_profile_pic
 ) {
 	private val binding by viewBinding(BottomDialogChooseOrDeleteProfilePicBinding::bind)
@@ -43,6 +44,7 @@ class ChooseOrDeleteProfilePictureBottomDialog : SimpleBottomSheetDialogFragment
 		btnSelectAPicture.setOnClickListener { requestPermission.launch(Manifest.permission.READ_EXTERNAL_STORAGE) }
 		btnDeleteCurrentPicture.setOnClickListener {
 			sendDialogEvent(Event.OnDeleteImage)
+			showToast("Data from fragment  = ${dialogArguments?.data}")
 			dismiss()
 		}
 	}
@@ -55,7 +57,14 @@ class ChooseOrDeleteProfilePictureBottomDialog : SimpleBottomSheetDialogFragment
 		object OnDeleteImage : Event
 	}
 
+	@Parcelize
+	data class Args(
+		val data: String
+	) : Parcelable
+
 	companion object {
-		fun newInstance() = ChooseOrDeleteProfilePictureBottomDialog()
+		fun newInstance() = baseNewInstance {
+			ChooseOrDeleteProfilePictureBottomDialog()
+		}
 	}
 }
