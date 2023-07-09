@@ -3,11 +3,14 @@ package com.elian.computeit.feature_profile.presentation
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.elian.computeit.core.util.Resource
-import com.elian.computeit.core.util.UiText
+import com.elian.computeit.core.util.orUnknownError
 import com.elian.computeit.feature_profile.domain.params.UpdateProfileParams
 import com.elian.computeit.feature_profile.domain.use_case.ProfileUseCases
 import com.elian.computeit.feature_profile.presentation.edit_profile.EditProfileAction
-import com.elian.computeit.feature_profile.presentation.edit_profile.EditProfileAction.*
+import com.elian.computeit.feature_profile.presentation.edit_profile.EditProfileAction.EnterBiography
+import com.elian.computeit.feature_profile.presentation.edit_profile.EditProfileAction.EnterProfilePic
+import com.elian.computeit.feature_profile.presentation.edit_profile.EditProfileAction.EnterUsername
+import com.elian.computeit.feature_profile.presentation.edit_profile.EditProfileAction.Save
 import com.elian.computeit.feature_profile.presentation.edit_profile.EditProfileEvent
 import com.elian.computeit.feature_profile.presentation.edit_profile.EditProfileEvent.OnSave
 import com.elian.computeit.feature_profile.presentation.edit_profile.EditProfileEvent.OnShowErrorMessage
@@ -15,7 +18,12 @@ import com.elian.computeit.feature_profile.presentation.edit_profile.EditProfile
 import com.elian.computeit.feature_profile.presentation.private_profile.PrivateProfileState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.filterNotNull
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.receiveAsFlow
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -64,7 +72,7 @@ class ProfileViewModel @Inject constructor(
 					)
 
 					when (val resource = result.resource) {
-						is Resource.Error   -> _editProfileEventFlow.send(OnShowErrorMessage(resource.uiText ?: UiText.unknownError()))
+						is Resource.Error   -> _editProfileEventFlow.send(OnShowErrorMessage(resource.message.orUnknownError()))
 						is Resource.Success -> {
 
 							_sharedState.value = _sharedState.value?.copy(

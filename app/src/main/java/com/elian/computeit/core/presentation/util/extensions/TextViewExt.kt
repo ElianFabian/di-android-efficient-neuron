@@ -3,6 +3,7 @@ package com.elian.computeit.core.presentation.util.extensions
 import android.text.InputType
 import android.widget.TextView
 import androidx.core.view.isGone
+import androidx.core.widget.doAfterTextChanged
 
 var TextView.text2: CharSequence
 	get() = text
@@ -12,8 +13,18 @@ var TextView.text2: CharSequence
 		isGone = text.isNullOrBlank()
 	}
 
-fun TextView.setTextIfDistinct(text: CharSequence) {
-	if (this.text.toString() != text.toString()) this.text = text
+fun TextView.setTextIfDistinct(text: CharSequence?) {
+
+	val textNonNull = text ?: ""
+
+	if (this.text.toString() != textNonNull) this.text = textNonNull
+}
+
+inline fun TextView.onTextChanged(
+	crossinline action: (text: String) -> Unit
+) = doAfterTextChanged {
+	val textNonNull = text ?: ""
+	action(textNonNull.toString())
 }
 
 var TextView.textSizeInSp: Float

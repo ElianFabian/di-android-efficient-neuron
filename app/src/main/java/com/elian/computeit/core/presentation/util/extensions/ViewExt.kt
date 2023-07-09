@@ -7,6 +7,10 @@ import android.view.animation.AlphaAnimation
 import android.view.animation.Animation
 import androidx.core.widget.NestedScrollView
 
+fun View.onClick(action: (view: View) -> Unit) {
+	setOnClickListener(action)
+}
+
 fun View.startAlphaAnimation(
 	fromAlpha: Float,
 	toAlpha: Float,

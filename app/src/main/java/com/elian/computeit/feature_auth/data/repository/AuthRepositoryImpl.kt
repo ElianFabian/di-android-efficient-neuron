@@ -7,6 +7,7 @@ import com.elian.computeit.core.domain.repository.LocalAppDataRepository
 import com.elian.computeit.core.domain.repository.UtilRepository
 import com.elian.computeit.core.util.Resource
 import com.elian.computeit.core.util.SimpleResource
+import com.elian.computeit.core.util.UiText
 import com.elian.computeit.feature_auth.domain.params.LoginParams
 import com.elian.computeit.feature_auth.domain.params.RegisterParams
 import com.elian.computeit.feature_auth.domain.repository.AuthRepository
@@ -24,9 +25,9 @@ class AuthRepositoryImpl @Inject constructor(
 	AuthRepository {
 
 	override suspend fun login(params: LoginParams): SimpleResource = withContext(Dispatchers.IO) {
-		val user = utilRepository.getUserByName(params.username) ?: return@withContext Resource.Error(R.string.error_user_doesnt_exist)
+		val user = utilRepository.getUserByName(params.username) ?: return@withContext Resource.Error(UiText(R.string.error_user_doesnt_exist))
 
-		if (user.password != params.password) return@withContext Resource.Error(R.string.error_password_is_wrong)
+		if (user.password != params.password) return@withContext Resource.Error(UiText(R.string.error_password_is_wrong))
 
 		appData.saveUserUuid(user.uuid)
 
@@ -34,7 +35,7 @@ class AuthRepositoryImpl @Inject constructor(
 	}
 
 	override suspend fun register(params: RegisterParams): SimpleResource = withContext(Dispatchers.IO) {
-		if (utilRepository.isUsernameTaken(params.username)) return@withContext Resource.Error(R.string.error_username_is_already_in_use)
+		if (utilRepository.isUsernameTaken(params.username)) return@withContext Resource.Error(UiText(R.string.error_username_is_already_in_use))
 
 		User(
 			name = params.username,

@@ -2,7 +2,7 @@ package com.elian.computeit.core.util.constants
 
 import com.elian.computeit.core.util.extensions.formatWith
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Locale
 
 private fun dateFormat(pattern: String) = SimpleDateFormat(pattern, Locale.getDefault())
 

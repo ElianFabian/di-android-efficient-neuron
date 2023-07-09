@@ -24,12 +24,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/_15sdp"
-            android:checkedButton="@id/mRbAddition"
+            android:checkedButton="@id/rbAddition"
             android:gravity="center"
             android:orientation="horizontal">
 
             <com.google.android.material.radiobutton.MaterialRadioButton
-                android:id="@+id/mRbAddition"
+                android:id="@+id/rbAddition"
                 style="@style/OperationTypeRadioButton"
                 android:tag="@string/tag_operation_type"
                 android:text="+" />
@@ -40,7 +40,7 @@
                 android:layout_weight="1" />
 
             <com.google.android.material.radiobutton.MaterialRadioButton
-                android:id="@+id/mRbSubtraction"
+                android:id="@+id/rbSubtraction"
                 style="@style/OperationTypeRadioButton"
                 android:tag="@string/tag_operation_type"
                 android:text="−" />
@@ -51,7 +51,7 @@
                 android:layout_weight="1" />
 
             <com.google.android.material.radiobutton.MaterialRadioButton
-                android:id="@+id/mRbMultiplication"
+                android:id="@+id/rbMultiplication"
                 style="@style/OperationTypeRadioButton"
                 android:tag="@string/tag_operation_type"
                 android:text="×" />
@@ -62,7 +62,7 @@
                 android:layout_weight="1" />
 
             <com.google.android.material.radiobutton.MaterialRadioButton
-                android:id="@+id/mRbDivision"
+                android:id="@+id/rbDivision"
                 style="@style/OperationTypeRadioButton"
                 android:tag="@string/tag_operation_type"
                 android:text="÷" />

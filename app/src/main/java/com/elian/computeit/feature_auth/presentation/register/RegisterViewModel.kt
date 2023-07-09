@@ -3,10 +3,13 @@ package com.elian.computeit.feature_auth.presentation.register
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.elian.computeit.core.util.Resource
-import com.elian.computeit.core.util.UiText
+import com.elian.computeit.core.util.orUnknownError
 import com.elian.computeit.feature_auth.domain.params.RegisterParams
 import com.elian.computeit.feature_auth.domain.use_case.RegisterUseCase
-import com.elian.computeit.feature_auth.presentation.register.RegisterAction.*
+import com.elian.computeit.feature_auth.presentation.register.RegisterAction.EnterConfirmPassword
+import com.elian.computeit.feature_auth.presentation.register.RegisterAction.EnterPassword
+import com.elian.computeit.feature_auth.presentation.register.RegisterAction.EnterUsername
+import com.elian.computeit.feature_auth.presentation.register.RegisterAction.Register
 import com.elian.computeit.feature_auth.presentation.register.RegisterEvent.OnRegister
 import com.elian.computeit.feature_auth.presentation.register.RegisterEvent.OnShowErrorMessage
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -53,7 +56,7 @@ class RegisterViewModel @Inject constructor(
 					)
 
 					when (val resource = result.resource) {
-						is Resource.Error   -> _eventFlow.send(OnShowErrorMessage(resource.uiText ?: UiText.unknownError()))
+						is Resource.Error   -> _eventFlow.send(OnShowErrorMessage(resource.message.orUnknownError()))
 						is Resource.Success -> _eventFlow.send(OnRegister)
 						else                -> Unit
 					}

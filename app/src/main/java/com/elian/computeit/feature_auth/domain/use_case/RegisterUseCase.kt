@@ -1,6 +1,10 @@
 package com.elian.computeit.feature_auth.domain.use_case
 
-import com.elian.computeit.core.domain.util.*
+import com.elian.computeit.core.domain.util.checkIfError
+import com.elian.computeit.core.domain.util.hash
+import com.elian.computeit.core.domain.util.validateConfirmPassword
+import com.elian.computeit.core.domain.util.validateName
+import com.elian.computeit.core.domain.util.validatePassword
 import com.elian.computeit.feature_auth.domain.model.RegisterResult
 import com.elian.computeit.feature_auth.domain.params.RegisterParams
 import com.elian.computeit.feature_auth.domain.repository.AuthRepository

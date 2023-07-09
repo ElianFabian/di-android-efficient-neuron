@@ -2,14 +2,22 @@ package com.elian.computeit.core.data.mapper
 
 import com.elian.computeit.core.data.model.OperationData
 import com.elian.computeit.core.data.model.TestData
-import com.elian.computeit.core.domain.models.*
+import com.elian.computeit.core.domain.models.OperationInfo
+import com.elian.computeit.core.domain.models.OperationType
+import com.elian.computeit.core.domain.models.SpeedHistogramInfo
+import com.elian.computeit.core.domain.models.TestChartInfo
+import com.elian.computeit.core.domain.models.TestHistoryInfo
+import com.elian.computeit.core.domain.models.TestInfo
+import com.elian.computeit.core.domain.models.TestListInfo
+import com.elian.computeit.core.domain.models.TestListStatsInfo
+import com.elian.computeit.core.domain.models.TestStatsInfo
 import com.elian.computeit.core.util.constants.defaultFullDateFormat
 import com.elian.computeit.core.util.constants.secondsToDhhmmss
 import com.elian.computeit.core.util.extensions.getListOfValuePerSecond
 import com.elian.computeit.core.util.extensions.ifNaNReturnZero
 import com.elian.computeit.core.util.extensions.isError
 import com.elian.computeit.core.util.extensions.result
-import java.util.*
+import java.util.Date
 import kotlin.math.ceil
 
 fun OperationData.toOperationInfo() = OperationInfo(

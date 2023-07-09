@@ -9,7 +9,12 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import com.elian.computeit.R
-import com.elian.computeit.core.presentation.util.extensions.*
+import com.elian.computeit.core.presentation.util.extensions.collectLatestFlowWhenStarted
+import com.elian.computeit.core.presentation.util.extensions.navigate
+import com.elian.computeit.core.presentation.util.extensions.navigateTo
+import com.elian.computeit.core.presentation.util.extensions.setImageBytes
+import com.elian.computeit.core.presentation.util.extensions.showAlertDialog
+import com.elian.computeit.core.presentation.util.extensions.text2
 import com.elian.computeit.core.presentation.util.viewBinding
 import com.elian.computeit.core.util.using
 import com.elian.computeit.databinding.FragmentPrivateProfileBinding

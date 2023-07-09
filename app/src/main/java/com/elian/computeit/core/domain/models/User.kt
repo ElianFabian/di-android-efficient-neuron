@@ -1,6 +1,6 @@
 package com.elian.computeit.core.domain.models
 
-import java.util.*
+import java.util.UUID
 
 data class User(
 	val name: String = "",

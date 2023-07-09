@@ -4,7 +4,8 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 // https://stackoverflow.com/questions/23323823/android-countdowntimer-tick-is-not-accurate
-public abstract class PreciseCountDownTimer extends Timer {
+public abstract class PreciseCountDownTimer extends Timer
+{
 
     private final long totalTime, interval, delay;
     private TimerTask task;
@@ -12,11 +13,13 @@ public abstract class PreciseCountDownTimer extends Timer {
     private long timeLeft;
     private boolean restart = false, wasCancelled = false, wasStarted = false;
 
-    public PreciseCountDownTimer(long totalTime, long interval) {
+    public PreciseCountDownTimer(long totalTime, long interval)
+    {
         this(totalTime, interval, 0);
     }
 
-    public PreciseCountDownTimer(long totalTime, long interval, long delay) {
+    public PreciseCountDownTimer(long totalTime, long interval, long delay)
+    {
         super("PreciseCountDownTimer", true);
         this.delay = delay;
         this.interval = interval;
@@ -24,37 +27,44 @@ public abstract class PreciseCountDownTimer extends Timer {
         this.task = getTask(totalTime);
     }
 
-    public void start() {
+    public void start()
+    {
         wasStarted = true;
         this.scheduleAtFixedRate(task, delay, interval);
 
         if (!restart) onStart();
     }
 
-    public void restart() {
-        if (!wasStarted) {
+    public void restart()
+    {
+        if (!wasStarted)
+        {
             start();
         }
-        else if (wasCancelled) {
+        else if (wasCancelled)
+        {
             wasCancelled = false;
             this.task = getTask(totalTime);
             this.startTime = -1;
             start();
         }
-        else {
+        else
+        {
             this.restart = true;
             onRestart();
         }
     }
 
-    public void stop() {
+    public void stop()
+    {
         this.wasCancelled = true;
         this.task.cancel();
 
         onStop();
     }
 
-    public void resume() {
+    public void resume()
+    {
         wasCancelled = false;
         this.task = getTask(timeLeft);
         this.startTime = -1;
@@ -64,23 +74,30 @@ public abstract class PreciseCountDownTimer extends Timer {
     }
 
     // Call this when there's no further use for this timer
-    public void dispose() {
+    public void dispose()
+    {
         cancel();
         purge();
     }
 
-    private TimerTask getTask(final long totalTime) {
-        return new TimerTask() {
-            @Override public void run() {
-                if (startTime < 0 || restart) {
+    private TimerTask getTask(final long totalTime)
+    {
+        return new TimerTask()
+        {
+            @Override public void run()
+            {
+                if (startTime < 0 || restart)
+                {
                     startTime = scheduledExecutionTime();
                     timeLeft = totalTime;
                     restart = false;
                 }
-                else {
+                else
+                {
                     timeLeft = totalTime - ( scheduledExecutionTime() - startTime );
 
-                    if (timeLeft < 0) {
+                    if (timeLeft < 0)
+                    {
                         this.cancel();
                         startTime = -1;
                         onFinish();

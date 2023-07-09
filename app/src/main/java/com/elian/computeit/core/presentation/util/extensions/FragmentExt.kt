@@ -3,27 +3,21 @@ package com.elian.computeit.core.presentation.util.extensions
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
-import androidx.annotation.*
+import androidx.annotation.AttrRes
+import androidx.annotation.ColorInt
+import androidx.annotation.ColorRes
+import androidx.annotation.IdRes
+import androidx.annotation.StringRes
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.snackbar.Snackbar
 
 fun Fragment.navigate(@IdRes action: Int, args: Bundle? = null) = findNavController().navigate(action, args)
 fun Fragment.navigateUp() = findNavController().navigateUp()
 
-/**
- * You may use it in case you have an exception like this:
- *
- * java.lang.IllegalArgumentException: Navigation action/destination id/action_fromFragment_to_toFragment cannot be found from the current destination Destination(id/toFragment)
- */
-fun Fragment.navigateSafe(
-	@IdRes action: Int,
-	@IdRes currentDestination: Int,
-	args: Bundle? = null,
-) {
-	if (findNavController().currentDestination?.id == currentDestination) navigate(action, args)
-}
 
 inline fun <reified T : Activity> Fragment.navigateTo(
 	args: Bundle = Bundle(),
@@ -33,13 +27,25 @@ inline fun <reified T : Activity> Fragment.navigateTo(
 	if (finish) activity?.finish()
 }
 
-fun Fragment.showToast(text: CharSequence, duration: Int = Toast.LENGTH_SHORT) {
-	Toast.makeText(context, text, duration).show()
+fun Fragment.showToast(text: CharSequence?) {
+	Toast.makeText(context, text, Toast.LENGTH_SHORT).show()
 }
 
-fun Fragment.showToast(@StringRes resId: Int, duration: Int = Toast.LENGTH_SHORT) {
-	Toast.makeText(context, resId, duration).show()
+fun Fragment.showToast(@StringRes resId: Int) {
+	Toast.makeText(context, resId, Toast.LENGTH_SHORT).show()
 }
+
+fun Fragment.showSnackBar(
+	message: CharSequence?,
+	actionName: String,
+	action: (view: View) -> Unit,
+) {
+	Snackbar.make(requireView(), message ?: "", Snackbar.LENGTH_SHORT).apply {
+		setAction(actionName, action)
+		show()
+	}
+}
+
 
 @ColorInt
 fun Fragment.getColorCompat(@ColorRes id: Int) = context.getColorCompat(id)

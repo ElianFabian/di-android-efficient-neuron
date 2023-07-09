@@ -11,12 +11,31 @@ sealed class UiText {
 		vararg val args: Any?,
 	) : UiText()
 
-	fun asString(context: Context?) = when (this) {
-		is DynamicString  -> this.value
-		is StringResource -> context?.getString(this.resId, *args) ?: throw NullPointerException()
-	}
-
 	companion object {
-		fun unknownError() = StringResource(R.string.error_unknown)
+		val unknownError = StringResource(R.string.error_unknown)
 	}
+}
+
+fun UiText?.asString(context: Context?): String? = when (this) {
+	is UiText.DynamicString  -> this.value
+	is UiText.StringResource -> context?.getString(this.resId, *args)
+	else                     -> null
+}
+
+fun UiText?.orUnknownError(): UiText = when {
+	this == null -> UiText.unknownError
+	else         -> this
+}
+
+fun UiText(
+	@StringRes resId: Int,
+	vararg args: Any?,
+): UiText = UiText.StringResource(
+	resId = resId,
+	args = args,
+)
+
+fun UiText(value: String?): UiText = when (value) {
+	null -> UiText.unknownError
+	else -> UiText.DynamicString(value)
 }

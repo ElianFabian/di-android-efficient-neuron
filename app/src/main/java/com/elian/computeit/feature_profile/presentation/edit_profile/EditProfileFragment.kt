@@ -19,6 +19,7 @@ import com.elian.computeit.core.presentation.util.extensions.text2
 import com.elian.computeit.core.presentation.util.extensions.toBytes
 import com.elian.computeit.core.presentation.util.getUsernameErrorMessage
 import com.elian.computeit.core.presentation.util.viewBinding
+import com.elian.computeit.core.util.asString
 import com.elian.computeit.core.util.extensions.toBitmap
 import com.elian.computeit.core.util.extensions.trimWhitespacesBeforeNewLine
 import com.elian.computeit.core.util.using

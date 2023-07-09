@@ -6,5 +6,5 @@ data class ValidateConfigurationParams(
 	val operation: OperationType,
 	val startOfRange: Int?,
 	val endOfRange: Int?,
-	val time: Int?,
+	val timeInSeconds: Int?,
 )

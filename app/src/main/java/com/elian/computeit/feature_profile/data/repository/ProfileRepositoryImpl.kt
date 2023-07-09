@@ -8,6 +8,7 @@ import com.elian.computeit.core.domain.repository.LocalAppDataRepository
 import com.elian.computeit.core.domain.repository.UtilRepository
 import com.elian.computeit.core.util.Resource
 import com.elian.computeit.core.util.SimpleResource
+import com.elian.computeit.core.util.UiText
 import com.elian.computeit.core.util.constants.defaultDateFormat
 import com.elian.computeit.feature_profile.domain.model.ProfileInfo
 import com.elian.computeit.feature_profile.domain.params.UpdateProfileParams
@@ -18,7 +19,8 @@ import com.google.firebase.storage.FirebaseStorage
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
-import java.util.*
+import java.util.Date
+import java.util.UUID
 import javax.inject.Inject
 
 class ProfileRepositoryImpl @Inject constructor(
@@ -61,7 +63,7 @@ class ProfileRepositoryImpl @Inject constructor(
 			newName = params.username,
 		)
 
-		if (isUsernameTaken) return@withContext Resource.Error(R.string.error_username_is_already_in_use)
+		if (isUsernameTaken) return@withContext Resource.Error(UiText(R.string.error_username_is_already_in_use))
 
 		val newOrCurrentProfilePicUuid = currentUser.profilePicUuid ?: UUID.randomUUID().toString()
 		try {
@@ -78,7 +80,7 @@ class ProfileRepositoryImpl @Inject constructor(
 			}
 		}
 		catch (e: Exception) {
-			return@withContext Resource.Error(e.message)
+			return@withContext Resource.Error(UiText(e.message))
 		}
 
 		firestore.document("$COLLECTION_USERS/${params.userUuid}")

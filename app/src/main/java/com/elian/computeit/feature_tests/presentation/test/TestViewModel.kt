@@ -15,7 +15,11 @@ import com.elian.computeit.core.util.extensions.dropLast
 import com.elian.computeit.feature_tests.domain.args.TestArgs
 import com.elian.computeit.feature_tests.domain.args.TestDetailsArgs
 import com.elian.computeit.feature_tests.domain.use_case.TestUseCases
-import com.elian.computeit.feature_tests.presentation.test.TestAction.*
+import com.elian.computeit.feature_tests.presentation.test.TestAction.ClearInput
+import com.elian.computeit.feature_tests.presentation.test.TestAction.EnterNumber
+import com.elian.computeit.feature_tests.presentation.test.TestAction.ForceFinish
+import com.elian.computeit.feature_tests.presentation.test.TestAction.NextOperation
+import com.elian.computeit.feature_tests.presentation.test.TestAction.RemoveLastDigit
 import com.elian.computeit.feature_tests.presentation.test.TestEvent.OnGoToTestDetails
 import com.elian.computeit.feature_tests.presentation.test.TestEvent.OnTimerFinish
 import dagger.hilt.android.lifecycle.HiltViewModel

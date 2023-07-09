@@ -17,7 +17,14 @@ import com.elian.computeit.core.presentation.util.extensions.avoidConflictsWithS
 import com.elian.computeit.core.presentation.util.extensions.collectLatestFlowWhenStarted
 import com.elian.computeit.core.presentation.util.extensions.getColorCompat
 import com.elian.computeit.core.presentation.util.extensions.navigate
-import com.elian.computeit.core.presentation.util.mp_android_chart.*
+import com.elian.computeit.core.presentation.util.mp_android_chart.RangeValueFormatter
+import com.elian.computeit.core.presentation.util.mp_android_chart.applyDefault
+import com.elian.computeit.core.presentation.util.mp_android_chart.barDataSet
+import com.elian.computeit.core.presentation.util.mp_android_chart.lineDataSet
+import com.elian.computeit.core.presentation.util.mp_android_chart.marker2
+import com.elian.computeit.core.presentation.util.mp_android_chart.showNoDataText
+import com.elian.computeit.core.presentation.util.mp_android_chart.toBarEntries
+import com.elian.computeit.core.presentation.util.mp_android_chart.toEntries
 import com.elian.computeit.core.presentation.util.viewBinding
 import com.elian.computeit.core.util.constants.toBundle
 import com.elian.computeit.core.util.using

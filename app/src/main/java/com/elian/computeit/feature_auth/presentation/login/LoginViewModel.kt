@@ -3,10 +3,12 @@ package com.elian.computeit.feature_auth.presentation.login
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.elian.computeit.core.util.Resource
-import com.elian.computeit.core.util.UiText
+import com.elian.computeit.core.util.orUnknownError
 import com.elian.computeit.feature_auth.domain.params.LoginParams
 import com.elian.computeit.feature_auth.domain.use_case.LoginUseCase
-import com.elian.computeit.feature_auth.presentation.login.LoginAction.*
+import com.elian.computeit.feature_auth.presentation.login.LoginAction.EnterPassword
+import com.elian.computeit.feature_auth.presentation.login.LoginAction.EnterUsername
+import com.elian.computeit.feature_auth.presentation.login.LoginAction.Login
 import com.elian.computeit.feature_auth.presentation.login.LoginEvent.OnLogin
 import com.elian.computeit.feature_auth.presentation.login.LoginEvent.OnShowErrorMessage
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -50,7 +52,7 @@ class LoginViewModel @Inject constructor(
 					)
 
 					when (val resource = result.resource) {
-						is Resource.Error   -> _eventFlow.send(OnShowErrorMessage(resource.uiText ?: UiText.unknownError()))
+						is Resource.Error   -> _eventFlow.send(OnShowErrorMessage(resource.message.orUnknownError()))
 						is Resource.Success -> _eventFlow.send(OnLogin)
 						else                -> Unit
 					}
