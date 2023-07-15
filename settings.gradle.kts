@@ -4,8 +4,8 @@ dependencyResolutionManagement {
 		google()
 		mavenCentral()
 
-		maven { url 'https://jitpack.io' }
+		maven("https://jitpack.io")
 	}
 }
 rootProject.name = "ComputeIt"
-include ':app'
+include(":app")
