@@ -6,7 +6,7 @@ import androidx.core.view.isGone
 import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -40,7 +40,7 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class HomeFragment : Fragment(R.layout.fragment_home) {
 
-	private val viewModel by activityViewModels<HomeViewModel>()
+	private val viewModel by viewModels<HomeViewModel>()
 	private val binding by viewBinding(FragmentHomeBinding::bind)
 	private val navController by lazy { findNavController() }
 
@@ -70,6 +70,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 			}
 
 			btnGoToTestDetails.onClick {
+				println("$$$$$ click GoToTestDetail")
 				viewModel.onAction(HomeAction.GoToTestDetail)
 			}
 
@@ -181,8 +182,10 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 		lifecycleScope.launch {
 			viewModel.eventFlow.flowWithLifecycle(lifecycle)
 				.collect { event ->
+					println("$$$ event = $event")
 					when (event) {
 						is HomeEvent.OnGoToTestDetail -> {
+							println("$$$$ navigate OnGoToTestDetail")
 							navController.navigate(
 								resId = R.id.action_homeFragment_to_testDetailsFragment,
 								args = event.args.toBundle(),

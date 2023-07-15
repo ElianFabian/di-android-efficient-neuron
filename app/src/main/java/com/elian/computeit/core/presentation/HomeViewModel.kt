@@ -11,6 +11,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -62,9 +63,12 @@ class HomeViewModel @Inject constructor(
 				val selectedTestInfo = _info.value?.listOfTestInfo?.getOrNull(
 					_state.value.selectedTestIndex
 				)
+				
+				println("$$$$ selectedTest = ${viewModelScope.isActive} || ${_state.value.selectedTestIndex} || $selectedTestInfo")
 
 				if (selectedTestInfo != null) {
 					viewModelScope.launch {
+						println("$$$$ send event")
 						_eventFlow.emit(
 							HomeEvent.OnGoToTestDetail(
 								TestDetailsArgs(testInfo = selectedTestInfo)
