@@ -14,12 +14,12 @@ plugins {
 
 android {
 	namespace = "com.elian.computeit"
-	compileSdk = 32 // DON'T UPDATE (32)
+	compileSdk = 33 // DON'T UPDATE (32)
 
 	defaultConfig {
 		applicationId = "com.elian.computeit"
 		minSdk = 23
-		targetSdk = 32 // DON'T UPDATE (32)
+		targetSdk = 33 // DON'T UPDATE (32)
 		versionCode = 1
 		versionName = "0.5"
 
