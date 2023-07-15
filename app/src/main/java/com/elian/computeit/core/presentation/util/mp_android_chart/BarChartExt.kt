@@ -61,15 +61,15 @@ fun BarChart.applyDefaultAnimation(block: (BarChart.() -> Unit)? = null): BarCha
 }
 
 fun BarChart.applyDefault(
-	animate: Boolean = true,
 	vararg dataSets: IBarDataSet,
 	block: (BarChart.() -> Unit)? = null,
 ): BarChart {
-	data = BarData(*dataSets)
+	if (dataSets.isNotEmpty()) {
+		data = BarData(*dataSets)
+	}
 
 	applyDefaultStyle()
 	applyDefaultConfiguration()
-	if (animate) applyDefaultAnimation()
 
 	block?.invoke(this)
 

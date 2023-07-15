@@ -41,11 +41,11 @@ class TestConfigurationFragment : Fragment(R.layout.fragment_test_configuration)
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 		super.onViewCreated(view, savedInstanceState)
 
-		initializeUi()
+		init()
 	}
 
 
-	private fun initializeUi() {
+	private fun init() {
 		binding.apply {
 			rbAddition.onClick {
 				viewModel.onAction(TestConfigurationAction.SelectOperation(OperationType.Addition))

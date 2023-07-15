@@ -2,15 +2,14 @@
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/svRoot"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:animateLayoutChanges="true"
     android:fillViewport="true">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:animateLayoutChanges="true"
         android:background="@color/background_dark"
         android:gravity="center_horizontal"
         android:orientation="vertical"
@@ -28,7 +27,7 @@
             app:trackCornerRadius="@dimen/_10sdp"
             tools:visibility="visible" />
 
-        <androidx.appcompat.widget.LinearLayoutCompat
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginVertical="@dimen/_25sdp"
@@ -99,7 +98,7 @@
                 app:iconSize="@dimen/_40sdp"
                 app:iconTint="@color/blue_gray_800" />
 
-        </androidx.appcompat.widget.LinearLayoutCompat>
+        </LinearLayout>
 
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
@@ -108,22 +107,19 @@
             app:cardCornerRadius="@dimen/cards_cornerRadius"
             tools:layout_gravity="center">
 
-            <View
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/_150sdp" />
-
-            <androidx.appcompat.widget.LinearLayoutCompat
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginHorizontal="@dimen/_5sdp"
+                android:layout_marginVertical="@dimen/_8sdp"
                 android:orientation="vertical">
 
                 <com.github.mikephil.charting.charts.LineChart
                     android:id="@+id/lcTestsHistory"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_280sdp"
-                    android:layout_marginHorizontal="@dimen/_5sdp"
-                    android:layout_marginVertical="@dimen/_8sdp"
-                    android:background="@color/cards_background" />
+                    android:layout_height="match_parent"
+                    android:background="@color/cards_background"
+                    android:minHeight="@dimen/_280sdp" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnGoToTestDetails"
@@ -134,11 +130,9 @@
                     android:layout_marginBottom="10dp"
                     android:enabled="false"
                     android:textSize="@dimen/textSize_medium2"
-                    android:visibility="gone"
-                    tools:text="@string/frgHome_go_to_test"
-                    tools:visibility="visible" />
+                    tools:text="@string/frgHome_go_to_test" />
 
-            </androidx.appcompat.widget.LinearLayoutCompat>
+            </LinearLayout>
 
         </com.google.android.material.card.MaterialCardView>
 
@@ -146,18 +140,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginVertical="@dimen/_35sdp"
-            android:animateLayoutChanges="true"
             android:backgroundTint="@color/cards_background"
             app:cardCornerRadius="@dimen/cards_cornerRadius"
             tools:layout_gravity="center">
 
-            <View
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/_150sdp" />
-
-            <androidx.appcompat.widget.LinearLayoutCompat
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_gravity="bottom"
                 android:layout_marginHorizontal="@dimen/_5sdp"
                 android:layout_marginTop="@dimen/_10sdp"
@@ -166,8 +155,9 @@
                 <com.github.mikephil.charting.charts.BarChart
                     android:id="@+id/bcSpeedHistogram"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_260sdp"
-                    android:background="@color/cards_background" />
+                    android:layout_height="match_parent"
+                    android:background="@color/cards_background"
+                    android:minHeight="@dimen/_280sdp" />
 
                 <com.google.android.material.slider.Slider
                     android:id="@+id/sldRangeLength"
@@ -175,14 +165,14 @@
                     android:layout_height="wrap_content"
                     android:stepSize="1" />
 
-            </androidx.appcompat.widget.LinearLayoutCompat>
+            </LinearLayout>
 
         </com.google.android.material.card.MaterialCardView>
 
         <include
             android:id="@+id/viewTestListStats"
             layout="@layout/view_list_labeled_data"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
     </LinearLayout>

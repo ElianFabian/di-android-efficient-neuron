@@ -1,27 +1,15 @@
 package com.elian.computeit.core.domain.models
 
 data class TestListInfo(
-	val historyInfo: TestHistoryInfo,
-	val speedHistogramInfo: SpeedHistogramInfo,
-	val statsInfo: TestListStatsInfo,
-)
-
-
-data class TestHistoryInfo(
-	val listOfOpmPerTest: List<Int>,
-	val listOfRawOpmPerTest: List<Int>,
+	val listOfOpmPerTest: List<Float>,
+	val listOfRawOpmPerTest: List<Float>,
 	val listOfTestInfo: List<TestInfo>,
-)
 
-data class SpeedHistogramInfo(
 	val speedRangeLength: Int,
 	val testsPerSpeedRange: List<Int>,
 	val speedRangeLengthValueFrom: Int,
 	val speedRangeLengthValueTo: Int,
-	val isSliderVisible: Boolean,
-)
 
-data class TestListStatsInfo(
 	val testsCompletedCount: Int,
 	val testsCompletedWithoutErrorsCount: Int,
 	val testsCompletedWithoutErrorsPercentage: Float,
@@ -31,8 +19,8 @@ data class TestListStatsInfo(
 	val correctOperationsCompletedPercentage: Float,
 	val averageOpm: Float,
 	val averageRawOpm: Float,
-	val minOpm: Int,
-	val maxOpm: Int,
-	val minRawOpm: Int,
-	val maxRawOpm: Int,
+	val minOpm: Float,
+	val maxOpm: Float,
+	val minRawOpm: Float,
+	val maxRawOpm: Float,
 )

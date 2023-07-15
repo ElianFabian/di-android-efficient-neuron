@@ -4,12 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:backgroundTint="@color/cards_background"
-    app:cardCornerRadius="@dimen/cards_cornerRadius"
-    tools:layout_gravity="center">
-
-    <View
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/_150sdp" />
+    app:cardCornerRadius="@dimen/cards_cornerRadius">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvLabeledData"
@@ -17,6 +12,7 @@
         android:layout_height="wrap_content"
         android:background="@color/cards_background"
         android:nestedScrollingEnabled="false"
+        android:minHeight="@dimen/_280sdp"
         android:padding="@dimen/_10sdp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:itemCount="5"

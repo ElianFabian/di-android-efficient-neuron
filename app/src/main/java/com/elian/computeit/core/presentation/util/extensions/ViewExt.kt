@@ -11,6 +11,14 @@ fun View.onClick(action: (view: View) -> Unit) {
 	setOnClickListener(action)
 }
 
+inline fun View.onScrollChanged(
+	crossinline onScrollChanged: (scrollX: Int, scrollY: Int, oldScrollX: Int, oldScrollY: Int) -> Unit,
+) {
+	setOnScrollChangeListener { _, scrollX, scrollY, oldScrollX, oldScrollY ->
+		onScrollChanged(scrollX, scrollY, oldScrollX, oldScrollY)
+	}
+}
+
 fun View.startAlphaAnimation(
 	fromAlpha: Float,
 	toAlpha: Float,

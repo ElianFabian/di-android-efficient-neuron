@@ -22,7 +22,7 @@ fun <VB : ViewBinding> BaseLabeledDataAdapter(
 	binding.apply {
 		beforeBind?.invoke(this)
 
-		getLabel().text = root.context!!.getString(item.labelResId)
+		getLabel().text = root.context?.getString(item.labelResId)
 		getValue().text = "${item.value}"
 
 		afterBind?.invoke(this)

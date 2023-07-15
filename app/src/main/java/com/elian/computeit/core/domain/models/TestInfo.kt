@@ -12,8 +12,8 @@ data class TestInfo(
 
 @Parcelize
 data class TestChartInfo(
-	val listOfOpmPerSecond: Map<Int, Int>,
-	val listOfRawOpmPerSecond: Map<Int, Int>,
+	val listOfOpmPerSecond: Map<Int, Float>,
+	val listOfRawOpmPerSecond: Map<Int, Float>,
 	val errorSeconds: List<Float>,
 	val errorsYValue: Int,
 ) : Parcelable
@@ -21,12 +21,12 @@ data class TestChartInfo(
 @Parcelize
 data class TestStatsInfo(
 	val date: String,
-	val opm: Int,
-	val rawOpm: Int,
-	val minOpm: Int,
-	val maxOpm: Int,
-	val minRawOpm: Int,
-	val maxRawOpm: Int,
+	val opm: Float,
+	val rawOpm: Float,
+	val minOpm: Float,
+	val maxOpm: Float,
+	val minRawOpm: Float,
+	val maxRawOpm: Float,
 	val timeInSeconds: Int,
 	val operationCount: Int,
 	val errorCount: Int,

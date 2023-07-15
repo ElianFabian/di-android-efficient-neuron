@@ -1,8 +1,14 @@
 package com.elian.computeit.core.presentation
 
-import com.elian.computeit.core.domain.models.TestListInfo
-
 data class HomeState(
-	val info: TestListInfo? = null,
+	val selectedTestIndex: Int = -1,
 	val isLoading: Boolean = false,
+	val speedRangeLength: Int? = null,
 )
+
+//data class HomeTestsHistoryChartState(
+//	val zoomScaleX: Float = 1F,
+//	val zoomScaleY: Float = 1F,
+//	val positionX: Float = 0F,
+//	val positionY: Float = 0F,
+//)

@@ -25,8 +25,8 @@ fun TestInfoMarker(
 			R.string.generic_date labelOf date,
 			R.string.generic_operations labelOf operationCount,
 			R.string.arrayTest_modes_time labelOf "$timeInSeconds s",
-			R.string.generic_opm labelOf opm,
-			R.string.generic_raw labelOf rawOpm,
+			R.string.generic_opm labelOf opm.toInt(),
+			R.string.generic_raw labelOf rawOpm.toInt(),
 			R.string.generic_errors labelOf errorCount,
 		)
 	}
