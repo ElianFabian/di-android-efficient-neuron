@@ -45,7 +45,7 @@ class PrivateProfileFragment : Fragment(R.layout.fragment_private_profile) {
 		}
 		btnLogout.setOnClickListener {
 			showAlertDialog(
-				messageResId = R.string.alert_dialog_are_you_sure_you_want_to_log_out,
+				messageResId = R.string.AreYouSureYouWantToLogOut,
 				onPositiveClick = {
 					lifecycleScope.launch {
 						viewModel.logout()
@@ -70,7 +70,7 @@ class PrivateProfileFragment : Fragment(R.layout.fragment_private_profile) {
 		collectLatestFlowWhenStarted(privateProfileState.filterNotNull()) {
 			binding.apply {
 				it.createdAt?.also { createdAt ->
-					tvCreatedAt.text2 = getString(R.string.feature_profile_account_created_at_PH).format(createdAt)
+					tvCreatedAt.text2 = getString(R.string.TheAccountWasCreatedAt).format(createdAt)
 				}
 
 				pbIsLoading.isVisible = it.isLoading

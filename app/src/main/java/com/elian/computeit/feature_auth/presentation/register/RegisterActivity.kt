@@ -64,15 +64,15 @@ class RegisterActivity : AppCompatActivity() {
 			binding.tilUsername.error2 = getUsernameErrorMessage(this@RegisterActivity, it.usernameError)
 
 			binding.tilPassword.error2 = when (val error = it.passwordError) {
-				is TextFieldError.Empty    -> getString(R.string.error_cant_be_empty)
-				is TextFieldError.TooShort -> getString(R.string.error_too_short).format(error.minLength)
-				is TextFieldError.Invalid  -> getString(R.string.error_password_invalid).format(error.minCharacterCount, error.validCharacters)
-				is TextFieldError.TooLong  -> getString(R.string.error_too_long).format(error.maxLength)
+				is TextFieldError.Empty    -> getString(R.string.Error_CantBeEmpty)
+				is TextFieldError.TooShort -> getString(R.string.Error_TooShort).format(error.minLength)
+				is TextFieldError.Invalid  -> getString(R.string.Error_PasswordInvalid).format(error.minCharacterCount, error.validCharacters)
+				is TextFieldError.TooLong  -> getString(R.string.Error_TooLong).format(error.maxLength)
 				else                       -> null
 			}
 			binding.tilConfirmPassword.error2 = when (it.confirmPasswordError) {
-				is TextFieldError.Empty   -> getString(R.string.error_cant_be_empty)
-				is TextFieldError.Invalid -> getString(R.string.error_passwords_dont_match)
+				is TextFieldError.Empty   -> getString(R.string.Error_CantBeEmpty)
+				is TextFieldError.Invalid -> getString(R.string.Error_PasswordsDontMatch)
 				else                      -> null
 			}
 			binding.pbIsLoading.isVisible = it.isLoading

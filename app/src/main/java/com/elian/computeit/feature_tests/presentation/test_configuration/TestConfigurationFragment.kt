@@ -117,7 +117,7 @@ class TestConfigurationFragment : Fragment(R.layout.fragment_test_configuration)
 							else {
 								showSnackBar(
 									message = event.message.asString(context),
-									actionName = getString(R.string.action_fix),
+									actionName = getString(R.string.Fix__verb),
 									action = {
 										event.action.invoke()
 									}
@@ -130,7 +130,7 @@ class TestConfigurationFragment : Fragment(R.layout.fragment_test_configuration)
 	}
 
 	private fun getFieldError(error: Error?) = when (error) {
-		is NumericFieldError.Empty -> getString(R.string.error_cant_be_empty)
+		is NumericFieldError.Empty -> getString(R.string.Error_CantBeEmpty)
 		else                       -> null
 	}
 }

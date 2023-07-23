@@ -1,88 +1,68 @@
-<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <resources>
-    <string name="actLogin_create_an_account">Crea una cuenta</string>
+    <string name="Error_CantBeEmpty">No puede estar vacío</string>
+    <string name="Error_DivisionByZeroIsNotAllowed">La división entre 0 no está permitida</string>
+    <string name="Error_PasswordInvalid">Contraseña inválida, debería contener al menos %d de estos caracteres: %s</string>
+    <string name="Error_PasswordIsWrong">La contraseña es incorrecta</string>
+    <string name="Error_PasswordsDontMatch">Las contraseñas no coinciden</string>
+    <string name="Error_RangeLengthMustBeGreaterThan">La longitud del intervalo debe ser mayor a %d</string>
+    <string name="Error_RangeNotEnoughDivisiblePairs">No hay suficientes pares divisibles (%d/%d), prueba con un intervalo más amplio</string>
+    <string name="Error_RangeValuesAreInverted">Los valores del invertalo están invertidos</string>
+    <string name="Error_TooLong">Demasiado largo, la longitud máxima es %d</string>
+    <string name="Error_TooShort">Demasiado corto, la longitud mínima es %d</string>
+    <string name="Error_Unknown">Error desconocido</string>
+    <string name="Error_UserDoesntExist">El usuario no existe</string>
+    <string name="Error_UsernameInvalid">Nombre de usuario inválido, sólo puede contener letras en minúsculas sin acentos, dígitos o estos caracteres: %s</string>
+    <string name="Error_UsernameIsAlreadyInUse">El nombre de usario ya está en uso</string>
 
-    <string name="action_fix">Arreglar</string>
-
-    <string name="alert_dialog_are_you_sure_you_want_to_log_out">¿Estás seguro de que quieres cerrar sesión?</string>
-
-    <string name="arrayTest_modes_tests">Tests</string>
-    <string name="arrayTest_modes_time">Tiempo</string>
-
-    <string name="error_cant_be_empty">No puede estar vacío</string>
-    <string name="error_division_by_zero_is_not_allowed">La división entre 0 no está permitida</string>
-    <string name="error_password_invalid">Contraseña inválida, debería contener al menos %d de estos caracteres: %s</string>
-    <string name="error_password_is_wrong">La contraseña es incorrecta</string>
-    <string name="error_passwords_dont_match">Las contraseñas no coinciden</string>
-    <string name="error_range_length_must_be_greater_than">La longitud del intervalo debe ser mayor a %d</string>
-    <string name="error_range_not_enough_divisible_pairs">No hay suficientes pares divisibles (%d/%d), prueba con un intervalo más amplio</string>
-    <string name="error_range_values_are_inverted">Los valores del invertalo están invertidos</string>
-    <string name="error_too_long">Demasiado largo, la longitud máxima es %d</string>
-    <string name="error_too_short">Demasiado corto, la longitud mínima es %d</string>
-    <string name="error_unknown">Error desconocido</string>
-    <string name="error_user_doesnt_exist">El usuario no existe</string>
-    <string name="error_username_invalid">Nombre de usuario inválido, sólo puede contener letras en minúsculas sin acentos, dígitos o estos caracteres: %s</string>
-    <string name="error_username_is_already_in_use">El nombre de usario ya está en uso</string>
-
-    <string name="feature_profile_account_created_at_PH">La cuenta fue creada el %s</string>
-    <string name="feature_profile_biography">Biografía</string>
-
-    <string name="frgEditProfile_btnSave_text">Guardar</string>
-
-    <string name="frgEndGame_btnContinue_text">Continuar</string>
-
-    <string name="frgHome_averageOpm">OPM promedio</string>
-    <string name="frgHome_averageRawOpm">OPM bruto promedio</string>
-    <string name="frgHome_correctOperationsCompleted">Operaciones completadas correctas</string>
-    <string name="frgHome_go_to_test">Ir al test</string>
-    <string name="frgHome_highestOpm">OPM más alto</string>
-    <string name="frgHome_highestRawOpm">OPM bruto más alto</string>
-    <string name="frgHome_operationsCompleted">Operaciones completadas</string>
-    <string name="frgHome_testsCompleted">Tests completados</string>
-    <string name="frgHome_testsCompletedWithoutErrors">Tests completados sin errores</string>
-
-    <string name="frgPrivateProfile_btnEdit_text">Editar perfil</string>
-    <string name="frgPrivateProfile_btnLogout_text">Cerrar sesión</string>
-
-    <string name="frgSettings_category_general">General</string>
-    <string name="frgSettings_dark_theme_title">Tema oscuro</string>
-    <string name="frgSettings_disable_notifications_title">Desactivar notificaciones</string>
-    <string name="frgSettings_use_inverted_numeric_keyboard_title">Usar teclado numérico invertido</string>
-
-    <string name="frgTestConfiguration_tietEnd_hint">Final</string>
-    <string name="frgTestConfiguration_tietStart_hint">Principio</string>
-    <string name="frgTestConfiguration_tvMode_text">Modo:</string>
-    <string name="frgTestConfiguration_tvNumberRange_text">Intervalo:</string>
-    <string name="frgTestConfiguration_tvTitle_text">Configuración de test</string>
-
-    <string name="frgTestDetails_LabelFor_rvFailedOperations_text">Operaciones fallidas</string>
-
-    <string name="frgTestFragment_touch_to_start">Toca para empezar</string>
-
-    <string name="frgTipManager_tieExample_hint">Ejemplo</string>
-    <string name="frgTipManager_tieTitle_hint">Título</string>
-
-    <string name="frgTips_tvTitle_text">Consejos</string>
-
-    <string name="frgbdChooseOrDeleteProfilePic_btnDeleteCurrentPicture_text">Borra la imagen actual</string>
-    <string name="frgbdChooseOrDeleteProfilePic_btnSelectAPicture_text">Selecciona una imagen</string>
-
-    <string name="generic_confirm_password">Confirmar contraseña</string>
-    <string name="generic_date">Fecha</string>
-    <string name="generic_errors">Errores</string>
-    <string name="generic_login">Iniciar sesión</string>
-    <string name="generic_operations">Operaciones</string>
-    <string name="generic_opm">OPM</string>
-    <string name="generic_password">Contraseña</string>
-    <string name="generic_raw">Bruto</string>
-    <string name="generic_register">Registrarse</string>
-    <string name="generic_seconds">Segundos</string>
-    <string name="generic_start">Empezar</string>
-    <string name="generic_tests">Tests</string>
-    <string name="generic_totalTime">Tiempo total</string>
-    <string name="generic_username">Nombre de usuario</string>
-
-    <string name="message_info_successfully_updated">Información actualizada con éxito</string>
-
-    <string name="no_data_available">No hay datos disponibles</string>
+    <string name="End__noun">Final</string>
+    <string name="Start__noun">Principio</string>
+    <string name="Start__verb">Empezar</string>
+    <string name="Mode">Modo</string>
+    <string name="Range">Intervalo</string>
+    <string name="Date">Fecha</string>
+    <string name="Errors">Errores</string>
+    <string name="Login__verb">Iniciar sesión</string>
+    <string name="Operations">Operaciones</string>
+    <string name="OPM__OperationsPerMinute">OPM</string>
+    <string name="Password">Contraseña</string>
+    <string name="Raw">Bruto</string>
+    <string name="Register__verb">Registrarse</string>
+    <string name="Seconds">Segundos</string>
+    <string name="TotalTime">Tiempo total</string>
+    <string name="Username">Nombre de usuario</string>
+    <string name="Example">Ejemplo</string>
+    <string name="Title">Título</string>
+    <string name="Tips">Consejos</string>
+    <string name="Tests">Tests</string>
+    <string name="Time">Tiempo</string>
+    <string name="Fix__verb">Arreglar</string>
+    <string name="Logout__verb">Cerrar sesión</string>
+    <string name="Biography">Biografía</string>
+    <string name="Save__verb">Guardar</string>
+    <string name="Continue">Continuar</string>
+    <string name="TheAccountWasCreatedAt">La cuenta fue creada el %s</string>
+    <string name="AverageOPM">OPM promedio</string>
+    <string name="AverageRawOPM">OPM bruto promedio</string>
+    <string name="CorrectOperationsCompleted">Operaciones completadas correctas</string>
+    <string name="GoToTest">Ir al test</string>
+    <string name="HighestOPM">OPM más alto</string>
+    <string name="HighestRawOPM">OPM bruto más alto</string>
+    <string name="OperationsCompleted">Operaciones completadas</string>
+    <string name="TestsCompleted">Tests completados</string>
+    <string name="TestsCompletedWithoutErrors">Tests completados sin errores</string>
+    <string name="EditProfile">Editar perfil</string>
+    <string name="DarkTheme">General</string>
+    <string name="DisableNotifications">Desactivar notificaciones</string>
+    <string name="UseInvertedNumericKeyboard">Usar teclado numérico invertido</string>
+    <string name="TestConfiguration">Configuración de test</string>
+    <string name="FailedOperations">Operaciones fallidas</string>
+    <string name="TouchToStart">Toca para empezar</string>
+    <string name="DeleteCurrentPicture">Borra la imagen actual</string>
+    <string name="SelectAPicture">Selecciona una imagen</string>
+    <string name="ConfirmPassword">Confirmar contraseña</string>
+    <string name="InformationSuccessfullyUpdated">Información actualizada con éxito</string>
+    <string name="NoDataAvailable">No hay datos disponibles</string>
+    <string name="CreateAnAccount">Crea una cuenta</string>
+    <string name="AreYouSureYouWantToLogOut">¿Estás seguro de que quieres cerrar sesión?</string>
 </resources>

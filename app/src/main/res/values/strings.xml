@@ -1,90 +1,70 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <resources>
-    <string name="actLogin_create_an_account">Create an account</string>
+    <string name="AppName" translatable="false">ComputeIt</string>
 
-    <string name="action_fix">Fix</string>
+    <string name="Error_CantBeEmpty">Can\'t be empty</string>
+    <string name="Error_DivisionByZeroIsNotAllowed">Division by 0 is not allowed</string>
+    <string name="Error_PasswordInvalid">Invalid password, it should contain at least %d of these characters: %s</string>
+    <string name="Error_PasswordIsWrong">Password is wrong</string>
+    <string name="Error_PasswordsDontMatch">Passwords don\'t match</string>
+    <string name="Error_RangeLengthMustBeGreaterThan">Range length must be greater than %d</string>
+    <string name="Error_RangeNotEnoughDivisiblePairs">Not enough divisible pairs (%d/%d), try a wider range</string>
+    <string name="Error_RangeValuesAreInverted">Range values are inverted</string>
+    <string name="Error_TooLong">Too long, the maximum length is %d</string>
+    <string name="Error_TooShort">Too short, the minimum length is %d</string>
+    <string name="Error_Unknown">Unknown error</string>
+    <string name="Error_UserDoesntExist">The user doesn\'t exist</string>
+    <string name="Error_UsernameInvalid">Invalid username, it can only contain lowercase letters without accents, digits and these characters: %s</string>
+    <string name="Error_UsernameIsAlreadyInUse">The username is already in use</string>
 
-    <string name="alert_dialog_are_you_sure_you_want_to_log_out">Are you sure you want to log out?</string>
-
-    <string name="app_name" translatable="false">ComputeIt</string>
-
-    <string name="arrayTest_modes_tests">Tests</string>
-    <string name="arrayTest_modes_time">Time</string>
-
-    <string name="error_cant_be_empty">Can\'t be empty</string>
-    <string name="error_division_by_zero_is_not_allowed">Division by 0 is not allowed</string>
-    <string name="error_password_invalid">Invalid password, it should contain at least %d of these characters: %s</string>
-    <string name="error_password_is_wrong">Password is wrong</string>
-    <string name="error_passwords_dont_match">Passwords don\'t match</string>
-    <string name="error_range_length_must_be_greater_than">Range length must be greater than %d</string>
-    <string name="error_range_not_enough_divisible_pairs">Not enough divisible pairs (%d/%d), try a wider range</string>
-    <string name="error_range_values_are_inverted">Range values are inverted</string>
-    <string name="error_too_long">Too long, the maximum length is %d</string>
-    <string name="error_too_short">Too short, the minimum length is %d</string>
-    <string name="error_unknown">Unknown error</string>
-    <string name="error_user_doesnt_exist">The user doesn\'t exist</string>
-    <string name="error_username_invalid">Invalid username, it can only contain lowercase letters without accents, digits and these characters: %s</string>
-    <string name="error_username_is_already_in_use">The username is already in use</string>
-
-    <string name="feature_profile_account_created_at_PH">The account was created at %s</string>
-    <string name="feature_profile_biography">Biography</string>
-
-    <string name="frgEditProfile_btnSave_text">Save</string>
-
-    <string name="frgEndGame_btnContinue_text">Continue</string>
-
-    <string name="frgHome_averageOpm">Average OPM</string>
-    <string name="frgHome_averageRawOpm">Average raw OPM</string>
-    <string name="frgHome_correctOperationsCompleted">Correct operations completed</string>
-    <string name="frgHome_go_to_test">Go to test</string>
-    <string name="frgHome_highestOpm">Highest OPM</string>
-    <string name="frgHome_highestRawOpm">Highest raw OPM</string>
-    <string name="frgHome_operationsCompleted">Operations completed</string>
-    <string name="frgHome_testsCompleted">Tests completed</string>
-    <string name="frgHome_testsCompletedWithoutErrors">Tests completed without errors</string>
-
-    <string name="frgPrivateProfile_btnEdit_text">Edit profile</string>
-    <string name="frgPrivateProfile_btnLogout_text">Logout</string>
-
-    <string name="frgSettings_category_general">Dark theme</string>
-    <string name="frgSettings_dark_theme_title">Dark Theme</string>
-    <string name="frgSettings_disable_notifications_title">Disable notifications</string>
-    <string name="frgSettings_use_inverted_numeric_keyboard_title">Use inverted numeric keyboard</string>
-
-    <string name="frgTestConfiguration_tietEnd_hint">End</string>
-    <string name="frgTestConfiguration_tietStart_hint">Start</string>
-    <string name="frgTestConfiguration_tvMode_text">Mode:</string>
-    <string name="frgTestConfiguration_tvNumberRange_text">Range:</string>
-    <string name="frgTestConfiguration_tvTitle_text">Test configuration</string>
-
-    <string name="frgTestDetails_LabelFor_rvFailedOperations_text">Failed operations</string>
-
-    <string name="frgTestFragment_touch_to_start">Touch to start</string>
-
-    <string name="frgTipManager_tieExample_hint">Example</string>
-    <string name="frgTipManager_tieTitle_hint">Title</string>
-
-    <string name="frgTips_tvTitle_text">Tips</string>
-
-    <string name="frgbdChooseOrDeleteProfilePic_btnDeleteCurrentPicture_text">Delete current picture</string>
-    <string name="frgbdChooseOrDeleteProfilePic_btnSelectAPicture_text">Select a picture</string>
-
-    <string name="generic_confirm_password">Confirm password</string>
-    <string name="generic_date">Date</string>
-    <string name="generic_errors">Errors</string>
-    <string name="generic_login">Login</string>
-    <string name="generic_operations">Operations</string>
-    <string name="generic_opm">OPM</string>
-    <string name="generic_password">Password</string>
-    <string name="generic_raw">Raw</string>
-    <string name="generic_register">Register</string>
-    <string name="generic_seconds">Seconds</string>
-    <string name="generic_start">Start</string>
-    <string name="generic_tests">Tests</string>
-    <string name="generic_totalTime">Total time</string>
-    <string name="generic_username">Username</string>
-
-    <string name="message_info_successfully_updated">Information successfully updated</string>
-
-    <string name="no_data_available">No data available</string>
+    <string name="End__noun">End</string>
+    <string name="Start__noun">Start</string>
+    <string name="Start__verb">Start</string>
+    <string name="Mode">Mode</string>
+    <string name="Range">Range</string>
+    <string name="Date">Date</string>
+    <string name="Errors">Errors</string>
+    <string name="Login__verb">Login</string>
+    <string name="Operations">Operations</string>
+    <string name="OPM__OperationsPerMinute">OPM</string>
+    <string name="Password">Password</string>
+    <string name="Raw">Raw</string>
+    <string name="Register__verb">Register</string>
+    <string name="Seconds">Seconds</string>
+    <string name="TotalTime">Total time</string>
+    <string name="Username">Username</string>
+    <string name="Example">Example</string>
+    <string name="Title">Title</string>
+    <string name="Tips">Tips</string>
+    <string name="Tests">Tests</string>
+    <string name="Time">Time</string>
+    <string name="Fix__verb">Fix</string>
+    <string name="Logout__verb">Logout</string>
+    <string name="Biography">Biography</string>
+    <string name="Save__verb">Save</string>
+    <string name="Continue">Continue</string>
+    <string name="TheAccountWasCreatedAt">The account was created at %s</string>
+    <string name="AverageOPM">Average OPM</string>
+    <string name="AverageRawOPM">Average raw OPM</string>
+    <string name="CorrectOperationsCompleted">Correct operations completed</string>
+    <string name="GoToTest">Go to test</string>
+    <string name="HighestOPM">Highest OPM</string>
+    <string name="HighestRawOPM">Highest raw OPM</string>
+    <string name="OperationsCompleted">Operations completed</string>
+    <string name="TestsCompleted">Tests completed</string>
+    <string name="TestsCompletedWithoutErrors">Tests completed without errors</string>
+    <string name="EditProfile">Edit profile</string>
+    <string name="DarkTheme">Dark theme</string>
+    <string name="DisableNotifications">Disable notifications</string>
+    <string name="UseInvertedNumericKeyboard">Use inverted numeric keyboard</string>
+    <string name="TestConfiguration">Test configuration</string>
+    <string name="FailedOperations">Failed operations</string>
+    <string name="TouchToStart">Touch to start</string>
+    <string name="DeleteCurrentPicture">Delete current picture</string>
+    <string name="SelectAPicture">Select a picture</string>
+    <string name="ConfirmPassword">Confirm password</string>
+    <string name="InformationSuccessfullyUpdated">Information successfully updated</string>
+    <string name="NoDataAvailable">No data available</string>
+    <string name="CreateAnAccount">Create an account</string>
+    <string name="AreYouSureYouWantToLogOut">Are you sure you want to log out?</string>
 </resources>

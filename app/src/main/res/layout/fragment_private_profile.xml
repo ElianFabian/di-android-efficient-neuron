@@ -83,7 +83,7 @@
                         android:layout_gravity="center"
                         android:layout_marginHorizontal="@dimen/_30sdp"
                         android:layout_marginBottom="@dimen/_5sdp"
-                        android:text="@string/frgPrivateProfile_btnEdit_text"
+                        android:text="@string/EditProfile"
                         android:textSize="@dimen/textSize_medium2"
                         android:visibility="gone"
                         tools:visibility="visible" />
@@ -105,7 +105,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/_5sdp"
-                    android:text="@string/feature_profile_biography"
+                    android:text="@string/Biography"
                     android:textAppearance="@style/TextAppearance_Label_Main"
                     android:visibility="gone"
                     tools:visibility="visible" />
@@ -132,7 +132,7 @@
                     android:layout_marginBottom="@dimen/_10sdp"
                     android:backgroundTint="@color/red_600_00"
                     android:paddingVertical="@dimen/_1sdp"
-                    android:text="@string/frgPrivateProfile_btnLogout_text"
+                    android:text="@string/Logout__verb"
                     android:visibility="gone"
                     tools:visibility="visible" />
 

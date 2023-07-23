@@ -19,7 +19,7 @@ var Chart<*>.marker2: IMarker
 	}
 
 fun Chart<*>.showNoDataText() {
-	setNoDataText(context!!.getString(R.string.no_data_available))
+	setNoDataText(context!!.getString(R.string.NoDataAvailable))
 	setNoDataTextColor(context!!.getThemeColor(R.attr.colorSecondary))
 	getPaint(Chart.PAINT_INFO).textSize = resources.getDimension(R.dimen.textSize_medium2)
 }

@@ -89,11 +89,11 @@
                     android:id="@+id/tietUsername"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/generic_username"
+                    android:hint="@string/Username"
                     android:imeOptions="actionDone"
                     android:maxLength="30"
                     android:textColor="@color/white"
-                    tools:text="@string/generic_username" />
+                    tools:text="@string/Username" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -112,7 +112,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="top"
-                    android:hint="@string/feature_profile_biography"
+                    android:hint="@string/Biography"
                     android:inputType="textMultiLine"
                     android:maxLength="512"
                     android:minLines="12"
@@ -129,7 +129,7 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginHorizontal="@dimen/_20sdp"
                 android:layout_marginVertical="@dimen/_20sdp"
-                android:text="@string/frgEditProfile_btnSave_text" />
+                android:text="@string/Save__verb" />
 
             <ProgressBar
                 android:id="@+id/lpiIsLoading"

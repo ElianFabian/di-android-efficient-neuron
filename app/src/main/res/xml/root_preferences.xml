@@ -1,18 +1,18 @@
 <PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <PreferenceCategory app:title="@string/frgSettings_category_general">
+    <PreferenceCategory app:title="@string/DarkTheme">
 
         <SwitchPreferenceCompat
             app:key="dark_theme"
-            app:title="@string/frgSettings_dark_theme_title" />
+            app:title="@string/DarkTheme" />
 
         <SwitchPreferenceCompat
             app:key="use_inverted_numeric_keyboard"
-            app:title="@string/frgSettings_use_inverted_numeric_keyboard_title" />
+            app:title="@string/UseInvertedNumericKeyboard" />
 
         <SwitchPreferenceCompat
             app:key="disable_notifications"
-            app:title="@string/frgSettings_disable_notifications_title" />
+            app:title="@string/DisableNotifications" />
 
     </PreferenceCategory>
 

@@ -131,7 +131,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 						data = BarData(
 							barDataSet(
 								entries = testCountPerSpeedRange.toBarEntries(),
-								labelResId = R.string.generic_tests,
+								labelResId = R.string.Tests,
 							),
 						)
 						invalidate()
@@ -170,7 +170,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 					binding.btnGoToTestDetails.apply {
 						isEnabled = isThereASelectedTest
 						text = buildString {
-							append(getString(R.string.frgHome_go_to_test))
+							append(getString(R.string.GoToTest))
 
 							if (isThereASelectedTest) {
 								append(" ${selectedTestIndex + 1}")
@@ -207,7 +207,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 		if (info.listOfOpmPerTest.isNotEmpty() || info.listOfRawOpmPerTest.isNotEmpty()) {
 			val lineDataSets = arrayOf(
 				lineDataSet(
-					labelResId = R.string.generic_raw,
+					labelResId = R.string.Raw,
 					lineAndCirclesColorResId = R.color.chart_secondary,
 					entries = info.listOfRawOpmPerTest.toEntries(startXValue = 1),
 				) {
@@ -215,7 +215,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 					highLightColor = getColorCompat(R.color.blue_200)
 				},
 				lineDataSet(
-					label = getString(R.string.generic_opm),
+					label = getString(R.string.OPM__OperationsPerMinute),
 					entries = info.listOfOpmPerTest.toEntries(startXValue = 1),
 				) {
 					setDrawVerticalHighlightIndicator(true)
@@ -265,15 +265,15 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
 		info.apply {
 			val listOfLabeledData = listOf(
-				R.string.frgHome_testsCompleted labelOf testsCompletedCount,
-				R.string.frgHome_testsCompletedWithoutErrors labelOf "$testsCompletedWithoutErrorsCount (${testsCompletedWithoutErrorsPercentage.toInt()} %)",
-				R.string.generic_totalTime labelOf formattedTotalTime,
-				R.string.frgHome_operationsCompleted labelOf operationsCompleted,
-				R.string.frgHome_correctOperationsCompleted labelOf "$correctOperationsCompletedCount (${correctOperationsCompletedPercentage.toInt()} %)",
-				R.string.frgHome_averageOpm labelOf averageOpm.toInt(),
-				R.string.frgHome_averageRawOpm labelOf averageRawOpm.toInt(),
-				R.string.frgHome_highestOpm labelOf maxOpm.toInt(),
-				R.string.frgHome_highestRawOpm labelOf maxRawOpm.toInt(),
+				R.string.TestsCompleted labelOf testsCompletedCount,
+				R.string.TestsCompletedWithoutErrors labelOf "$testsCompletedWithoutErrorsCount (${testsCompletedWithoutErrorsPercentage.toInt()} %)",
+				R.string.TotalTime labelOf formattedTotalTime,
+				R.string.OperationsCompleted labelOf operationsCompleted,
+				R.string.CorrectOperationsCompleted labelOf "$correctOperationsCompletedCount (${correctOperationsCompletedPercentage.toInt()} %)",
+				R.string.AverageOPM labelOf averageOpm.toInt(),
+				R.string.AverageRawOPM labelOf averageRawOpm.toInt(),
+				R.string.HighestOPM labelOf maxOpm.toInt(),
+				R.string.HighestRawOPM labelOf maxRawOpm.toInt(),
 			)
 
 			binding.viewTestListStats.rvLabeledData.adapter = MainLabeledDataAdapter(listOfLabeledData)

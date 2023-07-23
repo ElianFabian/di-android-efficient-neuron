@@ -22,12 +22,12 @@ fun TestInfoMarker(
 
 	val uiLabeledData = items[position].statsInfo.run {
 		listOf(
-			R.string.generic_date labelOf date,
-			R.string.generic_operations labelOf operationCount,
-			R.string.arrayTest_modes_time labelOf "$timeInSeconds s",
-			R.string.generic_opm labelOf opm.toInt(),
-			R.string.generic_raw labelOf rawOpm.toInt(),
-			R.string.generic_errors labelOf errorCount,
+			R.string.Date labelOf date,
+			R.string.Operations labelOf operationCount,
+			R.string.Time labelOf "$timeInSeconds s",
+			R.string.OPM__OperationsPerMinute labelOf opm.toInt(),
+			R.string.Raw labelOf rawOpm.toInt(),
+			R.string.Errors labelOf errorCount,
 		)
 	}
 

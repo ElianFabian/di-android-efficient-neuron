@@ -61,16 +61,16 @@ class TestDetailsFragment : Fragment(R.layout.fragment_test_details) {
 	private fun initializeTestChart(info: TestChartInfo) {
 		val lineDataSets = arrayOf(
 			lineDataSet(
-				labelResId = R.string.generic_raw,
+				labelResId = R.string.Raw,
 				lineAndCirclesColorResId = R.color.chart_secondary,
 				entries = info.listOfRawOpmPerSecond.toEntries(),
 			),
 			lineDataSet(
-				labelResId = R.string.generic_opm,
+				labelResId = R.string.OPM__OperationsPerMinute,
 				entries = info.listOfOpmPerSecond.toEntries(),
 			),
 			lineDataSet(
-				labelResId = R.string.generic_errors,
+				labelResId = R.string.Errors,
 				lineAndCirclesColorResId = R.color.red_500,
 				entries = info.errorSeconds.valuesToEntriesWithYValue(info.errorsYValue.toFloat()),
 				isDashedLineEnable = false,
@@ -88,13 +88,13 @@ class TestDetailsFragment : Fragment(R.layout.fragment_test_details) {
 
 	private fun initializeTextStats(info: TestStatsInfo) = using(info) {
 		val listOfLabeledData = listOf(
-			R.string.generic_operations labelOf operationCount,
-			R.string.generic_totalTime labelOf "$timeInSeconds s",
-			R.string.generic_opm labelOf opm,
-			R.string.generic_raw labelOf rawOpm,
-			R.string.frgHome_highestOpm labelOf maxOpm,
-			R.string.frgHome_highestRawOpm labelOf maxRawOpm,
-			R.string.generic_errors labelOf errorCount,
+			R.string.Operations labelOf operationCount,
+			R.string.TotalTime labelOf "$timeInSeconds s",
+			R.string.OPM__OperationsPerMinute labelOf opm,
+			R.string.Raw labelOf rawOpm,
+			R.string.HighestOPM labelOf maxOpm,
+			R.string.HighestRawOPM labelOf maxRawOpm,
+			R.string.Errors labelOf errorCount,
 		)
 
 		binding.viewTextInfoList.rvLabeledData.adapter = MainLabeledDataAdapter(listOfLabeledData)

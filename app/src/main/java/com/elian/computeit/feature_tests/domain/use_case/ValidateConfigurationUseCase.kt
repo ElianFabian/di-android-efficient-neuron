@@ -29,18 +29,18 @@ class ValidateConfigurationUseCase @Inject constructor() {
 
 		val messageInfo = when {
 			params.startOfRange!! > params.endOfRange!!                            -> {
-				TestConfigurationResultMessage.RangeValuesAreInverted(UiText(R.string.error_range_values_are_inverted))
+				TestConfigurationResultMessage.RangeValuesAreInverted(UiText(R.string.Error_RangeValuesAreInverted))
 			}
 			params.endOfRange - params.startOfRange + 1 < MinRangeLength           -> {
 				TestConfigurationResultMessage(
 					UiText(
-						resId = R.string.error_range_length_must_be_greater_than,
+						resId = R.string.Error_RangeLengthMustBeGreaterThan,
 						args = arrayOf(MinRangeLength)
 					)
 				)
 			}
 			params.operation == OperationType.Division && params.startOfRange == 0 -> {
-				TestConfigurationResultMessage(UiText(R.string.error_division_by_zero_is_not_allowed))
+				TestConfigurationResultMessage(UiText(R.string.Error_DivisionByZeroIsNotAllowed))
 			}
 			params.operation == OperationType.Division                             -> {
 
@@ -53,7 +53,7 @@ class ValidateConfigurationUseCase @Inject constructor() {
 				if (divisiblePairsCount < MinDivisiblePairCount) {
 					TestConfigurationResultMessage(
 						UiText(
-							resId = R.string.error_range_not_enough_divisible_pairs,
+							resId = R.string.Error_RangeNotEnoughDivisiblePairs,
 							args = arrayOf(
 								divisiblePairsCount,
 								MinDivisiblePairCount,

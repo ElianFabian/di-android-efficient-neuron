@@ -63,7 +63,7 @@ class ProfileRepositoryImpl @Inject constructor(
 			newName = params.username,
 		)
 
-		if (isUsernameTaken) return@withContext Resource.Error(UiText(R.string.error_username_is_already_in_use))
+		if (isUsernameTaken) return@withContext Resource.Error(UiText(R.string.Error_UsernameIsAlreadyInUse))
 
 		val newOrCurrentProfilePicUuid = currentUser.profilePicUuid ?: UUID.randomUUID().toString()
 		try {

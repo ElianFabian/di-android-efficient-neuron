@@ -69,7 +69,7 @@ class LoginActivity : AppCompatActivity() {
 	}
 
 	private fun getFieldError(error: Error?) = when (error) {
-		is TextFieldError.Empty -> getString(R.string.error_cant_be_empty)
+		is TextFieldError.Empty -> getString(R.string.Error_CantBeEmpty)
 		else                    -> null
 	}
 }

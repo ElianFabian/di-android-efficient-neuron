@@ -97,7 +97,7 @@ class EditProfileFragment : Fragment(R.layout.fragment_edit_profile) {
 		}
 		collectFlowWhenStarted(editProfileEventFlow) {
 			when (it) {
-				is EditProfileEvent.OnSave             -> showToast(R.string.message_info_successfully_updated)
+				is EditProfileEvent.OnSave             -> showToast(R.string.InformationSuccessfullyUpdated)
 				is EditProfileEvent.OnShowErrorMessage -> showToast(it.error.asString(context))
 			}
 		}

@@ -12,7 +12,7 @@ sealed class UiText {
 	) : UiText()
 
 	companion object {
-		val unknownError = StringResource(R.string.error_unknown)
+		val unknownError = StringResource(R.string.Error_Unknown)
 	}
 }
 

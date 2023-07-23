@@ -11,7 +11,7 @@
     <TextView
         android:id="@+id/tvTitle"
         style="@style/Title"
-        android:text="@string/generic_login"
+        android:text="@string/Login__verb"
         android:textColor="@color/black" />
 
     <com.google.android.material.textfield.TextInputLayout
@@ -24,7 +24,7 @@
             style="@style/TextInputEditTextStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/generic_username"
+            android:hint="@string/Username"
             android:imeOptions="actionNext"
             android:maxLength="30" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -40,7 +40,7 @@
             style="@style/TextInputEditTextStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/generic_password"
+            android:hint="@string/Password"
             android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -53,7 +53,7 @@
         android:layout_marginTop="@dimen/_10sdp"
         android:layout_marginEnd="@dimen/_16sdp"
         android:maxLines="1"
-        android:text="@string/actLogin_create_an_account" />
+        android:text="@string/CreateAnAccount" />
 
     <View style="@style/Utils_LinearLayoutSeparator" />
 
@@ -73,6 +73,6 @@
         android:layout_marginHorizontal="@dimen/_20sdp"
         android:layout_marginTop="@dimen/_35sdp"
         android:layout_marginBottom="@dimen/_20sdp"
-        android:text="@string/generic_login" />
+        android:text="@string/Login__verb" />
 
 </androidx.appcompat.widget.LinearLayoutCompat>
