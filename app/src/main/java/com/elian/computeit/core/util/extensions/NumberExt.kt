@@ -41,5 +41,6 @@ fun Long.dropLast(n: Int = 1): Long = (this * 10.0.pow(-n)).toLong()
 fun Int.dropLast(n: Int = 1): Int = this.toLong().dropLast(n).toInt()
 
 
-fun Float.ifNaNReturnZero() = if (isNaN()) 0F else this
-fun Double.ifNaNReturnZero() = if (isNaN()) 0.0 else this
+fun Int?.orZero() = this ?: 0
+fun Float?.orZero() = if (this == null || isNaN()) 0F else this
+fun Double?.orZero() = if (this == null || isNaN()) 0.0 else this

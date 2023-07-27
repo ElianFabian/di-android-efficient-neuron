@@ -12,6 +12,7 @@ import com.elian.computeit.core.util.constants.arguments
 import com.elian.computeit.core.util.extensions.append
 import com.elian.computeit.core.util.extensions.clampLength
 import com.elian.computeit.core.util.extensions.dropLast
+import com.elian.computeit.core.util.extensions.orZero
 import com.elian.computeit.feature_tests.domain.args.TestArgs
 import com.elian.computeit.feature_tests.domain.args.TestDetailsArgs
 import com.elian.computeit.feature_tests.domain.use_case.TestUseCases
@@ -60,8 +61,8 @@ class TestViewModel @Inject constructor(
 
 	private val _expectedResult
 		get() = _args.operation(
-			firstNumber = _state.value.pairOfNumbers?.first ?: 0,
-			secondNumber = _state.value.pairOfNumbers?.second ?: 0,
+			firstNumber = _state.value.pairOfNumbers?.first.orZero(),
+			secondNumber = _state.value.pairOfNumbers?.second.orZero(),
 		)
 
 	// As there's no negative sign button even if the answer it's negative you insert a positive number

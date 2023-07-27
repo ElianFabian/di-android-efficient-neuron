@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.elian.computeit.core.domain.models.Range
 import com.elian.computeit.core.domain.models.TestConfigurationResultMessage
 import com.elian.computeit.core.util.Resource
+import com.elian.computeit.core.util.extensions.orZero
 import com.elian.computeit.core.util.orUnknownError
 import com.elian.computeit.feature_tests.domain.args.TestArgs
 import com.elian.computeit.feature_tests.domain.params.ValidateConfigurationParams
@@ -96,8 +97,8 @@ class TestConfigurationViewModel @Inject constructor(
 	}
 
 	private fun swipeToFixRangeBounds() {
-		val startOfRange = _state.value.startOfRange ?: 0
-		val endOfRange = _state.value.endOfRange ?: 0
+		val startOfRange = _state.value.startOfRange.orZero()
+		val endOfRange = _state.value.endOfRange.orZero()
 
 		if (startOfRange < endOfRange) return
 

@@ -11,8 +11,8 @@ import com.elian.computeit.core.domain.models.TestStatsInfo
 import com.elian.computeit.core.util.constants.defaultFullDateFormat
 import com.elian.computeit.core.util.constants.secondsToDhhmmss
 import com.elian.computeit.core.util.extensions.getListOfValuePerSecond
-import com.elian.computeit.core.util.extensions.ifNaNReturnZero
 import com.elian.computeit.core.util.extensions.isError
+import com.elian.computeit.core.util.extensions.orZero
 import com.elian.computeit.core.util.extensions.result
 import java.util.Date
 import kotlin.math.ceil
@@ -37,10 +37,10 @@ fun TestData.toTestInfo(): TestInfo {
 		},
 	)
 
-	val minOpm = listOfOpmPerSecond.values.minOrNull() ?: 0F
-	val minRawOpm = listOfRawOpmPerSecond.values.minOrNull() ?: 0F
-	val maxOpm = listOfOpmPerSecond.values.maxOrNull() ?: 0F
-	val maxRawOpm = listOfRawOpmPerSecond.values.maxOrNull() ?: 0F
+	val minOpm = listOfOpmPerSecond.values.minOrNull().orZero()
+	val minRawOpm = listOfRawOpmPerSecond.values.minOrNull().orZero()
+	val maxOpm = listOfOpmPerSecond.values.maxOrNull().orZero()
+	val maxRawOpm = listOfRawOpmPerSecond.values.maxOrNull().orZero()
 
 	val errorYValuePercentage = 0.5F
 
@@ -48,13 +48,17 @@ fun TestData.toTestInfo(): TestInfo {
 		chartInfo = TestChartInfo(
 			listOfOpmPerSecond = listOfOpmPerSecond,
 			listOfRawOpmPerSecond = listOfRawOpmPerSecond,
-			errorSeconds = listOfOperationData.filter { it.millisSinceStart >= 1000 && it.isError }.map { it.millisSinceStart / 1000F },
+			errorSeconds = listOfOperationData.filter {
+				it.millisSinceStart >= 1000 && it.isError
+			}.map {
+				it.millisSinceStart / 1000F
+			},
 			errorsYValue = (errorYValuePercentage * (minOf(minOpm, minRawOpm) + maxOf(maxOpm, maxRawOpm))).toInt(),
 		),
 		statsInfo = TestStatsInfo(
 			date = defaultFullDateFormat.format(Date(dateUnix)),
-			opm = listOfOpmPerSecond.values.lastOrNull() ?: 0F,
-			rawOpm = listOfRawOpmPerSecond.values.lastOrNull() ?: 0F,
+			opm = listOfOpmPerSecond.values.lastOrNull().orZero(),
+			rawOpm = listOfRawOpmPerSecond.values.lastOrNull().orZero(),
 			minOpm = minOpm,
 			maxOpm = maxOpm,
 			minRawOpm = minRawOpm,
@@ -77,8 +81,8 @@ fun List<TestData>.toTestListInfo(): TestListInfo {
 	val listOfOpmPerTest = listOfTestInfo.map { it.statsInfo.opm }
 	val listOfRawOpmPerTest = listOfTestInfo.map { it.statsInfo.rawOpm }
 
-	val minOpm = listOfOpmPerTest.minOrNull() ?: 0F
-	val maxOpm = listOfOpmPerTest.maxOrNull() ?: 0F
+	val minOpm = listOfOpmPerTest.minOrNull().orZero()
+	val maxOpm = listOfOpmPerTest.maxOrNull().orZero()
 
 	val maxAndMinOpmDifference = (maxOpm - minOpm).toInt()
 
@@ -99,28 +103,28 @@ fun List<TestData>.toTestListInfo(): TestListInfo {
 		speedRangeLength = defaultRangeLength,
 		testsPerSpeedRange = testsPerSpeedRange,
 		speedRangeLengthValueFrom = 1,
-		speedRangeLengthValueTo = maxAndMinOpmDifference.coerceIn(2, Int.MAX_VALUE),
+		speedRangeLengthValueTo = maxAndMinOpmDifference.coerceAtLeast(2),
 
 		testsCompletedCount = this.size,
 		testsCompletedWithoutErrorsCount = testsCompletedWithoutErrorsCount,
-		testsCompletedWithoutErrorsPercentage = (100F * testsCompletedWithoutErrorsCount / this.size).ifNaNReturnZero(),
+		testsCompletedWithoutErrorsPercentage = (100F * testsCompletedWithoutErrorsCount / this.size).orZero(),
 		formattedTotalTime = secondsToDhhmmss(totalTimeInSeconds),
 		operationsCompleted = operationsCompletedCount,
 		correctOperationsCompletedCount = correctOperationsCompletedCount,
-		correctOperationsCompletedPercentage = (100F * correctOperationsCompletedCount / operationsCompletedCount).ifNaNReturnZero(),
-		averageOpm = listOfOpmPerTest.average().toFloat().ifNaNReturnZero(),
-		averageRawOpm = listOfRawOpmPerTest.average().ifNaNReturnZero().toFloat(),
+		correctOperationsCompletedPercentage = (100F * correctOperationsCompletedCount / operationsCompletedCount).orZero(),
+		averageOpm = listOfOpmPerTest.average().toFloat().orZero(),
+		averageRawOpm = listOfRawOpmPerTest.average().orZero().toFloat(),
 		minOpm = minOpm,
 		maxOpm = maxOpm,
-		minRawOpm = listOfRawOpmPerTest.minOrNull() ?: 0F,
-		maxRawOpm = listOfRawOpmPerTest.maxOrNull() ?: 0F,
+		minRawOpm = listOfRawOpmPerTest.minOrNull().orZero(),
+		maxRawOpm = listOfRawOpmPerTest.maxOrNull().orZero(),
 	)
 }
 
 fun List<TestData>.toTestCountPerSpeedRange(rangeLength: Int): List<Int> {
 	val listOfOpmPerTest = map {
 		val correctOperations = it.listOfOperationData.count { operation -> !operation.isError }
-		val testOpm = (correctOperations / it.timeInSeconds.toFloat() * 60).ifNaNReturnZero()
+		val testOpm = (correctOperations / it.timeInSeconds.toFloat() * 60).orZero()
 
 		testOpm
 	}
@@ -136,11 +140,11 @@ private fun getTestCountPerSpeedRange(
 	listOfOpmPerTest: List<Float>,
 	speedRangeLength: Int,
 ): List<Int> {
-	val minOpm = listOfOpmPerTest.minOrNull() ?: 0F
-	val maxOpm = listOfOpmPerTest.maxOrNull() ?: 0F
+	val minOpm = listOfOpmPerTest.minOrNull().orZero()
+	val maxOpm = listOfOpmPerTest.maxOrNull().orZero()
 
 	val rangeCount = if (maxOpm != 0F) {
-		((maxOpm - minOpm) / speedRangeLength.toFloat() + 1).ifNaNReturnZero().toInt()
+		((maxOpm - minOpm) / speedRangeLength.toFloat() + 1).orZero().toInt()
 	}
 	else 0
 
@@ -148,7 +152,7 @@ private fun getTestCountPerSpeedRange(
 
 	listOfOpmPerTest.forEach { testOpm ->
 
-		val testRangePosition = ((testOpm - minOpm) / speedRangeLength).ifNaNReturnZero().toInt()
+		val testRangePosition = ((testOpm - minOpm) / speedRangeLength).orZero().toInt()
 
 		listOfTestsPerSpeedRange[testRangePosition]++
 	}

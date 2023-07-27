@@ -1,6 +1,7 @@
 package com.elian.computeit.core.presentation.util.mp_android_chart
 
 import android.graphics.Color
+import com.elian.computeit.core.util.extensions.orZero
 import com.github.mikephil.charting.charts.BarChart
 import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet
@@ -49,7 +50,7 @@ fun BarChart.applyDefaultConfiguration(block: (BarChart.() -> Unit)? = null): Ba
 }
 
 fun BarChart.applyDefaultAnimation(block: (BarChart.() -> Unit)? = null): BarChart {
-	val largestDataSetCount = this.data.dataSets.maxOfOrNull { it.entryCount } ?: 0
+	val largestDataSetCount = this.data.dataSets.maxOfOrNull { it.entryCount }.orZero()
 
 	val animationTime = ln(largestDataSetCount.toFloat() + 1).toInt() * 150
 

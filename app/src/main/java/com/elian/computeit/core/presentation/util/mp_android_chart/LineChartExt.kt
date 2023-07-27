@@ -1,6 +1,7 @@
 package com.elian.computeit.core.presentation.util.mp_android_chart
 
 import android.graphics.Color
+import com.elian.computeit.core.util.extensions.orZero
 import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
@@ -47,7 +48,7 @@ fun LineChart.applyDefaultConfiguration(block: (LineChart.() -> Unit)? = null): 
 }
 
 fun LineChart.applyDefaultAnimation(block: (LineChart.() -> Unit)? = null): LineChart {
-	val largestDataSetCount = this.data.dataSets.maxOfOrNull { it.entryCount } ?: 0
+	val largestDataSetCount = this.data.dataSets.maxOfOrNull { it.entryCount }.orZero()
 
 	val animationTime = ln(largestDataSetCount.toFloat() + 1).toInt() * 150
 

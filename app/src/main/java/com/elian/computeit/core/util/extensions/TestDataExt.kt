@@ -15,6 +15,6 @@ fun TestData.getListOfValuePerSecond(
 
 		val value = getValue(currentSecond, countSinceStart)
 
-		value.ifNaNReturnZero()
+		value.orZero()
 	}
 }
