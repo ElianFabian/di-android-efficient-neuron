@@ -66,7 +66,7 @@ class TestConfigurationViewModel @Inject constructor(
 						is Resource.Error   -> {
 							val actionForMessage: (() -> Unit)? = when (result.messageInfo) {
 								is TestConfigurationResultMessage.RangeValuesAreInverted -> {
-									{ swipeToFixRangeBounds() }
+									{ fixRangeBoundsOrder() }
 								}
 								else                                                     -> null
 							}
@@ -96,7 +96,7 @@ class TestConfigurationViewModel @Inject constructor(
 		}
 	}
 
-	private fun swipeToFixRangeBounds() {
+	private fun fixRangeBoundsOrder() {
 		val startOfRange = _state.value.startOfRange.orZero()
 		val endOfRange = _state.value.endOfRange.orZero()
 
