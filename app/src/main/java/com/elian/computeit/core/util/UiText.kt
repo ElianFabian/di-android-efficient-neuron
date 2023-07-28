@@ -4,12 +4,12 @@ import android.content.Context
 import androidx.annotation.StringRes
 import com.elian.computeit.R
 
-sealed class UiText {
-	class DynamicString(val value: String) : UiText()
+sealed interface UiText {
+	class DynamicString(val value: String) : UiText
 	class StringResource(
 		@StringRes val resId: Int,
 		vararg val args: Any?,
-	) : UiText()
+	) : UiText
 
 	companion object {
 		val unknownError = StringResource(R.string.Error_Unknown)
