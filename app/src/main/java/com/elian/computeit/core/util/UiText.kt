@@ -4,38 +4,40 @@ import android.content.Context
 import androidx.annotation.StringRes
 import com.elian.computeit.R
 
-sealed interface UiText {
-	class DynamicString(val value: String) : UiText
-	class StringResource(
-		@StringRes val resId: Int,
-		vararg val args: Any?,
-	) : UiText
+sealed interface UiText
 
-	companion object {
-		val unknownError = StringResource(R.string.Error_Unknown)
-	}
-}
 
-fun UiText?.asString(context: Context?): String? = when (this) {
-	is UiText.DynamicString  -> this.value
-	is UiText.StringResource -> context?.getString(this.resId, *args)
-	else                     -> null
-}
+private class DynamicString(val value: String) : UiText
 
-fun UiText?.orUnknownError(): UiText = when {
-	this == null -> UiText.unknownError
-	else         -> this
-}
+private class StringResource(
+	@StringRes val resId: Int,
+	vararg val args: Any?,
+) : UiText
+
 
 fun UiText(
 	@StringRes resId: Int,
 	vararg args: Any?,
-): UiText = UiText.StringResource(
+): UiText = StringResource(
 	resId = resId,
 	args = args,
 )
 
 fun UiText(value: String?): UiText = when (value) {
-	null -> UiText.unknownError
-	else -> UiText.DynamicString(value)
+	null -> UnknownError
+	else -> DynamicString(value)
+}
+
+fun UiText?.asString(context: Context?): String? = when (this) {
+	is DynamicString  -> this.value
+	is StringResource -> context?.getString(this.resId, *args)
+	else              -> null
+}
+
+
+private val UnknownError = UiText(R.string.Error_Unknown)
+
+fun UiText?.orUnknownError(): UiText = when {
+	this == null -> UnknownError
+	else         -> this
 }
