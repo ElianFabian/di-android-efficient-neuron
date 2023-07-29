@@ -6,8 +6,8 @@ import androidx.lifecycle.viewModelScope
 import com.elian.computeit.core.data.mapper.toTestInfo
 import com.elian.computeit.core.data.model.OperationData
 import com.elian.computeit.core.data.model.TestData
-import com.elian.computeit.core.domain.util.CountDownTimer
-import com.elian.computeit.core.domain.util.TimerEvent
+import com.elian.computeit.core.domain.util.timer.SimpleTimer
+import com.elian.computeit.core.domain.util.timer.Timer
 import com.elian.computeit.core.util.constants.arguments
 import com.elian.computeit.core.util.extensions.append
 import com.elian.computeit.core.util.extensions.clampLength
@@ -16,20 +16,16 @@ import com.elian.computeit.core.util.extensions.orZero
 import com.elian.computeit.feature_tests.domain.args.TestArgs
 import com.elian.computeit.feature_tests.domain.args.TestDetailsArgs
 import com.elian.computeit.feature_tests.domain.use_case.TestUseCases
-import com.elian.computeit.feature_tests.presentation.test.TestAction.ClearInput
-import com.elian.computeit.feature_tests.presentation.test.TestAction.EnterNumber
-import com.elian.computeit.feature_tests.presentation.test.TestAction.ForceFinish
-import com.elian.computeit.feature_tests.presentation.test.TestAction.NextOperation
-import com.elian.computeit.feature_tests.presentation.test.TestAction.RemoveLastDigit
-import com.elian.computeit.feature_tests.presentation.test.TestEvent.OnGoToTestDetails
-import com.elian.computeit.feature_tests.presentation.test.TestEvent.OnTimerFinish
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.MainScope
-import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.receiveAsFlow
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -38,68 +34,107 @@ import kotlin.math.sign
 @HiltViewModel
 class TestViewModel @Inject constructor(
 	savedState: SavedStateHandle,
-	private val countDownTimer: CountDownTimer,
 	private val useCases: TestUseCases,
 ) : ViewModel() {
 
 	private val _args = savedState.arguments<TestArgs>()!!
+	private val _range = _args.run { range.min..range.max }
+
 
 	private val _state = MutableStateFlow(
 		TestState(
-			operationSymbol = _args.operation.symbol,
+			operation = _args.operation,
+			totalTimeInMillis = _args.totalTimeInSeconds * 1000L,
+			range = _args.range,
 		)
 	)
 	val state = _state.asStateFlow()
 
-	private val _eventFlow = Channel<TestEvent>()
-	val eventFlow = _eventFlow.receiveAsFlow()
+	private val countDownTimer = SimpleTimer(
+		direction = when (_state.value.testType) {
+			TestType.FINITE   -> Timer.Direction.COUNT_DOWN
+			TestType.INFINITE -> Timer.Direction.COUNT_UP
+		},
+		initialMillis = when (_state.value.testType) {
+			TestType.FINITE   -> _args.totalTimeInSeconds * 1000L
+			TestType.INFINITE -> 0L
+		},
+		minMillis = 0L,
+		periodInMillis = 1L,
+	)
 
-	private val _range = _args.run { range.min..range.max }
-	private val _listOfOperationData = mutableListOf<OperationData>()
-	private val _isInfiniteMode = _args.totalTimeInSeconds == 0
-	private var _millisSinceStart = 0L
-
-	private val _expectedResult
-		get() = _args.operation(
-			firstNumber = _state.value.pairOfNumbers?.first.orZero(),
-			secondNumber = _state.value.pairOfNumbers?.second.orZero(),
+	val timerMillisState = countDownTimer.millisState
+	val formattedTimeState = countDownTimer.millisState
+		.map { millis ->
+			formatTimeInMillis(millis)
+		}.stateIn(
+			viewModelScope,
+			SharingStarted.WhileSubscribed(5000),
+			formatTimeInMillis(_args.totalTimeInSeconds.toLong()),
 		)
 
-	// As there's no negative sign button even if the answer it's negative you insert a positive number
-	// but when storing the data we save the value with the right sign
-	private val _insertedResultSign get() = sign(_expectedResult.toFloat()).toInt()
+	private val _eventFlow = MutableSharedFlow<TestEvent>()
+	val eventFlow = _eventFlow.asSharedFlow()
+
+	private val _listOfOperationData = mutableListOf<OperationData>()
+
+	private fun getExpectedResult() = _args.operation(
+		firstNumber = _state.value.pairOfNumbers?.first.orZero(),
+		secondNumber = _state.value.pairOfNumbers?.second.orZero(),
+	)
 
 
 	init {
-		initialize()
+		init()
 	}
 
 
 	fun onAction(action: TestAction) {
 		when (action) {
-			is EnterNumber     -> {
-				_state.update { it.copy(insertedResult = it.insertedResult.append(action.value).clampLength(maxLength = 8)) }
+			is TestAction.StartTest       -> {
+				startTest()
+			}
+			is TestAction.EnterDigit      -> {
+				_state.update {
+					it.copy(
+						insertedResult = it.insertedResult
+							.append(action.digit)
+							.clampLength(maxLength = 8)
+					)
+				}
 
-				// We automatically add the result if it is correct
-				val isInsertedResultCorrect = _state.value.insertedResult * _insertedResultSign == _expectedResult
+				val expectedResult = getExpectedResult()
+				val sign = expectedResult.sign
+
+				val isInsertedResultCorrect = _state.value.insertedResult * sign == expectedResult
 				if (isInsertedResultCorrect) {
 					addResult()
 					nextOperation()
 				}
 			}
-			is RemoveLastDigit -> _state.update { it.copy(insertedResult = _state.value.insertedResult.dropLast()) }
-			is ClearInput      -> _state.update { it.copy(insertedResult = 0) }
-			is NextOperation   -> {
+			is TestAction.RemoveLastDigit -> {
+				_state.update {
+					it.copy(
+						insertedResult = it.insertedResult.dropLast()
+					)
+				}
+			}
+			is TestAction.ClearInput      -> {
+				_state.update {
+					it.copy(insertedResult = 0)
+				}
+			}
+			is TestAction.NextOperation   -> {
 				addResult()
 				nextOperation()
 			}
-			is ForceFinish     -> viewModelScope.launch {
-				finishTest(saveData = false)
+			is TestAction.ForceFinish     -> {
+				finishTest()
 			}
 		}
 	}
 
-	fun startTimer() {
+	private fun startTest() {
 		_state.value = _state.value.copy(
 			pairOfNumbers = useCases.getRandomNumberPairFromOperation(
 				operation = _args.operation,
@@ -107,54 +142,20 @@ class TestViewModel @Inject constructor(
 			)
 		)
 
-		countDownTimer.start()
-	}
-
-
-	private fun initialize() {
-		val countDownInterval = 1L
-
-		countDownTimer.initialize(
-			millisInFuture = if (_isInfiniteMode) Long.MAX_VALUE else _args.totalTimeInSeconds * 1_000L,
-			countDownInterval = countDownInterval,
-			coroutineScope = viewModelScope,
-		)
-
-		viewModelScope.launch {
-			countDownTimer.timerEventFlow.collect {
-				when (it) {
-					is TimerEvent.OnTick   -> {
-						_millisSinceStart += countDownInterval
-
-						if (!_isInfiniteMode) {
-							_eventFlow.send(
-								TestEvent.OnTimerTickInNormalMode(
-									millisSinceStart = it.millisSinceStart,
-									millisUntilFinished = it.millisUntilFinished,
-								)
-							)
-						}
-						else {
-							_eventFlow.send(
-								TestEvent.OnTimerTickInInfiniteMode(
-									millisSinceStart = _millisSinceStart,
-								)
-							)
-						}
-					}
-					is TimerEvent.OnFinish -> finishTest()
-					else                   -> Unit
-				}
-			}
-		}
+		countDownTimer.play()
 	}
 
 	private fun addResult() {
+		val state = _state.value
+
 		val data = OperationData(
 			operationName = _args.operation.name,
-			pairOfNumbers = _state.value.pairOfNumbers!!,
-			insertedResult = _state.value.insertedResult * _insertedResultSign,
-			millisSinceStart = _millisSinceStart,
+			pairOfNumbers = state.pairOfNumbers!!,
+			insertedResult = state.insertedResult * getExpectedResult().sign,
+			millisSinceStart = when (state.testType) {
+				TestType.INFINITE -> timerMillisState.value
+				TestType.FINITE   -> state.totalTimeInMillis - timerMillisState.value
+			},
 		)
 
 		_listOfOperationData.add(data)
@@ -171,32 +172,58 @@ class TestViewModel @Inject constructor(
 		)
 	}
 
-	private suspend fun finishTest(saveData: Boolean = true) {
-		_eventFlow.send(OnTimerFinish)
+	private fun finishTest() {
+		viewModelScope.launch {
+			_eventFlow.emit(TestEvent.OnTimerFinish)
 
-		val totalTime = if (_isInfiniteMode) _millisSinceStart else _args.totalTimeInSeconds * 1_000L
+			val testType = _state.value.testType
 
-		val testData = TestData(
-			dateUnix = System.currentTimeMillis(),
-			range = _args.range,
-			timeInSeconds = totalTime.toInt() / 1000,
-			listOfOperationData = _listOfOperationData.toList(),
-		)
+			val totalTimeInMillis = when (testType) {
+				TestType.INFINITE -> timerMillisState.value
+				else              -> _state.value.totalTimeInMillis
+			}
 
-		_eventFlow.send(
-			OnGoToTestDetails(
-				args = TestDetailsArgs(
-					testInfo = testData.toTestInfo(),
+			val testData = TestData(
+				dateUnix = System.currentTimeMillis(),
+				range = _args.range,
+				timeInSeconds = totalTimeInMillis.toInt() / 1000,
+				listOfOperationData = _listOfOperationData.toList(),
+			)
+
+			_eventFlow.emit(
+				TestEvent.OnGoToTestDetails(
+					args = TestDetailsArgs(
+						testInfo = testData.toTestInfo(),
+					)
 				)
 			)
-		)
 
-		// This is to avoid the cancellation of the viewModelScope
-		MainScope().launch(Dispatchers.IO) {
-			if (saveData) useCases.addTestData(
-				userUuid = useCases.getOwnUserUuid(),
-				testData = testData,
-			)
+			val saveData = testType == TestType.FINITE
+			if (saveData) {
+				MainScope().launch {
+					useCases.addTestData(
+						userUuid = useCases.getOwnUserUuid(),
+						testData = testData,
+					)
+				}
+			}
 		}
+	}
+
+	private fun init() {
+		viewModelScope.launch {
+			countDownTimer.millisState.collectLatest { millis ->
+
+				if (_state.value.testType == TestType.FINITE && millis <= 0) {
+					finishTest()
+				}
+			}
+		}
+	}
+
+	private fun formatTimeInMillis(millis: Long): String {
+		if (_state.value.testType == TestType.INFINITE) return "∞"
+
+		return "%.1f".format(millis / 1000F)
 	}
 }

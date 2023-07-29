@@ -2,8 +2,6 @@ package com.elian.computeit.di
 
 import android.content.Context
 import androidx.datastore.preferences.preferencesDataStore
-import com.elian.computeit.core.data.util.CountDownTimerImpl
-import com.elian.computeit.core.domain.util.CountDownTimer
 import com.elian.computeit.core.presentation.util.constants.DATA_STORE_PREFERENCES_NAME
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -32,7 +30,4 @@ object AppModule {
 	@Singleton
 	@Provides
 	fun provideFirebaseStorage() = Firebase.storage
-
-	@Provides
-	fun provideCountDownTimer(): CountDownTimer = CountDownTimerImpl()
 }

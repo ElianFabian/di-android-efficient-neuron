@@ -6,33 +6,23 @@ import android.widget.Button
 import androidx.core.view.isGone
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.elian.computeit.R
-import com.elian.computeit.core.presentation.util.extensions.collectFlowWhenStarted
-import com.elian.computeit.core.presentation.util.extensions.collectLatestFlowWhenStarted
 import com.elian.computeit.core.presentation.util.extensions.findViewsOfTypeWithTag
-import com.elian.computeit.core.presentation.util.extensions.navigate
-import com.elian.computeit.core.presentation.util.extensions.setOnClickListenerOnlyOnce
+import com.elian.computeit.core.presentation.util.extensions.onClick
+import com.elian.computeit.core.presentation.util.extensions.onClickOnce
 import com.elian.computeit.core.presentation.util.extensions.startAlphaAnimation
 import com.elian.computeit.core.presentation.util.extensions.textSizeInSp
 import com.elian.computeit.core.presentation.util.viewBinding
 import com.elian.computeit.core.util.constants.arguments
 import com.elian.computeit.core.util.constants.toBundle
-import com.elian.computeit.core.util.extensions.formatWith
-import com.elian.computeit.core.util.using
 import com.elian.computeit.databinding.FragmentTestBinding
 import com.elian.computeit.feature_tests.domain.args.TestArgs
-import com.elian.computeit.feature_tests.presentation.test.TestAction.ClearInput
-import com.elian.computeit.feature_tests.presentation.test.TestAction.EnterNumber
-import com.elian.computeit.feature_tests.presentation.test.TestAction.ForceFinish
-import com.elian.computeit.feature_tests.presentation.test.TestAction.NextOperation
-import com.elian.computeit.feature_tests.presentation.test.TestAction.RemoveLastDigit
-import com.elian.computeit.feature_tests.presentation.test.TestEvent.OnGoToTestDetails
-import com.elian.computeit.feature_tests.presentation.test.TestEvent.OnTimerFinish
-import com.elian.computeit.feature_tests.presentation.test.TestEvent.OnTimerTickInInfiniteMode
-import com.elian.computeit.feature_tests.presentation.test.TestEvent.OnTimerTickInNormalMode
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -40,6 +30,7 @@ class TestFragment : Fragment(R.layout.fragment_test) {
 
 	private val viewModel by viewModels<TestViewModel>()
 	private val binding by viewBinding(FragmentTestBinding::bind)
+	private val navController by lazy { findNavController() }
 	private val args by arguments<TestArgs>()
 
 	private val operationView by lazy {
@@ -69,95 +60,126 @@ class TestFragment : Fragment(R.layout.fragment_test) {
 	}
 
 
+	override fun onCreate(savedInstanceState: Bundle?) {
+		super.onCreate(savedInstanceState)
+
+		subscribeToEvents()
+	}
+
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 		super.onViewCreated(view, savedInstanceState)
 
-		subscribeToEvents()
-		initializeUi()
+		initUi()
 	}
 
 
-	private fun initializeUi() = using(binding) {
+	private fun initUi() {
 		disableScreenInteraction()
 
-		args.totalTimeInSeconds.also {
-			mtvRemainingSeconds.text = if (it == 0) {
-				mtvRemainingSeconds.textSizeInSp = resources.getDimension(R.dimen.textSize_xlarge1)
-
-				mtvRemainingSeconds.setOnClickListener { viewModel.onAction(ForceFinish) }
-
-				"∞"
+		binding.apply {
+			tvRemainingSeconds.apply {
+				if (viewModel.state.value.testType == TestType.INFINITE) {
+					textSizeInSp = resources.getDimension(R.dimen.textSize_xlarge1)
+				}
+				onClick {
+					viewModel.onAction(TestAction.ForceFinish)
+				}
 			}
-			else it.toFloat().formatWith("%.1f")
 
-			val initialProgress = if (it == 0) 1 else it * 1_000
+			operationView.symbol = args.operation.symbol
 
-			cpiRemainingSeconds.max = initialProgress
-			cpiRemainingSeconds.progress = initialProgress
-		}
-
-		operationView.symbol = args.operation.symbol
-
-		llKeyBoard.findViewsOfTypeWithTag<Button>(R.string.tag_numeric_button).forEach { button ->
-
-			button.setOnClickListener {
-				viewModel.onAction(EnterNumber(button.text.toString().toInt()))
+			llKeyBoard.findViewsOfTypeWithTag<Button>(R.string.tag_numeric_button).forEach { button ->
+				button.onClick {
+					viewModel.onAction(TestAction.EnterDigit(button.text.toString().toInt()))
+				}
 			}
-		}
 
-		flOperation.setOnClickListener { operationView.toggleDistribution() }
+			flOperation.onClick { operationView.toggleDistribution() }
 
-		btnRemoveLastDigit.setOnClickListener { viewModel.onAction(RemoveLastDigit) }
-		btnNextOperation.setOnClickListener { viewModel.onAction(NextOperation) }
-		btnClearInput.setOnClickListener { viewModel.onAction(ClearInput) }
+			btnRemoveLastDigit.onClick { viewModel.onAction(TestAction.RemoveLastDigit) }
+			btnNextOperation.onClick { viewModel.onAction(TestAction.NextOperation) }
+			btnClearInput.onClick { viewModel.onAction(TestAction.ClearInput) }
 
-		clTouchToStart.setOnClickListenerOnlyOnce {
-			val transitionDuration = 600L
+			clTouchToStart.onClickOnce {
+				val transitionDuration = 600L
 
-			clTouchToStart.startAlphaAnimation(
-				fromAlpha = 1F,
-				toAlpha = 0F,
-				durationMillis = transitionDuration,
-			)
+				clTouchToStart.startAlphaAnimation(
+					fromAlpha = 1F,
+					toAlpha = 0F,
+					durationMillis = transitionDuration,
+				)
 
-			lifecycleScope.launch {
-				delay(transitionDuration + 150L)
+				lifecycleScope.launch {
+					delay(transitionDuration + 150L)
 
-				viewModel.startTimer()
+					viewModel.onAction(TestAction.StartTest)
 
-				enableScreenInteraction()
+					enableScreenInteraction()
+				}
 			}
 		}
 	}
 
-	private fun subscribeToEvents() = using(viewModel) {
-		collectLatestFlowWhenStarted(state) {
-			it.pairOfNumbers?.also { pair ->
+	private fun subscribeToEvents() {
+		lifecycleScope.launch {
+			viewModel.state.flowWithLifecycle(lifecycle)
+				.collectLatest { state ->
+					val pair = state.pairOfNumbers
+					val testType = state.testType
 
-				operationView.firstNumber = pair.first.toString()
-				operationView.secondNumber = pair.second.toString()
-			}
-			binding.tietInput.setText("${it.insertedResult}")
-			operationView.symbol = it.operationSymbol
+					operationView.apply {
+						firstNumber = pair?.first?.toString() ?: "?"
+						secondNumber = pair?.second?.toString() ?: "?"
+						symbol = state.operation.symbol
+					}
+
+					binding.apply {
+						tietInput.apply {
+							setText("${state.insertedResult}")
+						}
+						pbRemainingSeconds.apply {
+							max = when (testType) {
+								TestType.FINITE   -> state.totalTimeInMillis.toInt()
+								TestType.INFINITE -> 1
+							}
+							if (testType == TestType.INFINITE) {
+								progress = 1
+							}
+						}
+					}
+				}
 		}
-		collectFlowWhenStarted(eventFlow) {
-			when (it) {
-				is OnTimerTickInNormalMode   -> {
-					val seconds = it.millisUntilFinished / 1000F
+		lifecycleScope.launch {
+			viewModel.formattedTimeState.flowWithLifecycle(lifecycle)
+				.collectLatest { formattedTime ->
+					binding.tvRemainingSeconds.text = formattedTime
+				}
+		}
+		lifecycleScope.launch {
+			viewModel.timerMillisState.flowWithLifecycle(lifecycle)
+				.collectLatest { millis ->
+					val testType = viewModel.state.value.testType
 
-					binding.cpiRemainingSeconds.progress = it.millisUntilFinished.toInt()
-					binding.mtvRemainingSeconds.text = seconds.formatWith("%.1f")
+					if (testType == TestType.FINITE) {
+						binding.pbRemainingSeconds.progress = millis.toInt()
+					}
 				}
-				is OnTimerTickInInfiniteMode -> {
-					// this may be used in future
+		}
+		lifecycleScope.launch {
+			viewModel.eventFlow.flowWithLifecycle(lifecycle)
+				.collectLatest { event ->
+					when (event) {
+						is TestEvent.OnTimerFinish     -> {
+							disableScreenInteraction()
+						}
+						is TestEvent.OnGoToTestDetails -> {
+							navController.navigate(
+								resId = R.id.action_testFragment_to_testDetailsFragment,
+								args = event.args.toBundle(),
+							)
+						}
+					}
 				}
-				is OnTimerFinish             -> {
-					disableScreenInteraction()
-				}
-				is OnGoToTestDetails         -> {
-					navigate(R.id.action_testFragment_to_testDetailsFragment, it.args.toBundle())
-				}
-			}
 		}
 	}
 

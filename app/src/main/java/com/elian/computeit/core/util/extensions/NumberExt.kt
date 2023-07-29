@@ -42,5 +42,5 @@ fun Int.dropLast(n: Int = 1): Int = this.toLong().dropLast(n).toInt()
 
 
 fun Int?.orZero() = this ?: 0
-fun Float?.orZero() = if (this == null || isNaN()) 0F else this
-fun Double?.orZero() = if (this == null || isNaN()) 0.0 else this
+fun Float?.orZero() = if (this == null || isNaN() || isInfinite()) 0F else this
+fun Double?.orZero() = if (this == null || isNaN() || isInfinite()) 0.0 else this

@@ -43,7 +43,7 @@ fun View.startAlphaAnimation(
 	startAnimation(fadeAnimation)
 }
 
-fun View.setOnClickListenerOnlyOnce(listener: View.OnClickListener) = setOnClickListener {
+fun View.onClickOnce(listener: View.OnClickListener) = setOnClickListener {
 	listener.onClick(it)
 	setOnClickListener(null)
 }

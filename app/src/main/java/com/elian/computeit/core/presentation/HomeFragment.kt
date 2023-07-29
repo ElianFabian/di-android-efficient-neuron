@@ -70,7 +70,6 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 			}
 
 			btnGoToTestDetails.onClick {
-				println("$$$$$ click GoToTestDetail")
 				viewModel.onAction(HomeAction.GoToTestDetail)
 			}
 
@@ -182,10 +181,8 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 		lifecycleScope.launch {
 			viewModel.eventFlow.flowWithLifecycle(lifecycle)
 				.collect { event ->
-					println("$$$ event = $event")
 					when (event) {
 						is HomeEvent.OnGoToTestDetail -> {
-							println("$$$$ navigate OnGoToTestDetail")
 							navController.navigate(
 								resId = R.id.action_homeFragment_to_testDetailsFragment,
 								args = event.args.toBundle(),

@@ -61,7 +61,7 @@
             app:layout_constraintVertical_bias="0.01">
 
             <com.google.android.material.progressindicator.CircularProgressIndicator
-                android:id="@+id/cpiRemainingSeconds"
+                android:id="@+id/pbRemainingSeconds"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:indicatorSize="@dimen/_82sdp"
@@ -71,7 +71,7 @@
                 tools:progress="75" />
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/mtvRemainingSeconds"
+                android:id="@+id/tvRemainingSeconds"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
